@@ -23,15 +23,18 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy: #0a192f;
-            --navy-light: #112240;
-            --navy-mid: #1d3461;
-            --slate: #8892b0;
-            --slate-light: #a8b2d1;
-            --white: #e6f1ff;
-            --accent: #64ffda;
-            --accent-dim: rgba(100, 255, 218, 0.1);
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
             --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
         }
 
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -44,15 +47,46 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ===== Skip to Content (Accessibility) ===== */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 4px 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.2s;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
+        }
+
+        /* ===== Focus Visible (Accessibility) ===== */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Remove outline for mouse users */
+        :focus:not(:focus-visible) {
+            outline: none;
+        }
+
         /* ===== Navigation ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 25, 47, 0.92);
+            background: rgba(45, 42, 46, 0.92);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(100, 255, 218, 0.08);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
             z-index: 1000;
             transition: box-shadow 0.3s;
         }
@@ -70,6 +104,7 @@
         }
 
         .logo {
+            font-family: var(--font-heading);
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--white);
@@ -131,6 +166,7 @@
         }
 
         .section-heading {
+            font-family: var(--font-heading);
             font-size: clamp(1.75rem, 4vw, 2.5rem);
             font-weight: 700;
             color: var(--white);
@@ -160,8 +196,8 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(100, 255, 218, 0.04), transparent),
-                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(100, 255, 218, 0.03), transparent);
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(143, 170, 123, 0.04), transparent),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(143, 170, 123, 0.03), transparent);
             pointer-events: none;
         }
 
@@ -170,6 +206,7 @@
         .hero .section-label { margin-bottom: 1.5rem; }
 
         .hero h1 {
+            font-family: var(--font-heading);
             font-size: clamp(2.25rem, 5.5vw, 4rem);
             font-weight: 700;
             color: var(--white);
@@ -194,7 +231,7 @@
         .btn {
             display: inline-block;
             padding: 0.875rem 2rem;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--accent-bg);
             color: var(--accent);
             text-decoration: none;
             font-size: 0.9rem;
@@ -210,12 +247,12 @@
         }
 
         .btn-filled {
-            background: var(--accent);
+            background: var(--accent-bg);
             color: var(--navy);
         }
 
         .btn-filled:hover {
-            background: #7bffe5;
+            background: var(--accent-hover);
             transform: translateY(-1px);
         }
 
@@ -244,7 +281,7 @@
 
         .stat-card {
             background: var(--navy);
-            border: 1px solid rgba(100, 255, 218, 0.1);
+            border: 1px solid rgba(143, 170, 123, 0.1);
             border-radius: 8px;
             padding: 2rem;
             text-align: center;
@@ -257,6 +294,7 @@
         }
 
         .stat-card h3 {
+            font-family: var(--font-heading);
             color: var(--white);
             font-size: 1rem;
             font-weight: 600;
@@ -279,7 +317,7 @@
 
         .service-card {
             background: var(--navy-light);
-            border: 1px solid rgba(100, 255, 218, 0.06);
+            border: 1px solid rgba(143, 170, 123, 0.06);
             border-radius: 8px;
             padding: 2.5rem;
             transition: all 0.3s;
@@ -293,13 +331,13 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+            background: linear-gradient(90deg, var(--accent-bg), transparent);
             opacity: 0;
             transition: opacity 0.3s;
         }
 
         .service-card:hover {
-            border-color: rgba(100, 255, 218, 0.15);
+            border-color: rgba(143, 170, 123, 0.15);
             transform: translateY(-2px);
         }
 
@@ -327,6 +365,7 @@
         }
 
         .service-card h3 {
+            font-family: var(--font-heading);
             color: var(--white);
             font-size: 1.2rem;
             font-weight: 600;
@@ -361,8 +400,8 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--accent);
-            opacity: 0.6;
+            background: var(--slate);
+            opacity: 0.8;
         }
 
         /* ===== Industries ===== */
@@ -378,6 +417,7 @@
         .sector-group { margin-bottom: 2rem; }
 
         .sector-group h3 {
+            font-family: var(--font-heading);
             color: var(--white);
             font-size: 1.1rem;
             font-weight: 600;
@@ -391,7 +431,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--accent);
+            background: var(--accent-bg);
             flex-shrink: 0;
         }
 
@@ -404,7 +444,7 @@
 
         .sector-list li {
             background: var(--navy);
-            border: 1px solid rgba(100, 255, 218, 0.08);
+            border: 1px solid rgba(143, 170, 123, 0.08);
             padding: 0.5rem 1rem;
             border-radius: 4px;
             font-size: 0.85rem;
@@ -428,20 +468,22 @@
         .approach-card {
             text-align: center;
             padding: 2rem 1.5rem;
-            border: 1px solid rgba(100, 255, 218, 0.06);
+            border: 1px solid rgba(143, 170, 123, 0.06);
             border-radius: 8px;
             background: var(--navy-light);
         }
 
         .approach-num {
+            font-family: var(--font-heading);
             font-size: 2rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--accent-bg);
             margin-bottom: 1rem;
             opacity: 0.4;
         }
 
         .approach-card h3 {
+            font-family: var(--font-heading);
             color: var(--white);
             font-size: 1rem;
             font-weight: 600;
@@ -478,7 +520,7 @@
             font-weight: 600;
             letter-spacing: 0.01em;
             padding: 1rem 2.5rem;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--accent-bg);
             border-radius: 4px;
             transition: all 0.25s;
         }
@@ -492,7 +534,7 @@
         footer {
             padding: 2rem;
             text-align: center;
-            border-top: 1px solid rgba(100, 255, 218, 0.06);
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
         }
 
         footer p {
@@ -500,14 +542,19 @@
             color: var(--slate);
         }
 
-        footer a { color: var(--accent); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
 
         /* ===== Divider ===== */
         .divider {
             width: 60px;
             height: 2px;
-            background: var(--accent);
+            background: var(--accent-bg);
             opacity: 0.3;
             margin: 1.5rem 0;
         }
@@ -526,6 +573,53 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* ===== Accessibility: Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .btn:hover,
+            .btn-filled:hover,
+            .service-card:hover,
+            .contact-email:hover {
+                transform: none;
+            }
+        }
+
+        /* ===== Accessibility: High Contrast ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --slate: #e0d8cc;
+                --slate-light: #f0ebe3;
+                --white: #ffffff;
+                --accent: #c2d9b4;
+                --accent-bg: #a8c196;
+                --navy-mid: #6b6370;
+            }
+
+            .service-card,
+            .stat-card,
+            .approach-card,
+            .sector-list li {
+                border-width: 2px;
+            }
+
+            .nav-links a,
+            footer a {
+                text-decoration: underline;
+            }
         }
 
         /* ===== Responsive ===== */
@@ -547,11 +641,11 @@
                 top: 72px;
                 left: 0;
                 right: 0;
-                background: rgba(10, 25, 47, 0.97);
+                background: rgba(45, 42, 46, 0.97);
                 flex-direction: column;
                 padding: 1.5rem 2rem 2rem;
                 gap: 1rem;
-                border-bottom: 1px solid rgba(100, 255, 218, 0.08);
+                border-bottom: 1px solid rgba(143, 170, 123, 0.08);
             }
 
             .nav-links.open { display: flex; }
@@ -571,8 +665,11 @@
 </head>
 <body>
 
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="#" class="logo">Circle <span>6</span> Systems</a>
             <ul class="nav-links" id="navLinks">
@@ -582,7 +679,7 @@
                 <li><a href="#approach">Approach</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -591,8 +688,8 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="container hero-content">
+    <section class="hero" id="hero" role="banner" aria-label="Introduction">
+        <div class="container hero-content" id="main-content">
             <p class="section-label">Strategic Technology Consulting</p>
             <h1>Securing and Modernizing<br><em>Critical Systems</em></h1>
             <p>Circle 6 Systems partners with government agencies and enterprise organizations to strengthen cyber security posture, architect resilient infrastructure, and deliver integrated technology solutions that serve the public interest.</p>
@@ -601,7 +698,7 @@
     </section>
 
     <!-- About -->
-    <section class="about" id="about">
+    <section class="about" id="about" role="region" aria-label="About Circle 6 Systems">
         <div class="container">
             <div class="about-grid">
                 <div class="about-text fade-in">
@@ -647,7 +744,7 @@
     </section>
 
     <!-- Services -->
-    <section class="services" id="services">
+    <section class="services" id="services" role="region" aria-label="Consulting services">
         <div class="container">
             <p class="section-label fade-in">What We Do</p>
             <h2 class="section-heading fade-in">Consulting Services</h2>
@@ -722,7 +819,7 @@
     </section>
 
     <!-- Industries -->
-    <section class="industries" id="industries">
+    <section class="industries" id="industries" role="region" aria-label="Industries served">
         <div class="container">
             <p class="section-label fade-in">Who We Serve</p>
             <h2 class="section-heading fade-in">Built for Organizations That Serve the Public</h2>
@@ -764,7 +861,7 @@
     </section>
 
     <!-- Approach -->
-    <section class="approach" id="approach">
+    <section class="approach" id="approach" role="region" aria-label="Our approach">
         <div class="container">
             <p class="section-label fade-in">How We Work</p>
             <h2 class="section-heading fade-in">Our Approach</h2>
@@ -796,7 +893,7 @@
     </section>
 
     <!-- Contact -->
-    <section class="contact" id="contact">
+    <section class="contact" id="contact" role="region" aria-label="Contact information">
         <div class="container">
             <div class="contact-inner fade-in">
                 <p class="section-label">Get in Touch</p>
@@ -809,7 +906,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
     </footer>
 
@@ -827,6 +924,7 @@
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
         });
 
         // Close mobile menu on link click
@@ -834,6 +932,7 @@
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
             });
         });
 
