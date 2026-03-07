@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dude Diligence Issue #2: Reply All to Disaster | Circle 6 Systems</title>
+  <meta name="description" content="Business Email Compromise (BEC) security awareness training. A Dude Diligence comic book module by Circle 6 Systems.">
+  <meta property="og:title" content="Dude Diligence #2: Reply All to Disaster">
+  <meta property="og:description" content="BEC training — CEO fraud, payroll diversion, vendor invoice fraud. Comic book style security awareness.">
+  <meta property="og:type" content="website">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f5e6c8;
+      --paper-dark: #e8d5a8;
+      --paper-light: #faf3e3;
+      --caption: #f5deb3;
+      --accent: #c0392b;
+      --accent-light: rgba(192, 57, 43, 0.15);
+      --blue: #2c5f8a;
+      --blue-light: rgba(44, 95, 138, 0.12);
+      --green: #5a7a3a;
+      --green-light: rgba(90, 122, 58, 0.15);
+      --bubble-bg: #ffffff;
+      --font-comic: 'Bangers', Impact, 'Arial Black', sans-serif;
+      --font-body: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+      --font-caption: Georgia, 'Times New Roman', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--paper-dark);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Halftone overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--accent);
+      z-index: 1000;
+      height: 56px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .nav-logo {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      color: var(--caption);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(245, 222, 179, 0.25);
+    }
+    .nav-title {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: rgba(245, 222, 179, 0.6);
+      font-weight: 700;
+    }
+    .nav-pages {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(245, 222, 179, 0.15);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      padding: 0;
+    }
+    .nav-dot.active {
+      background: var(--accent);
+      border-color: var(--caption);
+      transform: scale(1.3);
+    }
+    .nav-dot.completed {
+      background: var(--green);
+    }
+    .nav-dot:hover { transform: scale(1.4); }
+    .page-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: rgba(245,222,179,0.5);
+      margin-left: 0.5rem;
+      font-weight: 700;
+    }
+
+    /* ===== Main Layout ===== */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 56px;
+    }
+
+    .page {
+      display: none;
+      animation: pageIn 0.5s ease;
+    }
+    .page.active { display: block; }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .page { animation: none; }
+    }
+
+    .page-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ===== Comic Panel System ===== */
+    .panel-grid {
+      display: grid;
+      gap: 12px;
+      margin: 1rem 0;
+    }
+    .panel-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .panel-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .panel-grid.cols-2-1 { grid-template-columns: 2fr 1fr; }
+    .panel-grid.cols-1-2 { grid-template-columns: 1fr 2fr; }
+
+    .panel {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      padding: 1.25rem;
+      position: relative;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 3px 3px;
+      pointer-events: none;
+    }
+    .panel.accent-panel {
+      border-color: var(--accent);
+      border-width: 4px;
+    }
+    .panel.blue-panel {
+      border-color: var(--blue);
+    }
+    .panel.full-width {
+      grid-column: 1 / -1;
+    }
+    .panel.dark-panel {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .panel.dark-panel .caption-box { background: rgba(245,222,179,0.15); color: var(--caption); }
+
+    /* ===== Narrator Caption Boxes ===== */
+    .caption-box {
+      background: var(--caption);
+      border: 2px solid var(--ink);
+      padding: 0.5rem 0.75rem;
+      font-family: var(--font-caption);
+      font-style: italic;
+      font-weight: bold;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      max-width: 90%;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== Speech Bubbles ===== */
+    .speech-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 20px;
+      padding: 0.75rem 1rem;
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0.75rem 0;
+      max-width: 85%;
+      z-index: 2;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 25px;
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 14px solid var(--ink);
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 27px;
+      width: 0; height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 12px solid var(--bubble-bg);
+      z-index: 1;
+    }
+    .speech-bubble.right {
+      margin-left: auto;
+    }
+    .speech-bubble.right::after {
+      left: auto;
+      right: 25px;
+    }
+    .speech-bubble.right::before {
+      left: auto;
+      right: 27px;
+    }
+    .speech-bubble.dude {
+      border-color: var(--blue);
+    }
+    .speech-bubble.dude::after {
+      border-top-color: var(--blue);
+    }
+    .speech-bubble.warm {
+      border-color: var(--green);
+      background: #f0f7e8;
+    }
+    .speech-bubble.warm::after {
+      border-top-color: var(--green);
+    }
+    .speech-bubble.warm::before {
+      border-top-color: #f0f7e8;
+    }
+
+    /* Thought bubble */
+    .thought-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 50% / 40%;
+      padding: 1rem 1.25rem;
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-style: italic;
+      margin: 0.75rem 0;
+      max-width: 80%;
+      z-index: 2;
+    }
+    .thought-bubble::after,
+    .thought-bubble .cloud-dot-1,
+    .thought-bubble .cloud-dot-2 {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: var(--bubble-bg);
+      border: 2px solid var(--ink);
+    }
+    .thought-bubble::after {
+      width: 12px; height: 12px;
+      bottom: -14px; left: 30px;
+    }
+    .thought-bubble .cloud-dot-1 {
+      width: 8px; height: 8px;
+      bottom: -22px; left: 22px;
+    }
+
+    /* ===== Sound Effects ===== */
+    .sfx {
+      font-family: var(--font-comic);
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink);
+      transform: rotate(-5deg);
+      display: inline-block;
+      letter-spacing: 0.05em;
+      z-index: 2;
+      position: relative;
+    }
+    .sfx.small { font-size: 1.5rem; }
+    .sfx.blue { color: var(--blue); }
+
+    /* ===== Typography ===== */
+    .comic-title {
+      font-family: var(--font-comic);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--ink);
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+    .comic-title .accent { color: var(--accent); }
+    .comic-title .blue { color: var(--blue); }
+
+    .comic-heading {
+      font-family: var(--font-comic);
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .comic-heading .accent { color: var(--accent); }
+
+    .body-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .body-text strong {
+      font-weight: 700;
+    }
+
+    .speaker-label {
+      font-family: var(--font-comic);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ===== Cover Page ===== */
+    .cover {
+      background: var(--paper);
+      border: 5px solid var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.2);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .cover-masthead {
+      background: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-comic);
+      font-size: clamp(2rem, 7vw, 3.5rem);
+      letter-spacing: 0.08em;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+      border-bottom: 4px solid var(--ink);
+      position: relative;
+    }
+    .cover-masthead::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 5px 5px;
+      pointer-events: none;
+    }
+    .issue-badge {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: var(--caption);
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-comic);
+      font-size: 0.7rem;
+      line-height: 1.1;
+      transform: rotate(8deg);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+      z-index: 5;
+    }
+    .issue-badge .num {
+      font-size: 1.4rem;
+      color: var(--accent);
+    }
+    .cover-body {
+      padding: 1.5rem;
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-title {
+      font-family: var(--font-comic);
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--accent);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+      text-align: center;
+      margin: 0.5rem 0;
+      letter-spacing: 0.04em;
+    }
+    .cover-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+    .cover-art {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      align-items: center;
+      flex: 1;
+      padding: 1rem 0;
+    }
+    .cover-art img {
+      max-height: 260px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    }
+    .cover-scene {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .email-ping {
+      font-family: var(--font-comic);
+      font-size: 1.2rem;
+      color: var(--accent);
+      animation: ping 1.5s ease-in-out infinite;
+    }
+    @keyframes ping {
+      0%, 100% { opacity: 0.5; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    .cover-footer {
+      text-align: center;
+      padding: 0.75rem;
+      border-top: 2px solid var(--ink);
+      font-family: var(--font-caption);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(26,26,26,0.6);
+    }
+
+    /* ===== Email Mockups ===== */
+    .email-mockup {
+      background: white;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 0.75rem 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 0.85rem;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    }
+    .email-toolbar {
+      background: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+      padding: 0.4rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .email-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .email-dot.red { background: #e74c3c; }
+    .email-dot.yellow { background: #f39c12; }
+    .email-dot.green { background: #27ae60; }
+    .email-header {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eee;
+      font-size: 0.8rem;
+    }
+    .email-field { margin-bottom: 0.3rem; display: flex; gap: 0.5rem; }
+    .email-field-label {
+      font-weight: 700;
+      color: #666;
+      min-width: 60px;
+    }
+    .email-field-value { color: var(--ink); }
+    .email-field-value .red-flag {
+      background: rgba(192,57,43,0.12);
+      color: var(--accent);
+      font-weight: 700;
+      padding: 0 3px;
+      border-radius: 2px;
+      border-bottom: 2px solid var(--accent);
+    }
+    .email-body-content {
+      padding: 0.75rem 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .email-urgency {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ===== Attack Chain ===== */
+    .attack-chain {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .chain-step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      position: relative;
+      padding: 0.75rem 0;
+    }
+    .chain-number {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      color: white;
+      border: 3px solid var(--ink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-comic);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .chain-step:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 55px;
+      bottom: -5px;
+      width: 3px;
+      background: var(--ink);
+      z-index: 1;
+    }
+    .chain-content h4 {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+    }
+    .chain-content p {
+      font-size: 0.9rem;
+      color: rgba(26,26,26,0.75);
+      margin-top: 0.15rem;
+    }
+
+    /* ===== Interactive Scenarios ===== */
+    .scenario-panel {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    }
+    .scenario-header {
+      background: var(--ink);
+      color: var(--caption);
+      padding: 0.6rem 1rem;
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .scenario-body {
+      padding: 1.25rem;
+    }
+    .scenario-buttons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .scenario-btn {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      padding: 0.6rem 1.5rem;
+      border: 3px solid var(--ink);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    }
+    .scenario-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+    .scenario-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+    }
+    .scenario-btn.yes {
+      background: var(--accent);
+      color: white;
+    }
+    .scenario-btn.no {
+      background: var(--green);
+      color: white;
+    }
+    .scenario-reveal {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 2px dashed var(--ink);
+      border-radius: 6px;
+      animation: revealIn 0.4s ease;
+    }
+    .scenario-reveal.show { display: block; }
+    .scenario-reveal.correct { background: var(--green-light); border-color: var(--green); }
+    .scenario-reveal.incorrect { background: var(--accent-light); border-color: var(--accent); }
+    @keyframes revealIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .scenario-verdict {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== Defense Rules ===== */
+    .defense-rule {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    }
+    .rule-number {
+      font-family: var(--font-comic);
+      font-size: 2rem;
+      color: var(--accent);
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+      flex-shrink: 0;
+      min-width: 40px;
+      text-align: center;
+    }
+    .rule-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    /* ===== Quiz ===== */
+    .quiz-question {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    }
+    .quiz-q-header {
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .quiz-q-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      border: 2px solid rgba(26,26,26,0.2);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: white;
+    }
+    .quiz-option:hover { border-color: var(--blue); background: var(--blue-light); }
+    .quiz-option.selected { border-color: var(--blue); background: var(--blue-light); }
+    .quiz-option.correct { border-color: var(--green); background: var(--green-light); }
+    .quiz-option.wrong { border-color: var(--accent); background: var(--accent-light); }
+    .quiz-option input { display: none; }
+    .quiz-radio {
+      width: 18px; height: 18px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quiz-option.selected .quiz-radio::after {
+      content: '';
+      width: 10px; height: 10px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+    .quiz-option.correct .quiz-radio::after {
+      content: '';
+      width: 10px; height: 10px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+    .quiz-option.wrong .quiz-radio::after {
+      content: '';
+      width: 10px; height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .quiz-explanation {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .quiz-explanation.show { display: block; }
+    .quiz-explanation.correct-expl { background: var(--green-light); border-left: 3px solid var(--green); }
+    .quiz-explanation.wrong-expl { background: var(--accent-light); border-left: 3px solid var(--accent); }
+
+    .quiz-submit-btn {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      padding: 0.75rem 2rem;
+      background: var(--accent);
+      color: white;
+      border: 3px solid var(--ink);
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      transition: all 0.2s;
+      margin-top: 1rem;
+    }
+    .quiz-submit-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
+    }
+    .quiz-submit-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+    .quiz-score-box {
+      display: none;
+      background: var(--paper-light);
+      border: 4px solid var(--ink);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 1.5rem;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+    }
+    .quiz-score-box.show { display: block; }
+    .quiz-score-number {
+      font-family: var(--font-comic);
+      font-size: 3rem;
+      color: var(--accent);
+    }
+    .quiz-score-number.passing { color: var(--green); }
+
+    /* ===== Certificate ===== */
+    .certificate {
+      background: var(--paper-light);
+      border: 6px double var(--ink);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      max-width: 650px;
+      margin: 1rem auto;
+      position: relative;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+    }
+    .certificate::before {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border: 2px solid rgba(26,26,26,0.2);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .cert-header {
+      font-family: var(--font-comic);
+      font-size: 2rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .cert-body {
+      font-family: var(--font-caption);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin: 1rem 0;
+    }
+    .cert-name-input {
+      font-family: var(--font-comic);
+      font-size: 1.5rem;
+      text-align: center;
+      border: none;
+      border-bottom: 3px solid var(--ink);
+      background: transparent;
+      padding: 0.25rem 1rem;
+      width: 80%;
+      max-width: 300px;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+    }
+    .cert-name-input::placeholder {
+      color: rgba(26,26,26,0.25);
+      font-size: 1rem;
+    }
+    .cert-name-input:focus {
+      outline: none;
+      border-bottom-color: var(--blue);
+    }
+    .cert-date {
+      font-family: var(--font-caption);
+      font-size: 0.85rem;
+      color: rgba(26,26,26,0.5);
+      margin-top: 1rem;
+    }
+    .cert-seal {
+      font-size: 3rem;
+      margin: 0.75rem 0;
+    }
+    .cert-footer {
+      font-family: var(--font-caption);
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(26,26,26,0.45);
+      margin-top: 1.5rem;
+    }
+    .print-btn {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      padding: 0.6rem 1.5rem;
+      background: var(--blue);
+      color: white;
+      border: 3px solid var(--ink);
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+      transition: all 0.2s;
+      margin-top: 1rem;
+      letter-spacing: 0.04em;
+    }
+    .print-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+
+    /* ===== Page Navigation Buttons ===== */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 3px solid var(--ink);
+    }
+    .page-btn {
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 1.25rem;
+      border: 3px solid var(--ink);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .page-btn.next {
+      background: var(--accent);
+      color: white;
+    }
+    .page-btn.prev {
+      background: var(--paper-light);
+    }
+    .page-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+    .page-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+    }
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    }
+    .page-indicator {
+      font-family: var(--font-comic);
+      font-size: 0.85rem;
+      color: rgba(26,26,26,0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===== BEC Type Cards ===== */
+    .bec-type {
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      padding: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+    .bec-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .bec-type h4 {
+      font-family: var(--font-comic);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.2rem;
+    }
+    .bec-type p {
+      font-size: 0.85rem;
+      color: rgba(26,26,26,0.7);
+      margin: 0;
+    }
+
+    /* ===== Stat Boxes ===== */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .stat-box {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    }
+    .stat-number {
+      font-family: var(--font-comic);
+      font-size: 2rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(26,26,26,0.6);
+      margin-top: 0.25rem;
+    }
+
+    /* ===== Character Section ===== */
+    .character-img {
+      max-width: 200px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    }
+    .character-section {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .character-section .text-side { flex: 1; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .panel-grid.cols-2,
+      .panel-grid.cols-3,
+      .panel-grid.cols-2-1,
+      .panel-grid.cols-1-2 {
+        grid-template-columns: 1fr;
+      }
+      .panel.full-width { grid-column: 1; }
+      .cover-art { flex-direction: column; }
+      .cover-art img { max-height: 180px; }
+      .character-section { flex-direction: column; }
+      .character-img { max-width: 160px; }
+      .page-inner { padding: 1.25rem 1rem 3rem; }
+      .defense-rule { flex-direction: column; gap: 0.5rem; }
+      .issue-badge { width: 45px; height: 45px; font-size: 0.6rem; top: 5px; right: 8px; }
+      .issue-badge .num { font-size: 1.1rem; }
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body { background: white; }
+      body::after { display: none; }
+      .nav { display: none; }
+      main { padding-top: 0; }
+      .page { display: block !important; break-inside: avoid; margin-bottom: 2rem; page-break-after: always; }
+      .page-nav { display: none; }
+      .scenario-buttons { display: none; }
+      .scenario-reveal { display: block !important; }
+      .quiz-submit-btn { display: none; }
+      .print-btn { display: none; }
+      .panel { box-shadow: none; border-width: 2px; }
+      .cover { box-shadow: none; }
+      @page { margin: 1.5cm; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" role="navigation" aria-label="Page navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" onclick="return false;">
+      <div class="nav-logo">DUDE <span>DILIGENCE</span></div>
+      <div class="nav-divider"></div>
+      <div class="nav-title">ISSUE #2</div>
+    </a>
+    <div class="nav-pages">
+      <button class="nav-dot active" onclick="goToPage(0)" aria-label="Page 1" title="Cover"></button>
+      <button class="nav-dot" onclick="goToPage(1)" aria-label="Page 2" title="What Is BEC"></button>
+      <button class="nav-dot" onclick="goToPage(2)" aria-label="Page 3" title="Attack Chain"></button>
+      <button class="nav-dot" onclick="goToPage(3)" aria-label="Page 4" title="Attack Hits"></button>
+      <button class="nav-dot" onclick="goToPage(4)" aria-label="Page 5" title="Scenarios"></button>
+      <button class="nav-dot" onclick="goToPage(5)" aria-label="Page 6" title="Defense"></button>
+      <button class="nav-dot" onclick="goToPage(6)" aria-label="Page 7" title="Quiz"></button>
+      <button class="nav-dot" onclick="goToPage(7)" aria-label="Page 8" title="Certificate"></button>
+      <span class="page-label">Page <span id="pageNum">1</span>/8</span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="page active" data-page="0">
+  <div class="page-inner">
+    <div class="cover">
+      <div class="cover-masthead">
+        DUDE DILIGENCE
+        <div class="issue-badge">
+          ISSUE<br><span class="num">#2</span>
+        </div>
+      </div>
+      <div class="cover-body">
+        <div class="cover-title">REPLY ALL TO DISASTER</div>
+        <div class="cover-subtitle">Business Email Compromise: When the Biggest Hack is Just a Really Good Lie</div>
+
+        <div class="cover-art">
+          <img src="../img/dude-portrait.png" alt="Dude Diligence at his desk, coffee in hand" class="character-img">
+          <div class="cover-scene">
+            <div class="speech-bubble dude" style="max-width:100%;">
+              Monday. Of course it's Monday.
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.5rem;">
+              <span class="email-ping" style="animation-delay:0s;">PING!</span>
+              <span class="email-ping" style="animation-delay:0.5s;">PING!</span>
+              <span class="email-ping" style="animation-delay:1s;">PING!</span>
+            </div>
+            <div class="thought-bubble" style="max-width:100%;">
+              Three BEC attempts before I've finished my first cup of coffee. Impressive commitment to crime.
+              <span class="cloud-dot-1"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cover-footer">A Circle 6 Systems Production</div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" disabled>Back</button>
+      <span class="page-indicator">PAGE 1 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(1)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: WHAT IS BEC ==================== -->
+<div class="page" data-page="1">
+  <div class="page-inner">
+    <div class="comic-heading">PAGE 2: <span class="accent">WHAT IS BEC?</span></div>
+
+    <div class="panel-grid cols-2-1" style="margin-bottom:12px;">
+      <div class="panel">
+        <div class="caption-box">DUDE BREAKS THE FOURTH WALL...</div>
+        <div class="character-section">
+          <img src="../img/dude-portrait.png" alt="Dude Diligence" class="character-img" style="max-width:140px;">
+          <div class="text-side">
+            <div class="speaker-label">DUDE DILIGENCE</div>
+            <div class="speech-bubble dude" style="max-width:100%;">
+              Alright, let's talk about BEC &mdash; Business Email Compromise. It's not a hack. It's a con. The oldest trick in the book, just with better fonts.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel accent-panel">
+        <div class="stat-box" style="border:none;box-shadow:none;background:transparent;padding:0;">
+          <div class="stat-number">$2.7B</div>
+          <div class="stat-label">Annual losses to BEC (FBI IC3)</div>
+        </div>
+        <div style="margin-top:1rem;">
+          <div class="sfx small" style="transform:rotate(-3deg);">NO MALWARE.</div>
+          <div class="sfx small blue" style="transform:rotate(2deg);">NO EXPLOITS.</div>
+          <div class="sfx small" style="transform:rotate(-1deg);font-size:1.2rem;color:var(--ink);">JUST LIES.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel full-width">
+      <div class="speech-bubble dude" style="max-width:95%;">
+        No one breaks into your network. No malware gets installed. Someone just sends an email pretending to be your boss, your vendor, or your lawyer &mdash; and asks for money, data, or credentials. And because humans are wired to obey authority and respond to urgency, it works. A lot.
+      </div>
+    </div>
+
+    <div class="comic-heading" style="margin-top:1.5rem;">THE <span class="accent">5 TYPES</span> OF BEC</div>
+
+    <div class="bec-type">
+      <div class="bec-icon">&#128081;</div>
+      <div>
+        <h4>1. CEO FRAUD</h4>
+        <p>Attacker impersonates the CEO or executive, requests urgent wire transfer. "I need this handled quietly and immediately." Sure you do, pal.</p>
+      </div>
+    </div>
+    <div class="bec-type">
+      <div class="bec-icon">&#128176;</div>
+      <div>
+        <h4>2. PAYROLL DIVERSION</h4>
+        <p>Attacker impersonates an employee, asks HR to change direct deposit info. Your coworker's paycheck goes to a stranger's account.</p>
+      </div>
+    </div>
+    <div class="bec-type">
+      <div class="bec-icon">&#128196;</div>
+      <div>
+        <h4>3. VENDOR INVOICE FRAUD</h4>
+        <p>Fake or compromised vendor sends invoice with "updated" banking details. One changed digit, six figures gone.</p>
+      </div>
+    </div>
+    <div class="bec-type">
+      <div class="bec-icon">&#9878;&#65039;</div>
+      <div>
+        <h4>4. ATTORNEY IMPERSONATION</h4>
+        <p>Attacker pretends to be outside counsel handling a "confidential matter." Uses legal urgency to bypass normal approvals.</p>
+      </div>
+    </div>
+    <div class="bec-type">
+      <div class="bec-icon">&#128194;</div>
+      <div>
+        <h4>5. DATA THEFT</h4>
+        <p>Targets HR and finance for W-2s, employee PII, or customer records. No wire transfer &mdash; they're after the data itself.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1rem;">
+      <div class="speech-bubble dude" style="max-width:95%;">
+        Notice the common thread? None of these require technical sophistication. Just a Gmail account, LinkedIn research, and the audacity of a man who double-parks in a fire lane.
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(0)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 2 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(2)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3: THE ATTACK CHAIN ==================== -->
+<div class="page" data-page="2">
+  <div class="page-inner">
+    <div class="comic-heading">PAGE 3: <span class="accent">THE ATTACK CHAIN</span></div>
+
+    <div class="panel-grid cols-1-2">
+      <div class="panel" style="display:flex;align-items:center;justify-content:center;">
+        <img src="../img/transformation.png" alt="Dude Diligence transforms" class="character-img" style="max-width:100%;height:auto;">
+      </div>
+      <div class="panel">
+        <div class="caption-box">HOW A BEC ATTACK UNFOLDS...</div>
+        <div class="attack-chain">
+          <div class="chain-step">
+            <div class="chain-number">1</div>
+            <div class="chain-content">
+              <h4>RECONNAISSANCE</h4>
+              <p>The attacker studies your org chart. LinkedIn, website bios, press releases, social media. They learn who reports to whom, who handles money, who's traveling.</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-number">2</div>
+            <div class="chain-content">
+              <h4>SETUP</h4>
+              <p>They register a lookalike domain (yourcompamy.com), spoof the display name, or compromise a real email account. The stage is set.</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-number">3</div>
+            <div class="chain-content">
+              <h4>THE ASK</h4>
+              <p>The email arrives: urgent, confidential, and it bypasses every normal process you have. "Don't loop anyone else in on this."</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-number">4</div>
+            <div class="chain-content">
+              <h4>THE PRESSURE</h4>
+              <p>Time pressure. Authority pressure. Secrecy. "This needs to happen before end of day. I'm counting on you." Classic manipulation playbook.</p>
+            </div>
+          </div>
+          <div class="chain-step">
+            <div class="chain-number">5</div>
+            <div class="chain-content">
+              <h4>THE EXTRACTION</h4>
+              <p>Wire transfer sent. Gift cards purchased. Payroll redirected. Data exported. By the time anyone notices, the money is in a different hemisphere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel full-width" style="margin-top:12px;">
+      <div class="speech-bubble dude" style="max-width:95%;">
+        Notice there's no malware. No exploit. No zero-day. Just someone betting you won't slow down long enough to think. The entire attack chain is: research, impersonate, create urgency, extract value. It's social engineering with a business casual dress code.
+      </div>
+    </div>
+
+    <div class="panel-grid cols-3" style="margin-top:12px;">
+      <div class="panel" style="text-align:center;">
+        <div class="sfx small" style="transform:rotate(-5deg);">SPOOF!</div>
+        <p class="body-text" style="margin-top:0.5rem;font-size:0.85rem;">Fake domain:<br><strong>john@acme-corp.com</strong><br>vs real:<br><strong>john@acmecorp.com</strong></p>
+      </div>
+      <div class="panel" style="text-align:center;">
+        <div class="sfx small blue" style="transform:rotate(3deg);">FORGE!</div>
+        <p class="body-text" style="margin-top:0.5rem;font-size:0.85rem;">Display name says:<br><strong>"CEO Name"</strong><br>Actual address:<br><strong>randomguy@gmail.com</strong></p>
+      </div>
+      <div class="panel" style="text-align:center;">
+        <div class="sfx small" style="transform:rotate(-2deg);">HIJACK!</div>
+        <p class="body-text" style="margin-top:0.5rem;font-size:0.85rem;">Compromised account:<br><strong>Real email, real name</strong><br>Just not the real person typing</p>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(1)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 3 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(3)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4: ATTACK HITS ==================== -->
+<div class="page" data-page="3">
+  <div class="page-inner">
+    <div class="comic-heading">PAGE 4: <span class="accent">THREE HITS, ONE MONDAY</span></div>
+    <div class="caption-box">9:03 AM. THREE BEC ATTEMPTS HIT THE OFFICE SIMULTANEOUSLY.</div>
+
+    <!-- Janet's email -->
+    <div class="panel" style="margin-bottom:12px;">
+      <div class="caption-box">FINANCE DEPARTMENT &mdash; JANET'S DESK</div>
+      <div class="sfx small" style="margin-bottom:0.5rem;">DING!</div>
+      <div class="email-mockup">
+        <div class="email-toolbar">
+          <div class="email-dot red"></div>
+          <div class="email-dot yellow"></div>
+          <div class="email-dot green"></div>
+        </div>
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">From:</span>
+            <span class="email-field-value">David Chen &lt;<span class="red-flag">dchen@companv-inc.com</span>&gt;</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">To:</span>
+            <span class="email-field-value">janet.murphy@company-inc.com</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span class="email-field-value"><span class="email-urgency">URGENT:</span> Wire Transfer Needed Today &mdash; Confidential</span>
+          </div>
+        </div>
+        <div class="email-body-content">
+          <p>Janet,</p>
+          <p>I need you to process a wire transfer of <strong>$147,000</strong> to a new vendor today. This is related to a confidential acquisition and I need this handled <span class="email-urgency">before end of business</span>. Please don't discuss this with anyone else on the team yet.</p>
+          <p>I'm in meetings all day so just reply here with confirmation once it's sent.</p>
+          <p>Thanks,<br>David Chen<br>CEO</p>
+        </div>
+      </div>
+      <div class="speech-bubble" style="max-width:70%;">
+        Oh gosh, the CEO needs this right away! I should get on this...
+      </div>
+      <div class="speaker-label" style="text-align:right;">JANET</div>
+    </div>
+
+    <!-- Marcus's email -->
+    <div class="panel" style="margin-bottom:12px;">
+      <div class="caption-box">HR DEPARTMENT &mdash; MARCUS'S DESK</div>
+      <div class="sfx small blue" style="margin-bottom:0.5rem;">DING!</div>
+      <div class="email-mockup">
+        <div class="email-toolbar">
+          <div class="email-dot red"></div>
+          <div class="email-dot yellow"></div>
+          <div class="email-dot green"></div>
+        </div>
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">From:</span>
+            <span class="email-field-value">Sarah Kim &lt;<span class="red-flag">s.kim.personal@gmail.com</span>&gt;</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">To:</span>
+            <span class="email-field-value">marcus.johnson@company-inc.com</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span class="email-field-value">Direct Deposit Update Request</span>
+          </div>
+        </div>
+        <div class="email-body-content">
+          <p>Hi Marcus,</p>
+          <p>I switched banks recently and need to update my direct deposit information. Could you change it to:</p>
+          <p><strong>Bank: First National<br>Routing: 044000037<br>Account: 8827391045</strong></p>
+          <p>Can this be done before the next pay cycle? Thanks!</p>
+          <p>Sarah Kim<br>Marketing Department</p>
+        </div>
+      </div>
+      <div class="speech-bubble" style="max-width:70%;">
+        Sure, Sarah, let me just update that in the system...wait. Is this really from Sarah?
+      </div>
+      <div class="speaker-label" style="text-align:right;">MARCUS</div>
+    </div>
+
+    <!-- Priya's email -->
+    <div class="panel" style="margin-bottom:12px;">
+      <div class="caption-box">ACCOUNTS PAYABLE &mdash; PRIYA'S DESK</div>
+      <div class="sfx small" style="margin-bottom:0.5rem;">DING!</div>
+      <div class="email-mockup">
+        <div class="email-toolbar">
+          <div class="email-dot red"></div>
+          <div class="email-dot yellow"></div>
+          <div class="email-dot green"></div>
+        </div>
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-field-label">From:</span>
+            <span class="email-field-value">Billing Dept &lt;<span class="red-flag">billing@acme-corp.com</span>&gt;</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">To:</span>
+            <span class="email-field-value">priya.patel@company-inc.com</span>
+          </div>
+          <div class="email-field">
+            <span class="email-field-label">Subject:</span>
+            <span class="email-field-value">Invoice #4892 &mdash; Updated Payment Details</span>
+          </div>
+        </div>
+        <div class="email-body-content">
+          <p>Dear Priya,</p>
+          <p>Please note our banking information has been updated. All future payments for Acme Corp should be directed to:</p>
+          <p><strong>Bank: Pacific Trust<br>Routing: 021000089<br>Account: 5519284730</strong></p>
+          <p>Attached is Invoice #4892 for $89,400. Please process at your earliest convenience.</p>
+          <p>Regards,<br>Acme Corp Billing</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dude arrives -->
+    <div class="panel accent-panel">
+      <div class="caption-box">DUDE'S COMPLIANCE-SENSE ACTIVATES.</div>
+      <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap;">
+        <img src="../img/transformation.png" alt="Dude Diligence activates" class="character-img" style="max-width:120px;">
+        <div style="flex:1;min-width:200px;">
+          <div class="sfx" style="margin-bottom:0.5rem;">COMPLIANCE-SENSE... TINGLING.</div>
+          <div class="speech-bubble dude" style="max-width:100%;">
+            Three BEC attempts before 9:15 AM. Someone's running a coordinated campaign against us. Time to make my rounds.
+          </div>
+          <div style="margin-top:0.75rem;">
+            <div class="speaker-label">AT JANET'S DESK (MR. ROGERS MODE)</div>
+            <div class="speech-bubble warm" style="max-width:100%;">
+              Hey Janet. I know this looks urgent, and I can see why you'd want to act on it right away. But can we take 30 seconds together? I just want to make sure you're protected here. You're doing a great job &mdash; let's just slow down and look at this together.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(2)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 4 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(4)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5: INTERACTIVE SCENARIOS ==================== -->
+<div class="page" data-page="4">
+  <div class="page-inner">
+    <div class="comic-heading">PAGE 5: <span class="accent">YOU MAKE THE CALL</span></div>
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="speech-bubble dude" style="max-width:95%;">
+        Alright, your turn. I'm going to show you four scenarios. You tell me &mdash; is it a BEC attack, or is it legitimate? Click your answer and I'll tell you how you did. No judgment either way. That's how we learn.
+      </div>
+    </div>
+
+    <!-- Scenario 1 -->
+    <div class="scenario-panel" id="scenario1">
+      <div class="scenario-header">
+        <span>SCENARIO 1: THE GIFT CARD GAMBIT</span>
+        <span style="font-size:0.8rem;opacity:0.7;">&#128081;</span>
+      </div>
+      <div class="scenario-body">
+        <div class="email-mockup">
+          <div class="email-toolbar">
+            <div class="email-dot red"></div><div class="email-dot yellow"></div><div class="email-dot green"></div>
+          </div>
+          <div class="email-header">
+            <div class="email-field">
+              <span class="email-field-label">From:</span>
+              <span class="email-field-value">David Chen &lt;ceo@company.com&gt;</span>
+            </div>
+            <div class="email-field">
+              <span class="email-field-label">Subject:</span>
+              <span class="email-field-value"><span class="email-urgency">URGENT &amp; CONFIDENTIAL:</span> Client Appreciation Gift Cards</span>
+            </div>
+          </div>
+          <div class="email-body-content">
+            <p>I need you to purchase 10 Amazon gift cards at $200 each for a client appreciation event. Please buy them today, scratch off the backs, and email me photos of the codes. Keep this between us &mdash; it's a surprise.</p>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:0.75rem;"><strong>Is this a BEC attack?</strong></p>
+        <div class="scenario-buttons">
+          <button class="scenario-btn yes" onclick="revealScenario('scenario1', true, true)">YES &mdash; BEC Attack</button>
+          <button class="scenario-btn no" onclick="revealScenario('scenario1', false, true)">NO &mdash; Legitimate</button>
+        </div>
+        <div class="scenario-reveal" id="scenario1-reveal">
+          <div class="scenario-verdict"></div>
+          <div class="speech-bubble dude" style="max-width:95%;margin-top:0.5rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario-panel" id="scenario2">
+      <div class="scenario-header">
+        <span>SCENARIO 2: THE PAYROLL REDIRECT</span>
+        <span style="font-size:0.8rem;opacity:0.7;">&#128176;</span>
+      </div>
+      <div class="scenario-body">
+        <div class="email-mockup">
+          <div class="email-toolbar">
+            <div class="email-dot red"></div><div class="email-dot yellow"></div><div class="email-dot green"></div>
+          </div>
+          <div class="email-header">
+            <div class="email-field">
+              <span class="email-field-label">From:</span>
+              <span class="email-field-value">Tom Bradley &lt;t.bradley@company-inc.com&gt;</span>
+            </div>
+            <div class="email-field">
+              <span class="email-field-label">Subject:</span>
+              <span class="email-field-value">Direct Deposit Change</span>
+            </div>
+          </div>
+          <div class="email-body-content">
+            <p>Hey, I recently changed banks. Can you update my direct deposit to the new account below before this Friday's payroll?</p>
+            <p>Routing: 061000052<br>Account: 4421987653</p>
+            <p>Thanks!</p>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:0.75rem;"><strong>Is this a BEC attack?</strong></p>
+        <div class="scenario-buttons">
+          <button class="scenario-btn yes" onclick="revealScenario('scenario2', true, true)">YES &mdash; BEC Attack</button>
+          <button class="scenario-btn no" onclick="revealScenario('scenario2', false, true)">NO &mdash; Legitimate</button>
+        </div>
+        <div class="scenario-reveal" id="scenario2-reveal">
+          <div class="scenario-verdict"></div>
+          <div class="speech-bubble warm" style="max-width:95%;margin-top:0.5rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="scenario-panel" id="scenario3">
+      <div class="scenario-header">
+        <span>SCENARIO 3: THE VENDOR SWITCHEROO</span>
+        <span style="font-size:0.8rem;opacity:0.7;">&#128196;</span>
+      </div>
+      <div class="scenario-body">
+        <div class="email-mockup">
+          <div class="email-toolbar">
+            <div class="email-dot red"></div><div class="email-dot yellow"></div><div class="email-dot green"></div>
+          </div>
+          <div class="email-header">
+            <div class="email-field">
+              <span class="email-field-label">From:</span>
+              <span class="email-field-value">Billing &lt;accounts@<span class="red-flag">acme-corp.com</span>&gt;</span>
+            </div>
+            <div class="email-field">
+              <span class="email-field-label">Subject:</span>
+              <span class="email-field-value">Invoice #7721 &mdash; Updated Banking Information</span>
+            </div>
+          </div>
+          <div class="email-body-content">
+            <p>Please note that our banking information has changed. All future payments should be directed to the account below. Attached is invoice #7721 for $62,500.</p>
+            <p>New Bank: Western Pacific Trust<br>Routing: 021000089<br>Account: 8832019456</p>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:0.5rem;font-size:0.85rem;color:rgba(26,26,26,0.6);">Note: Your real vendor's domain is <strong>acmecorp.com</strong> (no hyphen).</p>
+        <p class="body-text" style="margin-top:0.5rem;"><strong>Is this a BEC attack?</strong></p>
+        <div class="scenario-buttons">
+          <button class="scenario-btn yes" onclick="revealScenario('scenario3', true, true)">YES &mdash; BEC Attack</button>
+          <button class="scenario-btn no" onclick="revealScenario('scenario3', false, true)">NO &mdash; Legitimate</button>
+        </div>
+        <div class="scenario-reveal" id="scenario3-reveal">
+          <div class="scenario-verdict"></div>
+          <div class="speech-bubble dude" style="max-width:95%;margin-top:0.5rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="scenario-panel" id="scenario4">
+      <div class="scenario-header">
+        <span>SCENARIO 4: THE CONFERENCE INVITE</span>
+        <span style="font-size:0.8rem;opacity:0.7;">&#127915;</span>
+      </div>
+      <div class="scenario-body">
+        <div class="email-mockup">
+          <div class="email-toolbar">
+            <div class="email-dot red"></div><div class="email-dot yellow"></div><div class="email-dot green"></div>
+          </div>
+          <div class="email-header">
+            <div class="email-field">
+              <span class="email-field-label">From:</span>
+              <span class="email-field-value">CyberSec Summit &lt;registration@cybersec-summit.org&gt;</span>
+            </div>
+            <div class="email-field">
+              <span class="email-field-label">Subject:</span>
+              <span class="email-field-value">Early Bird Registration &mdash; CyberSec Summit 2026</span>
+            </div>
+          </div>
+          <div class="email-body-content">
+            <p>Registration is now open for CyberSec Summit 2026. Early bird pricing of $599 is available through April 30th.</p>
+            <p>Visit <strong>cybersec-summit.org/register</strong> to secure your spot.</p>
+            <p>We look forward to seeing you there.</p>
+          </div>
+        </div>
+        <p class="body-text" style="margin-top:0.75rem;"><strong>Is this a BEC attack?</strong></p>
+        <div class="scenario-buttons">
+          <button class="scenario-btn yes" onclick="revealScenario('scenario4', true, false)">YES &mdash; BEC Attack</button>
+          <button class="scenario-btn no" onclick="revealScenario('scenario4', false, false)">NO &mdash; Legitimate</button>
+        </div>
+        <div class="scenario-reveal" id="scenario4-reveal">
+          <div class="scenario-verdict"></div>
+          <div class="speech-bubble dude" style="max-width:95%;margin-top:0.5rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(3)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 5 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(5)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 6: DEFENSE PLAYBOOK ==================== -->
+<div class="page" data-page="5">
+  <div class="page-inner">
+    <div class="comic-heading">PAGE 6: <span class="accent">THE DEFENSE PLAYBOOK</span></div>
+
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="character-section">
+        <img src="../img/sacred-arts.png" alt="Dude Diligence - Sacred Arts" class="character-img" style="max-width:130px;">
+        <div class="text-side">
+          <div class="caption-box">THE SACRED RULES OF BEC DEFENSE</div>
+          <div class="speech-bubble dude" style="max-width:100%;">
+            Listen. I've been doing this for a long time. Compliance audits, incident response, the whole beautiful catastrophe. These five rules have saved more money than every firewall combined. Tape them to your monitor.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="defense-rule">
+      <div class="rule-number">#1</div>
+      <div class="rule-text">Any email asking for money, credentials, or sensitive data gets verified <strong>by phone</strong>. Not by replying to the email. By picking up the actual phone and calling a number you already have on file. The phone. That rectangular thing you use for everything except making calls.</div>
+    </div>
+
+    <div class="defense-rule">
+      <div class="rule-number">#2</div>
+      <div class="rule-text"><strong>Urgency + secrecy + money = scam.</strong> Every time. I don't care if the email says it's from the Pope. If someone needs money fast, quietly, and outside normal channels, that's not business &mdash; that's a heist movie plot.</div>
+    </div>
+
+    <div class="defense-rule">
+      <div class="rule-number">#3</div>
+      <div class="rule-text">Check the <strong>email address</strong>. Not the display name. THE ACTUAL ADDRESS. Every single time. Display names are like name tags at a party &mdash; anyone can write anything on them. The email address is where truth lives (or at least tries to).</div>
+    </div>
+
+    <div class="defense-rule">
+      <div class="rule-number">#4</div>
+      <div class="rule-text">New banking details from a vendor? <strong>Call the vendor at a number you already have.</strong> Not the number in the email. Not the number on the new invoice. The number in your system, on their real website, from before this email existed.</div>
+    </div>
+
+    <div class="defense-rule">
+      <div class="rule-number">#5</div>
+      <div class="rule-text"><strong>When in doubt, slow down.</strong> The real CEO will understand. The real vendor will wait. The real lawyer won't mind you verifying. You know who gets mad when you verify? Criminals. That tells you everything you need to know.</div>
+    </div>
+
+    <div class="panel accent-panel" style="margin-top:1.5rem;">
+      <div class="speech-bubble warm" style="max-width:95%;">
+        And hey &mdash; if you ever feel weird about questioning an email from someone senior? That's exactly what you should be doing. You're not being difficult. You're being diligent. I'm proud of anyone who slows down long enough to ask, "Wait... is this real?" That's the whole ballgame right there.
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(4)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 6 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(6)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 7: QUIZ ==================== -->
+<div class="page" data-page="6">
+  <div class="page-inner">
+    <div class="comic-heading">PAGE 7: <span class="accent">THE QUIZ</span></div>
+
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="speech-bubble dude" style="max-width:95%;">
+        Eight questions. Let's see what stuck. And remember &mdash; getting one wrong here is a lot cheaper than getting one wrong out there.
+      </div>
+    </div>
+
+    <form id="quizForm" onsubmit="return false;">
+
+      <!-- Q1 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">QUESTION 1 OF 8</div>
+        <div class="quiz-q-text">What is Business Email Compromise (BEC)?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q1" value="a">
+            A) A type of malware that infects email servers
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q1" value="b">
+            B) A social engineering scam where attackers impersonate trusted contacts via email
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q1" value="c">
+            C) A technical exploit that bypasses email encryption
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q1" value="d">
+            D) A phishing attack that always includes a malicious attachment
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="Correct. BEC is pure social engineering &mdash; no malware required. Just impersonation, urgency, and a convincing email. As Dude says: 'It's not a hack. It's a con.'" data-wrong="Not quite. BEC doesn't involve malware, exploits, or attachments. It's social engineering &mdash; impersonation via email. That's what makes it so dangerous: there's nothing for your antivirus to catch."></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question" data-correct="c">
+        <div class="quiz-q-header">QUESTION 2 OF 8</div>
+        <div class="quiz-q-text">What is the most common type of financial loss in BEC attacks?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q2" value="a">
+            A) Cryptocurrency theft
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q2" value="b">
+            B) Credit card fraud
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q2" value="c">
+            C) Wire transfers and payroll diversions
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q2" value="d">
+            D) Ransomware payments
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="Right. Wire transfers and payroll diversions are the bread and butter of BEC. Once that wire clears, the money is usually gone for good." data-wrong="BEC losses are overwhelmingly from wire transfers and payroll diversions. The attackers want direct access to cash, and wire transfers are fast, hard to reverse, and often international."></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question" data-correct="a">
+        <div class="quiz-q-header">QUESTION 3 OF 8</div>
+        <div class="quiz-q-text">Your CEO sends an email asking you to process an urgent wire transfer. What should you do?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q3" value="a">
+            A) Call the CEO at a known phone number to verify the request
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q3" value="b">
+            B) Reply to the email asking for confirmation
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q3" value="c">
+            C) Process it immediately since it's from the CEO
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q3" value="d">
+            D) Forward it to a colleague to handle
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="That's the move. Always verify financial requests by phone using a number you already have. Not the number in the email. The real CEO will always understand." data-wrong="Never reply to a suspicious email to verify &mdash; you'd just be emailing the attacker. And never process it without verification. Pick up the phone and call at a known number."></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question" data-correct="d">
+        <div class="quiz-q-header">QUESTION 4 OF 8</div>
+        <div class="quiz-q-text">Which combination of elements is the biggest red flag for a BEC attack?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q4" value="a">
+            A) Formal language and a company logo
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q4" value="b">
+            B) Multiple recipients and a meeting invite
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q4" value="c">
+            C) An attachment and a read receipt request
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q4" value="d">
+            D) Urgency, secrecy, and a financial request
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="Urgency + secrecy + money = scam. Every time. That's Dude's Rule #2, and it has never once been wrong." data-wrong="The classic BEC trifecta is urgency, secrecy, and a financial request. 'Do this fast, keep it quiet, send money.' Those three together are your biggest red flag."></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">QUESTION 5 OF 8</div>
+        <div class="quiz-q-text">A regular vendor emails you with "updated banking information" for future payments. What should you do?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q5" value="a">
+            A) Update the information since they're an established vendor
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q5" value="b">
+            B) Call the vendor at a phone number you already have on file to verify
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q5" value="c">
+            C) Reply to the email asking them to confirm
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q5" value="d">
+            D) Ignore it &mdash; vendors never change their banking details
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="Always call to verify using a number from your existing records. Vendor banking changes are one of the most lucrative BEC plays out there." data-wrong="You should call the vendor at a number already in your system to verify. Replying to the email could mean you're just talking to the attacker. And vendors do legitimately change banks &mdash; you just need to verify it independently."></div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="quiz-question" data-correct="c">
+        <div class="quiz-q-header">QUESTION 6 OF 8</div>
+        <div class="quiz-q-text">Why can't you trust the "From" display name in an email?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q6" value="a">
+            A) Display names are encrypted and can't be read
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q6" value="b">
+            B) Email servers automatically randomize display names
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q6" value="c">
+            C) Anyone can set their display name to anything they want
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q6" value="d">
+            D) Display names are only visible to the sender
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="Exactly. Display names are like name tags &mdash; anyone can write 'CEO' on one. Always check the actual email address behind the display name." data-wrong="Display names can be set to literally anything by the sender. An email from 'David Chen, CEO' could actually be from randomscammer427@gmail.com. Always check the actual address."></div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="quiz-question" data-correct="a">
+        <div class="quiz-q-header">QUESTION 7 OF 8</div>
+        <div class="quiz-q-text">You suspect an email might be a BEC attempt. Who should you contact?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q7" value="a">
+            A) Your IT security team or compliance officer immediately
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q7" value="b">
+            B) The person who supposedly sent the email, by replying
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q7" value="c">
+            C) No one &mdash; just delete the email
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q7" value="d">
+            D) Post about it on social media as a warning
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="Report it to your security team right away. They can investigate, warn others, and potentially stop the same attacker from hitting more people in the org." data-wrong="Always report suspected BEC to your IT security team or compliance officer. Don't reply to the attacker, don't just delete it (security needs to know), and definitely don't post details publicly."></div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">QUESTION 8 OF 8</div>
+        <div class="quiz-q-text">Why is BEC so effective despite being "low-tech"?</div>
+        <div class="quiz-options">
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q8" value="a">
+            A) Because email encryption is fundamentally broken
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q8" value="b">
+            B) Because it exploits human trust, authority, and urgency rather than technical vulnerabilities
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q8" value="c">
+            C) Because antivirus software can't scan emails
+          </label>
+          <label class="quiz-option" onclick="selectOption(this)">
+            <div class="quiz-radio"></div>
+            <input type="radio" name="q8" value="d">
+            D) Because most companies don't use email filters
+          </label>
+        </div>
+        <div class="quiz-explanation" data-expl="That's it. BEC works because it targets the one thing you can't patch: human nature. We're wired to respond to authority and urgency. Awareness is the only real defense." data-wrong="BEC succeeds because it exploits trust and authority, not technical flaws. There's no malware for your tools to catch. The vulnerability is human psychology &mdash; our instinct to comply with authority figures and act quickly under pressure."></div>
+      </div>
+
+    </form>
+
+    <div style="text-align:center;">
+      <button class="quiz-submit-btn" onclick="gradeQuiz()">GRADE MY QUIZ</button>
+    </div>
+
+    <div class="quiz-score-box" id="quizScore">
+      <div class="quiz-score-number" id="quizScoreNum"></div>
+      <p style="font-family:var(--font-body);font-weight:700;font-size:1.1rem;margin:0.5rem 0;" id="quizScoreText"></p>
+      <div class="speech-bubble dude" style="max-width:90%;margin:1rem auto 0;text-align:left;" id="quizDudeComment"></div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(5)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 7 OF 8</span>
+      <button class="page-btn next" onclick="goToPage(7)">Next Page &raquo;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 8: CERTIFICATE ==================== -->
+<div class="page" data-page="7">
+  <div class="page-inner">
+    <div class="comic-heading" style="text-align:center;">PAGE 8: <span class="accent">CERTIFICATION</span></div>
+
+    <div class="panel" style="margin-bottom:1.5rem;text-align:center;">
+      <div class="speech-bubble warm" style="max-width:90%;margin:0 auto;">
+        You made it through Issue #2. You know what? I'm genuinely proud of you. Most people don't take the time to learn this stuff until it's too late. You did it before it mattered. That's real diligence right there.
+      </div>
+    </div>
+
+    <div class="certificate" id="certificate">
+      <div class="cert-header">DUDE DILIGENCE</div>
+      <div style="font-family:var(--font-comic);font-size:0.9rem;letter-spacing:0.1em;color:rgba(26,26,26,0.5);">ISSUE #2: REPLY ALL TO DISASTER</div>
+      <div class="cert-seal">&#128272;</div>
+      <div class="cert-body">
+        This certifies that
+      </div>
+      <input type="text" class="cert-name-input" id="certName" placeholder="Enter Your Name" aria-label="Your name for the certificate">
+      <div class="cert-body">
+        has successfully completed<br>
+        <strong>Business Email Compromise (BEC) Awareness Training</strong><br>
+        and has demonstrated the ability to identify CEO fraud,<br>
+        payroll diversion, and vendor invoice fraud attempts.
+      </div>
+      <div style="font-family:var(--font-comic);font-size:1.1rem;color:var(--green);letter-spacing:0.04em;margin:0.75rem 0;">
+        "When in doubt, slow down. The real CEO will understand."
+      </div>
+      <div class="cert-date" id="certDate"></div>
+      <div class="cert-footer">
+        A Circle 6 Systems Production &mdash; Dude Diligence Security Awareness Series
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:1rem;">
+      <button class="print-btn" onclick="printCertificate()">PRINT CERTIFICATE</button>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn prev" onclick="goToPage(6)">&laquo; Back</button>
+      <span class="page-indicator">PAGE 8 OF 8</span>
+      <button class="page-btn next" disabled>Complete</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+  // ===== Page Navigation =====
+  let currentPage = 0;
+  const totalPages = 8;
+
+  function goToPage(n) {
+    if (n < 0 || n >= totalPages) return;
+    // Hide current
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+
+    // Mark completed
+    for (let i = 0; i < n; i++) {
+      document.querySelectorAll('.nav-dot')[i].classList.add('completed');
+    }
+
+    // Show target
+    currentPage = n;
+    document.querySelector(`.page[data-page="${n}"]`).classList.add('active');
+    document.querySelectorAll('.nav-dot')[n].classList.add('active');
+    document.getElementById('pageNum').textContent = n + 1;
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ===== Scenario Reveals =====
+  const scenarioData = {
+    scenario1: {
+      isBEC: true,
+      correctComment: "CEOs don't buy gift cards through email. That's not a thing that happens in real life. If your CEO ever genuinely needs gift cards purchased by a subordinate via email with photos of scratched-off codes sent back... you don't work at a company. You work at a money laundering operation.",
+      wrongComment: "Oh, this is absolutely a BEC attack. The trifecta is right there: urgency, secrecy, and gift cards. No legitimate executive communicates purchase requests this way. Gift card requests via email are the Nigerian Prince letter of the modern era, just wearing a better suit."
+    },
+    scenario2: {
+      isBEC: true,
+      correctComment: "I know that looked completely normal. That's what makes it dangerous. Anyone can send an email claiming to be a coworker who changed banks. You did great by checking. Always verify payroll changes through a separate channel &mdash; call the employee directly at a known number.",
+      wrongComment: "This one's sneaky, I know. It looks totally normal. But payroll diversion is one of the most common BEC types. The email might be from a compromised account or a lookalike. Always verify direct deposit changes by calling the employee at a number you already have."
+    },
+    scenario3: {
+      isBEC: true,
+      correctComment: "One hyphen. acme-corp.com versus acmecorp.com. That's the entire difference between paying your vendor and funding someone's beach vacation. One single character. These people register lookalike domains the way normal people register for newsletters &mdash; casually and in bulk.",
+      wrongComment: "Check the domain: acme-corp.com vs your vendor's real domain acmecorp.com. One hyphen. That tiny difference is a $62,500 mistake. Any time a vendor sends 'updated banking information,' you verify by phone at a number you already have on file. Always."
+    },
+    scenario4: {
+      isBEC: false,
+      correctComment: "See? Not everything is an attack. This one checks out. No urgency, real domain, expected communication, standard pricing, no request for sensitive info or unusual payment methods. Good email hygiene means knowing what's safe, too &mdash; not just what's dangerous.",
+      wrongComment: "I appreciate the paranoia &mdash; truly, it's a beautiful thing &mdash; but this one's actually legitimate. No urgency, the domain matches, it's a known conference, standard pricing, and they're just linking to their own registration page. Not every email is a threat. Just... most of them."
+    }
+  };
+
+  function revealScenario(id, userSaidYes, actuallyBEC) {
+    const reveal = document.getElementById(id + '-reveal');
+    const data = scenarioData[id];
+    const isCorrect = (userSaidYes === data.isBEC);
+
+    // Disable buttons
+    const btns = document.querySelectorAll(`#${id} .scenario-btn`);
+    btns.forEach(b => { b.disabled = true; b.style.opacity = '0.5'; b.style.cursor = 'default'; });
+
+    const verdict = reveal.querySelector('.scenario-verdict');
+    const bubble = reveal.querySelector('.speech-bubble');
+
+    if (isCorrect) {
+      reveal.className = 'scenario-reveal show correct';
+      verdict.textContent = 'CORRECT!';
+      verdict.style.color = 'var(--green)';
+      bubble.textContent = data.correctComment;
+    } else {
+      reveal.className = 'scenario-reveal show incorrect';
+      verdict.textContent = 'NOT QUITE...';
+      verdict.style.color = 'var(--accent)';
+      bubble.textContent = data.wrongComment;
+    }
+  }
+
+  // ===== Quiz =====
+  function selectOption(label) {
+    const question = label.closest('.quiz-question');
+    // Don't allow changes after grading
+    if (question.classList.contains('graded')) return;
+
+    question.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    label.classList.add('selected');
+    label.querySelector('input').checked = true;
+  }
+
+  function gradeQuiz() {
+    const questions = document.querySelectorAll('.quiz-question');
+    let score = 0;
+
+    questions.forEach(q => {
+      q.classList.add('graded');
+      const correct = q.dataset.correct;
+      const selected = q.querySelector('input:checked');
+      const explanation = q.querySelector('.quiz-explanation');
+
+      if (selected) {
+        const selectedLabel = selected.closest('.quiz-option');
+        if (selected.value === correct) {
+          score++;
+          selectedLabel.classList.add('correct');
+          explanation.className = 'quiz-explanation show correct-expl';
+          explanation.innerHTML = '<strong>Correct!</strong> ' + explanation.dataset.expl;
+        } else {
+          selectedLabel.classList.add('wrong');
+          // Highlight correct answer
+          q.querySelectorAll('.quiz-option').forEach(opt => {
+            if (opt.querySelector('input').value === correct) {
+              opt.classList.add('correct');
+            }
+          });
+          explanation.className = 'quiz-explanation show wrong-expl';
+          explanation.innerHTML = '<strong>Not quite.</strong> ' + explanation.dataset.wrong;
+        }
+      } else {
+        // No answer selected
+        q.querySelectorAll('.quiz-option').forEach(opt => {
+          if (opt.querySelector('input').value === correct) {
+            opt.classList.add('correct');
+          }
+        });
+        explanation.className = 'quiz-explanation show wrong-expl';
+        explanation.innerHTML = '<strong>No answer selected.</strong> ' + explanation.dataset.wrong;
+      }
+    });
+
+    // Show score
+    const scoreBox = document.getElementById('quizScore');
+    const scoreNum = document.getElementById('quizScoreNum');
+    const scoreText = document.getElementById('quizScoreText');
+    const dudeComment = document.getElementById('quizDudeComment');
+
+    scoreNum.textContent = score + ' / 8';
+    scoreBox.classList.add('show');
+
+    if (score === 8) {
+      scoreNum.classList.add('passing');
+      scoreText.textContent = 'PERFECT SCORE!';
+      dudeComment.textContent = "Flawless. You know what? You don't need me. You ARE me. Go forth and protect your inbox with the calm confidence of someone who has survived every compliance audit known to man.";
+    } else if (score >= 6) {
+      scoreNum.classList.add('passing');
+      scoreText.textContent = 'PASSING! WELL DONE.';
+      dudeComment.textContent = "Solid work. You've got the fundamentals down. The ones you missed? Now you know. And knowing is the whole point of this exercise. You're going to be just fine out there.";
+    } else if (score >= 4) {
+      scoreText.textContent = 'GETTING THERE...';
+      dudeComment.textContent = "Hey, no shame in that. BEC is specifically designed to trick smart people. Review the ones you missed, check out the Defense Playbook again, and remember: when in doubt, slow down and verify. You'll nail it next time.";
+    } else {
+      scoreText.textContent = 'LET\'S REVIEW TOGETHER.';
+      dudeComment.textContent = "You know what? I'm glad you took this training, because this is exactly why it exists. Go back through the module, especially the Defense Playbook on Page 6. The fact that you're here learning means you care. That already puts you ahead of most people.";
+    }
+
+    // Scroll to score
+    scoreBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Hide submit button
+    document.querySelector('.quiz-submit-btn').style.display = 'none';
+  }
+
+  // ===== Certificate =====
+  function printCertificate() {
+    const name = document.getElementById('certName').value.trim();
+    if (!name) {
+      document.getElementById('certName').focus();
+      document.getElementById('certName').style.borderBottomColor = 'var(--accent)';
+      return;
+    }
+    window.print();
+  }
+
+  // Set certificate date
+  (function() {
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('certDate').textContent = 'Completed: ' + now.toLocaleDateString('en-US', options);
+  })();
+</script>
+
+</body>
+</html>

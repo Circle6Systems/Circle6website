@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dude Diligence #3: The 60-Minute Countdown | Circle 6 Systems</title>
+  <meta name="description" content="Ransomware readiness training with Dude Diligence. Learn how ransomware gets in, what to do in the first 60 minutes, and how to prevent it.">
+  <meta property="og:title" content="Dude Diligence #3: The 60-Minute Countdown">
+  <meta property="og:description" content="Comic book security awareness training. Ransomware readiness with Duke Dillingham, aka Dude Diligence.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://circle6systems.com/training/dude-diligence/ransomware/">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f5e6c8;
+      --paper-dark: #e8d5a8;
+      --paper-light: #faf3e3;
+      --caption: #f5deb3;
+      --accent: #c0392b;
+      --accent-light: rgba(192, 57, 43, 0.15);
+      --blue: #2c5f8a;
+      --blue-light: rgba(44, 95, 138, 0.12);
+      --green: #5a7a3a;
+      --green-light: rgba(90, 122, 58, 0.15);
+      --bubble-bg: #ffffff;
+      --font-comic: 'Bangers', Impact, 'Arial Black', sans-serif;
+      --font-body: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+      --font-caption: Georgia, 'Times New Roman', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--paper-dark);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Halftone overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(26,26,26,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 3px solid var(--accent);
+      z-index: 1000;
+      height: 56px;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; height: 100%;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+    }
+    .nav-logo {
+      font-family: var(--font-comic); font-size: 1.3rem; color: var(--caption);
+      letter-spacing: 0.05em; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-issue {
+      font-family: var(--font-body); font-size: 0.75rem; color: #999;
+      letter-spacing: 0.05em;
+    }
+    .nav-dots {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); cursor: pointer;
+      transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1);
+      padding: 0;
+    }
+    .nav-dot.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px rgba(192,57,43,0.5); }
+    .nav-dot.completed { background: var(--green); border-color: var(--green); }
+    .nav-dot:hover { transform: scale(1.3); }
+    .nav-page-label {
+      font-family: var(--font-body); font-size: 0.7rem; color: #888;
+      margin-left: 0.5rem; font-variant-numeric: tabular-nums;
+    }
+
+    /* MAIN */
+    main { position: relative; z-index: 1; padding-top: 56px; }
+
+    .page {
+      display: none;
+      animation: pageFlip 0.5s ease;
+    }
+    .page.active { display: block; }
+    @keyframes pageFlip {
+      from { opacity: 0; transform: translateY(20px) rotateX(2deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+    @media (prefers-reduced-motion: reduce) { .page { animation: none; } }
+
+    .page-inner {
+      max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 3rem;
+    }
+
+    /* COMIC PANELS */
+    .comic-grid {
+      display: grid; gap: 12px;
+      margin: 1.5rem 0;
+    }
+    .comic-grid.two-col { grid-template-columns: 1fr 1fr; }
+    .comic-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+    .comic-grid.two-one { grid-template-columns: 2fr 1fr; }
+    .comic-grid.one-two { grid-template-columns: 1fr 2fr; }
+
+    .panel {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 3px;
+      padding: 1.5rem;
+      position: relative;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .panel::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(139,90,43,0.05), transparent);
+      pointer-events: none;
+    }
+    .panel.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .panel.accent-bg {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+    .panel.blue-bg {
+      background: var(--blue-light);
+      border-color: var(--blue);
+    }
+    .panel.green-bg {
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+    .panel.full-width {
+      grid-column: 1 / -1;
+    }
+
+    /* SPEECH BUBBLES */
+    .speech-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 20px;
+      padding: 1rem 1.25rem;
+      position: relative;
+      margin: 1rem 0;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -16px; left: 30px;
+      border: 8px solid transparent;
+      border-top-color: var(--ink);
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -12px; left: 31px;
+      border: 7px solid transparent;
+      border-top-color: var(--bubble-bg);
+      z-index: 1;
+    }
+    .speech-bubble.right::after { left: auto; right: 30px; }
+    .speech-bubble.right::before { left: auto; right: 31px; }
+    .speech-bubble.no-tail::after, .speech-bubble.no-tail::before { display: none; }
+    .speech-bubble .speaker {
+      font-family: var(--font-comic); font-size: 0.8rem;
+      color: var(--accent); letter-spacing: 0.05em;
+      display: block; margin-bottom: 0.25rem;
+    }
+
+    /* THOUGHT BUBBLE */
+    .thought-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 50% / 40%;
+      padding: 1.25rem 1.5rem;
+      position: relative;
+      margin: 1rem 0;
+      font-family: var(--font-body);
+      font-style: italic;
+    }
+    .thought-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 35px;
+      width: 12px; height: 12px;
+      background: var(--bubble-bg);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+    }
+    .thought-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -20px; left: 28px;
+      width: 8px; height: 8px;
+      background: var(--bubble-bg);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    /* NARRATOR BOX */
+    .narrator {
+      background: linear-gradient(135deg, #f5deb3, #eed9a0);
+      border: 2px solid var(--ink);
+      padding: 0.75rem 1rem;
+      font-family: var(--font-caption);
+      font-style: italic;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin: 0.75rem 0;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+    }
+
+    /* SOUND EFFECTS */
+    .sfx {
+      font-family: var(--font-comic);
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.2), -1px -1px 0 var(--ink);
+      transform: rotate(-5deg);
+      display: inline-block;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+    .sfx.blue { color: var(--blue); }
+    .sfx.small { font-size: 1.5rem; }
+    .sfx.large { font-size: 3.5rem; }
+
+    /* HEADINGS */
+    .comic-title {
+      font-family: var(--font-comic);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--ink);
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .comic-title .red { color: var(--accent); }
+    .comic-title .blue { color: var(--blue); }
+
+    .panel-title {
+      font-family: var(--font-comic);
+      font-size: 1.5rem;
+      color: var(--ink);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.75rem;
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+    }
+    .panel-title .red { color: var(--accent); }
+
+    .section-number {
+      font-family: var(--font-comic);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+
+    /* BODY TEXT */
+    .comic-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .comic-text strong { font-weight: 700; }
+    .comic-text em { font-style: italic; }
+
+    /* STATS */
+    .stat-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent-light);
+      border: 2px solid var(--accent);
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      margin: 0.4rem 0.25rem;
+    }
+    .stat-badge .number {
+      font-family: var(--font-comic);
+      font-size: 1.8rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-badge .label {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* VECTOR CARDS */
+    .vector-card {
+      background: var(--paper-light);
+      border: 2.5px solid var(--ink);
+      border-radius: 4px;
+      padding: 1.25rem;
+      position: relative;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    }
+    .vector-card .vector-pct {
+      font-family: var(--font-comic);
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .vector-card h4 {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0.4rem;
+      letter-spacing: 0.02em;
+    }
+    .vector-card p {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ATTACK CHAIN */
+    .chain-stage {
+      display: flex; gap: 1rem; position: relative;
+      margin-bottom: 0;
+    }
+    .chain-marker {
+      display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
+    }
+    .chain-number {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-comic); font-size: 1.2rem;
+      background: var(--accent); color: white;
+      border: 3px solid var(--ink);
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+    .chain-line {
+      width: 3px; flex: 1; min-height: 12px;
+      background: var(--ink); opacity: 0.3;
+    }
+    .chain-content {
+      background: var(--paper-light);
+      border: 2.5px solid var(--ink);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      flex: 1;
+      margin-bottom: 0.5rem;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
+    }
+    .chain-content h4 {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .chain-content p {
+      font-size: 0.9rem; margin: 0; line-height: 1.5;
+    }
+
+    /* TIMELINE (First 60 minutes) */
+    .timeline-block {
+      border: 3px solid var(--accent);
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 4px 4px 0 rgba(192,57,43,0.2);
+      background: var(--paper);
+    }
+    .timeline-header {
+      background: var(--accent);
+      color: white;
+      padding: 0.6rem 1rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .timeline-time {
+      font-family: var(--font-comic);
+      font-size: 1.6rem;
+      letter-spacing: 0.02em;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    }
+    .timeline-label {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+    .timeline-body {
+      padding: 1rem 1.25rem;
+    }
+    .timeline-body .speech-bubble {
+      margin: 0.75rem 0;
+    }
+
+    /* RANSOM NOTE MOCKUP */
+    .ransom-mockup {
+      background: #0c0c0c;
+      border: 3px solid #333;
+      border-radius: 4px;
+      padding: 2rem;
+      font-family: 'Courier New', monospace;
+      color: #cc0000;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin: 1.5rem 0;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    }
+    .ransom-mockup::before {
+      content: 'TRAINING MOCKUP - NOT A REAL RANSOM NOTE';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: var(--blue);
+      color: white;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px;
+      text-align: center;
+      z-index: 2;
+    }
+    .ransom-mockup h3 {
+      font-family: 'Courier New', monospace;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: #ff0000;
+      text-shadow: 0 0 10px rgba(255,0,0,0.5);
+      margin: 1rem 0 0.75rem;
+      letter-spacing: 0.1em;
+    }
+    .ransom-mockup p {
+      color: #aaa;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: 0.5rem 0;
+    }
+    .ransom-mockup .btc-address {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      padding: 0.5rem 1rem;
+      color: #ff6600;
+      font-size: 0.75rem;
+      margin: 1rem auto;
+      display: inline-block;
+      word-break: break-all;
+    }
+    .ransom-mockup .timer {
+      font-family: 'Courier New', monospace;
+      font-size: 2rem;
+      color: #ff0000;
+      text-shadow: 0 0 15px rgba(255,0,0,0.4);
+      margin: 1rem 0;
+      letter-spacing: 0.2em;
+    }
+
+    /* PREVENTION RULES */
+    .rule-card {
+      background: var(--paper-light);
+      border: 2.5px solid var(--ink);
+      border-radius: 4px;
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .rule-card:hover { transform: translateY(-2px); }
+    .rule-number {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-comic); font-size: 1.2rem;
+      background: var(--green); color: white;
+      border: 2px solid var(--ink);
+      flex-shrink: 0;
+    }
+    .rule-card h4 {
+      font-family: var(--font-comic); font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .rule-card p { font-size: 0.9rem; margin: 0; line-height: 1.5; }
+    .rule-card .dude-says {
+      font-style: italic; color: var(--blue);
+      margin-top: 0.4rem; font-size: 0.88rem;
+    }
+
+    /* SCENARIO CARDS */
+    .scenario {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+    }
+    .scenario-header {
+      background: var(--blue);
+      color: white;
+      padding: 0.75rem 1.25rem;
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+    }
+    .scenario-body { padding: 1.25rem; }
+    .scenario-body > p {
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .scenario-choices { display: flex; flex-direction: column; gap: 0.5rem; }
+    .scenario-btn {
+      background: var(--paper-light);
+      border: 2.5px solid var(--ink);
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .scenario-btn:hover { background: var(--blue-light); border-color: var(--blue); }
+    .scenario-btn .choice-letter {
+      font-family: var(--font-comic);
+      font-size: 1.2rem;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .scenario-btn.correct {
+      background: var(--green-light) !important;
+      border-color: var(--green) !important;
+    }
+    .scenario-btn.incorrect {
+      background: var(--accent-light) !important;
+      border-color: var(--accent) !important;
+    }
+    .scenario-btn:disabled { cursor: default; opacity: 0.85; }
+    .scenario-feedback {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 4px;
+      border: 2px solid var(--ink);
+    }
+    .scenario-feedback.show { display: block; }
+    .scenario-feedback.correct-fb { background: var(--green-light); border-color: var(--green); }
+    .scenario-feedback.incorrect-fb { background: var(--accent-light); border-color: var(--accent); }
+
+    /* QUIZ */
+    .quiz-question {
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.12);
+    }
+    .quiz-q-header {
+      background: var(--ink);
+      color: var(--caption);
+      padding: 0.6rem 1rem;
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+    }
+    .quiz-q-body { padding: 1rem 1.25rem; }
+    .quiz-q-body > p { font-weight: 700; margin-bottom: 0.75rem; }
+    .quiz-option {
+      display: block;
+      width: 100%;
+      background: var(--paper-light);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      padding: 0.6rem 0.85rem;
+      margin-bottom: 0.4rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .quiz-option:hover { background: var(--blue-light); border-color: var(--blue); }
+    .quiz-option.selected { background: var(--blue-light); border-color: var(--blue); font-weight: 700; }
+    .quiz-option.correct-answer { background: var(--green-light) !important; border-color: var(--green) !important; }
+    .quiz-option.wrong-answer { background: var(--accent-light) !important; border-color: var(--accent) !important; }
+    .quiz-option:disabled { cursor: default; }
+    .quiz-explanation {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      background: var(--caption);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+    .quiz-explanation.show { display: block; }
+
+    .quiz-results {
+      display: none;
+      background: var(--paper);
+      border: 4px solid var(--ink);
+      border-radius: 6px;
+      padding: 2rem;
+      text-align: center;
+      margin: 1.5rem 0;
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    }
+    .quiz-results.show { display: block; }
+    .quiz-score {
+      font-family: var(--font-comic);
+      font-size: 3rem;
+      color: var(--accent);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    }
+    .quiz-results .pass { color: var(--green); }
+    .quiz-results .fail { color: var(--accent); }
+
+    /* CERTIFICATE */
+    .certificate {
+      background: linear-gradient(135deg, var(--paper-light), var(--paper), var(--paper-light));
+      border: 5px double var(--ink);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      max-width: 700px;
+      margin: 1.5rem auto;
+      position: relative;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+    }
+    .certificate::before {
+      content: '';
+      position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px;
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .cert-title {
+      font-family: var(--font-comic);
+      font-size: 2rem;
+      color: var(--accent);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+      margin-bottom: 0.5rem;
+    }
+    .cert-subtitle {
+      font-family: var(--font-caption);
+      font-size: 1rem;
+      font-style: italic;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .cert-name-input {
+      font-family: var(--font-comic);
+      font-size: 1.5rem;
+      text-align: center;
+      border: none;
+      border-bottom: 3px solid var(--ink);
+      background: transparent;
+      padding: 0.25rem 1rem;
+      width: 80%;
+      max-width: 400px;
+      color: var(--ink);
+      margin: 0.5rem 0;
+    }
+    .cert-name-input::placeholder {
+      color: #bbb;
+      font-family: var(--font-body);
+      font-size: 1rem;
+    }
+    .cert-body {
+      font-family: var(--font-caption);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 1rem 0;
+    }
+    .cert-issue-info {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 1.5rem;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1.5rem;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 5px 5px 0 rgba(0,0,0,0.2); }
+    .btn:active { transform: translateY(0); box-shadow: 1px 1px 0 rgba(0,0,0,0.2); }
+    .btn-primary {
+      background: var(--accent); color: white;
+    }
+    .btn-secondary {
+      background: var(--paper-light); color: var(--ink);
+    }
+    .btn-green {
+      background: var(--green); color: white;
+    }
+    .btn-blue {
+      background: var(--blue); color: white;
+    }
+
+    .page-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 2rem; padding-top: 1.5rem;
+      border-top: 2px solid rgba(0,0,0,0.1);
+    }
+
+    /* COVER PAGE */
+    .cover {
+      min-height: calc(100vh - 56px);
+      display: flex; align-items: center; justify-content: center;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(192,57,43,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 70%, rgba(44,95,138,0.06) 0%, transparent 50%),
+        var(--paper);
+      border: 4px solid var(--ink);
+      margin: 1rem;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 6px 6px;
+      pointer-events: none;
+    }
+    .cover-inner {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .cover-issue {
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      color: var(--blue);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .cover-title {
+      font-family: var(--font-comic);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--ink);
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+      line-height: 1.05;
+      margin-bottom: 0.25rem;
+    }
+    .cover-title .red { color: var(--accent); }
+    .cover-subtitle {
+      font-family: var(--font-comic);
+      font-size: clamp(1.2rem, 4vw, 2.2rem);
+      color: var(--accent);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+    .cover-portrait {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 4px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      object-fit: cover;
+      margin: 1rem auto;
+      display: block;
+    }
+    .cover-tagline {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #555;
+      margin: 1rem 0 1.5rem;
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+    }
+    .cover-meta {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 1.5rem;
+    }
+
+    /* CHARACTER IMG in panels */
+    .char-img {
+      width: 100%;
+      max-width: 300px;
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+      display: block;
+    }
+    .char-img.small { max-width: 180px; }
+    .char-img.full { max-width: 100%; }
+
+    /* FOOTER */
+    .comic-footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--ink);
+      color: #888;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+    }
+    .comic-footer a { color: var(--caption); text-decoration: none; }
+    .comic-footer a:hover { text-decoration: underline; }
+
+    /* Print */
+    @media print {
+      .nav, .page-nav, .btn { display: none !important; }
+      .page { display: block !important; page-break-after: always; }
+      body::after { display: none; }
+      .certificate { border: 3px double #000; box-shadow: none; }
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .comic-grid.two-col,
+      .comic-grid.three-col,
+      .comic-grid.two-one,
+      .comic-grid.one-two {
+        grid-template-columns: 1fr;
+      }
+      .panel { padding: 1rem; }
+      .page-inner { padding: 1.25rem 1rem 2rem; }
+      .cover { margin: 0.5rem; min-height: calc(100vh - 70px); }
+      .cover-portrait { width: 160px; height: 160px; }
+      .timeline-header { flex-wrap: wrap; }
+      .certificate { padding: 2rem 1.25rem; }
+      .cert-name-input { width: 95%; font-size: 1.2rem; }
+    }
+
+    /* Utility */
+    .text-center { text-align: center; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .flex-center { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Training progress">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" onclick="goToPage(0); return false;">
+      <span class="nav-logo"><span>DUDE</span> DILIGENCE</span>
+      <span class="nav-issue">Issue #3</span>
+    </a>
+    <div class="nav-dots">
+      <button class="nav-dot active" onclick="goToPage(0)" aria-label="Page 1" title="Cover"></button>
+      <button class="nav-dot" onclick="goToPage(1)" aria-label="Page 2" title="What Is Ransomware"></button>
+      <button class="nav-dot" onclick="goToPage(2)" aria-label="Page 3" title="How It Gets In"></button>
+      <button class="nav-dot" onclick="goToPage(3)" aria-label="Page 4" title="Attack Chain"></button>
+      <button class="nav-dot" onclick="goToPage(4)" aria-label="Page 5" title="The Attack Hits"></button>
+      <button class="nav-dot" onclick="goToPage(5)" aria-label="Page 6" title="First 60 Minutes"></button>
+      <button class="nav-dot" onclick="goToPage(6)" aria-label="Page 7" title="Prevention"></button>
+      <button class="nav-dot" onclick="goToPage(7)" aria-label="Page 8" title="Scenarios"></button>
+      <button class="nav-dot" onclick="goToPage(8)" aria-label="Page 9" title="Quiz"></button>
+      <button class="nav-dot" onclick="goToPage(9)" aria-label="Page 10" title="Certificate"></button>
+      <span class="nav-page-label" id="pageLabel">1 / 10</span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="page active" data-page="0">
+  <div class="cover">
+    <div class="cover-inner">
+      <div class="cover-issue">CIRCLE 6 SYSTEMS PRESENTS</div>
+      <div class="cover-title">DUDE <span class="red">DILIGENCE</span></div>
+      <div class="cover-subtitle">Issue #3: The 60-Minute Countdown</div>
+      <img src="../img/dude-portrait.png" alt="Dude Diligence - Duke Dillingham, compliance officer and cybersecurity hero" class="cover-portrait">
+      <div class="cover-tagline">"Looks like someone opened that attachment."</div>
+      <div class="sfx large" style="margin: 0.5rem 0;">RANSOMWARE!</div>
+      <p style="font-size: 0.95rem; max-width: 480px; margin: 1rem auto; color: #555;">
+        The office is encrypted. The clock is ticking. Everyone is panicking.<br>
+        Everyone except Duke Dillingham.
+      </p>
+      <button class="btn btn-primary" onclick="goToPage(1)">Open Issue #3</button>
+      <div class="cover-meta">
+        Ransomware Readiness Training &bull; A Circle 6 Systems Production
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: WHAT IS RANSOMWARE ==================== -->
+<div class="page" data-page="1">
+  <div class="page-inner">
+    <span class="section-number">Page 2 of 10</span>
+    <div class="comic-title">What Is <span class="red">Ransomware</span>?</div>
+
+    <div class="narrator">
+      Duke Dillingham turns to face you directly. He knows you're reading this. He doesn't mind. He sips his coffee.
+    </div>
+
+    <div class="panel" style="margin: 1rem 0;">
+      <div class="speech-bubble">
+        <span class="speaker">DUDE DILIGENCE</span>
+        Alright, let's talk about ransomware. Pull up a chair. Grab some coffee. This is going to be a thing.
+      </div>
+    </div>
+
+    <div class="comic-grid two-col">
+      <div class="panel accent-bg">
+        <div class="panel-title"><span class="red">Digital Kidnapping</span></div>
+        <p class="comic-text">
+          Ransomware is malware that <strong>encrypts your files</strong> &mdash; documents, databases, spreadsheets, everything &mdash; and demands payment (usually in cryptocurrency) for the decryption key.
+        </p>
+        <div class="speech-bubble no-tail" style="margin-top: 1rem;">
+          <span class="speaker">DUDE DILIGENCE</span>
+          It's digital kidnapping. Except they kidnap your spreadsheets. And somehow that's worth millions.
+        </div>
+      </div>
+      <div class="panel blue-bg">
+        <div class="panel-title">Double <span class="red">Extortion</span></div>
+        <p class="comic-text">
+          Modern ransomware gangs don't just encrypt &mdash; they <strong>steal your data first</strong>, then threaten to publish it if you don't pay. Encrypt AND leak. Belt AND suspenders, but for criminals.
+        </p>
+        <div class="speech-bubble no-tail" style="margin-top: 1rem;">
+          <span class="speaker">DUDE DILIGENCE</span>
+          They'll lock your files, then post your HR records on the dark web. Real classy operation.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin: 1.5rem 0;">
+      <div class="panel-title">By the Numbers</div>
+      <div class="flex-center" style="flex-wrap: wrap; gap: 1rem;">
+        <div class="stat-badge">
+          <span class="number">48%</span>
+          <span class="label">enter via<br>compromised VPN</span>
+        </div>
+        <div class="stat-badge">
+          <span class="number">5</span>
+          <span class="label">median days<br>intrusion to encryption</span>
+        </div>
+        <div class="stat-badge">
+          <span class="number">$1.5M</span>
+          <span class="label">average<br>ransom demand</span>
+        </div>
+        <div class="stat-badge">
+          <span class="number">80%</span>
+          <span class="label">who pay get<br>hit again</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="thought-bubble">
+      Five days. They're in your network for five days before they pull the trigger. And nobody noticed. That's the part that keeps me up at night. Well, that and the coffee.
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(0)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(2)">Next Page</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3: HOW IT GETS IN ==================== -->
+<div class="page" data-page="2">
+  <div class="page-inner">
+    <span class="section-number">Page 3 of 10</span>
+    <div class="comic-title">How It <span class="red">Gets In</span></div>
+
+    <div class="narrator">
+      Dude leans against the whiteboard. He's drawn four attack vectors. The handwriting is surprisingly neat for someone who looks like he just rolled out of a van.
+    </div>
+
+    <div class="comic-grid two-col">
+      <div class="vector-card">
+        <div class="vector-pct">48%</div>
+        <h4>Compromised VPN/RDP Credentials</h4>
+        <p>Stolen or weak passwords to remote access systems. Bought on the dark web, brute-forced, or harvested from previous breaches. They log in like an employee. Because they have an employee's password.</p>
+      </div>
+      <div class="vector-card">
+        <div class="vector-pct">32%</div>
+        <h4>Phishing Emails</h4>
+        <p>Malicious attachments, macro-enabled Word docs, links to credential harvesting pages. The classic. "Please review the attached invoice." The invoice is not an invoice.</p>
+      </div>
+      <div class="vector-card">
+        <div class="vector-pct">12%</div>
+        <h4>Exploited Vulnerabilities</h4>
+        <p>Unpatched software, zero-day exploits, exposed services. That update you've been snoozing for three weeks? That's the one.</p>
+      </div>
+      <div class="vector-card">
+        <div class="vector-pct">8%</div>
+        <h4>Supply Chain Attacks</h4>
+        <p>Compromised software updates, trusted vendor access, managed service provider breaches. They don't hack you &mdash; they hack someone you trust.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 1.5rem;">
+      <div class="speech-bubble">
+        <span class="speaker">DUDE DILIGENCE</span>
+        48% come through the front door with stolen keys. We literally handed them the password. I want you to sit with that for a second. Almost half of all ransomware attacks happen because someone's VPN password was "Summer2024!" and they didn't have MFA turned on. We're not getting hacked by geniuses. We're getting hacked by people who can use a search engine.
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(1)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(3)">Next Page</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4: ATTACK CHAIN ==================== -->
+<div class="page" data-page="3">
+  <div class="page-inner">
+    <span class="section-number">Page 4 of 10</span>
+    <div class="comic-title">The <span class="red">Attack Chain</span></div>
+
+    <div class="narrator">
+      Dude draws a timeline on the whiteboard. Five stages. Five days. By the time you see the ransom note, you're on stage five.
+    </div>
+
+    <div class="chain-stage">
+      <div class="chain-marker">
+        <div class="chain-number">1</div>
+        <div class="chain-line"></div>
+      </div>
+      <div class="chain-content">
+        <h4>Initial Access</h4>
+        <p>The attacker gets a foothold. A phishing email gets clicked. Stolen VPN credentials get used. An unpatched server gets exploited. One way or another, they're in.</p>
+      </div>
+    </div>
+    <div class="chain-stage">
+      <div class="chain-marker">
+        <div class="chain-number">2</div>
+        <div class="chain-line"></div>
+      </div>
+      <div class="chain-content">
+        <h4>Persistence &amp; Reconnaissance</h4>
+        <p>They install backdoors, create scheduled tasks, and start mapping your network. They use "living off the land" tools &mdash; legitimate admin tools like PowerShell and WMI &mdash; so they don't trigger antivirus. Clever. Annoyingly clever.</p>
+      </div>
+    </div>
+    <div class="chain-stage">
+      <div class="chain-marker">
+        <div class="chain-number">3</div>
+        <div class="chain-line"></div>
+      </div>
+      <div class="chain-content">
+        <h4>Lateral Movement</h4>
+        <p>They spread through the network. Privilege escalation. Domain admin credentials. Jumping from workstation to server to domain controller. They're building a map of everything valuable.</p>
+      </div>
+    </div>
+    <div class="chain-stage">
+      <div class="chain-marker">
+        <div class="chain-number">4</div>
+        <div class="chain-line"></div>
+      </div>
+      <div class="chain-content">
+        <h4>Data Exfiltration</h4>
+        <p>Before they encrypt anything, they <strong>steal your data</strong>. Customer records, financial data, intellectual property. This is the "double extortion" setup. Insurance policy for the bad guys &mdash; even if you have backups, they can still threaten to leak.</p>
+      </div>
+    </div>
+    <div class="chain-stage">
+      <div class="chain-marker">
+        <div class="chain-number">5</div>
+        <div class="chain-line"></div>
+      </div>
+      <div class="chain-content" style="border-color: var(--accent);">
+        <h4 style="color: var(--accent);">Encryption &amp; Ransom Note</h4>
+        <p>The locks go on. Every file gets encrypted. The ransom note appears. The phone starts ringing. This is the part everyone sees. But it's the <em>last</em> thing that happens, not the first.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top: 1.5rem;">
+      <div class="speech-bubble">
+        <span class="speaker">DUDE DILIGENCE</span>
+        By the time you see the ransom note, they've been in your network for days. The note is the victory lap. They've already won. They're just telling you about it now. It's like getting a postcard from someone who robbed your house last week.
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(2)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(4)">Next Page</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5: THE ATTACK HITS ==================== -->
+<div class="page" data-page="4">
+  <div class="page-inner">
+    <span class="section-number">Page 5 of 10</span>
+    <div class="comic-title">Monday <span class="red">Morning</span></div>
+
+    <div class="narrator">Monday. 8:07 AM. Duke Dillingham walks into the office. Coffee in hand. Sweater slightly rumpled. Lanyard swinging. Everything is normal. Until it isn't.</div>
+
+    <div class="comic-grid two-one">
+      <div class="panel">
+        <div class="sfx" style="margin-bottom: 0.5rem;">AAAAHHH!!!</div>
+        <p class="comic-text" style="font-weight: 700; margin-bottom: 0.75rem;">The lobby is chaos. Karen from Accounting is hyperventilating. Dave from IT is running &mdash; actually running &mdash; down the hallway. Three people are crying. One person is trying to unplug a printer for some reason.</p>
+
+        <div class="speech-bubble">
+          <span class="speaker">KAREN (ACCOUNTING)</span>
+          EVERYTHING IS RED! MY SCREEN IS RED! ALL MY FILES SAY .LOCKED! WHAT DO I DO?!
+        </div>
+
+        <div class="speech-bubble right">
+          <span class="speaker">DAVE (IT)</span>
+          DON'T TOUCH ANYTHING! NO, WAIT &mdash; TOUCH SOME THINGS! I MEAN &mdash; HOLD ON &mdash;
+        </div>
+      </div>
+      <div class="panel" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <img src="../img/transformation.png" alt="Dude Diligence transformation - hoodie comes off, badge glows" class="char-img">
+      </div>
+    </div>
+
+    <div class="ransom-mockup">
+      <h3>YOUR FILES HAVE BEEN ENCRYPTED</h3>
+      <p>All your files have been encrypted with military-grade AES-256 encryption.<br>To decrypt your files, you must pay 15 BTC to the following address:</p>
+      <div class="btc-address">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
+      <div class="timer" id="mockTimer">71:59:58</div>
+      <p>If payment is not received before the timer expires,<br>the price will double. After 7 days, your data will be published.</p>
+      <p style="color: #555; font-size: 0.7rem; margin-top: 1rem;">DO NOT attempt to decrypt files yourself. DO NOT contact law enforcement.</p>
+    </div>
+
+    <div class="panel" style="margin-top: 1rem;">
+      <p class="comic-text" style="font-style: italic; margin-bottom: 0.75rem;">Dude takes a long sip of coffee. Looks at the screen. Looks at Karen. Looks back at the screen.</p>
+      <div class="speech-bubble">
+        <span class="speaker">DUDE DILIGENCE</span>
+        Alright. Clock starts now.
+      </div>
+      <p class="comic-text" style="font-style: italic; margin-top: 1.25rem; text-align: center;">
+        <strong>The hoodie comes off. The badge glows. Dude Diligence has activated.</strong>
+      </p>
+      <div class="sfx large text-center" style="display: block; text-align: center; margin-top: 0.5rem;">TRANSFORMATION!</div>
+    </div>
+
+    <div class="thought-bubble" style="margin-top: 1rem;">
+      They encrypted the whole network in 4 hours. I've seen faster. The 2023 Akira crew did it in 2. Amateurs.
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(3)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(5)">The First 60 Minutes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 6: FIRST 60 MINUTES ==================== -->
+<div class="page" data-page="5">
+  <div class="page-inner">
+    <span class="section-number">Page 6 of 10</span>
+    <div class="comic-title">The First <span class="red">60 Minutes</span></div>
+
+    <div class="narrator">The clock is ticking. Dude Diligence moves through the office like a man who has rehearsed this exact scenario forty times. Because he has.</div>
+
+    <div class="sfx" style="margin-bottom: 1rem; text-align: center; display: block;">TICK TICK TICK</div>
+
+    <!-- 0-5 min -->
+    <div class="timeline-block">
+      <div class="timeline-header">
+        <span class="timeline-time">0-5 MIN</span>
+        <span class="timeline-label">DISCONNECT</span>
+      </div>
+      <div class="timeline-body">
+        <p class="comic-text"><strong>Unplug your ethernet cable. Turn off Wi-Fi. Do NOT power off the computer.</strong> Isolating the machine stops the ransomware from spreading to other systems on the network.</p>
+        <div class="speech-bubble">
+          <span class="speaker">DUDE DILIGENCE (Mr. Rogers mode)</span>
+          Hey, hey. Take a breath. You're okay. Just unplug your ethernet cable &mdash; that's the one that looks like a fat phone cord. That's it. Don't turn anything off. Just unplug the cable. You're doing great. I'm really proud of you.
+        </div>
+        <p class="comic-text" style="font-style: italic; font-size: 0.85rem; color: #666;">Karen unplugs the cable. Her hands are shaking but she does it. Dude gives her a gentle nod.</p>
+      </div>
+    </div>
+
+    <!-- 5-10 min -->
+    <div class="timeline-block">
+      <div class="timeline-header">
+        <span class="timeline-time">5-10 MIN</span>
+        <span class="timeline-label">CALL IT / SECURITY</span>
+      </div>
+      <div class="timeline-body">
+        <p class="comic-text"><strong>Call your IT security team by phone.</strong> Do not use email &mdash; it may be compromised. Use your cell phone, a landline, or walk to their office in person.</p>
+        <div class="speech-bubble">
+          <span class="speaker">DUDE DILIGENCE</span>
+          Call. Don't email. Email might be compromised. Use your phone. Use a landline. Use a carrier pigeon if you have to. I don't care if you yell out the window. Just don't use the company network to report that the company network is compromised. Think about it.
+        </div>
+      </div>
+    </div>
+
+    <!-- 10-15 min -->
+    <div class="timeline-block">
+      <div class="timeline-header">
+        <span class="timeline-time">10-15 MIN</span>
+        <span class="timeline-label">ALERT NEARBY COLLEAGUES</span>
+      </div>
+      <div class="timeline-body">
+        <p class="comic-text"><strong>Walk around. Use your voice.</strong> Tell nearby coworkers to unplug their network cables. If their screen looks odd &mdash; weird file extensions, error messages, ransom notes &mdash; they need to disconnect immediately.</p>
+        <div class="speech-bubble">
+          <span class="speaker">DUDE DILIGENCE</span>
+          We're going analog. Stand up. Walk to the next desk. Use the thing evolution gave you &mdash; your voice. If their screen looks weird, tell them to unplug. Be the human firewall.
+        </div>
+      </div>
+    </div>
+
+    <!-- 15-30 min -->
+    <div class="timeline-block">
+      <div class="timeline-header">
+        <span class="timeline-time">15-30 MIN</span>
+        <span class="timeline-label">DOCUMENT EVERYTHING</span>
+      </div>
+      <div class="timeline-body">
+        <p class="comic-text"><strong>Take photos with your phone.</strong> Every ransom note. Every error message. Every weird file name. Write down the exact time you noticed the problem. This is evidence now &mdash; treat it like a crime scene.</p>
+        <div class="speech-bubble">
+          <span class="speaker">DUDE DILIGENCE</span>
+          Phone photos of every ransom note. Every error message. Write down the time. What you saw. What you clicked. I know it feels like we should be doing something more dramatic right now, but documentation wins cases. Boring saves the day. Story of my life.
+        </div>
+      </div>
+    </div>
+
+    <!-- 30-60 min -->
+    <div class="timeline-block">
+      <div class="timeline-header">
+        <span class="timeline-time">30-60 MIN</span>
+        <span class="timeline-label">FOLLOW IT'S LEAD</span>
+      </div>
+      <div class="timeline-body">
+        <p class="comic-text"><strong>IT and security take point from here.</strong> Follow their instructions exactly. Do not run your own antivirus scan. Do not try to decrypt files yourself. Do not negotiate with the attackers. Do not "just check one thing real quick."</p>
+        <div class="speech-bubble">
+          <span class="speaker">DUDE DILIGENCE</span>
+          IT takes point from here. Your job is to do exactly what they say. No freelancing. No "I'll just run a quick scan." No "I found a decryption tool on Reddit." No. Your initiative is appreciated in every other context. Not this one. Sit tight. You've done your part. Beautifully, I might add.
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(4)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(6)">Prevention Playbook</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 7: PREVENTION ==================== -->
+<div class="page" data-page="6">
+  <div class="page-inner">
+    <span class="section-number">Page 7 of 10</span>
+    <div class="comic-title">The <span class="blue">Defense</span> Playbook</div>
+
+    <div class="narrator">The crisis is contained. The forensic team is working. Dude pours his fourth coffee of the morning and turns to the whiteboard. Time to make sure this never happens again.</div>
+
+    <div style="text-align: center; margin: 1rem 0 1.5rem;">
+      <img src="../img/sacred-arts.png" alt="Dude Diligence studies the sacred arts of encryption and compliance" class="char-img small" style="margin: 0 auto;">
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">1</div>
+      <div>
+        <h4>Use a Password Manager</h4>
+        <p>Every account gets a unique, complex password. Generated by the password manager, not by your brain. Your brain is good at many things. Random 24-character strings is not one of them.</p>
+        <p class="dude-says">"'123456' isn't a password, it's an invitation. You might as well leave a key under the mat and a sign that says 'PLEASE ROB ME.'"</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">2</div>
+      <div>
+        <h4>MFA on Everything</h4>
+        <p>Multi-factor authentication on VPN, email, cloud services, admin accounts &mdash; everything. A stolen password with MFA enabled is just a stolen password. Without MFA, it's a stolen kingdom.</p>
+        <p class="dude-says">"MFA on everything. Especially VPN. ESPECIALLY email. I cannot stress this enough. I have stressed this in four all-hands meetings, two memos, and one haiku. Enable MFA."</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">3</div>
+      <div>
+        <h4>Never Enable Macros</h4>
+        <p>If a document asks you to "Enable Content" or "Enable Macros," that's malware asking you to let it run. Legitimate documents don't need macros to display their content.</p>
+        <p class="dude-says">"Don't enable macros. Ever. I don't care what the document says. I don't care if it says 'URGENT: ENABLE MACROS TO VIEW YOUR BONUS.' Especially then, actually."</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">4</div>
+      <div>
+        <h4>Patch Your Software</h4>
+        <p>Install updates promptly. That "Update and Restart" button you've been ignoring for two weeks is closing security vulnerabilities that attackers are actively exploiting.</p>
+        <p class="dude-says">"Patch your software. Yes, the updates are annoying. You know what's more annoying? Ransomware. You know what's more annoying than ransomware? Explaining to the CEO that ransomware got in through a vulnerability that was patched three months ago."</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">5</div>
+      <div>
+        <h4>Back Up Your Data (Offline, Tested)</h4>
+        <p>Maintain offline backups that are disconnected from the network. And test them. Regularly. A backup you haven't tested is a box of mystery &mdash; it might contain your data, it might contain nothing.</p>
+        <p class="dude-says">"Back up your data. Offline. Tested. If you haven't tested your backups, you don't have backups. You have hopes and dreams in a storage format."</p>
+      </div>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">6</div>
+      <div>
+        <h4>Trust Your Gut on Attachments</h4>
+        <p>If an email or attachment feels wrong &mdash; unexpected sender, weird subject line, urgent language, strange file type &mdash; trust that feeling. Report it to IT. Better a false alarm than a real incident.</p>
+        <p class="dude-says">"If an attachment feels weird, it IS weird. Trust your gut. Call IT. We would rather get 50 false alarm calls than miss the one real one. Seriously. Call us. We like talking to people. Well, most of us."</p>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(5)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(7)">Test Your Skills</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 8: SCENARIOS ==================== -->
+<div class="page" data-page="7">
+  <div class="page-inner">
+    <span class="section-number">Page 8 of 10</span>
+    <div class="comic-title">What Would <span class="red">You</span> Do?</div>
+
+    <div class="narrator">Dude leans back in his chair and cracks his knuckles. Time for some scenarios. Choose wisely. He's watching. Gently.</div>
+
+    <!-- Scenario 1 -->
+    <div class="scenario" id="scenario1">
+      <div class="scenario-header">Scenario 1: The Red Screen</div>
+      <div class="scenario-body">
+        <p>You arrive at your desk and your screen shows a ransom note. Red background. "YOUR FILES HAVE BEEN ENCRYPTED." A countdown timer is ticking. What do you do?</p>
+        <div class="scenario-choices">
+          <button class="scenario-btn" onclick="checkScenario(1, 'a')" id="s1a">
+            <span class="choice-letter">A</span>
+            <span>Restart the computer to try to fix it</span>
+          </button>
+          <button class="scenario-btn" onclick="checkScenario(1, 'b')" id="s1b">
+            <span class="choice-letter">B</span>
+            <span>Disconnect from the network (unplug ethernet / disable Wi-Fi) and call IT by phone</span>
+          </button>
+        </div>
+        <div class="scenario-feedback" id="s1-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario" id="scenario2">
+      <div class="scenario-header">Scenario 2: The Suspicious Coworker Screen</div>
+      <div class="scenario-body">
+        <p>You notice your coworker's computer is acting strange &mdash; files are renaming themselves with weird extensions, and programs are crashing. They haven't noticed yet because they're in the break room. What do you do?</p>
+        <div class="scenario-choices">
+          <button class="scenario-btn" onclick="checkScenario(2, 'a')" id="s2a">
+            <span class="choice-letter">A</span>
+            <span>Find them immediately and tell them to unplug their network cable</span>
+          </button>
+          <button class="scenario-btn" onclick="checkScenario(2, 'b')" id="s2b">
+            <span class="choice-letter">B</span>
+            <span>Wait and see if it stops on its own &mdash; maybe it's just an update</span>
+          </button>
+        </div>
+        <div class="scenario-feedback" id="s2-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="scenario" id="scenario3">
+      <div class="scenario-header">Scenario 3: The "Enable Content" Doc</div>
+      <div class="scenario-body">
+        <p>You receive an email with a Word document attached. When you open it, a yellow bar at the top says "PROTECTED VIEW &mdash; Enable Content to edit this document." The email says it's an urgent invoice from a vendor. What do you do?</p>
+        <div class="scenario-choices">
+          <button class="scenario-btn" onclick="checkScenario(3, 'a')" id="s3a">
+            <span class="choice-letter">A</span>
+            <span>Click "Enable Content" &mdash; you need to see the invoice</span>
+          </button>
+          <button class="scenario-btn" onclick="checkScenario(3, 'b')" id="s3b">
+            <span class="choice-letter">B</span>
+            <span>Don't enable it &mdash; contact the sender by phone to verify they sent it</span>
+          </button>
+        </div>
+        <div class="scenario-feedback" id="s3-feedback"></div>
+      </div>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="scenario" id="scenario4">
+      <div class="scenario-header">Scenario 4: The Counter-Intuitive Instruction</div>
+      <div class="scenario-body">
+        <p>During an active ransomware incident, IT tells you to keep your encrypted computer powered on and not to restart it. Your instinct says to turn it off to stop the damage. What do you do?</p>
+        <div class="scenario-choices">
+          <button class="scenario-btn" onclick="checkScenario(4, 'a')" id="s4a">
+            <span class="choice-letter">A</span>
+            <span>Follow IT's instructions and leave it powered on</span>
+          </button>
+          <button class="scenario-btn" onclick="checkScenario(4, 'b')" id="s4b">
+            <span class="choice-letter">B</span>
+            <span>Turn it off anyway to stop the ransomware from doing more damage</span>
+          </button>
+        </div>
+        <div class="scenario-feedback" id="s4-feedback"></div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(6)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(8)">Take the Quiz</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 9: QUIZ ==================== -->
+<div class="page" data-page="8">
+  <div class="page-inner">
+    <span class="section-number">Page 9 of 10</span>
+    <div class="comic-title">The <span class="red">Final</span> Quiz</div>
+
+    <div class="narrator">Eight questions. No pressure. Okay, some pressure. Dude is watching. He believes in you. He also has very high standards.</div>
+
+    <div id="quizContainer">
+      <!-- Q1 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">Question 1 of 8</div>
+        <div class="quiz-q-body">
+          <p>What is the most common entry point for ransomware attacks?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) Phishing emails (32%)</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) Compromised VPN/RDP credentials (48%)</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) Exploited software vulnerabilities (12%)</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) USB drives left in parking lots (0%)</button>
+          <div class="quiz-explanation">Nearly half of all ransomware incidents begin with compromised remote access credentials. Attackers buy stolen passwords on the dark web or brute-force weak ones. MFA is your best defense here.</div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">Question 2 of 8</div>
+        <div class="quiz-q-body">
+          <p>What should you do FIRST when you see a ransom note on your screen?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) Restart the computer</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) Disconnect from the network</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) Try to negotiate with the attackers</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) Delete the ransom note file</button>
+          <div class="quiz-explanation">Disconnect immediately to prevent the ransomware from spreading to other systems. Unplug the ethernet cable and disable Wi-Fi, but do NOT power off the computer.</div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question" data-correct="c">
+        <div class="quiz-q-header">Question 3 of 8</div>
+        <div class="quiz-q-body">
+          <p>Why should you NOT restart a computer during a ransomware incident?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) It will make the ransom go up</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) The computer might not turn back on</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) It may destroy forensic evidence in RAM that investigators need</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) It will spread the ransomware to other computers</button>
+          <div class="quiz-explanation">RAM (volatile memory) may contain encryption keys, attacker artifacts, and other forensic evidence that is lost when the computer is powered off or restarted. Forensic teams need this data.</div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question" data-correct="d">
+        <div class="quiz-q-header">Question 4 of 8</div>
+        <div class="quiz-q-body">
+          <p>What is "double extortion" in a ransomware attack?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) The ransom amount doubles every hour</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) Two separate ransomware gangs attack at the same time</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) They encrypt your files twice for extra security</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) They steal your data AND encrypt it, threatening to leak if you don't pay</button>
+          <div class="quiz-explanation">Double extortion means attackers exfiltrate sensitive data before encrypting it. Even if you can restore from backups, they threaten to publish stolen data unless you pay. It's leverage on top of leverage.</div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">Question 5 of 8</div>
+        <div class="quiz-q-body">
+          <p>Why are macros in Office documents dangerous?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) They make the document file size too large</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) They can execute code that downloads and installs malware</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) They slow down your computer's processor</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) They corrupt the document formatting</button>
+          <div class="quiz-explanation">Macros are essentially small programs embedded in documents. Malicious macros can download ransomware, install backdoors, and give attackers control of your system. "Enable Content" is ransomware's favorite phrase.</div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="quiz-question" data-correct="a">
+        <div class="quiz-q-header">Question 6 of 8</div>
+        <div class="quiz-q-body">
+          <p>How does multi-factor authentication (MFA) help prevent ransomware?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) Even if a password is stolen, attackers can't log in without the second factor</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) It encrypts your files so ransomware can't</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) It blocks all phishing emails automatically</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) It makes your password longer</button>
+          <div class="quiz-explanation">MFA adds a second verification step (like a phone notification or hardware key). Since 48% of ransomware enters through stolen credentials, MFA blocks attackers even when they have the password.</div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="quiz-question" data-correct="c">
+        <div class="quiz-q-header">Question 7 of 8</div>
+        <div class="quiz-q-body">
+          <p>How do you verify that your backups actually work?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) Check that the backup files exist</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) Trust the backup software's confirmation message</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) Perform regular test restores to confirm data can be recovered</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) Backups always work, no need to verify</button>
+          <div class="quiz-explanation">The only way to know backups work is to test them by actually restoring data. Backup files can be corrupted, incomplete, or improperly configured. If you haven't tested your backups, you don't have backups.</div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="quiz-question" data-correct="b">
+        <div class="quiz-q-header">Question 8 of 8</div>
+        <div class="quiz-q-body">
+          <p>During a ransomware incident, who should you contact first and how?</p>
+          <button class="quiz-option" data-value="a" onclick="selectQuizOption(this)">A) Email your manager with the details</button>
+          <button class="quiz-option" data-value="b" onclick="selectQuizOption(this)">B) Call IT/Security by phone (not email)</button>
+          <button class="quiz-option" data-value="c" onclick="selectQuizOption(this)">C) Post about it on social media to warn others</button>
+          <button class="quiz-option" data-value="d" onclick="selectQuizOption(this)">D) Send a Slack message to the #general channel</button>
+          <div class="quiz-explanation">Use a phone call &mdash; never email or internal messaging during a ransomware incident. The attacker may have access to email and chat systems. Phone calls are out-of-band communication the attacker can't intercept.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-2">
+      <button class="btn btn-primary" onclick="gradeQuiz()" id="gradeBtn">Submit Quiz</button>
+    </div>
+
+    <div class="quiz-results" id="quizResults">
+      <div class="comic-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Quiz Results</div>
+      <div class="quiz-score" id="quizScore"></div>
+      <p id="quizMessage" style="margin: 1rem 0; font-size: 1.1rem;"></p>
+      <div class="speech-bubble no-tail" style="max-width: 500px; margin: 1rem auto; text-align: left;">
+        <span class="speaker">DUDE DILIGENCE</span>
+        <span id="quizDudeComment"></span>
+      </div>
+      <button class="btn btn-green mt-1" onclick="goToPage(9)" id="toCertBtn" style="display: none;">Claim Your Certificate</button>
+      <button class="btn btn-secondary mt-1" onclick="retakeQuiz()" id="retakeBtn" style="display: none;">Retake Quiz</button>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(7)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(9)">Certificate</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 10: CERTIFICATE ==================== -->
+<div class="page" data-page="9">
+  <div class="page-inner">
+    <span class="section-number">Page 10 of 10</span>
+    <div class="comic-title text-center">Certificate of <span class="red">Completion</span></div>
+
+    <div class="certificate" id="certificate">
+      <div class="cert-title">DUDE DILIGENCE</div>
+      <div class="cert-subtitle">Issue #3: The 60-Minute Countdown</div>
+      <div style="font-family: var(--font-comic); font-size: 1rem; color: var(--blue); letter-spacing: 0.1em; margin: 1rem 0 0.5rem;">THIS CERTIFIES THAT</div>
+      <input type="text" class="cert-name-input" id="certName" placeholder="Enter Your Name" aria-label="Your name for the certificate">
+      <div class="cert-body">
+        has successfully completed the <strong>Ransomware Readiness</strong> training module, demonstrating knowledge of how ransomware attacks occur, proper incident response procedures during the critical first 60 minutes, and preventive security practices.
+      </div>
+      <div style="margin: 1.5rem 0;">
+        <div style="font-family: var(--font-comic); font-size: 1.2rem; color: var(--ink);">
+          Certified by Duke "Dude Diligence" Dillingham
+        </div>
+        <div style="font-family: var(--font-caption); font-style: italic; color: #888; font-size: 0.85rem;">
+          Chief Compliance Officer &amp; Cybersecurity Hero
+        </div>
+      </div>
+      <div class="cert-issue-info">
+        <span id="certDate"></span> &bull; A Circle 6 Systems Production &bull; circle6systems.com
+      </div>
+    </div>
+
+    <div class="text-center mt-1">
+      <button class="btn btn-blue" onclick="printCertificate()">Print Certificate</button>
+    </div>
+
+    <div class="panel" style="margin-top: 2rem;">
+      <div class="speech-bubble">
+        <span class="speaker">DUDE DILIGENCE</span>
+        You made it through Issue #3. I'm genuinely proud of you. The world is full of people who skip security training, and here you are &mdash; reading a comic book about ransomware on a Monday. You're one of the good ones. Now go enable MFA on everything. And I mean everything. I'll know if you don't. I always know.
+      </div>
+      <p class="comic-text" style="font-style: italic; text-align: center; margin-top: 1rem; color: #888;">
+        Dude puts his hoodie back on. Badge stops glowing. He picks up his coffee. Walks out of the frame.
+      </p>
+      <div class="text-center mt-1">
+        <span class="sfx blue">THE END.</span>
+      </div>
+      <p class="comic-text text-center" style="font-style: italic; font-size: 0.85rem; color: #999; margin-top: 0.5rem;">
+        Dude Diligence will return in Issue #4.
+      </p>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn btn-secondary" onclick="goToPage(8)">Back</button>
+      <button class="btn btn-primary" onclick="goToPage(0)">Back to Cover</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="comic-footer">
+  <p><strong>Dude Diligence</strong> &mdash; A <a href="https://circle6systems.com" target="_blank" rel="noopener">Circle 6 Systems</a> Production</p>
+  <p style="margin-top: 0.25rem;">Security Awareness Training &bull; Issue #3: The 60-Minute Countdown</p>
+</footer>
+
+<script>
+// ===================== PAGE NAVIGATION =====================
+let currentPage = 0;
+const totalPages = 10;
+
+function goToPage(n) {
+  if (n < 0 || n >= totalPages) return;
+  // Hide current
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  const target = document.querySelector(`.page[data-page="${n}"]`);
+  if (target) {
+    target.classList.add('active');
+    currentPage = n;
+    updateNav();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function updateNav() {
+  const dots = document.querySelectorAll('.nav-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.remove('active');
+    if (i < currentPage) dot.classList.add('completed');
+    if (i === currentPage) {
+      dot.classList.add('active');
+      dot.classList.remove('completed');
+    }
+  });
+  document.getElementById('pageLabel').textContent = `${currentPage + 1} / ${totalPages}`;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    goToPage(currentPage + 1);
+  }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    goToPage(currentPage - 1);
+  }
+});
+
+// ===================== SCENARIO LOGIC =====================
+const scenarioAnswers = {
+  1: { correct: 'b', correctText: 'Disconnect from the network and call IT by phone.', explanation: 'Never restart. You might destroy forensic evidence in RAM that investigators need. Unplug the network cable to stop the spread, then call IT by phone. Email might be compromised.' },
+  2: { correct: 'a', correctText: 'Tell them to unplug immediately.', explanation: 'Trust that instinct. Files renaming themselves with strange extensions is a classic sign of active encryption. Every second counts. Better to unplug for nothing than to wait and lose everything.' },
+  3: { correct: 'b', correctText: 'Don\'t enable it. Contact the sender by phone.', explanation: '"Enable Content" is ransomware\'s favorite phrase. Right up there with "I\'m a Nigerian prince." Legitimate documents display just fine in Protected View. If you need to edit, verify with the sender first &mdash; by phone, not by reply email.' },
+  4: { correct: 'a', correctText: 'Follow IT\'s instructions.', explanation: 'I know it feels wrong to leave it on. But forensic teams need that RAM data. Encryption keys, attacker artifacts, network connections &mdash; all in volatile memory. Trust IT. They know what they\'re doing. Probably.' }
+};
+
+function checkScenario(num, choice) {
+  const answer = scenarioAnswers[num];
+  const feedback = document.getElementById(`s${num}-feedback`);
+  const btnA = document.getElementById(`s${num}a`);
+  const btnB = document.getElementById(`s${num}b`);
+
+  btnA.disabled = true;
+  btnB.disabled = true;
+
+  if (choice === answer.correct) {
+    document.getElementById(`s${num}${choice}`).classList.add('correct');
+    feedback.className = 'scenario-feedback show correct-fb';
+    feedback.innerHTML = `<strong>Correct!</strong> ${answer.explanation}<br><br><em style="color: var(--blue);">Dude Diligence: "${answer.correct === 'a' ? 'Exactly right.' : 'Now you\'re thinking.'} ${num === 2 ? 'If something looks wrong, it probably is. Your instincts are better than you think.' : num === 4 ? 'Following instructions during a crisis takes more courage than going rogue. Respect.' : ''}"</em>`;
+  } else {
+    document.getElementById(`s${num}${choice}`).classList.add('incorrect');
+    document.getElementById(`s${num}${answer.correct}`).classList.add('correct');
+    feedback.className = 'scenario-feedback show incorrect-fb';
+    feedback.innerHTML = `<strong>Not quite.</strong> The correct answer is: ${answer.correctText}<br><br>${answer.explanation}<br><br><em style="color: var(--blue);">Dude Diligence (gently): "Hey, that's okay. That's why we train. Now you know. And knowing is &mdash; well, you know the rest."</em>`;
+  }
+}
+
+// ===================== QUIZ LOGIC =====================
+let quizAnswered = {};
+let quizGraded = false;
+
+function selectQuizOption(btn) {
+  if (quizGraded) return;
+  const question = btn.closest('.quiz-question');
+  const qIndex = Array.from(document.querySelectorAll('.quiz-question')).indexOf(question);
+
+  // Deselect siblings
+  question.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+  btn.classList.add('selected');
+  quizAnswered[qIndex] = btn.getAttribute('data-value');
+}
+
+function gradeQuiz() {
+  if (quizGraded) return;
+  const questions = document.querySelectorAll('.quiz-question');
+  let correct = 0;
+
+  questions.forEach((q, i) => {
+    const correctAnswer = q.getAttribute('data-correct');
+    const options = q.querySelectorAll('.quiz-option');
+
+    options.forEach(opt => {
+      opt.disabled = true;
+      if (opt.getAttribute('data-value') === correctAnswer) {
+        opt.classList.add('correct-answer');
+      }
+      if (opt.classList.contains('selected') && opt.getAttribute('data-value') !== correctAnswer) {
+        opt.classList.add('wrong-answer');
+      }
+    });
+
+    // Show explanation
+    q.querySelector('.quiz-explanation').classList.add('show');
+
+    if (quizAnswered[i] === correctAnswer) correct++;
+  });
+
+  quizGraded = true;
+  const pct = Math.round((correct / questions.length) * 100);
+  const passed = correct >= 6;
+
+  document.getElementById('quizScore').className = `quiz-score ${passed ? 'pass' : 'fail'}`;
+  document.getElementById('quizScore').textContent = `${correct} / ${questions.length} (${pct}%)`;
+
+  if (passed) {
+    document.getElementById('quizMessage').textContent = 'You passed! You are ransomware ready.';
+    document.getElementById('toCertBtn').style.display = 'inline-flex';
+    document.getElementById('quizDudeComment').textContent = correct === 8
+      ? "Perfect score. I'm not going to say I'm impressed, but I'm making a mental note. You're the kind of person I want on the incident response team. Or at least in the building when things go sideways."
+      : "Solid work. You know enough to survive the first 60 minutes, and that's what matters. The difference between a bad day and a catastrophe is someone like you who knows what to do.";
+  } else {
+    document.getElementById('quizMessage').textContent = 'You need 6/8 to pass. Review the material and try again.';
+    document.getElementById('retakeBtn').style.display = 'inline-flex';
+    document.getElementById('quizDudeComment').textContent = "Hey, it's okay. Seriously. This stuff isn't intuitive. That's the whole point of training. Go back through the material, take your time, and try again. I'll be right here. With coffee.";
+  }
+
+  document.getElementById('quizResults').classList.add('show');
+  document.getElementById('gradeBtn').style.display = 'none';
+  document.getElementById('quizResults').scrollIntoView({ behavior: 'smooth' });
+}
+
+function retakeQuiz() {
+  quizGraded = false;
+  quizAnswered = {};
+  document.querySelectorAll('.quiz-option').forEach(opt => {
+    opt.disabled = false;
+    opt.classList.remove('selected', 'correct-answer', 'wrong-answer');
+  });
+  document.querySelectorAll('.quiz-explanation').forEach(exp => exp.classList.remove('show'));
+  document.getElementById('quizResults').classList.remove('show');
+  document.getElementById('gradeBtn').style.display = 'inline-flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ===================== CERTIFICATE =====================
+function printCertificate() {
+  const name = document.getElementById('certName').value.trim();
+  if (!name) {
+    document.getElementById('certName').focus();
+    document.getElementById('certName').style.borderBottomColor = 'var(--accent)';
+    return;
+  }
+  window.print();
+}
+
+// Set certificate date
+document.getElementById('certDate').textContent = new Date().toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric'
+});
+
+// ===================== MOCK TIMER (cosmetic) =====================
+(function() {
+  let h = 71, m = 59, s = 58;
+  const el = document.getElementById('mockTimer');
+  if (!el) return;
+  setInterval(() => {
+    s--;
+    if (s < 0) { s = 59; m--; }
+    if (m < 0) { m = 59; h--; }
+    if (h < 0) { h = 0; m = 0; s = 0; }
+    el.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+})();
+</script>
+
+</body>
+</html>

