@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Awareness Training | Circle 6 Systems</title>
+  <meta name="description" content="Interactive security awareness training modules for government and enterprise staff. Produced by Circle 6 Systems.">
+  <meta property="og:title" content="Security Awareness Training | Circle 6 Systems">
+  <meta property="og:description" content="Interactive, scenario-based security awareness training built for local government and small-to-medium business teams.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://circle6systems.com/training/">
+  <link rel="canonical" href="https://circle6systems.com/training/">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #2d2a2e;
+      --navy-light: #3a3640;
+      --navy-mid: #504a52;
+      --slate: #beb3a7;
+      --slate-light: #d4cab9;
+      --white: #f5f0e8;
+      --accent: #a8c196;
+      --accent-bg: #8faa7b;
+      --accent-hover: #b8d1a8;
+      --accent-dim: rgba(143, 170, 123, 0.09);
+      --border: rgba(143, 170, 123, 0.1);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--navy);
+      color: var(--slate-light);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143, 170, 123, 0.03), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(143, 170, 123, 0.02), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    :focus:not(:focus-visible) { outline: none; }
+
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(45, 42, 46, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+    }
+
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center; height: 64px;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--white); text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .nav-link {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--slate-light); text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--accent); }
+
+    main {
+      position: relative; z-index: 1;
+      max-width: 880px; margin: 0 auto;
+      padding: 7rem 2rem 4rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .divider {
+      width: 48px; height: 2px;
+      background: var(--accent-bg); opacity: 0.4;
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    .lead {
+      font-size: 1.05rem; color: var(--slate);
+      max-width: 600px; line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .module-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.75rem;
+      transition: border-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-bg), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .module-card:hover {
+      border-color: rgba(143, 170, 123, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .module-card:hover::before { opacity: 1; }
+
+    .module-badge {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      margin-bottom: 0.85rem;
+    }
+
+    .module-badge.live {
+      background: rgba(143, 170, 123, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(143, 170, 123, 0.25);
+    }
+
+    .module-badge.coming {
+      background: rgba(183, 149, 11, 0.1);
+      color: #d4a80b;
+      border: 1px solid rgba(183, 149, 11, 0.2);
+    }
+
+    .module-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+
+    .module-card p {
+      font-size: 0.88rem; color: var(--slate);
+      line-height: 1.65; margin-bottom: 0.85rem;
+    }
+
+    .module-meta {
+      font-size: 0.75rem; color: var(--slate);
+      display: flex; gap: 1.25rem; flex-wrap: wrap;
+    }
+
+    .module-meta span {
+      display: flex; align-items: center; gap: 0.3rem;
+    }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      margin-top: 1rem;
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .module-card:hover .cta { gap: 0.5rem; }
+
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 2rem;
+      border-top: 1px solid rgba(143, 170, 123, 0.06);
+      max-width: 880px; margin: 2rem auto 0;
+    }
+
+    footer p { font-size: 0.75rem; color: var(--slate); }
+    footer a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(168, 193, 150, 0.4); text-underline-offset: 2px; }
+    footer a:hover { text-decoration-color: var(--accent); }
+
+    @media (max-width: 640px) {
+      main { padding: 6rem 1.25rem 3rem; }
+      .module-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Circle <span>6</span> Systems</a>
+    <a href="/" class="nav-link">&larr; Back to main site</a>
+  </div>
+</nav>
+
+<main>
+  <p class="section-label">Security Awareness Program</p>
+  <h1>Training Modules</h1>
+  <div class="divider"></div>
+  <p class="lead">Interactive, scenario-based security awareness training built for local government employees and small-to-medium business staff. Each module covers a specific threat with real-world examples and a scored assessment.</p>
+
+  <div class="module-grid">
+    <a href="clickfix/" class="module-card">
+      <span class="module-badge live">Available Now</span>
+      <h2>ClickFix: Think Before You Click</h2>
+      <p>Learn to recognize and defend against the ClickFix social engineering technique&mdash;the #1 initial access method of 2025. Covers fake CAPTCHAs, clipboard hijacking, and real-world government attack scenarios.</p>
+      <div class="module-meta">
+        <span>15&ndash;20 min</span>
+        <span>Interactive demo</span>
+        <span>8-question assessment</span>
+      </div>
+      <span class="cta">Start training &rarr;</span>
+    </a>
+
+    <div class="module-card" style="opacity:0.6; pointer-events:none;">
+      <span class="module-badge coming">Coming Soon</span>
+      <h2>Business Email Compromise</h2>
+      <p>Identify and respond to BEC attacks targeting payroll, wire transfers, and vendor impersonation in government and small business environments.</p>
+      <div class="module-meta">
+        <span>15&ndash;20 min</span>
+        <span>Scenario-based</span>
+        <span>Assessment included</span>
+      </div>
+    </div>
+
+    <div class="module-card" style="opacity:0.6; pointer-events:none;">
+      <span class="module-badge coming">Coming Soon</span>
+      <h2>Ransomware Readiness</h2>
+      <p>Understand how ransomware reaches your organization, what to do in the first 60 minutes, and how to protect critical systems and data before an incident occurs.</p>
+      <div class="module-meta">
+        <span>20&ndash;25 min</span>
+        <span>Incident simulation</span>
+        <span>Assessment included</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+</footer>
+
+</body>
+</html>
