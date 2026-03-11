@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBOM Manager | Circle 6 Systems</title>
+    <meta name="description" content="SBOM Manager is an enterprise license compliance platform by Circle 6 Systems. Ingest, classify, and review Software Bills of Materials across your organization.">
+    <meta property="og:title" content="SBOM Manager | Circle 6 Systems">
+    <meta property="og:description" content="Enterprise SBOM management and license compliance platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://circle6systems.com/products/sbom-manager.html">
+    <link rel="canonical" href="https://circle6systems.com/products/sbom-manager.html">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--navy);
+            color: var(--slate-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Skip to Content (Accessibility) ===== */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 4px 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.2s;
+        }
+        .skip-to-content:focus { top: 0; }
+
+        /* ===== Focus Visible (Accessibility) ===== */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        :focus:not(:focus-visible) { outline: none; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 42, 46, 0.92);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: invert(78%) sepia(12%) saturate(600%) hue-rotate(60deg) brightness(95%);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .logo-text span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--slate-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--slate-light);
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== Sections ===== */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent-bg);
+            opacity: 0.3;
+            margin: 1.5rem 0;
+        }
+        .divider-centered { margin-left: auto; margin-right: auto; }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(143, 170, 123, 0.04), transparent),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(143, 170, 123, 0.02), transparent);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        .hero .section-sub {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+        }
+
+        /* ===== Badge ===== */
+        .badge {
+            display: inline-block;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-bg);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+        }
+
+        /* ===== License Card ===== */
+        .license-section {
+            padding: 4rem 2rem;
+        }
+        .license-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .license-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .license-card p {
+            margin-bottom: 1rem;
+            color: var(--slate-light);
+        }
+        .license-card p:last-child { margin-bottom: 0; }
+
+        .terms-list {
+            list-style: none;
+            padding: 0;
+        }
+        .terms-list li {
+            position: relative;
+            padding: 0.75rem 0 0.75rem 2rem;
+            border-bottom: 1px solid var(--navy-mid);
+            color: var(--slate-light);
+        }
+        .terms-list li:last-child { border-bottom: none; }
+        .terms-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1.1rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+        }
+
+        /* ===== Features Grid ===== */
+        .features-section {
+            padding: 0 2rem 4rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .feature-item {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 10px;
+            padding: 1.75rem;
+            transition: border-color 0.2s;
+        }
+        .feature-item:hover {
+            border-color: rgba(143, 170, 123, 0.25);
+        }
+        .feature-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.65;
+        }
+
+        /* ===== CTA Section ===== */
+        .cta-section {
+            padding: 5rem 2rem;
+        }
+        .cta-card {
+            background: var(--navy-light);
+            border: 1px solid var(--accent-bg);
+            border-radius: 12px;
+            padding: 3.5rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-card h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .cta-card p {
+            color: var(--slate);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.75;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.9rem 2.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.9rem 2.25rem;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: var(--accent-dim);
+        }
+
+        /* ===== OSS Acknowledgment ===== */
+        .oss-section {
+            padding: 0 2rem 4rem;
+        }
+        .oss-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .oss-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+        .oss-card p {
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+        .oss-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .oss-tag {
+            background: var(--navy);
+            border: 1px solid var(--navy-mid);
+            color: var(--slate);
+            font-size: 0.8rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: var(--slate);
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--navy-mid);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero { min-height: auto; padding: 8rem 1.5rem 3rem; }
+            .license-section,
+            .features-section,
+            .cta-section,
+            .oss-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .license-card, .cta-card, .oss-card { padding: 1.75rem; }
+            .cta-buttons { flex-direction: column; align-items: stretch; }
+        }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===== High Contrast ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --navy-mid: #6b6370;
+                --slate: #d4cab9;
+                --slate-light: #f5f0e8;
+                --accent: #b8d1a8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="logo-group" aria-label="Circle 6 Systems homepage">
+                <div class="logo-img" aria-hidden="true"><img src="circle6_logo.png" alt=""></div>
+                <div class="logo-text">Circle <span>6</span> Systems</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#industries">Industries</a></li>
+                <li><a href="/#approach">Approach</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" role="banner" aria-label="SBOM Manager product overview">
+        <div class="container hero-content" id="main-content">
+            <p class="section-label">Circle 6 Systems Product</p>
+            <h1>SBOM <em>Manager</em></h1>
+            <p class="section-sub">Enterprise license compliance platform. Ingest Software Bills of Materials from any SCA tool, automatically classify licenses against your organization's policies, and manage the human review workflow for everything that needs a second look.</p>
+            <span class="badge">Proprietary Software</span>
+        </div>
+    </section>
+
+    <!-- License Terms -->
+    <section class="license-section" aria-labelledby="license-heading">
+        <div class="container">
+            <div class="license-card">
+                <h2 id="license-heading">License Terms</h2>
+                <p>Copyright &copy; 2026 Circle 6 Systems LLC. All rights reserved.</p>
+                <p>This software and associated documentation files are the proprietary and confidential property of Circle 6 Systems LLC. Use of this software requires a valid license agreement.</p>
+                <ul class="terms-list" role="list">
+                    <li>No part of this software may be reproduced, distributed, or transmitted without prior written permission</li>
+                    <li>Unauthorized copying, modification, distribution, or use is strictly prohibited</li>
+                    <li>Access is provided to authorized users only under a separate license agreement</li>
+                    <li>The software is provided "as is" without warranty of any kind, express or implied</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" aria-labelledby="features-heading">
+        <div class="container">
+            <p class="section-label">Capabilities</p>
+            <h2 class="section-heading" id="features-heading">What You Get</h2>
+            <div class="divider"></div>
+            <p class="section-sub">Everything an enterprise needs for open-source license compliance, from automated ingestion to legal review board submission.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>SBOM Ingestion</h3>
+                    <p>CycloneDX and SPDX parsing from CI/CD pipelines. Component deduplication across projects and product versions. Push from any SCA tool.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Classification Engine</h3>
+                    <p>6-step automated pipeline: exclusion filters, pre-approved lists, historical approvals, version-bump detection, and license policy evaluation.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Review Workflow</h3>
+                    <p>Batch approve and reject with metadata editing. Full audit trail with who approved what, when, and why. Link to external ticketing systems.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Multi-Tenant</h3>
+                    <p>Full organization isolation with OIDC single sign-on and role-based access control. Viewer, submitter, approver, and admin roles.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Plugin System</h3>
+                    <p>Integrate ticketing systems like ServiceNow, notification channels, and custom approval workflows through a typed plugin API.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>API-First</h3>
+                    <p>Complete REST API with token authentication for CI/CD integration. Helm charts for Kubernetes deployment. Prometheus metrics built in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+        <div class="container">
+            <div class="cta-card">
+                <h2 id="cta-heading">Interested in SBOM Manager?</h2>
+                <div class="divider divider-centered"></div>
+                <p>Contact Circle 6 Systems to discuss licensing, deployment options, and how SBOM Manager fits your organization's compliance needs.</p>
+                <div class="cta-buttons">
+                    <a href="mailto:contact@circle6systems.com" class="btn-primary">Contact Us</a>
+                    <a href="/" class="btn-secondary">Back to Circle6Systems.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OSS Acknowledgment -->
+    <section class="oss-section" aria-labelledby="oss-heading">
+        <div class="container">
+            <div class="oss-card">
+                <h2 id="oss-heading">Open-Source Acknowledgments</h2>
+                <p>SBOM Manager is built on excellent open-source software. All dependencies are permissively licensed (MIT, Apache-2.0, BSD, ISC) and fully compatible with commercial use.</p>
+                <div class="oss-tags" role="list" aria-label="Key open-source dependencies">
+                    <span class="oss-tag" role="listitem">Go</span>
+                    <span class="oss-tag" role="listitem">chi</span>
+                    <span class="oss-tag" role="listitem">zerolog</span>
+                    <span class="oss-tag" role="listitem">pgx</span>
+                    <span class="oss-tag" role="listitem">PostgreSQL</span>
+                    <span class="oss-tag" role="listitem">React</span>
+                    <span class="oss-tag" role="listitem">Vite</span>
+                    <span class="oss-tag" role="listitem">Tailwind CSS</span>
+                    <span class="oss-tag" role="listitem">Prometheus</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+    </script>
+</body>
+</html>
