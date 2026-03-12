@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDLC Journal | Circle 6 Systems</title>
+    <meta name="description" content="SDLC Journal is an encrypted, privacy-first development journaling app by Circle 6 Systems. AES-256-GCM client-side encryption with zero-knowledge architecture.">
+    <meta property="og:title" content="SDLC Journal | Circle 6 Systems">
+    <meta property="og:description" content="Encrypted, privacy-first development journaling with zero-knowledge architecture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://circle6systems.com/products/sdlc-journal.html">
+    <link rel="canonical" href="https://circle6systems.com/products/sdlc-journal.html">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--navy);
+            color: var(--slate-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Skip to Content (Accessibility) ===== */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 4px 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.2s;
+        }
+        .skip-to-content:focus { top: 0; }
+
+        /* ===== Focus Visible (Accessibility) ===== */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        :focus:not(:focus-visible) { outline: none; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 42, 46, 0.92);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: invert(78%) sepia(12%) saturate(600%) hue-rotate(60deg) brightness(95%);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .logo-text span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--slate-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a[aria-current="page"] { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--slate-light);
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== Sections ===== */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent-bg);
+            opacity: 0.3;
+            margin: 1.5rem 0;
+        }
+        .divider-centered { margin-left: auto; margin-right: auto; }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(143, 170, 123, 0.04), transparent),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(143, 170, 123, 0.02), transparent);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        .hero .section-sub {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+        }
+
+        /* ===== Badge ===== */
+        .badge {
+            display: inline-block;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-bg);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+        }
+
+        /* ===== Framework Section ===== */
+        .framework-section {
+            padding: 4rem 2rem;
+        }
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .framework-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .framework-card:hover {
+            border-color: rgba(143, 170, 123, 0.25);
+        }
+        .framework-letter {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+        .framework-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+        }
+        .framework-card p {
+            font-size: 0.9rem;
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        /* ===== Features Grid ===== */
+        .features-section {
+            padding: 0 2rem 4rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .feature-item {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 10px;
+            padding: 1.75rem;
+            transition: border-color 0.2s;
+        }
+        .feature-item:hover {
+            border-color: rgba(143, 170, 123, 0.25);
+        }
+        .feature-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.65;
+        }
+
+        /* ===== Privacy Section ===== */
+        .privacy-section {
+            padding: 0 2rem 4rem;
+        }
+        .privacy-card {
+            background: var(--navy-light);
+            border: 1px solid var(--accent-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .privacy-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .privacy-card p {
+            margin-bottom: 1rem;
+            color: var(--slate-light);
+            line-height: 1.8;
+        }
+        .privacy-card p:last-child { margin-bottom: 0; }
+
+        .privacy-list {
+            list-style: none;
+            padding: 0;
+        }
+        .privacy-list li {
+            position: relative;
+            padding: 0.75rem 0 0.75rem 2rem;
+            border-bottom: 1px solid var(--navy-mid);
+            color: var(--slate-light);
+        }
+        .privacy-list li:last-child { border-bottom: none; }
+        .privacy-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1.1rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+        }
+
+        /* ===== CTA Section ===== */
+        .cta-section {
+            padding: 5rem 2rem;
+        }
+        .cta-card {
+            background: var(--navy-light);
+            border: 1px solid var(--accent-bg);
+            border-radius: 12px;
+            padding: 3.5rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-card h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .cta-card p {
+            color: var(--slate);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.75;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.9rem 2.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.9rem 2.25rem;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: var(--accent-dim);
+        }
+
+        /* ===== Tech Stack Tags ===== */
+        .tech-section {
+            padding: 0 2rem 4rem;
+        }
+        .tech-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .tech-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+        .tech-card p {
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tech-tag {
+            background: var(--navy);
+            border: 1px solid var(--navy-mid);
+            color: var(--slate);
+            font-size: 0.8rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: var(--slate);
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 968px) {
+            .framework-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--navy-mid);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero { min-height: auto; padding: 8rem 1.5rem 3rem; }
+            .framework-section,
+            .features-section,
+            .privacy-section,
+            .cta-section,
+            .tech-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .privacy-card, .cta-card, .tech-card { padding: 1.75rem; }
+            .cta-buttons { flex-direction: column; align-items: stretch; }
+            .framework-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===== High Contrast ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --navy-mid: #6b6370;
+                --slate: #d4cab9;
+                --slate-light: #f5f0e8;
+                --accent: #b8d1a8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="logo-group" aria-label="Circle 6 Systems homepage">
+                <div class="logo-img" aria-hidden="true"><img src="circle6_logo.png" alt=""></div>
+                <div class="logo-text">Circle <span>6</span> Systems</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/products/" aria-current="page">Products</a></li>
+                <li><a href="/#industries">Industries</a></li>
+                <li><a href="/#approach">Approach</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" role="banner" aria-label="SDLC Journal product overview">
+        <div class="container hero-content" id="main-content">
+            <p class="section-label">Circle 6 Systems Product</p>
+            <h1>SDLC <em>Journal</em></h1>
+            <p class="section-sub">Encrypted, privacy-first development journaling. Capture your daily work through a structured framework designed for software professionals, with zero-knowledge architecture that keeps your reflections truly private.</p>
+            <span class="badge">Open Source</span>
+        </div>
+    </section>
+
+    <!-- SDLC Framework -->
+    <section class="framework-section" aria-labelledby="framework-heading">
+        <div class="container">
+            <p class="section-label">The Framework</p>
+            <h2 class="section-heading" id="framework-heading">Success, Delight, Learning, Compliment</h2>
+            <div class="divider"></div>
+            <p class="section-sub">Four prompts that guide meaningful daily reflection. Each entry captures a different dimension of your development experience.</p>
+            <div class="framework-grid">
+                <div class="framework-card">
+                    <div class="framework-letter" aria-hidden="true">S</div>
+                    <h3>Success</h3>
+                    <p>What went well today? Record accomplishments, completed tasks, and milestones reached.</p>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-letter" aria-hidden="true">D</div>
+                    <h3>Delight</h3>
+                    <p>What surprised or pleased you? Capture moments of joy, elegant solutions, and positive interactions.</p>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-letter" aria-hidden="true">L</div>
+                    <h3>Learning</h3>
+                    <p>What did you learn? Document new knowledge, insights from debugging, and patterns discovered.</p>
+                </div>
+                <div class="framework-card">
+                    <div class="framework-letter" aria-hidden="true">C</div>
+                    <h3>Compliment</h3>
+                    <p>Who helped you or did great work? Acknowledge teammates, mentors, and contributors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" aria-labelledby="features-heading">
+        <div class="container">
+            <p class="section-label">Capabilities</p>
+            <h2 class="section-heading" id="features-heading">Built for Privacy</h2>
+            <div class="divider"></div>
+            <p class="section-sub">Every architectural decision prioritizes your privacy. Your journal entries are encrypted before they leave the input field.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>AES-256-GCM Encryption</h3>
+                    <p>Military-grade client-side encryption. Your passphrase derives the key locally using PBKDF2. Ciphertext is the only thing that ever touches storage.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Zero-Knowledge Architecture</h3>
+                    <p>The server never sees your plaintext entries. No encryption keys are transmitted. Even the application developer cannot read your journal.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>IndexedDB Local Storage</h3>
+                    <p>All data stays on your device in the browser's IndexedDB. No cloud sync, no remote databases, no data leaving your machine without your explicit action.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Web and Desktop</h3>
+                    <p>Use SDLC Journal in any modern browser or install the Electron desktop app for a native experience. Same encryption, same privacy, your choice of platform.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>No Tracking or Analytics</h3>
+                    <p>Zero telemetry. No cookies. No analytics scripts. No tracking pixels. The application makes no external network requests beyond what you explicitly initiate.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Export Your Data</h3>
+                    <p>Your data belongs to you. Export your decrypted journal entries at any time. No lock-in, no proprietary formats, no barriers to leaving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Commitment -->
+    <section class="privacy-section" aria-labelledby="privacy-heading">
+        <div class="container">
+            <div class="privacy-card">
+                <h2 id="privacy-heading">Our Privacy Commitment</h2>
+                <p>SDLC Journal was built because we believe developers deserve a reflection tool that respects their privacy unconditionally. Here is what that means in practice:</p>
+                <ul class="privacy-list" role="list">
+                    <li>Encryption happens in your browser before data is stored -- the app never has access to plaintext</li>
+                    <li>No accounts required -- no email, no sign-up, no identity information collected</li>
+                    <li>No network requests to external services -- the app works entirely offline after initial load</li>
+                    <li>Open source code you can audit yourself to verify every claim on this page</li>
+                    <li>No monetization through data -- your journal entries have zero commercial value to us</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+        <div class="container">
+            <div class="cta-card">
+                <h2 id="cta-heading">Try SDLC Journal</h2>
+                <div class="divider divider-centered"></div>
+                <p>Start journaling with privacy built in from day one. No account required, no setup, no compromise on your data ownership.</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/Circle6Systems/SDLC-Journal" class="btn-primary">View on GitHub</a>
+                    <a href="/products/" class="btn-secondary">All Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-section" aria-labelledby="tech-heading">
+        <div class="container">
+            <div class="tech-card">
+                <h2 id="tech-heading">Built With</h2>
+                <p>SDLC Journal is built with modern web technologies and ships as both a progressive web app and an Electron desktop application.</p>
+                <div class="tech-tags" role="list" aria-label="Technology stack">
+                    <span class="tech-tag" role="listitem">HTML/CSS/JS</span>
+                    <span class="tech-tag" role="listitem">Web Crypto API</span>
+                    <span class="tech-tag" role="listitem">AES-256-GCM</span>
+                    <span class="tech-tag" role="listitem">PBKDF2</span>
+                    <span class="tech-tag" role="listitem">IndexedDB</span>
+                    <span class="tech-tag" role="listitem">Electron</span>
+                    <span class="tech-tag" role="listitem">Service Workers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+    </script>
+</body>
+</html>

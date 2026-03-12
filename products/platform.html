@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle6 Platform | Circle 6 Systems</title>
+    <meta name="description" content="The Circle6 Platform provides AI-powered security and compliance assessments with 86 engagement types across 11 practices, automated methodology, and human review gates.">
+    <meta property="og:title" content="Circle6 Platform | Circle 6 Systems">
+    <meta property="og:description" content="AI-powered security and compliance assessment platform with 86 engagement types across 11 practices.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://circle6systems.com/products/platform.html">
+    <link rel="canonical" href="https://circle6systems.com/products/platform.html">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--navy);
+            color: var(--slate-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Skip to Content (Accessibility) ===== */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 4px 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.2s;
+        }
+        .skip-to-content:focus { top: 0; }
+
+        /* ===== Focus Visible (Accessibility) ===== */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        :focus:not(:focus-visible) { outline: none; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 42, 46, 0.92);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: invert(78%) sepia(12%) saturate(600%) hue-rotate(60deg) brightness(95%);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .logo-text span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--slate-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a[aria-current="page"] { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--slate-light);
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== Sections ===== */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent-bg);
+            opacity: 0.3;
+            margin: 1.5rem 0;
+        }
+        .divider-centered { margin-left: auto; margin-right: auto; }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(143, 170, 123, 0.04), transparent),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(143, 170, 123, 0.02), transparent);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        .hero .section-sub {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+        }
+
+        /* ===== Badge ===== */
+        .badge {
+            display: inline-block;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent-bg);
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+        }
+
+        /* ===== Stats Row ===== */
+        .stats-section {
+            padding: 0 2rem 4rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .stat-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.35rem;
+        }
+        .stat-desc {
+            font-size: 0.85rem;
+            color: var(--slate);
+            line-height: 1.5;
+        }
+
+        /* ===== Features Grid ===== */
+        .features-section {
+            padding: 4rem 2rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .feature-item {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 10px;
+            padding: 1.75rem;
+            transition: border-color 0.2s;
+        }
+        .feature-item:hover {
+            border-color: rgba(143, 170, 123, 0.25);
+        }
+        .feature-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.65;
+        }
+
+        /* ===== Tiers Section ===== */
+        .tiers-section {
+            padding: 0 2rem 4rem;
+        }
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .tier-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .tier-card:hover {
+            border-color: rgba(143, 170, 123, 0.25);
+        }
+        .tier-card.featured {
+            border-color: var(--accent-bg);
+        }
+        .tier-name {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        .tier-price {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .tier-features li {
+            position: relative;
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            color: var(--slate-light);
+            border-bottom: 1px solid rgba(80, 74, 82, 0.5);
+        }
+        .tier-features li:last-child { border-bottom: none; }
+        .tier-features li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.85rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+        }
+
+        /* ===== Frameworks Section ===== */
+        .frameworks-section {
+            padding: 0 2rem 4rem;
+        }
+        .frameworks-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .frameworks-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .frameworks-card p {
+            color: var(--slate-light);
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+        }
+        .framework-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .framework-tag {
+            background: var(--navy);
+            border: 1px solid var(--navy-mid);
+            color: var(--slate-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 0.85rem;
+            border-radius: 4px;
+        }
+
+        /* ===== CTA Section ===== */
+        .cta-section {
+            padding: 5rem 2rem;
+        }
+        .cta-card {
+            background: var(--navy-light);
+            border: 1px solid var(--accent-bg);
+            border-radius: 12px;
+            padding: 3.5rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .cta-card h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .cta-card p {
+            color: var(--slate);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.75;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent-bg);
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.9rem 2.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.9rem 2.25rem;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: var(--accent-dim);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: var(--slate);
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 968px) {
+            .stats-grid, .tiers-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+            .tiers-grid { max-width: 480px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--navy-mid);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero { min-height: auto; padding: 8rem 1.5rem 3rem; }
+            .stats-section,
+            .features-section,
+            .tiers-section,
+            .frameworks-section,
+            .cta-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+            .frameworks-card, .cta-card { padding: 1.75rem; }
+            .cta-buttons { flex-direction: column; align-items: stretch; }
+        }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===== High Contrast ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --navy-mid: #6b6370;
+                --slate: #d4cab9;
+                --slate-light: #f5f0e8;
+                --accent: #b8d1a8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="logo-group" aria-label="Circle 6 Systems homepage">
+                <div class="logo-img" aria-hidden="true"><img src="circle6_logo.png" alt=""></div>
+                <div class="logo-text">Circle <span>6</span> Systems</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/products/" aria-current="page">Products</a></li>
+                <li><a href="/#industries">Industries</a></li>
+                <li><a href="/#approach">Approach</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" role="banner" aria-label="Circle6 Platform product overview">
+        <div class="container hero-content" id="main-content">
+            <p class="section-label">Circle 6 Systems Product</p>
+            <h1>Circle6 <em>Platform</em></h1>
+            <p class="section-sub">AI-powered security and compliance assessment platform. Structured methodology with automated analysis phases and human review gates, delivering actionable findings grounded in industry frameworks.</p>
+            <span class="badge">Proprietary Platform</span>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section" aria-labelledby="stats-heading">
+        <div class="container">
+            <h2 class="sr-only" id="stats-heading">Platform at a glance</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">86</div>
+                    <div class="stat-label">Engagement Types</div>
+                    <div class="stat-desc">From application security reviews to full GRC assessments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">Practice Areas</div>
+                    <div class="stat-desc">Security, compliance, architecture, development, and more</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Service Tiers</div>
+                    <div class="stat-desc">From free demos to full expert-led engagements</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section" aria-labelledby="features-heading">
+        <div class="container">
+            <p class="section-label">Capabilities</p>
+            <h2 class="section-heading" id="features-heading">How It Works</h2>
+            <div class="divider"></div>
+            <p class="section-sub">The platform combines AI-driven analysis with structured human oversight to produce thorough, defensible assessment outputs.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Multi-Phase Assessment</h3>
+                    <p>Each engagement follows a defined methodology with distinct phases: scoping, automated analysis, finding generation, human review, and deliverable production. No black boxes.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Human Review Gates</h3>
+                    <p>AI accelerates analysis but never replaces judgment. Every finding passes through human review gates before reaching the final deliverable. Consultants validate, refine, and contextualize.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>GitHub and Jira Integration</h3>
+                    <p>Findings flow directly into your issue tracker. Create GitHub issues or Jira tickets from assessment results, with severity labels, epic grouping, and remediation guidance attached.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Framework-Grounded Analysis</h3>
+                    <p>Every finding maps to established frameworks: NIST CSF, ISO 27001, MITRE ATT&CK, SOC 2, and OWASP. Auditors and compliance teams get the references they need.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Automated Methodology</h3>
+                    <p>Engagement-specific runbooks encode Circle 6 Systems' consulting methodology. The platform ensures consistent, repeatable assessments regardless of which consultant leads.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Structured Deliverables</h3>
+                    <p>Assessment outputs follow standardized templates: executive summaries, detailed finding reports, remediation roadmaps, and compliance mapping matrices. Ready for board presentation or audit submission.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tiers -->
+    <section class="tiers-section" aria-labelledby="tiers-heading">
+        <div class="container">
+            <p class="section-label">Service Tiers</p>
+            <h2 class="section-heading" id="tiers-heading">Choose Your Level of Engagement</h2>
+            <div class="divider"></div>
+            <p class="section-sub">Three tiers designed to meet organizations wherever they are in their security and compliance journey.</p>
+            <div class="tiers-grid">
+                <div class="tier-card">
+                    <div class="tier-name">Demo</div>
+                    <div class="tier-price">Free</div>
+                    <ul class="tier-features" role="list">
+                        <li>Single assessment type</li>
+                        <li>Automated analysis only</li>
+                        <li>Summary-level findings</li>
+                        <li>Framework mapping preview</li>
+                        <li>No account required</li>
+                    </ul>
+                </div>
+                <div class="tier-card featured">
+                    <div class="tier-name">Self-Service</div>
+                    <div class="tier-price">Per Assessment</div>
+                    <ul class="tier-features" role="list">
+                        <li>Full engagement type catalog</li>
+                        <li>Multi-phase automated analysis</li>
+                        <li>Detailed findings with remediation</li>
+                        <li>GitHub and Jira integration</li>
+                        <li>Exportable deliverables</li>
+                        <li>Framework compliance mapping</li>
+                    </ul>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-name">Full Engagement</div>
+                    <div class="tier-price">Custom Scoping</div>
+                    <ul class="tier-features" role="list">
+                        <li>Everything in Self-Service</li>
+                        <li>Dedicated C6S consultant</li>
+                        <li>Human review of all findings</li>
+                        <li>Executive briefing and presentation</li>
+                        <li>Remediation roadmap development</li>
+                        <li>Ongoing advisory support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frameworks -->
+    <section class="frameworks-section" aria-labelledby="frameworks-heading">
+        <div class="container">
+            <div class="frameworks-card">
+                <h2 id="frameworks-heading">Framework Coverage</h2>
+                <p>The Circle6 Platform maps findings to the frameworks your auditors, regulators, and compliance teams already work with. Every finding includes specific control references so remediation efforts align with your compliance obligations.</p>
+                <div class="framework-tags" role="list" aria-label="Supported compliance frameworks">
+                    <span class="framework-tag" role="listitem">NIST CSF 2.0</span>
+                    <span class="framework-tag" role="listitem">NIST 800-53</span>
+                    <span class="framework-tag" role="listitem">ISO 27001</span>
+                    <span class="framework-tag" role="listitem">SOC 2 Type II</span>
+                    <span class="framework-tag" role="listitem">MITRE ATT&CK</span>
+                    <span class="framework-tag" role="listitem">OWASP Top 10</span>
+                    <span class="framework-tag" role="listitem">OWASP ASVS</span>
+                    <span class="framework-tag" role="listitem">CIS Controls</span>
+                    <span class="framework-tag" role="listitem">HIPAA</span>
+                    <span class="framework-tag" role="listitem">CJIS</span>
+                    <span class="framework-tag" role="listitem">FedRAMP</span>
+                    <span class="framework-tag" role="listitem">WCAG 2.1 AAA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+        <div class="container">
+            <div class="cta-card">
+                <h2 id="cta-heading">Request a Demo</h2>
+                <div class="divider divider-centered"></div>
+                <p>See the Circle6 Platform in action. We will walk you through a sample assessment and show you how it fits your organization's security and compliance needs.</p>
+                <div class="cta-buttons">
+                    <a href="mailto:contact@circle6systems.com?subject=Circle6%20Platform%20Demo%20Request" class="btn-primary">Request Demo</a>
+                    <a href="/products/" class="btn-secondary">All Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+    </script>
+</body>
+</html>
