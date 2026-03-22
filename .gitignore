@@ -1,6 +1,18 @@
+# OS files
 .DS_Store
+Thumbs.db
 
 # Claude Code
-CLAUDE.md
-claude.md
 .claude/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+.env.*.local
