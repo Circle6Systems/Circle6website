@@ -1,3 +1,9 @@
+---
+title: Circle 6 Systems
+scope: Project overview and development guide
+last_updated: 2026-03-27
+---
+
 # Circle 6 Systems
 
 Company website for Circle 6 Systems — strategic technology consulting for government and public-serving organizations.

@@ -1,3 +1,9 @@
+---
+title: Session Summary -- Org Standards Compliance
+scope: Status report for org compliance work
+last_updated: 2026-03-22
+---
+
 # Session Summary: Org Standards Compliance
 
 **Date:** 2026-03-22
