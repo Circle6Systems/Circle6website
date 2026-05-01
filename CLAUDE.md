@@ -76,6 +76,7 @@ Every GitHub issue must include:
 
 ## Documentation
 
+- `docs/styleguide.md` -- Visual style guide (colors, typography, components, layout patterns). Authoritative reference for all C6S-branded pages, reports, and deliverables.
 - `docs/status/` -- Status reports, session summaries, and lessons learned (date-prefixed)
 - Do not create documentation files unless explicitly requested
 - Keep CLAUDE.md up to date as the project evolves
