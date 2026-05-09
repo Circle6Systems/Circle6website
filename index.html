@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circle 6 Systems | Strategic Technology Consulting</title>
-    <meta name="description" content="Circle 6 Systems provides cyber security, system design, system integration, and custom development consulting for government organizations and enterprises.">
+    <meta name="description" content="Circle 6 Systems provides cybersecurity, GRC, IT operations, OSINT, AI governance, application development, data analytics, strategy, training, and communications consulting for government organizations and enterprises.">
     <meta property="og:title" content="Circle 6 Systems | Strategic Technology Consulting">
     <meta property="og:description" content="Securing and modernizing critical systems for government and enterprise organizations.">
     <meta property="og:type" content="website">
@@ -310,7 +310,7 @@
         /* ===== Services ===== */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             margin-top: 3rem;
         }
@@ -319,7 +319,7 @@
             background: var(--navy-light);
             border: 1px solid rgba(143, 170, 123, 0.06);
             border-radius: 8px;
-            padding: 2.5rem;
+            padding: 2rem;
             transition: all 0.3s;
             position: relative;
         }
@@ -627,7 +627,7 @@
             .about-grid,
             .industries-content { grid-template-columns: 1fr; gap: 2rem; }
 
-            .services-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
 
             .approach-grid { grid-template-columns: 1fr 1fr; }
         }
@@ -653,6 +653,8 @@
             .hamburger { display: flex; }
 
             .approach-grid { grid-template-columns: 1fr; }
+
+            .services-grid { grid-template-columns: 1fr; }
 
             .about-stats { grid-template-columns: 1fr 1fr; }
         }
@@ -751,22 +753,36 @@
         <div class="container">
             <p class="section-label fade-in">What We Do</p>
             <h2 class="section-heading fade-in">Consulting Services</h2>
-            <p class="section-sub fade-in">We deliver focused expertise across four core disciplines, each grounded in practical experience with government and enterprise environments.</p>
+            <p class="section-sub fade-in">We deliver focused expertise across ten consulting practices, each grounded in practical experience with government and enterprise environments.</p>
 
             <div class="services-grid">
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
                     </div>
-                    <h3>Cyber Security</h3>
-                    <p>Protecting critical infrastructure and sensitive data demands more than compliance checklists. We help organizations build and sustain a security posture that addresses real-world threats while meeting regulatory obligations.</p>
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive offensive and defensive security services that protect critical infrastructure against real-world threats.</p>
                     <ul>
-                        <li>Security architecture assessment and design</li>
-                        <li>Risk analysis and vulnerability management</li>
+                        <li>Penetration testing and red team operations</li>
+                        <li>Security architecture assessment</li>
                         <li>Incident response planning and readiness</li>
-                        <li>Regulatory compliance and audit preparation</li>
-                        <li>Security awareness program development</li>
-                        <li>Continuity of operations planning</li>
+                        <li>Detection engineering and threat hunting</li>
+                        <li>Vulnerability management programs</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+                    </div>
+                    <h3>Governance, Risk &amp; Compliance</h3>
+                    <p>Navigate complex regulatory landscapes with frameworks tailored to your industry and risk profile.</p>
+                    <ul>
+                        <li>SOC 2, ISO 27001, and NIST CSF readiness</li>
+                        <li>CMMC, FedRAMP, and federal compliance</li>
+                        <li>HIPAA, PCI DSS, and industry regulations</li>
+                        <li>Third-party risk management programs</li>
+                        <li>Policy development and audit preparation</li>
                     </ul>
                 </div>
 
@@ -774,31 +790,44 @@
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 12h20"/><path d="M2 7h5"/><path d="M2 17h5"/><path d="M17 7h5"/><path d="M17 17h5"/></svg>
                     </div>
-                    <h3>System Design</h3>
-                    <p>Sound architecture is the foundation of every reliable system. We work with stakeholders to translate operational requirements into technical designs that are practical to implement, maintain, and scale.</p>
+                    <h3>IT Operations &amp; Infrastructure</h3>
+                    <p>Modernize infrastructure and operations with cloud migration, platform engineering, and reliability practices.</p>
                     <ul>
-                        <li>Enterprise architecture planning</li>
-                        <li>Requirements analysis and documentation</li>
-                        <li>Infrastructure and network design</li>
-                        <li>Scalability and performance planning</li>
-                        <li>Disaster recovery architecture</li>
-                        <li>Technology roadmap development</li>
+                        <li>Cloud migration and hybrid architecture</li>
+                        <li>Platform engineering and DevOps maturity</li>
+                        <li>Site reliability engineering and observability</li>
+                        <li>Disaster recovery and business continuity</li>
+                        <li>Network design and optimization</li>
                     </ul>
                 </div>
 
                 <div class="service-card fade-in">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 21V9a9 9 0 0 0 9 9"/><circle cx="18" cy="6" r="3"/><path d="M18 3v6"/></svg>
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                     </div>
-                    <h3>System Integration</h3>
-                    <p>Most organizations operate a mix of legacy platforms, cloud services, and specialized applications that were never designed to work together. We bridge those gaps to create unified, interoperable environments.</p>
+                    <h3>OSINT &amp; Threat Intelligence</h3>
+                    <p>Actionable intelligence from open sources — attack surface mapping, threat actor profiling, and event-driven briefings.</p>
                     <ul>
-                        <li>Legacy system modernization strategies</li>
-                        <li>Cross-platform data integration</li>
-                        <li>API design and middleware implementation</li>
-                        <li>Cloud and hybrid environment integration</li>
-                        <li>Data migration and transformation</li>
-                        <li>Interagency and partner system connectivity</li>
+                        <li>Attack surface reconnaissance and monitoring</li>
+                        <li>Dark web and credential exposure assessment</li>
+                        <li>Political and legislative intelligence</li>
+                        <li>Threat actor profiling and tracking</li>
+                        <li>Rapid event intelligence briefings</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.57-3.25 3.92L12 22"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.57 3.25 3.92"/><circle cx="12" cy="6" r="1"/><path d="M5 17h14"/><path d="M7 21h10"/></svg>
+                    </div>
+                    <h3>AI Governance &amp; Ethics</h3>
+                    <p>Responsible AI frameworks, LLM security assessments, and regulatory compliance for organizations deploying AI systems.</p>
+                    <ul>
+                        <li>AI risk framework development (NIST AI RMF)</li>
+                        <li>LLM and agentic AI security assessment</li>
+                        <li>EU AI Act and state AI law compliance</li>
+                        <li>Algorithmic bias auditing</li>
+                        <li>Model governance and observability</li>
                     </ul>
                 </div>
 
@@ -806,15 +835,74 @@
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
                     </div>
-                    <h3>Customized System Development</h3>
-                    <p>When off-the-shelf products cannot meet your operational requirements, we design and build purpose-driven solutions tailored to how your organization actually works.</p>
+                    <h3>Application Development</h3>
+                    <p>Purpose-built software from custom applications to modernization of legacy systems, with security built in from the start.</p>
                     <ul>
                         <li>Custom application design and development</li>
-                        <li>Workflow and process automation</li>
-                        <li>Reporting and analytics platforms</li>
-                        <li>Citizen and constituent-facing portals</li>
-                        <li>Internal tooling and operational dashboards</li>
-                        <li>Ongoing maintenance and support planning</li>
+                        <li>Legacy system modernization</li>
+                        <li>API design and cloud-native architecture</li>
+                        <li>Application security and secure SDLC</li>
+                        <li>Citizen-facing portals and internal tooling</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3>Data Analytics &amp; Strategy</h3>
+                    <p>Turn data into decisions with modern architectures, analytics platforms, and governance frameworks.</p>
+                    <ul>
+                        <li>Data architecture and platform strategy</li>
+                        <li>Analytics and reporting platforms</li>
+                        <li>Data governance and quality programs</li>
+                        <li>Pipeline engineering and integration</li>
+                        <li>Advanced analytics and ML enablement</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    </div>
+                    <h3>Strategy &amp; Transformation</h3>
+                    <p>Executive-level guidance for digital transformation, technology strategy, and organizational change.</p>
+                    <ul>
+                        <li>Digital transformation roadmaps</li>
+                        <li>Technology strategy and planning</li>
+                        <li>Change management and adoption</li>
+                        <li>Operational excellence programs</li>
+                        <li>Market analysis and growth strategy</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <h3>Training &amp; Enablement</h3>
+                    <p>Build internal capability through security awareness programs, technical bootcamps, and certification preparation.</p>
+                    <ul>
+                        <li>Security awareness program development</li>
+                        <li>Technical skills bootcamps</li>
+                        <li>Certification preparation (CISSP, CISM, CompTIA)</li>
+                        <li>Custom workshop design and delivery</li>
+                        <li>Leadership development for technical teams</li>
+                    </ul>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3>Marketing &amp; Communications</h3>
+                    <p>Strategic communications for technology organizations — from thought leadership to crisis response.</p>
+                    <ul>
+                        <li>Brand strategy and positioning</li>
+                        <li>Thought leadership and content programs</li>
+                        <li>Digital marketing and SEO</li>
+                        <li>Crisis communications planning</li>
+                        <li>Website strategy and content development</li>
                     </ul>
                 </div>
             </div>
