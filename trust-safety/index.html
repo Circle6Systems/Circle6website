@@ -343,6 +343,12 @@
             color: var(--slate);
             margin-bottom: 1.25rem;
         }
+        .combined-download-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
         .downloads-path-label {
             font-size: 0.8rem;
@@ -629,9 +635,13 @@
                     Read the Full Guide
                     <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="/trust-safety/pdfs/00-complete-digital-estate-planning-guide.pdf" class="btn btn-outline" download>
+                <a href="/trust-safety/pdfs/path-a-planning-ahead-complete.pdf" class="btn btn-outline" download>
                     <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Download All Checklists
+                    Path A Checklists
+                </a>
+                <a href="/trust-safety/pdfs/path-b-navigating-loss-complete.pdf" class="btn btn-outline" download>
+                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Path B Checklists
                 </a>
             </div>
         </div>
@@ -674,11 +684,17 @@
             </div>
 
             <div class="combined-download fade-in">
-                <p>Get everything in one file:</p>
-                <a href="/trust-safety/pdfs/00-complete-digital-estate-planning-guide.pdf" class="btn btn-filled" download>
-                    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Complete Guide (All Checklists)
-                </a>
+                <p>Download all checklists for your path:</p>
+                <div class="combined-download-actions">
+                    <a href="/trust-safety/pdfs/path-a-planning-ahead-complete.pdf" class="btn btn-filled" download>
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Path A: Planning Ahead
+                    </a>
+                    <a href="/trust-safety/pdfs/path-b-navigating-loss-complete.pdf" class="btn btn-filled" download>
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Path B: Navigating Loss
+                    </a>
+                </div>
             </div>
 
             <h3 class="downloads-path-label fade-in">Path A: Planning Ahead</h3>
