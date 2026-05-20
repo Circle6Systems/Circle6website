@@ -1319,7 +1319,7 @@ const WizardContent = (() => {
               title: 'Practical Workarounds',
               items: [
                 { id: 'b-11-8-17', text: 'If the phone is unlocked and the SIM is active, you can receive 2FA codes directly on the device' },
-                { id: 'b-11-8-18', text: 'If the phone is unlocked, move the SIM card to another compatible phone to keep receiving SMS codes while you work through account recovery' },
+                { id: 'b-11-8-18', text: 'If the phone is locked, move the SIM card to another compatible phone to keep receiving SMS codes while you work through account recovery' },
                 { id: 'b-11-8-19', text: 'Some phones allow you to see incoming SMS on the lock screen even without unlocking; check notification settings' },
                 { id: 'b-11-8-20', text: 'If the phone uses eSIM (newer iPhones and Android devices), contact the carrier about transferring the eSIM to a new device' }
               ]
@@ -1493,7 +1493,7 @@ const WizardContent = (() => {
               items: [
                 { id: 'b-11-13-1', text: 'Charge and secure all devices. Do not reset, wipe, or update anything.' },
                 { id: 'b-11-13-2', text: 'If any device is unlocked, disable auto-lock immediately and check for saved passwords in browsers and the device keychain.' },
-                { id: 'b-11-13-3', text: 'If the phone is unlocked, move the SIM to a phone you control or keep the phone charged and accessible for incoming 2FA codes.' },
+                { id: 'b-11-13-3', text: 'If the phone is locked, move the SIM to a phone you control or keep the phone charged and accessible for incoming 2FA codes.' },
                 { id: 'b-11-13-4', text: 'Photograph or write down everything you find: saved passwords, authenticator app entries, auto-complete suggestions, app icons on the phone.' }
               ]
             },
