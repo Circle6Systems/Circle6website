@@ -59,6 +59,9 @@ document.addEventListener('alpine:init', () => {
     bundleLocation: '',
     passphraseLocation: '',
     bundleGenerated: false,
+    bundleCustomMessage: '',
+    bundleIncludeSections: {},
+    bundleStrength: { score: 0, label: '', cls: '' },
 
     // Settings
     showClearConfirm: false,
@@ -578,10 +581,59 @@ document.addEventListener('alpine:init', () => {
 
     // --- Secure Bundle Export ---
 
+    initExportView() {
+      var allSections = WizardContent.getAllSections();
+      var inc = {};
+      for (var i = 0; i < allSections.length; i++) {
+        inc[allSections[i].id] = true;
+      }
+      this.bundleIncludeSections = inc;
+      this.bundleCustomMessage = '';
+      this.bundlePassphrase = '';
+      this.bundlePassphraseConfirm = '';
+      this.bundleStrength = { score: 0, label: '', cls: '' };
+      this.bundleGenerated = false;
+      this.error = '';
+      this.view = 'export';
+    },
+
+    updateBundleStrength() {
+      var pp = this.bundlePassphrase;
+      if (!pp || pp.length === 0) {
+        this.bundleStrength = { score: 0, label: '', cls: '' };
+        return;
+      }
+      var score = 0;
+      if (pp.length >= 12) score++;
+      if (pp.length >= 16) score++;
+      if (pp.length >= 24) score++;
+      if (/[a-z]/.test(pp) && /[A-Z]/.test(pp)) score++;
+      if (/[0-9]/.test(pp)) score++;
+      if (/[^a-zA-Z0-9]/.test(pp)) score++;
+      var uniqueChars = new Set(pp).size;
+      if (uniqueChars >= 8) score++;
+      var labels = ['Weak', 'Weak', 'Fair', 'Fair', 'Good', 'Strong', 'Strong', 'Very Strong'];
+      var classes = ['weak', 'weak', 'fair', 'fair', 'good', 'strong', 'strong', 'strong'];
+      this.bundleStrength = { score: Math.min(score, 7), label: labels[score] || 'Weak', cls: classes[score] || 'weak' };
+    },
+
+    getBundleSelectedCount() {
+      var count = 0;
+      var keys = Object.keys(this.bundleIncludeSections);
+      for (var i = 0; i < keys.length; i++) {
+        if (this.bundleIncludeSections[keys[i]]) count++;
+      }
+      return count;
+    },
+
     async generateSecureBundle() {
       this.error = '';
       this.bundleGenerated = false;
 
+      if (this.getBundleSelectedCount() === 0) {
+        this.error = 'Select at least one section to include in the bundle.';
+        return;
+      }
       if (this.bundlePassphrase.length < 12) {
         this.error = 'Bundle passphrase must be at least 12 characters.';
         return;
@@ -611,6 +663,7 @@ document.addEventListener('alpine:init', () => {
         this.bundleGenerated = true;
         this.bundlePassphrase = '';
         this.bundlePassphraseConfirm = '';
+        this.bundleStrength = { score: 0, label: '', cls: '' };
       } catch (e) {
         this.error = 'Failed to generate bundle: ' + e.message;
       } finally {
@@ -620,11 +673,13 @@ document.addEventListener('alpine:init', () => {
 
     async _buildPlainDocument() {
       var allSections = WizardContent.getAllSections();
+      var includeSections = this.bundleIncludeSections;
       var allData = {};
       var allNotes = {};
 
       for (var i = 0; i < allSections.length; i++) {
         var s = allSections[i];
+        if (!includeSections[s.id]) continue;
         allData[s.id] = await WizardChecklist.loadSectionItems(s.id, this.cryptoKey);
         allNotes[s.id] = await WizardChecklist.loadSectionNotes(s.id, this.cryptoKey);
       }
@@ -635,8 +690,14 @@ document.addEventListener('alpine:init', () => {
       h.push('<h1>Digital Estate Plan</h1>');
       h.push('<div class="meta">Generated: ' + esc(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })) + ' | Guide Version: ' + esc(WizardContent.GUIDE_VERSION) + '</div>');
 
+      if (this.bundleCustomMessage && this.bundleCustomMessage.trim()) {
+        h.push('<div class="custom-message"><h2>Message from the Account Holder</h2>');
+        h.push('<p>' + esc(this.bundleCustomMessage.trim()) + '</p></div>');
+      }
+
       for (var si = 0; si < allSections.length; si++) {
         var section = allSections[si];
+        if (!includeSections[section.id]) continue;
         var sectionItems = allData[section.id] || new Map();
         var sectionNotes = allNotes[section.id] || '';
         var progress = WizardChecklist.getSectionProgress(section.id, sectionItems);
@@ -696,6 +757,9 @@ document.addEventListener('alpine:init', () => {
         + '.unlock-box button:hover{background:#444}\n'
         + '.error{color:#c33;font-size:0.85rem;margin-bottom:1rem}\n'
         + '.confidential{text-align:center;color:#c33;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:1rem 0;font-size:0.85rem}\n'
+        + '.custom-message{background:#f5f5f0;border:1px solid #ddd;border-left:3px solid #6a9;border-radius:0 6px 6px 0;padding:1rem 1.25rem;margin:1.5rem 0}\n'
+        + '.custom-message h2{font-size:1.1rem;margin:0 0 0.5rem;color:#444}\n'
+        + '.custom-message p{margin:0;font-size:0.95rem;white-space:pre-wrap}\n'
         + '.meta{color:#666;font-size:0.85rem;margin-bottom:2rem}\n'
         + '.section-meta{color:#666;font-size:0.85rem}\n'
         + 'h2{font-size:1.25rem;margin-top:2.5rem;color:#444;border-bottom:1px solid #ccc;padding-bottom:0.3rem}\n'

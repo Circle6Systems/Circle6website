@@ -1384,6 +1384,109 @@
   font-size: 0.9rem;
 }
 
+/* --- Bundle Section Selector --- */
+
+.bundle-section-select {
+  border: 1px solid var(--border, #444);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  background: var(--card-bg, #363336);
+}
+
+.bundle-section-select legend {
+  padding: 0;
+  margin: 0;
+}
+
+.bundle-section-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.bundle-section-option input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent, #a8c196);
+  flex-shrink: 0;
+}
+
+.bundle-section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.bundle-section-path {
+  font-size: 0.75rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted, #999);
+}
+
+.bundle-section-count {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border, #444);
+  font-size: 0.8rem;
+  color: var(--text-muted, #999);
+}
+
+/* --- Passphrase Strength Meter --- */
+
+.strength-meter {
+  margin-top: 0.4rem;
+}
+
+.strength-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-fill.weak { background-color: #c33; }
+.strength-fill.fair { background-color: #d4a261; }
+.strength-fill.good { background-color: #8faa7b; }
+.strength-fill.strong { background-color: #6a9; }
+
+.strength-label {
+  font-size: 0.75rem;
+}
+
+.strength-label.weak { color: #c33; }
+.strength-label.fair { color: #d4a261; }
+.strength-label.good { color: #8faa7b; }
+.strength-label.strong { color: #6a9; }
+
+/* --- Form Textarea --- */
+
+.form-textarea {
+  resize: vertical;
+  min-height: 4rem;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.form-optional {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--text-muted, #999);
+}
+
 /* --- Enhanced Print Styles --- */
 
 @media print {

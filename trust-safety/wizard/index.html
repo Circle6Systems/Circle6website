@@ -119,7 +119,7 @@
         <div class="dashboard-header">
           <h1>Your Digital Estate Plan</h1>
           <div class="dashboard-actions">
-            <button class="btn btn-primary btn-small" @click="view = 'export'" aria-label="Export secure bundle">Export Bundle</button>
+            <button class="btn btn-primary btn-small" @click="initExportView()" aria-label="Export secure bundle">Export Bundle</button>
             <button class="btn btn-secondary btn-small" @click="view = 'guidance'" aria-label="Guidance and readiness">Guidance</button>
             <button class="btn btn-secondary btn-small" @click="view = 'settings'" aria-label="Settings">Settings</button>
             <button class="btn btn-secondary btn-small" @click="lock()" aria-label="Lock the wizard">Lock</button>
@@ -484,14 +484,41 @@
         </div>
 
         <form @submit.prevent="generateSecureBundle()" class="export-form">
+          <h2>Select Data to Include</h2>
+          <p class="export-form-desc">Choose which sections of your plan to include in the encrypted bundle. Only sections with data you have entered will appear in the export.</p>
+
+          <fieldset class="bundle-section-select">
+            <legend class="sr-only">Sections to include in bundle</legend>
+            <template x-for="section in sections" :key="section.id">
+              <label class="bundle-section-option">
+                <input type="checkbox" x-model="bundleIncludeSections[section.id]">
+                <span class="bundle-section-label">
+                  <span x-text="'Section ' + section.number + ': ' + section.title"></span>
+                  <span class="bundle-section-path" x-text="section.path === 'a' ? 'Path A' : 'Path B'"></span>
+                </span>
+              </label>
+            </template>
+            <div class="bundle-section-count" aria-live="polite">
+              <span x-text="getBundleSelectedCount()"></span> of <span x-text="sections.length"></span> sections selected
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label class="form-label" for="bundle-message">Personal Message for Your Executor <span class="form-optional">(optional)</span></label>
+            <textarea id="bundle-message" class="form-input form-textarea" x-model="bundleCustomMessage" rows="4" placeholder="A personal note, context, or instructions for the person managing your digital estate." autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+          </div>
+
           <h2>Set Bundle Passphrase</h2>
           <p class="export-form-desc">Choose a passphrase specifically for this bundle. It should be different from your wizard passphrase. Your executor will need this passphrase to open the bundle.</p>
 
           <div class="form-group">
             <label class="form-label" for="bundle-pass">Bundle Passphrase</label>
-            <input type="password" id="bundle-pass" class="form-input" x-model="bundlePassphrase" placeholder="At least 12 characters" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-describedby="bundle-hint">
-            <div id="bundle-hint" class="passphrase-hint" x-show="bundlePassphrase.length > 0 && bundlePassphrase.length < 12" aria-live="polite">
-              <span x-text="12 - bundlePassphrase.length"></span> more characters needed
+            <input type="password" id="bundle-pass" class="form-input" x-model="bundlePassphrase" @input="updateBundleStrength()" placeholder="At least 12 characters" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-describedby="bundle-strength-hint">
+            <div id="bundle-strength-hint" class="strength-meter" x-show="bundlePassphrase.length > 0" aria-live="polite">
+              <div class="strength-bar">
+                <div class="strength-fill" :class="bundleStrength.cls" :style="'width:' + Math.round((bundleStrength.score / 7) * 100) + '%'"></div>
+              </div>
+              <span class="strength-label" :class="bundleStrength.cls" x-text="bundlePassphrase.length < 12 ? (12 - bundlePassphrase.length) + ' more characters needed' : bundleStrength.label"></span>
             </div>
           </div>
 
@@ -515,7 +542,7 @@
           <div x-show="error" class="error-message" x-text="error" role="alert"></div>
 
           <div class="export-actions">
-            <button type="submit" class="btn btn-primary" :disabled="isProcessing || bundlePassphrase.length < 12" aria-label="Generate encrypted bundle and instructions">
+            <button type="submit" class="btn btn-primary" :disabled="isProcessing || bundlePassphrase.length < 12 || getBundleSelectedCount() === 0" aria-label="Generate encrypted bundle and instructions">
               <span x-show="!isProcessing">Generate Secure Bundle</span>
               <span x-show="isProcessing">Encrypting...</span>
             </button>
