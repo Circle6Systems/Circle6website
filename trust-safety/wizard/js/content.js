@@ -657,10 +657,11 @@ const WizardContent = (() => {
     {
       id: 'section-7',
       number: 7,
-      title: 'Immediate Priorities (First 48-72 Hours)',
+      title: 'Immediate Priorities',
       path: 'b',
       pdfFile: 'B-01-the-first-few-days.pdf',
-      description: 'If you are reading this section, you may be in the middle of one of the hardest experiences of your life. This section is designed to help you take concrete steps at your own pace. Not everything needs to happen at once. Prioritize based on urgency -- security and financial accounts first, sentimental and social media accounts later.',
+      guideline: 'Suggested pacing: first few days after starting',
+      description: 'If you are reading this section, you may be in the middle of one of the hardest experiences of your life. These are things to consider early on, but there is no deadline. Take concrete steps at your own pace. Not everything needs to happen at once. Prioritize based on urgency -- security and financial accounts first, sentimental and social media accounts later.',
       subsections: [
         {
           id: 'section-7-1',
@@ -744,10 +745,11 @@ const WizardContent = (() => {
     {
       id: 'section-8',
       number: 8,
-      title: 'Short-Term Actions (First 1-4 Weeks)',
+      title: 'Short-Term Actions',
       path: 'b',
       pdfFile: 'A-07-immediate-priorities-48-72-hours.pdf',
-      description: '',
+      guideline: 'Suggested pacing: when you are ready, usually within the first few weeks',
+      description: 'These are steps that benefit from being addressed relatively early, but only when you feel ready. The timeframe is a guideline, not a deadline. Some people move through these in days, others take longer. Both are fine.',
       subsections: [
         {
           id: 'section-8-1',
@@ -837,10 +839,11 @@ const WizardContent = (() => {
     {
       id: 'section-9',
       number: 9,
-      title: 'Medium-Term Actions (1-6 Months)',
+      title: 'Medium-Term Actions',
       path: 'b',
       pdfFile: 'A-08-ongoing-actions.pdf',
-      description: '',
+      guideline: 'Suggested pacing: over the coming weeks and months, as you are able',
+      description: 'These items can be spread over time. There is no urgency. Focus on what matters most to you first, and return to the rest when you have the energy.',
       subsections: [
         {
           id: 'section-9-1',

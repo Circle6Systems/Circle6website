@@ -151,6 +151,7 @@
                 <span class="section-complete-badge" x-show="section.progress.percent === 100">Complete</span>
               </div>
               <h2 class="section-card-title" x-text="section.title"></h2>
+              <p class="section-card-guideline" x-show="section.guideline" x-text="section.guideline"></p>
               <div class="section-card-progress">
                 <div class="progress-bar progress-bar-sm" role="progressbar" :aria-valuenow="section.progress.percent" aria-valuemin="0" aria-valuemax="100">
                   <div class="progress-fill" :style="'width:' + section.progress.percent + '%'"></div>
@@ -202,6 +203,8 @@
             </div>
           </div>
         </div>
+
+        <p class="section-guideline" x-show="currentSection.guideline" x-text="currentSection.guideline"></p>
 
         <div class="save-status-bar">
           <span class="save-indicator" x-show="saveStatus" x-text="saveStatus" x-transition.opacity role="status" aria-live="polite"></span>
@@ -460,25 +463,30 @@
         </div>
 
         <div class="export-intro">
-          <p>This creates two files for your digital executor:</p>
+          <p>This creates three files to help your executor and loved ones access your plan:</p>
           <div class="export-file-list">
             <div class="export-file-card">
               <h3>1. Encrypted Bundle</h3>
               <p>A self-contained HTML file with all your plan data encrypted inside. Anyone can open it in a browser, but the data is only readable with the correct passphrase. Store this on a USB drive, in cloud storage, or with your attorney.</p>
             </div>
             <div class="export-file-card">
-              <h3>2. Access Instructions</h3>
-              <p>A printable document for your will or estate papers. It explains what the bundle is, where to find it, and how to open it. It does <strong>not</strong> contain the passphrase.</p>
+              <h3>2. Executor Instructions</h3>
+              <p>A formal reference document for the designated Digital Executor. It explains what the bundle is, where to find it, and how to open it. It does <strong>not</strong> contain the passphrase.</p>
+            </div>
+            <div class="export-file-card">
+              <h3>3. Access Kit</h3>
+              <p>A single-page, compassionate guide designed for a family member or trusted person who may be navigating loss. It explains where to find the bundle and how to open it, in clear and gentle language. You can choose whether to include the passphrase on this document.</p>
             </div>
           </div>
 
           <div class="export-split-knowledge">
-            <h3>Split-Knowledge Principle</h3>
-            <p>For security, the encrypted bundle and the passphrase should never be stored in the same location. Your executor needs both pieces to access your plan:</p>
+            <h3>How the Pieces Fit Together</h3>
+            <p>For security, the encrypted bundle and the passphrase should be stored separately. Your executor and loved ones will need both the bundle file and the passphrase to access your plan:</p>
             <ul>
               <li><strong>The encrypted bundle</strong> -- stored digitally (USB drive, cloud storage, attorney file)</li>
               <li><strong>The passphrase</strong> -- stored physically and separately (sealed envelope with attorney, safe deposit box, or in your will)</li>
-              <li><strong>The access instructions</strong> -- stored with your will or estate documents, tells your executor where to find the other two pieces</li>
+              <li><strong>The executor instructions</strong> -- stored with your will or estate documents, a formal reference for the Digital Executor</li>
+              <li><strong>The access kit</strong> -- given to a trusted family member or kept with the passphrase, a gentle guide for someone who needs help accessing the plan</li>
             </ul>
           </div>
         </div>
@@ -539,10 +547,26 @@
 
           <p class="auth-warning">Write down or securely store the bundle passphrase. If it is lost, the encrypted bundle cannot be opened. There is no recovery mechanism.</p>
 
+          <h2>Access Kit Options</h2>
+          <p class="export-form-desc">The access kit is a compassionate, single-page guide you can share with a family member or other trusted person. It walks them through finding and opening your plan in clear, gentle language.</p>
+
+          <div class="form-group">
+            <label class="bundle-section-option">
+              <input type="checkbox" x-model="includePassphraseOnKit">
+              <span class="bundle-section-label">Include the passphrase on the access kit</span>
+            </label>
+            <p class="export-form-desc" style="margin-top:0.5rem;margin-bottom:0">If checked, the passphrase will be printed on the access kit so the recipient has everything they need in one document. If unchecked, the access kit will include a blank line where you can write the passphrase by hand, or share it separately.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="access-kit-location">Where will you store the access kit? <span class="form-optional">(optional)</span></label>
+            <input type="text" id="access-kit-location" class="form-input" x-model="accessKitLocation" placeholder="e.g., with a trusted family member, in estate folder at home" autocomplete="off">
+          </div>
+
           <div x-show="error" class="error-message" x-text="error" role="alert"></div>
 
           <div class="export-actions">
-            <button type="submit" class="btn btn-primary" :disabled="isProcessing || bundlePassphrase.length < 12 || getBundleSelectedCount() === 0" aria-label="Generate encrypted bundle and instructions">
+            <button type="submit" class="btn btn-primary" :disabled="isProcessing || bundlePassphrase.length < 12 || getBundleSelectedCount() === 0" aria-label="Generate encrypted bundle, executor instructions, and access kit">
               <span x-show="!isProcessing">Generate Secure Bundle</span>
               <span x-show="isProcessing">Encrypting...</span>
             </button>
@@ -551,12 +575,13 @@
 
         <div x-show="bundleGenerated" class="export-success">
           <h2>Bundle Generated</h2>
-          <p>Two files have been downloaded:</p>
+          <p>Three files have been downloaded:</p>
           <ul>
-            <li><strong>digital-estate-bundle-[date].html</strong> -- the encrypted bundle</li>
-            <li><strong>executor-instructions-[date].html</strong> -- the access instructions (print this)</li>
+            <li><strong>digital-estate-bundle-[date].html</strong> -- the encrypted bundle (store digitally)</li>
+            <li><strong>executor-instructions-[date].html</strong> -- formal executor reference (store with estate papers)</li>
+            <li><strong>access-kit-[date].html</strong> -- compassionate guide for a loved one (print and share)</li>
           </ul>
-          <p>Store these according to the split-knowledge principle described above. Print the access instructions and add them to your will or estate documents.</p>
+          <p>Store the encrypted bundle separately from the passphrase. Print the executor instructions for your estate documents and the access kit for anyone you want to be able to open your plan.</p>
         </div>
       </div>
     </template>

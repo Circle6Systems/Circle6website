@@ -180,8 +180,16 @@
 .section-card-title {
   font-size: 1.05rem;
   color: var(--lightest);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
   line-height: 1.35;
+}
+
+.section-card-guideline {
+  font-size: 0.75rem;
+  color: var(--slate);
+  font-style: italic;
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
 }
 
 .section-card-progress {
@@ -274,6 +282,17 @@
 .section-header-progress .progress-bar {
   flex: 1;
   max-width: 200px;
+}
+
+.section-guideline {
+  font-size: 0.85rem;
+  color: var(--slate);
+  font-style: italic;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--slate);
+  border-radius: 0 4px 4px 0;
 }
 
 .section-description {
@@ -1287,6 +1306,12 @@
 @media (min-width: 640px) {
   .export-file-list {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .export-file-list {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
