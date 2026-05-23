@@ -29,6 +29,34 @@
   flex-wrap: wrap;
 }
 
+.dashboard-storage-notice {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--slate-light);
+  padding: 0.6rem 1rem;
+  background: var(--card-bg, #363336);
+  border: 1px solid var(--border, #444);
+  border-left: 3px solid #d4a261;
+  border-radius: 0 var(--radius, 6px) var(--radius, 6px) 0;
+  margin-bottom: 1rem;
+}
+
+.dashboard-storage-notice .link-btn {
+  background: none;
+  border: none;
+  color: var(--accent, #a8c196);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dashboard-storage-notice .link-btn:hover {
+  color: var(--lightest, #f0f0f0);
+}
+
 /* --- Overall Progress --- */
 .overall-progress {
   margin-bottom: 1.5rem;

@@ -210,6 +210,30 @@ const WizardChecklist = (() => {
     };
   }
 
+  async function restoreFromBundle(bundleData, cryptoKey, onProgress) {
+    var sectionIds = Object.keys(bundleData.sections);
+    var restored = { items: 0, notes: 0 };
+
+    for (var i = 0; i < sectionIds.length; i++) {
+      var sid = sectionIds[i];
+      var sec = bundleData.sections[sid];
+      if (onProgress) { onProgress(i + 1, sectionIds.length, sid); }
+
+      var itemIds = Object.keys(sec.items);
+      for (var j = 0; j < itemIds.length; j++) {
+        await saveItemState(itemIds[j], sid, sec.items[itemIds[j]], cryptoKey);
+        restored.items++;
+      }
+
+      if (sec.notes) {
+        await saveSectionNotes(sid, sec.notes, cryptoKey);
+        restored.notes++;
+      }
+    }
+
+    return restored;
+  }
+
   return {
     loadSectionItems: loadSectionItems,
     toggleItem: toggleItem,
@@ -218,6 +242,7 @@ const WizardChecklist = (() => {
     saveSectionNotes: saveSectionNotes,
     getSectionProgress: getSectionProgress,
     getPathProgress: getPathProgress,
-    getOverallProgress: getOverallProgress
+    getOverallProgress: getOverallProgress,
+    restoreFromBundle: restoreFromBundle
   };
 })();
