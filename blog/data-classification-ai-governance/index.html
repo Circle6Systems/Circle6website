@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Can't Govern What You Haven't Labeled | Circle 6 Systems</title>
+    <meta name="description" content="Data classification and labeling is the prerequisite for AI governance. How Varonis and Microsoft Purview sensitivity labels create the foundation for responsible AI adoption.">
+    <meta property="og:title" content="You Can't Govern What You Haven't Labeled | Circle 6 Systems">
+    <meta property="og:description" content="Data classification and labeling is the prerequisite for AI governance.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://circle6systems.com/blog/data-classification-ai-governance/">
+    <meta property="article:published_time" content="2026-05-22">
+    <meta property="article:author" content="Duke Dillingham">
+    <link rel="canonical" href="https://circle6systems.com/blog/data-classification-ai-governance/">
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            background: var(--navy);
+            color: var(--slate-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .skip-to-content {
+            position: absolute; top: -100%; left: 1rem;
+            background: var(--accent-bg); color: var(--navy);
+            padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px;
+            font-weight: 700; font-size: 0.9rem; text-decoration: none;
+            z-index: 10000; transition: top 0.2s;
+        }
+        .skip-to-content:focus { top: 0; }
+
+        :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+        :focus:not(:focus-visible) { outline: none; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(45, 42, 46, 0.92);
+            -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            z-index: 1000; transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center; height: 72px;
+        }
+
+        .logo {
+            font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;
+            color: var(--white); text-decoration: none; letter-spacing: -0.02em;
+        }
+        .logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--slate-light); text-decoration: none; font-size: 0.875rem;
+            font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a[aria-current="page"] { color: var(--accent); }
+
+        .hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 4px;
+        }
+        .hamburger span { width: 24px; height: 2px; background: var(--slate-light); transition: all 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== Article Layout ===== */
+        .article-hero {
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .article-hero::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(143, 170, 123, 0.04), transparent),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(143, 170, 123, 0.03), transparent);
+            pointer-events: none;
+        }
+
+        .article-hero-inner {
+            max-width: 760px; margin: 0 auto; position: relative; z-index: 1;
+        }
+
+        .article-meta {
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+        }
+
+        .article-meta .separator { margin: 0 0.75rem; opacity: 0.4; }
+
+        .article-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700; color: var(--white);
+            line-height: 1.15; margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .article-hero .lede {
+            font-size: 1.15rem; color: var(--slate);
+            line-height: 1.8; max-width: 640px;
+        }
+
+        .divider {
+            width: 60px; height: 2px; background: var(--accent-bg);
+            opacity: 0.3; margin: 1.5rem 0;
+        }
+
+        /* ===== Article Body ===== */
+        .article-body {
+            max-width: 760px; margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .article-body h2 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem; font-weight: 700;
+            color: var(--white); line-height: 1.25;
+            margin: 3rem 0 1.25rem;
+        }
+
+        .article-body h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem; font-weight: 600;
+            color: var(--white); line-height: 1.3;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .article-body p {
+            margin-bottom: 1.25rem;
+            color: var(--slate-light);
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        .article-body strong { color: var(--white); font-weight: 600; }
+
+        .article-body em { color: var(--slate-light); }
+
+        .article-body ul, .article-body ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.75rem;
+            color: var(--slate-light);
+            line-height: 1.7;
+            font-size: 1.02rem;
+        }
+
+        .article-body li strong {
+            color: var(--accent);
+        }
+
+        .article-body a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+            transition: text-decoration-color 0.2s;
+        }
+        .article-body a:hover { text-decoration-color: var(--accent); }
+
+        /* Flow arrows */
+        .flow-chain {
+            background: var(--navy-light);
+            border: 1px solid rgba(143, 170, 123, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .flow-chain .arrow { color: var(--accent); font-weight: 700; }
+
+        /* Classification tier table */
+        .tier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .tier-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: var(--navy-light);
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-bottom: 2px solid rgba(143, 170, 123, 0.15);
+        }
+
+        .tier-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(143, 170, 123, 0.06);
+            color: var(--slate-light);
+            vertical-align: top;
+        }
+
+        .tier-table tr:hover td { background: rgba(143, 170, 123, 0.03); }
+
+        .tier-public { color: var(--accent); font-weight: 600; }
+        .tier-internal { color: #7babd4; font-weight: 600; }
+        .tier-confidential { color: #d4a87b; font-weight: 600; }
+        .tier-restricted { color: #d47b7b; font-weight: 600; }
+
+        /* Callout / pull quote */
+        .callout {
+            border-left: 3px solid var(--accent-bg);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            background: rgba(143, 170, 123, 0.04);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .callout p {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Numbered steps */
+        .steps {
+            list-style: none;
+            counter-reset: step;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+
+        .steps li {
+            counter-increment: step;
+            padding: 0.75rem 0 0.75rem 3rem;
+            position: relative;
+            border-bottom: 1px solid rgba(143, 170, 123, 0.06);
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute; left: 0; top: 0.7rem;
+            width: 2rem; height: 2rem;
+            background: var(--navy-light);
+            border: 1px solid rgba(143, 170, 123, 0.15);
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-size: 0.9rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 4px;
+        }
+
+        /* Author bio */
+        .author-bio {
+            margin-top: 3rem; padding-top: 2rem;
+            border-top: 1px solid rgba(143, 170, 123, 0.1);
+            font-size: 0.9rem; color: var(--slate);
+            font-style: italic; line-height: 1.7;
+        }
+
+        /* CTA */
+        .article-cta {
+            background: var(--navy-light);
+            border: 1px solid rgba(143, 170, 123, 0.1);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+            margin: 3rem 0 1rem;
+        }
+
+        .article-cta h3 {
+            font-family: var(--font-heading);
+            color: var(--white); font-size: 1.3rem;
+            margin: 0 0 0.75rem;
+        }
+
+        .article-cta p {
+            color: var(--slate); font-size: 0.95rem;
+            margin-bottom: 1.5rem; max-width: 480px;
+            margin-left: auto; margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block; padding: 0.875rem 2rem;
+            border: 1px solid var(--accent-bg); color: var(--accent);
+            text-decoration: none; font-size: 0.9rem; font-weight: 600;
+            letter-spacing: 0.02em; border-radius: 4px; transition: all 0.25s;
+        }
+        .btn:hover { background: var(--accent-dim); transform: translateY(-1px); }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 2rem; text-align: center;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+        }
+        footer p { font-size: 0.8rem; color: var(--slate); }
+        footer a {
+            color: var(--accent); text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .article-hero { padding: 6rem 1.5rem 3rem; }
+            .article-body { padding: 0 1.5rem 3rem; }
+
+            .nav-links {
+                display: none; position: absolute;
+                top: 72px; left: 0; right: 0;
+                background: rgba(45, 42, 46, 0.97);
+                flex-direction: column;
+                padding: 1.5rem 2rem 2rem; gap: 1rem;
+                border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+
+            .tier-table { font-size: 0.85rem; }
+            .tier-table th, .tier-table td { padding: 0.5rem 0.6rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        @media (prefers-contrast: more) {
+            :root {
+                --slate: #e0d8cc; --slate-light: #f0ebe3;
+                --white: #ffffff; --accent: #c2d9b4;
+            }
+            .nav-links a, footer a { text-decoration: underline; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="logo">Circle <span>6</span> Systems</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="/training/">Training</a></li>
+                <li><a href="/osint-reports/">Intelligence</a></li>
+                <li><a href="/trust-safety/">Trust &amp; Safety</a></li>
+                <li><a href="/blog/" aria-current="page">Blog</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <div class="article-hero">
+            <div class="article-hero-inner">
+                <p class="article-meta">
+                    Duke Dillingham<span class="separator">|</span>May 22, 2026<span class="separator">|</span>Data Classification &amp; AI Governance
+                </p>
+                <h1>You Can't Govern What You Haven't Labeled</h1>
+                <div class="divider"></div>
+                <p class="lede">Data classification and labeling isn't the exciting part of a security program. But it is the foundation that makes everything else, AI governance included, actually work.</p>
+            </div>
+        </div>
+
+        <article class="article-body">
+
+            <p>Every organization I talk to right now wants to talk about AI. What tools should we adopt? How do we roll out Copilot? Should we let staff use ChatGPT? Can we build our own internal models?</p>
+
+            <p>Good questions, all of them. But they're the wrong <em>first</em> questions. Here's the one that actually matters: <strong>Do you know where your sensitive data lives?</strong></p>
+
+            <p>If the answer is "sort of" or "we have a policy" or the classic <em>long pause followed by a subject change</em>, you're not ready for AI. Not because AI is dangerous, but because you can't build guardrails around something you can't see.</p>
+
+            <h2>The Problem Nobody Wants to Admit</h2>
+
+            <p>Most organizations have data scattered across SharePoint sites, file shares, email, Teams channels, and that one department's shared drive that IT pretends doesn't exist. Some of that data is public. Some of it is regulated. Some of it would make your legal team very uncomfortable if it showed up in a generative AI response.</p>
+
+            <p>The challenge isn't that people are careless. It's that without a classification system, there's no way for anyone, human or machine, to know which data needs protection and which doesn't. You end up with two bad outcomes: either you lock everything down and kill productivity, or you leave everything open and hope for the best. Neither of those is a strategy. They're just different flavors of giving up.</p>
+
+            <p>I was telling a colleague about this exact scenario the other day. Forty thousand files containing Social Security numbers on a SharePoint site with external sharing enabled and <em>zero classification</em>. I may have gotten a little more emphatic than usual. I stood up at some point. I'm not sure when. I may have been pointing at my whiteboard. She gave me a look. That look. The one people give me sometimes when I'm... passionate about compliance.</p>
+
+            <p>The point is: most organizations aren't malicious about their data. They're just <em>unaware</em>, and awareness is step one.</p>
+
+            <h2>What Data Classification Actually Looks Like</h2>
+
+            <p>At its core, classification means applying labels to your data that describe how sensitive it is and how it should be handled. Simple concept. The execution is where it gets interesting.</p>
+
+            <p>In a recent engagement with a client organization, we implemented a classification framework built on four sensitivity tiers:</p>
+
+            <table class="tier-table">
+                <thead>
+                    <tr>
+                        <th>Tier</th>
+                        <th>What It Covers</th>
+                        <th>Risk If Exposed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tier-public">Public</td>
+                        <td>Press releases, published reports, public meeting minutes</td>
+                        <td>None. That's the point.</td>
+                    </tr>
+                    <tr>
+                        <td class="tier-internal">Internal</td>
+                        <td>Org charts, internal memos, procedure documents</td>
+                        <td>Low, but not zero.</td>
+                    </tr>
+                    <tr>
+                        <td class="tier-confidential">Confidential</td>
+                        <td>Employee records, financial data, legal correspondence, CJIS-adjacent information</td>
+                        <td>Real liability. Regulatory exposure.</td>
+                    </tr>
+                    <tr>
+                        <td class="tier-restricted">Restricted</td>
+                        <td>PHI, Social Security numbers, criminal justice data, specific regulatory mandates</td>
+                        <td>The data that keeps your compliance officer up at night.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>These tiers aren't revolutionary. What's revolutionary is making them <em>operational</em>: attached to every document, enforced by policy, and understood by every person who touches data.</p>
+
+            <h2>Microsoft Purview and Sensitivity Labels: The Engine Room</h2>
+
+            <p>If your organization runs on Microsoft 365 (and if you're in government or mid-market enterprise, you almost certainly do), Microsoft Purview Information Protection gives you the machinery to make classification real.</p>
+
+            <p>Sensitivity labels in Purview do more than tag a document. They carry enforcement with them:</p>
+
+            <ul>
+                <li><strong>Encryption.</strong> A Confidential label can automatically encrypt a document so only authorized users can open it, even if it gets forwarded to the wrong person.</li>
+                <li><strong>Access control.</strong> Labels can restrict who can edit, print, copy, or forward content. That budget spreadsheet labeled Restricted? It stays in the hands that are supposed to have it.</li>
+                <li><strong>Visual markings.</strong> Headers, footers, and watermarks that make the classification visible. When people <em>see</em> "CONFIDENTIAL" stamped on a document, they think twice before attaching it to an email.</li>
+                <li><strong>DLP integration.</strong> Data Loss Prevention policies can key off sensitivity labels. A document labeled Restricted triggers different DLP rules than one labeled Internal. Your policies get smarter because they have context.</li>
+                <li><strong>Retention and lifecycle.</strong> Labels can drive how long data is kept and when it's disposed of. Regulatory retention requirements stop being a spreadsheet someone maintains manually.</li>
+            </ul>
+
+            <p>The real power is that these labels persist. They travel with the document. Email it, copy it to a USB drive, upload it to a cloud service, and the label and its protections follow. That's not a feature. That's the whole point.</p>
+
+            <h2>The Automation Layer: Where It Gets Serious</h2>
+
+            <p>Manual labeling is where most organizations start, and it's a legitimate first step. Train your staff, make labeling part of the workflow, build the muscle memory. But manual labeling at scale has an obvious ceiling: people are inconsistent, busy, and (let's be honest) occasionally forgetful.</p>
+
+            <p>This is where automatic classification changes the game. And in our experience, the most effective approach combines purpose-built data security platforms with Microsoft's native labeling infrastructure.</p>
+
+            <h3>Discovery and Classification: Varonis Data Security Platform</h3>
+
+            <p>In our client engagement, we deployed the Varonis Data Security Platform as the classification and discovery engine. This is a deliberate architectural choice, and here's why.</p>
+
+            <p>Varonis does something that native M365 tooling doesn't do well on its own: it gives you a unified, cross-platform view of where your sensitive data actually lives, who has access to it, and how it's being used. Before you can label anything, you need to <em>find</em> it, and in most organizations sensitive data has migrated to places nobody expected.</p>
+
+            <ul>
+                <li><strong>Automated data discovery.</strong> Varonis scans file shares, SharePoint, OneDrive, Exchange, Teams, and on-premises storage to locate sensitive content wherever it's landed. It doesn't wait for someone to label a file. It finds the file and tells you what's in it.</li>
+                <li><strong>Built-in classification policies.</strong> Hundreds of pre-built classification rules covering PII, PHI, PCI data, credentials, and regulatory patterns. Social Security numbers hiding in a spreadsheet on a shared drive? Varonis finds them before an auditor does.</li>
+                <li><strong>Custom classification rules.</strong> State-specific regulatory terms, local ordinance references, domain-specific terminology, internal identifiers. You build classifiers that match your world, not just the generic federal patterns.</li>
+                <li><strong>Risk-based prioritization.</strong> Not all sensitive data carries equal risk. Varonis maps classification results against permissions, access patterns, and exposure to surface the data that's both sensitive <em>and</em> overexposed. A Social Security number in a locked-down HR folder is a finding. The same number in a department-wide SharePoint site with external sharing enabled is a fire.</li>
+                <li><strong>Behavioral analytics.</strong> Classification tells you what the data is. Varonis also watches how people interact with it. Unusual access patterns, bulk downloads, lateral movement through sensitive repositories, and these behavioral signals augment the classification data and feed into your incident detection.</li>
+            </ul>
+
+            <h3>The Labeling Bridge: Varonis to Microsoft Purview</h3>
+
+            <p>Here's where the architecture comes together. Varonis classifies the data. Microsoft Purview enforces the labels. The two systems work in concert.</p>
+
+            <p>Varonis can apply Microsoft Information Protection (MIP) sensitivity labels directly to files based on its classification results. When Varonis identifies a document containing protected health information, it doesn't just flag it in a dashboard. It applies the Confidential or Restricted sensitivity label that triggers Purview's encryption, access control, and DLP policies.</p>
+
+            <div class="flow-chain">
+                <p>Varonis discovers SSNs on a shared drive <span class="arrow">&rarr;</span> classifies as PII <span class="arrow">&rarr;</span> applies Confidential label <span class="arrow">&rarr;</span> Purview encrypts and restricts sharing</p>
+                <p style="margin-top: 0.5rem;">Varonis finds CJIS-adjacent data in Teams <span class="arrow">&rarr;</span> applies Restricted label <span class="arrow">&rarr;</span> DLP prevents copying to unapproved locations</p>
+            </div>
+
+            <h3>Custom Tooling and the MIP SDK</h3>
+
+            <p>For organizations with needs that go beyond what Varonis and Purview cover natively, the Microsoft Information Protection (MIP) SDK provides the extension point:</p>
+
+            <ul>
+                <li><strong>API-driven label application.</strong> Line-of-business applications, batch processes, and data migration workflows can apply the same sensitivity labels programmatically.</li>
+                <li><strong>Integration with records management.</strong> Mapping sensitivity labels to existing records retention schedules so classification decisions cascade into lifecycle management automatically.</li>
+                <li><strong>Cross-platform consistency.</strong> The MIP SDK provides a unified API for reading and writing sensitivity labels across the Microsoft ecosystem and beyond it.</li>
+            </ul>
+
+            <p>One labeling taxonomy. One enforcement model. Multiple classification engines feeding into it: Varonis for discovery and automated classification, Purview for native M365 content, custom tools for everything else.</p>
+
+            <h2>The AI Connection: Classification as a Prerequisite</h2>
+
+            <p>Now we come back to AI. Here's the connection that too many organizations skip:</p>
+
+            <div class="callout">
+                <p>If you don't know what data is sensitive, you can't keep it out of AI tools.</p>
+            </div>
+
+            <p>When a department wants to use a generative AI assistant, the first governance question is: what data will it have access to? If your data isn't classified, you have exactly two options: give the AI access to everything (dangerous) or give it access to nothing (useless).</p>
+
+            <p>With a mature classification and labeling program, you get a third option, the one that actually works: <strong>use the labels to define the boundaries.</strong></p>
+
+            <ul>
+                <li>Copilot for Microsoft 365 can respect sensitivity labels. Documents labeled Restricted don't surface in AI-generated responses for users who don't have clearance.</li>
+                <li>DLP policies tied to sensitivity labels can prevent classified data from being pasted into unapproved AI tools.</li>
+                <li>Custom AI applications built on your own data can filter their training and retrieval sets by sensitivity tier. Your RAG pipeline only indexes Internal and Public data unless the user's role authorizes more.</li>
+                <li>Audit trails tied to labels let you prove (to auditors, to regulators, to your board) exactly what data touched an AI system and what didn't.</li>
+            </ul>
+
+            <p>I was explaining this architecture on a call last week and I may have raised my voice. Just slightly. The way you do when someone suggests connecting an LLM to an unclassified data lake and calling it "innovation." <em>Unlabeled data will not stand.</em> I don't know where that phrase came from. It just comes out sometimes, like a reflex.</p>
+
+            <div class="callout">
+                <p>AI governance without data classification is just a policy document that nobody can enforce.</p>
+            </div>
+
+            <p>You want to enable AI responsibly? Label your data first, and everything else builds on that.</p>
+
+            <h2>Where to Start</h2>
+
+            <p>If you're reading this and thinking "we should probably do this," here's the practical path:</p>
+
+            <ol class="steps">
+                <li><strong>Define your tiers.</strong> Four is usually right. Align them to your regulatory obligations, not someone else's template.</li>
+                <li><strong>Start with manual labeling in one department.</strong> Pick a department that handles sensitive data and is willing to participate. Learn from their workflow before you scale.</li>
+                <li><strong>Deploy Purview sensitivity labels in M365.</strong> Even without automation, having labels available in Word, Excel, Outlook, and SharePoint changes behavior immediately.</li>
+                <li><strong>Layer in Varonis for automated classification.</strong> Find what humans missed. Surface the risk you didn't know you had.</li>
+                <li><strong>Tie labels to DLP policies.</strong> This is where enforcement begins. A label without a policy behind it is a suggestion. A label with a policy is a guardrail.</li>
+                <li><strong>Extend to AI governance.</strong> Once your data is labeled, you have the vocabulary to write AI use policies that are actually enforceable.</li>
+            </ol>
+
+            <p>It's not a six-month project. It's an ongoing program. But the first step, defining your tiers and deploying labels, can be done in weeks, and the security posture improvement is immediate. Stop planning to plan. Start labeling.</p>
+
+            <h2>The Bottom Line</h2>
+
+            <p>Data classification and labeling is the least glamorous, most impactful thing you can do for your security program right now. It's the prerequisite for DLP, for compliance reporting, for records management, and critically, for responsible AI adoption.</p>
+
+            <p>You can't govern what you haven't labeled. In a world where AI is about to touch every corner of your data estate, governing your data isn't optional anymore. Start labeling. Everything else gets easier after that.</p>
+
+            <div class="article-cta">
+                <h3>Need Help Getting Started?</h3>
+                <p>Circle 6 Systems helps government agencies and enterprises build data classification programs that enable responsible AI adoption.</p>
+                <a href="/#contact" class="btn">Start a Conversation</a>
+            </div>
+
+            <div class="author-bio">
+                <p>Duke Dillingham is a compliance officer and security awareness consultant at Circle 6 Systems. The "Dude Diligence" comic book training series is available at <a href="/training/dude-diligence/">circle6systems.com/training</a>. Duke and Dude Diligence have never been seen in the same room at the same time, which Duke attributes to scheduling conflicts.</p>
+            </div>
+
+        </article>
+
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+</body>
+</html>
