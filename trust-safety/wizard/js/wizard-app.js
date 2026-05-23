@@ -79,6 +79,12 @@ document.addEventListener('alpine:init', () => {
     importIsLegacy: false,
     importHasExisting: false,
 
+    // Browser data import
+    dataImportStep: '',
+    dataImportFile: null,
+    dataImportResult: null,
+    dataImportError: '',
+
     // Settings
     showClearConfirm: false,
 
@@ -215,7 +221,7 @@ document.addEventListener('alpine:init', () => {
       this.vaultTab = 'planning';
       this.vaultStep = -1;
 
-      // Reset export and settings state
+      // Reset export, import, and settings state
       this.bundlePassphrase = '';
       this.bundlePassphraseConfirm = '';
       this.bundleLocation = '';
@@ -223,6 +229,10 @@ document.addEventListener('alpine:init', () => {
       this.accessKitLocation = '';
       this.includePassphraseOnKit = false;
       this.bundleGenerated = false;
+      this.dataImportStep = '';
+      this.dataImportFile = null;
+      this.dataImportResult = null;
+      this.dataImportError = '';
       this.showClearConfirm = false;
 
       // Cancel pending saves
@@ -1288,6 +1298,221 @@ document.addEventListener('alpine:init', () => {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+    },
+
+    // --- Browser Data Import ---
+
+    startDataImport() {
+      this.dataImportStep = 'select';
+      this.dataImportFile = null;
+      this.dataImportResult = null;
+      this.dataImportError = '';
+      this.view = 'data-import';
+    },
+
+    onDataImportFileSelected(event) {
+      var file = event.target.files && event.target.files[0];
+      if (!file) { return; }
+      this.dataImportFile = file;
+      this.dataImportStep = 'parsing';
+      this.dataImportError = '';
+
+      var self = this;
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          var result = WizardImport.parseFile(reader.result, file.name);
+          if (result.records.length === 0) {
+            self.dataImportError = result.errors.length > 0
+              ? result.errors[0]
+              : 'No accounts found in this file. The file may be empty or in an unrecognized format.';
+            self.dataImportStep = 'select';
+            return;
+          }
+          WizardImportMatcher.matchAll(result.records);
+          for (var i = 0; i < result.records.length; i++) {
+            result.records[i].userAction = result.records[i].matchConfidence > 0 ? 'accept' : 'skip';
+          }
+          self.dataImportResult = result;
+          self.dataImportStep = 'review';
+        } catch (e) {
+          self.dataImportError = 'Failed to parse file: ' + e.message;
+          self.dataImportStep = 'select';
+        }
+      };
+      reader.onerror = function () {
+        self.dataImportError = 'Could not read the file. Please try again.';
+        self.dataImportStep = 'select';
+      };
+      reader.readAsText(file);
+    },
+
+    cancelDataImport() {
+      this.dataImportStep = '';
+      this.dataImportFile = null;
+      this.dataImportResult = null;
+      this.dataImportError = '';
+      this.view = 'dashboard';
+    },
+
+    toggleImportRecord(idx) {
+      if (!this.dataImportResult) { return; }
+      var rec = this.dataImportResult.records[idx];
+      if (!rec) { return; }
+      rec.userAction = rec.userAction === 'accept' ? 'skip' : 'accept';
+    },
+
+    getImportAcceptCount() {
+      if (!this.dataImportResult) { return 0; }
+      var count = 0;
+      for (var i = 0; i < this.dataImportResult.records.length; i++) {
+        if (this.dataImportResult.records[i].userAction === 'accept') { count++; }
+      }
+      return count;
+    },
+
+    getImportMatchInfo(record) {
+      if (!record.suggestedItemId) { return null; }
+      return WizardImportMatcher.getMatchInfo(record.suggestedItemId);
+    },
+
+    async applyImportToChecklist() {
+      if (!this.dataImportResult || !this.cryptoKey) { return; }
+      this.isProcessing = true;
+      this.dataImportStep = 'applying';
+
+      try {
+        var records = this.dataImportResult.records;
+        var applied = 0;
+        var skipped = 0;
+
+        for (var i = 0; i < records.length; i++) {
+          var rec = records[i];
+          if (rec.userAction !== 'accept' || !rec.suggestedItemId) {
+            skipped++;
+            continue;
+          }
+
+          // Build a value string from the imported data
+          var valueParts = [];
+          if (rec.name) { valueParts.push(rec.name); }
+          if (rec.username) { valueParts.push(rec.username); }
+          if (rec.url) { valueParts.push(rec.url); }
+          var valueStr = valueParts.join(' -- ');
+
+          // Load existing state for this item
+          var existingItems = await WizardChecklist.loadSectionItems('section-1', this.cryptoKey);
+          var existing = existingItems.get(rec.suggestedItemId);
+          var currentValue = (existing && existing.value) ? existing.value.trim() : '';
+
+          // Append to existing value if there is one, avoid duplicates
+          if (currentValue && currentValue.indexOf(rec.name) >= 0) {
+            skipped++;
+            continue;
+          }
+          var newValue = currentValue ? currentValue + '; ' + valueStr : valueStr;
+
+          var newState = {
+            checked: true,
+            na: false,
+            value: newValue
+          };
+
+          await WizardChecklist.saveItemState(rec.suggestedItemId, 'section-1', newState, this.cryptoKey);
+          applied++;
+        }
+
+        this.dataImportResult.applied = applied;
+        this.dataImportResult.skippedOnApply = skipped;
+        this.dataImportStep = 'done';
+      } catch (e) {
+        this.dataImportError = 'Failed to apply import: ' + e.message;
+        this.dataImportStep = 'review';
+      } finally {
+        this.isProcessing = false;
+      }
+    },
+
+    restartDataImport() {
+      this.dataImportStep = 'select';
+      this.dataImportFile = null;
+      this.dataImportResult = null;
+      this.dataImportError = '';
+    },
+
+    async completeDataImport() {
+      await this._loadDashboard();
+      this.dataImportStep = '';
+      this.dataImportFile = null;
+      this.dataImportResult = null;
+      this.dataImportError = '';
+      this.view = 'dashboard';
+    },
+
+    getImportSourceLabel() {
+      if (!this.dataImportResult) { return ''; }
+      var labels = {
+        '1password': '1Password',
+        'bitwarden': 'Bitwarden',
+        'lastpass': 'LastPass',
+        'keepass': 'KeePass',
+        'dashlane': 'Dashlane',
+        'chrome-bookmarks': 'Chrome Bookmarks',
+        'firefox-bookmarks': 'Firefox Bookmarks',
+        'safari-bookmarks': 'Safari Bookmarks',
+        'edge-bookmarks': 'Edge Bookmarks',
+        'unknown-bookmarks': 'Browser Bookmarks'
+      };
+      return labels[this.dataImportResult.source] || this.dataImportResult.source;
+    },
+
+    getSection1Categories() {
+      var section = WizardContent.getSectionById('section-1');
+      if (!section) { return []; }
+      var result = [];
+      var subs = section.subsections || [];
+      for (var si = 0; si < subs.length; si++) {
+        var cats = subs[si].categories || [];
+        for (var ci = 0; ci < cats.length; ci++) {
+          var cat = cats[ci];
+          if (!cat.items || !cat.title) { continue; }
+          result.push({
+            categoryId: cat.id,
+            title: cat.title,
+            items: cat.items.map(function (item) {
+              return { id: item.id, text: item.text };
+            })
+          });
+        }
+      }
+      return result;
+    },
+
+    onImportItemAssign(idx, itemId) {
+      if (!this.dataImportResult) { return; }
+      var rec = this.dataImportResult.records[idx];
+      if (!rec) { return; }
+
+      if (!itemId) {
+        rec.suggestedItemId = null;
+        rec.suggestedCategoryId = null;
+        rec.matchConfidence = 0;
+        rec.userAction = 'skip';
+        return;
+      }
+
+      var info = WizardImportMatcher.getMatchInfo(itemId);
+      if (info) {
+        rec.suggestedItemId = itemId;
+        rec.suggestedCategoryId = info.categoryId;
+        rec.matchConfidence = 1;
+        rec.userAction = 'accept';
+      }
+    },
+
+    isBookmarkImport() {
+      return this.dataImportResult && this.dataImportResult.source &&
+        this.dataImportResult.source.indexOf('-bookmarks') >= 0;
     },
 
     // --- Helpers for Templates ---

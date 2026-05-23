@@ -262,6 +262,7 @@
           <h1>Your Digital Estate Plan</h1>
           <div class="dashboard-actions">
             <button class="btn btn-primary btn-small" @click="initExportView()" aria-label="Export secure bundle">Export Bundle</button>
+            <button class="btn btn-secondary btn-small" @click="startDataImport()" aria-label="Import accounts from browser data">Import Accounts</button>
             <button class="btn btn-secondary btn-small" @click="view = 'guidance'" aria-label="Guidance and readiness">Guidance</button>
             <button class="btn btn-secondary btn-small" @click="view = 'settings'" aria-label="Settings">Settings</button>
             <button class="btn btn-secondary btn-small" @click="lock()" aria-label="Lock the wizard">Lock</button>
@@ -768,6 +769,245 @@
       </div>
     </template>
 
+    <!-- Browser Data Import -->
+    <template x-if="view === 'data-import'">
+      <div class="data-import-container">
+        <div class="section-header">
+          <button class="btn-back" @click="cancelDataImport()" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <h1>Import Accounts</h1>
+        </div>
+
+        <div class="data-import-intro">
+          <p>Speed up your account inventory by importing data you already have. Export a file from your password manager or browser, then upload it here. We will automatically match discovered accounts to your checklist categories.</p>
+          <p><strong>Your passwords are never read or stored.</strong> Only account names, URLs, and usernames are extracted.</p>
+
+          <div class="data-import-formats">
+            <div class="data-import-format-group">
+              <h3>Password Manager Exports (CSV)</h3>
+              <details class="data-import-export-help">
+                <summary>1Password</summary>
+                <ol>
+                  <li>Open 1Password on your desktop</li>
+                  <li>Go to <strong>File &rarr; Export &rarr; All Items</strong></li>
+                  <li>Choose <strong>CSV</strong> format</li>
+                  <li>Authenticate and save the file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Bitwarden</summary>
+                <ol>
+                  <li>Log in to your Bitwarden vault (web or desktop)</li>
+                  <li>Go to <strong>Tools &rarr; Export Vault</strong></li>
+                  <li>Select <strong>.csv</strong> as the file format</li>
+                  <li>Confirm your master password and save</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>LastPass</summary>
+                <ol>
+                  <li>Log in to <strong>lastpass.com</strong> in your browser</li>
+                  <li>Go to <strong>Advanced Options &rarr; Export</strong></li>
+                  <li>Authenticate when prompted</li>
+                  <li>Save the resulting CSV file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>KeePass</summary>
+                <ol>
+                  <li>Open your KeePass database</li>
+                  <li>Go to <strong>File &rarr; Export</strong></li>
+                  <li>Select <strong>CSV</strong> as the format</li>
+                  <li>Save the file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Dashlane</summary>
+                <ol>
+                  <li>Open Dashlane on your desktop</li>
+                  <li>Go to <strong>File &rarr; Export &rarr; Unsecured archive (CSV)</strong></li>
+                  <li>Authenticate and save the file</li>
+                </ol>
+              </details>
+            </div>
+
+            <div class="data-import-format-group">
+              <h3>Browser Bookmarks (HTML)</h3>
+              <details class="data-import-export-help">
+                <summary>Google Chrome</summary>
+                <ol>
+                  <li>Open Chrome and go to <strong>Bookmarks &rarr; Bookmark Manager</strong> (or press Ctrl+Shift+O / Cmd+Shift+O)</li>
+                  <li>Click the three-dot menu in the top right of the bookmark manager</li>
+                  <li>Select <strong>Export bookmarks</strong></li>
+                  <li>Save the HTML file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Mozilla Firefox</summary>
+                <ol>
+                  <li>Open Firefox and press Ctrl+Shift+O (Cmd+Shift+O on Mac) to open the Library</li>
+                  <li>Click <strong>Import and Backup</strong> in the toolbar</li>
+                  <li>Select <strong>Export Bookmarks to HTML</strong></li>
+                  <li>Save the file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Microsoft Edge</summary>
+                <ol>
+                  <li>Open Edge and go to <strong>Favorites</strong> (Ctrl+Shift+O / Cmd+Shift+O)</li>
+                  <li>Click the three-dot menu at the top</li>
+                  <li>Select <strong>Export favorites</strong></li>
+                  <li>Save the HTML file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Safari</summary>
+                <ol>
+                  <li>Open Safari</li>
+                  <li>Go to <strong>File &rarr; Export Bookmarks</strong></li>
+                  <li>Save the HTML file</li>
+                </ol>
+              </details>
+            </div>
+          </div>
+
+          <div class="data-import-security-note">
+            <strong>Security reminder:</strong> Delete the exported file from your computer after importing. Password manager exports may contain your passwords in plain text -- this tool ignores them, but the file on your disk still has them.
+          </div>
+        </div>
+
+        <!-- Step: Select File -->
+        <template x-if="dataImportStep === 'select'">
+          <div class="data-import-select">
+            <div class="form-group">
+              <label class="form-label" for="data-import-file">Select File</label>
+              <input type="file" id="data-import-file" class="form-input" accept=".csv,.html,.htm" @change="onDataImportFileSelected($event)" aria-label="Select a password manager CSV or browser bookmarks HTML file">
+            </div>
+            <p class="data-import-hint">Accepted formats: CSV (password managers) or HTML (browser bookmarks)</p>
+            <div x-show="dataImportError" class="error-message" x-text="dataImportError" role="alert"></div>
+          </div>
+        </template>
+
+        <!-- Step: Parsing -->
+        <template x-if="dataImportStep === 'parsing'">
+          <div class="data-import-parsing" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <p>Analyzing file...</p>
+          </div>
+        </template>
+
+        <!-- Step: Review & Select -->
+        <template x-if="dataImportStep === 'review'">
+          <div class="data-import-review">
+            <div class="data-import-summary">
+              <h2>Review Discovered Accounts</h2>
+              <dl class="data-import-stats">
+                <dt>Source</dt>
+                <dd x-text="getImportSourceLabel()"></dd>
+                <dt>Accounts Found</dt>
+                <dd x-text="dataImportResult.stats.parsedRecords"></dd>
+                <dt>Matched to Checklist</dt>
+                <dd x-text="getImportAcceptCount() + ' selected'"></dd>
+              </dl>
+              <p class="data-import-review-desc">Check the accounts you want to add to your Section 1 inventory. Matched accounts are pre-selected. Unmatched accounts can be skipped or added manually later.</p>
+            </div>
+
+            <div class="data-import-records-scroll">
+              <table class="data-import-table" role="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="data-import-check-col">Add</th>
+                    <th scope="col">Account</th>
+                    <th scope="col" x-show="!isBookmarkImport()">Username</th>
+                    <th scope="col">Matched Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template x-for="(record, idx) in dataImportResult.records" :key="idx">
+                    <tr :class="{'data-import-row-accepted': record.userAction === 'accept', 'data-import-row-skipped': record.userAction !== 'accept'}">
+                      <td class="data-import-check-col">
+                        <input type="checkbox" :checked="record.userAction === 'accept'" @change="toggleImportRecord(idx)" :disabled="!record.suggestedItemId" :aria-label="'Include ' + (record.name || 'unnamed account')">
+                      </td>
+                      <td>
+                        <div class="data-import-account-name" x-text="record.name || '(unnamed)'"></div>
+                        <div class="data-import-account-url" x-text="record.url ? record.url.replace(/^https?:\/\//, '') : ''"></div>
+                      </td>
+                      <td x-show="!isBookmarkImport()" x-text="record.username"></td>
+                      <td>
+                        <!-- Auto-matched: show match text with Change button -->
+                        <div x-show="record.suggestedItemId && !record._editing" class="data-import-match-display">
+                          <div class="data-import-match-category" x-text="getImportMatchInfo(record) ? getImportMatchInfo(record).categoryTitle : ''"></div>
+                          <div class="data-import-match-item" x-text="getImportMatchInfo(record) ? getImportMatchInfo(record).itemText : ''"></div>
+                          <button type="button" class="data-import-change-btn" @click="record._editing = true" aria-label="Change mapping">Change</button>
+                        </div>
+                        <!-- Unmatched or editing: show dropdown -->
+                        <div x-show="!record.suggestedItemId || record._editing">
+                          <select class="data-import-assign-select" :value="record.suggestedItemId || ''" @change="onImportItemAssign(idx, $event.target.value); record._editing = false" :aria-label="'Assign checklist item for ' + (record.name || 'unnamed account')">
+                            <option value="">-- Select category --</option>
+                            <template x-for="cat in getSection1Categories()" :key="cat.categoryId">
+                              <optgroup :label="cat.title">
+                                <template x-for="item in cat.items" :key="item.id">
+                                  <option :value="item.id" x-text="item.text" :selected="record.suggestedItemId === item.id"></option>
+                                </template>
+                              </optgroup>
+                            </template>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="data-import-warnings" x-show="dataImportResult.warnings.length > 0">
+              <h3>Warnings</h3>
+              <ul>
+                <template x-for="(warning, idx) in dataImportResult.warnings.slice(0, 10)" :key="idx">
+                  <li x-text="warning"></li>
+                </template>
+                <li x-show="dataImportResult.warnings.length > 10" x-text="'...and ' + (dataImportResult.warnings.length - 10) + ' more warnings.'"></li>
+              </ul>
+            </div>
+
+            <div x-show="dataImportError" class="error-message" x-text="dataImportError" role="alert"></div>
+
+            <div class="data-import-actions">
+              <button class="btn btn-primary" @click="applyImportToChecklist()" :disabled="isProcessing || getImportAcceptCount() === 0" :aria-label="'Add ' + getImportAcceptCount() + ' accounts to checklist'">
+                <span x-show="!isProcessing" x-text="'Add ' + getImportAcceptCount() + ' Accounts to Checklist'"></span>
+                <span x-show="isProcessing">Applying...</span>
+              </button>
+              <button class="btn btn-secondary" @click="cancelDataImport()" :disabled="isProcessing" aria-label="Cancel import">Cancel</button>
+            </div>
+          </div>
+        </template>
+
+        <!-- Step: Applying -->
+        <template x-if="dataImportStep === 'applying'">
+          <div class="data-import-parsing" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <p>Adding accounts to your checklist...</p>
+          </div>
+        </template>
+
+        <!-- Step: Done -->
+        <template x-if="dataImportStep === 'done'">
+          <div class="data-import-done">
+            <div class="data-import-success">
+              <h2>Import Complete</h2>
+              <p x-text="(dataImportResult.applied || 0) + ' accounts added to your Section 1 inventory.'"></p>
+              <p x-show="dataImportResult.skippedOnApply > 0" x-text="(dataImportResult.skippedOnApply || 0) + ' accounts skipped (unmatched, already present, or deselected).'"></p>
+              <p>The matching checklist items have been checked and populated with your account details. Open Section 1 to review.</p>
+            </div>
+            <div class="data-import-actions">
+              <button class="btn btn-secondary" @click="restartDataImport()" aria-label="Import another file">Import Another File</button>
+              <button class="btn btn-primary" @click="completeDataImport()" aria-label="Return to dashboard">Back to Dashboard</button>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </template>
+
     <!-- Guidance & Readiness -->
     <template x-if="view === 'guidance'">
       <div class="guidance-container">
@@ -919,6 +1159,10 @@
   <script src="js/utils.js"></script>
   <script src="js/content.js"></script>
   <script src="js/checklist.js"></script>
+  <script src="js/import-core.js"></script>
+  <script src="js/import-passwords.js"></script>
+  <script src="js/import-bookmarks.js"></script>
+  <script src="js/import-matcher.js"></script>
   <script src="js/wizard-app.js"></script>
   <script src="js/vendor/alpine.min.js" defer></script>
 </body>
