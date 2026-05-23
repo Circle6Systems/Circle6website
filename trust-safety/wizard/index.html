@@ -365,22 +365,58 @@
             <p class="subsection-description" x-show="subsection.description" x-text="subsection.description"></p>
 
             <template x-for="category in (subsection.categories || [{items: subsection.items, title: null}])" :key="category.id || category.title || 'default'">
-              <div class="category-group">
-                <h3 class="category-title" x-show="category.title" x-text="category.title"></h3>
-                <ul class="checklist" role="list">
-                  <template x-for="item in category.items" :key="item.id">
-                    <li class="checklist-item" :class="{'is-checked': getItemState(item.id).checked, 'is-na': getItemState(item.id).na}">
-                      <div class="checklist-item-top">
-                        <label class="checklist-label">
-                          <input type="checkbox" :checked="getItemState(item.id).checked" @change="toggleItem(item.id, 'checked')" :disabled="getItemState(item.id).na" :aria-label="item.text">
-                          <span class="checklist-text" x-text="item.text"></span>
-                        </label>
-                        <button class="na-toggle" :class="{'active': getItemState(item.id).na}" @click="toggleItem(item.id, 'na')" :aria-label="'Mark ' + item.text + ' as not applicable'" :aria-pressed="String(getItemState(item.id).na)">N/A</button>
-                      </div>
-                      <input type="text" class="item-value-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" :value="getItemState(item.id).value" @input="onItemValueInput(item.id, $event.target.value)" :disabled="getItemState(item.id).na" :placeholder="'Details for: ' + item.text" :aria-label="'Enter details for ' + item.text">
-                    </li>
-                  </template>
-                </ul>
+              <div class="category-group" :class="{'category-collapsible': category.title, 'category-expanded': category.title && isCategoryExpanded(category.id || category.title || 'default')}">
+
+                <template x-if="category.title">
+                  <button
+                    class="category-header"
+                    @click="toggleCategory(category.id || category.title || 'default')"
+                    :aria-expanded="String(isCategoryExpanded(category.id || category.title || 'default'))"
+                    :aria-controls="'cat-body-' + (category.id || category.title || 'default')"
+                    type="button"
+                  >
+                    <span class="category-chevron" :class="{'open': isCategoryExpanded(category.id || category.title || 'default')}"></span>
+                    <h3 class="category-title" x-text="category.title"></h3>
+                    <span class="category-progress-badge" x-show="!isCategoryExpanded(category.id || category.title || 'default')">
+                      <span x-text="getCategoryProgress(category).completed + '/' + getCategoryProgress(category).total"></span>
+                      <span class="category-progress-bar-wrap">
+                        <span class="progress-bar progress-bar-sm category-progress-bar">
+                          <span class="progress-fill" :style="'width:' + (getCategoryProgress(category).total > 0 ? Math.round((getCategoryProgress(category).completed / getCategoryProgress(category).total) * 100) : 0) + '%'"></span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                </template>
+
+                <div
+                  :id="'cat-body-' + (category.id || category.title || 'default')"
+                  class="category-body"
+                  x-show="!category.title || isCategoryExpanded(category.id || category.title || 'default')"
+                  x-transition:enter="category-transition"
+                  x-transition:enter-start="category-collapsed"
+                  x-transition:enter-end="category-open"
+                  x-transition:leave="category-transition"
+                  x-transition:leave-start="category-open"
+                  x-transition:leave-end="category-collapsed"
+                  role="region"
+                  :aria-label="category.title || 'Checklist items'"
+                >
+                  <ul class="checklist" role="list">
+                    <template x-for="item in category.items" :key="item.id">
+                      <li class="checklist-item" :class="{'is-checked': getItemState(item.id).checked, 'is-na': getItemState(item.id).na}">
+                        <div class="checklist-item-top">
+                          <label class="checklist-label">
+                            <input type="checkbox" :checked="getItemState(item.id).checked" @change="toggleItem(item.id, 'checked')" :disabled="getItemState(item.id).na" :aria-label="item.text">
+                            <span class="checklist-text" x-text="item.text"></span>
+                          </label>
+                          <button class="na-toggle" :class="{'active': getItemState(item.id).na}" @click="toggleItem(item.id, 'na')" :aria-label="'Mark ' + item.text + ' as not applicable'" :aria-pressed="String(getItemState(item.id).na)">N/A</button>
+                        </div>
+                        <input type="text" class="item-value-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" :value="getItemState(item.id).value" @input="onItemValueInput(item.id, $event.target.value)" :disabled="getItemState(item.id).na" :placeholder="'Details for: ' + item.text" :aria-label="'Enter details for ' + item.text">
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+
               </div>
             </template>
           </div>

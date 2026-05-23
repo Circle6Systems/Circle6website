@@ -359,6 +359,102 @@
   margin-bottom: 0.5rem;
 }
 
+/* --- Collapsible Category Headers --- */
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: none;
+  border-radius: var(--radius, 8px);
+  background: var(--navy, #2d2a2e);
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: background var(--transition);
+}
+
+.category-header:hover {
+  background: var(--navy-light, #3a3640);
+}
+
+.category-header:focus-visible {
+  outline: 2px solid var(--accent, #a8c196);
+  outline-offset: 2px;
+}
+
+.category-header .category-title {
+  flex: 1;
+  margin: 0;
+}
+
+.category-chevron {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--slate, #aa9f95);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.category-chevron.open {
+  transform: rotate(180deg);
+}
+
+.category-progress-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--slate, #aa9f95);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.category-progress-bar-wrap {
+  display: inline-block;
+  width: 48px;
+}
+
+.category-progress-bar {
+  width: 100%;
+}
+
+.category-body {
+  overflow: hidden;
+}
+
+.category-transition {
+  transition: max-height 0.25s ease, opacity 0.2s ease;
+  overflow: hidden;
+}
+
+.category-collapsed {
+  max-height: 0;
+  opacity: 0;
+}
+
+.category-open {
+  max-height: 3000px;
+  opacity: 1;
+}
+
+.category-collapsible.category-expanded .category-header {
+  background: var(--navy-light, #3a3640);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.category-collapsible.category-expanded .category-body {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 0 var(--radius, 8px) var(--radius, 8px);
+  padding-top: 0.25rem;
+}
+
 /* --- Checklist --- */
 .checklist {
   list-style: none;
@@ -609,6 +705,19 @@
     font-size: 0.65rem;
     padding: 0.1rem 0.35rem;
   }
+
+  .category-header {
+    padding: 0.5rem 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .category-progress-bar-wrap {
+    width: 36px;
+  }
+
+  .category-progress-badge {
+    font-size: 0.7rem;
+  }
 }
 
 /* --- Reduced Motion --- */
@@ -623,6 +732,14 @@
 
   .section-card:hover {
     transform: none;
+  }
+
+  .category-chevron {
+    transition: none;
+  }
+
+  .category-transition {
+    transition: none;
   }
 }
 
@@ -671,6 +788,22 @@
 
   .checklist-label input[type="checkbox"] {
     display: none;
+  }
+
+  .category-body {
+    display: block !important;
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+
+  .category-chevron,
+  .category-progress-badge {
+    display: none !important;
+  }
+
+  .category-header {
+    cursor: default;
+    background: none;
   }
 
   .progress-bar,

@@ -32,6 +32,7 @@ document.addEventListener('alpine:init', () => {
     currentSection: null,
     currentItems: null,
     sectionNotes: '',
+    expandedCategories: {},
     isSaving: false,
     _saveDebounceTimer: null,
 
@@ -203,6 +204,7 @@ document.addEventListener('alpine:init', () => {
       this.currentSection = null;
       this.currentItems = null;
       this.sectionNotes = '';
+      this.expandedCategories = {};
       this.checklistData = {};
       this.sections = [];
       this.pathFilter = 'all';
@@ -345,6 +347,7 @@ document.addEventListener('alpine:init', () => {
       this.currentSection = section;
       this.currentItems = this.checklistData[sectionId] || new Map();
       this.sectionNotes = await WizardChecklist.loadSectionNotes(sectionId, this.cryptoKey);
+      this._autoExpandFirstIncomplete();
       this.view = 'section';
     },
 
@@ -413,6 +416,7 @@ document.addEventListener('alpine:init', () => {
         }
       }
       this._showSaveStatus();
+      this._advanceIfCategoryComplete(itemId);
     },
 
     onNotesInput() {
@@ -476,6 +480,95 @@ document.addEventListener('alpine:init', () => {
       if (!this.currentItems) { return { checked: false, na: false, value: '' }; }
       var state = this.currentItems.get(itemId);
       return state || { checked: false, na: false, value: '' };
+    },
+
+    toggleCategory(categoryKey) {
+      if (this.expandedCategories[categoryKey]) {
+        delete this.expandedCategories[categoryKey];
+      } else {
+        this.expandedCategories = {};
+        this.expandedCategories[categoryKey] = true;
+      }
+    },
+
+    isCategoryExpanded(categoryKey) {
+      return !!this.expandedCategories[categoryKey];
+    },
+
+    getCategoryProgress(category) {
+      if (!category.items || !this.currentItems) { return { completed: 0, total: 0 }; }
+      var total = category.items.length;
+      var completed = 0;
+      for (var i = 0; i < category.items.length; i++) {
+        var state = this.currentItems.get(category.items[i].id);
+        if (state && (state.checked || state.na)) { completed++; }
+      }
+      return { completed: completed, total: total };
+    },
+
+    _autoExpandFirstIncomplete() {
+      this.expandedCategories = {};
+      if (!this.currentSection || !this.currentItems) { return; }
+
+      var found = false;
+      var subsections = this.currentSection.subsections || [];
+      for (var si = 0; si < subsections.length; si++) {
+        var cats = subsections[si].categories || [];
+        for (var ci = 0; ci < cats.length; ci++) {
+          var cat = cats[ci];
+          if (!cat.title) { continue; }
+          var catKey = cat.id || cat.title || 'default';
+          var progress = this.getCategoryProgress(cat);
+          if (progress.completed < progress.total) {
+            this.expandedCategories[catKey] = true;
+            found = true;
+            break;
+          }
+        }
+        if (found) { break; }
+      }
+
+      if (!found && subsections.length > 0) {
+        var firstCats = subsections[0].categories || [];
+        if (firstCats.length > 0 && firstCats[0].title) {
+          this.expandedCategories[firstCats[0].id || firstCats[0].title || 'default'] = true;
+        }
+      }
+    },
+
+    _advanceIfCategoryComplete(itemId) {
+      if (!this.currentSection) { return; }
+      var subsections = this.currentSection.subsections || [];
+      var allCats = [];
+      for (var si = 0; si < subsections.length; si++) {
+        var cats = subsections[si].categories || [];
+        for (var ci = 0; ci < cats.length; ci++) {
+          if (cats[ci].title) { allCats.push(cats[ci]); }
+        }
+      }
+
+      var currentIdx = -1;
+      for (var i = 0; i < allCats.length; i++) {
+        var items = allCats[i].items || [];
+        for (var j = 0; j < items.length; j++) {
+          if (items[j].id === itemId) { currentIdx = i; break; }
+        }
+        if (currentIdx >= 0) { break; }
+      }
+
+      if (currentIdx < 0) { return; }
+      var progress = this.getCategoryProgress(allCats[currentIdx]);
+      if (progress.completed < progress.total) { return; }
+
+      for (var ni = currentIdx + 1; ni < allCats.length; ni++) {
+        var nextProgress = this.getCategoryProgress(allCats[ni]);
+        if (nextProgress.completed < nextProgress.total) {
+          var nextKey = allCats[ni].id || allCats[ni].title || 'default';
+          this.expandedCategories = {};
+          this.expandedCategories[nextKey] = true;
+          return;
+        }
+      }
     },
 
     get sectionProgress() {
