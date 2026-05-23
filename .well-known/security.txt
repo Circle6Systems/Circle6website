@@ -1,0 +1,5 @@
+Contact: mailto:security@circle6systems.com
+Expires: 2027-05-20T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://circle6systems.com/.well-known/security.txt
+Policy: https://circle6systems.com/security-policy

