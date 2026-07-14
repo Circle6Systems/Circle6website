@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 US Cyclosporiasis Outbreak - Threat Intelligence Briefing | Circle 6 Systems</title>
+  <meta name="description" content="Open-source threat-intelligence briefing on the 2026 US cyclosporiasis (Cyclospora cayetanensis) outbreak: 843 CDC-confirmed cases across 31 states, an unidentified food source, and the biosurveillance-capacity gap behind the slow response.">
+  <meta property="og:title" content="2026 US Cyclosporiasis Outbreak - Threat Intelligence Briefing">
+  <meta property="og:description" content="Biosecurity and food-supply-chain intelligence on the largest domestic Cyclospora event on record.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://circle6systems.com/osint-reports/cyclospora-2026/">
+  <link rel="canonical" href="https://circle6systems.com/osint-reports/cyclospora-2026/">
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .skip-to-content { position: absolute; top: -100%; left: 1rem; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px; font-weight: 700; font-size: 0.9rem; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+    .hero { text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid var(--c6s-border); margin-bottom: 2.5rem; }
+    .hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.25rem; color: var(--c6s-text-bright); line-height: 1.25; }
+    .hero .event-date { font-size: 1.05rem; color: var(--c6s-accent); font-weight: 500; margin-bottom: 1rem; }
+    .hero .event-summary { max-width: 720px; margin: 0 auto; color: var(--c6s-text-dim); font-size: 0.95rem; }
+    .status-bar { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+    .status-item { text-align: center; }
+    .status-item .value { font-size: 1.5rem; font-weight: 700; }
+    .status-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-text-dim); }
+    .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-text-dim); margin-bottom: 1rem; }
+    .prediction-note { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--c6s-text-dim); }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <!-- Site Navigation -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active" aria-current="page">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Public &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">Cyclosporiasis Outbreak 2026</a>
+    </nav>
+
+    <div class="hero">
+      <h1>2026 US Cyclosporiasis Outbreak</h1>
+      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v1, July 13, 2026</div>
+      <p class="event-summary">
+        Open-source threat-intelligence briefing on the largest domestic <em>Cyclospora cayetanensis</em> event on record.
+        A parasite spread through the fresh-produce supply chain has produced 843 CDC-confirmed domestic cases across 31 states, with
+        more than 1,500 under analysis and aggregate state tallies exceeding 4,000. No food source has been identified and no recall issued.
+        We assess the outbreak as a real-world stress test of degraded US biosurveillance and food-safety trace-back capacity.
+      </p>
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-amber);">ACTIVE</div>
+          <div class="label">Outbreak Status</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-text-bright);">843</div>
+          <div class="label">CDC-Confirmed Cases</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-text-bright);">31</div>
+          <div class="label">States</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-amber);">86</div>
+          <div class="label">Hospitalizations</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-green);">0</div>
+          <div class="label">Deaths</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-red);">UNKNOWN</div>
+          <div class="label">Food Source</div>
+        </div>
+      </div>
+    </div>
+
+    <main id="main-content">
+
+    <div class="panel highlight">
+      <div class="panel-title">Bottom Line Up Front</div>
+      <p style="margin-bottom:0;">This is a clinically mild but epidemiologically significant outbreak. Severity is low: the illness is self-limiting,
+      treatable with antibiotics, and <strong>not spread person-to-person</strong>. The strategic signal is elsewhere. An unidentified source
+      months into the largest US Cyclospora event on record, coinciding with the July 2025 reduction of CDC's FoodNet active surveillance from
+      eight pathogens to two (Cyclospora among those dropped) and an approximately 25% cut to the CDC workforce. The system can still count cases; it is
+      visibly slower to <em>act</em> on them.</p>
+    </div>
+
+    <div class="section-label">Briefing Package</div>
+    <div class="card-grid">
+      <a href="executive-overview.html" class="card" style="border-color: var(--c6s-accent);">
+        <div class="card-icon" style="color: var(--c6s-accent);">&#9733;</div>
+        <h3>Executive Overview</h3>
+        <p>Two-minute leadership brief: what happened, why it matters, the case-count picture, and the bottom-line risk assessment for decision-makers.</p>
+        <div class="card-badge"><span class="badge badge-blue">2 min read</span></div>
+      </a>
+
+      <a href="full-briefing.html" class="card">
+        <div class="card-icon">&#9881;</div>
+        <h3>Full Intelligence Briefing</h3>
+        <p>Outbreak epidemiology, the three distinct case-count universes, the biosurveillance-capacity gap (FoodNet 8 to 2, workforce cuts), and why the source remains unidentified.</p>
+        <div class="card-badge"><span class="badge badge-amber">12 min read</span></div>
+      </a>
+
+      <a href="supply-chain-analysis.html" class="card">
+        <div class="card-icon">&#127793;</div>
+        <h3>Food-Supply-Chain Threat Analysis</h3>
+        <p>Cyclospora modeled as a low-signature contaminant that defeats food-safety controls. Pathogen profile, contamination vector, and a historical outbreak base rate (2013 to 2020).</p>
+        <div class="card-badge"><span class="badge badge-red">TECHINT</span></div>
+      </a>
+
+      <a href="protective-guidance.html" class="card">
+        <div class="card-icon">&#9760;</div>
+        <h3>Protective Guidance &amp; Information Environment</h3>
+        <p>What is true vs. what is circulating (misinformation matrix), plus protective checklists for the public, food-service operators, clinicians, and distributors.</p>
+        <div class="card-badge"><span class="badge badge-green">Public Safety</span></div>
+      </a>
+    </div>
+
+    <section>
+      <h2>Situation Snapshot</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Indicator</th><th scope="col">Figure</th><th scope="col">Universe / Note</th><th scope="col">Conf.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CDC-confirmed domestic cases</td><td><strong>843</strong></td><td>Lab-confirmed, non-travel; as of ~Jul 9</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>States with confirmed cases</td><td>31 (some outlets 32)</td><td>Rapidly moving</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Cases under analysis</td><td>&gt;1,500</td><td>Not yet adjudicated as domestic-confirmed</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Aggregate state-reported total</td><td>&gt;4,000</td><td>State tallies; definitional differences, do not equate to "confirmed"</td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><td>Hospitalizations</td><td>86</td><td>Of the 843 confirmed (Jul 9)</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Deaths</td><td>0</td><td>As of Jul 13</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Highest state burden</td><td>Michigan ~2,600</td><td>Baseline ~50/yr; NY 470, OH 364</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Food vehicle / recall</td><td>None identified</td><td>Likely multiple concurrent outbreaks</td><td><span class="badge badge-green">High</span></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.8rem;color:var(--c6s-text-dim);">Figures are time-sensitive and stratified. The CDC-confirmed count (843), the under-analysis pool (&gt;1,500), and the raw state aggregate (&gt;4,000) measure different things; conflating them fuels a false "CDC undercount/cover-up" narrative. See the <a href="full-briefing.html#counts" style="color:var(--c6s-accent);">Full Briefing</a> for the reconciliation.</p>
+    </section>
+
+    <section>
+      <h2>Predictive Assessments</h2>
+      <div class="prediction-note">
+        Predictions are time-stamped at publication and tracked for calibration. Resolution status is updated as confirming or disconfirming evidence emerges. Baseline date: July 13, 2026.
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Prediction 1: A leafy-green or fresh-herb vehicle</div>
+        <p>If a food vehicle is ever identified, it will be a leafy-green/salad blend or a fresh herb (basil/cilantro), consistent with every resolved US Cyclospora outbreak since 2013, not an exotic new commodity.</p>
+        <div class="confidence-bar">
+          <span style="font-size:0.75rem;color:var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width:70%;background:var(--c6s-accent);"></div></div>
+          <span class="pct" style="color:var(--c6s-accent);">70%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Open</span></div>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Prediction 2: Source likely never conclusively named</div>
+        <p>Given the long incubation window, produce commingling, perishable evidence, and stressed trace-back capacity, there is a better-than-even chance this outbreak closes without a single conclusively identified food source.</p>
+        <div class="confidence-bar">
+          <span style="font-size:0.75rem;color:var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width:60%;background:var(--c6s-amber);"></div></div>
+          <span class="pct" style="color:var(--c6s-amber);">60%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Open</span></div>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Prediction 3: Confirmed count converges upward toward state tallies</div>
+        <p>As the &gt;1,500 under-analysis cases are adjudicated, the CDC-confirmed figure will rise substantially above 843, narrowing (but not closing) the gap to the &gt;4,000 aggregate, validating that the true burden sits well above the confirmed count.</p>
+        <div class="confidence-bar">
+          <span style="font-size:0.75rem;color:var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width:80%;background:var(--c6s-green);"></div></div>
+          <span class="pct" style="color:var(--c6s-green);">80%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Open</span></div>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Prediction 4: Surveillance-capacity becomes the durable story</div>
+        <p>Independent of the clinical outcome, the lasting policy narrative will be the FoodNet reduction and CDC workforce cuts as a case study in eroded outbreak-response readiness, cited in future foodborne-illness and public-health-funding debates.</p>
+        <div class="confidence-bar">
+          <span style="font-size:0.75rem;color:var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width:75%;background:var(--c6s-accent);"></div></div>
+          <span class="pct" style="color:var(--c6s-accent);">75%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Open</span></div>
+      </div>
+    </section>
+
+    </main>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Compiled from 25+ open sources &middot; Briefing v1 2026-07-13 &middot; Subject to revision as the outbreak develops</p>
+      <p style="margin-top:0.25rem;">No classified, privileged, or non-public sources were used in the preparation of this briefing. This briefing is informational and is not medical advice.</p>
+      <p style="margin-top:0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

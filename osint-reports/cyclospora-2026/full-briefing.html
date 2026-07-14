@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Intelligence Briefing - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
+  <meta name="description" content="Full OSINT briefing on the 2026 US cyclosporiasis outbreak: epidemiology, the three case-count universes, source-attribution difficulty, and the CDC biosurveillance-capacity gap.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .skip-to-content { position: absolute; top: -100%; left: 1rem; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px; font-weight: 700; font-size: 0.9rem; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+    .toc { background: var(--c6s-panel); border:1px solid var(--c6s-border); border-radius:6px; padding:1rem 1.25rem; margin-bottom:2rem; font-size:0.9rem; }
+    .toc ul { margin-bottom:0; }
+    .toc a { color: var(--c6s-accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(168,193,150,0.5); }
+    .toc a:hover, .toc a:focus { color: var(--c6s-text-bright); text-decoration-color: currentColor; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active" aria-current="page">Intelligence</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Public &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">Cyclosporiasis 2026</a> &rsaquo; Full Briefing
+    </nav>
+
+    <div class="title-block">
+      <h1>Full Intelligence Briefing</h1>
+      <div class="subtitle">2026 US Cyclosporiasis Outbreak</div>
+      <div class="meta-grid">
+        <div><span class="label">Product</span> Finished Intelligence</div>
+        <div><span class="label">TLP</span> CLEAR</div>
+        <div><span class="label">Published</span> July 13, 2026</div>
+        <div><span class="label">Sources</span> 25+ open sources</div>
+        <div><span class="label">Reliability</span> A-C (Admiralty)</div>
+        <div><span class="label">Read time</span> ~12 minutes</div>
+      </div>
+    </div>
+
+    <main id="main-content">
+
+    <div class="toc" aria-label="Contents">
+      <strong>Contents</strong>
+      <ul>
+        <li><a href="#situation">1. Situation</a></li>
+        <li><a href="#counts">2. Reconciling three case-count universes</a></li>
+        <li><a href="#pathogen">3. The pathogen and why it is hard to trace</a></li>
+        <li><a href="#capacity">4. The biosurveillance-capacity gap</a></li>
+        <li><a href="#assessment">5. Key assessments</a></li>
+        <li><a href="#sources">6. Sources</a></li>
+      </ul>
+    </div>
+
+    <section id="situation">
+      <h2>1. Situation</h2>
+      <p>Beginning with the CDC's May 1, 2026 reporting cutoff, the United States has experienced a rapidly growing multistate outbreak of
+      cyclosporiasis. The trigger for wide public attention was the "explosive diarrhoea" framing carried by the BBC and other outlets in early July.
+      By that point the outbreak had spread across at least 17 states in early reporting and, within days, to 31 states in CDC-confirmed tallies.</p>
+      <p>Cyclosporiasis is caused by <em>Cyclospora cayetanensis</em>, a coccidian protozoan parasite for which humans are the only known host.
+      Infection follows ingestion of the parasite's environmentally matured oocysts on contaminated fresh produce or in water. Crucially, all
+      confirmed 2026 domestic cases involved <strong>no international travel</strong> in the preceding two weeks, pointing to a domestic food or
+      water source rather than travel-acquired infection.</p>
+      <div class="panel">
+        <div class="panel-title" style="color:var(--c6s-accent);">Clinical picture</div>
+        <p style="margin-bottom:0;">Watery, sometimes explosive diarrhea, loss of appetite, weight loss, cramping, bloating, nausea, fatigue, and low-grade fever,
+        in a relapsing-remitting course. Incubation averages about one week (range roughly 2 days to 2+ weeks). Untreated illness in healthy adults can
+        persist for weeks; it is more severe and prolonged in immunocompromised people. First-line treatment is trimethoprim-sulfamethoxazole (Bactrim).</p>
+      </div>
+    </section>
+
+    <section id="counts">
+      <h2>2. Reconciling Three Case-Count Universes</h2>
+      <p>The single most common analytic error in coverage of this outbreak is treating three different measurements as one number, or worse, as evidence
+      of a cover-up. There are three distinct universes, and any responsible figure must be labelled with which one it belongs to.</p>
+      <table>
+        <thead><tr><th scope="col">Universe</th><th scope="col">Figure</th><th scope="col">What it counts</th><th scope="col">Reliability</th></tr></thead>
+        <tbody>
+          <tr><td>CDC-confirmed domestic</td><td><strong>843</strong> / 31 states</td><td>Lab-confirmed, non-travel cases adjudicated by CDC</td><td><span class="badge badge-green">A - High</span></td></tr>
+          <tr><td>Under analysis</td><td>&gt;1,500</td><td>Reported cases not yet confirmed as domestic-acquired</td><td><span class="badge badge-green">A/B - High</span></td></tr>
+          <tr><td>State-reported aggregate</td><td>&gt;4,000</td><td>Sum of state tallies (all statuses); definitions vary, possible double-counting</td><td><span class="badge badge-amber">B/C - Medium</span></td></tr>
+        </tbody>
+      </table>
+      <div class="panel warning">
+        <div class="panel-title">Analytic guidance</div>
+        <p style="margin-bottom:0;">The CDC's 843 and the media's "4,000+" are not contradictory; they measure different things. CDC counts lab-confirmed federal reports;
+        states count locally. Reporting the aggregate <em>as confirmed</em> is wrong, but so is dismissing it. The true domestic burden almost certainly sits
+        well above 843 and will rise as the under-analysis pool is adjudicated. Presenting all three figures with this caveat pre-empts the
+        "CDC is undercounting / hiding it" narrative rather than feeding it.</p>
+      </div>
+      <p>Geographic concentration is real: Michigan reports roughly 2,600 cases against a typical annual baseline near 50, with New York (about 470) and
+      Ohio (about 364) also elevated. Hospitalization figures have tracked upward with case growth, from 20 of 145 in mid-June to <strong>86 of the 843
+      confirmed</strong> by July 9. No deaths have been reported. Among the 843 confirmed cases, patients ranged in age from 5 to 88 years (median 44), 59% were
+      female, and the median illness-onset date was June 18, 2026 (range May 1 to July 5).</p>
+
+      <h3 id="states">States Reporting Cases</h3>
+      <p>CDC reports confirmed cases in <strong>31 states</strong> (some outlets count 32) as of early-to-mid July, described elsewhere as "more than half of US states."
+      Public reporting individually names the following states, with per-state counts where officials released them. The remaining states are reflected only in the
+      CDC's aggregate count and outbreak map, not enumerated individually in accessible public reporting.</p>
+      <table>
+        <thead><tr><th scope="col">State</th><th scope="col">Reported cases</th><th scope="col">Note</th></tr></thead>
+        <tbody>
+          <tr><td>Michigan</td><td>~1,562 (state total later cited ~2,600)</td><td>Hardest hit; ~31x the ~50/yr baseline</td></tr>
+          <tr><td>New York</td><td>470</td><td>Second highest; since May 1</td></tr>
+          <tr><td>Ohio</td><td>364</td><td>Per state health officials</td></tr>
+          <tr><td>Illinois</td><td>&gt;100</td><td>Among the higher-burden states</td></tr>
+          <tr><td>Florida</td><td>&gt;100</td><td>Among the higher-burden states</td></tr>
+          <tr><td>Texas</td><td>Not specified</td><td>Cited among the more-affected states</td></tr>
+          <tr><td>California</td><td>Not specified</td><td>Named in national reporting</td></tr>
+          <tr><td>Pennsylvania</td><td>Not specified</td><td>Named in early 17-state reporting</td></tr>
+          <tr><td>New Jersey</td><td>Not specified</td><td>Named in early 17-state reporting</td></tr>
+        </tbody>
+      </table>
+      <div class="panel warning">
+        <div class="panel-title">Collection gap</div>
+        <p style="margin-bottom:0;">A complete, verified 31-to-32-state roster is not publicly available in machine-readable form. The CDC's per-state surveillance page returns HTTP 403 to
+        automated collection, and news outlets publish an interactive map plus the named states above rather than a full enumerated list. Nine states are individually named
+        with confidence; the balance of the count is carried in the CDC aggregate. Treat the count (31 to 32) as High confidence and any implied full state list as incomplete.
+        The authoritative per-state breakdown is the <a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/index.html">CDC Cyclosporiasis Surveillance</a> page.</p>
+      </div>
+    </section>
+
+    <section id="pathogen">
+      <h2>3. The Pathogen and Why It Is Hard to Trace</h2>
+      <p>Cyclospora's biology is almost purpose-built to frustrate outbreak investigators. Oocysts are passed in stool in an
+      <strong>unsporulated, non-infective state</strong> and require days to weeks in the environment (roughly 22-32 &deg;C) to mature before they can
+      infect anyone. This single fact drives two consequences: there is <strong>no person-to-person transmission</strong>, and every case traces back to an
+      environmental or produce exposure rather than a human contact chain.</p>
+      <p>Three structural factors make source attribution slow and often inconclusive:</p>
+      <ul>
+        <li><strong>Long, fuzzy incubation.</strong> A one-week-plus lag with a wide range means patients must recall what they ate up to two weeks earlier, degrading exposure histories.</li>
+        <li><strong>Non-routine laboratory detection.</strong> Cyclospora is missed by standard stool panels and needs specific testing (modified acid-fast stain, UV fluorescence microscopy, or a molecular GI-PCR panel that includes it). Many labs do not run it, causing under-ascertainment.</li>
+        <li><strong>Perishable, commingled evidence.</strong> Implicated produce is usually eaten or discarded before it can be tested, and bagged-salad processing blends many source lots, turning a point-source contamination into a diffuse multistate signature.</li>
+      </ul>
+      <p>The full mechanics of the supply-chain vector, and a historical base rate of which foods have been implicated, are in the
+      <a href="supply-chain-analysis.html">Supply-Chain Threat Analysis</a>.</p>
+    </section>
+
+    <section id="capacity">
+      <h2>4. The Biosurveillance-Capacity Gap</h2>
+      <p>The strategically significant dimension of this outbreak is not clinical. It is what the response reveals about US readiness for diffuse,
+      multi-source foodborne events. Several developments in 2025-2026 form the backdrop:</p>
+      <div class="timeline">
+        <div class="timeline-item"><span class="time">July 2025</span><div class="event">CDC's FoodNet active-surveillance program reportedly cut from tracking eight pathogens to two, with Cyclospora among those dropped to optional monitoring after roughly three decades.</div></div>
+        <div class="timeline-item"><span class="time">2025-2026</span><div class="event">Reporting cites elimination of approximately 3,000 CDC positions (around 25% of the workforce) and dissolution of the Division of Parasitic Diseases and Malaria.</div></div>
+        <div class="timeline-item"><span class="time">2026</span><div class="event">Prolonged CDC directorship vacancy and disrupted pass-through funding to state and local health departments reported during the outbreak window.</div></div>
+        <div class="timeline-item"><span class="time">May-July 2026</span><div class="event">Largest domestic Cyclospora outbreak on record unfolds; source unidentified months in; CDC-confirmed counts visibly lag state reports.</div></div>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Assessment: correlation strong, causation contested</div>
+        <p>We rate the <em>capacity strain and correlation</em> as High confidence: the surveillance reductions are well-documented and public-health experts
+        have voiced concern that they slow patient interviews, trace-back, and trend analysis. We rate <em>direct causal attribution</em> ("the cuts caused this
+        outbreak or its unsolved source") as Medium confidence and contested. Cyclosporiasis remains nationally notifiable through NNDSS, so case
+        <em>detection</em> persists; the documented erosion is in <strong>speed, trace-back, and analysis</strong>, not in whether cases are seen at all.</p>
+        <p style="margin-bottom:0;">The honest framing: the system can still count cases but is slower to act on them, and the food-safety trace-back apparatus is visibly stressed.
+        This outbreak functions as a natural stress test signaling reduced readiness, whether or not the cuts are the proximate cause of any single unsolved lead.</p>
+      </div>
+    </section>
+
+    <section id="assessment">
+      <h2>5. Key Assessments</h2>
+      <table>
+        <thead><tr><th scope="col">#</th><th scope="col">Assessment</th><th scope="col">Confidence</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Clinical severity is low; this is a self-limiting, treatable, non-contagious illness with zero reported deaths.</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>2</td><td>True case burden materially exceeds the 843 confirmed figure and will rise as the under-analysis pool is adjudicated.</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>3</td><td>Source attribution is structurally difficult and may never conclusively resolve, independent of agency capacity.</td><td><span class="badge badge-amber">Medium-High</span></td></tr>
+          <tr><td>4</td><td>Reduced federal food-safety surveillance has strained response speed and trace-back; this is the durable strategic signal.</td><td><span class="badge badge-amber">Medium (causation) / High (strain)</span></td></tr>
+          <tr><td>5</td><td>Any identified vehicle will most likely be a leafy-green blend or fresh herb, matching every resolved US outbreak since 2013.</td><td><span class="badge badge-amber">Medium</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sources">
+      <h2>6. Sources</h2>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Selected open sources. CDC primary pages returned HTTP 403 to automated collection; CDC figures are relayed through outlets that explicitly quote CDC counts. Admiralty reliability in brackets.</p>
+      <ol style="font-size:0.9rem;">
+        <li><a href="https://www.bbc.com/news/articles/c621m66qm76o">BBC - What to know about the 'explosive diarrhoea' parasite outbreak in US</a> (2026-07-09) [B]</li>
+        <li><a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/index.html">CDC - Surveillance of Cyclosporiasis</a> [A]</li>
+        <li><a href="https://www.npr.org/2026/07/12/nx-s1-5890935/cyclosporiasis-outbreak-diarrhea-nausea-where-states-us">NPR - What to know about the cyclosporiasis outbreak</a> (2026-07-12) [A/B]</li>
+        <li><a href="https://www.forbes.com/sites/victoriaforster/2026/07/13/unresolved-cyclospora-outbreak-raises-questions-over-cdc-cuts/">Forbes - Unresolved Cyclospora Outbreak Raises Questions Over CDC Cuts</a> (2026-07-13) [B]</li>
+        <li><a href="https://globalbiodefense.com/2026/07/04/cdc-investigates-surge-of-parasitic-illness-across-18-states-as-workforce-cuts-raise-response-concerns/">GlobalBiodefense - CDC Investigates Surge as Workforce Cuts Raise Concerns</a> (2026-07-04) [B]</li>
+        <li><a href="https://www.newsweek.com/donald-trump-cdc-food-net-monitoring-parasite-cyclospora-12180951">Newsweek - CDC Stopped Monitoring Parasite Before Outbreak (FoodNet 8 to 2)</a> (2026-07) [B/C]</li>
+        <li><a href="https://www.infectioncontroltoday.com/view/cyclosporiasis-outbreak-2026-145-cases-17-states-cdc-alert-health-care-workers">Infection Control Today - 145 Cases, 17 States, CDC HCW Alert</a> (2026-06) [B]</li>
+        <li><a href="https://www.usnews.com/news/us/articles/2026-07-13/michigan-cases-of-intestinal-disease-from-parasite-soar-to-over-2-600">US News - Michigan Cases Soar to Over 2,600</a> (2026-07-13) [B]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8779055/">Life Cycle and Transmission of C. cayetanensis (PMC, 2022)</a> [A]</li>
+        <li><a href="https://www.cbsnews.com/news/cyclospora-case-count-climbs-to-353-outbreaks-source-still-unknown/">CBS News - Case Count Climbs, Source Still Unknown</a> (2026-07) [B]</li>
+      </ol>
+    </section>
+
+    </main>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v1 2026-07-13 &middot; Subject to revision. Informational, not medical advice.</p>
+      <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

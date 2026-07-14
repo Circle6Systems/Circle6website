@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food-Supply-Chain Threat Analysis - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
+  <meta name="description" content="TECHINT analysis of Cyclospora cayetanensis as a low-signature food-supply-chain contaminant: pathogen profile, contamination vector, and a 2013 to 2020 historical outbreak base rate.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .skip-to-content { position: absolute; top: -100%; left: 1rem; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px; font-weight: 700; font-size: 0.9rem; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active" aria-current="page">Intelligence</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Public &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">Cyclosporiasis 2026</a> &rsaquo; Supply-Chain Threat Analysis
+    </nav>
+
+    <div class="title-block">
+      <h1>Food-Supply-Chain Threat Analysis</h1>
+      <div class="subtitle">Cyclospora cayetanensis as a Low-Signature Contaminant</div>
+      <div class="meta-grid">
+        <div><span class="label">Product</span> Technical Intelligence (TECHINT)</div>
+        <div><span class="label">TLP</span> CLEAR</div>
+        <div><span class="label">Published</span> July 13, 2026</div>
+        <div><span class="label">Lens</span> Food supply chain</div>
+        <div><span class="label">Reliability</span> A-B (Admiralty)</div>
+        <div><span class="label">Read time</span> ~9 minutes</div>
+      </div>
+    </div>
+
+    <main id="main-content">
+
+    <section>
+      <div class="panel highlight">
+        <div class="panel-title">Threat framing</div>
+        <p style="margin-bottom:0;">Modeled through a threat lens, <em>Cyclospora</em> is a low-signature contaminant that uses the fresh-produce supply chain as its delivery vector.
+        Its characteristics are almost purpose-built to defeat food-safety controls: it contaminates upstream at the grow/harvest/wash stage, rides ready-to-eat
+        commodities that are never cooked, and resists the chlorine washes and refrigeration that the chain relies on as kill-steps.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pathogen Fact Sheet</h2>
+      <table>
+        <thead><tr><th scope="col">Attribute</th><th scope="col">Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Class</td><td>Coccidian protozoan parasite; humans are the only known host</td></tr>
+          <tr><td>Infective unit</td><td>Oocyst, 7.5-10 &micro;m, passed <strong>unsporulated and non-infective</strong> in stool</td></tr>
+          <tr><td>Sporulation</td><td>Requires days to weeks at roughly 22-32 &deg;C in the environment before becoming infective</td></tr>
+          <tr><td>Transmission</td><td><strong>Not person-to-person.</strong> Fresh-passed oocysts are non-infective and need environmental maturation, so direct fecal-oral spread cannot occur</td></tr>
+          <tr><td>Incubation</td><td>Averages about one week; range roughly 2 days to 2+ weeks</td></tr>
+          <tr><td>Control resistance</td><td>Oocysts resist standard chlorination and temperature extremes; washing produce reduces but does not reliably remove them</td></tr>
+          <tr><td>Symptoms</td><td>Watery ("explosive") diarrhea, anorexia, weight loss, cramping, bloating, nausea, fatigue; relapsing-remitting</td></tr>
+          <tr><td>Diagnosis</td><td>Missed by routine stool tests; needs specific testing (acid-fast/UV microscopy or molecular GI-PCR panel)</td></tr>
+          <tr><td>Treatment</td><td>Trimethoprim-sulfamethoxazole (Bactrim) 7-10 days, first line; ciprofloxacin or nitazoxanide for sulfa-allergic patients</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>The Contamination Vector</h2>
+      <p>Because oocysts require environmental sporulation, the parasite never amplifies inside the distribution network the way bacteria can. It does not need to.
+      The contamination event occurs <strong>upstream</strong>, typically when fecal-contaminated <strong>irrigation or wash water</strong> contacts leafy greens,
+      herbs, and low-growing produce. Once oocysts adhere to a waxy leaf surface, the chain's primary defenses fail in sequence:</p>
+      <ul>
+        <li><strong>No cook step.</strong> These are ready-to-eat commodities eaten raw, so heat never neutralizes the pathogen.</li>
+        <li><strong>Sanitizer-resistant.</strong> Chlorine wash lines, the workhorse of produce processing, do not reliably kill oocysts.</li>
+        <li><strong>Cold-chain immune.</strong> Refrigeration that suppresses bacterial growth does nothing to Cyclospora.</li>
+      </ul>
+      <div class="panel warning">
+        <div class="panel-title">Highest-consequence node: bagged salads</div>
+        <p style="margin-bottom:0;">A single contaminated ingredient lot is comminuted and blended across many brands and states, converting a point-source contamination into a
+        multistate outbreak signature. This is why processing nodes such as Fresh Express, Taylor Farms, and Del Monte recur in the outbreak record, and why a diffuse
+        2026 signature with no single vehicle is consistent either with a widely distributed staple commodity or with degraded trace-back capacity.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Historical Outbreak Base Rate</h2>
+      <p>When a vehicle is found in US Cyclospora outbreaks, it is overwhelmingly a leafy-green or herb blend, frequently linked to imported produce.
+      This base rate is the strongest prior for what the 2026 source, if ever identified, will turn out to be.</p>
+      <table>
+        <thead><tr><th scope="col">Year</th><th scope="col">Source / Vehicle</th><th scope="col">Lab-confirmed cases</th><th scope="col">How identified</th></tr></thead>
+        <tbody>
+          <tr><td>2013</td><td>Taylor Farms de Mexico bagged salad (IA/NE); cilantro (TX)</td><td>~631 total</td><td>State epi clustering + FDA traceback to Mexican processor</td></tr>
+          <tr><td>2018 (a)</td><td>Del Monte vegetable trays, Midwest</td><td>250</td><td>Epi linkage; product recall</td></tr>
+          <tr><td>2018 (b)</td><td>Fresh Express salad mix served at McDonald's, 11 states</td><td>511</td><td>FDA lab-confirmed Cyclospora in an unused package</td></tr>
+          <tr><td>2019</td><td>Fresh basil exported from Morelos, Mexico</td><td>132 (11 states)</td><td>CDC epi + FDA traceback to Mexican exporter</td></tr>
+          <tr><td>2020</td><td>Fresh Express bagged garden salads (ALDI, Hy-Vee, Jewel-Osco brands)</td><td>701 (14 states)</td><td>Epi + traceback; June 27 recall</td></tr>
+          <tr><td>2026</td><td><strong>No vehicle identified</strong> (as of mid-July)</td><td>843 CDC-confirmed; &gt;4,000 state aggregate; 86 hospitalized; 0 deaths; 31+ states</td><td>Ongoing; no product or grower named</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Base-rate read: implicated commodities cluster tightly on leafy greens, fresh herbs, and salad blends, with Mexican and Central/South American imports recurring.
+      Identification typically depends on FDA traceback and, occasionally, direct lab confirmation in an unopened package.</p>
+    </section>
+
+    <section>
+      <h2>Core TECHINT Takeaway</h2>
+      <div class="panel critical">
+        <p style="margin-bottom:0;">Attribution difficulty here is <strong>structural, not incidental</strong>. Long incubation introduces recall bias across a two-week exposure window;
+        non-routine lab testing causes under-ascertainment; comminuted bagged-salad distribution diffuses the signal; and oocysts are hard to detect in food and
+        environmental samples. Any one of these would slow an investigation. Together, and layered on reduced federal trace-back capacity, they make an unresolved source
+        the expected outcome rather than an anomaly. Organizations should therefore plan around risk-reduction and supplier traceability, not around waiting for a single
+        "avoid this product" answer.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected Sources</h2>
+      <ol style="font-size:0.9rem;">
+        <li><a href="https://www.cdc.gov/dpdx/cyclosporiasis/index.html">CDC DPDx - Cyclosporiasis</a> (oocyst morphology, sporulation, non-infectivity) [A]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8779055/">Life Cycle and Transmission of C. cayetanensis: Knowns and Unknowns</a> (PMC, 2022) [A]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7699734/">Cyclospora - Major Outbreaks from Ready-to-Eat Fresh Produce</a> (PMC, 2020) [A]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6171894/">Notes from the Field: Multiple Cyclosporiasis Outbreaks, US, 2018</a> (MMWR) [A]</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/outbreak-investigation-cyclospora-bagged-salads-june-2020">FDA - Outbreak Investigation of Cyclospora: Bagged Salads (June 2020)</a> [A]</li>
+        <li><a href="https://www.marlerblog.com/case-news/cyclospora-outbreaks-with-identified-food-water-vehicle-2000-present/">Marler Blog - Cyclospora Outbreaks with Identified Food/Water Vehicle (2000-Present)</a> [B]</li>
+        <li><a href="https://www.foodsafetynews.com/2026/07/cyclospora-outbreak-surges-in-michigan/">Food Safety News - Cyclospora cases surge in Michigan</a> (2026-07) [B]</li>
+        <li><a href="https://www.npr.org/2026/07/12/nx-s1-5890935/cyclosporiasis-outbreak-diarrhea-nausea-where-states-us">NPR - What to know about the cyclosporiasis outbreak</a> (2026-07-12) [B]</li>
+      </ol>
+    </section>
+
+    </main>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v1 2026-07-13 &middot; Informational, not medical advice.</p>
+      <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>
