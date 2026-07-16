@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2026 US Cyclosporiasis Outbreak - Threat Intelligence Briefing | Circle 6 Systems</title>
-  <meta name="description" content="Open-source threat-intelligence briefing on the 2026 US cyclosporiasis (Cyclospora cayetanensis) outbreak: 843 CDC-confirmed cases across 31 states, an unidentified food source, and the biosurveillance-capacity gap behind the slow response.">
+  <meta name="description" content="Open-source threat-intelligence briefing on the 2026 US cyclosporiasis (Cyclospora cayetanensis) outbreak: 1,645 CDC-confirmed cases across 34 states, lettuce and salad greens emerging as a suspected source, and the biosurveillance-capacity gap behind the slow response.">
   <meta property="og:title" content="2026 US Cyclosporiasis Outbreak - Threat Intelligence Briefing">
   <meta property="og:description" content="Biosecurity and food-supply-chain intelligence on the largest domestic Cyclospora event on record.">
   <meta property="og:type" content="article">
@@ -69,11 +69,12 @@
 
     <div class="hero">
       <h1>2026 US Cyclosporiasis Outbreak</h1>
-      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v1, July 13, 2026</div>
+      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v2, July 15, 2026 (data as of Jul 14)</div>
       <p class="event-summary">
         Open-source threat-intelligence briefing on the largest domestic <em>Cyclospora cayetanensis</em> event on record.
-        A parasite spread through the fresh-produce supply chain has produced 843 CDC-confirmed domestic cases across 31 states, with
-        more than 1,500 under analysis and aggregate state tallies exceeding 4,000. No food source has been identified and no recall issued.
+        A parasite spread through the fresh-produce supply chain has produced 1,645 CDC-confirmed domestic cases across 34 states, with
+        more than 5,100 under analysis (nearly 7,000 combined), now exceeding the ~4,700-case US record set in 2019. Lettuce and salad greens have
+        emerged as a suspected vehicle and federal and state investigators are examining Taco Bell, but no food source has been confirmed and no recall issued.
         We assess the outbreak as a real-world stress test of degraded US biosurveillance and food-safety trace-back capacity.
       </p>
       <div class="status-bar">
@@ -82,15 +83,15 @@
           <div class="label">Outbreak Status</div>
         </div>
         <div class="status-item">
-          <div class="value" style="color: var(--c6s-text-bright);">843</div>
+          <div class="value" style="color: var(--c6s-text-bright);">1,645</div>
           <div class="label">CDC-Confirmed Cases</div>
         </div>
         <div class="status-item">
-          <div class="value" style="color: var(--c6s-text-bright);">31</div>
+          <div class="value" style="color: var(--c6s-text-bright);">34</div>
           <div class="label">States</div>
         </div>
         <div class="status-item">
-          <div class="value" style="color: var(--c6s-amber);">86</div>
+          <div class="value" style="color: var(--c6s-amber);">141</div>
           <div class="label">Hospitalizations</div>
         </div>
         <div class="status-item">
@@ -98,8 +99,8 @@
           <div class="label">Deaths</div>
         </div>
         <div class="status-item">
-          <div class="value" style="color: var(--c6s-red);">UNKNOWN</div>
-          <div class="label">Food Source</div>
+          <div class="value" style="color: var(--c6s-amber);">SUSPECTED</div>
+          <div class="label">Leafy Greens</div>
         </div>
       </div>
     </div>
@@ -109,10 +110,19 @@
     <div class="panel highlight">
       <div class="panel-title">Bottom Line Up Front</div>
       <p style="margin-bottom:0;">This is a clinically mild but epidemiologically significant outbreak. Severity is low: the illness is self-limiting,
-      treatable with antibiotics, and <strong>not spread person-to-person</strong>. The strategic signal is elsewhere. An unidentified source
-      months into the largest US Cyclospora event on record, coinciding with the July 2025 reduction of CDC's FoodNet active surveillance from
-      eight pathogens to two (Cyclospora among those dropped) and an approximately 25% cut to the CDC workforce. The system can still count cases; it is
-      visibly slower to <em>act</em> on them.</p>
+      treatable with antibiotics, and <strong>not spread person-to-person</strong>. The strategic signal is elsewhere. Confirmed cases have roughly doubled since v1
+      to 1,645 (nearly 7,000 counting the under-analysis pool), a source is only now emerging months in, and this all coincides with the July 2025 reduction of
+      CDC's FoodNet active surveillance from eight pathogens to two (Cyclospora among those dropped) and an approximately 25% cut to the CDC workforce. The system
+      can still count cases; it is visibly slower to <em>act</em> on them.</p>
+    </div>
+
+    <div class="prediction-note" style="border-left:3px solid var(--c6s-amber);">
+      <strong>What changed since v1 (Jul 13 &rarr; Jul 15).</strong> CDC-confirmed cases rose 843 &rarr; <strong>1,645</strong> across
+      <strong>34</strong> states (several media maps show 32); under-analysis grew &gt;1,500 &rarr; <strong>&gt;5,100</strong>; hospitalizations 86 &rarr;
+      <strong>141</strong>; deaths remain <strong>0</strong>. The event now exceeds the ~4,700-case <strong>2019 US record</strong>. Most significantly, a
+      candidate vehicle emerged: Michigan officials say early information points to <strong>lettuce or salad greens</strong>, FDA is investigating produce, and
+      federal and state agencies are examining <strong>Taco Bell</strong> (per Washington Post reporting), which voluntarily and temporarily pulled limited
+      ingredients at select restaurants. <em>No product, supplier, grower, region, or restaurant has been officially confirmed.</em>
     </div>
 
     <div class="section-label">Briefing Package</div>
@@ -153,34 +163,37 @@
           <tr><th scope="col">Indicator</th><th scope="col">Figure</th><th scope="col">Universe / Note</th><th scope="col">Conf.</th></tr>
         </thead>
         <tbody>
-          <tr><td>CDC-confirmed domestic cases</td><td><strong>843</strong></td><td>Lab-confirmed, non-travel; as of ~Jul 9</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>States with confirmed cases</td><td>31 (some outlets 32)</td><td>Rapidly moving</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Cases under analysis</td><td>&gt;1,500</td><td>Not yet adjudicated as domestic-confirmed</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Aggregate state-reported total</td><td>&gt;4,000</td><td>State tallies; definitional differences, do not equate to "confirmed"</td><td><span class="badge badge-amber">Medium</span></td></tr>
-          <tr><td>Hospitalizations</td><td>86</td><td>Of the 843 confirmed (Jul 9)</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Deaths</td><td>0</td><td>As of Jul 13</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Highest state burden</td><td>Michigan ~2,600</td><td>Baseline ~50/yr; NY 470, OH 364</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Food vehicle / recall</td><td>None identified</td><td>Likely multiple concurrent outbreaks</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>CDC-confirmed domestic cases</td><td><strong>1,645</strong></td><td>Lab-confirmed, non-travel; as of ~Jul 14</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>States with confirmed cases</td><td>34 (media maps show 32)</td><td>Rapidly moving</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Cases under analysis</td><td>&gt;5,100</td><td>Not yet adjudicated as domestic-confirmed (~6,700 combined)</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Aggregate state-reported total</td><td>&gt;4,000</td><td>State tallies (e.g. MI+OH); definitional differences, do not equate to "confirmed"</td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><td>Hospitalizations</td><td>141</td><td>CDC total (Jul 14); no deaths</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Deaths</td><td>0</td><td>As of Jul 14</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Highest state burden</td><td>Michigan ~3,309</td><td>Baseline ~50/yr; OH ~1,119 (NW); 44 &amp; 46 hosp respectively</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Multistate cluster</td><td>&gt;400 (MI, OH, WV, KY)</td><td>Federal officials believe one shared source; other clusters differ</td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><td>Travel-associated (separate)</td><td>440 / 35 states</td><td>Acquired abroad; excluded from the domestic count above</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Suspected food vehicle</td><td>Lettuce / salad greens</td><td>Michigan lead; FDA investigating produce; Taco Bell examined; none confirmed, no recall</td><td><span class="badge badge-amber">Medium</span></td></tr>
         </tbody>
       </table>
-      <p style="font-size:0.8rem;color:var(--c6s-text-dim);">Figures are time-sensitive and stratified. The CDC-confirmed count (843), the under-analysis pool (&gt;1,500), and the raw state aggregate (&gt;4,000) measure different things; conflating them fuels a false "CDC undercount/cover-up" narrative. See the <a href="full-briefing.html#counts" style="color:var(--c6s-accent);">Full Briefing</a> for the reconciliation.</p>
+      <p style="font-size:0.8rem;color:var(--c6s-text-dim);">Figures are time-sensitive and stratified. The CDC-confirmed count (1,645), the under-analysis pool (&gt;5,100), and the raw state aggregate (&gt;4,000) measure different things; conflating them fuels a false "CDC undercount/cover-up" narrative. See the <a href="full-briefing.html#counts" style="color:var(--c6s-accent);">Full Briefing</a> for the reconciliation.</p>
     </section>
 
     <section>
       <h2>Predictive Assessments</h2>
       <div class="prediction-note">
-        Predictions are time-stamped at publication and tracked for calibration. Resolution status is updated as confirming or disconfirming evidence emerges. Baseline date: July 13, 2026.
+        Predictions are time-stamped at publication and tracked for calibration. Resolution status is updated as confirming or disconfirming evidence emerges. Baseline date: July 13, 2026 (v1); updated July 15, 2026 (v2).
       </div>
 
       <div class="panel warning">
         <div class="panel-title">Prediction 1: A leafy-green or fresh-herb vehicle</div>
         <p>If a food vehicle is ever identified, it will be a leafy-green/salad blend or a fresh herb (basil/cilantro), consistent with every resolved US Cyclospora outbreak since 2013, not an exotic new commodity.</p>
+        <p style="font-size:0.85rem;color:var(--c6s-amber);margin-bottom:0.5rem;"><strong>v2 update (Jul 15):</strong> Trending toward confirmation. Michigan officials now cite lettuce or salad greens as the probable vehicle and FDA is investigating produce, consistent with this prediction, though no vehicle is officially confirmed. Confidence raised 70% to 80%.</p>
         <div class="confidence-bar">
           <span style="font-size:0.75rem;color:var(--c6s-text-dim);">Confidence</span>
-          <div class="bar"><div class="fill" style="width:70%;background:var(--c6s-accent);"></div></div>
-          <span class="pct" style="color:var(--c6s-accent);">70%</span>
+          <div class="bar"><div class="fill" style="width:80%;background:var(--c6s-accent);"></div></div>
+          <span class="pct" style="color:var(--c6s-accent);">80%</span>
         </div>
-        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Open</span></div>
+        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Partially confirmed</span></div>
       </div>
 
       <div class="panel warning">
@@ -196,13 +209,14 @@
 
       <div class="panel warning">
         <div class="panel-title">Prediction 3: Confirmed count converges upward toward state tallies</div>
-        <p>As the &gt;1,500 under-analysis cases are adjudicated, the CDC-confirmed figure will rise substantially above 843, narrowing (but not closing) the gap to the &gt;4,000 aggregate, validating that the true burden sits well above the confirmed count.</p>
+        <p>As the under-analysis pool is adjudicated, the CDC-confirmed figure will rise substantially above the v1 figure of 843, narrowing (but not closing) the gap to the state aggregate, validating that the true burden sits well above the confirmed count.</p>
+        <p style="font-size:0.85rem;color:var(--c6s-green);margin-bottom:0.5rem;"><strong>v2 update (Jul 15):</strong> Confirmed. CDC-confirmed cases roughly doubled to 1,645 in two days and the under-analysis pool grew to &gt;5,100 (nearly 7,000 combined), exceeding the ~4,700-case 2019 US record.</p>
         <div class="confidence-bar">
           <span style="font-size:0.75rem;color:var(--c6s-text-dim);">Confidence</span>
           <div class="bar"><div class="fill" style="width:80%;background:var(--c6s-green);"></div></div>
           <span class="pct" style="color:var(--c6s-green);">80%</span>
         </div>
-        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Open</span></div>
+        <div class="prediction-timestamp">Predicted: July 13, 2026 <span class="prediction-status">Confirmed</span></div>
       </div>
 
       <div class="panel warning">
@@ -221,7 +235,7 @@
 
     <div class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Compiled from 25+ open sources &middot; Briefing v1 2026-07-13 &middot; Subject to revision as the outbreak develops</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Compiled from 30+ open sources &middot; Briefing v2 2026-07-15 (data as of 2026-07-14) &middot; Supersedes v1 2026-07-13 &middot; Subject to revision as the outbreak develops</p>
       <p style="margin-top:0.25rem;">No classified, privileged, or non-public sources were used in the preparation of this briefing. This briefing is informational and is not medical advice.</p>
       <p style="margin-top:0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
     </div>
