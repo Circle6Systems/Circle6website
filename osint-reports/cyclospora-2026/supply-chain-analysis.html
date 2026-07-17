@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Food-Supply-Chain Threat Analysis - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
-  <meta name="description" content="TECHINT analysis of Cyclospora cayetanensis as a low-signature food-supply-chain contaminant: pathogen profile, contamination vector, and a 2013 to 2020 historical outbreak base rate.">
+  <meta name="description" content="TECHINT analysis of Cyclospora cayetanensis as a low-signature food-supply-chain contaminant: pathogen profile, contamination vector, a 2013 to 2020 historical outbreak base rate, and the Taylor Farms repeat-supplier pattern linking the reported 2026 lead to the 2013 outbreak.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
@@ -51,7 +51,7 @@
       <div class="meta-grid">
         <div><span class="label">Product</span> Technical Intelligence (TECHINT)</div>
         <div><span class="label">TLP</span> CLEAR</div>
-        <div><span class="label">Published</span> July 15, 2026 (v2)</div>
+        <div><span class="label">Published</span> July 16, 2026 (v3)</div>
         <div><span class="label">Lens</span> Food supply chain</div>
         <div><span class="label">Reliability</span> A-B (Admiralty)</div>
         <div><span class="label">Read time</span> ~9 minutes</div>
@@ -108,6 +108,42 @@
     </section>
 
     <section>
+      <h2>The Repeat-Supplier Pattern</h2>
+      <div class="panel critical">
+        <div class="panel-title">The 2026 lead is a near-exact replay of 2013</div>
+        <p>The v2 edition of this briefing named Taylor Farms as one of the processing nodes that "recur in the outbreak record." That observation was drawn from the
+        historical base rate, before any 2026 reporting implicated the firm. On July 16, reporting placed Taylor Farms iceberg lettuce grown in Mexico at the center of
+        the FDA traceback. The correspondence with 2013 is close enough to be worth stating precisely:</p>
+        <table>
+          <thead><tr><th scope="col">Dimension</th><th scope="col">2013 (resolved)</th><th scope="col">2026 (reported, unconfirmed)</th></tr></thead>
+          <tbody>
+            <tr><td>Supplier</td><td>Taylor Farms de Mexico</td><td>Taylor Farms (Salinas, CA)</td></tr>
+            <tr><td>Commodity</td><td>Salad mix (iceberg and romaine base)</td><td>Iceberg lettuce, shredded</td></tr>
+            <tr><td>Country of origin</td><td>Mexico (processing plant)</td><td>Mexico (grown)</td></tr>
+            <tr><td>Distribution node</td><td>Olive Garden / Red Lobster (Darden)</td><td>Taco Bell (incl. franchisees)</td></tr>
+            <tr><td>Scale</td><td>631 cases / 25 states</td><td>1,645 CDC-confirmed / 34 states; &gt;7,500 state-reported</td></tr>
+            <tr><td>Resolution</td><td>FDA traceback; voluntary production halt Aug 9, resumed Aug 25; no recall</td><td>Voluntary removal by the restaurant; no recall; attribution not yet on the record</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-bottom:0;">Two cautions against over-reading this. First, a firm the size of Taylor Farms supplies an enormous share of US foodservice leafy
+        greens, so its appearance in a leafy-green outbreak carries less information than the pairing initially suggests; base rates cut both ways. Second, FDA's 2013
+        environmental assessment found conditions at the implicated facilities "in accordance with known food safety protocols," and operations resumed within weeks.
+        That is the uncomfortable finding worth carrying forward: <strong>the 2013 investigation identified the vehicle and still did not identify a deficiency to
+        correct.</strong> If 2026 resolves the same way, the recurrence is not evidence of a bad operator so much as evidence that the industry lacks a reliable
+        kill-step for this organism on raw leafy greens, and that irrigation-water contamination upstream of any processor remains largely unmanaged.</p>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">Supplier-concentration risk (the transferable lesson)</div>
+        <p style="margin-bottom:0;">Strip out the parasite and this is a single-point-of-failure story. One processor's output reached diners in at least five states
+        through one restaurant brand, and neither the brand nor the public could act until an external investigation worked backward through the chain. For any
+        organization buying fresh produce at scale, the diagnostic question is not "is Taylor Farms safe" but "how long would it take us to answer <em>which processor,
+        which growing region, which lot</em> for a given item, and could we act on that answer faster than a federal traceback." Taco Bell's own response is the useful
+        benchmark here: it identified affected supply, substituted it within 24 hours in the priority states, and pulled the ingredient nationwide, all before any agency
+        told it to. That capability, not the outcome of the investigation, is what distinguishes buyers who can contain an event from buyers who can only wait for one.</p>
+      </div>
+    </section>
+
+    <section>
       <h2>Historical Outbreak Base Rate</h2>
       <p>When a vehicle is found in US Cyclospora outbreaks, it is overwhelmingly a leafy-green or herb blend, frequently linked to imported produce.
       This base rate is the strongest prior for what the 2026 source, if ever identified, will turn out to be.</p>
@@ -119,11 +155,12 @@
           <tr><td>2018 (b)</td><td>Fresh Express salad mix served at McDonald's, 11 states</td><td>511</td><td>FDA lab-confirmed Cyclospora in an unused package</td></tr>
           <tr><td>2019</td><td>Fresh basil exported from Morelos, Mexico</td><td>132 (11 states)</td><td>CDC epi + FDA traceback to Mexican exporter</td></tr>
           <tr><td>2020</td><td>Fresh Express bagged garden salads (ALDI, Hy-Vee, Jewel-Osco brands)</td><td>701 (14 states)</td><td>Epi + traceback; June 27 recall</td></tr>
-          <tr><td>2026</td><td><strong>Suspected: lettuce / salad greens</strong> (unconfirmed, mid-July)</td><td>1,645 CDC-confirmed; &gt;5,100 under analysis; 141 hospitalized; 0 deaths; 34 states</td><td>Ongoing; Michigan lettuce lead, FDA investigating produce, Taco Bell examined; no product or grower named</td></tr>
+          <tr><td>2026</td><td><strong>Reported: Taylor Farms iceberg lettuce, grown in Mexico, served at Taco Bell</strong> (unconfirmed as of Jul 16)</td><td>1,645 CDC-confirmed; &gt;5,100 under analysis; &gt;7,500 state-reported; 141 hospitalized; 0 deaths; 34 states</td><td>Ongoing; FDA traceback to a single supplier per press reporting citing a source familiar with the investigation. No agency confirmation, no recall</td></tr>
         </tbody>
       </table>
       <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Base-rate read: implicated commodities cluster tightly on leafy greens, fresh herbs, and salad blends, with Mexican and Central/South American imports recurring.
-      Identification typically depends on FDA traceback and, occasionally, direct lab confirmation in an unopened package.</p>
+      Identification typically depends on FDA traceback and, occasionally, direct lab confirmation in an unopened package. The 2026 reported lead (iceberg lettuce, Mexican-grown, single processor) falls inside this
+      distribution on every axis, which is why we rate the leafy-green vehicle prediction at 90% while holding the specific Taylor Farms attribution at Medium pending official confirmation.</p>
     </section>
 
     <section>
@@ -149,6 +186,11 @@
         <li><a href="https://www.foodsafetynews.com/2026/07/cyclospora-outbreak-surges-in-michigan/">Food Safety News - Cyclospora cases surge in Michigan</a> (2026-07) [B]</li>
         <li><a href="https://www.npr.org/2026/07/12/nx-s1-5890935/cyclosporiasis-outbreak-diarrhea-nausea-where-states-us">NPR - What to know about the cyclosporiasis outbreak</a> (2026-07-12) [B]</li>
         <li><a href="https://www.washingtonpost.com/health/2026/07/14/authorities-investigate-taco-bell-lettuce-multistate-cyclosporiasis-outbreak/">Washington Post - Authorities investigate Taco Bell and lettuce</a> (2026-07-14) [B]</li>
+        <li><a href="https://www.cbsnews.com/news/cyclosporiasis-outbreak-taco-bell-lettuce-mexico/">CBS News - Outbreak possibly traced to Taylor Farms lettuce from Mexico used by Taco Bell</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-names-source-cyclosporiasis-outbreak-rcna587899">NBC News - Iceberg lettuce supplier investigated as possible source</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.foodsafetynews.com/2013/08/cyclospora-outbreak-linked-to-taylor-farms-salad-some-served-at-olive-garden-and-red-lobster/">Food Safety News - 2013 Cyclospora outbreak linked to Taylor Farms salad (Olive Garden, Red Lobster)</a> (2013-08) [B]</li>
+        <li><a href="https://www.infectioncontroltoday.com/view/cyclosporiasis-outbreak-linked-produce-taylor-farms-de-mexico">Infection Control Today - 2013 outbreak linked to Taylor Farms de Mexico; FDA environmental assessment found practices "in accordance with known food safety protocols"</a> (2013) [B]</li>
+        <li><a href="https://www.cnn.com/2013/08/13/health/cyclospora-outbreak-taylor-farms">CNN - Farm linked to cyclospora stops sending lettuce to US (2013 voluntary halt)</a> (2013-08-13) [B]</li>
         <li><a href="https://stateline.org/2026/07/14/salad-greens-scrutinized-as-cyclosporiasis-outbreak-spreads/">Stateline - Salad greens scrutinized as outbreak spreads</a> (2026-07-14) [B]</li>
       </ol>
     </section>
@@ -157,7 +199,7 @@
 
     <div class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v2 2026-07-15 (data as of 2026-07-14) &middot; Informational, not medical advice.</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v3 2026-07-16 (data as of 2026-07-16) &middot; Informational, not medical advice.</p>
       <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
     </div>
   </div>
