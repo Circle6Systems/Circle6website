@@ -55,7 +55,7 @@
       <div class="meta-grid">
         <div><span class="label">Product</span> Finished Intelligence</div>
         <div><span class="label">TLP</span> CLEAR</div>
-        <div><span class="label">Published</span> July 21, 2026 (v7, data as of Jul 20)</div>
+        <div><span class="label">Published</span> July 22, 2026 (v8, data as of Jul 21)</div>
         <div><span class="label">Sources</span> 40+ open sources</div>
         <div><span class="label">Reliability</span> A-C (Admiralty)</div>
         <div><span class="label">Read time</span> ~12 minutes</div>
@@ -127,13 +127,13 @@
         Farms California, Inc.</strong> directly as defendants alongside Taco Bell, including <em>Caruso v. Taco Bell Corporation, et al.</em>, filed in the
         U.S. District Court for the Northern District of Ohio on behalf of a Geneva, Ohio plaintiff whose stool sample tested positive for Cyclospora on
         July 7.</p>
-        <p style="margin-bottom:0;"><strong>Access limitation this cycle.</strong> Our research session's outbound network access was blocked at the
-        proxy/gateway level for essentially every external host attempted this cycle, confirmed via the proxy's own status endpoint, not the site-specific
-        bot-blocking (Akamai on cdc.gov) we hit in v3 and v4. We could not directly retrieve CDC's, FDA's, or Taylor Farms' own pages. Every fact in this
-        section is drawn from independent secondary reporting that converges on the same 27-state list and the same litigation details, which gives us
-        reasonable confidence in the substance, but we have not verified primary-source wording this cycle, and CDC's national count (still cited at 1,645
-        by every secondary source found) could not be independently confirmed as unchanged versus simply unreported. <strong>Jeff should verify the FDA,
-        CDC, and Taylor Farms primary pages directly before this update publishes.</strong></p>
+        <p style="margin-bottom:0;"><strong>Access limitation, retracted in v8.</strong> v5 through v7 stated that our outbound access was blocked at the
+        proxy/gateway level for essentially every external host, and on that basis described this section as unverified against primary sources.
+        <strong>That claim was wrong and we are retracting it.</strong> It conflated three unrelated failures: an Akamai bot-fingerprinting challenge on
+        cdc.gov that a complete browser header set clears, HTTP 404s from retired fda.gov URLs, and a taylorfarms.com host that was never blocked. In v8
+        the 27-state distribution list, the recall dates, the false-positive retraction, and CDC's frozen national count were each retrieved and verified
+        directly from CDC and FDA primary pages. All four hold as previously reported. We record the error here because our access notes are part of this
+        product's evidentiary claim, and an unearned hedge is as much a sourcing defect as an unearned assertion.</p>
       </div>
       <div class="panel warning" style="border-left-color:var(--c6s-green);">
         <div class="panel-title">Development, July 19: FDA's own import surveillance returns a direct positive test</div>
@@ -341,7 +341,8 @@
 
     <section id="sources">
       <h2>6. Sources</h2>
-      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Selected open sources. For the v3 update, the CDC surveillance, HAN, and outbreak pages were retrieved directly and the confirmed figures (1,645 cases / 34 states / 141 hospitalizations / 0 deaths, as of July 13, 2026) verified against them. For the v4 update, the FDA outbreak page and the Taylor Farms statement were retrieved directly and their figures and wording verified verbatim (2026-07-17); the CDC outbreak page returned an automated-access block, so its content was corroborated through the directly retrieved FDA primary page and cross-checked secondary reporting rather than a direct fetch. For the v5, v6, and v7 updates, our research session's outbound network access remained blocked at the proxy/gateway level for essentially every external host attempted, a broader block than the site-specific ones hit in v3 and v4, so none of these cycles' new facts (the 27-state recall scope, the new lawsuits, the July 19 import-surveillance positive test, and its July 19-20 retraction as a false positive) were verified against primary-source text; they rest on convergence across multiple independent secondary outlets. Admiralty reliability in brackets.</p>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);"><strong>Primary sources retrieved directly for v8 (2026-07-21):</strong> <a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/">CDC, Surveillance of Cyclosporiasis</a>, page updated 2026-07-15, figures as of 2026-07-13 [A1]. <a href="https://www.cdc.gov/cyclosporiasis/outbreaks/index.html">CDC, Cyclosporiasis Outbreak with Unknown Source</a>, 2026-07-14 [A1]. <a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-5-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA, Investigation of 5-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a>, current update 2026-07-19 [A1]. <a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/taylor-fresh-foods-recalls-iceberg-lettuce-central-mexico-because-possible-health-risk">FDA, Taylor Fresh Foods Recalls Iceberg Lettuce from Central Mexico</a>, company announcement 2026-07-17, FDA publish date 2026-07-18 [A1].</p>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Selected open sources. For the v3 update, the CDC surveillance, HAN, and outbreak pages were retrieved directly and the confirmed figures (1,645 cases / 34 states / 141 hospitalizations / 0 deaths, as of July 13, 2026) verified against them. For the v4 update, the FDA outbreak page and the Taylor Farms statement were retrieved directly and their figures and wording verified verbatim (2026-07-17); the CDC outbreak page returned an automated-access block, so its content was corroborated through the directly retrieved FDA primary page and cross-checked secondary reporting rather than a direct fetch. For the v5, v6, and v7 updates we reported that outbound access was blocked at the proxy/gateway level for essentially every external host and that those cycles' facts rested only on convergent secondary reporting. In v8 that access diagnosis was found to be incorrect, see the retraction above, and the affected facts were verified against primary sources: the 27-state distribution list and recall dates against FDA's recall notice, and the July 19 false-positive retraction verbatim against FDA's outbreak investigation page. CDC's frozen national figures were verified against CDC's surveillance page. The litigation details remain secondary-sourced. Admiralty reliability in brackets.</p>
       <ol style="font-size:0.9rem;">
         <li><a href="https://www.nbcnews.com/health/health-news/fda-says-taylor-farms-lettuce-sample-tested-cyclospora-produced-false-rcna588303">NBC News - Taylor Farms lettuce sample produced false positive for cyclospora, FDA says</a> (2026-07-19; retraction of the July 18 positive test) [B]</li>
         <li><a href="https://www.cnbc.com/2026/07/20/fda-taylor-farms-cyclospora-false-positive.html">CNBC - FDA says Taylor Farms cyclospora finding was a false positive</a> (2026-07-20) [B]</li>
@@ -404,7 +405,7 @@
 
     <div class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v7 2026-07-21 (data as of 2026-07-20) &middot; Supersedes v6 2026-07-20, v5 2026-07-19, v4 2026-07-18, v3 2026-07-16, and v2 2026-07-15 &middot; Subject to revision. Informational, not medical advice.</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v8 2026-07-22 (data as of 2026-07-21) &middot; Supersedes v7 2026-07-21, v6 2026-07-20, v5 2026-07-19, v4 2026-07-18, v3 2026-07-16, and v2 2026-07-15 &middot; Subject to revision. Informational, not medical advice.</p>
       <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
     </div>
   </div>
