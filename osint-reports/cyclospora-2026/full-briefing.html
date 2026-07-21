@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Full Intelligence Briefing - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
-  <meta name="description" content="Full OSINT briefing on the 2026 US cyclosporiasis outbreak: epidemiology, the three case-count universes, the FDA/CDC-confirmed Taylor Farms de Mexico traceback, the North Carolina second-vehicle finding, and the CDC biosurveillance-capacity gap.">
+  <meta name="description" content="Full OSINT briefing on the 2026 US cyclosporiasis outbreak: epidemiology, the three case-count universes, the FDA/CDC-confirmed Taylor Farms de Mexico traceback, an FDA import-surveillance lettuce sample that tested positive and was then retracted as a false positive, the 27-state recall, the North Carolina second-vehicle finding, and the CDC biosurveillance-capacity gap.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
@@ -55,8 +55,8 @@
       <div class="meta-grid">
         <div><span class="label">Product</span> Finished Intelligence</div>
         <div><span class="label">TLP</span> CLEAR</div>
-        <div><span class="label">Published</span> July 18, 2026 (v4, data as of Jul 17)</div>
-        <div><span class="label">Sources</span> 35+ open sources</div>
+        <div><span class="label">Published</span> July 21, 2026 (v7, data as of Jul 20)</div>
+        <div><span class="label">Sources</span> 40+ open sources</div>
         <div><span class="label">Reliability</span> A-C (Admiralty)</div>
         <div><span class="label">Read time</span> ~12 minutes</div>
       </div>
@@ -108,6 +108,66 @@
         vehicle. Suspected foods in NC include parsley, cilantro, and lettuce, unconfirmed. A five-state, single-chain cluster still does not explain a
         34-state outbreak; see the mismatch discussion below, now sharpened by a concrete second-vehicle example rather than a hypothetical one.</p>
       </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-amber);">
+        <div class="panel-title">Development, July 18: the recall publishes, and its footprint is wider than the named cluster</div>
+        <p>Taylor Farms de Mexico posted its own recall notice on July 18. Per convergent secondary reporting (CNBC, CNN, Washington Post, Consumer
+        Reports, Marler Blog), the recalled iceberg lettuce, distributed <strong>June 29 through July 16</strong>, reached <strong>27 states</strong>:
+        Alabama, Arkansas, Connecticut, Florida, Georgia, Iowa, Illinois, Indiana, Kansas, Kentucky, Louisiana, Massachusetts, Maryland, Michigan, Missouri,
+        Mississippi, North Carolina, New Hampshire, New Jersey, Ohio, Oklahoma, Pennsylvania, South Carolina, Tennessee, Texas, Virginia, and Wisconsin. The
+        recall list includes retail product, Walmart's Marketside Bagged Iceberg Salad and Shredded Iceberg Salad among them; Walmart states it has no
+        confirmed illnesses tied to the retail product. This is a materially larger distribution footprint than the five-state Taco Bell advisory, which
+        covers only the restaurant channel in Indiana, Kentucky, Michigan, Ohio, and West Virginia.</p>
+        <p><strong>The North Carolina overlap.</strong> North Carolina is on this 27-state recall distribution list, the same North Carolina whose health
+        department maintains its 307 cases are unlinked to the Taco Bell cluster. We do not read this as disconfirming NC DHHS's statement; a recalled
+        product's presence in a state is not evidence that any specific resident consumed it or that it caused any specific illness, and NC DHHS has not
+        revised its position. But it is a fact worth stating plainly rather than smoothing over: the same supplier's product physically reached the one
+        state where officials have explicitly disclaimed a link to that supplier's product, and no public source we found addresses that overlap directly.
+        It complicates a clean reading of North Carolina as a second, unrelated vehicle, without resolving the question either way.</p>
+        <p>Separately, multiple law firms filed additional civil suits this week that, for the first time, name <strong>Taylor Fresh Foods, Inc. and Taylor
+        Farms California, Inc.</strong> directly as defendants alongside Taco Bell, including <em>Caruso v. Taco Bell Corporation, et al.</em>, filed in the
+        U.S. District Court for the Northern District of Ohio on behalf of a Geneva, Ohio plaintiff whose stool sample tested positive for Cyclospora on
+        July 7.</p>
+        <p style="margin-bottom:0;"><strong>Access limitation this cycle.</strong> Our research session's outbound network access was blocked at the
+        proxy/gateway level for essentially every external host attempted this cycle, confirmed via the proxy's own status endpoint, not the site-specific
+        bot-blocking (Akamai on cdc.gov) we hit in v3 and v4. We could not directly retrieve CDC's, FDA's, or Taylor Farms' own pages. Every fact in this
+        section is drawn from independent secondary reporting that converges on the same 27-state list and the same litigation details, which gives us
+        reasonable confidence in the substance, but we have not verified primary-source wording this cycle, and CDC's national count (still cited at 1,645
+        by every secondary source found) could not be independently confirmed as unchanged versus simply unreported. <strong>Jeff should verify the FDA,
+        CDC, and Taylor Farms primary pages directly before this update publishes.</strong></p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">Development, July 19: FDA's own import surveillance returns a direct positive test</div>
+        <p>FDA disclosed that its <strong>targeted import surveillance</strong> program, which samples product at the border independent of any illness
+        report, collected a sample of Taylor Farms de Mexico shredded iceberg lettuce that tested <strong>positive for Cyclospora</strong>. This is a
+        materially different kind of evidence than everything preceding it in this briefing: the July 17 attribution rested on epidemiologic and traceback
+        convergence, "a single supplier" identified through investigation of illness patterns, while this is a direct physical detection of the organism on
+        the implicated commodity itself.</p>
+        <p>FDA states the positive lot was <strong>detained</strong> and is <strong>not part of</strong> Taylor Farms' currently posted 27-state recall.
+        The company says it is working to determine whether any product from that lot reached commerce or consumers' homes. No source we found discloses
+        the lot number, ship dates, or the states or customers that lot was destined for. This leaves a live, unanswered question: whether the 27-state
+        recall already covers the contamination this finding points to, or whether the recall's scope needs to expand.</p>
+        <p style="margin-bottom:0;"><strong>What this changes and does not change.</strong> It strengthens the Taylor Farms attribution for the named
+        cluster to the strongest evidentiary footing yet, a positive laboratory result, not just convergence. It does not bear on the outbreak-wide
+        question, North Carolina's cases remain unaddressed by this finding, and it does not resolve whether the current recall is complete. Our access
+        limitation persisted this cycle (see below); this finding is drawn from secondary reporting (Detroit News, Fox Business, Marler Blog) rather than
+        a direct FDA fetch, and should be verified against FDA's own import-alert or recall pages before publishing.</p>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Correction, July 20: the import-surveillance positive test was retracted as a false positive</div>
+        <p>The July 19 development above, treated at the time as "the strongest evidentiary footing yet," did not hold up. Per convergent secondary
+        reporting (NBC News, CNBC, Newsweek, Forbes, CBS News), FDA re-reviewed the sample on July 19 and concluded it was a <strong>false positive</strong>,
+        stating the finding "does not represent true amplification," and reportedly apologized to Taylor Farms. As of that date, there are <strong>no
+        confirmed positive product-sample test results</strong> anywhere in this outbreak. FDA states its epidemiological and traceback conclusion, the
+        finding that the outbreak is linked to Taylor Farms de Mexico iceberg lettuce, is unchanged.</p>
+        <p style="margin-bottom:0;">We are correcting this in place rather than quietly dropping the earlier claim. Under our own hedge-discipline standard,
+        the attribution for the named cluster remains a finding, not a demoted lead, because it rests on on-the-record agency naming independent of this
+        specific lab result. But the retraction is a real setback for the case's physical evidence, and at least one outlet (Forbes) is already framing the
+        source as "again unknown," a characterization we think overstates FDA's own position but that is itself now part of the information environment
+        around this outbreak. It also means our own July 19 read, that this new evidence resolved the open question about whether the 27-state recall is
+        complete, was premature: that question reverts to unresolved on other grounds, not on the basis of a since-retracted lab result. This finding, like
+        the one it corrects, is drawn from secondary reporting rather than a direct FDA fetch (see the access note below); we could not verify FDA's own
+        wording for either the original report or the retraction this cycle.</p>
+      </div>
       <p>Cyclosporiasis is caused by <em>Cyclospora cayetanensis</em>, a coccidian protozoan parasite for which humans are the only known host.
       Infection follows ingestion of the parasite's environmentally matured oocysts on contaminated fresh produce or in water. Crucially, all
       confirmed 2026 domestic cases involved <strong>no international travel</strong> in the preceding two weeks, pointing to a domestic food or
@@ -127,10 +187,10 @@
       <table>
         <thead><tr><th scope="col">Universe</th><th scope="col">Figure</th><th scope="col">What it counts</th><th scope="col">Reliability</th></tr></thead>
         <tbody>
-          <tr><td>CDC-confirmed domestic (national)</td><td><strong>1,645</strong> / 34 states</td><td>Lab-confirmed, non-travel cases adjudicated by CDC (as of Jul 13, published Jul 14; <strong>unchanged through Jul 17</strong>, a five-day freeze)</td><td><span class="badge badge-green">A - High</span></td></tr>
+          <tr><td>CDC-confirmed domestic (national)</td><td><strong>1,645</strong> / 34 states</td><td>Lab-confirmed, non-travel cases adjudicated by CDC (as of Jul 13, published Jul 14; still reported <strong>unchanged through Jul 18</strong> by every secondary source found, an apparent six-day freeze, though not independently re-verified against CDC's own page this cycle due to a network access limitation)</td><td><span class="badge badge-green">A - High</span></td></tr>
           <tr><td>Taco Bell cluster (subset, fresher)</td><td><strong>1,644</strong> / 94 hosp</td><td>FDA/CDC-published, IN/KY/MI/OH/WV, as of Jul 17; a separate, current dataset published while the national topline stayed frozen</td><td><span class="badge badge-green">A - High</span></td></tr>
           <tr><td>Under analysis</td><td>&gt;5,100</td><td>Reported cases not yet confirmed as domestic-acquired</td><td><span class="badge badge-green">A/B - High</span></td></tr>
-          <tr><td>State-reported aggregate</td><td><strong>&gt;7,500</strong></td><td>Sum of state tallies as of Jul 16 (MI alone 5,002 as of Jul 17); definitions vary, possible double-counting. Michigan's continued climb makes a higher current aggregate likely, but we did not find a fresher confirmed nationwide total to cite</td><td><span class="badge badge-amber">B/C - Medium</span></td></tr>
+          <tr><td>State-reported aggregate</td><td><strong>&gt;7,500</strong></td><td>Sum of state tallies as of Jul 16 (MI alone 5,002 as of Jul 17, the last figure found; no fresher MDHHS update identified this cycle); definitions vary, possible double-counting. Michigan's continued climb makes a higher current aggregate likely, but we did not find a fresher confirmed nationwide total to cite</td><td><span class="badge badge-amber">B/C - Medium</span></td></tr>
           <tr><td>Travel-associated (separate)</td><td>440 / 35 states</td><td>Acquired abroad in the prior 14 days; excluded from the domestic count</td><td><span class="badge badge-green">A - High</span></td></tr>
         </tbody>
       </table>
@@ -151,6 +211,14 @@
         Bell cluster) in the same reporting cycle the national topline stayed at 1,645 / 141. That shows the agencies can and did produce a current number this
         period, just not the aggregate one. We are not revising our assessment to concealment, we still see no evidence of that, but we are lowering our
         confidence in the pure batch-latency explanation and flagging this as the item most worth harder scrutiny next cycle.</p>
+        <p style="margin-bottom:0;"><strong>v5 update.</strong> Every secondary source we found this cycle still cites 1,645, consistent with the freeze
+        continuing into a sixth day, but a network access limitation prevented us from directly reading CDC's own surveillance page this cycle (see the
+        situation section above), so we cannot distinguish "confirmed unchanged" from "not yet re-reported." We are treating the freeze as still likely in
+        effect but formally unverified this cycle, and repeating our recommendation that it be checked directly against CDC's page rather than through
+        search-indexed summaries alone.</p>
+        <p style="margin-bottom:0;"><strong>v7 update.</strong> Same verification gap, now a third consecutive cycle. Every source we found still cites
+        1,645; CDC's own page remained unreachable. We are not lowering our estimate of the freeze's likelihood further on unverified secondary citations
+        alone, but this is now the single most overdue item for a direct primary-source check across the whole briefing.</p>
       </div>
       <p>Geographic concentration is real and intensifying: Michigan reports <strong>5,002</strong> cases as of July 17 against a typical annual baseline near 50
       (102 hospitalizations), up from 4,312 the previous day, a single-day addition of 690. Michigan's cases
@@ -161,14 +229,18 @@
       June 22, 2026 (range May 1 to July 9). CDC expects illnesses to continue rising through the end of August, when the typical Cyclospora season closes.</p>
       <div class="panel warning" style="border-left-color:var(--c6s-green);">
         <div class="panel-title">The five-state / 34-state mismatch, now confirmed rather than hypothetical</div>
-        <p style="margin-bottom:0;">The confirmed Taco Bell cluster covers Indiana, Kentucky, Michigan, Ohio, and West Virginia, and accounts for only a
+        <p>The confirmed Taco Bell cluster covers Indiana, Kentucky, Michigan, Ohio, and West Virginia, and accounts for only a
         fraction of a 34-state, 1,645-confirmed-case outbreak. In v3 we offered three non-exclusive readings for the gap: (1) the same supplier's lettuce
         reached far more customers than Taco Bell; (2) more than one vehicle is in play concurrently; or (3) the remaining states reflect ordinary seasonal
-        incidence amplified by heightened testing. North Carolina now supplies a concrete instance of reading (2): its Department of Health and Human
+        incidence amplified by heightened testing. North Carolina supplied a concrete instance of reading (2) in v4: its Department of Health and Human
         Services states its 307 cases (May 1 to July 14, concentrated in Wake County) are <strong>not linked</strong> to the Taco Bell cluster, with parsley,
-        cilantro, and lettuce named as suspected, unconfirmed foods. The practical implication stands and is now better evidenced: <strong>the Taylor Farms
-        attribution has not closed this outbreak</strong>, and readers should not expect the five-state finding to explain the other 29 states without
-        further, separate investigation.</p>
+        cilantro, and lettuce named as suspected, unconfirmed foods.</p>
+        <p style="margin-bottom:0;"><strong>v5 update: reading (1) and reading (2) are no longer cleanly separable.</strong> Taylor Farms' July 18 recall
+        shows reading (1) is also true, the same supplier's lettuce reached 27 states through retail channels, not just Taco Bell, and North Carolina is one
+        of them. That does not overturn NC DHHS's statement that its cases are unlinked to the Taco Bell cluster specifically, but it means North Carolina
+        cannot be cited as clean evidence of a wholly separate, second vehicle without addressing why the recalled product was also present there. The
+        practical implication still stands: <strong>the Taylor Farms attribution has not closed this outbreak</strong>, and readers should not expect the
+        five-state finding, or the 27-state recall, to fully explain the other states without further, separate investigation.</p>
       </div>
 
       <h3 id="states">States Reporting Cases</h3>
@@ -183,7 +255,7 @@
           <tr><td>New York</td><td>470+</td><td>Elevated; since May 1. <em>Not</em> in the Taco Bell cluster</td></tr>
           <tr><td>West Virginia / Kentucky</td><td>Not individually specified</td><td>In the confirmed five-state Taco Bell cluster</td></tr>
           <tr><td>Indiana</td><td>Not individually specified</td><td>In the confirmed five-state Taco Bell cluster; not previously named in the 400+ cluster reported in v2</td></tr>
-          <tr><td>North Carolina</td><td>307 (May 1 to Jul 14)</td><td>Per NC DHHS. <strong>Confirmed not linked</strong> to the Taco Bell cluster, a separate vehicle; suspected foods parsley, cilantro, lettuce (unconfirmed)</td></tr>
+          <tr><td>North Carolina</td><td>307 (May 1 to Jul 14)</td><td>Per NC DHHS. <strong>Confirmed not linked</strong> to the Taco Bell cluster, a separate vehicle; suspected foods parsley, cilantro, lettuce (unconfirmed). Also appears on Taylor Farms' 27-state recall distribution list (Jul 18), an overlap not yet explained by any source we found</td></tr>
           <tr><td>Illinois</td><td>Among the highest</td><td>Cited (with TX) just behind MI/NY in state rankings</td></tr>
           <tr><td>Texas</td><td>Among the highest</td><td>Cited among the more-affected states</td></tr>
           <tr><td>Florida</td><td>&gt;100</td><td>Among the higher-burden states</td></tr>
@@ -236,6 +308,9 @@
         <div class="timeline-item"><span class="time">Jul 16, 2026</span><div class="event">CBS and NBC, citing a person familiar with the investigation, report an FDA traceback to a single supplier: Taylor Farms iceberg lettuce grown in Mexico, served at Taco Bell in five states. Taco Bell pulls the lettuce indefinitely nationwide. Taylor Farms does not comment. Bloomberg reports an FDA consumer advisory is pending. No agency confirms on the record; no recall issued. The supplier's name reaches the public via journalism, not a federal advisory.</div></div>
         <div class="timeline-item"><span class="time">Jul 13-17, 2026</span><div class="event">CDC's national confirmed count remains frozen at 1,645 for five days while Michigan alone adds 690 cases in a single day and the state aggregate passes 7,500. The federal-to-state ratio widens from roughly 2.4x to well past 4.6x. CDC does not publicly explain the pause.</div></div>
         <div class="timeline-item"><span class="time">Jul 17, 2026</span><div class="event">FDA and CDC publish official outbreak pages linking a five-state Taco Bell cluster (1,644 cases / 94 hospitalized) to Taylor Farms de Mexico iceberg lettuce; FDA's consumer advisory for IN, KY, MI, OH, and WV goes live. Taylor Farms issues its first public statement, voluntarily withdraws central-Mexico iceberg lettuce, and tells FDA it will initiate a recall, without admitting fault. North Carolina's health department states its 307 cases are not linked to the Taco Bell cluster, direct evidence of a second vehicle. The national confirmed topline does not move.</div></div>
+        <div class="timeline-item"><span class="time">Jul 18, 2026</span><div class="event">Taylor Farms posts its own recall notice; per secondary reporting its scope is 27 states, well beyond the five-state Taco Bell advisory, and includes retail bagged product (Walmart Marketside brand). North Carolina, whose cases NC DHHS maintains are unlinked to the Taco Bell cluster, is on that 27-state list. Multiple law firms file additional suits naming Taylor Farms' operating entities directly as defendants for the first time. CDC's national topline is still reported at 1,645, unverified this cycle due to a network access limitation on our end.</div></div>
+        <div class="timeline-item"><span class="time">Jul 19, 2026</span><div class="event">FDA discloses that its targeted import surveillance sampled Taylor Farms de Mexico shredded iceberg lettuce at the border and returned a positive test for Cyclospora, a direct laboratory finding rather than an epidemiologic inference. The positive lot is detained and reported separate from the 27-state recall; its distribution details are not disclosed. CDC's national topline remains reported at 1,645, still unverified this cycle.</div></div>
+        <div class="timeline-item"><span class="time">Jul 19-20, 2026</span><div class="event">FDA re-reviews the July 19 positive sample and concludes it was a false positive, reportedly apologizing to Taylor Farms; the agency's epidemiological and traceback conclusion is stated as unchanged. As of Jul 19, no confirmed positive product-sample result exists in this outbreak. Additional secondary reporting continues to cite the national topline at 1,645.</div></div>
       </div>
       <div class="panel critical">
         <div class="panel-title">Assessment: correlation strong, causation contested</div>
@@ -254,11 +329,11 @@
         <thead><tr><th scope="col">#</th><th scope="col">Assessment</th><th scope="col">Confidence</th></tr></thead>
         <tbody>
           <tr><td>1</td><td>Clinical severity is low; this is a self-limiting, treatable, non-contagious illness with zero reported deaths.</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>2</td><td>True case burden materially exceeds the national confirmed figure of 1,645. State tallies now exceed 7,500 and the gap is widening, not closing; agencies published a fresh, current cluster-specific count in the same period the national topline stayed frozen, which weakens a pure lagging-batch explanation.</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>3</td><td>Source attribution for the five-state Taco Bell cluster is now confirmed on the record by FDA and CDC, reaching a named supplier, commodity, and country of origin within roughly eleven weeks. Attribution for the outbreak as a whole remains open; North Carolina's cases are confirmed unlinked to this cluster.</td><td><span class="badge badge-green">High (cluster) / Medium (outbreak-wide)</span></td></tr>
-          <tr><td>4</td><td>Reduced federal food-safety surveillance has strained response speed and trace-back; this is the durable strategic signal. Reinforced by a five-day frozen national count and by a fresh subset count landing before the topline moved.</td><td><span class="badge badge-amber">Medium (causation) / High (strain)</span></td></tr>
+          <tr><td>2</td><td>True case burden materially exceeds the national confirmed figure of 1,645. State tallies now exceed 7,500 and the gap is widening, not closing; agencies published a fresh, current cluster-specific count in the same period the national topline stayed frozen, which weakens a pure lagging-batch explanation. This cycle we could not independently re-verify the freeze against CDC's own page (network access limitation).</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>3</td><td>Source attribution for the five-state Taco Bell cluster is confirmed on the record by FDA and CDC, reaching a named supplier, commodity, and country of origin within roughly eleven weeks, on epidemiologic and traceback grounds. A same-cycle import-surveillance lab test was briefly reported as a direct positive, which would have corroborated the attribution physically, but FDA retracted it a day later as a false positive; no confirmed positive product-sample result exists in this outbreak. The supplier's own recall shows the product's actual distribution (27 states) is far wider than the named cluster. Attribution for the outbreak as a whole remains open; North Carolina's cases are confirmed unlinked to the Taco Bell cluster even though North Carolina is on the recall's distribution list, an unresolved overlap.</td><td><span class="badge badge-green">High (cluster attribution) / Medium (outbreak-wide) / Medium (physical evidence, post-retraction)</span></td></tr>
+          <tr><td>4</td><td>Reduced federal food-safety surveillance has strained response speed and trace-back; this is the durable strategic signal. Reinforced by a national count still reported unmoved entering a third unverified cycle, and by FDA's own public retraction of a positive product-test result.</td><td><span class="badge badge-amber">Medium (causation) / High (strain)</span></td></tr>
           <tr><td>5</td><td>The vehicle is a leafy-green product, matching every resolved US outbreak since 2013. The confirmed iceberg-lettuce cluster sits squarely inside that base rate, as do North Carolina's suspected (unconfirmed) foods.</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>6</td><td>The Taylor Farms attribution has not accounted for the full 34-state case load. North Carolina's cases are confirmed as a second, unlinked vehicle; expect further states to be identified as separate from the Taco Bell cluster as investigations continue.</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>6</td><td>The Taylor Farms attribution has not accounted for the full 34-state case load. North Carolina's cases remain officially unlinked to the Taco Bell cluster, but North Carolina's presence on Taylor Farms' 27-state recall distribution list complicates a clean "second, unrelated vehicle" reading; expect further states to be identified as either separately sourced or as reached by the same supplier's broader distribution as investigations continue.</td><td><span class="badge badge-amber">Medium-High</span></td></tr>
           <tr><td>7</td><td>The same supplier, commodity, and country of origin produced the 2013 US Cyclospora outbreak (631 cases / 25 states). A 13-year recurrence points to an unresolved structural condition in the Mexican leafy-green supply chain rather than a one-off lapse.</td><td><span class="badge badge-amber">Medium-High</span></td></tr>
         </tbody>
       </table>
@@ -266,8 +341,23 @@
 
     <section id="sources">
       <h2>6. Sources</h2>
-      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Selected open sources. For the v3 update, the CDC surveillance, HAN, and outbreak pages were retrieved directly and the confirmed figures (1,645 cases / 34 states / 141 hospitalizations / 0 deaths, as of July 13, 2026) verified against them. For this v4 update, the FDA outbreak page and the Taylor Farms statement were retrieved directly and their figures and wording verified verbatim (2026-07-17); the CDC outbreak page returned an automated-access block, so its content is corroborated through the directly retrieved FDA primary page and cross-checked secondary reporting rather than a direct fetch. Admiralty reliability in brackets.</p>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Selected open sources. For the v3 update, the CDC surveillance, HAN, and outbreak pages were retrieved directly and the confirmed figures (1,645 cases / 34 states / 141 hospitalizations / 0 deaths, as of July 13, 2026) verified against them. For the v4 update, the FDA outbreak page and the Taylor Farms statement were retrieved directly and their figures and wording verified verbatim (2026-07-17); the CDC outbreak page returned an automated-access block, so its content was corroborated through the directly retrieved FDA primary page and cross-checked secondary reporting rather than a direct fetch. For the v5, v6, and v7 updates, our research session's outbound network access remained blocked at the proxy/gateway level for essentially every external host attempted, a broader block than the site-specific ones hit in v3 and v4, so none of these cycles' new facts (the 27-state recall scope, the new lawsuits, the July 19 import-surveillance positive test, and its July 19-20 retraction as a false positive) were verified against primary-source text; they rest on convergence across multiple independent secondary outlets. Admiralty reliability in brackets.</p>
       <ol style="font-size:0.9rem;">
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-says-taylor-farms-lettuce-sample-tested-cyclospora-produced-false-rcna588303">NBC News - Taylor Farms lettuce sample produced false positive for cyclospora, FDA says</a> (2026-07-19; retraction of the July 18 positive test) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/20/fda-taylor-farms-cyclospora-false-positive.html">CNBC - FDA says Taylor Farms cyclospora finding was a false positive</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.newsweek.com/taylor-farms-says-fda-has-apologized-over-false-positive-cyclospora-test-12216498">Newsweek - Taylor Farms says FDA has apologized over false positive cyclospora test</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.forbes.com/sites/maryroeloffs/2026/07/20/heres-where-the-cyclosporiasis-outbreak-stands-after-taylor-farms-false-positive/">Forbes - Cyclospora source again unknown after FDA acknowledges false positive: what we know</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.cbsnews.com/news/taylor-farms-lettuce-false-positive-cyclospora/">CBS News - Taylor Farms lettuce is still focus of cyclospora investigation despite false positive test, FDA says</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/life/food/2026/07/18/fda-says-taylor-farms-iceberg-lettuce-tested-positive-for-parasite-outbreak/90969816007/">Detroit News - FDA: Taylor Farms lettuce that's not part of recall tests positive for cyclospora</a> (2026-07-18/19; import-surveillance positive test, lot separate from the 27-state recall; later retracted, see above; not independently verified against FDA's own page this cycle) [B]</li>
+        <li><a href="https://www.foxbusiness.com/lifestyle/taylor-farms-lettuce-sample-tests-positive-cyclospora-recall-expands">Fox Business - Taylor Farms lettuce sample tests positive for Cyclospora as recall expands</a> (2026-07-18/19) [B]</li>
+        <li><a href="https://www.marlerblog.com/case-news/fda-found-cyclospora-on-taylor-farms-lettuce-at-the-border-credit-where-its-due-now-tell-us-where-the-rest-of-that-lot-went/">Marler Blog - FDA Found Cyclospora on Taylor Farms Lettuce at the Border. Credit Where It's Due. Now Tell Us Where the Rest of That Lot Went</a> (2026-07-19; flags the absence of lot number/destination disclosure) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/18/taylor-farms-recalls-iceberg-lettuce-in-27-states-due-to-cyclosporiasis-outbreak.html">CNBC - Taylor Farms recalls iceberg lettuce in 27 states due to cyclosporiasis outbreak</a> (2026-07-18; not independently verified against the primary recall notice this cycle) [B]</li>
+        <li><a href="https://www.washingtonpost.com/health/2026/07/17/taylor-farms-pulls-all-iceberg-lettuce-sourced-central-mexico-us-market/">Washington Post - Taylor Farms launches recall in 27 states after iceberg lettuce is tied to outbreak</a> (2026-07-17/18) [B]</li>
+        <li><a href="https://www.marlerblog.com/case-news/taylor-farms-posted-its-own-recall-it-went-to-27-states-not-5-and-the-list-includes-bags-sold-in-grocery-stores/">Marler Blog - Taylor Farms Posted Its Own Recall. It Went to 27 States, Not 5, and the List Includes Bags Sold in Grocery Stores</a> (2026-07-18; describes the recall as the company's own posted notice, with the 27-state list) [B]</li>
+        <li><a href="https://www.consumerreports.org/health/food-recalls/taylor-farms-pulls-mexican-lettuce-linked-to-cyclospora-para-a7871344748/">Consumer Reports - Parasite-Linked Lettuce Was Sent to Walmart Stores and Food Distributors in 27 States</a> (2026-07-18) [B]</li>
+        <li><a href="https://www.yahoo.com/news/us/articles/walmart-recalls-lettuce-linked-cyclospora-155346451.html">Yahoo News (AP) - Walmart recalls lettuce linked to cyclospora outbreak</a> (2026-07-18; Marketside Bagged Iceberg Salad and Shredded Iceberg Salad; Walmart states no confirmed illnesses tied to the retail product) [B]</li>
+        <li><a href="https://www.prnewswire.com/news-releases/marler-clark-and-darr-law-sue-taco-bell-and-taylor-farms-over-cyclospora-outbreak-linked-to-shredded-iceberg-lettuce-302828785.html">PR Newswire - Marler Clark and Darr Law Sue Taco Bell and Taylor Farms Over Cyclospora Outbreak</a> (2026-07-17; <em>Caruso v. Taco Bell Corporation, et al.</em>, N.D. Ohio, first suit by this firm to name Taylor Farms directly) [B]</li>
+        <li><a href="https://www.forbes.com/sites/conormurray/2026/07/17/taco-bell-hit-with-federal-lawsuits-over-cyclosporiasis-infections/">Forbes - Taco Bell Hit With Federal Lawsuits Over Cyclosporiasis Infections</a> (2026-07-17) [B]</li>
         <li><a href="https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/index.html">CDC - Cyclospora Outbreak Linked to Shredded Iceberg Lettuce Served at Taco Bell in 5 States</a> (primary; automated fetch blocked, corroborated via the FDA page and secondary reporting: 1,644 cases / 94 hospitalized / 0 deaths, IN/KY/MI/OH/WV, as of 2026-07-17) [A]</li>
         <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-5-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA - Investigation of 5-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a> (primary; retrieved and verified verbatim 2026-07-17; consumer advisory for IN/KY/MI/OH/WV; "single supplier, Taylor Farms de Mexico") [A]</li>
         <li><a href="https://www.taylorfarms.com/newsroom/taylor-fresh-foods-statement-regarding-cyclospora-outbreak/">Taylor Farms - Taylor Fresh Foods Statement Regarding Cyclospora Outbreak</a> (primary; retrieved and verified verbatim 2026-07-17; first company statement, voluntary withdrawal, recall notice to FDA) (2026-07-17) [A]</li>
@@ -314,7 +404,7 @@
 
     <div class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v4 2026-07-18 (data as of 2026-07-17) &middot; Supersedes v3 2026-07-16 and v2 2026-07-15 &middot; Subject to revision. Informational, not medical advice.</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v7 2026-07-21 (data as of 2026-07-20) &middot; Supersedes v6 2026-07-20, v5 2026-07-19, v4 2026-07-18, v3 2026-07-16, and v2 2026-07-15 &middot; Subject to revision. Informational, not medical advice.</p>
       <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
     </div>
   </div>
