@@ -49,9 +49,9 @@
     .usmap-wrap th{color:var(--ink2);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em}
     .usmap-wrap td.n{font-variant-numeric:tabular-nums;text-align:right}
     .usmap-wrap caption{text-align:left;color:var(--muted);font-size:.76rem;margin-bottom:8px}
-    #tip{position:fixed;z-index:20;pointer-events:none;max-width:260px;background:#2d2a2e;color:var(--ink);border:1px solid var(--hair);border-radius:9px;padding:9px 11px;font-size:.8rem;box-shadow:0 6px 22px rgba(0,0,0,.4);opacity:0;transition:opacity .09s}
+    #tip{position:fixed;z-index:20;pointer-events:none;max-width:260px;background:#211f26;color:#f4efe6;border:1px solid #7b7686;border-radius:9px;padding:10px 12px;font-size:.8rem;line-height:1.45;box-shadow:0 8px 26px rgba(0,0,0,.55);opacity:0;transition:opacity .09s}
     #tip.on{opacity:1}
-    #tip .t{font-weight:700;margin-bottom:2px}
+    #tip .t{font-weight:700;margin-bottom:2px;color:#ffffff}
     #tip .badge{display:inline-block;font-size:.66rem;font-weight:700;padding:1px 6px;border-radius:5px;margin-top:5px}
   </style>
 </head>
@@ -376,12 +376,13 @@ svg.querySelectorAll("path.state").forEach(p=>{
   const aria=nm+", "+TIERWORD[tier]+((d&&d.count)?", "+d.count+" cases":"")+((d&&d.cluster)?", lettuce cluster member":"");
   p.setAttribute("aria-label",aria);
   const basisLabel=(d?{state:"State total: ",cdc:"CDC feed (approx): ",secondary:"Reported: ",none:""}[d.basis]:"" )||"";
-  const badgeColor= tier==="none"?"var(--none-fill)":"var(--"+tier+")";
-  const badgeInk= tier==="high"?"#fff":(tier==="none"?"var(--ink2)":"#191300");
+  const TIERBG={high:"#d03b3b",elev:"#ec835a",mod:"#fab219",base:"#0ca30c",none:"#5a5560"};
+  const TIERTX={high:"#ffffff",elev:"#191300",mod:"#191300",base:"#06240c",none:"#ffffff"};
+  const badgeColor=TIERBG[tier], badgeInk=TIERTX[tier];
   const tipHtml='<div class="t">'+nm+((d&&d.cluster)?' &#9670;':'')+'</div>'+
     ((d&&d.count)?('<div>'+basisLabel+d.count+' cases</div>'):'<div>No published 2026 count</div>')+
-    ((d&&d.note)?'<div style="color:var(--ink2);margin-top:3px">'+d.note+'</div>':'')+
-    ((d&&d.src)?'<div style="color:var(--muted);margin-top:3px">Source: '+d.src+'</div>':'')+
+    ((d&&d.note)?'<div style="color:#ded7ca;margin-top:3px">'+d.note+'</div>':'')+
+    ((d&&d.src)?'<div style="color:#b9afa1;margin-top:3px">Source: '+d.src+'</div>':'')+
     '<span class="badge" style="background:'+badgeColor+';color:'+badgeInk+'">'+TIERWORD[tier]+'</span>';
   p.addEventListener("mouseenter",e=>showTip(e,tipHtml));
   p.addEventListener("mousemove",moveTip);
