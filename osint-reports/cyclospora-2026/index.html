@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://circle6systems.com/osint-reports/cyclospora-2026/">
 
   <!-- Security Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -124,6 +124,13 @@
     </div>
 
     <main id="main-content">
+      <section aria-labelledby="map-h" style="margin:0 0 1.75rem;">
+        <div class="section-label">Outbreak at a glance</div>
+        <h2 id="map-h" style="margin-top:0;">Where the cases are, right now</h2>
+        <p style="color:var(--c6s-text);max-width:72ch;margin-bottom:0.85rem;">Every US state colored by outbreak involvement. Hover or focus a state for its case count, source, and whether it is part of the Taco Bell / Taylor Farms lettuce cluster (states outlined). <a href="state-map.html" style="color:var(--c6s-accent);">Open the full map and methodology &rsaquo;</a></p>
+        <iframe id="mapframe" src="state-map-embed.html" title="Interactive US state involvement map for the 2026 cyclosporiasis outbreak" loading="eager" style="width:100%;border:0;height:900px;overflow:hidden;"></iframe>
+      </section>
+
 
     <div class="panel highlight">
       <div class="panel-title">Bottom Line Up Front</div>
@@ -262,12 +269,6 @@
 
     <div class="section-label">Briefing Package</div>
     <div class="card-grid">
-      <a href="state-map.html" class="card" style="grid-column: 1 / -1; border-color: var(--c6s-accent);">
-        <div class="card-icon" style="color: var(--c6s-accent);">&#128506;</div>
-        <h3>Interactive State Involvement Map</h3>
-        <p>Every US state color-coded by outbreak involvement, with per-state case counts and the 5-state Taco Bell / Taylor Farms lettuce cluster outlined. Includes a verified 50-state reporting-completeness check that separates genuine non-reporting from data-collection gaps.</p>
-        <div class="card-badge"><span class="badge badge-green">Interactive</span> <span class="badge badge-blue">GEOINT</span></div>
-      </a>
 
       <a href="executive-overview.html" class="card" style="border-color: var(--c6s-accent);">
         <div class="card-icon" style="color: var(--c6s-accent);">&#9733;</div>
@@ -457,5 +458,14 @@
       <p style="margin-top:0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
     </div>
   </div>
+  <script>
+    (function(){
+      var f=document.getElementById('mapframe'); if(!f) return;
+      window.addEventListener('message',function(e){
+        if(e.origin!==location.origin) return;
+        if(e.data && e.data.type==='mapHeight' && typeof e.data.h==='number'){ f.style.height=(e.data.h+6)+'px'; }
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -32,3 +32,12 @@ DRAFT PR. Case figures are time-sensitive and need Jeff's review before publish.
 - Whether Montana / DC / Minnesota / North Dakota / Vermont begin publishing a 2026 figure (flip them off gray).
 - Refresh per-state counts on the daily cadence using the collection methodology memory (reference-cyclospora-state-data-collection).
 - Add a manual label-position override for any concave state whose centered number reads oddly.
+
+
+## Update (2026-07-23, focal-point pass)
+Made the map the hero of the landing page instead of a footer link buried under the narrative. Re-architected to a single data source to prevent drift under the daily routine:
+- `state-map-embed.html` is the chromeless map and the ONLY place the per-state `D` data object lives. It auto-reports its height to the parent via postMessage.
+- `index.html` embeds it as the hero, immediately below `<main>` and above the "What changed" narrative (which is now secondary). The redundant featured card was removed.
+- `state-map.html` (full page) now embeds the same iframe rather than duplicating the map, keeping the "reading honestly" methodology section as page content.
+- CSP on index and state-map.html gained `frame-src 'self'`; the embed sets `frame-ancestors 'self'`.
+Routine note: per-state figure edits now target `state-map-embed.html` only.
