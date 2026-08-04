@@ -89,6 +89,35 @@ document.addEventListener('alpine:init', () => {
     // Settings
     showClearConfirm: false,
 
+    // --- CSP-build helpers (issue #87) --------------------------------
+    // The Alpine CSP build only evaluates property/member access, so every
+    // comparison, negation, arithmetic, concat, ternary, object literal, and
+    // method-call that used to live in a template expression is exposed here
+    // as a getter (for x-text/x-show/x-bind) or a no-arg method (for @-events).
+    get isLoading() { return this.view === 'loading'; },
+    get isUnsupported() { return this.view === 'unsupported'; },
+    get isSetup() { return this.view === 'setup'; },
+    get isAuth() { return this.view === 'auth'; },
+    get isImport() { return this.view === 'import'; },
+    get isDashboard() { return this.view === 'dashboard'; },
+    get isSection() { return this.view === 'section'; },
+    get isPlatform() { return this.view === 'platform'; },
+    get isVault() { return this.view === 'vault'; },
+    get isExport() { return this.view === 'export'; },
+    get isSettings() { return this.view === 'settings'; },
+    get isGuidance() { return this.view === 'guidance'; },
+    get notProcessing() { return !this.isProcessing; },
+    goDashboard() { this.view = 'dashboard'; },
+    goGuidance() { this.view = 'guidance'; },
+    goSettings() { this.view = 'settings'; },
+
+    // Setup view
+    get passphraseTooShort() { return this.passphrase.length > 0 && this.passphrase.length < 12; },
+    get passphraseCharsNeeded() { return 12 - this.passphrase.length; },
+    get passphraseLongEnough() { return this.passphrase.length >= 12; },
+    get passphraseStrengthWidth() { return 'width:' + Math.round((this.passphraseStrength.score / 7) * 100) + '%'; },
+    get beginDisabled() { return this.isProcessing || this.passphrase.length < 12; },
+
     // --- Init ---
     async init() {
       if (!WizardCrypto.isSupported()) {

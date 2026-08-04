@@ -33,7 +33,7 @@
   <main id="main" x-data="wizardApp" x-cloak>
 
     <!-- Loading -->
-    <template x-if="view === 'loading'">
+    <template x-if="isLoading">
       <div class="loading-screen" role="status" aria-label="Loading application">
         <div class="spinner"></div>
         <p>Loading...</p>
@@ -41,7 +41,7 @@
     </template>
 
     <!-- Unsupported browser -->
-    <template x-if="view === 'unsupported'">
+    <template x-if="isUnsupported">
       <div class="auth-container">
         <div class="card">
           <h1>Browser Not Supported</h1>
@@ -52,7 +52,7 @@
     </template>
 
     <!-- First-time setup -->
-    <template x-if="view === 'setup'">
+    <template x-if="isSetup">
       <div class="auth-container">
         <div class="card">
           <h1>Create Your Passphrase</h1>
@@ -79,13 +79,13 @@
           <form @submit.prevent="createPassphrase">
             <div class="form-group">
               <label class="form-label" for="setup-pass">Passphrase</label>
-              <input type="password" id="setup-pass" class="form-input" x-model="passphrase" @input="updatePassphraseStrength()" placeholder="At least 12 characters" autocomplete="new-password" aria-describedby="setup-hint setup-strength-hint">
-              <div id="setup-hint" class="passphrase-hint" x-show="passphrase.length > 0 && passphrase.length < 12" aria-live="polite">
-                <span x-text="12 - passphrase.length"></span> more characters needed
+              <input type="password" id="setup-pass" class="form-input" x-model="passphrase" @input="updatePassphraseStrength" placeholder="At least 12 characters" autocomplete="new-password" aria-describedby="setup-hint setup-strength-hint">
+              <div id="setup-hint" class="passphrase-hint" x-show="passphraseTooShort" aria-live="polite">
+                <span x-text="passphraseCharsNeeded"></span> more characters needed
               </div>
-              <div id="setup-strength-hint" class="strength-meter" x-show="passphrase.length >= 12" aria-live="polite">
+              <div id="setup-strength-hint" class="strength-meter" x-show="passphraseLongEnough" aria-live="polite">
                 <div class="strength-bar">
-                  <div class="strength-fill" :class="passphraseStrength.cls" :style="'width:' + Math.round((passphraseStrength.score / 7) * 100) + '%'"></div>
+                  <div class="strength-fill" :class="passphraseStrength.cls" :style="passphraseStrengthWidth"></div>
                 </div>
                 <span class="strength-label" :class="passphraseStrength.cls" x-text="passphraseStrength.label"></span>
               </div>
@@ -100,18 +100,18 @@
 
             <div x-show="error" class="error-message" x-text="error" role="alert"></div>
 
-            <button type="submit" class="btn btn-primary" :disabled="isProcessing || passphrase.length < 12" aria-label="Create passphrase and begin">
-              <span x-show="!isProcessing">Begin</span>
+            <button type="submit" class="btn btn-primary" :disabled="beginDisabled" aria-label="Create passphrase and begin">
+              <span x-show="notProcessing">Begin</span>
               <span x-show="isProcessing">Encrypting...</span>
             </button>
           </form>
-          <p class="import-link-text">Have a previous export? <button type="button" class="link-btn" @click="startImport()" aria-label="Restore from a previously exported bundle">Restore from a previous export</button></p>
+          <p class="import-link-text">Have a previous export? <button type="button" class="link-btn" @click="startImport" aria-label="Restore from a previously exported bundle">Restore from a previous export</button></p>
         </div>
       </div>
     </template>
 
     <!-- Returning user unlock -->
-    <template x-if="view === 'auth'">
+    <template x-if="isAuth">
       <div class="auth-container">
         <div class="card">
           <h1>Welcome Back</h1>
@@ -130,11 +130,11 @@
             <div x-show="error" class="error-message" x-text="error" role="alert"></div>
 
             <button type="submit" class="btn btn-primary" :disabled="isProcessing" aria-label="Unlock encrypted data">
-              <span x-show="!isProcessing">Unlock</span>
+              <span x-show="notProcessing">Unlock</span>
               <span x-show="isProcessing">Decrypting...</span>
             </button>
           </form>
-          <p class="import-link-text">Need to restore from a bundle? <button type="button" class="link-btn" @click="startImport()" aria-label="Restore from a previously exported bundle">Restore from a previous export</button></p>
+          <p class="import-link-text">Need to restore from a bundle? <button type="button" class="link-btn" @click="startImport" aria-label="Restore from a previously exported bundle">Restore from a previous export</button></p>
         </div>
       </div>
     </template>
@@ -170,7 +170,7 @@
                 <div x-show="importError" class="error-message" x-text="importError" role="alert"></div>
                 <div class="import-actions">
                   <button type="submit" class="btn btn-primary" :disabled="isProcessing || !importBundlePassphrase" aria-label="Decrypt the bundle">
-                    <span x-show="!isProcessing">Decrypt</span>
+                    <span x-show="notProcessing">Decrypt</span>
                     <span x-show="isProcessing">Decrypting...</span>
                   </button>
                   <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel import">Cancel</button>
@@ -210,7 +210,7 @@
                 <div x-show="importError" class="error-message" x-text="importError" role="alert"></div>
                 <div class="import-actions">
                   <button type="submit" class="btn btn-primary" :disabled="isProcessing || importNewPassphrase.length < 12" aria-label="Set passphrase and restore data">
-                    <span x-show="!isProcessing">Restore Data</span>
+                    <span x-show="notProcessing">Restore Data</span>
                     <span x-show="isProcessing">Setting up...</span>
                   </button>
                   <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel import">Cancel</button>
@@ -228,7 +228,7 @@
               </div>
               <div class="import-actions">
                 <button type="button" class="btn btn-primary" @click="confirmRestore()" :disabled="isProcessing" aria-label="Replace existing data with bundle contents">
-                  <span x-show="!isProcessing">Replace Existing Data</span>
+                  <span x-show="notProcessing">Replace Existing Data</span>
                   <span x-show="isProcessing">Restoring...</span>
                 </button>
                 <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel and keep existing data">Cancel</button>
@@ -758,7 +758,7 @@
 
           <div class="export-actions">
             <button type="submit" class="btn btn-primary" :disabled="isProcessing || bundlePassphrase.length < 12 || getBundleSelectedCount() === 0" aria-label="Generate encrypted bundle, executor instructions, and access kit">
-              <span x-show="!isProcessing">Generate Secure Bundle</span>
+              <span x-show="notProcessing">Generate Secure Bundle</span>
               <span x-show="isProcessing">Encrypting...</span>
             </button>
           </div>
@@ -981,7 +981,7 @@
 
             <div class="data-import-actions">
               <button class="btn btn-primary" @click="applyImportToChecklist()" :disabled="isProcessing || getImportAcceptCount() === 0" :aria-label="'Add ' + getImportAcceptCount() + ' accounts to checklist'">
-                <span x-show="!isProcessing" x-text="'Add ' + getImportAcceptCount() + ' Accounts to Checklist'"></span>
+                <span x-show="notProcessing" x-text="'Add ' + getImportAcceptCount() + ' Accounts to Checklist'"></span>
                 <span x-show="isProcessing">Applying...</span>
               </button>
               <button class="btn btn-secondary" @click="cancelDataImport()" :disabled="isProcessing" aria-label="Cancel import">Cancel</button>
@@ -1175,7 +1175,7 @@
   <script src="js/import-passwords.js" integrity="sha384-MR1zZX5C931H9wKXq5kbMNoLuIxmQ3B1mHj0JuFaK7BPjlDKUNcSGPg/ldHf/5q7" crossorigin="anonymous"></script>
   <script src="js/import-bookmarks.js" integrity="sha384-QLOmaNAm7uPKAw/VDdSp8+NUrDr0NqoIUuQrH+Jt2Y9UKrnepcwgi+FJghnBIFos" crossorigin="anonymous"></script>
   <script src="js/import-matcher.js" integrity="sha384-Rd0+xAeTyIMUBbBnsmCGR2z4LTZO7SVT1mYKe2nJ7ifJaM5KXbnYnRXz9GCShp5T" crossorigin="anonymous"></script>
-  <script src="js/wizard-app.js" integrity="sha384-tqf6WDKl6FxizUImxZlM0FNJuaK70+GLpPS8Uzs0QxtIVbpjTJfyJuuJr6O3yaXe" crossorigin="anonymous"></script>
+  <script src="js/wizard-app.js" integrity="sha384-nXGHIustqRqrrgZ7oJXiYjwojVxbc8fbRnucH3DgZ8TwVQ1nzQjajTwnJ7NWdW9D" crossorigin="anonymous"></script>
   <script src="js/vendor/alpine.min.js" defer></script>
 </body>
 </html>
