@@ -1161,17 +1161,21 @@
     </div>
   </footer>
 
-  <!-- Scripts: crypto, storage, utils, content, checklist load synchronously before Alpine -->
-  <script src="js/crypto.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/content.js"></script>
-  <script src="js/checklist.js"></script>
-  <script src="js/import-core.js"></script>
-  <script src="js/import-passwords.js"></script>
-  <script src="js/import-bookmarks.js"></script>
-  <script src="js/import-matcher.js"></script>
-  <script src="js/wizard-app.js"></script>
+  <!-- Scripts: crypto, storage, utils, content, checklist load synchronously before Alpine.
+       Each app script carries a Subresource Integrity (SRI) sha384 digest (SEC-006).
+       Regenerate a digest after editing a script:
+         openssl dgst -sha384 -binary js/FILE.js | openssl base64 -A
+       alpine.min.js SRI is deferred to the Alpine CSP-build swap (issue #87). -->
+  <script src="js/crypto.js" integrity="sha384-nSxWJDu5OTKxOfcx3K9FWkW3Nx952BlSRqmBEzdp6CqcgD12o5pb2J0eLihZlib1" crossorigin="anonymous"></script>
+  <script src="js/storage.js" integrity="sha384-x2CcryuITPIpoDrjsyHWvjSmR6PSt8um2AZuPYzzr9eCrSMt/nDym1XWP0KTITRC" crossorigin="anonymous"></script>
+  <script src="js/utils.js" integrity="sha384-3ZCl5LwRXw6PLZtas0ASCGJ2lVQgysEvejFkkxFfqXVjO4zmD7z8rY5BSIxv6SH4" crossorigin="anonymous"></script>
+  <script src="js/content.js" integrity="sha384-HJBTJqNtNKzlPVrR4e8pOqsiFef2On95Ybe2zd12kpzBEPtyhTFVWWMrwYRof32m" crossorigin="anonymous"></script>
+  <script src="js/checklist.js" integrity="sha384-avUohQoKVBiidPnHfAqZTGLLK1/ql8lxBggh3kSXYleuhd5A4yovs59I9vPhwmKI" crossorigin="anonymous"></script>
+  <script src="js/import-core.js" integrity="sha384-rNXTpenlyM3YznPQAKMK8D7iy2MjQwH/p1iNJLGmxwAO1tvieK8Z4NP9Xy2zEbG6" crossorigin="anonymous"></script>
+  <script src="js/import-passwords.js" integrity="sha384-MR1zZX5C931H9wKXq5kbMNoLuIxmQ3B1mHj0JuFaK7BPjlDKUNcSGPg/ldHf/5q7" crossorigin="anonymous"></script>
+  <script src="js/import-bookmarks.js" integrity="sha384-QLOmaNAm7uPKAw/VDdSp8+NUrDr0NqoIUuQrH+Jt2Y9UKrnepcwgi+FJghnBIFos" crossorigin="anonymous"></script>
+  <script src="js/import-matcher.js" integrity="sha384-Rd0+xAeTyIMUBbBnsmCGR2z4LTZO7SVT1mYKe2nJ7ifJaM5KXbnYnRXz9GCShp5T" crossorigin="anonymous"></script>
+  <script src="js/wizard-app.js" integrity="sha384-tqf6WDKl6FxizUImxZlM0FNJuaK70+GLpPS8Uzs0QxtIVbpjTJfyJuuJr6O3yaXe" crossorigin="anonymous"></script>
   <script src="js/vendor/alpine.min.js" defer></script>
 </body>
 </html>
