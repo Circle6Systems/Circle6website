@@ -9,6 +9,7 @@ Disallow: /docs/
 Disallow: /tests/
 Disallow: /node_modules/
 Disallow: /training/dude-diligence/dude-secret-posts/
+Disallow: /trust-safety/wizard/
 
 # Block AI training scrapers
 User-agent: GPTBot

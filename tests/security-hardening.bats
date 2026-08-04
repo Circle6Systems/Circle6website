@@ -91,3 +91,12 @@ SITE_ROOT="$(cd "$(dirname "$BATS_TEST_FILENAME")/.." && pwd)"
 @test "SEC-008: security.txt has Expires field" {
   grep -q '^Expires:' "$SITE_ROOT/.well-known/security.txt"
 }
+
+# SEC-009: unreleased wizard is kept out of search indexes until launch (#90)
+@test "SEC-009: wizard page has robots noindex" {
+  grep -qiE 'name="robots"[^>]*noindex' "$SITE_ROOT/trust-safety/wizard/index.html"
+}
+
+@test "SEC-009: robots.txt disallows the wizard path" {
+  grep -qE '^Disallow: /trust-safety/wizard/' "$SITE_ROOT/robots.txt"
+}
