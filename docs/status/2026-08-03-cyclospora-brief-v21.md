@@ -31,7 +31,7 @@ CDC's national surveillance page, also fetched HTTP 200, still reads **Deaths: 0
 
 ## Held, not changed
 
-- **Litigation: unverified this cycle.** CourtListener RECAP docket sweep did not run (scout blocked); JPML has still not ruled on transfer of MDL No. 3196; press does not cover Panel procedural orders. Treated as a coverage gap, not "no movement."
+- **Litigation: docket sweep run locally (v21.1 addendum), no movement.** The scout could not reach CourtListener; this pass ran the RECAP sweep directly on the JPML docket for MDL No. 3196 (CourtListener docket 73691833, PACER jpml 1760583). Four entries, nothing past v20's read: Motion to Transfer (Jul 17), Notice of Major Deficiency cured (Jul 23), MDL No. 3196 Assigned (Jul 29), Order to Show Cause with response due Jul 30 (Jul 29). MLD status still **Pending**; Panel has **not ruled on transfer**; no new constituent action. Caveat: RECAP's mirror was last refreshed Jul 29, so the Jul 30 OSC response and any Panel order since are not yet reflected -- a PACER-authoritative pull would be needed to close the Jul 30-to-Aug 3 gap.
 - FDA refs #1385/#1392 unchanged from v20's direct Jul 30 read; stale press "4-6 outbreaks" not adopted.
 - Ohio, Indiana, West Virginia, North Carolina, NY/NYC unchanged from v20.2.
 
@@ -45,4 +45,4 @@ CDC's national surveillance page, also fetched HTTP 200, still reads **Deaths: 0
 1. Watch whether CDC's national page updates its deaths tally from 0 to reflect Michigan (expected lag; note when it lands).
 2. NCDHHS Tuesday update due 2026-08-04.
 3. Michigan hospitalizations past 193 on the Aug 6 Thursday refresh.
-4. JPML ruling on MDL No. 3196 -- still needs the docket sweep, still blocked in the scout environment; run it in the next local pass.
+4. JPML ruling on MDL No. 3196 -- docket confirmed Pending as of the Jul 29 RECAP refresh (sweep run this pass). Re-run against a fresher RECAP mirror (or PACER) to pick up the Jul 30 OSC response and any transfer order.
