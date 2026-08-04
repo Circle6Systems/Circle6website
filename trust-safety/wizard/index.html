@@ -79,9 +79,15 @@
           <form @submit.prevent="createPassphrase">
             <div class="form-group">
               <label class="form-label" for="setup-pass">Passphrase</label>
-              <input type="password" id="setup-pass" class="form-input" x-model="passphrase" placeholder="At least 12 characters" autocomplete="new-password" aria-describedby="setup-hint">
+              <input type="password" id="setup-pass" class="form-input" x-model="passphrase" @input="updatePassphraseStrength()" placeholder="At least 12 characters" autocomplete="new-password" aria-describedby="setup-hint setup-strength-hint">
               <div id="setup-hint" class="passphrase-hint" x-show="passphrase.length > 0 && passphrase.length < 12" aria-live="polite">
                 <span x-text="12 - passphrase.length"></span> more characters needed
+              </div>
+              <div id="setup-strength-hint" class="strength-meter" x-show="passphrase.length >= 12" aria-live="polite">
+                <div class="strength-bar">
+                  <div class="strength-fill" :class="passphraseStrength.cls" :style="'width:' + Math.round((passphraseStrength.score / 7) * 100) + '%'"></div>
+                </div>
+                <span class="strength-label" :class="passphraseStrength.cls" x-text="passphraseStrength.label"></span>
               </div>
             </div>
 

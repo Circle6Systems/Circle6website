@@ -16,6 +16,7 @@ document.addEventListener('alpine:init', () => {
     // Auth
     passphrase: '',
     passphraseConfirm: '',
+    passphraseStrength: { score: 0, label: '', cls: '' },
     cryptoKey: null,
     isFirstTime: false,
     _failedAttempts: 0,
@@ -114,6 +115,11 @@ document.addEventListener('alpine:init', () => {
 
       if (this.passphrase.length < 12) {
         this.error = 'Passphrase must be at least 12 characters.';
+        return;
+      }
+
+      if (this._isWeakPassphrase(this.passphrase)) {
+        this.error = 'This passphrase is too weak. It is the only thing protecting your data, and there is no reset. Use a longer passphrase, or mix in upper and lower case, numbers, or symbols. Avoid common words and simple sequences.';
         return;
       }
 
@@ -718,12 +724,9 @@ document.addEventListener('alpine:init', () => {
       this.view = 'export';
     },
 
-    updateBundleStrength() {
-      var pp = this.bundlePassphrase;
-      if (!pp || pp.length === 0) {
-        this.bundleStrength = { score: 0, label: '', cls: '' };
-        return;
-      }
+    // Shared passphrase scorer (used by the primary vault + bundle export).
+    _scorePassphrase(pp) {
+      if (!pp || pp.length === 0) return { score: 0, label: '', cls: '' };
       var score = 0;
       if (pp.length >= 12) score++;
       if (pp.length >= 16) score++;
@@ -731,11 +734,41 @@ document.addEventListener('alpine:init', () => {
       if (/[a-z]/.test(pp) && /[A-Z]/.test(pp)) score++;
       if (/[0-9]/.test(pp)) score++;
       if (/[^a-zA-Z0-9]/.test(pp)) score++;
-      var uniqueChars = new Set(pp).size;
-      if (uniqueChars >= 8) score++;
+      if (new Set(pp).size >= 8) score++;
       var labels = ['Weak', 'Weak', 'Fair', 'Fair', 'Good', 'Strong', 'Strong', 'Very Strong'];
       var classes = ['weak', 'weak', 'fair', 'fair', 'good', 'strong', 'strong', 'strong'];
-      this.bundleStrength = { score: Math.min(score, 7), label: labels[score] || 'Weak', cls: classes[score] || 'weak' };
+      return { score: Math.min(score, 7), label: labels[score] || 'Weak', cls: classes[score] || 'weak' };
+    },
+
+    // True when a passphrase is too weak to protect the vault against an offline
+    // attacker who copies IndexedDB. Catches short, low-score, common, all-same,
+    // and mostly-sequential passphrases (a sequential run like "123456789012"
+    // scores "Fair" but is trivially guessable). See issue #93.
+    _isWeakPassphrase(pp) {
+      if (!pp || pp.length < 12) return true;
+      var lower = pp.toLowerCase();
+      var COMMON = ['password', '123456789', '1234567890', 'qwertyuiop', 'letmein',
+        'iloveyou', 'admin', 'welcome', 'passphrase', 'changeme'];
+      for (var i = 0; i < COMMON.length; i++) {
+        if (lower.indexOf(COMMON[i]) !== -1) return true;
+      }
+      if (/^(.)\1+$/.test(pp)) return true; // all one character
+      // Mostly-sequential (each char +/-1 from the previous), e.g. abcdef / 123456.
+      var seq = 0;
+      for (var j = 1; j < pp.length; j++) {
+        var d = pp.charCodeAt(j) - pp.charCodeAt(j - 1);
+        if (d === 1 || d === -1) seq++;
+      }
+      if (seq / (pp.length - 1) >= 0.7) return true;
+      return this._scorePassphrase(pp).score < 3;
+    },
+
+    updatePassphraseStrength() {
+      this.passphraseStrength = this._scorePassphrase(this.passphrase);
+    },
+
+    updateBundleStrength() {
+      this.bundleStrength = this._scorePassphrase(this.bundlePassphrase);
     },
 
     getBundleSelectedCount() {
