@@ -69,7 +69,7 @@
 
     <div class="hero">
       <h1>2026 US Cyclosporiasis Outbreak</h1>
-      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v20, August 2, 2026 (data as of Aug 2)</div>
+      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v21, August 3, 2026 (data as of Aug 3)</div>
       <p class="event-summary">
         Open-source threat-intelligence briefing on the largest domestic <em>Cyclospora cayetanensis</em> event on record.
         A parasite spread through the fresh-produce supply chain has produced <strong>6,707 CDC-confirmed domestic cases across 45 states</strong> (CDC's
@@ -106,8 +106,8 @@
           <div class="label">Hospitalizations</div>
         </div>
         <div class="status-item">
-          <div class="value" style="color: var(--c6s-green);">0</div>
-          <div class="label">Deaths</div>
+          <div class="value" style="color: var(--c6s-red);">2</div>
+          <div class="label">Deaths (Michigan, MDHHS, Aug 3)</div>
         </div>
         <div class="status-item">
           <div class="value" style="color: var(--c6s-amber);">RETRACTED</div>
@@ -143,8 +143,13 @@
 
     <div class="panel highlight">
       <div class="panel-title">Bottom Line Up Front</div>
-      <p style="margin-bottom:0;">This is a clinically mild but epidemiologically significant outbreak. Severity is low: the illness is self-limiting,
-      treatable with antibiotics, and <strong>not spread person-to-person</strong>. The Taylor Farms de Mexico attribution, already weakened by a
+      <p style="margin-bottom:0;">This is a generally mild but epidemiologically significant outbreak that has now, for the first time, been associated with deaths.
+      For most people the illness is self-limiting, treatable with antibiotics, and <strong>not spread person-to-person</strong>; cyclosporiasis is rarely
+      life-threatening. But on Aug 3 Michigan MDHHS reported the outbreak's <strong>first two deaths</strong> (verified this cycle against MDHHS's own
+      page, which reads 2). MDHHS states both decedents "had significant underlying health conditions that may have been impacted by cyclosporiasis and
+      dehydration," and both became ill <em>before</em> the July 17 recall. We carry that nuance rather than either overstating lethality or leaving the
+      long-standing "zero deaths, clinically mild" framing to stand now that it is wrong. CDC's national page still reads 0 deaths (data through Jul 27),
+      a reporting lag behind the state figure, not a contradiction of it. The Taylor Farms de Mexico attribution, already weakened by a
       retracted lab result, took a second, more direct hit this cycle: Mexico's own Health Secretary said on the record that his country's investigation
       found <strong>no evidence the outbreak originated there</strong>, a named foreign government publicly disputing the named US agencies' traceback
       conclusion. FDA and CDC have not withdrawn that conclusion, so the attribution for the named cluster still clears our bar for a finding, but a
@@ -169,6 +174,33 @@
     </div>
 
     <div class="prediction-note" style="border-left:3px solid var(--c6s-red);">
+      <strong>What changed in v21 (Aug 3): the outbreak's first deaths. Michigan MDHHS reported two, and the "zero deaths / clinically mild"
+      framing this briefing has carried since v1 is now corrected.</strong> On Aug 3 the Michigan Department of Health and Human Services updated its
+      own outbreak page to report <strong>2 deaths</strong>, the first associated with this outbreak. Both figures below were verified this cycle by
+      fetching MDHHS's own page directly (HTTP 200), not from press: the page reads "Deaths: 2" and "Total Cases: 11,234," last updated August 3, 2026.
+      The overnight scout cycle (issue #80) was network-blocked and rested on convergent press attribution to MDHHS; this local pass replaces that with the
+      primary source.
+      <br><br>
+      <strong>MDHHS's own nuance is carried, not stripped.</strong> The state says both decedents "had significant underlying health conditions that
+      may have been impacted by cyclosporiasis and dehydration," and both became ill <em>before</em> Taylor Farms' July 17 recall. MDHHS still states that
+      "cyclosporiasis is generally not a life-threatening illness" and that death from it "is uncommon in the United States." The correction here is that the
+      hero badge, the Bottom Line, and the severity-framing rows no longer read "zero deaths / clinically mild" unqualified; the outbreak is still mild for
+      most, but it is no longer accurate to call it fatality-free.
+      <br><br>
+      <strong>Michigan's statewide total rose to 11,234</strong> (from 10,773 on Jul 31), also read directly from MDHHS's page. Hospitalizations remain
+      <strong>193</strong> (MDHHS refreshes that weekly on Thursdays, next Aug 6, so it lags the daily case count). <strong>CDC's national page still reads
+      0 deaths</strong> (6,707 confirmed / 45 states / 423 hospitalized, data through Jul 27, re-fetched this cycle and unchanged); the national tally lagging
+      a state agency's own count by days is the expected surveillance behavior this briefing has documented all along, not a discrepancy. We note the lag
+      explicitly rather than smoothing it over.
+      <br><br>
+      <strong>Held, not changed:</strong> Nothing new surfaced on the litigation this cycle. The JPML has still not ruled on transfer of MDL No. 3196; the
+      CourtListener docket sweep could not run in the blocked scout environment and press does not cover Panel procedural orders, so litigation is treated as
+      unverified this cycle rather than "no movement." FDA's two ongoing unidentified-product outbreaks (refs #1385, #1392) are unchanged from v20's direct
+      Jul 30 read; stale press recirculating "4-6 outbreaks" was not adopted. Ohio, Indiana, West Virginia, North Carolina and the NY/NYC figures are
+      unchanged from v20.2.
+    </div>
+
+    <div class="prediction-note" style="border-left:3px solid var(--c6s-border);">
       <strong>What changed in v20 (Aug 2): three state totals moved on primary-verified dashboards, and the multidistrict litigation
       cleared its first procedural gate while the routine's own docket-blind cycles were reporting no movement.</strong> Every figure
       below was fetched directly this cycle (all primary hosts returned HTTP 200); the two overnight scout cycles (issues #72, #73) were
@@ -628,9 +660,9 @@
           <tr><td>States with confirmed cases</td><td>45 (as of Jul 29, up from 41)</td><td>Oregon, South Dakota, Vermont, and Delaware newly added to CDC's national confirmed-case list; reported alongside the Jul 29 confirmed-count update; count confirmed directly on CDC's surveillance page in v19</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Cases under analysis</td><td>&gt;11,500</td><td>Not yet adjudicated as domestic-confirmed; up from &gt;7,400. CDC's own combined total (confirmed + under analysis) is &gt;18,200. CDC states many of these were reported by Michigan and Ohio. Confirmed directly on CDC's surveillance page in v19</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Aggregate state-reported total</td><td><strong>&gt;7,500</strong> (stale)</td><td>Sum of individual state health-department tallies as of Jul 16; this is a distinct measure from CDC's own under-analysis pool above and we did not find a fresh comprehensive state-by-state sum this cycle to update it. It is clearly stale: Michigan alone now reports 10,386. Treat CDC's own &gt;18,200 combined figure above as the more current topline; we retain this row rather than delete it so the reconciliation note below remains legible. Michigan alone now reports 10,773 (v20)</td><td><span class="badge badge-red">Stale</span></td></tr>
-          <tr><td>Hospitalizations</td><td>423</td><td>CDC national total, up from 308; no deaths. Read directly from CDC's surveillance page in v19</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Deaths</td><td>0</td><td>Confirmed directly on CDC's surveillance page in v19 (data through Jul 27)</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Highest state burden</td><td><strong>Michigan 10,773</strong> / 193 hosp (as of Jul 31)</td><td><strong>v20 update:</strong> MDHHS's own page, fetched directly this cycle, reads 10,773 total as of Jul 31 (updated 11 a.m. ET weekdays), up from 10,386 (Jul 30); hospitalizations still cited at 193 (that figure is refreshed weekly on Thursdays, so it lags the case count). Prior figures: 10,077 (Jul 29), 9,680 (Jul 28), 9,253 (Jul 27), 8,176 (Jul 24), 7,644 to 7,664 (Jul 23, secondary-sourced), 7,171/102 (Jul 22), 6,571 (Jul 21), and 6,148 (Jul 20); hospitalization figure refreshed this cycle (was stale at 160/Jul 23 since v17); baseline ~50/yr; still 0 deaths. MDHHS attributes about 475 recent cases to a reporting backlog, not new illness, and says the worst may have passed; we log this as the state's own claim, not yet independently verified. Now reported across 70 of Michigan's 82 counties, up from concentration in Monroe, Lenawee, Washtenaw, Wayne, Shiawassee, Jackson, Oakland, Livingston</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Hospitalizations</td><td>423</td><td>CDC national total, up from 308. Read directly from CDC's surveillance page in v19; unchanged this cycle (data through Jul 27)</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Deaths</td><td><strong>2</strong> (Michigan)</td><td><strong>v21 update, primary-verified.</strong> Michigan MDHHS's own outbreak page reports <strong>2 deaths</strong> as of Aug 3, 2026, the first associated with this outbreak, fetched directly this cycle (page reads "Deaths: 2"). MDHHS: both decedents "had significant underlying health conditions that may have been impacted by cyclosporiasis and dehydration," and both became ill before the July 17 recall; the state adds that cyclosporiasis "is generally not a life-threatening illness" and death from it "is uncommon in the United States." <strong>CDC's national page still reads 0 deaths</strong> (data through Jul 27), a reporting lag behind the state figure rather than a contradiction; we will note when CDC's national tally reflects the Michigan deaths</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Highest state burden</td><td><strong>Michigan 11,234</strong> / 193 hosp / <strong>2 deaths</strong> (as of Aug 3)</td><td><strong>v21 update:</strong> MDHHS's own page, fetched directly this cycle, reads <strong>11,234</strong> total and <strong>2 deaths</strong> as of Aug 3 (case totals updated 11 a.m. ET weekdays), up from 10,773 (Jul 31); hospitalizations still cited at 193 (that figure is refreshed weekly on Thursdays, so it lags the case count). Prior figures: 10,077 (Jul 29), 9,680 (Jul 28), 9,253 (Jul 27), 8,176 (Jul 24), 7,644 to 7,664 (Jul 23, secondary-sourced), 7,171/102 (Jul 22), 6,571 (Jul 21), and 6,148 (Jul 20); hospitalization figure refreshed weekly on Thursdays (next Aug 6); baseline ~50/yr; <strong>2 deaths as of Aug 3 (v21), the outbreak's first</strong>, both in decedents with significant underlying conditions and both ill before the Jul 17 recall. MDHHS attributes about 475 recent cases to a reporting backlog, not new illness, and says the worst may have passed; we log this as the state's own claim, not yet independently verified. Now reported across 70 of Michigan's 82 counties, up from concentration in Monroe, Lenawee, Washtenaw, Wayne, Shiawassee, Jackson, Oakland, Livingston</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Second-highest state burden</td><td><strong>Ohio 4,024</strong> (ODH DataOhio dashboard)</td><td><strong>v20 correction, on a direct fetch of a primary source prior cycles said did not exist.</strong> ODH's own DataOhio dashboard ("Summary of Infectious Diseases in Ohio," filtered to Cyclosporiasis) reads <strong>4,024</strong> statewide for the rolling year ending Jul 28, 2026; given the May-to-August cyclosporiasis season this is essentially the 2026 outbreak total. County leaders are Cuyahoga 459, Fulton 153, Franklin 113, Erie 92 and Defiance 82. This supersedes the <strong>2,574 (Jul 24)</strong> figure this briefing carried since v14, which was press-attributed to ODH and never appeared on an ODH page, and it corrects our standing claim that ODH published no statewide primary source: ODH has issued no cyclosporiasis <em>news release</em> since Jul 8 (its own last release figure was 177 as of Jul 2), but it maintains this live interactive <em>dashboard</em>, which we and every prior cycle missed. Separately, Toledo-Lucas County Health's own page reports Lucas County 1,207 and northwest Ohio 3,016 as of Jul 31, superseding the press "2,926 northwest Ohio" figure. Confidence raised to High on the statewide number now that it is read from ODH's own product; the one caveat is the dashboard's rolling-year window, which we could not narrow to May 1 via the public view</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Third-highest state burden</td><td><strong>Indiana 1,285</strong> (as of Jul 31)</td><td><strong>v20 update, on a direct re-fetch of IDOH's own dashboard.</strong> It now reads 1,285 total cases as of Jul 31 (723 female, 562 male, age range 0 to 98), up from 1,176 (Jul 30). Both overnight scout cycles carried 1,176 from press; the dashboard had already climbed past it, so fetching rather than trusting the press snapshot mattered again. Indiana publishes a live figure updated each weekday by 1 p.m. EDT, against an investigation window opening May 1. This supersedes the ~954 (Jul 28) figure the unpublished v18 draft carried on three independent outlets' attribution to IDOH, and the ~750 (Jul 25) before that. The press figures were not wrong, they were stale; this briefing repeatedly accepted them in place of a fetch of the dashboard itself</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Multistate cluster</td><td>&gt;400 (MI, OH, WV, KY)</td><td>Federal officials believe one shared source; other clusters differ</td><td><span class="badge badge-amber">Medium</span></td></tr>
@@ -813,7 +845,7 @@
 
     <div class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Compiled from 50+ open sources &middot; Briefing v20 2026-08-02 (data as of 2026-08-02) &middot; Supersedes v19 2026-07-30, v18 2026-07-30, v17 2026-07-29, v16 2026-07-28, v15 2026-07-28, v14 2026-07-26, v13 2026-07-26, v12 2026-07-25, v11 2026-07-24, v10 2026-07-23, v9 2026-07-22, v8 2026-07-22, v7 2026-07-21, v6 2026-07-20, v5 2026-07-19, v4 2026-07-18, v3 2026-07-16, v2 2026-07-15, and v1 2026-07-13 &middot; Subject to revision as the outbreak develops</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Compiled from 50+ open sources &middot; Briefing v21 2026-08-03 (data as of 2026-08-03) &middot; Supersedes v20 2026-08-02, v19 2026-07-30, v18 2026-07-30, v17 2026-07-29, v16 2026-07-28, v15 2026-07-28, v14 2026-07-26, v13 2026-07-26, v12 2026-07-25, v11 2026-07-24, v10 2026-07-23, v9 2026-07-22, v8 2026-07-22, v7 2026-07-21, v6 2026-07-20, v5 2026-07-19, v4 2026-07-18, v3 2026-07-16, v2 2026-07-15, and v1 2026-07-13 &middot; Subject to revision as the outbreak develops</p>
       <p style="margin-top:0.25rem;">No classified, privileged, or non-public sources were used in the preparation of this briefing. This briefing is informational and is not medical advice.</p>
       <p style="margin-top:0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
     </div>
