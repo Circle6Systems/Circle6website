@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>The Aging Senate Briefing | Circle 6 Systems Intelligence</title>
+  <meta name="description" content="OSINT political-risk briefing (v2, Aug 4 2026) on Senate health shocks: Graham's death and filled seat (53-47), McConnell's 7-week absence, the Blanche confirmation stress test, and the aging-chamber vulnerability, with a tiered watch list.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--c6s-border);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.25rem; }
+    .hero .event-date {
+      font-size: 1.1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .hero .event-summary {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--c6s-text-dim);
+      font-size: 0.95rem;
+    }
+    .status-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .status-item { text-align: center; }
+    .status-item .value { font-size: 1.5rem; font-weight: 700; }
+    .status-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+      margin-bottom: 1rem;
+    }
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      gap: 0.75rem;
+    }
+    .watch-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-left: 3px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+    }
+    .watch-card.t1 { border-left-color: var(--c6s-red); }
+    .watch-card.t2 { border-left-color: var(--c6s-amber); }
+    .watch-card .wname { font-weight: 700; color: var(--c6s-text-bright); font-size: 0.95rem; }
+    .watch-card .wage { color: var(--c6s-accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .watch-card .wnote { font-size: 0.82rem; color: var(--c6s-text-dim); margin-top: 0.25rem; line-height: 1.5; }
+    .tier-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin: 1.75rem 0 0.9rem;
+    }
+    .tier-label .tag {
+      font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+      padding: 0.25rem 0.55rem; border-radius: 4px;
+    }
+    .tier-label .tag.a { background: rgba(239,68,68,0.15); color: var(--c6s-red); border: 1px solid rgba(239,68,68,0.3); }
+    .tier-label .tag.b { background: rgba(245,158,11,0.15); color: var(--c6s-amber); border: 1px solid rgba(245,158,11,0.3); }
+    .tier-label .tag.c { background: var(--c6s-highlight); color: var(--c6s-text-dim); border: 1px solid var(--c6s-border); }
+    .tier-label .desc { font-family: var(--font-heading); font-style: italic; color: var(--c6s-text-dim); font-size: 0.95rem; }
+    .bluf { border-left: 4px solid var(--c6s-accent); }
+  </style>
+</head>
+<body>
+  <!-- Site Navigation -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // OSINT</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">The Aging Senate</a>
+    </nav>
+
+    <div class="hero">
+      <h1>The Aging Senate: Health, Mortality &amp; the Fragility of Power</h1>
+      <div class="event-date">United States Senate &middot; June&ndash;August 2026 &middot; Briefing v2, August 4, 2026</div>
+      <p class="event-summary">
+        A 30-day window that took one senator by sudden death and hid another inside a hospitalization now stretching past seven weeks,
+        and what it exposes about a chamber with no mechanism to absorb the shock. Sen. Lindsey Graham (R-SC, 71)
+        died July 12 of an aortic dissection; Sen. Mitch McConnell (R-KY, 84) was hospitalized June 14 for a fall and
+        pneumonia and has not been seen in public since. Graham's seat was filled July 14, restoring the GOP to 53&ndash;47 on paper,
+        but McConnell's open-ended absence keeps functional voting strength near 52.
+      </p>
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-red);">1</div>
+          <div class="label">Deceased (seat filled Jul 14)</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-amber);">7+ wks</div>
+          <div class="label">McConnell absent, no public appearance</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-accent);">36</div>
+          <div class="label">Senators Aged 70+</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-amber);">53&ndash;47</div>
+          <div class="label">GOP majority (&asymp;52 with McConnell out)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLUF -->
+    <section>
+      <p class="section-label">Bottom Line Up Front</p>
+      <div class="panel bluf">
+        <p>In a single month the Senate lost one member to sudden death and had its most powerful institutional figure vanish into a deliberately opaque hospitalization now past seven weeks. Both sat on the <strong>Appropriations Committee</strong> at the start of the year's busiest legislative stretch. Graham's seat was filled the next day, so the GOP is back to <strong>53&ndash;47</strong> on paper, but McConnell has still not returned, holding functional Republican voting strength near <strong>52</strong>. The fragility is not theoretical: it is being stress-tested right now by the Todd Blanche attorney-general vote, where a single additional GOP defection would sink the nomination. The deeper story is structural: <strong>roughly 36 of 100 sitting senators are 70 or older</strong>, the chamber has <strong>no incapacity rule and no health-disclosure requirement</strong>, and the median senator is roughly 25 years older than the median American. These are not anomalies; they are the visible surface of an actuarial risk the institution has no tool to manage.</p>
+      </div>
+    </section>
+
+    <!-- What changed in v2 -->
+    <section>
+      <p class="section-label">What changed in v2 &middot; August 4, 2026</p>
+      <div class="panel" style="border-left: 4px solid var(--c6s-amber);">
+        <p style="margin-bottom: 0.9rem;"><strong>Graham's seat was filled the day before v1 published.</strong> Gov. Henry McMaster appointed Graham's sister, <strong>Darline Graham Nordone</strong>, sworn in <strong>July 14</strong>, the first time a sibling has succeeded a senator who died in office. That restored the Republican majority to <strong>53&ndash;47</strong>; she announced July 20 she will run for a full term. The acute vacancy math in v1 (51&ndash;47, "can lose only two votes") has therefore relaxed, and the sections below are corrected to the filled-seat count.</p>
+        <p style="margin-bottom: 0.9rem;"><strong>But the functional margin never recovered, because McConnell has not returned.</strong> As of Aug 3 he has not been seen or heard in public since his mid-June hospitalization, over seven weeks. His office has released only two "proof-of-life" photographs (July 12 and July 27) and little substantive detail; emergency-dispatch audio from the incident referenced "cardiac arrest," and he has been wheelchair-bound and frail around the Capitol all year. Kentucky's Democratic Gov. Andy Beshear publicly demanded he "provide proof of your capacity to serve, or resign." McConnell insists he intends to finish his term, which ends in January 2027. Effective GOP voting strength is thus closer to <strong>52</strong> than 53.</p>
+        <p style="margin-bottom: 0.9rem;"><strong>The thin margin is being tested live by the Blanche confirmation.</strong> The Senate Judiciary Committee advanced acting AG Todd Blanche <strong>12&ndash;10 on Aug 4</strong> after he rescinded a $1.8B "anti-weaponization fund." Sen. <strong>Susan Collins (R-ME) announced she will vote no</strong>, leaving Blanche able to lose only one more Republican with McConnell absent. The final floor vote is underway this week. This is precisely the "single point of failure" dynamic v1 predicted, now with a name and a whip count.</p>
+        <p style="margin-bottom: 0;"><strong>The structural case hardened.</strong> With six deaths in the current Congress across roughly 18 months now cited in the aging-chamber debate, and Sen. John Cornyn (R-TX) conceding more health transparency "may be needed," the disclosure conversation has gained momentum, though no bill has advanced. Note also a date correction carried into this pass: Sen. John Fetterman's widely recirculated fall and ventricular-fibrillation episode occurred in <strong>November 2025</strong>, before this briefing's window, and is treated as health history rather than a new event.</p>
+      </div>
+    </section>
+
+    <!-- Triggering events -->
+    <section>
+      <h2>01 &middot; The Two Triggering Events</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">One death, one disappearance, 28 days apart.</p>
+
+      <div class="panel critical">
+        <div class="panel-title">Lindsey Graham (R-SC, 71): Sudden Death, July 12, 2026</div>
+        <p>Died Saturday night, two days after his 71st birthday. Preliminary cause: aortic dissection, a rupture of the aorta, secondary to arteriosclerotic cardiovascular disease, rapid and often symptomless until fatal. He died within hours of returning from Ukraine, where he had met President Zelenskyy the day before; a long-haul flight is a recognized aggravating factor. No foul play indicated. Gov. McMaster appointed Graham's sister, Darline Graham Nordone, to finish the term; the seat stays Republican, but a live vacancy opened mid-vote.</p>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Mitch McConnell (R-KY, 84): Month-Long Opaque Hospitalization</div>
+        <p>Admitted June 14, taken from his D.C. residence by ambulance. For roughly three weeks his office refused to state a medical reason, an information blackout that itself became the story. Disclosed July 12&ndash;13: a fall at home, brief loss of consciousness, then a mild case of pneumonia. Doctors ruled out fracture, concussion, heart attack, stroke, tumor, and hemorrhage. <strong>v2 update:</strong> as of Aug 3 he has still not appeared or spoken in public since mid-June, more than seven weeks. His office has released two "proof-of-life" photos (July 12 and July 27) and little else; emergency-dispatch audio from the incident referenced "cardiac arrest." Gov. Andy Beshear (D-KY) publicly demanded he prove his capacity to serve or resign; McConnell says he intends to finish his term. The absence follows a documented 2023&ndash;24 pattern of freezing episodes and falls, and he has been wheelchair-bound around the Capitol this year.</p>
+      </div>
+    </section>
+
+    <!-- Power implications -->
+    <section>
+      <h2>02 &middot; Immediate Power Implications</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">The margin, not the party count, is the vulnerability.</p>
+      <table>
+        <tr><th>Factor</th><th>Effect</th></tr>
+        <tr><td><strong>Working majority</strong></td><td><strong>v2:</strong> restored to <strong>53&ndash;47</strong> when Graham's seat was filled July 14, but McConnell's continued absence holds effective strength near <strong>52</strong>, so the GOP can still afford only a narrow defection margin on party-line items.</td></tr>
+        <tr><td><strong>Committee choke point</strong></td><td>Both Graham and McConnell sat on <strong>Appropriations</strong>; the seat is filled, but McConnell's absence still subtracts a reliable committee and floor vote whenever Democrats stay united.</td></tr>
+        <tr><td><strong>Calendar collision, now live</strong></td><td><strong>v2:</strong> the Blanche AG confirmation named in v1 has reached the floor. Judiciary advanced him <strong>12&ndash;10 on Aug 4</strong>; <strong>Collins (R-ME) is a no</strong>, so with McConnell out a single further GOP defection sinks it. Surveillance reauthorization and appropriations before the <strong>Sept 30</strong> shutdown deadline still loom behind it.</td></tr>
+        <tr><td><strong>Duration risk, realized</strong></td><td>McConnell's absence has now run past seven weeks with no public appearance and no return date, tracking toward the long end of the "weeks to months" range v1 gave.</td></tr>
+      </table>
+      <div class="panel highlight">
+        <div class="panel-title">Assessment</div>
+        <p>No partisan flip; the South Carolina seat stays red and is now filled. The residual erosion is McConnell's open-ended absence, and the Blanche vote is the first concrete instance of the "single point of failure" cost: a 53&ndash;47 majority that cannot lose two when one of its own is already gone.</p>
+      </div>
+    </section>
+
+    <!-- Watch list -->
+    <section>
+      <h2>03 &middot; Watch List</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 0.5rem;">
+        The chamber holds 36 members aged 70+. Priority weights age, known health history, and, critically,
+        whether the home-state governor is of the opposite party, which determines whether a death or resignation could
+        <em>flip</em> a seat rather than merely vacate it.
+      </p>
+
+      <div class="tier-label">
+        <span class="tag a">Tier 1</span>
+        <span class="desc">Highest actuarial + strategic concern</span>
+      </div>
+      <div class="watch-grid">
+        <div class="watch-card t1"><div class="wname">Chuck Grassley <span class="wage">92</span></div><div class="wnote">R-IA. Oldest sitting senator; President pro tempore, third in the line of presidential succession. Incapacity carries constitutional weight.</div></div>
+        <div class="watch-card t1"><div class="wname">Mitch McConnell <span class="wage">84</span></div><div class="wnote">R-KY. Active case, escalated: hospitalized since mid-June, no public appearance in 7+ weeks, governor demanding proof of capacity or resignation. KY has a Democratic governor but a 2021 GOP law constrains any replacement.</div></div>
+        <div class="watch-card t1"><div class="wname">Bernie Sanders <span class="wage">84</span></div><div class="wnote">I-VT. Prior heart attack (2019) and cardiac stent history.</div></div>
+      </div>
+
+      <div class="tier-label">
+        <span class="tag b">Tier 2</span>
+        <span class="desc">Advanced age, leadership or margin sensitivity</span>
+      </div>
+      <div class="watch-grid">
+        <div class="watch-card t2"><div class="wname">James Risch <span class="wage">83</span></div><div class="wnote">R-ID. Senior Foreign Relations Republican.</div></div>
+        <div class="watch-card t2"><div class="wname">Angus King <span class="wage">82</span></div><div class="wnote">I-ME. Caucuses with Democrats; prior prostate-cancer history. GOP governor = caucus-margin risk on vacancy.</div></div>
+        <div class="watch-card t2"><div class="wname">Dick Durbin <span class="wage">81</span></div><div class="wnote">D-IL. Senior leadership; not seeking re-election.</div></div>
+        <div class="watch-card t2"><div class="wname">Richard Blumenthal <span class="wage">80</span></div><div class="wnote">D-CT. Octogenarian bloc.</div></div>
+        <div class="watch-card t2"><div class="wname">Ed Markey <span class="wage">80</span></div><div class="wnote">D-MA. Octogenarian bloc.</div></div>
+      </div>
+
+      <div class="tier-label">
+        <span class="tag c">Tier 3</span>
+        <span class="desc">Structurally notable</span>
+      </div>
+      <div class="watch-grid">
+        <div class="watch-card"><div class="wname">John Fetterman <span class="wage">54</span></div><div class="wnote">D-PA. Not on the age list, but the most-watched <em>health</em> case: documented stroke recovery and disclosed clinical depression.</div></div>
+        <div class="watch-card"><div class="wname">Jeanne Shaheen <span class="wage">79</span></div><div class="wnote">D-NH.</div></div>
+        <div class="watch-card"><div class="wname">Peter Welch <span class="wage">79</span></div><div class="wnote">D-VT.</div></div>
+        <div class="watch-card"><div class="wname">Mazie Hirono <span class="wage">78</span></div><div class="wnote">D-HI. Prior kidney-cancer surgery.</div></div>
+        <div class="watch-card"><div class="wname">Chuck Schumer <span class="wage">75</span></div><div class="wnote">D-NY. Minority Leader.</div></div>
+      </div>
+
+      <div class="panel" style="margin-top: 1.5rem;">
+        <div class="panel-title">Structural note</div>
+        <p>20 of the 36 elderly members are Republicans, but the actuarial exposure is bipartisan. The partisan <em>consequence</em> of any single death depends entirely on the home-state governor and vacancy law, which is why Grassley (IA, GOP gov), King (ME, Dem gov) and McConnell (KY, Dem gov + constraining statute) are the seats to model first.</p>
+      </div>
+    </section>
+
+    <!-- Systemic vulnerability -->
+    <section>
+      <h2>04 &middot; The Systemic Vulnerability</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">An institution with no shock-absorber.</p>
+      <table>
+        <tr><th>#</th><th>Structural gap</th></tr>
+        <tr><td>1</td><td><strong>No incapacity mechanism.</strong> The Senate has no rule for declaring a member incapacitated and no requirement to disclose health conditions at all. McConnell's three-week blackout was fully within the rules.</td></tr>
+        <tr><td>2</td><td><strong>Age gap at record width.</strong> Median senator ~65 vs. median American ~39, a gap exceeding 25 years. The 119th Congress is the third-oldest since 1789, and the U.S. Senate is the oldest directly-elected upper chamber in the world.</td></tr>
+        <tr><td>3</td><td><strong>Succession is a 50-state patchwork.</strong> Special election, same-party appointment, opposite-party appointment, or constrained appointment: the rule varies by state, so the partisan impact of a death is partly decided by geography rather than voters.</td></tr>
+        <tr><td>4</td><td><strong>Power concentrated in the oldest members.</strong> Leadership, the pro tempore succession line, and senior committee gavels sit with the eldest, so a single health event can disproportionately paralyze function, as Appropriations just showed.</td></tr>
+      </table>
+    </section>
+
+    <!-- Forward assessment -->
+    <section>
+      <h2>05 &middot; Forward-Looking Assessment</h2>
+
+      <div class="panel">
+        <div class="panel-title">Near term (weeks): thin-margin votes turn on absences</div>
+        <p><strong>Confirmed, and re-framed for v2.</strong> The seat fill relaxed the raw count to 53&ndash;47, but McConnell's absence keeps the effective margin at 52, and the Blanche fight is the thesis playing out: with Collins a no, one more GOP defection sinks a priority nomination. The same math governs appropriations before Sept 30. The mechanism (elderly members as single points of failure) held; only the trigger shifted from vacancy to absence.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 90%; background: var(--c6s-green);"></div></div>
+          <span class="pct" style="color: var(--c6s-green);">High</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Policy response: disclosure over age caps</div>
+        <p><strong>Directionally supported, confidence nudged up.</strong> McConnell's opaque seven-week absence, a sitting governor demanding proof-of-capacity-or-resignation, Sen. Cornyn conceding more transparency "may be needed," and six deaths in the current Congress have kept the disclosure question alive well past the usual news cycle. Still no bill has advanced, and age caps remain blocked by the Qualifications Clause, so this stays short of High: momentum, not legislation.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 62%; background: var(--c6s-amber);"></div></div>
+          <span class="pct" style="color: var(--c6s-amber);">Moderate</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">The recurring pattern: more events likely</div>
+        <p><strong>Confidence raised.</strong> The base rate is no longer abstract: six deaths in the current Congress in roughly 18 months, plus McConnell's deteriorating trajectory, are the pattern already recurring. With 36 members 70 or older and no shock-absorber, further mortality and incapacity events within this Congress are close to a certainty, each again managed ad hoc.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 82%; background: var(--c6s-green);"></div></div>
+          <span class="pct" style="color: var(--c6s-green);">High</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sources -->
+    <section>
+      <h2>Sources</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.85rem; margin-bottom: 1rem;">Compiled from open-source reporting. No classified or privileged sources were used.</p>
+      <ul style="list-style: none; padding: 0; font-size: 0.85rem; line-height: 1.9;">
+        <li><a href="https://www.nbcnews.com/politics/politics-news/sen-lindsey-graham-dies-71-brief-sudden-illness-rcna552722" style="color: var(--c6s-accent);">NBC News: Graham dies at 71</a></li>
+        <li><a href="https://www.washingtonpost.com/politics/2026/07/12/lindsey-graham-longtime-south-carolina-senator-dies-71/" style="color: var(--c6s-accent);">Washington Post: Graham cause of death</a></li>
+        <li><a href="https://www.npr.org/2026/07/12/nx-s1-5890790/us-sen-lindsey-graham-dies" style="color: var(--c6s-accent);">NPR: Graham obituary</a></li>
+        <li><a href="https://www.cnn.com/2026/07/13/politics/darline-graham-nordone-south-carolina-trump" style="color: var(--c6s-accent);">CNN: Graham's sister appointed to seat</a></li>
+        <li><a href="https://www.cnn.com/2026/07/07/politics/mitch-mcconnell-hospitalization-health" style="color: var(--c6s-accent);">CNN: McConnell hospitalized a month</a></li>
+        <li><a href="https://www.washingtonpost.com/politics/2026/07/12/mitch-mcconnell-says-he-was-hospitalized-due-fall-contracted-pneumonia/" style="color: var(--c6s-accent);">Washington Post: McConnell, fall + pneumonia</a></li>
+        <li><a href="https://www.washingtonpost.com/politics/2026/07/12/grahams-death-mcconnells-absence-highlight-challenges-aging-senate/" style="color: var(--c6s-accent);">Washington Post: Senate confronts aging membership</a></li>
+        <li><a href="https://www.newsweek.com/lindsey-graham-dead-at-71-full-list-of-senators-beyond-retirement-age-12190684" style="color: var(--c6s-accent);">Newsweek: senators beyond retirement age</a></li>
+        <li><a href="https://www.washingtonpost.com/politics/2026/07/13/lindsey-grahams-death-narrows-gop-senate-majority-key-votes/" style="color: var(--c6s-accent);">Washington Post: Graham's death narrows GOP majority</a></li>
+        <li><a href="https://time.com/article/2026/07/13/how-graham-s-death-and-mcconnell-s-absence-complicates-senate-gop-s-agenda/" style="color: var(--c6s-accent);">TIME: absences complicate GOP agenda</a></li>
+        <li><a href="https://www.pbs.org/newshour/politics/aging-politicians-face-questions-over-health-transparency-after-grahams-death" style="color: var(--c6s-accent);">PBS NewsHour: health transparency questions</a></li>
+        <li><a href="https://news.northeastern.edu/2026/07/14/is-americas-political-leadership-too-old/" style="color: var(--c6s-accent);">Northeastern: Is America a gerontocracy?</a></li>
+        <li style="margin-top: 0.75rem; color: var(--c6s-text-dim);"><em>Added in v2 (Aug 4):</em></li>
+        <li><a href="https://www.nbcnews.com/politics/congress/darline-graham-sworn-senator-fill-brother-lindsey-grahams-seat-rcna587457" style="color: var(--c6s-accent);">NBC News: Darline Graham sworn in to fill her brother's seat</a></li>
+        <li><a href="https://www.cnn.com/2026/07/20/politics/darline-graham-senate-lindsey-graham" style="color: var(--c6s-accent);">CNN: Darline Graham to run for a full term</a></li>
+        <li><a href="https://thehill.com/homenews/senate/5955865-mitch-mcconnell-senate-health-status/" style="color: var(--c6s-accent);">The Hill: McConnell health emergency, questions on whether he returns</a></li>
+        <li><a href="https://www.cnbc.com/2026/07/08/mcconnell-health-update-beshear-hospitalization-kentucky.html" style="color: var(--c6s-accent);">CNBC: Gov. Beshear demands McConnell health update</a></li>
+        <li><a href="https://www.salon.com/2026/08/03/mitch-mcconnell-is-never-coming-back-to-the-senate/" style="color: var(--c6s-accent);">Salon: McConnell has not appeared publicly since mid-June (Aug 3)</a></li>
+        <li><a href="https://www.cnn.com/2026/08/04/politics/todd-blanches-confirmation-expected-revitalize-doj-investigations" style="color: var(--c6s-accent);">CNN: Blanche nomination hanging by a thread after committee</a></li>
+        <li><a href="https://www.cnbc.com/2026/08/04/todd-blanche-weaponization-fund-senate-confirmation.html" style="color: var(--c6s-accent);">CNBC: Collins to oppose Blanche</a></li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;">Compiled from 19 open sources &middot; Briefing v2, dated 2026-08-04 (supersedes v1, 2026-07-15) &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">Caveats: Graham's cause of death is preliminary (autopsy pending). The Blanche floor vote was in progress at publication; this briefing reports the whip count, not a final result. Watch-list tiers weight publicly-known conditions; the absence of a disclosed condition is not evidence of health, given there is no disclosure requirement. Ages reflect the compiled open-source list.</p>
+      <p style="margin-top: 0.25rem;">No classified or privileged sources were used in the preparation of this briefing.</p>
+      <p style="margin-top: 0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

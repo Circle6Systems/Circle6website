@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Ransomware Readiness Training | Circle 6 Systems</title>
+  <meta name="description" content="Ransomware readiness and response training for government and enterprise staff. Produced by Circle 6 Systems.">
+  <meta property="og:title" content="Ransomware Readiness Training | Circle 6 Systems">
+  <meta property="og:description" content="Know how ransomware reaches your organization, what to do in the first 60 minutes, and how to protect your systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://circle6systems.com/training/ransomware/">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #2d2a2e; --navy-light: #3a3640; --navy-mid: #504a52;
+      --slate: #beb3a7; --slate-light: #d4cab9; --white: #f5f0e8;
+      --accent: #a8c196; --accent-bg: #8faa7b; --accent-hover: #b8d1a8;
+      --accent-dim: rgba(143, 170, 123, 0.09);
+      --red: #c0392b; --red-soft: #e6b0aa; --red-bg: rgba(192, 57, 43, 0.08);
+      --green-bg: rgba(143, 170, 123, 0.1);
+      --amber: #b7950b; --amber-bg: rgba(183, 149, 11, 0.08);
+      --border: rgba(143, 170, 123, 0.1);
+      --card-bg: var(--navy-light);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--navy); color: var(--slate-light); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143,170,123,0.03), transparent), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(143,170,123,0.02), transparent); pointer-events: none; z-index: 0; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    :focus:not(:focus-visible) { outline: none; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(45,42,46,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(143,170,123,0.08); z-index: 1000; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+    .logo { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .nav-divider { width: 1px; height: 24px; background: rgba(143,170,123,0.2); }
+    .nav-title { font-size: 0.8rem; font-weight: 500; color: var(--slate); letter-spacing: 0.02em; }
+    .nav-progress { display: flex; align-items: center; gap: 0.4rem; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(143,170,123,0.15); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+    .nav-dot.active { background: var(--accent); box-shadow: 0 0 6px rgba(143,170,123,0.3); }
+    .nav-dot.completed { background: var(--accent-bg); }
+    .nav-dot:hover { transform: scale(1.4); }
+    .progress-text { font-size: 0.75rem; color: var(--slate); margin-left: 0.5rem; font-variant-numeric: tabular-nums; }
+
+    main { position: relative; z-index: 1; padding-top: 64px; }
+    .section { display: none; animation: fadeIn 0.4s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .section { animation: none; } }
+    .section-inner { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+    h1 .accent { color: var(--red); }
+    h2 { font-family: var(--font-heading); font-size: 1.65rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.01em; }
+    h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    .lead { font-size: 1.1rem; color: var(--slate-light); max-width: 640px; line-height: 1.8; }
+    .divider { width: 48px; height: 2px; background: var(--accent-bg); opacity: 0.4; margin: 1.5rem 0; }
+
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; transition: border-color 0.3s; }
+    .card:hover { border-color: rgba(143,170,123,0.2); }
+    .card-icon { width: 40px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 0.75rem; background: var(--accent-dim); }
+    .card-icon.red { background: var(--red-bg); }
+    .card-icon.amber { background: var(--amber-bg); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat { background: var(--navy-light); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; text-align: center; }
+    .stat-number { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--red); }
+    .stat-label { font-size: 0.8rem; color: var(--slate); margin-top: 0.25rem; }
+
+    .callout { border-radius: 6px; padding: 1.15rem 1.25rem; margin: 1.25rem 0; display: flex; gap: 0.85rem; align-items: flex-start; }
+    .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .callout.danger { background: var(--red-bg); border-left: 3px solid var(--red); }
+    .callout.warning { background: var(--amber-bg); border-left: 3px solid var(--amber); }
+    .callout.success { background: var(--green-bg); border-left: 3px solid var(--accent-bg); }
+    .callout.info { background: var(--accent-dim); border-left: 3px solid var(--accent-bg); }
+    .callout h4 { font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; font-family: var(--font-heading); }
+    .callout p { font-size: 0.88rem; color: var(--slate-light); margin-bottom: 0; }
+
+    .red-flags { list-style: none; margin: 1rem 0; }
+    .red-flags li { padding: 0.65rem 0.85rem; margin-bottom: 0.35rem; background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; font-size: 0.92rem; }
+    .green-flags { list-style: none; margin: 1rem 0; }
+    .green-flags li { padding: 0.65rem 0.85rem; margin-bottom: 0.35rem; background: var(--green-bg); border-left: 3px solid var(--accent-bg); border-radius: 0 4px 4px 0; font-size: 0.92rem; }
+
+    .attack-flow { margin: 2rem 0; }
+    .flow-step { display: flex; gap: 1.25rem; position: relative; }
+    .flow-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .flow-number { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; background: var(--navy-mid); color: var(--white); border: 2px solid var(--accent-bg); }
+    .flow-line { width: 2px; flex: 1; min-height: 16px; background: rgba(143,170,123,0.2); }
+    .flow-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; flex: 1; margin-bottom: 0.75rem; }
+    .flow-content h3 { margin-bottom: 0.25rem; }
+    .flow-content p { margin-bottom: 0; font-size: 0.92rem; color: var(--slate); }
+
+    /* Ransom note mockup */
+    .mockup-ransom { background: #0a0a0a; border-radius: 6px; overflow: hidden; border: 1px solid #333; margin: 1.5rem 0; font-family: 'Courier New', monospace; }
+    .mockup-ransom-bar { background: #1a1a1a; padding: 0.4rem 0.7rem; display: flex; align-items: center; gap: 0.4rem; font-size: 0.68rem; color: #666; }
+    .mockup-ransom-bar .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-ransom-bar .dot.r { background: #c0392b; }
+    .mockup-ransom-bar .dot.y { background: #b7950b; }
+    .mockup-ransom-bar .dot.g { background: #8faa7b; }
+    .mockup-ransom-body { padding: 1.5rem; text-align: center; }
+    .ransom-skull { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .ransom-title { color: #c0392b; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+    .ransom-text { color: #aaa; font-size: 0.78rem; line-height: 1.6; max-width: 420px; margin: 0 auto 1rem; }
+    .ransom-timer { color: #c0392b; font-size: 1.5rem; font-weight: 700; margin: 0.75rem 0; }
+    .ransom-btc { background: #1a1a1a; display: inline-block; padding: 0.35rem 0.75rem; border-radius: 3px; font-size: 0.7rem; color: #888; margin-top: 0.5rem; word-break: break-all; }
+
+    /* System mockup */
+    .mockup-system { background: #0078d4; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); margin: 1.5rem 0; }
+    .mockup-system-body { padding: 2rem 1.5rem; text-align: center; color: #fff; }
+    .mockup-system-body .frown { font-size: 3rem; margin-bottom: 0.5rem; }
+    .mockup-system-body .bsod-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .mockup-system-body .bsod-text { font-size: 0.78rem; opacity: 0.8; max-width: 400px; margin: 0 auto; line-height: 1.5; }
+
+    /* Email mockup */
+    .mockup-email { background: #ffffff; border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem; color: #1a1a1a; font-size: 0.85rem; border: 1px solid #d0ccc4; }
+    .mockup-email-toolbar { background: #f4f1eb; padding: 0.5rem 0.85rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid #d0ccc4; font-size: 0.72rem; color: #666; }
+    .mockup-email-toolbar .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-email-toolbar .dot.r { background: #c0392b; } .mockup-email-toolbar .dot.y { background: #b7950b; } .mockup-email-toolbar .dot.g { background: #8faa7b; }
+    .mockup-email-header { padding: 0.85rem 1rem; border-bottom: 1px solid #eae6de; }
+    .mockup-email-row { display: flex; gap: 0.5rem; margin-bottom: 0.3rem; font-size: 0.78rem; line-height: 1.4; }
+    .mockup-email-row .label { color: #888; min-width: 48px; text-align: right; flex-shrink: 0; }
+    .mockup-email-row .value { color: #333; }
+    .mockup-email-row .value.suspicious { color: #c0392b; }
+    .mockup-email-subject { font-weight: 700; font-size: 0.92rem; color: #1a1a1a; margin-top: 0.25rem; }
+    .mockup-email-body { padding: 1rem; line-height: 1.65; color: #333; }
+    .mockup-attachment { display: inline-flex; align-items: center; gap: 0.35rem; background: #f0ede5; border: 1px solid #d0ccc4; border-radius: 4px; padding: 0.3rem 0.65rem; font-size: 0.72rem; color: #555; margin-top: 0.5rem; cursor: default; }
+    .mockup-attachment .file-icon { color: #c0392b; font-weight: 700; }
+
+    /* Login mockup */
+    .mockup-login { background: #1e1b1f; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); margin: 1.5rem 0; }
+    .mockup-login-body { padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+    .mockup-login-box { background: #fff; border-radius: 6px; padding: 1.25rem; width: 100%; max-width: 300px; color: #333; }
+    .mockup-login-box h4 { font-size: 0.9rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.65rem; text-align: center; }
+    .mockup-input { width: 100%; background: #f4f1eb; border: 1px solid #d0ccc4; border-radius: 3px; padding: 0.4rem 0.6rem; font-size: 0.78rem; color: #333; margin-bottom: 0.4rem; font-family: var(--font); }
+    .mockup-login-btn { width: 100%; background: #1a5276; color: #fff; border: none; border-radius: 3px; padding: 0.45rem; font-size: 0.78rem; font-weight: 600; cursor: default; margin-top: 0.25rem; }
+
+    /* Scenario */
+    .scenario { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem; }
+    .scenario-header { padding: 1rem 1.25rem; background: rgba(143,170,123,0.04); border-bottom: 1px solid var(--border); font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem; }
+    .scenario-body { padding: 1.25rem; }
+    .scenario-body p { font-size: 0.92rem; }
+    .scenario-vote { display: flex; gap: 0.65rem; margin-top: 1rem; }
+    .vote-btn { flex: 1; padding: 0.7rem 1rem; border-radius: 4px; font-family: var(--font); font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); background: rgba(143,170,123,0.04); color: var(--slate-light); text-align: center; }
+    .vote-btn:hover { border-color: var(--accent-bg); background: var(--accent-dim); }
+    .vote-btn.vote-attack { border-left: 3px solid var(--red); }
+    .vote-btn.vote-safe { border-left: 3px solid var(--accent-bg); }
+    .vote-btn.chosen-correct { background: var(--green-bg); border-color: var(--accent-bg); color: var(--accent); pointer-events: none; }
+    .vote-btn.chosen-wrong { background: var(--red-bg); border-color: var(--red); color: var(--red-soft); pointer-events: none; }
+    .vote-btn.faded { opacity: 0.35; pointer-events: none; }
+    .scenario-answer { display: none; margin-top: 0.85rem; animation: fadeIn 0.4s ease; }
+    .scenario-answer.revealed { display: block; }
+    .scenario-score-badge { display: inline-block; background: var(--accent-dim); border: 1px solid var(--border); border-radius: 4px; padding: 0.5rem 1rem; margin-top: 1.25rem; font-size: 0.88rem; }
+    .scenario-score-badge strong { color: var(--accent); }
+
+    /* Timeline for 60 minutes */
+    .timeline-60 { margin: 1.5rem 0; }
+    .t60-block { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.15rem 1.25rem; margin-bottom: 0.75rem; display: grid; grid-template-columns: 5.5rem 1fr; grid-template-rows: auto auto; column-gap: 1rem; }
+    .t60-time { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--red); white-space: nowrap; grid-row: 1 / -1; align-self: start; padding-top: 0.1rem; }
+    .t60-block h3 { margin-bottom: 0.2rem; }
+    .t60-block p { margin-bottom: 0; font-size: 0.88rem; color: var(--slate); }
+
+    /* Quiz */
+    .quiz-question { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .quiz-question h3 { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; }
+    .q-num { background: var(--accent-bg); color: var(--navy); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; font-family: var(--font); }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .quiz-option { background: rgba(143,170,123,0.03); border: 1px solid var(--border); border-radius: 4px; padding: 0.7rem 1rem; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+    .quiz-option:hover { border-color: var(--accent-bg); background: var(--accent-dim); }
+    .quiz-option.correct { border-color: var(--accent-bg); background: var(--green-bg); }
+    .quiz-option.incorrect { border-color: var(--red); background: var(--red-bg); }
+    .quiz-option.disabled { pointer-events: none; opacity: 0.55; }
+    .option-letter { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(143,170,123,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; transition: all 0.2s; font-family: var(--font); }
+    .quiz-option.correct .option-letter { background: var(--accent-bg); border-color: var(--accent-bg); color: var(--navy); }
+    .quiz-option.incorrect .option-letter { background: var(--red); border-color: var(--red); color: white; }
+    .quiz-feedback { margin-top: 0.6rem; padding: 0.65rem 0.85rem; border-radius: 4px; font-size: 0.85rem; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: var(--green-bg); border-left: 3px solid var(--accent-bg); color: var(--accent-hover); }
+    .quiz-feedback.incorrect-fb { background: var(--red-bg); border-left: 3px solid var(--red); color: var(--red-soft); }
+
+    .score-display { text-align: center; padding: 2rem; }
+    .score-circle { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .score-circle.pass { border-color: var(--accent-bg); } .score-circle.fail { border-color: var(--red); }
+    .score-value { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--white); }
+    .score-label { font-size: 0.8rem; color: var(--slate); }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.25s; font-family: var(--font); letter-spacing: 0.01em; text-decoration: none; }
+    .btn-primary { background: var(--accent-bg); color: var(--navy); }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent-bg); }
+    .btn-secondary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+    .btn-group { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+
+    .certificate { background: var(--navy-light); border: 2px solid var(--accent-bg); border-radius: 6px; padding: 3rem 2rem; text-align: center; max-width: 560px; margin: 2rem auto; position: relative; }
+    .certificate::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(143,170,123,0.12); border-radius: 4px; pointer-events: none; }
+    .cert-brand { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .cert-brand span { color: var(--accent); }
+    .cert-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .cert-subtitle { color: var(--slate); font-size: 0.85rem; margin-bottom: 1.75rem; }
+    .cert-name { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 1.25rem; display: inline-block; min-width: 220px; }
+    .cert-date { font-size: 0.82rem; color: var(--slate); }
+
+    .quick-ref { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-top: 2rem; }
+    .quick-ref h3 { font-size: 0.95rem; margin-bottom: 0.85rem; }
+    .ref-item { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .section-inner { padding: 2rem 1.25rem 3rem; } .card-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; } .btn-group { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; } .nav-title, .nav-divider { display: none; }
+      .t60-block { grid-template-columns: 1fr; } .t60-time { margin-bottom: 0.3rem; }
+    }
+    @media print {
+      .nav, .btn-group { display: none !important; } .section { display: block !important; page-break-inside: avoid; }
+      body { background: white; color: #2B2B2B; } h1, h2, h3, .cert-title, .cert-brand { color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation"><div class="nav-inner">
+  <div class="nav-brand"><div class="logo">Circle <span>6</span> Systems</div><div class="nav-divider"></div><div class="nav-title">Security Awareness Training</div></div>
+  <div class="nav-progress">
+    <button class="nav-dot active" onclick="goToSection(0)"></button><button class="nav-dot" onclick="goToSection(1)"></button>
+    <button class="nav-dot" onclick="goToSection(2)"></button><button class="nav-dot" onclick="goToSection(3)"></button>
+    <button class="nav-dot" onclick="goToSection(4)"></button><button class="nav-dot" onclick="goToSection(5)"></button>
+    <button class="nav-dot" onclick="goToSection(6)"></button><button class="nav-dot" onclick="goToSection(7)"></button>
+    <button class="nav-dot" onclick="goToSection(8)"></button>
+    <span class="progress-text" id="progressText">1 / 9</span>
+  </div>
+</div></nav>
+
+<main>
+
+  <!-- SECTION 0: Welcome -->
+  <div class="section active" id="section-0"><div class="section-inner">
+    <div class="section-label">Security Awareness Training</div>
+    <h1>Ransomware <span class="accent">Readiness</span></h1>
+    <div class="divider"></div>
+    <p class="lead">Ransomware is responsible for 88% of all breaches at small and midsize organizations. This training prepares you to recognize how ransomware arrives, what to do in the first critical minutes, and how to protect systems before an attack happens.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="stat-number">88%</div><div class="stat-label">Of SMB breaches involve ransomware</div></div>
+      <div class="stat"><div class="stat-number">$5.08M</div><div class="stat-label">Average cost of a ransomware breach in 2025</div></div>
+      <div class="stat"><div class="stat-number">5 days</div><div class="stat-label">Median time from intrusion to encryption</div></div>
+    </div>
+
+    <div class="callout danger"><div class="callout-icon">&#x25CF;</div><div>
+      <h4>Government and small business are primary targets</h4>
+      <p>In the first half of 2025, ransomware incidents affecting government bodies increased 65%. The city of St. Paul, Minnesota was hit by the Interlock ransomware gang, which stole 43 GB of data and disabled water bill payments. School districts, water utilities, county courts, and sheriff's offices have all been attacked.</p>
+    </div></div>
+
+    <p><strong>Training time:</strong> Approximately 20&ndash;25 minutes<br><strong>Includes:</strong> Attack simulations, incident response timeline, and scored assessment</p>
+    <div class="btn-group"><button class="btn btn-primary" onclick="nextSection()">Begin Training &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 1: What is Ransomware? -->
+  <div class="section" id="section-1"><div class="section-inner">
+    <div class="section-label">Module 1</div>
+    <h2>What Is Ransomware?</h2>
+    <div class="divider"></div>
+    <p>Ransomware is malicious software that encrypts your files and systems, making them unusable until a ransom is paid&mdash;usually in cryptocurrency. Modern ransomware groups also steal your data first and threaten to publish it publicly if you don't pay (double extortion).</p>
+
+    <h3>What a ransomware attack looks like</h3>
+    <div class="mockup-ransom">
+      <div class="mockup-ransom-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;">YOUR FILES HAVE BEEN ENCRYPTED</span></div>
+      <div class="mockup-ransom-body">
+        <div class="ransom-skull">&#x26A0;&#xFE0E;</div>
+        <div class="ransom-title">ALL YOUR FILES ARE ENCRYPTED</div>
+        <div class="ransom-text">All of your files have been encrypted with military-grade encryption. Your documents, databases, backups, and network shares are no longer accessible. Do not attempt to recover files yourself or they will be permanently destroyed.</div>
+        <div class="ransom-text">To decrypt your files, you must purchase our decryption tool. The price will double after the timer expires.</div>
+        <div class="ransom-timer">71:48:23</div>
+        <div class="ransom-text" style="margin-bottom:0;">Send 3.5 BTC to the following address:</div>
+        <div class="ransom-btc">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</div>
+      </div>
+    </div>
+
+    <div class="callout warning"><div class="callout-icon">&#x25CF;</div><div>
+      <h4>Double extortion is now the standard</h4>
+      <p>Attackers don't just encrypt your data&mdash;they steal it first. Even if you have backups, they threaten to publish sensitive constituent records, employee data, or financial information unless you pay. This makes recovery more complex than simply restoring from backup.</p>
+    </div></div>
+
+    <h3>What ransomware targets</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon red">&#x25CB;</div><h3>File servers and databases</h3><p>Shared drives, financial records, permit systems, case management databases, and document repositories.</p></div>
+      <div class="card"><div class="card-icon red">&#x25CB;</div><h3>Email and communication</h3><p>Email servers, calendaring systems, and messaging platforms. When these go down, operations halt.</p></div>
+      <div class="card"><div class="card-icon red">&#x25CB;</div><h3>Operational systems</h3><p>Payment portals, water treatment controls, public safety dispatch, court systems, and citizen-facing services.</p></div>
+      <div class="card"><div class="card-icon red">&#x25CB;</div><h3>Backups</h3><p>Sophisticated attackers specifically target backup systems to prevent recovery. If backups are connected to the network, they get encrypted too.</p></div>
+    </div>
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="nextSection()">How It Gets In &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 2: How Ransomware Gets In -->
+  <div class="section" id="section-2"><div class="section-inner">
+    <div class="section-label">Module 2</div>
+    <h2>How Ransomware Reaches You</h2>
+    <div class="divider"></div>
+    <p>Understanding the entry points is your first line of defense. These are the four most common ways ransomware gets into an organization:</p>
+
+    <div class="card" style="margin-bottom:1.25rem;">
+      <div class="card-icon red">1</div>
+      <h3>Phishing emails (18% of attacks)</h3>
+      <p>An email with a malicious attachment or link. The attachment may look like a PDF invoice, a Word document, or a zip file. When opened, it executes code that downloads the ransomware payload.</p>
+      <div class="mockup-email" style="margin-top:0.85rem; margin-bottom:0;">
+        <div class="mockup-email-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;">Inbox</span></div>
+        <div class="mockup-email-header">
+          <div class="mockup-email-row"><span class="label">From:</span><span class="value">County Clerk Office &lt;<span class="suspicious">clerk@county-records-portal.net</span>&gt;</span></div>
+          <div class="mockup-email-subject">RE: Updated permit application - please review</div>
+        </div>
+        <div class="mockup-email-body">
+          <p style="margin-bottom:0.5rem;">Hi,</p>
+          <p style="margin-bottom:0.5rem;">Please review the attached updated permit application. Changes are highlighted in yellow. Let me know if you have questions.</p>
+          <div class="mockup-attachment"><span class="file-icon">&#x25A0;</span> Permit_Application_REVISED.docm (142 KB)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.25rem;">
+      <div class="card-icon red">2</div>
+      <h3>Compromised credentials and VPN access (48% of attacks)</h3>
+      <p>Attackers buy stolen usernames and passwords on the dark web or harvest them through phishing. They log in through your VPN, remote desktop, or web portal as if they were a legitimate employee. In Q3 2025, compromised VPN credentials accounted for nearly half of all ransomware attacks.</p>
+      <div class="mockup-login" style="margin-top:0.85rem; margin-bottom:0;">
+        <div class="mockup-login-body">
+          <div class="mockup-login-box">
+            <h4>County Remote Access Portal</h4>
+            <input class="mockup-input" value="jsmith@county.gov" readonly>
+            <input class="mockup-input" type="password" value="password123" readonly>
+            <div class="mockup-login-btn">Sign In</div>
+          </div>
+          <div style="font-size:0.72rem; color:var(--red); text-align:center;">Attacker logs in with stolen credentials&mdash;no malware needed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.25rem;">
+      <div class="card-icon red">3</div>
+      <h3>Exploited vulnerabilities (32% of attacks)</h3>
+      <p>Unpatched software&mdash;especially VPNs, firewalls, email servers, and web applications&mdash;can be exploited remotely. Attackers scan the internet for known vulnerabilities and exploit them within hours of public disclosure.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon red">4</div>
+      <h3>Exposed Remote Desktop (RDP)</h3>
+      <p>Remote Desktop Protocol left open to the internet is like leaving a door unlocked. Attackers brute-force weak passwords or use stolen credentials to gain direct access to servers and workstations.</p>
+    </div>
+
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="nextSection()">The Attack Chain &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 3: Attack Chain -->
+  <div class="section" id="section-3"><div class="section-inner">
+    <div class="section-label">Module 3</div>
+    <h2>The Ransomware Attack Chain</h2>
+    <div class="divider"></div>
+    <p>A ransomware attack unfolds over days. Understanding each stage helps you recognize and interrupt the attack before encryption begins.</p>
+
+    <div class="attack-flow">
+      <div class="flow-step"><div class="flow-marker"><div class="flow-number">1</div><div class="flow-line"></div></div><div class="flow-content"><h3>Initial Access (Day 0)</h3><p>The attacker gets in through a phishing email, stolen credentials, or an exploited vulnerability. They establish a foothold on one machine.</p></div></div>
+      <div class="flow-step"><div class="flow-marker"><div class="flow-number">2</div><div class="flow-line"></div></div><div class="flow-content"><h3>Discovery (Days 1&ndash;2)</h3><p>The attacker maps your network, identifies servers, locates databases, and finds backup systems. They harvest additional credentials and test their access.</p></div></div>
+      <div class="flow-step"><div class="flow-marker"><div class="flow-number">3</div><div class="flow-line"></div></div><div class="flow-content"><h3>Privilege Escalation (Days 2&ndash;3)</h3><p>They escalate from a regular user to a domain administrator, giving them control over the entire network, including servers, domain controllers, and security tools.</p></div></div>
+      <div class="flow-step"><div class="flow-marker"><div class="flow-number">4</div><div class="flow-line"></div></div><div class="flow-content"><h3>Data Exfiltration (Days 3&ndash;4)</h3><p>Before encrypting anything, they steal sensitive data&mdash;financial records, employee PII, constituent information, legal documents&mdash;for double extortion leverage.</p></div></div>
+      <div class="flow-step"><div class="flow-marker"><div class="flow-number">5</div></div><div class="flow-content"><h3>Encryption and Ransom (Day 5)</h3><p>The attacker disables security tools, deletes accessible backups, and deploys ransomware across every system they can reach. The ransom note appears. Operations stop.</p></div></div>
+    </div>
+
+    <div class="callout info"><div class="callout-icon">&#x25CF;</div><div>
+      <h4>The median time from intrusion to encryption dropped to 5 days in 2025</h4>
+      <p>Some groups move even faster&mdash;within hours. This means that early detection of unusual activity is critical. Signs like unexpected admin account creation, large file transfers at odd hours, or disabled security tools should trigger an immediate investigation.</p>
+    </div></div>
+
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="nextSection()">Recognize the Signs &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 4: Recognize the Signs -->
+  <div class="section" id="section-4"><div class="section-inner">
+    <div class="section-label">Module 4</div>
+    <h2>Recognize the Warning Signs</h2>
+    <div class="divider"></div>
+    <p>Ransomware attacks leave traces before encryption begins. Here is what to watch for and what to do if you see these signs.</p>
+
+    <h3>Signs something is wrong</h3>
+    <ul class="red-flags">
+      <li><strong>Files won't open</strong> or have strange new extensions (.locked, .encrypted, .ryuk)</li>
+      <li><strong>Programs crash repeatedly</strong> or run abnormally slowly</li>
+      <li><strong>A ransom note appears</strong> on your desktop or as a text/HTML file in your folders</li>
+      <li><strong>You can't access shared drives</strong> or network resources that were working before</li>
+      <li><strong>Your antivirus is disabled</strong> and you didn't disable it</li>
+      <li><strong>Unusual pop-ups or error messages</strong> that you've never seen before</li>
+      <li><strong>Your password stops working</strong> on systems you normally access</li>
+      <li><strong>Colleagues report the same problems</strong> simultaneously</li>
+    </ul>
+
+    <h3 style="margin-top:1.75rem;">Pre-encryption warning signs (for IT-aware staff)</h3>
+    <ul class="red-flags">
+      <li>New administrator accounts appearing that nobody created</li>
+      <li>Large volumes of data being transferred to external locations at odd hours</li>
+      <li>Security software or logging tools being disabled</li>
+      <li>Unfamiliar remote access tools installed (AnyDesk, TeamViewer, Cobalt Strike)</li>
+      <li>PowerShell or command-line activity on machines that don't normally use it</li>
+    </ul>
+
+    <div class="mockup-system">
+      <div class="mockup-system-body">
+        <div class="frown">:(</div>
+        <div class="bsod-title">Your device ran into a problem</div>
+        <div class="bsod-text">If you see a blue screen, ransom note, or your files suddenly have new extensions&mdash;do not ignore it, do not restart, and do not try to fix it yourself. Follow the response steps in the next module.</div>
+      </div>
+    </div>
+
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="nextSection()">The First 60 Minutes &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 5: First 60 Minutes -->
+  <div class="section" id="section-5"><div class="section-inner">
+    <div class="section-label">Module 5</div>
+    <h2>The First 60 Minutes</h2>
+    <div class="divider"></div>
+    <p>What you do in the first hour of a ransomware incident determines whether the damage stays contained or spreads across your entire organization.</p>
+
+    <div class="callout success"><div class="callout-icon">&#x25CF;</div><div>
+      <h4>Your job is to contain and report. Not to fix.</h4>
+      <p>You do not need to be a technical expert. You need to act quickly, follow these steps, and get the right people involved.</p>
+    </div></div>
+
+    <div class="timeline-60">
+      <div class="t60-block"><div class="t60-time">0&ndash;5 min</div><h3>Disconnect immediately</h3><p>Unplug your Ethernet cable. Turn off Wi-Fi. If you are on VPN, disconnect. <strong>Do not shut down or restart</strong>&mdash;this may destroy forensic evidence needed for recovery. Disconnecting stops the ransomware from spreading to other machines.</p></div>
+      <div class="t60-block"><div class="t60-time">5&ndash;10 min</div><h3>Call IT / Security</h3><p>Call your IT department or security team by <strong>phone</strong>&mdash;do not email, as email servers may be compromised. If you cannot reach IT, call your supervisor. Report exactly what you saw: ransom note, file changes, error messages, and the time you first noticed.</p></div>
+      <div class="t60-block"><div class="t60-time">10&ndash;15 min</div><h3>Alert nearby colleagues</h3><p>Verbally alert people near you. If they see the same symptoms, they should also disconnect immediately. The faster affected machines are isolated, the less the ransomware spreads.</p></div>
+      <div class="t60-block"><div class="t60-time">15&ndash;30 min</div><h3>Document everything</h3><p>If safe to do so, take photos of ransom notes or error messages with your phone. Write down the exact time you first noticed the problem, what you were doing, and any emails or files you opened recently.</p></div>
+      <div class="t60-block"><div class="t60-time">30&ndash;60 min</div><h3>Follow IT instructions</h3><p>Your IT team will begin containment procedures. Follow their instructions exactly. Do not attempt to decrypt files, run antivirus scans, or restore from backups on your own&mdash;these actions can make recovery harder.</p></div>
+    </div>
+
+    <h3 style="margin-top:1.75rem;">What NOT to do</h3>
+    <ul class="red-flags">
+      <li><strong>Do not pay the ransom</strong>&mdash;There is no guarantee you will get your data back, and payment funds future attacks</li>
+      <li><strong>Do not shut down or restart</strong>&mdash;This destroys memory evidence needed for investigation</li>
+      <li><strong>Do not try to negotiate</strong> with the attackers on your own</li>
+      <li><strong>Do not connect USB drives</strong> to the affected machine&mdash;they may become encrypted too</li>
+      <li><strong>Do not delete the ransom note</strong>&mdash;It contains information needed for investigation</li>
+    </ul>
+
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="nextSection()">Prevention &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 6: Prevention -->
+  <div class="section" id="section-6"><div class="section-inner">
+    <div class="section-label">Module 6</div>
+    <h2>Prevention: What You Can Do</h2>
+    <div class="divider"></div>
+
+    <h3>Every employee's role in prevention</h3>
+    <ul class="green-flags">
+      <li><strong>Don't open unexpected attachments</strong>&mdash;Verify with the sender before opening .docm, .xlsm, .zip, or .exe files</li>
+      <li><strong>Report suspicious emails</strong> to IT immediately&mdash;you may be the first person to see a new attack</li>
+      <li><strong>Use strong, unique passwords</strong> for every system&mdash;and enable multi-factor authentication (MFA) wherever available</li>
+      <li><strong>Lock your workstation</strong> when you leave your desk (Win+L on Windows, Ctrl+Cmd+Q on Mac)</li>
+      <li><strong>Keep software updated</strong>&mdash;Install updates when prompted; don't postpone them for weeks</li>
+      <li><strong>Don't use personal USB drives</strong> on work computers without IT approval</li>
+      <li><strong>Know your backup procedures</strong>&mdash;Save critical work to approved locations (network drives, approved cloud storage)</li>
+      <li><strong>Don't install unauthorized software</strong>&mdash;Free tools from the internet can carry ransomware</li>
+    </ul>
+
+    <h3 style="margin-top:1.75rem;">For IT administrators and managers</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">&#x25CB;</div><h3>Backup strategy</h3><p>Follow the 3-2-1-1-0 rule: 3 copies, 2 media types, 1 offsite, 1 offline/immutable, 0 errors in recovery testing. Test restores quarterly.</p></div>
+      <div class="card"><div class="card-icon">&#x25CB;</div><h3>Patch management</h3><p>Prioritize patching VPNs, firewalls, and email servers. Monitor the CISA Known Exploited Vulnerabilities catalog and patch within 48 hours.</p></div>
+      <div class="card"><div class="card-icon">&#x25CB;</div><h3>MFA everywhere</h3><p>Enable phishing-resistant MFA on all external-facing services, VPN, email, and privileged accounts. Compromised credentials with MFA are 99% less effective.</p></div>
+      <div class="card"><div class="card-icon">&#x25CB;</div><h3>Segment the network</h3><p>Isolate critical systems so that if one segment is compromised, the ransomware cannot reach everything. Separate IT from OT networks.</p></div>
+    </div>
+
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="nextSection()">Take the Quiz &rarr;</button></div>
+  </div></div>
+
+  <!-- SECTION 7: Quiz -->
+  <div class="section" id="section-7"><div class="section-inner">
+    <div class="section-label">Knowledge Assessment</div>
+    <h2>Test Your Knowledge</h2>
+    <div class="divider"></div>
+    <p>Answer all 8 questions. You need at least 6 correct (75%) to pass.</p>
+
+    <div class="quiz-question" id="q1"><h3><span class="q-num">1</span> What is the most common way ransomware enters an organization in 2025?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(1,this,false)"><span class="option-letter">A</span><span>Through USB drives left in parking lots</span></div>
+        <div class="quiz-option" onclick="answerQuiz(1,this,true)"><span class="option-letter">B</span><span>Through compromised VPN credentials and exploited vulnerabilities</span></div>
+        <div class="quiz-option" onclick="answerQuiz(1,this,false)"><span class="option-letter">C</span><span>Through physical break-ins to server rooms</span></div>
+        <div class="quiz-option" onclick="answerQuiz(1,this,false)"><span class="option-letter">D</span><span>Through social media messages</span></div>
+      </div><div class="quiz-feedback" id="fb1"></div></div>
+
+    <div class="quiz-question" id="q2"><h3><span class="q-num">2</span> You see a ransom note on your desktop. What should you do first?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(2,this,false)"><span class="option-letter">A</span><span>Shut down your computer immediately</span></div>
+        <div class="quiz-option" onclick="answerQuiz(2,this,true)"><span class="option-letter">B</span><span>Disconnect from the network and call IT by phone</span></div>
+        <div class="quiz-option" onclick="answerQuiz(2,this,false)"><span class="option-letter">C</span><span>Try to delete the ransom note and run antivirus</span></div>
+        <div class="quiz-option" onclick="answerQuiz(2,this,false)"><span class="option-letter">D</span><span>Reply to the ransom note to negotiate</span></div>
+      </div><div class="quiz-feedback" id="fb2"></div></div>
+
+    <div class="quiz-question" id="q3"><h3><span class="q-num">3</span> Why should you NOT shut down your computer during a ransomware attack?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(3,this,false)"><span class="option-letter">A</span><span>Because the ransom increases if you restart</span></div>
+        <div class="quiz-option" onclick="answerQuiz(3,this,true)"><span class="option-letter">B</span><span>Because shutting down destroys forensic evidence in memory needed for investigation</span></div>
+        <div class="quiz-option" onclick="answerQuiz(3,this,false)"><span class="option-letter">C</span><span>Because the encryption will get worse after reboot</span></div>
+        <div class="quiz-option" onclick="answerQuiz(3,this,false)"><span class="option-letter">D</span><span>Because the attacker will know you found the ransomware</span></div>
+      </div><div class="quiz-feedback" id="fb3"></div></div>
+
+    <div class="quiz-question" id="q4"><h3><span class="q-num">4</span> What is "double extortion" in ransomware attacks?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(4,this,false)"><span class="option-letter">A</span><span>The ransom amount doubles every hour</span></div>
+        <div class="quiz-option" onclick="answerQuiz(4,this,false)"><span class="option-letter">B</span><span>Two different ransomware groups attack simultaneously</span></div>
+        <div class="quiz-option" onclick="answerQuiz(4,this,true)"><span class="option-letter">C</span><span>Attackers both encrypt your data and threaten to publish stolen data if you don't pay</span></div>
+        <div class="quiz-option" onclick="answerQuiz(4,this,false)"><span class="option-letter">D</span><span>The attacker encrypts your data twice with different keys</span></div>
+      </div><div class="quiz-feedback" id="fb4"></div></div>
+
+    <div class="quiz-question" id="q5"><h3><span class="q-num">5</span> You receive an email with an unexpected .docm attachment from a known contact. What should you do?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(5,this,false)"><span class="option-letter">A</span><span>Open it since you know the sender</span></div>
+        <div class="quiz-option" onclick="answerQuiz(5,this,true)"><span class="option-letter">B</span><span>Verify with the sender through a separate channel before opening</span></div>
+        <div class="quiz-option" onclick="answerQuiz(5,this,false)"><span class="option-letter">C</span><span>Forward it to a colleague to open first</span></div>
+        <div class="quiz-option" onclick="answerQuiz(5,this,false)"><span class="option-letter">D</span><span>Save it to your desktop and scan it later</span></div>
+      </div><div class="quiz-feedback" id="fb5"></div></div>
+
+    <div class="quiz-question" id="q6"><h3><span class="q-num">6</span> Should you pay the ransom?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(6,this,false)"><span class="option-letter">A</span><span>Yes, if the amount is less than the cost of recovery</span></div>
+        <div class="quiz-option" onclick="answerQuiz(6,this,false)"><span class="option-letter">B</span><span>Yes, it guarantees you get your data back</span></div>
+        <div class="quiz-option" onclick="answerQuiz(6,this,true)"><span class="option-letter">C</span><span>No. Payment does not guarantee recovery and funds future criminal activity</span></div>
+        <div class="quiz-option" onclick="answerQuiz(6,this,false)"><span class="option-letter">D</span><span>Only if your cyber insurance covers it</span></div>
+      </div><div class="quiz-feedback" id="fb6"></div></div>
+
+    <div class="quiz-question" id="q7"><h3><span class="q-num">7</span> What is the best way to protect against ransomware encrypting your backups?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(7,this,false)"><span class="option-letter">A</span><span>Store backups on the same server as the original data</span></div>
+        <div class="quiz-option" onclick="answerQuiz(7,this,false)"><span class="option-letter">B</span><span>Back up to a USB drive connected to your workstation</span></div>
+        <div class="quiz-option" onclick="answerQuiz(7,this,true)"><span class="option-letter">C</span><span>Maintain offline or immutable backups that cannot be modified by an attacker on the network</span></div>
+        <div class="quiz-option" onclick="answerQuiz(7,this,false)"><span class="option-letter">D</span><span>Backups are unnecessary if you have antivirus software</span></div>
+      </div><div class="quiz-feedback" id="fb7"></div></div>
+
+    <div class="quiz-question" id="q8"><h3><span class="q-num">8</span> Which single measure would prevent the most ransomware attacks?</h3>
+      <div class="quiz-options">
+        <div class="quiz-option" onclick="answerQuiz(8,this,false)"><span class="option-letter">A</span><span>Installing a more expensive firewall</span></div>
+        <div class="quiz-option" onclick="answerQuiz(8,this,true)"><span class="option-letter">B</span><span>Enabling multi-factor authentication on all remote access and email</span></div>
+        <div class="quiz-option" onclick="answerQuiz(8,this,false)"><span class="option-letter">C</span><span>Blocking all email attachments</span></div>
+        <div class="quiz-option" onclick="answerQuiz(8,this,false)"><span class="option-letter">D</span><span>Disconnecting from the internet entirely</span></div>
+      </div><div class="quiz-feedback" id="fb8"></div></div>
+
+    <div id="quizResults" style="display:none;"><div class="score-display">
+      <div class="score-circle" id="scoreCircle"><div class="score-value" id="scoreValue">0/8</div><div class="score-label">Correct</div></div>
+      <h2 id="scoreTitle"></h2><p id="scoreMessage" style="max-width:480px; margin:0.5rem auto;"></p>
+    </div></div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+      <button class="btn btn-primary" id="quizSubmit" onclick="submitQuiz()" style="display:none;">View Results</button>
+      <button class="btn btn-primary" id="quizNext" onclick="nextSection()" style="display:none;">View Certificate &rarr;</button>
+    </div>
+  </div></div>
+
+  <!-- SECTION 8: Certificate -->
+  <div class="section" id="section-8"><div class="section-inner">
+    <div class="section-label">Training Complete</div>
+    <h2>Certificate of Completion</h2>
+    <div class="divider"></div>
+    <div class="certificate">
+      <div class="cert-brand">Circle <span>6</span> Systems</div>
+      <div style="width:48px; height:2px; background:var(--accent-bg); opacity:0.3; margin:0.75rem auto 1rem;"></div>
+      <div class="cert-title">Ransomware Readiness</div>
+      <div class="cert-subtitle">Certificate of Completion</div>
+      <p style="color:var(--slate); font-size:0.85rem; margin-bottom:0.85rem;">This certifies that</p>
+      <div class="cert-name" id="certName" contenteditable="true" title="Click to enter your name">Your Name</div>
+      <p style="color:var(--slate-light); font-size:0.85rem;">has successfully completed the Ransomware Readiness<br>Awareness Training with a score of <strong id="certScore">--</strong>.</p>
+      <div class="cert-date" id="certDate"></div>
+    </div>
+    <div class="btn-group" style="justify-content:center;"><button class="btn btn-secondary" onclick="window.print()">Print Certificate</button></div>
+
+    <div class="quick-ref" style="margin-top:2.5rem;">
+      <h3>Quick Reference Card</h3>
+      <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>FIRST 5 MINUTES:</strong> Disconnect from the network (unplug Ethernet, disable Wi-Fi). Do NOT shut down. Call IT by phone immediately.</div></div>
+      <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>SIGNS OF ATTACK:</strong> Files won't open or have new extensions. Ransom note on screen. Shared drives unavailable. Antivirus disabled. Password stops working.</div></div>
+      <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>DO NOT:</strong> Pay the ransom. Shut down the computer. Try to fix it yourself. Connect USB drives. Delete the ransom note.</div></div>
+      <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>PREVENT IT:</strong> Don't open unexpected attachments. Use MFA. Keep software updated. Report suspicious emails. Save work to approved backup locations.</div></div>
+      <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>REPORT TO:</strong> IT department (by phone) &bull; CISA: report@cisa.gov &bull; FBI IC3: ic3.gov &bull; Your organization's incident response team</div></div>
+    </div>
+
+    <div style="margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid var(--border); font-size:0.75rem; color:var(--slate); text-align:center;">
+      <p>Developed using threat intelligence from CISA, Sophos, Fortinet, BlackFog, and the FBI IC3.</p>
+      <p style="margin-top:0.65rem;">&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com" style="color:var(--accent);">contact@circle6systems.com</a></p>
+    </div>
+
+    <div class="btn-group"><button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button><button class="btn btn-primary" onclick="goToSection(0)">Restart Training</button></div>
+  </div></div>
+
+</main>
+
+<script>
+  var currentSection=0,totalSections=9,quizAnswers={},quizScore=0;
+  function goToSection(n){
+    document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+    document.getElementById('section-'+n).classList.add('active');
+    document.querySelectorAll('.nav-dot').forEach(function(d,i){d.classList.remove('active');if(i<n)d.classList.add('completed');});
+    document.querySelectorAll('.nav-dot')[n].classList.add('active');
+    currentSection=n;document.getElementById('progressText').textContent=(n+1)+' / '+totalSections;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function nextSection(){if(currentSection<totalSections-1)goToSection(currentSection+1);}
+  function prevSection(){if(currentSection>0)goToSection(currentSection-1);}
+
+  var expl={
+    1:{correct:"Correct. Compromised VPN credentials and exploited vulnerabilities account for 80% of ransomware entry points in 2025.",incorrect:"Not quite. Compromised credentials (especially VPN) and exploited vulnerabilities are the top entry points, accounting for 80% of attacks."},
+    2:{correct:"Correct. Disconnect from the network to stop the spread, then call IT by phone. Do not shut down\u2014preserve forensic evidence.",incorrect:"Not quite. Your first actions should be disconnecting from the network and calling IT by phone. Never shut down or try to fix it yourself."},
+    3:{correct:"Correct. Memory contains forensic evidence\u2014encryption keys, attacker tools, and network connections\u2014that investigators need for recovery.",incorrect:"Not quite. Shutting down destroys critical forensic evidence in memory that investigators need to understand the attack and potentially recover data."},
+    4:{correct:"Correct. Attackers steal your data before encrypting it, then threaten to publish it publicly if you don't pay, even if you can restore from backups.",incorrect:"Not quite. Double extortion means attackers both encrypt your data AND steal it, threatening to publish sensitive information if you don't pay."},
+    5:{correct:"Correct. Even if you know the sender, their account may be compromised. Always verify unexpected attachments through a separate channel.",incorrect:"Not quite. Known senders can have compromised accounts. Always verify unexpected attachments by contacting the sender through a separate channel."},
+    6:{correct:"Correct. The FBI and CISA advise against paying. Payment does not guarantee data recovery and directly funds criminal operations.",incorrect:"Not quite. Payment is never recommended. It does not guarantee recovery, and it funds further criminal activity. Work with law enforcement and your incident response team."},
+    7:{correct:"Correct. Offline or immutable backups cannot be reached by attackers on your network, making them your last line of defense.",incorrect:"Not quite. Backups connected to the network get encrypted too. Offline or immutable backups are the only reliable defense against ransomware."},
+    8:{correct:"Correct. MFA blocks nearly all credential-based attacks, which are the #1 ransomware entry point. It is the single highest-impact security control.",incorrect:"Not quite. MFA on remote access and email would prevent the largest category of ransomware attacks\u2014those using stolen credentials."}
+  };
+
+  function answerQuiz(q,el,c){
+    if(quizAnswers[q]!==undefined)return;quizAnswers[q]=c;
+    el.parentElement.querySelectorAll('.quiz-option').forEach(function(o){o.classList.add('disabled');if(o.getAttribute('onclick').indexOf('true')!==-1)o.classList.add('correct');});
+    if(!c)el.classList.add('incorrect');
+    var fb=document.getElementById('fb'+q);fb.classList.add('show');
+    fb.classList.add(c?'correct-fb':'incorrect-fb');fb.textContent=expl[q][c?'correct':'incorrect'];
+    if(Object.keys(quizAnswers).length===8)document.getElementById('quizSubmit').style.display='inline-flex';
+  }
+
+  function submitQuiz(){
+    quizScore=Object.values(quizAnswers).filter(function(v){return v;}).length;
+    var p=quizScore>=6;
+    document.getElementById('quizResults').style.display='block';
+    document.getElementById('scoreValue').textContent=quizScore+'/8';
+    document.getElementById('scoreCircle').classList.add(p?'pass':'fail');
+    document.getElementById('scoreTitle').textContent=p?'Training Passed':'Please Review and Retry';
+    document.getElementById('scoreMessage').textContent=p?'You have demonstrated a strong understanding of ransomware threats and response procedures.':'You scored below 75%. Please review the training material and retake the assessment.';
+    document.getElementById('quizSubmit').style.display='none';
+    if(p)document.getElementById('quizNext').style.display='inline-flex';
+    document.getElementById('certScore').textContent=quizScore+'/8 ('+Math.round(quizScore/8*100)+'%)';
+    document.getElementById('quizResults').scrollIntoView({behavior:'smooth'});
+  }
+
+  document.getElementById('certDate').textContent=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>

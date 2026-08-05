@@ -1,0 +1,18 @@
+# Circle 6 Systems — security.txt
+# https://securitytxt.org/ | RFC 9116
+
+Contact: mailto:security@circle6systems.com
+Expires: 2027-05-22T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://circle6systems.com/.well-known/security.txt
+Policy: https://circle6systems.com/security-policy
+Hiring: https://circle6systems.com/careers
+Acknowledgments: https://circle6systems.com/security-acknowledgments
+
+# We are a security consulting firm. We appreciate responsible disclosure.
+# If you have found a vulnerability in our systems, please report it to the
+# contact above. We aim to acknowledge reports within 2 business days and
+# provide a substantive response within 5 business days.
+#
+# Scope: *.circle6systems.com
+# Out of scope: third-party services, social media accounts

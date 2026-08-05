@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food-Supply-Chain Threat Analysis - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
+  <meta name="description" content="TECHINT analysis of Cyclospora cayetanensis as a low-signature food-supply-chain contaminant: pathogen profile, contamination vector, a 2013 to 2020 historical outbreak base rate, and the Taylor Farms repeat-supplier pattern linking the 2026 Taco Bell cluster and a 27-state recall to the 2013 outbreak, including a retracted false-positive lab test and Mexico's own public dispute of the attribution.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .skip-to-content { position: absolute; top: -100%; left: 1rem; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px; font-weight: 700; font-size: 0.9rem; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active" aria-current="page">Intelligence</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Public &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">Cyclosporiasis 2026</a> &rsaquo; Supply-Chain Threat Analysis
+    </nav>
+
+    <div class="title-block">
+      <h1>Food-Supply-Chain Threat Analysis</h1>
+      <div class="subtitle">Cyclospora cayetanensis as a Low-Signature Contaminant</div>
+      <div class="meta-grid">
+        <div><span class="label">Product</span> Technical Intelligence (TECHINT)</div>
+        <div><span class="label">TLP</span> CLEAR</div>
+        <div><span class="label">Published</span> August 3, 2026 (v21)</div>
+        <div><span class="label">Lens</span> Food supply chain</div>
+        <div><span class="label">Reliability</span> A-B (Admiralty)</div>
+        <div><span class="label">Read time</span> ~9 minutes</div>
+      </div>
+    </div>
+
+    <main id="main-content">
+
+    <section>
+      <div class="panel highlight">
+        <div class="panel-title">Threat framing</div>
+        <p style="margin-bottom:0;">Modeled through a threat lens, <em>Cyclospora</em> is a low-signature contaminant that uses the fresh-produce supply chain as its delivery vector.
+        Its characteristics are almost purpose-built to defeat food-safety controls: it contaminates upstream at the grow/harvest/wash stage, rides ready-to-eat
+        commodities that are never cooked, and resists the chlorine washes and refrigeration that the chain relies on as kill-steps.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Pathogen Fact Sheet</h2>
+      <table>
+        <thead><tr><th scope="col">Attribute</th><th scope="col">Detail</th></tr></thead>
+        <tbody>
+          <tr><td>Class</td><td>Coccidian protozoan parasite; humans are the only known host</td></tr>
+          <tr><td>Infective unit</td><td>Oocyst, 7.5-10 &micro;m, passed <strong>unsporulated and non-infective</strong> in stool</td></tr>
+          <tr><td>Sporulation</td><td>Requires days to weeks at roughly 22-32 &deg;C in the environment before becoming infective</td></tr>
+          <tr><td>Transmission</td><td><strong>Not person-to-person.</strong> Fresh-passed oocysts are non-infective and need environmental maturation, so direct fecal-oral spread cannot occur</td></tr>
+          <tr><td>Incubation</td><td>Averages about one week; range roughly 2 days to 2+ weeks</td></tr>
+          <tr><td>Control resistance</td><td>Oocysts resist standard chlorination and temperature extremes; washing produce reduces but does not reliably remove them</td></tr>
+          <tr><td>Symptoms</td><td>Watery ("explosive") diarrhea, anorexia, weight loss, cramping, bloating, nausea, fatigue; relapsing-remitting</td></tr>
+          <tr><td>Diagnosis</td><td>Missed by routine stool tests; needs specific testing (acid-fast/UV microscopy or molecular GI-PCR panel)</td></tr>
+          <tr><td>Treatment</td><td>Trimethoprim-sulfamethoxazole (Bactrim) 7-10 days, first line; ciprofloxacin or nitazoxanide for sulfa-allergic patients</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>The Contamination Vector</h2>
+      <p>Because oocysts require environmental sporulation, the parasite never amplifies inside the distribution network the way bacteria can. It does not need to.
+      The contamination event occurs <strong>upstream</strong>, typically when fecal-contaminated <strong>irrigation or wash water</strong> contacts leafy greens,
+      herbs, and low-growing produce. Once oocysts adhere to a waxy leaf surface, the chain's primary defenses fail in sequence:</p>
+      <ul>
+        <li><strong>No cook step.</strong> These are ready-to-eat commodities eaten raw, so heat never neutralizes the pathogen.</li>
+        <li><strong>Sanitizer-resistant.</strong> Chlorine wash lines, the workhorse of produce processing, do not reliably kill oocysts.</li>
+        <li><strong>Cold-chain immune.</strong> Refrigeration that suppresses bacterial growth does nothing to Cyclospora.</li>
+      </ul>
+      <div class="panel warning">
+        <div class="panel-title">Highest-consequence node: bagged salads</div>
+        <p style="margin-bottom:0;">A single contaminated ingredient lot is comminuted and blended across many brands and states, converting a point-source contamination into a
+        multistate outbreak signature. This is why processing nodes such as Fresh Express, Taylor Farms, and Del Monte recur in the outbreak record, and why the diffuse
+        2026 signature is consistent with a widely distributed staple commodity. The mid-July emergence of lettuce and salad greens as a suspected vehicle, and the
+        examination of a national quick-service chain (Taco Bell) as a possible downstream distribution node, fits this pattern: a shared leafy-green supply reaching many
+        end points at once. None of it is confirmed, and it remains consistent with degraded trace-back capacity slowing a definitive answer.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>The Repeat-Supplier Pattern</h2>
+      <div class="panel critical">
+        <div class="panel-title">The 2026 cluster is now a confirmed replay of 2013</div>
+        <p>The v2 edition of this briefing named Taylor Farms as one of the processing nodes that "recur in the outbreak record." That observation was drawn from the
+        historical base rate, before any 2026 reporting implicated the firm. On July 16, reporting placed Taylor Farms iceberg lettuce grown in Mexico at the center of
+        the FDA traceback; on July 17, FDA and CDC published official outbreak pages confirming the link for a five-state Taco Bell cluster; on July 18, Taylor Farms
+        posted a recall of its own showing the product's actual distribution, 27 states, is far wider than the named cluster; and on July 18, FDA disclosed that its own
+        targeted import surveillance had returned a direct positive laboratory test for Cyclospora on a Taylor Farms de Mexico lettuce sample. That result did not
+        hold: FDA re-reviewed it on July 19 and retracted it as a false positive. The evidentiary basis for the named cluster therefore remains traceback and
+        epidemiologic convergence, not a confirmed physical detection. The correspondence with 2013 is close enough to be worth stating precisely:</p>
+        <table>
+          <thead><tr><th scope="col">Dimension</th><th scope="col">2013 (resolved)</th><th scope="col">2026 (confirmed, cluster)</th></tr></thead>
+          <tbody>
+            <tr><td>Supplier</td><td>Taylor Farms de Mexico</td><td>Taylor Farms de Mexico</td></tr>
+            <tr><td>Commodity</td><td>Salad mix (iceberg and romaine base)</td><td>Iceberg lettuce, shredded</td></tr>
+            <tr><td>Country of origin</td><td>Mexico (processing plant)</td><td>Mexico (grown)</td></tr>
+            <tr><td>Distribution node</td><td>Olive Garden / Red Lobster (Darden)</td><td>Taco Bell (incl. franchisees); recall also reaches retail (Walmart)</td></tr>
+            <tr><td>Scale</td><td>631 cases / 25 states</td><td>1,947 confirmed in the named cluster / 9 states (expanded from 5 states, 1,644 cases, on Jul 24); 6,707 CDC-confirmed / 45 states nationally (Jul 29, up from 4,173/41 on Jul 22 after a nine-day freeze, and a second catch-up jump after a shorter plateau); &gt;11,500 under analysis; recall footprint 27 states</td></tr>
+            <tr><td>Resolution</td><td>FDA traceback; voluntary production halt Aug 9, resumed Aug 25; no recall</td><td>FDA/CDC on-the-record attribution (Jul 17), now publicly disputed by Mexico's Health Secretary (Jul 21) with a negative Cyclospora/fecal-coliform test on Guanajuato facility samples (Jul 24); recall published by the supplier (Jul 18), 27-state distribution; an import-surveillance lab test reported positive (Jul 18) was retracted as a false positive (Jul 19), so no confirmed positive product sample exists; supplier voluntarily, temporarily closed the implicated facility (Jul 23); CDC expanded the named cluster from 5 to 9 states (Jul 24); formal FDA recall class/number not yet confirmed from a primary source</td></tr>
+          </tbody>
+        </table>
+        <p>Two cautions against over-reading this. First, a firm the size of Taylor Farms supplies an enormous share of US foodservice leafy
+        greens, so its appearance in a leafy-green outbreak carries less information than the pairing initially suggests; base rates cut both ways. Taylor Farms' own
+        statement notes the implicated farm represents less than 1% of the US iceberg lettuce supply, consistent with this caution rather than against it. Second, FDA's 2013
+        environmental assessment found conditions at the implicated facilities "in accordance with known food safety protocols," and operations resumed within weeks.
+        That is the uncomfortable finding worth carrying forward: <strong>the 2013 investigation identified the vehicle and still did not identify a deficiency to
+        correct.</strong> If 2026 resolves the same way, the recurrence is not evidence of a bad operator so much as evidence that the industry lacks a reliable
+        kill-step for this organism on raw leafy greens, and that irrigation-water contamination upstream of any processor remains largely unmanaged.</p>
+        <p style="margin-bottom:0;">Note also that the 27-state recall complicates, rather than simply confirms, our v4 read of North Carolina as a separate, unlinked
+        vehicle: North Carolina is on that recall's distribution list even though its health department maintains its cases, 561 by Jul 20, up from 307
+        as of Jul 14, are unrelated to the Taco Bell cluster. We do not yet know whether that is a coincidence of broad retail distribution or a sign the two threads
+        are less separate than v4 suggested; either way, the 2026 outbreak has at least one thread, North Carolina's, that this Taylor Farms replay does not yet
+        fully explain. FDA separately disclosed in v9 that federal officials have investigated five distinct cyclosporiasis clusters since May, three
+        now considered over; whether North Carolina's is among them is not yet known. Separately, CDC's national confirmed count, frozen at 1,645 for nine
+        days, jumped to 4,173 across 41 states on Jul 22 (v10), then broke a second, shorter plateau to reach 6,707 across 45 states on Jul 29 (v17), a national footprint not plausibly explained by the
+        named Taco Bell cluster alone (now nine states, expanded from five on Jul 24, see below), underscoring that this Taylor Farms replay covers only part of a larger picture. Most significantly for this
+        pattern analysis, Mexico's own Health Secretary publicly disputed the attribution on the record (Jul 21), saying his country's investigation found
+        no evidence the outbreak originated at the implicated facility; FDA and CDC have not withdrawn their conclusion. Taylor Farms subsequently, voluntarily
+        and temporarily closed that same central-Mexico facility (Jul 23) as US case counts kept climbing, even though no product sample from it has ever
+        tested positive. FDA also disclosed a wholly separate, concurrent outbreak of at least 93 cases with an unidentified product, a second thread this
+        pattern analysis does not touch at all. In v12, two further developments bear on this supplier pattern: CDC retitled its outbreak page to expand the
+        named cluster from five to nine states (adding Illinois, Kansas, Oklahoma, and Pennsylvania), raising the cluster-specific count from 1,644 to
+        1,947 cases, meaning the same single-supplier failure geometry now touches more of the confirmed case load, not less; and Mexican federal
+        authorities report that lettuce and water samples from the implicated Guanajuato facility tested negative for Cyclospora and fecal coliforms,
+        strengthening Mexico's dispute from a statement to a specific test result, though officials caution this does not by itself resolve where in the
+        supply chain the contamination occurred, and FDA has not withdrawn its conclusion.</p>
+        <p style="margin-bottom:0;"><strong>v18 addition: a regulatory-oversight thread, separate from the science.</strong> Multiple outlets (Insurance
+        Journal, CBS News, Civil Eats) reported this cycle that Taylor Farms met privately with White House and FDA officials during the investigation,
+        and that House Democrats opened an inquiry citing more than $2 million in the company's political donations, asking whether the company sought
+        to influence FDA's inquiry. We log this as a corporate-conduct and regulatory-posture development relevant to buyers assessing this supplier, not
+        as evidence bearing on the underlying attribution science; FDA has not withdrawn its traceback conclusion, and the meeting's characterization in
+        press reporting rests in part on an unnamed source. Watch for a company on-the-record response or a committee document as the next verification
+        point.</p>
+        <p style="margin-bottom:0;"><strong>v20 addition: the inquiry now has a primary document and on-the-record responses on both sides.</strong>
+        The committee's own press release (House Committee on Oversight and Government Reform, Democrats, July 27) confirms the inquiry directly:
+        Ranking Member Robert Garcia sent a letter to Taylor Farms CEO Bruce Taylor alleging the company "donated millions to President Trump, met
+        privately with the White House the night the FDA identified their lettuce as the source of this outbreak, and then reportedly tried to
+        distance themselves," and formally demanding documents. The more specific figures reported in press, roughly $2 million in donations with
+        about $1 million to a Trump-aligned super PAC, are outlet characterizations (CBS News) rather than the committee's own wording, and we hold
+        them at Medium. Two responses are now on the record, both single-outlet (CBS): the White House called "any notion that the White House or
+        Trump administration would ever compromise on the health and safety of the American people ... absolutely false" and said FDA "is conducting
+        a thorough and evidence-based outbreak investigation," and Taylor Farms offered a soft non-denial that "the safety of our food is paramount"
+        without addressing the letter's specifics. This remains a corporate-conduct and regulatory-posture thread, not evidence bearing on the
+        attribution science.</p>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">Supplier-concentration risk (the transferable lesson)</div>
+        <p style="margin-bottom:0;">Strip out the parasite and this is a single-point-of-failure story. One processor's output reached diners in at least five states
+        through one restaurant brand, and neither the brand nor the public could act until an external investigation worked backward through the chain. For any
+        organization buying fresh produce at scale, the diagnostic question is not "is Taylor Farms safe" but "how long would it take us to answer <em>which processor,
+        which growing region, which lot</em> for a given item, and could we act on that answer faster than a federal traceback." Taco Bell's own response is the useful
+        benchmark here: it identified affected supply, substituted it within 24 hours in the priority states, and pulled the ingredient nationwide, all before any agency
+        told it to. That capability, not the outcome of the investigation, is what distinguishes buyers who can contain an event from buyers who can only wait for one.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Historical Outbreak Base Rate</h2>
+      <p>When a vehicle is found in US Cyclospora outbreaks, it is overwhelmingly a leafy-green or herb blend, frequently linked to imported produce.
+      This base rate is the strongest prior for what the 2026 source, if ever identified, will turn out to be.</p>
+      <table>
+        <thead><tr><th scope="col">Year</th><th scope="col">Source / Vehicle</th><th scope="col">Lab-confirmed cases</th><th scope="col">How identified</th></tr></thead>
+        <tbody>
+          <tr><td>2013</td><td>Taylor Farms de Mexico bagged salad (IA/NE); cilantro (TX)</td><td>~631 total</td><td>State epi clustering + FDA traceback to Mexican processor</td></tr>
+          <tr><td>2018 (a)</td><td>Del Monte vegetable trays, Midwest</td><td>250</td><td>Epi linkage; product recall</td></tr>
+          <tr><td>2018 (b)</td><td>Fresh Express salad mix served at McDonald's, 11 states</td><td>511</td><td>FDA lab-confirmed Cyclospora in an unused package</td></tr>
+          <tr><td>2019</td><td>Fresh basil exported from Morelos, Mexico</td><td>132 (11 states)</td><td>CDC epi + FDA traceback to Mexican exporter</td></tr>
+          <tr><td>2020</td><td>Fresh Express bagged garden salads (ALDI, Hy-Vee, Jewel-Osco brands)</td><td>701 (14 states)</td><td>Epi + traceback; June 27 recall</td></tr>
+          <tr><td>2026</td><td><strong>Attributed (cluster, disputed by Mexico with a negative facility test): Taylor Farms de Mexico iceberg lettuce, served at Taco Bell in 9 states (expanded from 5 on Jul 24), recalled in 27</strong>; an import-surveillance positive lab test was reported then retracted as a false positive; a third, distinct, unidentified vehicle disclosed in a separate 72-case FDA outbreak, alongside a second, unidentified vehicle active concurrently in North Carolina (which also appears on the recall list)</td><td>1,947 confirmed in the named cluster (98+ hospitalized), up from 1,644/94; 6,707 CDC-confirmed nationally as of Jul 29 (up from 4,173 on Jul 22 after a nine-day freeze, and a second catch-up after a shorter plateau); &gt;11,500 under analysis; 423 hospitalized nationally; 0 deaths; 45 states</td><td>FDA/CDC traceback confirmed on the record Jul 17, publicly disputed by Mexico's Health Secretary Jul 21 with a negative Guanajuato facility test Jul 24; supplier posted its own recall Jul 18, distribution to 27 states, then voluntarily and temporarily closed the implicated facility Jul 23; FDA import surveillance reported a positive lab test Jul 18, retracted as a false positive Jul 19; CDC expanded the named cluster from 5 to 9 states Jul 24; CDC's national confirmed count updated Jul 22 and again Jul 29. Outbreak-wide attribution remains open</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Base-rate read: implicated commodities cluster tightly on leafy greens, fresh herbs, and salad blends, with Mexican and Central/South American imports recurring.
+      Identification typically depends on FDA traceback and, occasionally, direct lab confirmation in an unopened package. The 2026 named cluster (iceberg lettuce, Mexican-grown, single processor) falls inside this
+      distribution on every axis, which is why we rate the leafy-green vehicle prediction at 97% while holding the Taylor Farms attribution at High, disputed by Mexico, for the named cluster and Medium for the outbreak as a whole, pending
+      identification of North Carolina's separate vehicle and the newly disclosed 72-case cluster's own vehicle.</p>
+    </section>
+
+    <section>
+      <h2>Core TECHINT Takeaway</h2>
+      <div class="panel critical">
+        <p style="margin-bottom:0;">Attribution difficulty here is <strong>structural, not incidental</strong>. Long incubation introduces recall bias across a two-week exposure window;
+        non-routine lab testing causes under-ascertainment; comminuted bagged-salad distribution diffuses the signal; and oocysts are hard to detect in food and
+        environmental samples. Any one of these would slow an investigation. Together, and layered on reduced federal trace-back capacity, they make an unresolved source
+        the expected outcome rather than an anomaly. Organizations should therefore plan around risk-reduction and supplier traceability, not around waiting for a single
+        "avoid this product" answer.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected Sources</h2>
+      <ol style="font-size:0.9rem;">
+        <li><a href="https://www.washingtonpost.com/health/2026/07/24/cdc-expands-largest-known-us-cyclospora-outbreak-9-states/">Washington Post - CDC expands largest known US cyclospora outbreak to 9 states</a> (2026-07-24; cluster expanded from 5 to 9 states, 1,947 cases / 98 hospitalized) [B]</li>
+        <li><a href="https://cnnespanol.cnn.com/2026/07/24/mexico/cyclospora-planta-guanajuato-esto-sabemos-orix">CNN en Espanol - No encuentran Cyclospora en Guanajuato: esto sabemos de la investigacion en Mexico</a> (2026-07-24; negative Cyclospora and fecal-coliform tests on Guanajuato facility lettuce/water samples) [B]</li>
+        <li><a href="https://www.washingtonpost.com/health/2026/07/22/cdc-catches-up-state-tallies-cyclosporiasis-case-count-surges/">Washington Post - CDC catches up to state tallies as cyclosporiasis case count surges</a> (2026-07-22; CDC confirmed count 1,645 to 4,173) [B]</li>
+        <li><a href="https://abcnews.com/Health/11500-cyclosporiasis-cases-reported-41-states-cdc/story?id=134979908">ABC News - More than 11,500 cyclosporiasis cases reported in 41 states: CDC</a> (2026-07-22) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/rfk-jr-says-cyclosporiasis-outbreak-control-mexico-casts-doubt-link-ta-rcna588604">NBC News - RFK Jr. says cyclosporiasis outbreak is "under control" as Mexico casts doubt on link to Taylor Farms facility</a> (2026-07-21/22; Mexico's Health Secretary disputes the attribution on the record) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/business/2026/07/23/cyclosporiasis-taylor-farms-mexico-processing-facility/91027112007/">Detroit News - Taylor Farms temporarily shuts Mexico processing facility as U.S. cyclosporiasis cases rise</a> (2026-07-23) [B]</li>
+        <li><a href="https://thehill.com/policy/healthcare/5985697-another-cyclospora-outbreak-not-linked-to-lettuce-under-investigation-fda/">The Hill - Another cyclospora outbreak not linked to lettuce under investigation: FDA</a> (2026-07-23; separate 72-case cluster) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-says-taylor-farms-lettuce-sample-tested-cyclospora-produced-false-rcna588303">NBC News - Taylor Farms lettuce sample produced false positive for cyclospora, FDA says</a> (2026-07-19) [B]</li>
+        <li><a href="https://www.cbsnews.com/news/taylor-farms-lettuce-false-positive-cyclospora/">CBS News - Taylor Farms lettuce is still focus of cyclospora investigation despite false positive test, FDA says</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/life/food/2026/07/18/fda-says-taylor-farms-iceberg-lettuce-tested-positive-for-parasite-outbreak/90969816007/">Detroit News - FDA: Taylor Farms lettuce that's not part of recall tests positive for cyclospora</a> (2026-07-18/19; later retracted as a false positive, see above; not independently verified against FDA's own page this cycle) [B]</li>
+        <li><a href="https://www.marlerblog.com/case-news/fda-found-cyclospora-on-taylor-farms-lettuce-at-the-border-credit-where-its-due-now-tell-us-where-the-rest-of-that-lot-went/">Marler Blog - FDA Found Cyclospora on Taylor Farms Lettuce at the Border. Credit Where It's Due. Now Tell Us Where the Rest of That Lot Went</a> (2026-07-19) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/18/taylor-farms-recalls-iceberg-lettuce-in-27-states-due-to-cyclosporiasis-outbreak.html">CNBC - Taylor Farms recalls iceberg lettuce in 27 states due to cyclosporiasis outbreak</a> (2026-07-18; not independently verified against the primary recall notice this cycle) [B]</li>
+        <li><a href="https://www.marlerblog.com/case-news/taylor-farms-posted-its-own-recall-it-went-to-27-states-not-5-and-the-list-includes-bags-sold-in-grocery-stores/">Marler Blog - Taylor Farms Posted Its Own Recall. It Went to 27 States, Not 5, and the List Includes Bags Sold in Grocery Stores</a> (2026-07-18) [B]</li>
+        <li><a href="https://www.consumerreports.org/health/food-recalls/taylor-farms-pulls-mexican-lettuce-linked-to-cyclospora-para-a7871344748/">Consumer Reports - Parasite-Linked Lettuce Was Sent to Walmart Stores and Food Distributors in 27 States</a> (2026-07-18) [B]</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-5-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA - Investigation of 5-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a> (primary; retrieved and verified verbatim 2026-07-17) [A]</li>
+        <li><a href="https://www.taylorfarms.com/newsroom/taylor-fresh-foods-statement-regarding-cyclospora-outbreak/">Taylor Farms - Taylor Fresh Foods Statement Regarding Cyclospora Outbreak</a> (primary; retrieved and verified verbatim 2026-07-17) [A]</li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-07-17/lettuce-grower-taylor-farms-to-recall-products-tied-to-parasite">Bloomberg - Taylor Farms to Recall Lettuce Ingredients Linked to Cyclospora Outbreak</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.wral.com/lifestyles/health/nc-cyclospora-source-unknown-july-2026/">WRAL - Tracing Cyclospora: NC cases not connected to Taco Bell lettuce, source of bug still TBD</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.cdc.gov/dpdx/cyclosporiasis/index.html">CDC DPDx - Cyclosporiasis</a> (oocyst morphology, sporulation, non-infectivity) [A]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8779055/">Life Cycle and Transmission of C. cayetanensis: Knowns and Unknowns</a> (PMC, 2022) [A]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7699734/">Cyclospora - Major Outbreaks from Ready-to-Eat Fresh Produce</a> (PMC, 2020) [A]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6171894/">Notes from the Field: Multiple Cyclosporiasis Outbreaks, US, 2018</a> (MMWR) [A]</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/outbreak-investigation-cyclospora-bagged-salads-june-2020">FDA - Outbreak Investigation of Cyclospora: Bagged Salads (June 2020)</a> [A]</li>
+        <li><a href="https://www.marlerblog.com/case-news/cyclospora-outbreaks-with-identified-food-water-vehicle-2000-present/">Marler Blog - Cyclospora Outbreaks with Identified Food/Water Vehicle (2000-Present)</a> [B]</li>
+        <li><a href="https://www.foodsafetynews.com/2026/07/cyclospora-outbreak-surges-in-michigan/">Food Safety News - Cyclospora cases surge in Michigan</a> (2026-07) [B]</li>
+        <li><a href="https://www.npr.org/2026/07/12/nx-s1-5890935/cyclosporiasis-outbreak-diarrhea-nausea-where-states-us">NPR - What to know about the cyclosporiasis outbreak</a> (2026-07-12) [B]</li>
+        <li><a href="https://www.washingtonpost.com/health/2026/07/14/authorities-investigate-taco-bell-lettuce-multistate-cyclosporiasis-outbreak/">Washington Post - Authorities investigate Taco Bell and lettuce</a> (2026-07-14) [B]</li>
+        <li><a href="https://www.cbsnews.com/news/cyclosporiasis-outbreak-taco-bell-lettuce-mexico/">CBS News - Outbreak possibly traced to Taylor Farms lettuce from Mexico used by Taco Bell</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-names-source-cyclosporiasis-outbreak-rcna587899">NBC News - Iceberg lettuce supplier investigated as possible source</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.foodsafetynews.com/2013/08/cyclospora-outbreak-linked-to-taylor-farms-salad-some-served-at-olive-garden-and-red-lobster/">Food Safety News - 2013 Cyclospora outbreak linked to Taylor Farms salad (Olive Garden, Red Lobster)</a> (2013-08) [B]</li>
+        <li><a href="https://www.infectioncontroltoday.com/view/cyclosporiasis-outbreak-linked-produce-taylor-farms-de-mexico">Infection Control Today - 2013 outbreak linked to Taylor Farms de Mexico; FDA environmental assessment found practices "in accordance with known food safety protocols"</a> (2013) [B]</li>
+        <li><a href="https://www.cnn.com/2013/08/13/health/cyclospora-outbreak-taylor-farms">CNN - Farm linked to cyclospora stops sending lettuce to US (2013 voluntary halt)</a> (2013-08-13) [B]</li>
+        <li><a href="https://stateline.org/2026/07/14/salad-greens-scrutinized-as-cyclosporiasis-outbreak-spreads/">Stateline - Salad greens scrutinized as outbreak spreads</a> (2026-07-14) [B]</li>
+        <li><a href="https://www.insurancejournal.com/news/national/2026/07/29/879441.htm">Insurance Journal - Company at Center of Cyclospora Outbreak Complained to White House, Source Says</a> (2026-07-29; new in v18; private meeting between Taylor Farms and White House/FDA officials; unnamed source for the meeting's characterization) [C]</li>
+        <li><a href="https://www.cbsnews.com/news/taylor-farms-cyclospora-outbreak-white-house-investigation/">CBS News - Taylor Farms CEO pressed by lawmaker over cyclospora outbreak and White House ties</a> (2026-07-29; new in v18; on-the-record House Democrats' inquiry citing Taylor Farms' political donations; source for the White House and Taylor Farms responses added in v20) [B]</li>
+        <li><a href="https://oversightdemocrats.house.gov/news/press-releases/ranking-member-robert-garcia-demands-answers-from-taylor-farms-on-national-cyclospora-outbreak-and-attempts-to-influence-fda-investigation">House Committee on Oversight and Government Reform (Democrats) - Ranking Member Robert Garcia Demands Answers From Taylor Farms</a> (2026-07-27; primary committee record, added in v20; confirms the Garcia letter and its allegations in the committee's own words) [B]</li>
+      </ol>
+    </section>
+
+    </main>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v21 2026-08-03 (data as of 2026-08-03) &middot; Informational, not medical advice.</p>
+      <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="state-map.html">State Map</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

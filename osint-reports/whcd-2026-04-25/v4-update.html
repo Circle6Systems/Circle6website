@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>V4 Update Briefing -- WHCD Shooting | Circle 6 Systems Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .v4-banner {
+      background: linear-gradient(135deg, rgba(168, 193, 150, 0.12) 0%, rgba(143, 170, 123, 0.06) 100%);
+      border: 1px solid rgba(168, 193, 150, 0.25);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .v4-banner .v4-label {
+      background: var(--c6s-accent);
+      color: var(--c6s-dark);
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .v4-banner p { margin: 0; font-size: 0.85rem; color: var(--c6s-text); }
+    .change-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+    .change-tag.new { background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .change-tag.revised { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .change-tag.corrected { background: rgba(239, 68, 68, 0.15); color: var(--c6s-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .change-tag.confirmed { background: rgba(168, 193, 150, 0.15); color: var(--c6s-accent); border: 1px solid rgba(168, 193, 150, 0.3); }
+    .change-tag.resolved { background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .verdict-row td:first-child { font-weight: 700; }
+    .toc-link { color: var(--c6s-accent); text-decoration: none; }
+    .toc-link:hover { text-decoration: underline; }
+    .source-list { columns: 2; column-gap: 2rem; font-size: 0.8rem; }
+    .source-list li { margin-bottom: 0.3rem; break-inside: avoid; }
+    .source-list a { color: var(--c6s-accent); text-decoration: none; }
+    .source-list a:hover { text-decoration: underline; }
+    .scorecard-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .scorecard-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .scorecard-card .sc-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .scorecard-card .sc-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--c6s-text-dim);
+    }
+    @media (max-width: 768px) {
+      .source-list { columns: 1; }
+      .scorecard-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/trust-safety/">Trust &amp; Safety</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Demo</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">WHCD Shooting</a> &rsaquo; V4 Update Briefing
+    </nav>
+
+    <div class="title-block">
+      <h1>V4 Update Briefing: T+24 Day Assessment</h1>
+      <div class="subtitle">2026 White House Correspondents' Dinner Shooting &mdash; Indictment Phase &amp; Prediction Tracker</div>
+      <div class="meta-grid">
+        <div><span class="label">Prepared By</span><br>Circle 6 Systems OSINT Practice</div>
+        <div><span class="label">Original (V1)</span><br>2026-04-26</div>
+        <div><span class="label">V3 Update</span><br>2026-05-04</div>
+        <div><span class="label">V4 Update</span><br>2026-05-19</div>
+        <div><span class="label">Status</span><br><span class="badge badge-green">Indicted &mdash; Pre-Trial</span></div>
+      </div>
+    </div>
+
+    <div class="v4-banner">
+      <span class="v4-label">V4 Update</span>
+      <p>T+24 day assessment. Case has moved from pre-indictment to <strong>pre-trial phase</strong>. Grand jury returned 4-count superseding indictment May 5, including new assault charge. Allen pleaded not guilty May 11 before Judge McFadden. Defense filed explosive motion to disqualify Pirro and Blanche as victim-prosecutors. Next hearing June 29. Sen. Blackburn demands USSS audit. WHCD rescheduling in doubt. V3 prediction scorecard: 1 confirmed, 1 partially confirmed, 3 developing. 5 new V4 predictions issued. 130+ sources cited across all versions.</p>
+    </div>
+
+    <!-- TOC -->
+    <section>
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#exec" class="toc-link">Executive Summary Update</a></li>
+        <li><a href="#timeline" class="toc-link">Timeline (May 4 &ndash; May 19)</a></li>
+        <li><a href="#predictions" class="toc-link">V3 Prediction Scorecard</a></li>
+        <li><a href="#legal" class="toc-link">Legal Proceedings Tracker</a></li>
+        <li><a href="#recusal" class="toc-link">Prosecutorial Recusal Battle</a></li>
+        <li><a href="#custody" class="toc-link">Custody &amp; Judicial Developments</a></li>
+        <li><a href="#political" class="toc-link">Political &amp; Policy Developments</a></li>
+        <li><a href="#usss" class="toc-link">USSS Leadership &amp; Accountability</a></li>
+        <li><a href="#whcd" class="toc-link">WHCD Rescheduling &mdash; Future in Doubt</a></li>
+        <li><a href="#disinfo" class="toc-link">Information Environment Update</a></li>
+        <li><a href="#newpredictions" class="toc-link">V4 Predictive Assessments</a></li>
+        <li><a href="#watchlist" class="toc-link">Watchlist</a></li>
+        <li><a href="#sources" class="toc-link">Sources (V4)</a></li>
+      </ol>
+    </section>
+
+    <!-- 1. EXEC SUMMARY -->
+    <section id="exec">
+      <h2>1. Executive Summary Update</h2>
+      <div class="panel highlight">
+        <p>Twenty-four days after the Washington Hilton breach, the case has transitioned from incident response and pre-indictment into a <strong>formal pre-trial phase</strong>. A federal grand jury returned a superseding 4-count indictment on May 5 &mdash; three days ahead of the V3-predicted May 8 timeline. Allen pleaded not guilty on May 11 before U.S. District Judge Trevor McFadden, a Trump appointee. The most consequential V4 development: the defense has opened a <strong>second front</strong>, filing a 9-page motion to disqualify U.S. Attorney Jeanine Pirro and Acting AG Todd Blanche as victim-prosecutors with an inherent conflict of interest. This motion, if successful, would create an unprecedented disruption to the highest-profile federal prosecution since January 6.</p>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">V4 Critical Updates</div>
+        <ul>
+          <li><span class="change-tag confirmed">Confirmed</span> <strong>Grand jury indictment returned May 5</strong> &mdash; 4 counts including new assault on federal officer charge (V3 Prediction 4 confirmed)</li>
+          <li><span class="change-tag new">New</span> <strong>Not guilty plea entered May 11</strong> &mdash; Allen appeared before Judge McFadden in orange jumpsuit, shackled</li>
+          <li><span class="change-tag new">New</span> <strong>Case assigned to Judge Trevor McFadden</strong> &mdash; Trump-appointed U.S. District Judge; Faruqui rotated off naturally</li>
+          <li><span class="change-tag new">New</span> <strong>Defense recusal motion filed</strong> &mdash; 9-page filing to disqualify Pirro, Blanche, and potentially entire D.C. U.S. Attorney's office</li>
+          <li><span class="change-tag new">New</span> <strong>Government response deadline May 22</strong> &mdash; McFadden ordered prosecutors to specify if they consider themselves victims</li>
+          <li><span class="change-tag new">New</span> <strong>Next hearing June 29</strong> &mdash; Status conference; McFadden expects "substantial progress" on discovery</li>
+          <li><span class="change-tag new">New</span> <strong>Sen. Blackburn demands USSS audit</strong> &mdash; "Root out the rot" letter to Director Curran, full payroll audit</li>
+          <li><span class="change-tag new">New</span> <strong>WHCD rescheduling in doubt</strong> &mdash; WHCA scoping smaller venues; growing "call the whole thing off" sentiment</li>
+          <li><span class="change-tag new">New</span> <strong>Pirro rejects recusal: "Absolutely not"</strong> &mdash; Legal experts divided on motion's merits</li>
+          <li><span class="change-tag new">New</span> <strong>FIFA World Cup security fears intensifying</strong> &mdash; Mass shooting concerns, delayed security funding, June 11 kickoff approaching</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. TIMELINE -->
+    <section id="timeline">
+      <h2>2. Timeline (May 4 &ndash; May 19)</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag confirmed">Confirmed</span> May 5</div>
+          <div class="event"><strong>Grand jury returns superseding indictment.</strong> Four counts: (1) attempted assassination of the president (18 U.S.C. 1751); (2) assault on a federal officer with a deadly weapon; (3) interstate transport of firearm with intent to commit felony; (4) discharge of firearm during crime of violence. New Count 2 based on buckshot pellet evidence from officer's vest disclosed May 3.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> May 5&ndash;6</div>
+          <div class="event"><strong>Fox News profiles Judge Faruqui</strong> in multiple articles. Conservative media pressure on the judge who apologized to Allen. However, case is moving to district court &mdash; Faruqui's role as magistrate was inherently temporary.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> May 8</div>
+          <div class="event"><strong>Defense files 9-page recusal motion.</strong> Seeks to disqualify Pirro, Blanche, and potentially the entire D.C. U.S. Attorney's Office. Argument: both were present at the dinner and are potential victims/witnesses, creating an irreconcilable conflict of interest. Cites Pirro's personal friendship with Trump and her post-incident media appearances as additional grounds.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> May 8</div>
+          <div class="event"><strong>Sen. Marsha Blackburn sends "root out the rot" letter</strong> to USSS Director Curran. Demands full payroll audit of every Secret Service employee. Cites: WHCD security failure, agent indecent exposure arrest, Butler rally failures, agent marrying foreign national without disclosure, FBI raid on agent's home for tax fraud, agent charged with murdering brother.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> May 11</div>
+          <div class="event"><strong>Allen pleads not guilty</strong> before U.S. District Judge Trevor McFadden. Appeared in orange jumpsuit with handcuffs and leg shackles. All four charges formally read. Defense reserved right to challenge all counts. Next hearing: <strong>June 29 at 10:30 a.m.</strong> (status conference).</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> May 11</div>
+          <div class="event"><strong>McFadden addresses recusal motion.</strong> Judge expressed skepticism, noting neither Pirro nor Blanche personally encountered Allen that night. Asked defense to elaborate on scope. Ordered government to respond by <strong>May 22</strong>, including whether they consider themselves victims.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> May 18</div>
+          <div class="event"><strong>WHCD rescheduling doubt intensifies.</strong> Washington Times reports growing "let's call the whole thing off" sentiment. WHCA scoping smaller venues; full-scale Hilton dinner "not foreseen." WHCA president Weijia Jiang: "I don't think we can do nothing." CPJ executive Jodie Ginsberg: "I'm never going to another."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. V3 PREDICTION SCORECARD -->
+    <section id="predictions">
+      <h2>3. V3 Prediction Scorecard</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Five predictive assessments were issued in V3 (May 4, 2026). Scored below against 15 days of new evidence.
+      </p>
+
+      <div class="scorecard-grid">
+        <div class="scorecard-card">
+          <div class="sc-value" style="color: var(--c6s-green);">1</div>
+          <div class="sc-label">Confirmed</div>
+        </div>
+        <div class="scorecard-card">
+          <div class="sc-value" style="color: var(--c6s-amber);">1</div>
+          <div class="sc-label">Partially Confirmed</div>
+        </div>
+        <div class="scorecard-card">
+          <div class="sc-value" style="color: var(--c6s-amber);">2</div>
+          <div class="sc-label">Developing</div>
+        </div>
+        <div class="scorecard-card">
+          <div class="sc-value" style="color: var(--c6s-accent);">1</div>
+          <div class="sc-label">Strongly Supported</div>
+        </div>
+      </div>
+
+      <!-- Prediction 4 -->
+      <div class="panel success">
+        <div class="panel-title">Prediction 4: Grand Jury Indictment Before May 11</div>
+        <table>
+          <tr><th style="width: 130px;">V3 Prediction</th><td>The grand jury will return a superseding indictment before the May 11 preliminary hearing, mooting it. The indictment will include at least one additional count of assault on a federal officer.</td></tr>
+          <tr><th>V3 Confidence</th><td>90%</td></tr>
+          <tr class="verdict-row"><th>V4 Verdict</th><td><span class="badge badge-green">Confirmed</span></td></tr>
+        </table>
+        <h3>Evidence (V4)</h3>
+        <ul>
+          <li><span class="change-tag confirmed">Confirmed</span> Grand jury returned superseding 4-count indictment on <strong>May 5</strong> &mdash; three days ahead of the predicted May 8 grand jury session</li>
+          <li><span class="change-tag confirmed">Confirmed</span> Indictment includes <strong>assault on a federal officer with a deadly weapon</strong> as predicted</li>
+          <li><span class="change-tag confirmed">Confirmed</span> May 11 preliminary hearing was <strong>mooted</strong> by the indictment, converted to arraignment</li>
+          <li>Allen pleaded <strong>not guilty</strong> to all four counts on May 11</li>
+        </ul>
+        <div class="panel highlight" style="margin-top: 0.75rem;">
+          <div class="panel-title">Assessment</div>
+          <p style="margin-bottom: 0;">Prediction <strong>fully confirmed</strong> on all elements: timing (before May 11), content (assault charge added), and procedural effect (preliminary hearing mooted). The indictment came even faster than predicted &mdash; May 5 rather than the expected May 8 grand jury session &mdash; consistent with the prosecution's public signaling. This was our highest-confidence V3 prediction at 90%, and the evidence validated the reasoning: when prosecutors publicly commit to specific charges and disclose the supporting evidence, grand jury indictment is near-certain.</p>
+        </div>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Original Confidence</span>
+          <div class="bar"><div class="fill" style="width: 90%; background: var(--c6s-green);"></div></div>
+          <span class="pct" style="color: var(--c6s-green);">90%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: May 4, 2026 &bull; Scored: May 19, 2026 <span class="prediction-status" style="background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border-color: rgba(34, 197, 94, 0.3);">Confirmed</span></div>
+      </div>
+
+      <!-- Prediction 5 -->
+      <div class="panel warning">
+        <div class="panel-title">Prediction 5: Judge Faruqui Recusal or Reassignment</div>
+        <table>
+          <tr><th style="width: 130px;">V3 Prediction</th><td>The government will file a motion to reassign the case from Judge Faruqui, or Faruqui will voluntarily recuse, within 30 days.</td></tr>
+          <tr><th>V3 Confidence</th><td>65%</td></tr>
+          <tr class="verdict-row"><th>V4 Verdict</th><td><span class="badge badge-amber">Partially Confirmed</span></td></tr>
+        </table>
+        <h3>Evidence (V4)</h3>
+        <ul>
+          <li><span class="change-tag new">New</span> Faruqui is <strong>no longer the presiding judge</strong> &mdash; case assigned to U.S. District Judge Trevor McFadden for trial proceedings</li>
+          <li>Transition occurred through <strong>natural rotation</strong> (magistrate to district court), not formal recusal or government motion</li>
+          <li>No recusal motion was filed by either side regarding Faruqui</li>
+          <li>The defense <em>pivoted</em> to seeking <strong>prosecutorial</strong> recusal (Pirro/Blanche) rather than judicial recusal</li>
+        </ul>
+        <div class="panel highlight" style="margin-top: 0.75rem;">
+          <div class="panel-title">Assessment</div>
+          <p style="margin-bottom: 0;">The <strong>outcome predicted occurred</strong> (Faruqui is no longer on the case), but the <strong>mechanism was wrong</strong>. V3 predicted a politically motivated recusal or reassignment; instead, the case moved to a district judge through standard procedure. The V3 assessment correctly identified that Faruqui's continued assignment was untenable but overestimated the probability of a formal confrontation &mdash; the V3 text itself noted the natural rotation possibility as a mitigating factor. The more significant judicial development was the defense pivoting to prosecutorial recusal, which V3 did not anticipate. Scored as partially confirmed: right destination, wrong route.</p>
+        </div>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Original Confidence</span>
+          <div class="bar"><div class="fill" style="width: 65%; background: var(--c6s-amber);"></div></div>
+          <span class="pct" style="color: var(--c6s-amber);">65%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: May 4, 2026 &bull; Scored: May 19, 2026 <span class="prediction-status" style="background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border-color: rgba(245, 158, 11, 0.3);">Partially Confirmed</span></div>
+      </div>
+
+      <!-- Prediction 6 -->
+      <div class="panel warning">
+        <div class="panel-title">Prediction 6: K9 Failure as Congressional Inquiry Focus</div>
+        <table>
+          <tr><th style="width: 130px;">V3 Prediction</th><td>When congressional hearings convene, the K9 detection-and-ignore sequence will become the dominant line of questioning.</td></tr>
+          <tr><th>V3 Confidence</th><td>80%</td></tr>
+          <tr class="verdict-row"><th>V4 Verdict</th><td><span class="badge badge-amber">Developing</span></td></tr>
+        </table>
+        <h3>Evidence (V4)</h3>
+        <ul>
+          <li><span class="change-tag new">New</span> <strong>No formal congressional hearings convened</strong> as of May 19</li>
+          <li>Sen. Blackburn's May 8 letter demands broad USSS audit, not K9-specific inquiry</li>
+          <li>Sen. Rand Paul still "considering whether to hold an investigation"</li>
+          <li>Senate Judiciary (Grassley/Durbin) waiting for FBI investigation results before deciding on hearings</li>
+          <li>Congress returned from recess May 12 but no hearing announcements</li>
+        </ul>
+        <div class="panel highlight" style="margin-top: 0.75rem;">
+          <div class="panel-title">Assessment</div>
+          <p style="margin-bottom: 0;">Cannot yet score &mdash; the triggering condition (congressional hearings) has not occurred. The V3 prediction remains analytically sound: the K9 footage is viscerally compelling and bipartisan. Blackburn's broader audit demand does not contradict the K9 prediction &mdash; it establishes a wider accountability framework within which K9-specific questioning would naturally emerge. The delay in hearings reflects Congress waiting for the FBI investigation, not a lack of interest. Prediction carries forward to V5 scoring.</p>
+        </div>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Original Confidence</span>
+          <div class="bar"><div class="fill" style="width: 80%; background: var(--c6s-amber);"></div></div>
+          <span class="pct" style="color: var(--c6s-amber);">80%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: May 4, 2026 &bull; Scored: May 19, 2026 <span class="prediction-status">Developing &mdash; Hearings Not Yet Convened</span></div>
+      </div>
+
+      <!-- Prediction 7 -->
+      <div class="panel warning">
+        <div class="panel-title">Prediction 7: "Normie Extremism" as Midterm Framing</div>
+        <table>
+          <tr><th style="width: 130px;">V3 Prediction</th><td>The "normie extremism" thesis will become a Republican midterm messaging pillar by July 2026.</td></tr>
+          <tr><th>V3 Confidence</th><td>75%</td></tr>
+          <tr class="verdict-row"><th>V4 Verdict</th><td><span class="badge badge-amber">Developing</span></td></tr>
+        </table>
+        <h3>Evidence (V4)</h3>
+        <ul>
+          <li><span class="change-tag new">New</span> Narrative continues in conservative media: HotAir, Free Beacon, The Intercept all running extended analyses</li>
+          <li>Framing has expanded beyond Allen specifically to a broader "mainstream radicalization" thesis</li>
+          <li>Allen's Bluesky posts and manifesto continue to be cited as evidence that "mainstream progressive rhetoric" enables violence</li>
+          <li>No formal Republican campaign messaging pivot observed yet &mdash; still in media-testing phase</li>
+        </ul>
+        <div class="panel highlight" style="margin-top: 0.75rem;">
+          <div class="panel-title">Assessment</div>
+          <p style="margin-bottom: 0;">The narrative infrastructure is being built but has not yet crystallized into formal midterm campaign messaging. The V3 prediction set a July 2026 timeline for deployment, and current evidence is consistent with an ongoing message-testing phase. The prediction's thesis &mdash; that conservative media would establish the frame, which campaigns would then adopt &mdash; is tracking directionally. Carries forward to V5 scoring with July deadline.</p>
+        </div>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Original Confidence</span>
+          <div class="bar"><div class="fill" style="width: 75%; background: var(--c6s-amber);"></div></div>
+          <span class="pct" style="color: var(--c6s-amber);">75%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: May 4, 2026 &bull; Scored: May 19, 2026 <span class="prediction-status">Developing &mdash; Resolution Expected July</span></div>
+      </div>
+
+      <!-- Prediction 8 -->
+      <div class="panel success">
+        <div class="panel-title">Prediction 8: WHCD Will Not Return to Washington Hilton</div>
+        <table>
+          <tr><th style="width: 130px;">V3 Prediction</th><td>The WHCD will be rescheduled within 90 days but will NOT be held at the Washington Hilton.</td></tr>
+          <tr><th>V3 Confidence</th><td>70%</td></tr>
+          <tr class="verdict-row"><th>V4 Verdict</th><td><span class="badge badge-green">Strongly Supported</span></td></tr>
+        </table>
+        <h3>Evidence (V4)</h3>
+        <ul>
+          <li><span class="change-tag new">New</span> WHCA board members are scoping <strong>smaller venues</strong>; full-scale Hilton dinner "not foreseen"</li>
+          <li><span class="change-tag new">New</span> Growing "<strong>call the whole thing off</strong>" movement from journalism leaders</li>
+          <li>CPJ executive Jodie Ginsberg: "I'm never going to another"</li>
+          <li>Poynter's Kelly McBride: "bad look" that undermines press independence</li>
+          <li>WHCA president Jiang: still weighing options, "I don't think we can do nothing"</li>
+          <li>No date or venue announced 24 days post-incident</li>
+        </ul>
+        <div class="panel highlight" style="margin-top: 0.75rem;">
+          <div class="panel-title">Assessment</div>
+          <p style="margin-bottom: 0;"><strong>Strongly supported on the Hilton element.</strong> Multiple independent sources confirm the Hilton is no longer a viable option. The rescheduling-within-90-days element faces growing headwinds &mdash; the "cancel entirely" sentiment is stronger than V3 anticipated. If the event is permanently canceled rather than relocated, the prediction would be partially confirmed (correct on Hilton, wrong on rescheduling). Current trajectory suggests a pared-down event at a different venue is more likely than cancellation, but the margin is narrowing.</p>
+        </div>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Original Confidence</span>
+          <div class="bar"><div class="fill" style="width: 70%; background: var(--c6s-green);"></div></div>
+          <span class="pct" style="color: var(--c6s-green);">70%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: May 4, 2026 &bull; Scored: May 19, 2026 <span class="prediction-status" style="background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border-color: rgba(34, 197, 94, 0.3);">Strongly Supported</span></div>
+      </div>
+
+      <h3>V3 Prediction Calibration Summary</h3>
+      <table>
+        <tr><th>#</th><th>Prediction</th><th>V3 Confidence</th><th>V4 Verdict</th><th>Calibration Notes</th></tr>
+        <tr>
+          <td>4</td>
+          <td>Grand Jury Before May 11</td>
+          <td>90%</td>
+          <td><span class="badge badge-green">Confirmed</span></td>
+          <td>All three elements confirmed. Indictment came 3 days earlier than expected.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Faruqui Recusal/Reassignment</td>
+          <td>65%</td>
+          <td><span class="badge badge-amber">Partially Confirmed</span></td>
+          <td>Faruqui off the case, but via natural rotation. Defense pivoted to prosecutorial recusal.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>K9 Focus in Congress</td>
+          <td>80%</td>
+          <td><span class="badge badge-amber">Developing</span></td>
+          <td>No hearings convened. Blackburn's broader audit demand consistent with thesis.</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Normie Extremism Midterm</td>
+          <td>75%</td>
+          <td><span class="badge badge-amber">Developing</span></td>
+          <td>Media framing continues. No formal campaign messaging yet. July deadline.</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>WHCD Not at Hilton</td>
+          <td>70%</td>
+          <td><span class="badge badge-green">Strongly Supported</span></td>
+          <td>Hilton return "not foreseen." Smaller venues being scoped. Cancellation pressure rising.</td>
+        </tr>
+      </table>
+
+      <h3>Cumulative Prediction Calibration (V1 &ndash; V4)</h3>
+      <table>
+        <tr><th>Version</th><th>Predictions</th><th>Confirmed</th><th>Partially</th><th>Strongly Supported</th><th>Developing</th><th>Unresolved</th></tr>
+        <tr><td>V1 (3)</td><td>3</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>V3 (5)</td><td>5</td><td>1</td><td>1</td><td>1</td><td>2</td><td>0</td></tr>
+        <tr><td style="font-weight: 700;">Total (8)</td><td style="font-weight: 700;">8</td><td style="font-weight: 700;">1</td><td style="font-weight: 700;">2</td><td style="font-weight: 700;">2</td><td style="font-weight: 700;">2</td><td style="font-weight: 700;">1</td></tr>
+      </table>
+    </section>
+
+    <!-- 4. LEGAL PROCEEDINGS -->
+    <section id="legal">
+      <h2>4. Legal Proceedings Tracker</h2>
+      <table>
+        <tr><th>Date</th><th>Event</th><th>Detail</th></tr>
+        <tr><td>April 25</td><td>Arrest</td><td>Tackled and detained at Washington Hilton</td></tr>
+        <tr><td>April 27</td><td>Arraignment</td><td>U.S. District Court, D.C. No plea entered.</td></tr>
+        <tr><td>April 27</td><td>Charges (3)</td><td>Attempted assassination; interstate transport of firearm; discharge of firearm during crime of violence</td></tr>
+        <tr><td>April 30</td><td>Detention hearing</td><td>Allen concedes to pretrial detention</td></tr>
+        <tr><td>May 3</td><td>Ballistics confirmed</td><td>Buckshot from Allen's Mossberg confirmed in USSS officer's vest</td></tr>
+        <tr>
+          <td><span class="change-tag confirmed">V4</span> May 5</td>
+          <td>Superseding indictment</td>
+          <td><strong>Grand jury returns 4-count indictment.</strong> New: assault on federal officer with deadly weapon. Based on vest pellet evidence.</td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">V4</span> May 8</td>
+          <td>Defense recusal motion</td>
+          <td><strong>9-page filing</strong> to disqualify Pirro, Blanche, and D.C. U.S. Attorney's Office. Grounds: victim-prosecutor conflict, Pirro-Trump friendship, improper media appearances.</td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">V4</span> May 11</td>
+          <td>Arraignment on indictment</td>
+          <td><strong>Allen pleads not guilty</strong> to all 4 counts before Judge Trevor McFadden. Orange jumpsuit, handcuffs, leg shackles.</td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">V4</span> May 11</td>
+          <td>McFadden on recusal</td>
+          <td>Judge skeptical of recusal motion; notes Pirro/Blanche didn't personally encounter Allen. Orders government response by <strong>May 22</strong>.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">May 22</td>
+          <td>Gov't recusal response</td>
+          <td><strong>Upcoming.</strong> Prosecution must respond to recusal motion and specify victim status.</td>
+        </tr>
+        <tr>
+          <td style="font-weight: 600;">June 29</td>
+          <td>Status conference</td>
+          <td><strong>Upcoming.</strong> 10:30 a.m. before Judge McFadden. Discovery progress expected.</td>
+        </tr>
+        <tr>
+          <td>TBD</td>
+          <td>Trial</td>
+          <td>No trial date set. Discovery phase has not begun in earnest.</td>
+        </tr>
+      </table>
+
+      <h3>Charges Summary</h3>
+      <table>
+        <tr><th>#</th><th>Charge</th><th>Statute</th><th>Max Penalty</th></tr>
+        <tr><td>1</td><td>Attempted assassination of the president</td><td>18 U.S.C. &sect; 1751</td><td>Life imprisonment</td></tr>
+        <tr><td>2</td><td>Assault on a federal officer with a deadly weapon</td><td>18 U.S.C. &sect; 111(a)(1), (b)</td><td>20 years</td></tr>
+        <tr><td>3</td><td>Interstate transport of firearm with intent to commit felony</td><td>18 U.S.C. &sect; 924(b)</td><td>10 years</td></tr>
+        <tr><td>4</td><td>Discharge of firearm during crime of violence</td><td>18 U.S.C. &sect; 924(c)</td><td>10 years minimum (consecutive)</td></tr>
+      </table>
+    </section>
+
+    <!-- 5. RECUSAL BATTLE -->
+    <section id="recusal">
+      <h2>5. Prosecutorial Recusal Battle</h2>
+      <div class="panel critical">
+        <div class="panel-title">Most Consequential Defense Strategy Development</div>
+        <p>On May 8, Allen's defense team filed a 9-page motion that has become the most significant pre-trial development. The motion seeks to disqualify the two most senior DOJ officials overseeing the prosecution:</p>
+        <table>
+          <tr><th>Official</th><th>Role</th><th>Conflict Alleged</th></tr>
+          <tr>
+            <td><strong>Jeanine Pirro</strong></td>
+            <td>U.S. Attorney, D.C.</td>
+            <td>Present at dinner (potential victim/witness); decades-long personal friendship with Trump; post-incident CNN appearances and X posts characterized as "inflammatory, inappropriate and inaccurate"</td>
+          </tr>
+          <tr>
+            <td><strong>Todd Blanche</strong></td>
+            <td>Acting Attorney General</td>
+            <td>Present at dinner (potential victim/witness); supervisory authority over entire prosecution</td>
+          </tr>
+        </table>
+
+        <h3>Key Quote from Filing</h3>
+        <blockquote style="border-left: 3px solid var(--c6s-red); padding: 0.75rem 1rem; margin: 1rem 0; color: var(--c6s-text-bright); font-style: italic;">
+          "How can the American justice system permit a victim to prosecute a criminal defendant in a case involving them? Or even &mdash; how can one of the victim's closest friends prosecute the alleged perpetrator?"
+        </blockquote>
+
+        <h3>Responses</h3>
+        <table>
+          <tr><th>Actor</th><th>Position</th></tr>
+          <tr><td>Pirro</td><td><strong>"Absolutely not"</strong> &mdash; will not recuse. "We will evaluate the motion and respond in court."</td></tr>
+          <tr><td>Judge McFadden</td><td>Skeptical; noted neither official personally encountered Allen. Ordered response by May 22.</td></tr>
+          <tr><td>Government (informal)</td><td>Opposed removing entire offices but appeared open to removing Pirro/Blanche personally</td></tr>
+          <tr><td>Elie Honig (CNN legal analyst)</td><td>They are witnesses and "probably intended victims" &mdash; staying on gives defense an appeal issue</td></tr>
+          <tr><td>Neama Rahmani (former fed. prosecutor)</td><td>"Little to no chance" Pirro will be disqualified</td></tr>
+        </table>
+
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">
+          <strong>Assessment:</strong> This motion is strategically brilliant regardless of outcome. If granted, it decapitates the prosecution leadership and creates unprecedented disruption. If denied, it plants an appellate issue that could shadow any conviction. The defense has reframed the narrative from Allen's guilt to the prosecution's integrity &mdash; a classic asymmetric legal strategy. The May 22 government response will be a critical inflection point.
+        </p>
+      </div>
+    </section>
+
+    <!-- 6. CUSTODY -->
+    <section id="custody">
+      <h2>6. Custody &amp; Judicial Developments</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Case Judicial Transition</div>
+        <table>
+          <tr><th>Phase</th><th>Judge</th><th>Status</th></tr>
+          <tr><td>Pretrial (magistrate)</td><td>Zia Faruqui</td><td><span class="badge badge-green">Completed</span> &mdash; rotated off after initial proceedings</td></tr>
+          <tr><td>Trial (district court)</td><td>Trevor McFadden</td><td><span class="badge badge-blue">Active</span> &mdash; Trump-appointed, presiding through trial</td></tr>
+        </table>
+        <p style="margin-bottom: 0;">The Faruqui-to-McFadden transition occurred through standard procedure, not the politically motivated reassignment predicted in V3. McFadden, a Trump appointee confirmed in 2017, has handled other high-profile cases including January 6 prosecutions. His appointment eliminates the conservative media narrative about judicial sympathy for Allen.</p>
+      </div>
+
+      <h3>Allen's Current Conditions</h3>
+      <ul>
+        <li>Removed from suicide watch (since early May)</li>
+        <li>Held in federal custody; pretrial detention conceded</li>
+        <li>Appeared May 11 in orange jumpsuit, handcuffs, and leg shackles</li>
+        <li>No further conditions-of-confinement litigation reported since Faruqui's intervention</li>
+        <li>Next substantive proceeding: June 29 status conference</li>
+      </ul>
+    </section>
+
+    <!-- 7. POLITICAL -->
+    <section id="political">
+      <h2>7. Political &amp; Policy Developments</h2>
+
+      <h3>Amtrak Gun Lockbox Policy &mdash; Still Active</h3>
+      <div class="panel critical">
+        <div class="panel-title">Policy Direction Unchanged Despite Attack</div>
+        <ul>
+          <li>Amtrak <strong>has not abandoned</strong> the Trump administration-backed proposal to add gun lockboxes to most trains</li>
+          <li>Would expand gun-carrying from ~24 long-distance trains to <strong>1,500+ daily trains</strong></li>
+          <li>No passenger screening exists; Amtrak does not run criminal database checks on passengers</li>
+          <li>Under proposed change, only conductors would have lockbox keys</li>
+          <li><strong>No TSA-for-rails legislation introduced</strong> since the shooting</li>
+        </ul>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> The most actionable policy finding from V3 remains unchanged. Allen transported a shotgun, handgun, and multiple knives cross-country on Amtrak with zero screening, and the policy response is to make gun transport <em>easier</em>. This remains the starkest example of policy moving in the opposite direction of the threat evidence.</p>
+      </div>
+
+      <h3>Gun Control &mdash; Still Dead</h3>
+      <p>No new gun legislation introduced in the 24 days since the shooting. Pattern holds from V3.</p>
+
+      <h3>White House Ballroom Bills &mdash; Still Stalled</h3>
+      <table>
+        <tr><th>Bill</th><th>V3 Status</th><th>V4 Update</th></tr>
+        <tr><td>Sheehy (UC authorization)</td><td><span class="badge badge-red">No vote</span></td><td><span class="badge badge-red">No progress</span></td></tr>
+        <tr><td>Graham/Britt/Schmitt ($400M)</td><td><span class="badge badge-amber">Stalled</span></td><td><span class="badge badge-amber">Stalled</span></td></tr>
+        <tr><td>Rand Paul (private funding)</td><td><span class="badge badge-amber">No committee</span></td><td><span class="badge badge-amber">No committee</span></td></tr>
+      </table>
+      <p>All three ballroom bills remain frozen. The post-shooting momentum that briefly energized the proposals has dissipated.</p>
+
+      <h3>FIFA World Cup Security &mdash; Approaching Flashpoint</h3>
+      <div class="panel warning">
+        <div class="panel-title">23 Days to Kickoff</div>
+        <ul>
+          <li><span class="change-tag new">New</span> FIFA World Cup 2026 opens <strong>June 11</strong> &mdash; 23 days from this assessment</li>
+          <li>Intelligence briefings warn of extremist threats at match venues, fan zones, and transit points</li>
+          <li><strong>Hundreds of millions in approved security funding delayed</strong> &mdash; U.S. preparations behind schedule</li>
+          <li>Mass shooting in Puebla, Mexico (10 killed) exacerbates security fears for co-host nation</li>
+          <li>120+ civil society groups including ACLU and Amnesty International issued travel advisory</li>
+          <li>WHCD shooting continues to be cited globally as evidence U.S. cannot safely host major events</li>
+        </ul>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> The convergence of delayed security funding, the WHCD security failure narrative, and the approaching kickoff creates a compounding reputational risk. Any security incident during the tournament &mdash; however minor &mdash; will be framed through the lens of the WHCD failure. The Wiles security review is now primarily focused on FIFA/midterm security, not WHCD accountability.</p>
+      </div>
+
+      <h3>Congressional Investigations &mdash; Stalled</h3>
+      <table>
+        <tr><th>Committee</th><th>V3 Status</th><th>V4 Update</th></tr>
+        <tr>
+          <td>Senate HSGAC (Paul)</td>
+          <td>Considering investigation</td>
+          <td><span class="badge badge-amber">Still considering</span> &mdash; no hearing announced</td>
+        </tr>
+        <tr>
+          <td>Senate Judiciary (Grassley/Durbin)</td>
+          <td>Waiting for FBI</td>
+          <td><span class="badge badge-amber">Still waiting</span> &mdash; no hearing announced</td>
+        </tr>
+        <tr>
+          <td>House Oversight (Comer)</td>
+          <td>Private briefing completed</td>
+          <td><span class="badge badge-amber">No public hearing</span></td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">New</span> Sen. Blackburn</td>
+          <td>&mdash;</td>
+          <td><span class="badge badge-green">Letter sent</span> &mdash; demands full USSS payroll audit</td>
+        </tr>
+      </table>
+      <p><strong>Assessment:</strong> Congressional investigation inertia is notable. 24 days post-incident with no public hearings announced contrasts sharply with the Butler, PA timeline. The Blackburn letter is the most aggressive individual action but operates outside the committee structure. Congress appears to be waiting for the FBI investigation and the trial process rather than conducting independent oversight.</p>
+    </section>
+
+    <!-- 8. USSS LEADERSHIP -->
+    <section id="usss">
+      <h2>8. USSS Leadership &amp; Accountability</h2>
+      <div class="panel warning">
+        <div class="panel-title">Director Curran &mdash; Under Pressure but Holding</div>
+        <table>
+          <tr><th>Element</th><th>Status</th></tr>
+          <tr><td>Director Sean Curran</td><td><span class="badge badge-amber">Still in position</span> &mdash; no resignation or firing</td></tr>
+          <tr><td>Blackburn audit demand</td><td>Full payroll audit of every USSS employee</td></tr>
+          <tr><td>K9 handler accountability</td><td><span class="badge badge-red">No public action</span> &mdash; handler not publicly identified or disciplined</td></tr>
+          <tr><td>Wiles security review</td><td>Focus shifted to FIFA World Cup and midterm rally security</td></tr>
+        </table>
+
+        <h3>Blackburn's Personnel Catalog</h3>
+        <p>Sen. Blackburn's "root out the rot" letter cited a pattern of USSS personnel failures beyond the WHCD:</p>
+        <ul>
+          <li>Agent arrested for indecent exposure at a Miami hotel</li>
+          <li>Junior agent responsible for Butler rally security failures married a foreign national without notifying superiors</li>
+          <li>FBI raided an agent's home in a tax fraud investigation</li>
+          <li>Agent charged with murdering his brother on New Year's Eve</li>
+          <li>Curran criticized for removing senior leaders from Presidential and VP Protective Divisions</li>
+        </ul>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> Curran's position is tenable in the near term but structurally weakened. The Blackburn letter establishes a congressional accountability marker that can be activated if any further security incident occurs. The K9 handler &mdash; the most operationally culpable individual identified in the WHCD security failure &mdash; has not been publicly identified or disciplined, which represents an unresolved accountability gap.</p>
+      </div>
+    </section>
+
+    <!-- 9. WHCD RESCHEDULING -->
+    <section id="whcd">
+      <h2>9. WHCD Rescheduling &mdash; Future in Doubt</h2>
+      <div class="panel critical">
+        <div class="panel-title">Existential Question for the Institution</div>
+        <p>24 days after the shooting, the dinner has not been rescheduled and a growing faction of journalism leaders is questioning whether it should be:</p>
+        <table>
+          <tr><th>Position</th><th>Speaker</th><th>Argument</th></tr>
+          <tr>
+            <td><strong>Reschedule (pared down)</strong></td>
+            <td>Weijia Jiang (WHCA president)</td>
+            <td>"I don't think we can do nothing." Scoping smaller venues.</td>
+          </tr>
+          <tr>
+            <td><strong>Reschedule (security OK)</strong></td>
+            <td>Jeff James (ret. Secret Service)</td>
+            <td>Original event was handled safely; security worked.</td>
+          </tr>
+          <tr>
+            <td><strong>Cancel permanently</strong></td>
+            <td>Jodie Ginsberg (CPJ)</td>
+            <td>"I'm never going to another." Questions whether event serves journalism's mission.</td>
+          </tr>
+          <tr>
+            <td><strong>Cancel &mdash; bad optics</strong></td>
+            <td>Kelly McBride (Poynter)</td>
+            <td>"Bad look" that undermines public faith in press independence. Media-political "hobnobbing" is the problem.</td>
+          </tr>
+        </table>
+        <ul>
+          <li><strong>Washington Hilton return:</strong> Ruled out &mdash; "not foreseen" per WHCA board sources</li>
+          <li><strong>Trump's White House ballroom:</strong> Characterized as "untenable" by WHCA</li>
+          <li><strong>Smaller venue:</strong> Being scoped, but no specific option identified</li>
+          <li><strong>30-day target (Trump's suggestion):</strong> Has passed; 60-day planning window also uncertain</li>
+        </ul>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> The WHCD faces an existential inflection point. The event has long been criticized as a celebration of insider access rather than press freedom. The shooting has given that critique lethal urgency. If rescheduled, it will be fundamentally different in scale and character. If canceled, it represents the end of a 106-year tradition. The WHCA's "I don't think we can do nothing" framing suggests they will attempt a pared-down event, but the momentum toward cancellation is stronger than at any point since the immediate aftermath.</p>
+      </div>
+    </section>
+
+    <!-- 10. DISINFO -->
+    <section id="disinfo">
+      <h2>10. Information Environment Update</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Information Environment Assessment (V4)</div>
+        <p style="margin-bottom: 0;">The disinfo landscape has entered a <strong>maintenance phase</strong>. Major conspiracy theories from V2/V3 have been debunked or have migrated to dedicated conspiracy ecosystems. The time travel theory (56M+ views) remains the most persistent viral narrative. No significant new conspiracy theories have emerged since V3. The formal legal proceedings &mdash; indictment, plea, and recusal motion &mdash; have shifted public attention from the information environment to the courtroom.</p>
+      </div>
+
+      <h3>Conspiracy Theory Status (V4)</h3>
+      <table>
+        <tr><th>Theory</th><th>V3 Status</th><th>V4 Status</th></tr>
+        <tr>
+          <td>A.1 "Staged" / False Flag</td>
+          <td><span class="badge badge-amber">Declining / Hardening Fringe</span></td>
+          <td><span class="badge badge-blue">Fringe Only</span> &mdash; 4-count indictment and not-guilty plea undercut "staged" narrative for persuadable audiences</td>
+        </tr>
+        <tr>
+          <td>A.10 Time Travel</td>
+          <td><span class="badge badge-red">Viral (56M views)</span></td>
+          <td><span class="badge badge-amber">Plateau</span> &mdash; still circulating but no major new amplification events since Rogan</td>
+        </tr>
+        <tr>
+          <td>A.12 Usha Vance</td>
+          <td><span class="badge badge-red">High Velocity (Debunked)</span></td>
+          <td><span class="badge badge-green">Resolved</span> &mdash; comprehensively debunked, faded from discourse</td>
+        </tr>
+        <tr>
+          <td>A.14 MAGA Ballroom Coordination</td>
+          <td><span class="badge badge-amber">Moderate</span></td>
+          <td><span class="badge badge-blue">Declining</span> &mdash; ballroom bills stalled; coordination narrative lost momentum</td>
+        </tr>
+        <tr>
+          <td>Vietnam AI Spam</td>
+          <td><span class="badge badge-red">Active</span></td>
+          <td><span class="badge badge-amber">Declining</span> &mdash; Lead Stories exposures reduced engagement</td>
+        </tr>
+        <tr>
+          <td>Iran Bot Networks</td>
+          <td><span class="badge badge-amber">Active</span></td>
+          <td><span class="badge badge-amber">Monitoring</span> &mdash; no new major amplification events detected</td>
+        </tr>
+      </table>
+
+      <h3>New Information Vector: Legal Proceedings Narrative</h3>
+      <div class="panel warning">
+        <p>The recusal motion has created a <strong>new narrative vector</strong> that did not exist in V3. The defense argument that Pirro and Blanche are victim-prosecutors is being amplified across the political spectrum:</p>
+        <ul>
+          <li><strong>Left-leaning outlets:</strong> Framing it as a legitimate due process concern and prosecutorial overreach</li>
+          <li><strong>Right-leaning outlets:</strong> Framing it as the defense exploiting technicalities to protect an assassin</li>
+          <li><strong>Legal media:</strong> Divided on merits, but consensus that it creates appellate issues regardless of outcome</li>
+        </ul>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> The shift from conspiracy theories to legal strategy narratives represents a maturation of the information environment. The discourse is now centered on institutional legitimacy rather than event authenticity &mdash; a healthier but still politically charged dynamic.</p>
+      </div>
+    </section>
+
+    <!-- 11. NEW PREDICTIONS -->
+    <section id="newpredictions">
+      <h2>11. V4 Predictive Assessments</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Five new predictive assessments based on T+24 day evidence. Tracked for calibration.
+      </p>
+
+      <div class="panel highlight">
+        <div class="panel-title">Prediction 9: Recusal Motion Denied but Pirro Steps Back Voluntarily</div>
+        <p>Judge McFadden will deny the formal recusal motion, but Pirro will reduce her direct involvement in the prosecution (ceasing media appearances and delegating day-to-day case management) without formal recusal. The government's May 22 response will concede that Pirro and Blanche will not personally participate in trial proceedings while arguing their offices should remain on the case.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 70%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">70%</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-bottom: 0;"><strong>Basis:</strong> McFadden's skepticism at the May 11 hearing signals a likely denial on formal grounds. However, the government's informal openness to removing the individuals (while retaining their offices) suggests a negotiated middle path. Pirro's public "absolutely not" is a political statement, not a legal strategy &mdash; the prosecution can preserve the position without her personal involvement. The appellate risk Honig identified creates a strong institutional incentive to de-risk.</p>
+        <div class="prediction-timestamp">Predicted: May 19, 2026 <span class="prediction-status">Pending &mdash; Resolution Expected May 22 &ndash; June 29</span></div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Prediction 10: WHCD Rescheduled as Pared-Down Event, Not at Hilton or White House</div>
+        <p>The WHCA will announce a rescheduled dinner by July 2026, but as a fundamentally different event: smaller venue (500&ndash;800 capacity), no celebrity entertainment, press-freedom-focused programming, and significantly reduced media-political social interaction. The event will be positioned as a "renewed mission" rather than a return to normalcy.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 60%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">60%</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-bottom: 0;"><strong>Basis:</strong> Jiang's "I don't think we can do nothing" signals institutional resistance to full cancellation. The smaller-venue scoping indicates concrete planning. The criticism from McBride and Ginsberg creates pressure for a reformatted event rather than a scaled-down clone. However, 60% reflects the genuine possibility of full cancellation &mdash; the "call the whole thing off" sentiment is stronger than WHCA leadership has publicly acknowledged.</p>
+        <div class="prediction-timestamp">Predicted: May 19, 2026 <span class="prediction-status">Pending &mdash; Resolution Expected June-July</span></div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Prediction 11: Trial Date Set for Late 2026 or Early 2027</div>
+        <p>The June 29 status conference will not produce a trial date. Discovery will be extensive (digital forensics from Allen's devices, security footage corpus, manifesto analysis). A trial date of Q4 2026 or Q1 2027 is most likely, with the defense having strong incentives to delay past the November midterms.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 85%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">85%</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-bottom: 0;"><strong>Basis:</strong> Federal attempted assassination cases with extensive digital evidence, recusal litigation, and potential expert testimony on radicalization do not resolve within 6 months. The Speedy Trial Act clock is tolled by defense motions. The prosecution has no incentive to rush (the defendant is detained), and the defense has strong tactical reasons to push past midterms. McFadden's "substantial progress on discovery" framing for June 29 implies trial is months away.</p>
+        <div class="prediction-timestamp">Predicted: May 19, 2026 <span class="prediction-status">Pending &mdash; Resolution Expected June 29+</span></div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Prediction 12: Congressional Hearings by July, Focused on USSS Personnel Failures</div>
+        <p>At least one congressional committee will hold a public hearing on WHCD security failures by July 2026. The hearing will focus on USSS personnel and leadership failures (Blackburn's "rot" narrative) rather than the K9 incident specifically, using the shooting as the catalyst for a broader USSS accountability inquiry.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 75%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">75%</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-bottom: 0;"><strong>Basis:</strong> Blackburn's letter established the accountability framework. The approaching FIFA World Cup creates urgent security oversight pressure. Three committees (HSGAC, Judiciary, Oversight) have signaled interest. The 24-day delay without hearings is unusual for a presidential assassination attempt and creates mounting political pressure to act. The K9 failure may be a featured element but the hearing scope will be broader per the Blackburn framing. This revises V3 Prediction 6's K9-specific focus based on V4 evidence.</p>
+        <div class="prediction-timestamp">Predicted: May 19, 2026 <span class="prediction-status">Pending &mdash; Resolution Expected June-July</span></div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Prediction 13: V1 Prediction 2 (Individual Dossiers) Will Be Confirmed via Discovery</div>
+        <p>The discovery process will reveal that Allen maintained digital research files on individual administration officials on his seized electronic devices. This information will become public through court filings or media reporting before trial, confirming the V1 prediction that has remained unresolved since April 26.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 80%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">80%</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-bottom: 0;"><strong>Basis:</strong> Allen's manifesto demonstrated differentiated analysis of individual officials (prioritized target list, Patel exclusion with anti-Christian rationale, 19 days of online research starting April 6). The sophistication of his targeting logic &mdash; plus his STEM background and access to multiple electronic devices &mdash; makes informal-only research increasingly improbable. Digital forensics on seized devices will likely reveal browser history, saved files, or notes reflecting individualized research. The discovery phase makes this the most likely resolution pathway for the longest-unresolved V1 prediction.</p>
+        <div class="prediction-timestamp">Predicted: May 19, 2026 <span class="prediction-status">Pending &mdash; Resolution Expected with Discovery</span></div>
+      </div>
+    </section>
+
+    <!-- 12. WATCHLIST -->
+    <section id="watchlist">
+      <h2>12. Watchlist</h2>
+
+      <h3>V3 Watchlist Resolution</h3>
+      <table>
+        <tr><th>V3 Item</th><th>Target Date</th><th>Resolution</th></tr>
+        <tr><td>DOC placement report</td><td>May 6</td><td><span class="badge badge-amber">No public reporting</span></td></tr>
+        <tr><td>Grand jury</td><td>May 8</td><td><span class="badge badge-green">Resolved</span> &mdash; 4-count indictment returned May 5</td></tr>
+        <tr><td>Preliminary hearing</td><td>May 11</td><td><span class="badge badge-green">Mooted</span> &mdash; converted to arraignment on indictment</td></tr>
+        <tr><td>Congress returns</td><td>May 12</td><td><span class="badge badge-amber">Returned but no hearings announced</span></td></tr>
+        <tr><td>Amtrak gun lockbox</td><td>TBD</td><td><span class="badge badge-amber">Still under consideration</span></td></tr>
+        <tr><td>WHCD rescheduling</td><td>60-day window</td><td><span class="badge badge-red">In doubt</span> &mdash; "call the whole thing off" growing</td></tr>
+        <tr><td>USSS Director Curran</td><td>TBD</td><td><span class="badge badge-amber">Still in position</span> &mdash; Blackburn pressure added</td></tr>
+        <tr><td>FIFA World Cup</td><td>June 11</td><td><span class="badge badge-amber">Security concerns intensifying</span></td></tr>
+      </table>
+
+      <h3>V4 Watchlist (May 19 &ndash; June 29)</h3>
+      <table>
+        <tr><th>Item</th><th>Date</th><th>Significance</th></tr>
+        <tr><td style="font-weight: 600;">Gov't recusal response</td><td>May 22</td><td>Prosecution must respond to Pirro/Blanche disqualification motion and specify victim status</td></tr>
+        <tr><td style="font-weight: 600;">FIFA World Cup kickoff</td><td>June 11</td><td>First major post-WHCD security test; international scrutiny; delayed security funding</td></tr>
+        <tr><td style="font-weight: 600;">Status conference</td><td>June 29</td><td>Before Judge McFadden; discovery progress; possible trial date discussion; recusal ruling</td></tr>
+        <tr><td>Congressional hearings</td><td>TBD (May-July)</td><td>At least three committees considering investigations</td></tr>
+        <tr><td>WHCD rescheduling decision</td><td>TBD</td><td>WHCA still weighing options; 90-day window from original event closes July 24</td></tr>
+        <tr><td>USSS Curran status</td><td>TBD</td><td>Blackburn audit demand creates accountability pressure</td></tr>
+        <tr><td>Amtrak gun lockbox</td><td>TBD</td><td>Active policy consideration; no timeline for decision</td></tr>
+        <tr><td>Discovery disclosures</td><td>Ongoing</td><td>Digital forensics, device contents, may resolve V1 Prediction 2</td></tr>
+      </table>
+    </section>
+
+    <!-- 13. SOURCES -->
+    <section id="sources">
+      <h2>13. V4 Sources (May 4 &ndash; May 19)</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.85rem; margin-bottom: 1rem;">130+ open sources cited across V1&ndash;V4. V4 additions listed below.</p>
+      <ul class="source-list">
+        <li><a href="https://redstate.com/wardclark/2026/05/05/indicted-cole-allen-now-hit-with-4-federal-charges-in-whcd-attack-n2202038">RedState &mdash; Allen Hit With 4 Federal Charges (May 5)</a></li>
+        <li><a href="https://www.washingtonexaminer.com/news/justice/4556403/grand-jury-indictment-cole-allen/">Washington Examiner &mdash; Grand Jury Indicts Allen on Four Counts (May 5)</a></li>
+        <li><a href="https://www.fox5dc.com/news/grand-jury-indicts-whcd-shooting-suspect-four-counts">FOX 5 DC &mdash; Grand Jury Indicts WHCD Suspect (May 5)</a></li>
+        <li><a href="https://www.courthousenews.com/grand-jury-indicts-white-house-correspondents-dinner-suspect-on-officer-assault-charge/">Courthouse News &mdash; Indictment on Officer Assault Charge (May 5)</a></li>
+        <li><a href="https://www.washingtontimes.com/news/2026/may/5/cole-tomas-allen-charged-white-house-correspondents-dinner-attack/">Washington Times &mdash; Allen Charged on New Assault Count (May 5)</a></li>
+        <li><a href="https://wltreport.com/2026/05/05/cole-tomas-allen-indicted-president-trump-assassination-attempt/">WLT Report &mdash; Allen Indicted on Four Federal Counts (May 5)</a></li>
+        <li><a href="https://www.foxnews.com/us/judge-zia-faruqui-what-we-know-about-federal-magistrate-who-apologized-cole-allen">Fox News &mdash; Who is Judge Zia Faruqui? (May 6)</a></li>
+        <li><a href="https://spectrumlocalnews.com/us/snplus/politics/2026/05/08/white-house-correspondents-dinner-attack-filing-seeking-recusal-blanche-pirro">Spectrum News &mdash; Defense Seeks Recusal of Pirro and Blanche (May 8)</a></li>
+        <li><a href="https://www.cnn.com/2026/05/08/politics/cole-allen-disqualify-pirro-blanche">CNN &mdash; Defense Seeks to Disqualify Pirro and Blanche (May 8)</a></li>
+        <li><a href="https://www.foxnews.com/us/whca-dinner-shooting-suspect-cole-allen-targets-doj-explosive-bid-shake-up-case">Fox News &mdash; Allen Targets DOJ in Explosive Bid (May 8)</a></li>
+        <li><a href="https://www.newsweek.com/should-jeanine-pirro-recuse-from-cole-allen-case-legal-analysts-weigh-in-11937862">Newsweek &mdash; Should Pirro Recuse? Legal Analysts Weigh In (May 8)</a></li>
+        <li><a href="https://www.themarysue.com/whcd-shooter-cole-allens-lawyers-want-the-entire-dc-prosecutors-office-kicked-off-his-case/">The Mary Sue &mdash; Defense Wants Entire D.C. Office Kicked Off (May 8)</a></li>
+        <li><a href="https://www.realclearpolitics.com/articles/2026/05/08/marsha_blackburn_to_secret_service_root_out_the_rot__154106.html">RealClearPolitics &mdash; Blackburn to Secret Service: Root Out the Rot (May 8)</a></li>
+        <li><a href="https://wltreport.com/2026/05/09/senator-marsha-blackburn-secret-service-payroll-audit/">WLT Report &mdash; Blackburn Demands USSS Payroll Audit (May 9)</a></li>
+        <li><a href="https://wjla.com/news/local/cole-allen-federal-court-assassination-plot-arraignment-indictment-washington-dc-crime-jeanine-pirro-todd-blanche-trump-white-house-correspondents-dinner-ballroom-shooting-case-not-guilty-plea">WJLA &mdash; Allen Pleads Not Guilty to All Charges (May 11)</a></li>
+        <li><a href="https://redstate.com/wardclark/2026/05/11/correspondents-dinner-attack-suspect-cole-tomas-allen-pleads-not-guilty-n2202212">RedState &mdash; Allen Enters Not Guilty Plea (May 11)</a></li>
+        <li><a href="https://www.cbsnews.com/news/cole-allen-white-house-correspondents-dinner-jailed-trial/">CBS News &mdash; Allen Held in Safe Cell, Agrees to Remain Jailed (May 11)</a></li>
+        <li><a href="https://www.washingtontimes.com/news/2026/may/18/say-lets-call-whole-thing-white-house-correspondents-dinner/">Washington Times &mdash; Will WHCD Be Rescheduled? (May 18)</a></li>
+        <li><a href="https://www.click2houston.com/news/politics/2026/05/18/will-white-house-correspondents-dinner-be-rescheduled-some-say-lets-call-the-whole-thing-off/">Click2Houston &mdash; "Let's Call the Whole Thing Off" (May 18)</a></li>
+        <li><a href="https://www.aljazeera.com/sports/2026/5/18/world-cup-2026-will-violence-and-protests-test-mexicos-cohost-status">Al Jazeera &mdash; World Cup Violence and Security Concerns (May 18)</a></li>
+        <li><a href="https://www.asisonline.org/security-management-magazine/articles/2026/05/world-cup-security/QA-Geopolitical-hooligans/">ASIS Online &mdash; World Cup Security Q&A (May 2026)</a></li>
+        <li><a href="https://ackermangroup.com/special-security-assessment-fifa-world-cup-2026/">Ackerman Group &mdash; FIFA World Cup Security Assessment (May 2026)</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/2026_White_House_Correspondents'_Dinner_shooting">Wikipedia &mdash; 2026 WHCD Shooting (ongoing)</a></li>
+        <li><a href="https://hotair.com/john-s-2/2026/04/30/normie-extremism-and-looming-violence-n3814473">HotAir &mdash; Normie Extremism and Looming Violence</a></li>
+        <li><a href="https://theintercept.com/2026/04/27/white-house-correspondents-dinner-shooting-trump/">The Intercept &mdash; How Trump's America Produces Normie Assassins</a></li>
+        <li><a href="https://www.notus.org/congress/republicans-white-house-correspondents-dinner-shooting-ballroom-donald-trump-investigation-hearings">NOTUS &mdash; Republicans Want Answers and a Ballroom</a></li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;">V4 Update compiled from 130+ open sources &middot; Current as of 2026-05-19 1800 EDT &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">No classified or privileged sources were used. Prepared by CTI-ORCH, OSINT-RECON, SOCMINT, STRAT-INTEL, CTI-FUSION, CTI-REPORT.</p>
+      <p style="margin-top: 0.5rem;"><a href="index.html">Back to Briefing Package</a> | <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

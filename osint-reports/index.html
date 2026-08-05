@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Reports | Circle 6 Systems</title>
+    <meta name="description" content="Open-source intelligence reports and rapid event briefings from Circle 6 Systems. Timely, calibrated analysis for security-conscious organizations.">
+    <meta property="og:title" content="Intelligence Reports | Circle 6 Systems">
+    <meta property="og:description" content="Open-source intelligence reports and rapid event briefings for security-conscious organizations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://circle6systems.com/osint-reports/">
+    <link rel="canonical" href="https://circle6systems.com/osint-reports/">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--navy);
+            color: var(--slate-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Skip to Content (Accessibility) ===== */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 4px 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.2s;
+        }
+        .skip-to-content:focus { top: 0; }
+
+        /* ===== Focus Visible (Accessibility) ===== */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        :focus:not(:focus-visible) { outline: none; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 42, 46, 0.92);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: invert(78%) sepia(12%) saturate(600%) hue-rotate(60deg) brightness(95%);
+        }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .logo-text span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--slate-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a[aria-current="page"] { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--slate-light);
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== Sections ===== */
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--slate);
+            max-width: 640px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--accent-bg);
+            opacity: 0.3;
+            margin: 1.5rem 0;
+        }
+        .divider-centered { margin-left: auto; margin-right: auto; }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 45vh;
+            display: flex;
+            align-items: center;
+            padding: 10rem 2rem 5rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(143, 170, 123, 0.04), transparent),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(143, 170, 123, 0.02), transparent);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            width: 100%;
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+        .hero .section-sub {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== Reports Grid ===== */
+        .reports-section {
+            padding: 2rem 2rem 4rem;
+        }
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .report-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .report-card:hover {
+            border-color: rgba(143, 170, 123, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .report-badges {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.25rem;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 3px;
+        }
+        .badge-type {
+            background: rgba(143, 170, 123, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(143, 170, 123, 0.25);
+        }
+        .badge-demo {
+            background: rgba(183, 149, 11, 0.12);
+            color: #d4a80b;
+            border: 1px solid rgba(183, 149, 11, 0.25);
+        }
+
+        .report-date {
+            font-size: 0.8rem;
+            color: var(--slate);
+            margin-bottom: 0.75rem;
+        }
+
+        .report-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .report-card p {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .report-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.5rem;
+            border: 1px solid var(--accent-bg);
+            border-radius: 6px;
+            transition: all 0.2s;
+            align-self: flex-start;
+        }
+        .report-link:hover,
+        .report-link:focus {
+            background: var(--accent-dim);
+            transform: translateX(2px);
+        }
+        .report-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===== Featured (full-width) Report ===== */
+        .report-featured {
+            background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+            border: 1px solid rgba(143, 170, 123, 0.3);
+            border-radius: 14px;
+            padding: 2.75rem;
+            margin-bottom: 1.75rem;
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .report-featured:hover {
+            border-color: rgba(143, 170, 123, 0.5);
+            transform: translateY(-3px);
+        }
+        .report-featured h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3vw, 2.15rem);
+            color: var(--white);
+            line-height: 1.25;
+            margin-bottom: 1rem;
+        }
+        .report-featured .lead {
+            font-size: 1rem;
+            color: var(--slate);
+            line-height: 1.75;
+            margin-bottom: 1.75rem;
+        }
+        .featured-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            background: rgba(45, 42, 46, 0.4);
+            border: 1px solid rgba(143, 170, 123, 0.12);
+            border-radius: 12px;
+            padding: 1.75rem;
+        }
+        .featured-stat { text-align: center; }
+        .featured-stat .v {
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+        .featured-stat .l {
+            font-size: 0.78rem;
+            color: var(--slate);
+            margin-top: 0.35rem;
+            line-height: 1.4;
+        }
+        @media (max-width: 968px) {
+            .report-featured { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem; }
+        }
+
+        /* ===== Capability Section ===== */
+        .capability-section {
+            padding: 4rem 2rem 4rem;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+        }
+        .capability-inner {
+            max-width: 800px;
+        }
+        .capability-section .section-sub {
+            margin-bottom: 2rem;
+        }
+
+        .deliverable-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .deliverable-list li {
+            background: var(--navy-light);
+            border: 1px solid rgba(143, 170, 123, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--slate-light);
+        }
+
+        .capability-detail {
+            font-size: 0.95rem;
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.85rem 2rem;
+            border-radius: 6px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .cta-button:hover,
+        .cta-button:focus {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .cta-button svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===== Metrics Section ===== */
+        .metrics-section {
+            padding: 4rem 2rem 6rem;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .metric-card {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .metric-card:hover {
+            border-color: rgba(143, 170, 123, 0.2);
+        }
+        .metric-value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--slate);
+            line-height: 1.5;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+            margin-top: auto;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: var(--slate);
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
+
+        /* ===== Animations ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+            .fade-in { opacity: 1; transform: none; transition: none; }
+            .report-card:hover, .report-link:hover, .cta-button:hover { transform: none; }
+        }
+
+        /* ===== High Contrast ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --navy-mid: #6b6370;
+                --slate: #d4cab9;
+                --slate-light: #f5f0e8;
+                --accent: #b8d1a8;
+            }
+            .report-card, .metric-card { border-width: 2px; }
+            .nav-links a, footer a { text-decoration: underline; }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 968px) {
+            .reports-grid { grid-template-columns: repeat(2, 1fr); }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--navy-mid);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero { min-height: auto; padding: 8rem 1.5rem 3rem; }
+            .reports-section, .capability-section, .metrics-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+        }
+
+        @media (max-width: 480px) {
+            .reports-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+            .metrics-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .deliverable-list { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="logo-group" aria-label="Circle 6 Systems homepage">
+                <div class="logo-img" aria-hidden="true"><img src="/products/circle6_logo.png" alt=""></div>
+                <div class="logo-text">Circle <span>6</span> Systems</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="/training/">Training</a></li>
+                <li><a href="/osint-reports/" aria-current="page">Intelligence</a></li>
+                <li><a href="/trust-safety/">Trust &amp; Safety</a></li>
+                <li><a href="/#industries">Industries</a></li>
+                <li><a href="/#approach">Approach</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" role="banner" aria-label="Intelligence reports overview">
+        <div class="container hero-content" id="main-content">
+            <p class="section-label">Intelligence Reports</p>
+            <h1>Open-Source <em>Intelligence</em></h1>
+            <p class="section-sub">Rapid, calibrated intelligence briefings for security teams and executive leadership. We transform open-source data into actionable insight within hours of a developing event.</p>
+        </div>
+    </section>
+
+    <!-- Reports Grid -->
+    <main class="reports-section" aria-label="Published intelligence reports">
+        <div class="container">
+
+            <!-- Featured: Cyclosporiasis Outbreak 2026 (full-width hero) -->
+            <article class="report-featured fade-in" aria-labelledby="cyclospora-2026-title">
+                <div class="report-featured-main">
+                    <div class="report-badges">
+                        <span class="badge badge-type">Threat Intelligence Briefing</span>
+                        <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #d4a80b; border: 1px solid rgba(245, 158, 11, 0.3);">Active Event</span>
+                        <span class="badge" style="background: rgba(143, 170, 123, 0.15); color: var(--accent); border: 1px solid rgba(143, 170, 123, 0.3);">Featured</span>
+                    </div>
+                    <p class="report-date">August 4, 2026 &middot; Briefing v22</p>
+                    <h2 id="cyclospora-2026-title">2026 US Cyclosporiasis Outbreak: Biosecurity &amp; Supply-Chain Intelligence</h2>
+                    <p class="lead">The largest domestic <em>Cyclospora</em> event on record. CDC's Aug 4 update confirms <strong>10,468 cases across 47 states</strong>, 517 hospitalizations, and the outbreak's <strong>first 2 deaths</strong> (the national tally has now caught up to Michigan's). FDA and CDC link a nine-state Taco Bell cluster to Taylor Farms de Mexico iceberg lettuce, an attribution Mexico's own health ministry publicly disputes with a negative facility test; a separate, unlinked second vehicle in North Carolina (867 cases) remains unresolved. Every figure is primary-verified each cycle. Includes four perspective reports, an interactive state-involvement map, a supply-chain threat model, an investigation board, the 2013 Taylor Farms precedent, a misinformation matrix, and calibrated predictions with honest re-scoring. 80+ open sources.</p>
+                    <a href="/osint-reports/cyclospora-2026/" class="report-link" aria-label="View the 2026 cyclosporiasis outbreak briefing package">
+                        View Briefing Package
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="featured-stats" aria-label="Key outbreak figures as of August 4, 2026">
+                    <div class="featured-stat"><div class="v">10,468</div><div class="l">CDC-confirmed cases</div></div>
+                    <div class="featured-stat"><div class="v">47</div><div class="l">States reporting</div></div>
+                    <div class="featured-stat"><div class="v">2</div><div class="l">Deaths (CDC + Michigan)</div></div>
+                    <div class="featured-stat"><div class="v">9-state</div><div class="l">Taco Bell / Taylor Farms cluster</div></div>
+                </div>
+            </article>
+
+            <div class="reports-grid">
+
+                <!-- Aging Senate 2026 -->
+                <article class="report-card fade-in" aria-labelledby="aging-senate-title">
+                    <div class="report-badges">
+                        <span class="badge badge-type">Political Risk Briefing</span>
+                        <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #d4a80b; border: 1px solid rgba(245, 158, 11, 0.3);">Active Event</span>
+                    </div>
+                    <p class="report-date">August 4, 2026 &middot; Briefing v2</p>
+                    <h2 id="aging-senate-title">The Aging Senate: Health, Mortality &amp; the Fragility of Power</h2>
+                    <p>Political-risk briefing on the 30-day window that took Sen. Lindsey Graham (R-SC, 71) by sudden death and hid Sen. Mitch McConnell (R-KY, 84) inside a hospitalization now past seven weeks. <strong>v2 (Aug 4):</strong> Graham's seat was filled (GOP back to 53&ndash;47), but McConnell's open-ended absence keeps functional strength near 52, now stress-tested live by the razor-thin Blanche attorney-general vote. Covers the two triggering events, immediate power implications, a tiered watch list of senators by age and vacancy-flip risk, four structural vulnerabilities, and re-scored forward assessments. 19 open sources.</p>
+                    <a href="/osint-reports/aging-senate-2026-07/" class="report-link" aria-label="View the Aging Senate briefing">
+                        View Briefing
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </article>
+
+                <!-- FIFA World Cup 2026 -->
+                <article class="report-card fade-in" aria-labelledby="fifa-wc26-title">
+                    <div class="report-badges">
+                        <span class="badge badge-type">Pre-Event Threat Briefing</span>
+                        <span class="badge badge-demo">Demo</span>
+                        <span class="badge" style="background: rgba(34, 197, 94, 0.15); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.25);">Scored Post-Event</span>
+                    </div>
+                    <p class="report-date">May 19, 2026 forecast &middot; scored August 4, 2026</p>
+                    <h2 id="fifa-wc26-title">2026 FIFA World Cup: Pre-Event Threat &amp; Security Intelligence</h2>
+                    <p>Full threat landscape assessment across 16 host cities in US, Mexico, and Canada. 10 threat actor profiles, 8 threat vectors, cyber threat environment (9,741 hostile domains, 130K credential logs), plus a dedicated Thurston County local impact briefing. <strong>Now graded against outcomes</strong> (revised across several verification passes as deeper media review corrected our first pass): our 10 predictions scored <strong>5 hit, 2 miss, 3 partial</strong>. No terrorist attack, but not incident-free, fatal crowd crushes killed fans in Mexico City and Amman; a researcher gained kill-the-stream control of the global broadcast through a FIFA flaw; and we own one factual error and three grades we initially got wrong. 45+ sources.</p>
+                    <a href="/osint-reports/fifa-wc26/" class="report-link" aria-label="View the FIFA World Cup 2026 briefing package">
+                        View Briefing Package
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </article>
+
+                <!-- Sandpoint Investigation -->
+                <article class="report-card fade-in" aria-labelledby="sandpoint-title">
+                    <div class="report-badges">
+                        <span class="badge badge-type">OSINT Investigation</span>
+                    </div>
+                    <p class="report-date">April 30, 2026</p>
+                    <h2 id="sandpoint-title">Land Developer Influence in Sandpoint, Idaho</h2>
+                    <p>Open-source intelligence investigation into land developer influence in Sandpoint, Idaho and Bonner County. Five developer networks, $80M+ in property holdings, coordinated political contributions, conflicts of interest, and active litigation. Includes interactive investigation board and entity profiles.</p>
+                    <a href="/osint-reports/sandpoint-2026-04-30/" class="report-link" aria-label="View the Sandpoint investigation package">
+                        View Investigation
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Capability Overview -->
+    <section class="capability-section fade-in" aria-label="Intelligence capability overview">
+        <div class="container">
+            <div class="capability-inner">
+                <p class="section-label">Capability</p>
+                <h2 class="section-heading">Rapid Intelligence Briefings</h2>
+                <div class="divider"></div>
+                <p class="section-sub">Circle 6 Systems produces structured OSINT briefing packages in response to breaking security events. Each package synthesizes open-source reporting, social media analysis, and historical context into perspective-specific reports designed for distinct audiences and decision-making needs.</p>
+
+                <h3 style="font-family: var(--font-heading); color: var(--white); font-size: 1.1rem; margin-bottom: 1rem;">Deliverable Types</h3>
+                <ul class="deliverable-list">
+                    <li>Executive Overview</li>
+                    <li>Threat Actor Profile</li>
+                    <li>Security Analysis</li>
+                    <li>Counter-Narrative Report</li>
+                    <li>Political Impact Assessment</li>
+                    <li>Predictive Assessment</li>
+                    <li>Investigation Package</li>
+                    <li>Interactive Investigation Board</li>
+                </ul>
+
+                <p class="capability-detail">Every briefing includes calibrated predictive assessments using a structured probability framework. Predictions are tagged with confidence levels and revisited as events develop, ensuring accountability and analytic rigor. Sources are cited and cross-referenced against at least 25 independent open sources per briefing.</p>
+
+                <a href="/osint-reports/services.html" class="cta-button">
+                    View Intelligence Services
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics -->
+    <section class="metrics-section fade-in" aria-label="Intelligence capability metrics">
+        <div class="container">
+            <p class="section-label" style="text-align: center;">By the Numbers</p>
+            <h2 class="section-heading" style="text-align: center;">Intelligence at Speed</h2>
+            <div class="divider divider-centered"></div>
+            <div class="metrics-grid">
+                <div class="metric-card fade-in">
+                    <div class="metric-value">&lt; 48h</div>
+                    <div class="metric-label">Rapid turnaround from event to finished briefing</div>
+                </div>
+                <div class="metric-card fade-in">
+                    <div class="metric-value">6</div>
+                    <div class="metric-label">Perspective-specific reports per briefing package</div>
+                </div>
+                <div class="metric-card fade-in">
+                    <div class="metric-value">25+</div>
+                    <div class="metric-label">Minimum open sources consulted per briefing</div>
+                </div>
+                <div class="metric-card fade-in">
+                    <div class="metric-value">3&ndash;5</div>
+                    <div class="metric-label">Calibrated predictive assessments per report</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Intersection Observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

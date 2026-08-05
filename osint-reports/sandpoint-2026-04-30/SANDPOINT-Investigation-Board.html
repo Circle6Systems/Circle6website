@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Investigation Board: Sandpoint Developer Network | Circle 6 Systems</title>
+  <script src="js/vis-network.min.js"></script>
+  <style>
+    :root {
+      --c6s-dark: #2d2a2e;
+      --c6s-panel: #3a3640;
+      --c6s-border: #504a52;
+      --c6s-accent: #a8c196;
+      --c6s-accent-dim: #8faa7b;
+      --c6s-red: #ef4444;
+      --c6s-amber: #f59e0b;
+      --c6s-green: #22c55e;
+      --c6s-blue: #3b82f6;
+      --c6s-purple: #a855f7;
+      --c6s-text: #d4cab9;
+      --c6s-text-dim: #beb3a7;
+      --c6s-text-bright: #f5f0e8;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c6s-dark);
+      color: var(--c6s-text);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 42, 46, 0.95);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+      height: 56px;
+    }
+
+    .site-nav .nav-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+    }
+
+    .site-nav .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-nav .logo-text span { color: var(--c6s-accent); }
+
+    .nav-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c6s-accent);
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      color: var(--c6s-text);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-family: var(--font);
+    }
+
+    .nav-btn:hover { border-color: var(--c6s-accent); color: var(--c6s-accent); }
+    .nav-btn.active { background: var(--c6s-accent-dim); color: var(--c6s-dark); border-color: var(--c6s-accent); }
+
+    #graph {
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .detail-panel {
+      position: fixed;
+      right: -420px;
+      top: 56px;
+      bottom: 0;
+      width: 400px;
+      background: rgba(58, 54, 64, 0.97);
+      border-left: 2px solid var(--c6s-accent);
+      z-index: 500;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      padding: 1.5rem;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+
+    .detail-panel.open { right: 0; }
+
+    .detail-panel .close-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--c6s-text-dim);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .detail-panel .close-btn:hover { color: var(--c6s-text-bright); }
+
+    .detail-panel h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-panel .detail-role {
+      font-size: 0.8rem;
+      color: var(--c6s-accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .detail-panel .detail-section {
+      margin-bottom: 1.25rem;
+    }
+
+    .detail-panel .detail-section h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-accent);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .detail-panel .detail-section p,
+    .detail-panel .detail-section li {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 0.35rem;
+    }
+
+    .detail-panel ul { padding-left: 1.25rem; }
+
+    .detail-panel .detail-link {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.4rem 1rem;
+      background: var(--c6s-accent-dim);
+      color: var(--c6s-dark);
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .detail-panel .detail-link:hover { background: var(--c6s-accent); }
+
+    .legend {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(58, 54, 64, 0.92);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      z-index: 200;
+      font-size: 0.7rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--c6s-text-dim);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .legend-line {
+      width: 20px;
+      height: 2px;
+      display: inline-block;
+    }
+
+    .legend-line.dashed {
+      background: repeating-linear-gradient(90deg, var(--c6s-purple) 0, var(--c6s-purple) 4px, transparent 4px, transparent 8px);
+    }
+
+    strong { color: var(--c6s-text-bright); }
+
+    @media (max-width: 768px) {
+      .detail-panel { width: 100%; right: -100%; }
+      .legend { flex-wrap: wrap; gap: 0.5rem; }
+      .nav-controls { gap: 0.25rem; }
+      .nav-btn { padding: 0.25rem 0.5rem; font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="logo-text" href="https://circle6systems.com">Circle <span>6</span> Systems</a>
+      <div class="nav-title">SANDPOINT Investigation Board</div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="network.fit({animation:true})">Fit All</button>
+        <button class="nav-btn" onclick="togglePhysics()">Toggle Physics</button>
+        <button class="nav-btn active" onclick="filterNodes('all', this)" id="btn-all">All</button>
+        <button class="nav-btn" onclick="filterNodes('developer', this)">Developers</button>
+        <button class="nav-btn" onclick="filterNodes('government', this)">Government</button>
+        <button class="nav-btn" onclick="filterNodes('entity', this)">Entities</button>
+        <a class="nav-btn" href="SANDPOINT-Briefing.html">Briefing</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="graph"></div>
+
+  <div class="detail-panel" id="detailPanel">
+    <button class="close-btn" onclick="closeDetail()">&times;</button>
+    <div id="detailContent"></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background: #ef4444"></div> Developer</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #3b82f6"></div> Government</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #a855f7"></div> Dual Role</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #f59e0b"></div> Entity</div>
+    <div class="legend-item" style="border-left: 1px solid #504a52; padding-left: 0.75rem;">
+      <svg width="24" height="12"><line x1="0" y1="6" x2="24" y2="6" stroke="#a8c196" stroke-width="2"/></svg> Verified
+    </div>
+    <div class="legend-item">
+      <svg width="24" height="12"><line x1="0" y1="6" x2="24" y2="6" stroke="#a8c196" stroke-width="2" stroke-dasharray="5,4"/></svg> Inferred
+    </div>
+    <div class="legend-item" style="border-left: 1px solid #504a52; padding-left: 0.75rem;">
+      <div class="legend-line" style="background: #ef4444"></div> Ownership
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background: #f59e0b"></div> Consulting
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background: #3b82f6"></div> Gov. Action
+    </div>
+    <div class="legend-item">
+      <div class="legend-line" style="background: #a855f7"></div> Political $
+    </div>
+    <div class="legend-item" style="border-left: 1px solid #504a52; padding-left: 0.75rem; font-size: 0.6rem; color: #beb3a7; max-width: 280px; line-height: 1.4;">
+      Inferred connections are analytical opinions based on public record patterns, not established facts. Click any connection to see its evidence basis.
+    </div>
+  </div>
+
+<script>
+const nodeDetail = {
+  // === GOVERNMENT ===
+  grimm: {
+    role: 'Mayor / Developer Consultant',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint Mayor since Jan 2024',
+        'City Planning Director 2007-2015',
+        'Owns Whiskey Rock Planning LLC (formed Dec 2019)',
+        'Idaho Economic Advisory Council, Region 1',
+        'Cast tie-breaking vote on maximum impact fees (Jul 2025)',
+        'Suggested Averill approach SURA to pay impact fees'
+      ]},
+      {title: 'Conflict Pattern', items: [
+        'Administers city planning as mayor while owning a land-use consulting firm',
+        'Whiskey Rock clients include Valiant Idaho, Big Creek Land, University Park, Litehouse, Sawbuck, 100+ others',
+        'Recusal patterns are inconsistent'
+      ]}
+    ]
+  },
+  howarth: {
+    role: 'Councilor / Developer',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint City Council (appointed Apr 2024)',
+        'Retired Intel VP (40+ years)',
+        'Owns Deerfield LLC: 32.67-acre subdivision',
+        'Voted anti-impact-fees while his own subdivision benefited',
+        'Deerfield denied Sept 2025 then reversed and approved Dec 2025'
+      ]}
+    ]
+  },
+  marble: {
+    role: 'Zoning Chairman / Developer',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Chairman, Bonner County Zoning Commission',
+        'Co-owner J&J Development with Pilch',
+        'Mountain Homestead: illegal fifth lot, road on wrong property',
+        'E. coli water contamination, failing septics',
+        'RICO lawsuit dismissed Apr 2026; 7 state claims pending'
+      ]}
+    ]
+  },
+  pilch: {
+    role: 'Former Planning Commissioner / Developer',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Former Bonner County Planning Commission member',
+        'Co-owner J&J Development with Marble',
+        'Developed Mountain Homestead while on Planning Commission',
+        'State claims refiling deadline: ~May 16, 2026'
+      ]}
+    ]
+  },
+  dick: {
+    role: 'Councilor (potential conflict)',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint City Councilor',
+        'Previously operated Trinity at City Beach at Best Western Edgewater',
+        'Former Mayor Logan called for recusal on Averill votes',
+        'Dick: "no deals, no conflict of interest"; did not recuse'
+      ]}
+    ]
+  },
+  tate: {
+    role: 'Councilor',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint City Councilor; Sandpoint native',
+        'Voted to reject both Averill RV park proposals',
+        '"Not necessarily a rejection of collaboration"'
+      ]}
+    ]
+  },
+  duquette: {
+    role: 'Councilor',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint City Councilor',
+        'Made motion to proceed with RV park renovation (Feb 2026)',
+        'Cited 908-response survey showing overwhelming RV park support'
+      ]}
+    ]
+  },
+  welker: {
+    role: 'Planning Director',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint Community Planning and Development Director',
+        'Managed RV park alternatives workshop and 908-response survey'
+      ]}
+    ]
+  },
+  dean: {
+    role: 'City Planner',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint City Planner',
+        'Floated extending impact fee deadline to Jan 31 to accommodate Averill',
+        'Council settled on Jan 1, 2026'
+      ]}
+    ]
+  },
+
+  // === DEVELOPERS ===
+  b_averill: {
+    role: 'Developer - Averill Hospitality',
+    type: 'developer',
+    link: 'SANDPOINT-Appendix-Averill.html',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Owner & President, Averill Hospitality LLC',
+        'Third-generation Montana hospitality family',
+        '$70-100M Sandpoint Lakeside Resort at 56 Bridge St',
+        'Acquired Best Western Edgewater May 2022'
+      ]},
+      {title: 'Red Flags', items: [
+        'Condotel bait-and-switch: pitched 181 rooms, actual 99 + 27 condos',
+        'Two RV park proposals rejected 6-0',
+        'Filed permits Dec 29 to avoid ~$1M in impact fees',
+        'Controversial in home base of Whitefish, MT'
+      ]}
+    ]
+  },
+  d_averill: {
+    role: 'Developer - Averill Family',
+    type: 'developer',
+    link: 'SANDPOINT-Appendix-Averill.html',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Co-founded Averill Hospitality with sons Sean and Brian',
+        'Son of Les Averill (Flathead Lake Lodge, 1945)',
+        'Partner in Edgewater Partners JV',
+        'Political contributions: $192'
+      ]}
+    ]
+  },
+  s_averill: {
+    role: 'Developer - Averill Real Estate',
+    type: 'developer',
+    link: 'SANDPOINT-Appendix-Averill.html',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Real estate and development for Averill Hospitality',
+        'Named in Edgewater Partners and Management Co.'
+      ]}
+    ]
+  },
+  mcgrann: {
+    role: 'Averill Hospitality - Sandpoint Liaison',
+    type: 'developer',
+    link: 'SANDPOINT-Appendix-Averill.html',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Sandpoint-based liaison for Averill Hospitality (commercial role, not government)',
+        'Appeared alongside Brian Averill at Feb 5, 2026 council meeting',
+        'Declined comment after 6-0 rejection'
+      ]}
+    ]
+  },
+  haberman: {
+    role: 'Developer - Idaho Club',
+    type: 'developer',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Managing Member, Valiant Idaho LLC (Celebration, FL)',
+        'Idaho Club: 525+ lots, golf course, marina',
+        'Property: $20.5M | Contributions: $12,300',
+        'Nov 4, 2025: $5,000 to Gov. Little (same day as Sletager, Brownlee)'
+      ]},
+      {title: 'Entity Network', items: [
+        'Valiant Idaho LLC (AZ), Valiant Idaho II, Valiant Advisors (FL - dissolved)',
+        'Mona Lisa Development (FL - dissolved/bankrupt)',
+        'DGH Thistle (FL/NC), Valiant Washington (FL)'
+      ]}
+    ]
+  },
+  sletager: {
+    role: 'Developer - Dover Bay',
+    type: 'developer',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Dover Bay Development, 40+ year Sandpoint incumbent',
+        'Property: $19.9M | Contributions: $8,000',
+        'Nov 4, 2025: $5,000 to Gov. Little (coordinated)',
+        '120 E Lake St Suite 101 (shared with Waterfront Property Mgmt)'
+      ]}
+    ]
+  },
+  brownlee: {
+    role: 'Developer - M3 / Camp Bay',
+    type: 'developer',
+    sections: [
+      {title: 'Key Facts', items: [
+        'M3 Companies LLC and M3 ID Camp Bay LLC (AZ)',
+        'Property: $25.4M (highest) | Contributions: $5,000',
+        'Nov 4, 2025: $5,000 to Gov. Little (coordinated)',
+        'Vacated Camp Bay Road (public road) for private development'
+      ]}
+    ]
+  },
+  mort: {
+    role: 'Developer - Hidden Network',
+    type: 'developer',
+    sections: [
+      {title: 'Key Facts', items: [
+        '6 interconnected entities, 121 parcels, $22M combined',
+        'Contributions: $4,500',
+        'Shared agents, addresses, overlapping ownership'
+      ]},
+      {title: 'Hidden Network', items: [
+        'Mort Construction, Monogram Homes, Tricore Investments',
+        'Big Creek Land Co, Seasons at Sandpoint, GarageTown USA'
+      ]}
+    ]
+  },
+  weimer: {
+    role: 'Developer - JD Lumber / Jewel Lake',
+    type: 'developer',
+    sections: [
+      {title: 'Key Facts', items: [
+        'JD Lumber and Jewel Lake LLC',
+        'Property: $0.5M | Contributions: $2,000 (direct to commissioners)',
+        'Jewel Lake rezone vacated by judge, re-approved by commissioners weeks later'
+      ]}
+    ]
+  },
+  huckestein: {
+    role: 'Joint Venture Partner',
+    type: 'developer',
+    link: 'SANDPOINT-Appendix-Averill.html',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Former Hilton Hotels Corp. board member (10 years)',
+        'Partner in Edgewater Partners JV (DoubleTree Missoula)',
+        'Partner in Averill Hospitality Management Co.',
+        'Signals institutional capital behind Averill expansion'
+      ]}
+    ]
+  },
+  little: {
+    role: 'Governor of Idaho',
+    type: 'government',
+    sections: [
+      {title: 'Coordinated Contributions (Nov 4, 2025)', items: [
+        'Haberman / Valiant Idaho: $5,000',
+        'Sletager / Dover Bay: $5,000',
+        'Brownlee / M3 Companies: $5,000',
+        'Total: $15,000 from three competing developers on the SAME DAY'
+      ]}
+    ]
+  },
+  logan: {
+    role: 'Former Mayor of Sandpoint',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Former Mayor of Sandpoint (preceded Grimm)',
+        'Called Averill proposal "rude and arrogant" at Nov 2025 hearing',
+        'Called on Councilor Dick to recuse from Averill votes due to prior Edgewater relationship',
+        'Active in opposing developer overreach as a private citizen'
+      ]}
+    ]
+  },
+  korn: {
+    role: 'Commissioner, Bonner County',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Bonner County Commissioner, District 3',
+        'Idaho AG cleared of criminal charges related to MLD moratorium leak',
+        'Requested additional research time on Schweitzer rezone proposal',
+        'The MLD process (exploited by J&J Development) was subsequently eliminated (Nov 2025)'
+      ]}
+    ]
+  },
+  gabell: {
+    role: 'Former Planning Director, Bonner County',
+    type: 'government',
+    sections: [
+      {title: 'Key Facts', items: [
+        'Former Bonner County Planning Director (resigned)',
+        'Identified loopholes in Minor Land Division code that allowed de facto subdivisions',
+        'MLD process was exploited by J&J Development and other developers',
+        'Replaced by interim Alex Feyen, then Kendra Smith'
+      ]}
+    ]
+  }
+};
+
+// === BUILD VIS.JS DATA ===
+
+const GROUP_COLORS = {
+  developer:  {bg: '#4a2020', border: '#ef4444', font: '#f5f0e8', highlight: {bg: '#6b2020', border: '#ff6666'}},
+  government: {bg: '#1a2a3b', border: '#3b82f6', font: '#f5f0e8', highlight: {bg: '#203a5b', border: '#60a5fa'}},
+  dual:       {bg: '#2a1a3b', border: '#a855f7', font: '#f5f0e8', highlight: {bg: '#3a2050', border: '#c084fc'}},
+  entity:     {bg: '#2a2a1a', border: '#f59e0b', font: '#f5f0e8', highlight: {bg: '#3a3520', border: '#fbbf24'}},
+};
+
+const nodes = new vis.DataSet([
+  // === DUAL ROLE: Government + Developer ===
+  {id: 'grimm',    label: 'Jeremy Grimm\n\nMayor, Sandpoint (2024-present)\nFmr. Planning Director (2007-2015)\nOwner, Whiskey Rock Planning LLC',     group: 'dual', shape: 'box', detail: 'grimm', mass: 3},
+  {id: 'howarth',  label: 'Rick Howarth\n\nCouncilor, Sandpoint (Apr 2024-present)\nOwner, Deerfield LLC\n(24-lot Baldy Mtn subdivision)', group: 'dual', shape: 'box', detail: 'howarth', mass: 2},
+  {id: 'marble',   label: 'Jacob Marble\n\nChairman, Bonner Co. Zoning Comm.\nCo-owner, J&J Development\n(Mountain Homestead)', group: 'dual', shape: 'box', detail: 'marble', mass: 2},
+  {id: 'pilch',    label: 'Joshua Pilch\n\nFmr. Bonner Co. Planning Comm.\nCo-owner, J&J Development\n(Mountain Homestead)', group: 'dual', shape: 'box', detail: 'pilch', mass: 2},
+
+  // === SANDPOINT CITY COUNCIL (current, with documented connections only) ===
+  {id: 'dick',     label: 'Justin Dick\nCouncilor, Sandpoint\n(Fmr. Edgewater tenant)',  group: 'government', shape: 'box', detail: 'dick'},
+  {id: 'tate',     label: 'Joe Tate\nCouncilor, Sandpoint',         group: 'government', shape: 'box', detail: 'tate'},
+  {id: 'duquette', label: 'Pam Duquette\nCouncilor, Sandpoint',     group: 'government', shape: 'box', detail: 'duquette'},
+
+  // === SANDPOINT CITY STAFF ===
+  {id: 'welker',   label: 'Jason Welker\nPlanning Director, Sandpoint',  group: 'government', shape: 'box', detail: 'welker'},
+  {id: 'dean',     label: 'Bill Dean\nCity Planner, Sandpoint',         group: 'government', shape: 'box', detail: 'dean'},
+
+  // === FORMER SANDPOINT OFFICIALS ===
+  {id: 'logan',    label: 'Carrie Logan\nFmr. Mayor, Sandpoint', group: 'government', shape: 'box', detail: 'logan'},
+
+  // === BONNER COUNTY (with documented connections only) ===
+  {id: 'korn',     label: 'Ron Korn\nCommissioner, Bonner Co.\nDist. 3', group: 'government', shape: 'box', detail: 'korn'},
+  {id: 'gabell',   label: 'Jake Gabell\nFmr. Planning Director\nBonner Co. (resigned)', group: 'government', shape: 'box', detail: 'gabell'},
+
+  // === STATE OFFICIALS ===
+  {id: 'little',   label: 'Gov. Brad Little\nGovernor of Idaho', group: 'government', shape: 'box', detail: 'little', mass: 3},
+
+  // === DEVELOPERS ===
+  {id: 'b_averill',  label: 'Brian Averill\nOwner, Averill Hospitality',   group: 'developer', shape: 'box', detail: 'b_averill',  mass: 3},
+  {id: 'd_averill',  label: 'Dan Averill\nCo-founder, Averill Hospitality', group: 'developer', shape: 'box', detail: 'd_averill'},
+  {id: 's_averill',  label: 'Sean Averill\nReal Estate & Development',      group: 'developer', shape: 'box', detail: 's_averill'},
+  {id: 'mcgrann',    label: 'Ben McGrann\nAverill Hospitality\nSandpoint Liaison',    group: 'developer', shape: 'box', detail: 'mcgrann'},
+  {id: 'haberman',   label: 'William Haberman\nValiant Idaho / Idaho Club\n(Celebration, FL)',  group: 'developer', shape: 'box', detail: 'haberman',  mass: 3},
+  {id: 'sletager',   label: 'Ralph Sletager\nDover Bay Development\n(40+ yr incumbent)',     group: 'developer', shape: 'box', detail: 'sletager',  mass: 2},
+  {id: 'brownlee',   label: 'William Brownlee\nM3 Companies / Camp Bay\n(AZ-based)',   group: 'developer', shape: 'box', detail: 'brownlee',  mass: 2},
+  {id: 'mort',       label: 'Cliff Mort\nMort Construction + 5 entities\n(Hidden network, $22M)',  group: 'developer', shape: 'box', detail: 'mort', mass: 2},
+  {id: 'weimer',     label: 'Jacob Weimer\nJD Lumber / Jewel Lake LLC',       group: 'developer', shape: 'box', detail: 'weimer'},
+  {id: 'huckestein', label: 'Dieter Huckestein\nFmr. Hilton Hotels Board\n(JV Partner)',  group: 'developer', shape: 'box', detail: 'huckestein'},
+
+  // === ENTITIES ===
+  {id: 'averill_llc',       label: 'Averill\nHospitality LLC\n(MT SOS: C121854)',  group: 'entity', shape: 'diamond', detail: 'b_averill', mass: 4, font: {size: 10}},
+  {id: 'edgewater_partners', label: 'Edgewater\nPartners JV\n(Missoula)',   group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'whiskey_rock',      label: 'Whiskey Rock\nPlanning LLC\n(ID: 0003706940)', group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'valiant',           label: 'Valiant\nIdaho LLC\n(AZ/FL/multi-state)',  group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'doverbay',          label: 'Dover Bay\nDevelopment Inc.\n(Sandpoint)',    group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'm3',                label: 'M3 Companies\nCamp Bay LLC\n(AZ parent)',    group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'jj_dev',            label: 'J&J\nDevelopment LLC\n(Mtn Homestead)',      group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'deerfield',         label: 'Deerfield LLC\n(Baldy Mtn Rd)',            group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'mort_network',      label: 'Mort Network\n6 entities, 121 parcels\n$22M combined', group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'sura',              label: 'SURA\nSandpoint Urban\nRenewal Agency',     group: 'entity', shape: 'diamond', font: {size: 10}},
+  {id: 'rv_park',           label: 'City Beach\nRV Park\n($950K grant; 25yr lock)',  group: 'entity', shape: 'diamond', font: {size: 10}},
+]);
+
+// Edge colors by relationship type
+const EC = {
+  own:  {color: '#ef4444', highlight: '#ff6666', opacity: 0.8},
+  con:  {color: '#f59e0b', highlight: '#fbbf24', opacity: 0.8},
+  gov:  {color: '#3b82f6', highlight: '#60a5fa', opacity: 0.7},
+  pol:  {color: '#a855f7', highlight: '#c084fc', opacity: 0.7},
+};
+const LBL = {size: 9, color: '#beb3a7'};
+const LBL_SM = {size: 8, color: '#beb3a7'};
+
+// basis: 'verified' = documented in public record/filing/news article
+//        'inferred' = analytical judgment, pattern, or circumstantial
+// source: short citation for provenance
+
+const edges = new vis.DataSet([
+  // === AVERILL OWNERSHIP (all verified via MT SOS filings + news) ===
+  {from: 'b_averill',  to: 'averill_llc',        color: EC.own, label: 'Owner &\nPresident', font: LBL,
+   basis: 'verified', source: 'MT SOS C121854'},
+  {from: 'd_averill',  to: 'averill_llc',        color: EC.own, label: 'Co-founder', font: LBL,
+   basis: 'verified', source: 'MT SOS C121854; news reports'},
+  {from: 's_averill',  to: 'averill_llc',        color: EC.own, label: 'Dev Lead', font: LBL,
+   basis: 'verified', source: 'MT SOS; Edgewater Partners filing'},
+  {from: 'mcgrann',    to: 'averill_llc',        color: EC.own, label: 'Sandpoint\nLiaison', font: LBL,
+   basis: 'verified', source: 'Daily Inter Lake, Feb 5, 2026 (named in article)'},
+  {from: 'b_averill',  to: 'edgewater_partners', color: EC.own, font: LBL,
+   basis: 'verified', source: 'MT SOS; news reports'},
+  {from: 'd_averill',  to: 'edgewater_partners', color: EC.own, font: LBL,
+   basis: 'verified', source: 'MT SOS; news reports'},
+  {from: 's_averill',  to: 'edgewater_partners', color: EC.own, font: LBL,
+   basis: 'verified', source: 'MT SOS; news reports'},
+  {from: 'huckestein', to: 'edgewater_partners', color: EC.own, label: 'JV Partner', font: LBL,
+   basis: 'verified', source: 'Missoulian; DoubleTree acquisition reporting'},
+  {from: 'huckestein', to: 'averill_llc',        color: EC.con, label: 'Mgmt Co\nPartner', font: LBL,
+   basis: 'verified', source: 'Averill Hospitality Management Co. filings'},
+
+  // === AVERILL - GOVERNMENT INTERACTIONS ===
+  {from: 'averill_llc', to: 'rv_park', color: EC.own, label: 'Demanded\nacquisition (x2)', font: {size: 9, color: '#ef4444'},
+   basis: 'verified', source: 'BCDB Nov 6, 2025; Daily Inter Lake Feb 5, 2026'},
+  {from: 'dick', to: 'averill_llc', color: EC.gov, label: 'Prior tenant;\nrecusal question', font: LBL_SM, dashes: [6, 4],
+   basis: 'inferred', source: 'Fmr. Mayor Logan statement at Nov 2025 hearing; Dick denied conflict'},
+  {from: 'grimm', to: 'averill_llc', color: EC.gov, label: 'Suggested\nSURA pay fees', font: LBL_SM,
+   basis: 'verified', source: 'BCDB Aug 22, 2025 (quoted in article)'},
+  {from: 'dean', to: 'averill_llc', color: EC.gov, label: 'Floated extended\nfee deadline', font: LBL_SM,
+   basis: 'verified', source: 'BCDB Sep 5, 2025; Sandpoint Reader'},
+  {from: 'tate', to: 'rv_park', color: EC.gov, label: 'Voted to\npreserve (6-0)', font: LBL_SM,
+   basis: 'verified', source: 'Daily Inter Lake Feb 5, 2026 (quoted)'},
+  {from: 'duquette', to: 'rv_park', color: EC.gov, label: 'Made motion\nto renovate', font: LBL_SM,
+   basis: 'verified', source: 'Daily Inter Lake Feb 5, 2026 (quoted)'},
+
+  // === GRIMM - WHISKEY ROCK - DEVELOPER CONNECTIONS ===
+  {from: 'grimm', to: 'whiskey_rock', color: EC.own, label: 'Owner', font: LBL,
+   basis: 'verified', source: 'ID SOS #0003706940; SBA PPP loan records'},
+  {from: 'whiskey_rock', to: 'valiant', color: EC.con, label: 'Represents\nIdaho Club', font: LBL_SM,
+   basis: 'verified', source: 'Sandpoint Reader; Phase 1 planning submissions'},
+  {from: 'whiskey_rock', to: 'mort_network', color: EC.con, label: 'Represents\nBoyer Meadows', font: LBL_SM,
+   basis: 'verified', source: 'Sandpoint Reader (planning hearing coverage)'},
+  {from: 'grimm', to: 'sura', color: EC.gov, label: 'Suggested dev\nsubsidy', font: LBL_SM,
+   basis: 'verified', source: 'BCDB Aug 22, 2025 (meeting coverage)'},
+
+  // === DUAL-ROLE: GOVERNMENT OFFICIALS WHO OWN DEVELOPMENT ENTITIES ===
+  {from: 'howarth', to: 'deerfield', color: EC.own, label: 'Owner /\nManager', font: LBL,
+   basis: 'verified', source: 'Bonner Co. subdivision application; Sandpoint Reader'},
+  {from: 'marble', to: 'jj_dev', color: EC.own, label: 'Managing\nMember', font: LBL,
+   basis: 'verified', source: 'Court filings: Wittwer v. J&J, 2:2025cv00395'},
+  {from: 'pilch', to: 'jj_dev', color: EC.own, label: 'Managing\nMember', font: LBL,
+   basis: 'verified', source: 'Court filings: Wittwer v. J&J, 2:2025cv00395'},
+
+  // === DEVELOPER-ENTITY OWNERSHIP ===
+  {from: 'haberman', to: 'valiant', color: EC.own, label: 'Managing\nMember', font: LBL,
+   basis: 'verified', source: 'AZ Corp Comm R22325246; Boise principal office'},
+  {from: 'sletager', to: 'doverbay', color: EC.own, label: 'Principal', font: LBL,
+   basis: 'verified', source: 'ID SOS; OpenCorporates; 120 E Lake St Suite 101'},
+  {from: 'brownlee', to: 'm3', color: EC.own, label: 'Principal', font: LBL,
+   basis: 'verified', source: 'AZ Corp Commission; Bonner Co. planning records'},
+  {from: 'mort', to: 'mort_network', color: EC.own, label: 'Principal\n(6 entities)', font: LBL,
+   basis: 'verified', source: 'ID SOS filings; shared agent/address analysis'},
+
+  // === POLITICAL CONTRIBUTIONS (verified via Idaho Sunshine Fund) ===
+  {from: 'haberman', to: 'little', color: EC.pol, label: '$5,000\nNov 4, 2025', font: {size: 9, color: '#a855f7'},
+   basis: 'verified', source: 'Idaho Sunshine Fund (sunshine.sos.idaho.gov)'},
+  {from: 'sletager', to: 'little', color: EC.pol, label: '$5,000\nNov 4, 2025', font: {size: 9, color: '#a855f7'},
+   basis: 'verified', source: 'Idaho Sunshine Fund (sunshine.sos.idaho.gov)'},
+  {from: 'brownlee', to: 'little', color: EC.pol, label: '$5,000\nNov 4, 2025', font: {size: 9, color: '#a855f7'},
+   basis: 'verified', source: 'Idaho Sunshine Fund (sunshine.sos.idaho.gov)'},
+
+  // === SAME-DAY COORDINATION (inferred from pattern) ===
+  {from: 'haberman', to: 'sletager', color: EC.pol, label: 'Same-day\ncoordination?', font: {size: 8, color: '#a855f7'}, dashes: [6, 4],
+   basis: 'inferred', source: 'Pattern: 3 competing developers, $5K each, same day. Coordination not proven.'},
+  {from: 'sletager', to: 'brownlee', color: EC.pol, label: 'Same-day\ncoordination?', font: {size: 8, color: '#a855f7'}, dashes: [6, 4],
+   basis: 'inferred', source: 'Pattern: 3 competing developers, $5K each, same day. Coordination not proven.'},
+
+  // === SURA - AVERILL (proposed, never enacted) ===
+  {from: 'sura', to: 'averill_llc', color: EC.con, label: 'Fee subsidy\n(proposed, not enacted)', font: LBL_SM, dashes: [6, 4],
+   basis: 'verified', source: 'BCDB Aug 2025; Grimm suggested at public meeting. Averill filed permits instead.'},
+
+  // === FORMER OFFICIALS ===
+  {from: 'logan', to: 'dick', color: EC.gov, label: 'Called for\nrecusal', font: LBL_SM,
+   basis: 'verified', source: 'BCDB Nov 6, 2025; Sandpoint Reader (public hearing statements)'},
+  {from: 'logan', to: 'averill_llc', color: EC.gov, label: '"Rude and\narrogant"', font: LBL_SM,
+   basis: 'verified', source: 'BCDB Nov 6, 2025 (quoted at public hearing)'},
+
+  // === BONNER COUNTY ===
+  {from: 'korn', to: 'jj_dev', color: EC.gov, label: 'MLD moratorium\nleak (AG cleared)', font: LBL_SM, dashes: [6, 4],
+   basis: 'verified', source: 'Idaho AG investigation; BCDB coverage. AG found no criminal violation.'},
+  {from: 'gabell', to: 'jj_dev', color: EC.gov, label: 'Identified MLD\ncode loopholes', font: LBL_SM,
+   basis: 'verified', source: 'Sandpoint Reader; BCDB (Gabell cited in MLD reform coverage)'},
+
+  // === WEIMER - COMMISSIONERS ===
+  {from: 'weimer', to: 'korn', color: EC.pol, label: '$2K to\ncommissioners', font: {size: 8, color: '#a855f7'},
+   basis: 'verified', source: 'Idaho Sunshine Fund'},
+]);
+
+// === VIS.JS CONFIG ===
+
+const options = {
+  groups: {
+    developer: {
+      color: GROUP_COLORS.developer,
+      font: {color: '#f5f0e8', size: 13, face: '-apple-system, sans-serif', multi: true},
+      borderWidth: 2,
+      borderWidthSelected: 3,
+      shadow: {enabled: true, color: 'rgba(239, 68, 68, 0.3)', size: 10},
+    },
+    government: {
+      color: GROUP_COLORS.government,
+      font: {color: '#f5f0e8', size: 13, face: '-apple-system, sans-serif', multi: true},
+      borderWidth: 2,
+      borderWidthSelected: 3,
+      shadow: {enabled: true, color: 'rgba(59, 130, 246, 0.3)', size: 10},
+    },
+    dual: {
+      color: GROUP_COLORS.dual,
+      font: {color: '#f5f0e8', size: 12, face: '-apple-system, sans-serif', multi: true},
+      borderWidth: 2,
+      borderWidthSelected: 3,
+      shadow: {enabled: true, color: 'rgba(168, 85, 247, 0.4)', size: 12},
+      widthConstraint: {minimum: 180, maximum: 280},
+    },
+    entity: {
+      color: GROUP_COLORS.entity,
+      font: {color: '#f5f0e8', size: 11, face: '-apple-system, sans-serif', multi: true},
+      borderWidth: 2,
+      borderWidthSelected: 3,
+      shadow: {enabled: true, color: 'rgba(245, 158, 11, 0.2)', size: 8},
+    },
+  },
+  nodes: {
+    shape: 'box',
+    margin: {top: 10, bottom: 10, left: 12, right: 12},
+    widthConstraint: {minimum: 90, maximum: 130},
+    font: {align: 'center'},
+    chosen: {
+      node: function(values) {
+        values.shadowSize = 20;
+        values.borderWidth = 3;
+      }
+    }
+  },
+  edges: {
+    width: 1.5,
+    smooth: {
+      type: 'continuous',
+      roundness: 0.3
+    },
+    arrows: {to: {enabled: false}},
+    font: {
+      size: 9,
+      color: '#beb3a7',
+      strokeWidth: 3,
+      strokeColor: '#2d2a2e',
+      align: 'middle',
+      background: '#2d2a2e'
+    },
+    chosen: {
+      edge: function(values) {
+        values.width = 3;
+        values.opacity = 1;
+      }
+    }
+  },
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -120,
+      centralGravity: 0.008,
+      springLength: 220,
+      springConstant: 0.035,
+      damping: 0.4,
+      avoidOverlap: 0.9
+    },
+    stabilization: {
+      enabled: true,
+      iterations: 300,
+      updateInterval: 25
+    },
+    maxVelocity: 30,
+    minVelocity: 0.5
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 200,
+    navigationButtons: false,
+    keyboard: {enabled: true},
+    zoomView: true,
+    dragView: true,
+    dragNodes: true,
+    multiselect: false,
+  },
+  layout: {
+    improvedLayout: true,
+    randomSeed: 42
+  }
+};
+
+// Apply dashed style to all inferred edges
+edges.get().forEach(e => {
+  if (e.basis === 'inferred' && !e.dashes) {
+    edges.update({id: e.id, dashes: [6, 4]});
+  }
+});
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, {nodes, edges}, options);
+
+// After stabilization, turn off physics for smooth dragging
+network.once('stabilizationIterationsDone', function() {
+  network.setOptions({physics: {enabled: false}});
+});
+
+// Click handler
+network.on('click', function(params) {
+  if (params.nodes.length > 0) {
+    const nodeId = params.nodes[0];
+    const node = nodes.get(nodeId);
+    const detailKey = node.detail || nodeId;
+    const detail = nodeDetail[detailKey];
+    if (detail) {
+      openDetail(nodeId, detail);
+      highlightConnected(nodeId);
+    }
+  } else {
+    closeDetail();
+    resetHighlight();
+  }
+});
+
+// Double-click to focus
+network.on('doubleClick', function(params) {
+  if (params.nodes.length > 0) {
+    network.focus(params.nodes[0], {scale: 1.2, animation: {duration: 500, easingFunction: 'easeInOutQuad'}});
+  }
+});
+
+function openDetail(nodeId, detail) {
+  const panel = document.getElementById('detailPanel');
+  const content = document.getElementById('detailContent');
+  const node = nodes.get(nodeId);
+
+  let html = `<h2>${node.label.replace('\n', ' ')}</h2>`;
+  html += `<div class="detail-role">${detail.role}</div>`;
+
+  detail.sections.forEach(section => {
+    html += `<div class="detail-section"><h3>${section.title}</h3><ul>`;
+    section.items.forEach(item => {
+      html += `<li>${item}</li>`;
+    });
+    html += `</ul></div>`;
+  });
+
+  // Show connections with verified/inferred status and sources
+  const connEdges = edges.get().filter(e => e.from === nodeId || e.to === nodeId);
+  if (connEdges.length > 0) {
+    const verified = connEdges.filter(e => e.basis === 'verified');
+    const inferred = connEdges.filter(e => e.basis === 'inferred');
+
+    if (verified.length > 0) {
+      html += `<div class="detail-section"><h3>Verified Connections (${verified.length})</h3><ul>`;
+      verified.forEach(e => {
+        const otherId = e.from === nodeId ? e.to : e.from;
+        const other = nodes.get(otherId);
+        if (other) {
+          const label = e.label ? e.label.replace(/\n/g, ' ') : 'connection';
+          html += `<li><strong>${other.label.replace(/\n/g, ' ')}</strong> - ${label}`;
+          if (e.source) html += `<br><span style="font-size: 0.75rem; color: #8faa7b;">Source: ${e.source}</span>`;
+          html += `</li>`;
+        }
+      });
+      html += `</ul></div>`;
+    }
+
+    if (inferred.length > 0) {
+      html += `<div class="detail-section"><h3>Inferred Connections (${inferred.length})</h3><ul>`;
+      inferred.forEach(e => {
+        const otherId = e.from === nodeId ? e.to : e.from;
+        const other = nodes.get(otherId);
+        if (other) {
+          const label = e.label ? e.label.replace(/\n/g, ' ') : 'connection';
+          html += `<li><strong>${other.label.replace(/\n/g, ' ')}</strong> - ${label}`;
+          if (e.source) html += `<br><span style="font-size: 0.75rem; color: #f59e0b;">Basis: ${e.source}</span>`;
+          html += `</li>`;
+        }
+      });
+      html += `</ul></div>`;
+    }
+  }
+
+  if (detail.link) {
+    html += `<a class="detail-link" href="${detail.link}">View Full Profile</a>`;
+  }
+
+  content.innerHTML = html;
+  panel.classList.add('open');
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('open');
+}
+
+function highlightConnected(nodeId) {
+  const connEdges = edges.get().filter(e => e.from === nodeId || e.to === nodeId);
+  const connNodeIds = new Set([nodeId]);
+  connEdges.forEach(e => {
+    connNodeIds.add(e.from);
+    connNodeIds.add(e.to);
+  });
+
+  nodes.get().forEach(n => {
+    if (connNodeIds.has(n.id)) {
+      nodes.update({id: n.id, opacity: 1});
+    } else {
+      nodes.update({id: n.id, opacity: 0.15});
+    }
+  });
+
+  edges.get().forEach(e => {
+    if (connEdges.find(ce => ce.id === e.id)) {
+      edges.update({id: e.id, hidden: false, width: 2.5});
+    } else {
+      edges.update({id: e.id, hidden: true});
+    }
+  });
+}
+
+function resetHighlight() {
+  nodes.get().forEach(n => {
+    nodes.update({id: n.id, opacity: 1});
+  });
+  edges.get().forEach(e => {
+    edges.update({id: e.id, hidden: false, width: 1.5});
+  });
+}
+
+function filterNodes(type, btn) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  resetHighlight();
+  closeDetail();
+
+  if (type === 'all') {
+    nodes.get().forEach(n => nodes.update({id: n.id, hidden: false, opacity: 1}));
+    edges.get().forEach(e => edges.update({id: e.id, hidden: false}));
+    return;
+  }
+
+  const typeMap = {
+    developer: ['developer'],
+    government: ['government', 'dual'],
+    entity: ['entity']
+  };
+  const showGroups = typeMap[type] || [type];
+
+  nodes.get().forEach(n => {
+    const show = showGroups.includes(n.group);
+    nodes.update({id: n.id, opacity: show ? 1 : 0.1});
+  });
+
+  edges.get().forEach(e => {
+    const fromNode = nodes.get(e.from);
+    const toNode = nodes.get(e.to);
+    const show = showGroups.includes(fromNode?.group) || showGroups.includes(toNode?.group);
+    edges.update({id: e.id, hidden: !show});
+  });
+}
+
+let physicsEnabled = false;
+function togglePhysics() {
+  physicsEnabled = !physicsEnabled;
+  network.setOptions({physics: {enabled: physicsEnabled}});
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeDetail(); resetHighlight(); }
+});
+</script>
+
+</body>
+</html>

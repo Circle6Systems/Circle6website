@@ -1,0 +1,3050 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Estate Planning Guide | Circle 6 Systems</title>
+    <meta name="description" content="A comprehensive, free guide for digital estate planning. Plan ahead for your digital life, or navigate loss when there was no plan. Expanding on the GYST checklist for the digital age.">
+    <meta property="og:title" content="Digital Estate Planning Guide | Circle 6 Systems">
+    <meta property="og:description" content="Free guide for digital estate planning. Plan ahead or navigate loss.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://circle6systems.com/trust-safety/guide.html">
+    <link rel="canonical" href="https://circle6systems.com/trust-safety/guide.html">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #2d2a2e;
+            --navy-light: #3a3640;
+            --navy-mid: #504a52;
+            --slate: #beb3a7;
+            --slate-light: #d4cab9;
+            --white: #f5f0e8;
+            --accent: #a8c196;
+            --accent-bg: #8faa7b;
+            --accent-hover: #b8d1a8;
+            --accent-dim: #8faa7b18;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: Georgia, 'Times New Roman', serif;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+        body {
+            font-family: var(--font);
+            background: var(--navy);
+            color: var(--slate-light);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== Skip to Content (Accessibility) ===== */
+        .skip-to-content {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--accent-bg);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0 0 4px 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            z-index: 10000;
+            transition: top 0.2s;
+        }
+        .skip-to-content:focus { top: 0; }
+
+        /* ===== Focus Visible (Accessibility) ===== */
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+        :focus:not(:focus-visible) { outline: none; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 42, 46, 0.92);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+            z-index: 1000;
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+        .logo-img { width: 36px; height: 36px; flex-shrink: 0; }
+        .logo-img img { width: 100%; height: 100%; object-fit: contain; }
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+        .logo-text span { color: var(--accent); font-weight: 700; }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--slate);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+        .nav-links a:hover,
+        .nav-links a[aria-current="page"] { color: var(--accent); }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--slate-light);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* ===== Hero (Compact) ===== */
+        .hero {
+            padding: 7rem 2rem 3rem;
+            text-align: center;
+        }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .hero .section-sub {
+            font-size: 1rem;
+            color: var(--slate);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+        .hero .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .hero .back-link:hover { color: var(--accent-hover); }
+        .hero .back-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== Article / Prose ===== */
+        .article-wrapper {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* ===== Table of Contents ===== */
+        .toc {
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .toc h2 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+        }
+        .toc-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 2rem;
+        }
+        .toc-columns a {
+            display: block;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding: 0.2rem 0;
+            transition: color 0.2s;
+        }
+        .toc-columns a:hover { color: var(--accent-hover); text-decoration: underline; }
+        .toc-columns .toc-part {
+            grid-column: 1 / -1;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(143, 170, 123, 0.1);
+        }
+        .toc-columns .toc-part:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+
+        /* ===== Prose Typography ===== */
+        .prose h2 {
+            font-family: var(--font-heading);
+            font-size: 1.65rem;
+            color: var(--white);
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            scroll-margin-top: 90px;
+        }
+        .prose h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--white);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        .prose h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .prose p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--slate-light);
+        }
+        .prose a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+            transition: text-decoration-color 0.2s;
+        }
+        .prose a:hover { text-decoration-color: var(--accent); }
+        .prose strong { color: var(--white); font-weight: 600; }
+        .prose em { font-style: italic; }
+
+        /* ===== Part Dividers ===== */
+        .part-divider {
+            text-align: center;
+            padding: 3rem 0 1rem;
+            margin: 2rem 0;
+            border-top: 2px solid rgba(143, 170, 123, 0.15);
+            border-bottom: none;
+        }
+        .part-divider .part-label {
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .part-divider .part-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        /* ===== Lists ===== */
+        .prose ul, .prose ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        .prose ul li, .prose ol li {
+            margin-bottom: 0.4rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        .prose ul li ul, .prose ol li ul {
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ===== Checklist Items ===== */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+        .checklist li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        .checklist li::before {
+            content: "\2014";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .checklist li .checklist {
+            margin-top: 0.5rem;
+        }
+
+        /* ===== Blockquotes ===== */
+        .prose blockquote {
+            border-left: 3px solid var(--accent-bg);
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: rgba(143, 170, 123, 0.04);
+            border-radius: 0 8px 8px 0;
+        }
+        .prose blockquote p {
+            font-style: italic;
+            color: var(--slate);
+            margin-bottom: 0;
+        }
+        .prose blockquote p strong {
+            color: var(--white);
+        }
+
+        /* ===== Section Separators ===== */
+        .prose hr {
+            border: none;
+            height: 1px;
+            background: rgba(143, 170, 123, 0.1);
+            margin: 2.5rem 0;
+        }
+
+        /* ===== Tables ===== */
+        .prose .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--navy-mid);
+        }
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .prose thead th {
+            background: var(--navy-light);
+            color: var(--white);
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid var(--navy-mid);
+        }
+        .prose tbody td {
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid rgba(80, 74, 82, 0.5);
+            color: var(--slate-light);
+            vertical-align: top;
+        }
+        .prose tbody tr:nth-child(even) {
+            background: rgba(58, 54, 64, 0.3);
+        }
+        .prose tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== PDF Download Badge ===== */
+        .pdf-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.45rem 1rem;
+            background: var(--navy-light);
+            border: 1px solid var(--navy-mid);
+            border-radius: 20px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .pdf-download:hover {
+            border-color: rgba(143, 170, 123, 0.3);
+            background: rgba(143, 170, 123, 0.08);
+            text-decoration: none;
+        }
+        .pdf-download svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== Back to Top Button ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+            color: var(--navy);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, background 0.2s;
+            z-index: 900;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover { background: var(--accent-hover); }
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(143, 170, 123, 0.06);
+            margin-top: auto;
+        }
+        footer p { font-size: 0.8rem; color: var(--slate); }
+        footer a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: rgba(168, 193, 150, 0.4);
+            text-underline-offset: 2px;
+        }
+        footer a:hover { text-decoration-color: var(--accent); }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===== High Contrast ===== */
+        @media (prefers-contrast: more) {
+            :root {
+                --navy-mid: #6b6370;
+                --slate: #d4cab9;
+                --slate-light: #f5f0e8;
+                --accent: #b8d1a8;
+            }
+            .toc, .prose .table-wrapper, .pdf-download { border-width: 2px; }
+            .nav-links a, footer a, .prose a { text-decoration: underline; }
+            .checklist li::before { border-width: 2px; }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-bottom: 1px solid var(--navy-mid);
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .hero { padding: 6.5rem 1.5rem 2rem; }
+            .article-wrapper { padding: 0 1.25rem 3rem; }
+            .toc { padding: 1.5rem; }
+            .toc-columns { grid-template-columns: 1fr; }
+            .prose h2 { font-size: 1.4rem; }
+            .prose h3 { font-size: 1.1rem; }
+            .prose .table-wrapper { font-size: 0.85rem; }
+        }
+
+        /* ===== Accordion Sections ===== */
+        details.guide-section {
+            position: relative;
+            border: 1px solid var(--navy-mid);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: var(--navy-light);
+            overflow: hidden;
+        }
+
+        details.guide-section > summary.section-toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.25rem 5rem 1.25rem 1.5rem;
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        details.guide-section > summary.section-toggle::-webkit-details-marker { display: none; }
+
+        details.guide-section > summary.section-toggle:hover {
+            background: var(--navy-mid);
+        }
+
+        .section-heading {
+            flex: 1;
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: var(--white);
+            font-weight: normal;
+        }
+
+        .chevron {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+            border-right: 2.5px solid var(--accent);
+            border-bottom: 2.5px solid var(--accent);
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        details.guide-section[open] > summary .chevron {
+            transform: rotate(-135deg);
+        }
+
+        .pdf-download-inline {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            z-index: 1;
+            padding: 0.35rem 0.75rem;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            transition: background 0.2s;
+        }
+
+        .pdf-download-inline:hover {
+            background: var(--accent-bg);
+            color: var(--navy);
+        }
+
+        .section-content {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        details.guide-section h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-top: 1.75rem;
+            margin-bottom: 0.5rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 0.75rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .chevron { transition: none; }
+            details.guide-section > summary.section-toggle { transition: none; }
+        }
+
+        /* ===== Sticky TOC Sidebar Layout ===== */
+        .guide-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .toc-sidebar {
+            position: sticky;
+            top: 100px;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            padding-right: 1rem;
+        }
+
+        .toc-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .toc-sidebar::-webkit-scrollbar-thumb {
+            background: var(--navy-mid);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 1024px) {
+            .guide-layout {
+                grid-template-columns: 1fr;
+            }
+            .toc-sidebar {
+                position: static;
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+        /* ===== Path Filter Controls ===== */
+        .path-filter {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .path-filter-btn {
+            padding: 0.5rem 1.25rem;
+            border: 1px solid var(--navy-mid);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--slate);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .path-filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .path-filter-btn.active {
+            background: var(--accent-bg);
+            color: var(--navy);
+            border-color: var(--accent-bg);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="logo-group" aria-label="Circle 6 Systems homepage">
+                <div class="logo-img" aria-hidden="true"><img src="/products/circle6_logo.png" alt=""></div>
+                <div class="logo-text">Circle <span>6</span> Systems</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="/training/">Training</a></li>
+                <li><a href="/osint-reports/">Intelligence</a></li>
+                <li><a href="/trust-safety/" aria-current="page">Trust &amp; Safety</a></li>
+                <li><a href="/#industries">Industries</a></li>
+                <li><a href="/#approach">Approach</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" role="banner" aria-label="Guide header">
+        <div class="hero-content" id="main-content">
+            <p class="section-label">Trust &amp; Safety Resources</p>
+            <h1>Digital Life &amp; Cyber Estate Planning Guide</h1>
+            <p class="section-sub">Expanding on the GYST checklist for the digital age</p>
+            <a href="/trust-safety/" class="back-link">
+                <svg viewBox="0 0 24 24"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+                Back to Trust &amp; Safety
+            </a>
+        </div>
+    </section>
+
+    <!-- Article -->
+    <main>
+    <article class="article-wrapper prose">
+
+        <!-- Dedication & Intro -->
+        <p><em>Created in honor of Daniel Records-Galbraith -- to help those planning ahead and those navigating loss.</em><br>
+        <em>A free, psychologically safe trust &amp; safety resource from <a href="https://circle6systems.com" target="_blank" rel="noopener noreferrer">Circle 6 Systems</a></em></p>
+
+        <hr>
+
+        <blockquote>
+            <p><strong>A note before you begin:</strong> This guide is written with care for two audiences -- people planning ahead for their own digital lives, and people helping a loved one navigate the aftermath of a loss. Both paths are hard. Go at your own pace. You don't have to do everything at once. Getting even one thing done is progress.</p>
+        </blockquote>
+
+        <hr>
+
+        <!-- Guide Layout: Sticky TOC Sidebar + Main Content -->
+        <div class="guide-layout">
+
+        <div class="toc-sidebar">
+        <!-- Table of Contents -->
+        <div class="toc" role="navigation" aria-label="Table of contents">
+            <h2>Table of Contents</h2>
+            <div class="toc-columns">
+                <a href="#how-this-guide-works">How This Guide Works</a>
+
+                <div class="toc-part">Part One: Before -- Planning Your Digital Legacy</div>
+                <a href="#take-inventory">1. Take Inventory of Your Digital Life</a>
+                <a href="#secure-your-credentials">2. Secure Your Credentials</a>
+                <a href="#configure-platform-legacy">3. Configure Platform Legacy Settings</a>
+                <a href="#designate-a-digital-executor">4. Designate a Digital Executor</a>
+                <a href="#plan-for-specific-scenarios">5. Plan for Specific Digital Scenarios</a>
+                <a href="#protect-against-identity-theft">6. Protect Against Posthumous Identity Theft</a>
+
+                <div class="toc-part">Part Two: After -- Navigating Digital Life After a Loss</div>
+                <a href="#immediate-priorities">7. Immediate Priorities (First 48-72 Hours)</a>
+                <a href="#short-term-actions">8. Short-Term Actions (First 1-4 Weeks)</a>
+                <a href="#medium-term-actions">9. Medium-Term Actions (1-6 Months)</a>
+                <a href="#long-term-vigilance">10. Long-Term Vigilance</a>
+                <a href="#path-b">11. Path B: Discovering and Accessing Accounts With No Plan</a>
+                <a href="#quick-reference">Quick-Reference: Platform Policies</a>
+                <a href="#resources">Resources</a>
+                <a href="#a-final-note">A Final Note</a>
+            </div>
+        </div>
+        </div><!-- /.toc-sidebar -->
+
+        <div class="guide-main">
+        <div class="path-filter" role="tablist" aria-label="Filter by planning path">
+            <button class="path-filter-btn active" data-path-filter="all" role="tab" aria-selected="true">All Sections</button>
+            <button class="path-filter-btn" data-path-filter="a" role="tab" aria-selected="false">Path A: Planning Ahead</button>
+            <button class="path-filter-btn" data-path-filter="b" role="tab" aria-selected="false">Path B: Navigating Loss</button>
+        </div>
+        <!-- How This Guide Works -->
+        <h2 id="how-this-guide-works">How This Guide Works</h2>
+
+        <p>The original <a href="https://getyourshittogether.org/checklist/" target="_blank" rel="noopener noreferrer">GYST checklist</a> by Chanel Reynolds covers the essential legal, financial, and personal planning everyone should do <em>before</em> life goes sideways -- wills, power of attorney, living wills, insurance, money, and personal connections. It's been downloaded over a million times and remains an indispensable starting point.</p>
+
+        <p><strong>This guide is a companion to that checklist</strong>, not a replacement. It focuses specifically on the digital, cyber, and online dimensions that the original checklist touches on briefly ("wrangling your digital accounts") but that have exploded in complexity since 2013. Our lives now live online in ways that create real, tangible problems when someone dies or becomes incapacitated -- from locked-out photo libraries to identity theft to subscriptions that drain bank accounts for months.</p>
+
+        <p>This guide is organized into two major sections:</p>
+
+        <ul>
+            <li><strong>BEFORE: Planning Ahead</strong> -- what you can do now to make things easier for whoever comes after you.</li>
+            <li><strong>AFTER: Navigating Loss</strong> -- what to do when you're in the thick of it and need to secure, access, or close someone's digital life.</li>
+        </ul>
+
+        <p>Each section contains <strong>checklists</strong> you can work through and <strong>context</strong> to help you understand <em>why</em> each item matters.</p>
+
+        <hr>
+
+        <!-- PART ONE -->
+        <div class="part-divider">
+            <p class="part-label">Part One</p>
+            <p class="part-title">Before -- Planning Your Digital Legacy</p>
+        </div>
+
+        
+
+        <!-- Section 1 -->
+        <details class="guide-section" data-path="a">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="take-inventory">1. Take Inventory of Your Digital Life</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-01-account-inventory-checklist.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <p>Before you can plan for anything, you need to know what exists. Most people vastly underestimate the size of their digital footprint. The average person has well over 100 online accounts.</p>
+                <h3>1.1 -- Account Inventory Checklist</h3>
+                <p>Work through each category. For every account, record the service name, your username/email, and what the account is used for. <strong>Do not put passwords in this list</strong> -- that's handled separately in Section 2.</p>
+                <h4>Email Accounts</h4>
+                <ul class="checklist">
+            <li>Primary personal email (Gmail, Outlook, Yahoo, ProtonMail, etc.)</li>
+            <li>Secondary/backup email accounts</li>
+            <li>Work or professional email accounts</li>
+            <li>Legacy email accounts you still have but rarely use (old ISP emails, university alumni email, etc.)</li>
+            <li>Email aliases or forwarding addresses</li>
+        </ul>
+                <h4>Financial &amp; Banking</h4>
+                <ul class="checklist">
+            <li>Bank accounts (checking, savings, money market)</li>
+            <li>Credit card accounts and portals</li>
+            <li>Investment and brokerage accounts</li>
+            <li>Retirement accounts (401k, IRA portals)</li>
+            <li>Cryptocurrency wallets, exchanges, and DeFi accounts</li>
+            <li>Payment platforms (PayPal, Venmo, Zelle, Cash App, Apple Pay, Google Pay)</li>
+            <li>Tax preparation services (TurboTax, H&amp;R Block, etc.)</li>
+            <li>Peer-to-peer lending or crowdfunding accounts</li>
+            <li>Buy Now Pay Later accounts (Affirm, Klarna, Afterpay)</li>
+        </ul>
+                <h4>Social Media &amp; Communication</h4>
+                <ul class="checklist">
+            <li>Facebook / Meta</li>
+            <li>Instagram</li>
+            <li>X (Twitter)</li>
+            <li>LinkedIn</li>
+            <li>TikTok</li>
+            <li>Snapchat</li>
+            <li>Reddit</li>
+            <li>YouTube (if separate from Google)</li>
+            <li>Threads, Bluesky, Mastodon, or other newer platforms</li>
+            <li>Discord servers (especially if you own/admin any)</li>
+            <li>WhatsApp, Signal, Telegram</li>
+            <li>Dating apps (if applicable)</li>
+            <li>Forums or community boards you participate in</li>
+        </ul>
+                <h4>Cloud Storage &amp; Photos</h4>
+                <ul class="checklist">
+            <li>Google Drive / Google Photos</li>
+            <li>iCloud / Apple Photos</li>
+            <li>Dropbox</li>
+            <li>OneDrive</li>
+            <li>Box</li>
+            <li>Amazon Photos</li>
+            <li>Other cloud backup services (Backblaze, Carbonite, etc.)</li>
+            <li>Photo printing/book services with stored photos (Shutterfly, Mixbook, etc.)</li>
+        </ul>
+                <h4>Subscriptions &amp; Recurring Services</h4>
+                <ul class="checklist">
+            <li>Streaming video (Netflix, Hulu, Disney+, Max, Paramount+, Peacock, Apple TV+, Amazon Prime Video, YouTube Premium, etc.)</li>
+            <li>Streaming music (Spotify, Apple Music, Amazon Music, Tidal, YouTube Music, etc.)</li>
+            <li>News and media subscriptions (NYT, WSJ, Washington Post, Substack, etc.)</li>
+            <li>Software subscriptions (Adobe, Microsoft 365, etc.)</li>
+            <li>Gaming subscriptions (PlayStation Plus, Xbox Game Pass, Nintendo Online, Steam, etc.)</li>
+            <li>Meal kit or grocery delivery (HelloFresh, Instacart, etc.)</li>
+            <li>Fitness and health apps (Peloton, gym memberships with apps, meditation apps)</li>
+            <li>AI services (ChatGPT Plus, Claude Pro, Midjourney, etc.)</li>
+            <li>VPN services</li>
+            <li>Domain registrations and website hosting</li>
+            <li>Cloud computing services (AWS, Azure, Google Cloud -- especially if you run anything)</li>
+        </ul>
+                <h4>Shopping &amp; E-Commerce</h4>
+                <ul class="checklist">
+            <li>Amazon</li>
+            <li>eBay</li>
+            <li>Etsy</li>
+            <li>Walmart, Target, and other retail accounts</li>
+            <li>Grocery delivery accounts</li>
+            <li>Any accounts with stored payment methods or shipping addresses</li>
+        </ul>
+                <h4>Healthcare &amp; Insurance Portals</h4>
+                <ul class="checklist">
+            <li>Health insurance portal</li>
+            <li>Medicare/Medicaid portals</li>
+            <li>MyChart or other patient portals</li>
+            <li>Pharmacy accounts (CVS, Walgreens, mail-order)</li>
+            <li>Dental, vision, and specialist portals</li>
+            <li>Life insurance online portals</li>
+            <li>FSA/HSA account portals</li>
+            <li>Mental health app accounts (BetterHelp, Talkspace, etc.)</li>
+        </ul>
+                <h4>Government &amp; Official Accounts</h4>
+                <ul class="checklist">
+            <li>Social Security Administration (ssa.gov / my Social Security)</li>
+            <li>IRS account (irs.gov)</li>
+            <li>State tax portal</li>
+            <li>DMV / driver's license renewal portal</li>
+            <li>Veterans Affairs (va.gov) if applicable</li>
+            <li>USPS Informed Delivery</li>
+            <li>Voter registration portal</li>
+            <li>TSA PreCheck / Global Entry / CLEAR</li>
+            <li>Passport renewal portal</li>
+            <li>Login.gov and/or ID.me accounts (used for many federal services)</li>
+        </ul>
+                <h4>Smart Home, IoT &amp; Connected Devices</h4>
+                <ul class="checklist">
+            <li>Smart home hub accounts (Google Home, Amazon Alexa/Echo, Apple HomeKit, Samsung SmartThings)</li>
+            <li>Smart thermostat (Nest, Ecobee)</li>
+            <li>Security cameras and doorbells (Ring, Nest, Wyze, Arlo, SimpliSafe)</li>
+            <li>Smart locks and garage door openers</li>
+            <li>Robot vacuums (iRobot, Roborock)</li>
+            <li>Smart lighting (Hue, LIFX)</li>
+            <li>Vehicle accounts and connected car apps (Tesla, FordPass, MyChevrolet, OnStar, etc.)</li>
+            <li>Pet tech (smart feeders, GPS trackers, vet portals)</li>
+            <li>Wearables (Fitbit, Garmin, Whoop, Apple Watch health data)</li>
+        </ul>
+                <h4>Professional &amp; Business</h4>
+                <ul class="checklist">
+            <li>Professional licenses with online portals</li>
+            <li>Business accounts you own or administer</li>
+            <li>Freelance platform accounts (Upwork, Fiverr, etc.)</li>
+            <li>Domain names you own (and which registrar)</li>
+            <li>Websites or blogs you maintain</li>
+            <li>Professional association memberships</li>
+            <li>CRM or business tool logins</li>
+            <li>Intellectual property registrations</li>
+        </ul>
+                <h4>Loyalty Programs &amp; Rewards</h4>
+                <ul class="checklist">
+            <li>Airline miles accounts</li>
+            <li>Hotel loyalty programs</li>
+            <li>Credit card rewards portals</li>
+            <li>Retail loyalty programs with stored value</li>
+            <li>Cashback programs (Rakuten, Ibotta, etc.)</li>
+        </ul>
+                <h4>Digital Content &amp; Purchases</h4>
+                <ul class="checklist">
+            <li>E-books (Kindle, Nook, Kobo)</li>
+            <li>Digital music purchases (iTunes, Amazon)</li>
+            <li>Digital movie/TV purchases</li>
+            <li>Video game libraries (Steam, PlayStation, Xbox, Nintendo, Epic, GOG)</li>
+            <li>App purchases (iOS App Store, Google Play)</li>
+            <li>NFTs or digital collectibles (if applicable)</li>
+        </ul>
+                <p><strong>Important note about digital purchases:</strong> Most digital content (e-books, music, movies, apps) is <em>licensed</em>, not owned. This means it generally cannot be transferred or inherited. Your family may lose access to your Kindle library, iTunes purchases, etc. This is worth knowing when deciding how to preserve important content.</p>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 2 -->
+        <details class="guide-section" data-path="a">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="secure-your-credentials">2. Secure Your Credentials -- The Password &amp; Access Plan</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-02-password-and-access-plan.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <p>This is the single most impactful thing you can do for your survivors. Without access credentials, your loved ones face an uphill battle with every single account -- often requiring death certificates, court orders, and weeks of waiting per account.</p>
+                <h3>2.1 -- Password Manager Setup</h3>
+                <ul class="checklist">
+            <li>Choose and set up a password manager (1Password, Bitwarden, Dashlane, LastPass, Keeper, etc.)</li>
+            <li>Migrate existing passwords from browsers, sticky notes, and memory into the password manager</li>
+            <li>Ensure every account has a unique, strong password (the manager generates these)</li>
+            <li><strong>Set up the password manager's emergency access or family sharing feature</strong> -- this is critical</li>
+        </ul>
+                <h4>Password Manager Emergency Access Features to Configure:</h4>
+                <ul class="checklist">
+            <li><strong>1Password:</strong> Set up a Family or Teams account; share a vault with your trusted person; store your Emergency Kit (account key + master password) in a physical safe</li>
+            <li><strong>Bitwarden:</strong> Use the "Emergency Access" feature to grant a trusted contact access after a configurable waiting period</li>
+            <li><strong>Dashlane:</strong> Use the "Emergency Contact" feature</li>
+            <li><strong>LastPass:</strong> Use the "Emergency Access" feature with a trusted contact and waiting period</li>
+            <li><strong>Keeper:</strong> Use the "Emergency Access" (KeeperChat) feature</li>
+        </ul>
+                <h3>2.2 -- Two-Factor Authentication (2FA) Planning</h3>
+                <p>Two-factor authentication protects your accounts while you're alive, but it can lock everyone out after you die if not planned for.</p>
+                <ul class="checklist">
+            <li>Document which accounts have 2FA enabled</li>
+            <li><strong>Store 2FA backup/recovery codes</strong> in your password manager AND in a physical location (printed, in a safe or sealed envelope)</li>
+            <li>If you use an authenticator app (Google Authenticator, Authy, Microsoft Authenticator), document which app and what device it's on</li>
+            <li>Consider using Authy (which allows multi-device sync and cloud backup) instead of Google Authenticator (which is device-bound)</li>
+            <li>If you use a hardware security key (YubiKey, Titan), document where it is physically located and register backup keys</li>
+            <li><strong>Store your phone's passcode/PIN</strong> securely -- many 2FA methods require the phone itself</li>
+            <li>Document your phone carrier's account PIN/password (needed to transfer or cancel service, and to prevent SIM-swap attacks on 2FA)</li>
+        </ul>
+                <h3>2.3 -- Device Access</h3>
+                <ul class="checklist">
+            <li>Document the passcode/PIN/password for every device: phones, tablets, laptops, desktops</li>
+            <li>Document biometric backup methods (your fingerprint won't work, but backup PINs will)</li>
+            <li>Document the Apple ID password or Google account password tied to each device</li>
+            <li>Note any encrypted drives or volumes and their decryption passwords</li>
+            <li>Record the location of any recovery keys for disk encryption (FileVault, BitLocker)</li>
+            <li>If you have a NAS (network-attached storage) or home server, document its admin credentials</li>
+        </ul>
+                <h3>2.4 -- Physical Storage of Access Information</h3>
+                <ul class="checklist">
+            <li>Store your password manager's master password and emergency kit in a fireproof safe, safe deposit box, or sealed envelope with your attorney or trusted person</li>
+            <li>Consider splitting sensitive information (e.g., the master password in one location, the emergency kit in another)</li>
+            <li>Let your executor/trusted person know <em>where</em> this information is, without telling them <em>what</em> it is yet</li>
+            <li>Review and update this information at least annually</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 3 -->
+        <details class="guide-section" data-path="a">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="configure-platform-legacy">3. Configure Platform Legacy &amp; Inactive Account Settings</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-03-platform-legacy-settings.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <p>Many major platforms now offer built-in tools to manage what happens to your account. Setting these up takes minutes and saves your survivors enormous headaches.</p>
+                <h3>3.1 -- Platform-by-Platform Legacy Settings</h3>
+                <h4>Google (Gmail, Drive, Photos, YouTube, etc.)</h4>
+                <ul class="checklist">
+            <li>Set up <strong>Google Inactive Account Manager</strong> at myaccount.google.com/inactive
+                <ul>
+                    <li>Choose an inactivity timeout period (3, 6, 12, or 18 months)</li>
+                    <li>Add up to 10 trusted contacts to notify and/or share data with</li>
+                    <li>Choose which data types each contact receives</li>
+                    <li>Decide whether to auto-delete the account after contacts are notified</li>
+                    <li><em>Tip: If you have a YouTube channel with subscribers or revenue, this is especially important</em></li>
+                </ul>
+            </li>
+        </ul>
+                <h4>Apple (iCloud, Photos, Messages, etc.)</h4>
+                <ul class="checklist">
+            <li>Set up <strong>Apple Legacy Contacts</strong> in Settings &gt; [Your Name] &gt; Sign-In &amp; Security &gt; Legacy Contact (iOS 15.2+)
+                <ul>
+                    <li>Add up to 5 Legacy Contacts</li>
+                    <li>Share the generated access key with each contact (print it, AirDrop it, or save it in Messages)</li>
+                    <li>Legacy Contacts will need the access key AND a death certificate</li>
+                    <li><em>Note: Legacy Contacts cannot access Keychain passwords, payment info, or licensed media</em></li>
+                    <li><em>Note: Apple will permanently delete the account 3 years after Legacy Contact access is granted</em></li>
+                </ul>
+            </li>
+        </ul>
+                <h4>Facebook / Meta</h4>
+                <ul class="checklist">
+            <li>Set up a <strong>Legacy Contact</strong> in Settings &gt; Accounts Center &gt; Personal Details &gt; Account Ownership and Control &gt; Memorialization
+                <ul>
+                    <li>Choose whether the Legacy Contact can download a copy of your data</li>
+                    <li>Alternatively, choose to have your account permanently deleted after death</li>
+                    <li><em>Note: Legacy Contacts can pin a tribute post, change profile/cover photo, and accept friend requests -- but cannot read messages, remove content, or log in as you</em></li>
+                </ul>
+            </li>
+        </ul>
+                <h4>Instagram</h4>
+                <ul class="checklist">
+            <li>Currently <strong>no legacy contact feature</strong> -- account can only be memorialized or deleted by a verified family member after death</li>
+            <li>Consider downloading your data periodically (Settings &gt; Your Activity &gt; Download Your Information) and storing it locally</li>
+        </ul>
+                <h4>X (Twitter)</h4>
+                <ul class="checklist">
+            <li>Currently <strong>no legacy contact or memorialization feature</strong></li>
+            <li>A verified family member or estate representative can request deactivation with documentation</li>
+            <li>Account may auto-delete after extended inactivity</li>
+        </ul>
+                <h4>LinkedIn</h4>
+                <ul class="checklist">
+            <li>Currently <strong>no legacy contact feature</strong></li>
+            <li>A verified family member can request a memorial page or account closure</li>
+            <li>Consider exporting your connections and data periodically</li>
+        </ul>
+                <h4>Microsoft (Outlook, OneDrive, Xbox, etc.)</h4>
+                <ul class="checklist">
+            <li>Microsoft's "Next of Kin" process allows limited data access with a court order, death certificate, and proof of relationship</li>
+            <li>Accounts auto-close after 2 years of inactivity</li>
+            <li><em>Note: Microsoft's policies are among the more restrictive -- plan accordingly</em></li>
+        </ul>
+                <h4>Other Platforms</h4>
+                <ul class="checklist">
+            <li>Check each platform you use for legacy/inactive account settings</li>
+            <li>For platforms with no legacy tools, ensure your executor knows the account exists and that credentials are accessible through your password manager</li>
+        </ul>
+                <h3>3.2 -- Email-Specific Considerations</h3>
+                <p>Your primary email is often the skeleton key to your entire digital life -- it's the recovery address for almost every other account. Securing email access for your executor is arguably the single highest-priority digital planning task.</p>
+                <ul class="checklist">
+            <li>Ensure your executor can access your primary email (via password manager emergency access or legacy contact settings)</li>
+            <li>Consider setting up a forwarding rule or shared access with a trusted person on at least one email account</li>
+            <li>Document which email address is the recovery/reset email for your major accounts</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 4 -->
+        <details class="guide-section" data-path="a">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="designate-a-digital-executor">4. Designate a Digital Executor</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-04-digital-executor-designation.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <h3>4.1 -- Choosing Your Digital Executor</h3>
+                <p>Your digital executor may or may not be the same person as the executor of your will. Choose someone who is comfortable with technology, trustworthy with sensitive information, and ideally younger or at least tech-savvy enough to navigate online account recovery processes.</p>
+                <ul class="checklist">
+            <li>Choose a digital executor (and a backup)</li>
+            <li>Have a conversation with them about the role and what it involves</li>
+            <li>Show them where your password manager emergency information is stored</li>
+            <li>Let them know about this guide</li>
+        </ul>
+                <h3>4.2 -- Legal Authorization</h3>
+                <ul class="checklist">
+            <li>Include digital assets in your will or trust</li>
+            <li>Specifically authorize your executor to access your digital accounts -- RUFADAA (Revised Uniform Fiduciary Access to Digital Assets Act), adopted in 48 U.S. states, provides a framework, but explicit consent in your estate documents is strongest</li>
+            <li>Consider including language authorizing your executor to bypass two-factor authentication and use backup codes</li>
+            <li>Ask your estate planning attorney about a separate digital estate plan document (keeps passwords out of the public will)</li>
+            <li>If you hold cryptocurrency, include a specific crypto clause in your estate documents acknowledging these holdings</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 5 -->
+        <details class="guide-section" data-path="a">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="plan-for-specific-scenarios">5. Plan for Specific Digital Scenarios</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-05-specific-scenarios.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <h3>5.1 -- Cryptocurrency &amp; Digital Financial Assets</h3>
+                <p>Crypto is fundamentally different from bank accounts. There is no customer service number. No one can reset your password. If your private keys or seed phrases are lost, the assets are gone permanently.</p>
+                <ul class="checklist">
+            <li>Document all cryptocurrency holdings (coins/tokens, amounts, wallets, exchanges)</li>
+            <li>Store seed phrases / recovery phrases in a physical, secure location (fireproof safe, safe deposit box, or split across multiple locations)</li>
+            <li><strong>Never store seed phrases digitally in a way that could be hacked</strong> (not in email, not in cloud storage, not in a text file)</li>
+            <li>Consider a hardware wallet (Ledger, Trezor) with the device and PIN stored securely</li>
+            <li>Consider multi-signature wallets with a co-signer who is your executor</li>
+            <li>Write plain-language instructions for a non-crypto-savvy person on how to access and liquidate</li>
+            <li>Document which exchanges hold funds and how to access them</li>
+        </ul>
+                <h3>5.2 -- Businesses, Domains &amp; Online Revenue</h3>
+                <ul class="checklist">
+            <li>Document all domains you own and their registrars (GoDaddy, Namecheap, Cloudflare, Google Domains, etc.)</li>
+            <li>Ensure domain auto-renewal is on to prevent expiration during estate settlement</li>
+            <li>Document any websites or blogs and their hosting providers</li>
+            <li>Transfer admin access for business social media pages to at least one other person</li>
+            <li>Document any online revenue streams (YouTube monetization, affiliate programs, ad revenue, Patreon, Substack, etc.)</li>
+            <li>For online businesses, document the tech stack, hosting, and any critical vendor relationships</li>
+            <li>If you admin Discord servers, Slack workspaces, or online communities, designate co-admins</li>
+        </ul>
+                <h3>5.3 -- Smart Home &amp; Connected Devices</h3>
+                <p>This is increasingly urgent and often overlooked. When someone dies, their smart home can become an obstacle course for survivors -- locks they can't open, thermostats they can't control, security cameras they can't access or disable.</p>
+                <ul class="checklist">
+            <li>Document the primary account holder for each smart home system</li>
+            <li>Ensure at least one other household member has admin/owner access (not just "member" access) to smart home platforms</li>
+            <li>Document Wi-Fi network name and password</li>
+            <li>Document router admin login</li>
+            <li>List all connected devices and what account controls each one</li>
+            <li><strong>Smart locks:</strong> Ensure someone else has the master code or physical backup key</li>
+            <li><strong>Security systems:</strong> Ensure someone else can arm/disarm and knows the monitoring company's cancel/transfer process</li>
+            <li><strong>Connected vehicles:</strong> Document how to transfer ownership of connected car accounts (Tesla, etc.) and note that some features may require re-subscription</li>
+            <li><strong>Smart speakers/assistants:</strong> Note that these may contain voice purchasing settings, calendar information, and other personal data</li>
+        </ul>
+                <h3>5.4 -- Photos, Memories &amp; Sentimental Digital Assets</h3>
+                <p>These are often the most emotionally important digital assets -- and the most at risk of being lost.</p>
+                <ul class="checklist">
+            <li>Identify where your photos and videos are stored (phone, cloud services, external drives, old computers)</li>
+            <li>Create at least one consolidated backup of irreplaceable photos and videos on a physical drive</li>
+            <li>Store that drive in a known, safe location and tell someone where it is</li>
+            <li>Consider printing or creating a physical photo book of the most important photos -- physical copies survive platform changes and account lockouts</li>
+            <li>Document any personal writing, journals, or creative work stored digitally and your wishes for them</li>
+            <li>Note any voicemails, voice messages, or audio recordings you'd want preserved</li>
+        </ul>
+                <h3>5.5 -- Email and Message Archives</h3>
+                <ul class="checklist">
+            <li>Consider using Google Takeout, Apple data export, or similar tools to periodically download email archives</li>
+            <li>Document your wishes: should your executor read your emails? Delete them? Preserve them?</li>
+            <li>Note any important ongoing email threads (legal, financial, personal) that your executor may need</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 6 -->
+        <details class="guide-section" data-path="a">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="protect-against-identity-theft">6. Protect Against Posthumous Identity Theft</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-06-identity-theft-protection.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <p>An estimated 2.5 million deceased individuals are victims of identity fraud annually. The period immediately after death is especially vulnerable because there's a gap between the death and when government agencies and financial institutions are notified.</p>
+                <h3>6.1 -- Pre-Planning to Reduce Risk</h3>
+                <ul class="checklist">
+            <li>Minimize the personal information in any future obituary (avoid full birthdate, mother's maiden name, home address, specific employment history)</li>
+            <li>Set up credit monitoring or freeze your credit proactively -- this also makes it easier for survivors to lock things down</li>
+            <li>Shred physical documents with sensitive information rather than discarding them</li>
+            <li>Be aware that genealogy sites, voter registration databases, and social media profiles all provide information that thieves use to assemble identities</li>
+            <li>Consider opting out of data broker sites while you're alive (services like DeleteMe can help)</li>
+        </ul>
+                <h3>6.2 -- Instructions for Your Executor (Pre-Plan These Steps)</h3>
+                <p>Leave a note for your executor with these steps so they know what to do quickly:</p>
+                <ul class="checklist">
+            <li>Notify the Social Security Administration (1-800-772-1213) as soon as possible</li>
+            <li>Send death certificate copies to all three credit bureaus (Equifax, Experian, TransUnion) and request a "deceased" alert and credit freeze</li>
+            <li>Notify the IRS (to prevent fraudulent tax returns)</li>
+            <li>Cancel the deceased's driver's license with the DMV</li>
+            <li>Notify banks and financial institutions immediately</li>
+            <li>Monitor credit reports for at least 12 months for new activity</li>
+            <li>Forward or stop physical mail (thieves monitor mailboxes of the deceased)</li>
+            <li>Be cautious of "bereavement scams" -- fraudsters who use obituary details to impersonate acquaintances of the deceased</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- PART TWO -->
+        <div class="part-divider">
+            <p class="part-label">Part Two</p>
+            <p class="part-title">After -- Navigating Digital Life After a Loss</p>
+        </div>
+
+        <p><em>If you're reading this section, you may be in the middle of one of the hardest experiences of your life. This section is designed to help you take concrete steps at your own pace. Not everything needs to happen at once. Prioritize based on urgency -- security and financial accounts first, sentimental and social media accounts later.</em></p>
+
+        
+
+        <!-- Section 7 -->
+        <details class="guide-section" data-path="b">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="immediate-priorities">7. Immediate Priorities (First 48-72 Hours)</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-07-immediate-priorities-48-72-hours.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <h3>7.1 -- Secure the Devices</h3>
+                <ul class="checklist">
+            <li>Locate all devices: phones, tablets, laptops, desktops, smart watches</li>
+            <li><strong>Do not wipe, reset, or update any device.</strong> Keep them charged and powered on if possible -- some have auto-lock or auto-erase features after too many failed attempts</li>
+            <li>If you know the passcode, unlock the device and disable auto-lock temporarily</li>
+            <li>If you don't know the passcode, set the device aside safely -- you may need it later for account recovery</li>
+            <li>Check if the phone has biometric login (Face ID / fingerprint) -- this will stop working, but the backup PIN is what you need</li>
+            <li>Plug in and charge all devices to prevent data loss from dead batteries</li>
+            <li>Locate any physical security keys (YubiKey, Titan) and keep them safe</li>
+        </ul>
+                <h3>7.2 -- Secure the Email</h3>
+                <ul class="checklist">
+            <li>Access the deceased's primary email as soon as possible -- this is the gateway to every other account</li>
+            <li>Check for any urgent messages (financial alerts, bills due, pending transactions)</li>
+            <li>Watch for password reset emails that might indicate someone else is trying to access accounts</li>
+            <li>Do NOT delete any emails -- you may need them for estate settlement</li>
+        </ul>
+                <h3>7.3 -- Stop the Financial Bleeding</h3>
+                <ul class="checklist">
+            <li>Identify recurring subscriptions and charges by reviewing email (search for "receipt," "subscription," "renewal," "payment," "invoice")</li>
+            <li>Review bank and credit card statements for recurring charges</li>
+            <li>Cancel or pause subscriptions that are actively draining funds</li>
+            <li>Contact banks and credit card companies to flag the account and prevent new charges</li>
+            <li>If the deceased had autopay set up for bills, determine which ones are critical to keep running (mortgage, utilities, insurance) vs. which to cancel</li>
+        </ul>
+                <h3>7.4 -- Smart Home Immediate Actions</h3>
+                <p>If you live in the home and can't control smart devices:</p>
+                <ul class="checklist">
+            <li>If locked out of smart locks, use physical backup keys</li>
+            <li>If unable to control the thermostat, look for manual override on the device itself</li>
+            <li>If security cameras are recording and you can't access them, unplug them for now and address access later</li>
+            <li>If Alexa/Google Home are responding to the deceased's commands or purchasing settings, unplug them until you can reconfigure</li>
+            <li>Contact the security monitoring company to transfer or cancel service</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 8 -->
+        <details class="guide-section" data-path="b">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="short-term-actions">8. Short-Term Actions (First 1-4 Weeks)</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-08-ongoing-actions.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <h3>8.1 -- Protect Against Identity Theft</h3>
+                <ul class="checklist">
+            <li>Notify the Social Security Administration of the death (call 1-800-772-1213)</li>
+            <li>Send certified copies of the death certificate to all three credit bureaus:
+                <ul>
+                    <li>Equifax: P.O. Box 105139, Atlanta, GA 30348</li>
+                    <li>Experian: P.O. Box 4500, Allen, TX 75013</li>
+                    <li>TransUnion: P.O. Box 2000, Chester, PA 19016</li>
+                </ul>
+            </li>
+            <li>Request that each bureau flag the file as "deceased" and freeze credit</li>
+            <li>Send a copy of the death certificate to the IRS to flag the SSN</li>
+            <li>Cancel the driver's license with the DMV</li>
+            <li>Monitor the deceased's credit reports monthly for at least the next year</li>
+            <li>Notify USPS to forward or hold mail</li>
+            <li>Be wary of phishing emails, scam calls, or strangers reaching out claiming to know the deceased -- "bereavement scams" are common</li>
+            <li>If the obituary is published online, be cautious about how much personal detail it contains</li>
+        </ul>
+                <h3>8.2 -- Begin Account-by-Account Review</h3>
+                <p>Using the deceased's email, password manager, and any documentation they left:</p>
+                <ul class="checklist">
+            <li>Create a master spreadsheet of discovered accounts (account name, status, action needed, date completed)</li>
+            <li>Prioritize: financial accounts &gt; email &gt; cloud storage &gt; social media &gt; everything else</li>
+            <li>For each account, determine whether to: transfer ownership, memorialize, close/delete, or leave alone for now</li>
+            <li>Keep records of every call, email, and ticket number -- you will need them</li>
+            <li>Request a deceased person's credit report to discover financial accounts you might not know about</li>
+        </ul>
+                <h3>8.3 -- Social Media Decisions</h3>
+                <p>There is no rush on these. Take your time.</p>
+                <ul class="checklist">
+            <li>Decide whether to memorialize, delete, or leave each social media account as-is</li>
+            <li>If memorializing on Facebook: use the Memorialization Request form or contact the Legacy Contact</li>
+            <li>If deleting: gather any content you want to preserve FIRST (download photos, save posts, screenshot meaningful exchanges)</li>
+            <li>Consider downloading a full data archive from each platform before making changes</li>
+            <li>If the deceased's accounts are public, be aware that bots and scammers may target the profile -- consider restricting access or memorializing sooner rather than later</li>
+            <li>Notify admin/moderator roles: if the deceased administered Facebook Groups, Pages, Discord servers, or other communities, work with co-admins or platform support to transfer admin rights</li>
+        </ul>
+                <h3>8.4 -- Ongoing Subscription &amp; Service Cancellation</h3>
+                <ul class="checklist">
+            <li>Use the email account to search for all subscription-related emails</li>
+            <li>Check app stores (iOS App Store, Google Play) for active subscriptions</li>
+            <li>Check the password manager for accounts that may have payment methods attached</li>
+            <li>Cancel streaming services, SaaS subscriptions, and memberships</li>
+            <li>Contact domain registrars if the deceased owned domains -- don't let them lapse if they're needed for business continuity</li>
+            <li>Cancel or transfer utility accounts tied to online portals</li>
+            <li>Address any "Buy Now Pay Later" balances</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 9 -->
+        <details class="guide-section" data-path="b">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="medium-term-actions">9. Medium-Term Actions (1-6 Months)</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-08-ongoing-actions.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <h3>9.1 -- Digital Asset Settlement</h3>
+                <ul class="checklist">
+            <li>Work with the estate attorney on any accounts that require legal documentation to access</li>
+            <li>Gather and file any paperwork required by platforms (death certificates, letters testamentary, court orders)</li>
+            <li>Transfer ownership of any domains, websites, or online businesses</li>
+            <li>Address cryptocurrency holdings -- if seed phrases or keys are accessible, consult with a crypto-knowledgeable financial advisor or attorney before moving funds</li>
+            <li>Determine the value of any digital assets that may be part of the estate (revenue-generating accounts, crypto, domain names, digital businesses)</li>
+            <li>File final tax returns and note any digital income sources</li>
+        </ul>
+                <h3>9.2 -- Data Preservation</h3>
+                <ul class="checklist">
+            <li>Download and archive photos, videos, and documents from all cloud services</li>
+            <li>Export email archives if desired</li>
+            <li>Save any voicemails, voice messages, or audio recordings</li>
+            <li>Back up phone data (photos, texts, voicemails) before the phone plan is cancelled or the device is wiped</li>
+            <li>Create a consolidated memorial archive on a physical drive and/or shared cloud folder for family</li>
+            <li>Consider creating a printed photo book or other physical memorial artifact from digital photos</li>
+        </ul>
+                <h3>9.3 -- Online Presence Cleanup</h3>
+                <ul class="checklist">
+            <li>Review and update/remove online profiles that might still appear in search results</li>
+            <li>Remove the deceased from data broker sites (or use a service like DeleteMe)</li>
+            <li>Cancel any USPS Informed Delivery account</li>
+            <li>Close or remove listings on professional directories</li>
+            <li>If the deceased had a personal website or blog, decide whether to maintain it as a memorial, archive it, or take it down</li>
+            <li>Google the deceased's name periodically to catch any unauthorized use of their identity</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Section 10 -->
+        <details class="guide-section" data-path="b">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="long-term-vigilance">10. Long-Term Vigilance</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <a href="/trust-safety/pdfs/A-08-ongoing-actions.pdf" class="pdf-download-inline" target="_blank" rel="noopener noreferrer" aria-label="Download section as PDF">PDF</a>
+            <div class="section-content">
+                <ul class="checklist">
+            <li>Continue monitoring credit reports for at least 2 years -- identity thieves are patient and may wait months or years before exploiting a deceased person's identity</li>
+            <li>Watch for annual subscription renewals that may not appear until months later</li>
+            <li>Keep a record of all accounts that were closed, transferred, or memorialized</li>
+            <li>Maintain the physical backup of preserved digital memories in a safe location</li>
+            <li>Be aware that some platforms (Apple) will automatically delete accounts after a set period once legacy access is granted -- retrieve everything you want before that deadline</li>
+        </ul>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        <!-- Section 11 -->
+        <details class="guide-section" data-path="b">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="path-b">11. Path B: Discovering and Accessing Accounts With No Plan in Place</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="section-content">
+                <p><em>This section is for people who have lost someone and are starting from scratch. There was no password list, no digital executor, no legacy contacts configured, no instructions left behind. You are figuring it all out while grieving, and that is an incredibly difficult position to be in. This section walks through realistic, legitimate approaches for each major platform and scenario, including what to expect, what you will and will not get, and how long it typically takes.</em></p>
+                <p><em>One critical principle before you begin: get into email first. Email is the skeleton key to nearly every other account. Password resets, account verification, subscription receipts, financial alerts; they all flow through email. If you can access one email account, you can systematically discover and potentially recover dozens of other accounts. Prioritize email above everything else.</em></p>
+                <h3 id="path-b-discovery">11.1 -- The Starting Point: Discovery Methods</h3>
+                <p>Before you can access accounts, you need to find out what accounts existed. Here are the most effective discovery methods when no inventory was left behind.</p>
+                <h4>Check the Devices First</h4>
+                <ul class="checklist">
+            <li>Look at the home screen of their phone and tablet; every app icon is a potential account</li>
+            <li>Open the browser on their computer and check bookmarks and browser history</li>
+            <li>Check the browser's auto-fill suggestions; start typing common site names (amazon, facebook, bank) in the address bar and see what auto-completes</li>
+            <li>Look for browser saved passwords (see Section 11.10 for details on accessing these)</li>
+            <li>Check for authenticator apps (Google Authenticator, Authy, Microsoft Authenticator); these reveal which services had two-factor authentication enabled</li>
+            <li>Look at notification center and lock screen notifications for app alerts</li>
+            <li>Check the "recently used apps" view on their phone</li>
+        </ul>
+                <h4>Follow the Money</h4>
+                <ul class="checklist">
+            <li>Review 3 to 6 months of bank statements and credit card statements for recurring charges; every charge is a discovered account</li>
+            <li>Look for charges from Apple, Google, PayPal, Venmo, and other payment processors</li>
+            <li>Check for small verification charges (often $0.01 to $1.00) that indicate recently linked accounts</li>
+            <li>Request a deceased person's credit report from all three bureaus (Equifax, Experian, TransUnion); this reveals financial accounts, credit cards, and loans you may not know about</li>
+            <li>Check physical mail for statements, bills, and subscription renewal notices</li>
+        </ul>
+                <h4>Search the Email</h4>
+                <p>Once you have email access (see Section 11.2 and 11.3):</p>
+                <ul class="checklist">
+            <li>Search for "welcome to" or "verify your email" or "confirm your account" to find account creation messages</li>
+            <li>Search for "subscription," "receipt," "invoice," "payment," "renewal," and "billing"</li>
+            <li>Search for "password reset" or "forgot password" to find accounts they recovered in the past</li>
+            <li>Search for "two-factor" or "verification code" to find accounts with 2FA enabled</li>
+            <li>Search for the name of every major platform (Amazon, Netflix, Spotify, etc.)</li>
+            <li>Look at the spam/junk folder; marketing emails reveal accounts</li>
+            <li>Check email folders and labels the person created; these often reveal organizational habits around specific services</li>
+        </ul>
+                <h4>Physical Clues</h4>
+                <ul class="checklist">
+            <li>Look for written notes, sticky notes near the computer, notebooks, or index cards with passwords or account names</li>
+            <li>Check for a physical safe, lockbox, or designated "important papers" location</li>
+            <li>Look for hardware security keys (YubiKey or similar small USB devices) on their keychain or near their computer</li>
+            <li>Check their wallet for loyalty cards, membership cards, and store credit cards</li>
+            <li>Look for printed password manager emergency kits or recovery sheets</li>
+        </ul>
+                <h3 id="path-b-email">11.2 -- Email as the Skeleton Key</h3>
+                <p><strong>Why email comes first:</strong> Almost every online account uses an email address for sign-up, password recovery, and notifications. If you can access the deceased's primary email, you can:</p>
+                <ul>
+            <li>Discover accounts by searching for registration and receipt emails</li>
+            <li>Reset passwords on other accounts by triggering "forgot password" flows</li>
+            <li>Intercept two-factor authentication codes sent via email</li>
+            <li>Find financial account notifications that reveal holdings</li>
+            <li>Cancel subscriptions by following unsubscribe or account management links</li>
+        </ul>
+                <p><strong>If you already have access to their email</strong> (because the computer is unlocked, you know the password, or a browser session is still active), secure it immediately. Change the recovery phone number and backup email to yours if you are the legal executor. Do not delete anything.</p>
+                <p><strong>If you do not have access to their email</strong>, the platform-specific processes in Sections 11.3 through 11.5 describe how to request access from Google, Apple, and Microsoft. Getting into email should be your very first priority, even before financial accounts.</p>
+                <h3 id="path-b-google">11.3 -- Google (Gmail, Drive, Photos, YouTube)</h3>
+                <p>Google accounts are the most commonly used email platform and often hold Gmail, Google Drive documents, Google Photos, YouTube history, Google Pay records, and more.</p>
+                <h4>Discovery</h4>
+                <ul class="checklist">
+            <li>Check if their phone is an Android device; it almost certainly has a Google account</li>
+            <li>Look for Gmail notifications or the Gmail app on any device</li>
+            <li>Check browser bookmarks and history for Google services</li>
+            <li>Search bank/credit card statements for "Google" charges (Google One storage, YouTube Premium, Google Play purchases)</li>
+        </ul>
+                <h4>Access Without Credentials (No Inactive Account Manager Set Up)</h4>
+                <p>Google's process for deceased user accounts is a formal request that goes through multiple steps.</p>
+                <p><strong>Step 1: Submit the Deceased User Request Form</strong></p>
+                <ul class="checklist">
+            <li>Go to Google's deceased user support page: support.google.com/accounts/troubleshooter/6357590</li>
+            <li>You will be asked what you want to do: obtain data from the account, request account closure, or report funds in Google Pay</li>
+        </ul>
+                <p><strong>Step 2: Gather Required Documentation</strong></p>
+                <ul class="checklist">
+            <li>Your government-issued photo ID</li>
+            <li>The deceased person's death certificate</li>
+            <li>Proof of your legal authority to act on behalf of the deceased (executor letters, letters testamentary, or power of attorney)</li>
+            <li>If requesting data (not just closure): a U.S. court order specifically naming Google and the data requested. Google will provide template language for this court order after your initial request is reviewed.</li>
+        </ul>
+                <p><strong>Step 3: Submit and Wait</strong></p>
+                <ul class="checklist">
+            <li>Google reviews each request individually. Initial review can take several weeks.</li>
+            <li>If approved for data access, Google will instruct you on how to obtain the required court order</li>
+            <li>After the court order is submitted, allow an additional 2 to 4 weeks for processing</li>
+            <li>Total timeline from initial request to data delivery: typically 1 to 4 months, sometimes longer</li>
+        </ul>
+                <h4>What You Will Get</h4>
+                <ul>
+            <li>Copies of data from specified Google services (Gmail messages, Drive files, Photos, etc.)</li>
+            <li>Data is typically delivered as a downloadable export, similar to Google Takeout</li>
+            <li>Account closure if requested</li>
+        </ul>
+                <h4>What You Will NOT Get</h4>
+                <ul>
+            <li>The account password (Google will never provide this)</li>
+            <li>Login access to the account (you cannot sign in and use it)</li>
+            <li>Any data from services you did not specifically request in the court order</li>
+            <li>Instant access; this is a slow, formal process</li>
+        </ul>
+                <h4>Practical Workarounds</h4>
+                <ul class="checklist">
+            <li>If their computer has an active Chrome session signed into Google, you may be able to access Gmail, Drive, and Photos directly through the browser without needing the password</li>
+            <li>Check Chrome's saved passwords (chrome://settings/passwords) which may reveal the Google account password itself</li>
+            <li>If their Android phone is unlocked, Gmail and other Google apps are likely already signed in</li>
+            <li>If they used Google Chrome and synced passwords, accessing Chrome on any device where they were signed in gives you access to all their saved passwords for other sites</li>
+        </ul>
+                <h4>Timeline Expectations</h4>
+                <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Typical Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Initial request submission and review</td>
+                    <td>2 to 6 weeks</td>
+                </tr>
+                <tr>
+                    <td>Court order preparation (your attorney)</td>
+                    <td>2 to 4 weeks</td>
+                </tr>
+                <tr>
+                    <td>Google processing after court order</td>
+                    <td>2 to 4 weeks</td>
+                </tr>
+                <tr>
+                    <td>Total from start to data delivery</td>
+                    <td>1 to 4 months</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+                <h3 id="path-b-apple">11.4 -- Apple (iCloud, Device Access, Photos, Messages)</h3>
+                <p>Apple accounts control iCloud storage (photos, documents, backups), Messages, FaceTime, App Store purchases, Apple Pay, and all Apple device activation locks.</p>
+                <h4>Discovery</h4>
+                <ul class="checklist">
+            <li>Check if they owned any Apple device (iPhone, iPad, Mac, Apple Watch)</li>
+            <li>Look for the Apple ID email in device settings (Settings &gt; [Name] at the top on iOS)</li>
+            <li>Check bank statements for "Apple" or "apple.com/bill" charges</li>
+            <li>Look for iCloud storage notification emails</li>
+        </ul>
+                <h4>Access Without Credentials: With Legacy Contact</h4>
+                <p>If you were designated as a Legacy Contact before they died:</p>
+                <ul class="checklist">
+            <li>Go to digital-legacy.apple.com</li>
+            <li>You will need: your Legacy Contact access key (shared with you when you were designated) AND a certified copy of the death certificate</li>
+            <li>Apple verifies the documentation and creates a special "legacy contact Apple Account" for you to access the data</li>
+            <li>Processing time: typically 1 to 2 weeks after submission</li>
+            <li>You will have access for up to 3 years before the account is permanently deleted</li>
+        </ul>
+                <h4>Access Without Credentials: Without Legacy Contact</h4>
+                <p>If no Legacy Contact was set up, the process is significantly more difficult.</p>
+                <ul class="checklist">
+            <li>Apple requires a court order naming you as the rightful inheritor of the deceased person's personal information stored in their Apple account</li>
+            <li>In the U.S., you will need: a death certificate, a court order (from a state or federal court with jurisdiction), and your government-issued ID</li>
+            <li>Submit the request through Apple Support or at an Apple Store</li>
+            <li>Apple reviews each request individually; processing can take several weeks to months</li>
+            <li>In some international jurisdictions (France, Germany, Japan, Australia, New Zealand), alternative documentation may be accepted instead of a court order</li>
+        </ul>
+                <h4>What You Will Get (Legacy Contact or Court Order)</h4>
+                <ul>
+            <li>Photos and videos stored in iCloud</li>
+            <li>Messages (if backed up to iCloud)</li>
+            <li>Notes, files in iCloud Drive</li>
+            <li>Device backups stored in iCloud</li>
+            <li>Contacts, calendar, reminders</li>
+            <li>Health data, Safari bookmarks</li>
+        </ul>
+                <h4>What You Will NOT Get</h4>
+                <ul>
+            <li>Passwords stored in iCloud Keychain (this is explicitly excluded)</li>
+            <li>Payment information (Apple Pay, stored credit cards)</li>
+            <li>Licensed media (purchased music, movies, books, apps)</li>
+            <li>Subscriptions or the ability to transfer them</li>
+            <li>The account password itself</li>
+        </ul>
+                <h4>Device Access (Locked iPhone, iPad, or Mac)</h4>
+                <p>This is one of the most painful scenarios. Apple's security architecture means:</p>
+                <ul class="checklist">
+            <li>Apple cannot remove a device passcode without erasing the device</li>
+            <li>If the device is locked and you do not know the passcode, Apple cannot help you bypass it while preserving data</li>
+            <li>If the device is locked with Activation Lock (tied to Apple ID), Apple can remove the Activation Lock with proof of ownership and a death certificate, but this erases the device</li>
+            <li>If the device has Face ID or Touch ID, biometric authentication will not work after death (Face ID requires attention detection; fingerprint sensors degrade)</li>
+        </ul>
+                <p><strong>Practical workaround:</strong> If the device is still unlocked or has a short auto-lock timer, access it immediately and disable auto-lock (Settings &gt; Display &amp; Brightness &gt; Auto-Lock &gt; Never). Every minute counts.</p>
+                <ul class="checklist">
+            <li>Check if they used a simple 4-digit or 6-digit passcode; try common personal numbers (birthdays, anniversaries, addresses)</li>
+            <li>If you can get into the device, check Settings &gt; Passwords for all saved website and app passwords</li>
+            <li>If you can get into the device, check Settings &gt; [Name] to see the Apple ID email, which may help with other account recovery</li>
+            <li>If the device is locked but you have iCloud access (through Legacy Contact or court order), you can retrieve iCloud backups which contain much of the device data</li>
+        </ul>
+                <h4>Timeline Expectations</h4>
+                <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Typical Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Legacy Contact request</td>
+                    <td>1 to 2 weeks</td>
+                </tr>
+                <tr>
+                    <td>Court order preparation</td>
+                    <td>2 to 6 weeks</td>
+                </tr>
+                <tr>
+                    <td>Apple processing (court order path)</td>
+                    <td>2 to 8 weeks</td>
+                </tr>
+                <tr>
+                    <td>Activation Lock removal</td>
+                    <td>1 to 2 weeks after documentation submitted</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+                <h3 id="path-b-microsoft">11.5 -- Microsoft (Outlook, OneDrive, Xbox)</h3>
+                <p>Microsoft accounts cover Outlook.com email (including @hotmail.com, @live.com, @msn.com), OneDrive file storage, Xbox gaming profiles, and Microsoft 365 subscriptions.</p>
+                <h4>Discovery</h4>
+                <ul class="checklist">
+            <li>Check if they used a Windows PC (likely has a Microsoft account for sign-in)</li>
+            <li>Look for Outlook, Hotmail, or Live email addresses in their contacts or other account registrations</li>
+            <li>Check bank statements for Microsoft/Xbox charges</li>
+            <li>Look for Office 365 or Microsoft 365 subscription emails</li>
+        </ul>
+                <h4>Access Without Credentials: Next of Kin Process</h4>
+                <p>Microsoft has a formal "Next of Kin" process for deceased account holders.</p>
+                <ul class="checklist">
+            <li>Contact Microsoft Support and request the Next of Kin process</li>
+            <li>Required documentation: a certified copy of the death certificate AND a document proving your legal relationship to the deceased as a "close relative" (spouse, parent, child, sibling, grandparent, or grandchild)</li>
+            <li>Microsoft may also require a court order or subpoena depending on the nature of the request and what data you are seeking</li>
+        </ul>
+                <h4>What You Will Get</h4>
+                <ul>
+            <li>Outlook.com email contents (all emails and attachments)</li>
+            <li>Address book and contact list</li>
+            <li>Data is delivered on a physical DVD shipped to your address (not as an online download)</li>
+        </ul>
+                <h4>What You Will NOT Get</h4>
+                <ul>
+            <li>The account password or the ability to sign into the account</li>
+            <li>Account ownership transfer</li>
+            <li>OneDrive files may require a separate court order</li>
+            <li>Xbox digital purchases are non-transferable</li>
+            <li>Access to any Microsoft 365 subscription content</li>
+        </ul>
+                <h4>Important Timing Warning</h4>
+                <ul class="checklist">
+            <li>Outlook.com and OneDrive data may be deleted after 1 year of inactivity</li>
+            <li>Microsoft accounts expire entirely after 2 years of inactivity</li>
+            <li>Submit your request promptly to avoid automatic data deletion</li>
+        </ul>
+                <h4>Practical Workarounds</h4>
+                <ul class="checklist">
+            <li>If the Windows PC is logged in and not locked, you have immediate access to Outlook (desktop app), OneDrive files synced locally, and browser-saved passwords</li>
+            <li>On Windows, check for saved passwords in Edge (edge://settings/passwords) or Chrome</li>
+            <li>BitLocker recovery keys may be stored in the deceased's Microsoft account at aka.ms/myrecoverykey (if you can access the account through other means)</li>
+            <li>If the PC is locked with a Microsoft account password, and you have access to the associated email (through another method), you can attempt a password reset through account.live.com</li>
+        </ul>
+                <h4>Timeline Expectations</h4>
+                <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Typical Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Next of Kin request submission</td>
+                    <td>Same day</td>
+                </tr>
+                <tr>
+                    <td>Microsoft review and processing</td>
+                    <td>4 to 8 weeks</td>
+                </tr>
+                <tr>
+                    <td>DVD delivery after approval</td>
+                    <td>1 to 2 additional weeks</td>
+                </tr>
+                <tr>
+                    <td>Court order path (if required)</td>
+                    <td>Add 2 to 6 weeks for legal preparation</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+                <h3 id="path-b-facebook">11.6 -- Facebook / Meta (With and Without Legacy Contact)</h3>
+                <h4>Discovery</h4>
+                <ul class="checklist">
+            <li>Search Facebook for their name; if they had a profile, it will appear in search results</li>
+            <li>Check their phone for the Facebook, Messenger, or Instagram apps</li>
+            <li>Search their email for Facebook notifications</li>
+            <li>Ask friends and family if they were connected on Facebook</li>
+        </ul>
+                <h4>With a Legacy Contact Designated</h4>
+                <p>If the deceased set up a Legacy Contact before they died:</p>
+                <ul class="checklist">
+            <li>The Legacy Contact can request memorialization of the account by submitting proof of death</li>
+            <li>Once memorialized, the Legacy Contact can: pin a tribute post, update the profile photo and cover photo, respond to new friend requests, and (if the deceased opted in) download a copy of the account data</li>
+            <li>The Legacy Contact does NOT need the deceased's password</li>
+        </ul>
+                <h4>Without a Legacy Contact</h4>
+                <ul class="checklist">
+            <li>Any verified immediate family member can request memorialization by submitting a memorialization request at facebook.com/help/contact/305593649477238</li>
+            <li>You will need to provide proof of death (obituary link, death certificate, or other documentation)</li>
+            <li>Alternatively, a verified immediate family member or legal representative can request permanent account deletion through a separate form</li>
+            <li>To request a copy of account data without a Legacy Contact, you may need a court order or a valid legal request</li>
+        </ul>
+                <h4>What You Will Get</h4>
+                <ul>
+            <li>Memorialization of the profile (adds "Remembering" before the name)</li>
+            <li>Download of account data (if Legacy Contact was granted this permission, or via legal process)</li>
+            <li>The downloaded data includes posts, photos, videos, and profile information</li>
+        </ul>
+                <h4>What You Will NOT Get</h4>
+                <ul>
+            <li>Login access to the account; no one can sign into a memorialized account</li>
+            <li>Access to private messages (Messenger content); this is explicitly excluded even for Legacy Contacts</li>
+            <li>The ability to remove existing content, posts, or photos from the memorialized profile</li>
+            <li>The ability to remove existing friends</li>
+        </ul>
+                <h4>Practical Workarounds</h4>
+                <ul class="checklist">
+            <li>If their phone is unlocked and the Facebook/Messenger app is still logged in, you can access messages, photos, and content directly before memorialization</li>
+            <li>Download any content you want to preserve BEFORE requesting memorialization, because once memorialized, the account cannot be logged into</li>
+            <li>If their email is accessible, check for Facebook notification emails that may contain message previews</li>
+            <li>If their browser has an active Facebook session, you can access the account through the browser</li>
+        </ul>
+                <h4>Important Note on Timing</h4>
+                <p>Do not rush to memorialize a Facebook account if you still need to access content through an active session on a device. Once memorialized, all active sessions are terminated and no one can sign in again.</p>
+                <h3 id="path-b-financial">11.7 -- Financial Institutions (Banks, Credit Cards, Investments)</h3>
+                <h4>CRITICAL WARNING: Check Account Ownership Type BEFORE Notifying the Bank</h4>
+                <p><strong>Read this before you do anything.</strong> When a bank learns that an account holder has died, they will typically freeze the sole-owned accounts. This means no withdrawals, no bill payments, no autopay. If the surviving family depends on funds in those accounts for mortgage payments, utilities, or daily expenses, a freeze can cause immediate financial hardship.</p>
+                <p><strong>Before notifying any financial institution:</strong></p>
+                <ul class="checklist">
+            <li>Determine whether each account is jointly owned, solely owned, or has a payable-on-death (POD) / transfer-on-death (TOD) beneficiary designation</li>
+            <li>For joint accounts: the surviving owner retains full access. Notify the bank to remove the deceased's name, but funds remain available.</li>
+            <li>For sole accounts: notification will trigger a freeze. Ensure you have alternative funds available for immediate expenses before notifying.</li>
+            <li>For accounts with POD/TOD beneficiaries: these transfer directly to the named beneficiary outside of probate, but the bank still needs the death certificate to process the transfer.</li>
+            <li>If you are unsure of the account type, consult with an estate attorney before notifying the bank.</li>
+        </ul>
+                <h4>Discovery of Financial Accounts</h4>
+                <ul class="checklist">
+            <li>Review all bank and credit card statements available (paper and electronic)</li>
+            <li>Search email for bank names, "statement available," "account alert," and "direct deposit"</li>
+            <li>Request a deceased person's credit report from all three bureaus; this is the most comprehensive way to find unknown accounts, credit cards, and loans</li>
+            <li>Check physical mail over the next 2 to 3 months for statements and tax documents</li>
+            <li>Look for tax returns (prior year Form 1040 and supporting schedules) which list interest income, dividend income, and capital gains; each of these points to a financial account</li>
+            <li>Check for safe deposit boxes at local banks (these may require a court order to access)</li>
+            <li>Review the deceased's insurance policies, which may reference financial institutions</li>
+        </ul>
+                <h4>Access Process for Sole Accounts</h4>
+                <ul class="checklist">
+            <li>Contact the bank's dedicated estate or bereavement department (most large banks have one)</li>
+            <li>Required documentation typically includes: certified death certificate, letters testamentary or letters of administration from probate court, your government-issued ID, and possibly an EIN (Employer Identification Number) for the estate</li>
+            <li>The bank will guide you through their specific process for transferring or distributing funds</li>
+            <li>Investment and brokerage accounts (Fidelity, Schwab, Vanguard, etc.) have similar processes but may also require a completed transfer form specific to each firm</li>
+        </ul>
+                <h4>What You Will Get</h4>
+                <ul>
+            <li>Access to account statements and transaction history</li>
+            <li>Distribution of funds according to the will, probate court, or beneficiary designations</li>
+            <li>Closure of the account after distribution</li>
+        </ul>
+                <h4>What You Will NOT Get</h4>
+                <ul>
+            <li>Instant access; probate-dependent accounts may take months to release funds</li>
+            <li>Online login access to the deceased's banking portal (banks create new estate accounts)</li>
+            <li>Access to safe deposit box contents without a court order (in most states)</li>
+        </ul>
+                <h4>Timeline Expectations</h4>
+                <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Typical Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Joint account: surviving owner access</td>
+                    <td>Immediate upon notification with death certificate</td>
+                </tr>
+                <tr>
+                    <td>POD/TOD beneficiary transfer</td>
+                    <td>1 to 4 weeks after documentation submitted</td>
+                </tr>
+                <tr>
+                    <td>Sole account through probate</td>
+                    <td>2 to 12 months depending on estate complexity</td>
+                </tr>
+                <tr>
+                    <td>Investment account transfer</td>
+                    <td>2 to 8 weeks after documentation submitted</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+                <h3 id="path-b-phone-carriers">11.8 -- Phone Carriers (Getting the Phone Number for 2FA)</h3>
+                <p>Maintaining control of the deceased's phone number is critically important. Many accounts use SMS-based two-factor authentication, and if the phone number is disconnected or reassigned, you lose the ability to receive verification codes needed to access those accounts.</p>
+                <h4>Why This Matters</h4>
+                <ul class="checklist">
+            <li>SMS verification codes are used by banks, email providers, social media, and many other services</li>
+            <li>If the phone number is canceled, a new person may eventually be assigned that number, creating both a privacy risk and a loss of account recovery capability</li>
+            <li>Some carriers will cancel the line after a period of non-payment, so act promptly</li>
+        </ul>
+                <h4>Priority Action</h4>
+                <p><strong>Keep the phone active and the phone number assigned to a device you control. Do this within the first week if possible.</strong></p>
+                <h4>Carrier-Specific Processes</h4>
+                <p><strong>Verizon (800-922-0204)</strong></p>
+                <ul class="checklist">
+            <li>An estate executor can transfer the line to a new or different Verizon account</li>
+            <li>Complete the Executor transfer or disconnect service form (available on verizon.com/support)</li>
+            <li>Documentation: death certificate, executor documentation</li>
+            <li>Typical processing time: approximately 3 business days</li>
+        </ul>
+                <p><strong>AT&amp;T (800-331-0500)</strong></p>
+                <ul class="checklist">
+            <li>Complete a Transfer of Billing Responsibility form to move the line to your account</li>
+            <li>Any past-due balance must be paid before the line can be transferred</li>
+            <li>Device installment plans transfer with the line</li>
+            <li>Documentation: death certificate, proof of relationship or executor status</li>
+        </ul>
+                <p><strong>T-Mobile (877-746-0909)</strong></p>
+                <ul class="checklist">
+            <li>Call customer service to transfer or cancel the line</li>
+            <li>Documentation: death certificate, and the deceased's Social Security number if available</li>
+            <li>T-Mobile's requirements are generally less strict than Verizon or AT&amp;T</li>
+        </ul>
+                <p><strong>Other Carriers / MVNOs</strong></p>
+                <ul class="checklist">
+            <li>Contact customer service directly; most prepaid and smaller carriers have informal processes</li>
+            <li>Have the death certificate, your ID, and any account information you can find (account number, PIN, last four of SSN)</li>
+        </ul>
+                <h4>Practical Workarounds</h4>
+                <ul class="checklist">
+            <li>If the phone is unlocked and the SIM is active, you can receive 2FA codes directly on the device</li>
+            <li>If the phone is locked, move the SIM card to another compatible phone to keep receiving SMS codes while you work through account recovery</li>
+            <li>Some phones allow you to see incoming SMS on the lock screen even without unlocking; check notification settings</li>
+            <li>If the phone uses eSIM (newer iPhones and Android devices), contact the carrier about transferring the eSIM to a new device</li>
+        </ul>
+                <h3 id="path-b-password-managers">11.9 -- Password Managers (When You Do Not Have the Master Password)</h3>
+                <p>If the deceased used a password manager but you do not have the master password, your options are limited by design. Password managers are built specifically so that no one, including the company that makes them, can access the vault without the master password.</p>
+                <h4>Determine Which Password Manager Was Used</h4>
+                <ul class="checklist">
+            <li>Look for password manager apps on their phone or computer (1Password, Bitwarden, Dashlane, LastPass, Keeper, etc.)</li>
+            <li>Check browser extensions; password managers typically install browser extensions that are visible in the browser toolbar</li>
+            <li>Search email for "welcome to 1Password" or "Bitwarden" or similar account creation confirmations</li>
+        </ul>
+                <h4>Recovery Options by Password Manager</h4>
+                <p><strong>1Password</strong></p>
+                <ul class="checklist">
+            <li>If they used a 1Password Family or Teams plan, the family organizer or team admin can perform account recovery for members</li>
+            <li>Look for a printed "Emergency Kit" (a PDF that 1Password generates containing the Secret Key and space to write the master password). Check the physical safe, filing cabinets, and anywhere they kept important papers.</li>
+            <li>Without the Emergency Kit or family/team admin access, the vault is unrecoverable</li>
+        </ul>
+                <p><strong>Bitwarden</strong></p>
+                <ul class="checklist">
+            <li>If they used Bitwarden's Emergency Access feature and designated you as a trusted contact, you can request access. After the designated waiting period (set by the account holder, typically 1 to 30 days), access is granted automatically.</li>
+            <li>If they used a Bitwarden Organization account, an admin can reset the master password for organization members</li>
+            <li>Without Emergency Access or org admin, the vault is unrecoverable. Bitwarden explicitly states they cannot retrieve or reset a lost master password.</li>
+        </ul>
+                <p><strong>LastPass</strong></p>
+                <ul class="checklist">
+            <li>If they set up Emergency Access and designated you, you can request access through LastPass</li>
+            <li>LastPass also supports account recovery via SMS or email for the account holder, but this requires access to their phone or email</li>
+            <li>Without Emergency Access, the vault is unrecoverable</li>
+        </ul>
+                <p><strong>Dashlane</strong></p>
+                <ul class="checklist">
+            <li>If they designated an Emergency Contact, you can request access</li>
+            <li>Dashlane supports biometric recovery on trusted devices; if you can access their phone with their biometric profile still active, you may be able to unlock Dashlane via fingerprint or face on that device (though biometric data degrades rapidly after death)</li>
+            <li>Without Emergency Contact designation, the vault is unrecoverable</li>
+        </ul>
+                <p><strong>Keeper</strong></p>
+                <ul class="checklist">
+            <li>Keeper offers an Emergency Access (Digital Legacy) feature</li>
+            <li>Without it being configured, the vault is unrecoverable</li>
+        </ul>
+                <h4>The Hard Truth</h4>
+                <p>If no emergency access was configured and you do not have the master password or recovery kit, the vault contents are permanently inaccessible. This is by design. The password manager company cannot help you. There is no backdoor, no court order process, no override. You will need to recover each account individually using other methods (email-based password resets, platform-specific deceased user processes, etc.).</p>
+                <h4>Practical Workarounds</h4>
+                <ul class="checklist">
+            <li>Check if the password manager app is still signed in on any device (phone, computer); password managers often stay unlocked for a configurable period</li>
+            <li>Check if their browser has separately saved passwords outside the password manager (browsers save passwords independently)</li>
+            <li>Look for the master password written down somewhere physical; many people write it on a sticky note, in a notebook, or on the emergency kit printout</li>
+            <li>If they used a simple or personally meaningful master password, and you knew them well, it may be worth trying common personal patterns (this is legitimate when you are the legal executor)</li>
+        </ul>
+                <h3 id="path-b-devices">11.10 -- Devices (Locked Phones, Laptops, Encrypted Drives)</h3>
+                <h4>Unlocked Devices: Act Fast</h4>
+                <p>If any device is currently unlocked or you know the passcode, take these steps immediately:</p>
+                <ul class="checklist">
+            <li>Disable auto-lock on the device (prevent it from locking itself)
+                <ul>
+                    <li>On iPhone/iPad: Settings &gt; Display &amp; Brightness &gt; Auto-Lock &gt; Never</li>
+                    <li>On Android: Settings &gt; Display &gt; Screen timeout &gt; maximum value or "Never"</li>
+                    <li>On Mac: System Settings &gt; Lock Screen &gt; set to Never (or maximum)</li>
+                    <li>On Windows: Settings &gt; System &gt; Power &gt; Screen and Sleep &gt; Never</li>
+                </ul>
+            </li>
+            <li>Check browser saved passwords (your single most valuable resource):
+                <ul>
+                    <li>Chrome: Settings &gt; Passwords (or chrome://settings/passwords)</li>
+                    <li>Safari: Settings &gt; Passwords (Mac) or Settings &gt; Passwords (iOS)</li>
+                    <li>Firefox: Settings &gt; Privacy &amp; Security &gt; Saved Logins</li>
+                    <li>Edge: Settings &gt; Passwords (or edge://settings/passwords)</li>
+                </ul>
+            </li>
+            <li>Check the device's native password/keychain system:
+                <ul>
+                    <li>iPhone/iPad: Settings &gt; Passwords (shows all saved passwords for websites and apps)</li>
+                    <li>Mac: System Settings &gt; Passwords, or open the Keychain Access application</li>
+                    <li>Windows: Control Panel &gt; Credential Manager</li>
+                </ul>
+            </li>
+            <li>Export or photograph the saved passwords before the device locks or runs out of battery</li>
+            <li>Check for authenticator apps and photograph the current TOTP codes and account names</li>
+        </ul>
+                <h4>Locked Phones</h4>
+                <p><strong>iPhone (locked, passcode unknown)</strong></p>
+                <ul>
+            <li>Apple cannot bypass the passcode without erasing the device</li>
+            <li>If you can obtain iCloud access (through Legacy Contact or court order), iCloud backups contain most of the phone's data except the passcode itself</li>
+            <li>If the phone shows notifications on the lock screen, you may be able to see incoming 2FA codes without unlocking</li>
+            <li>Try common personal PINs: birthdate (MMDDYY or YYYYMMDD), anniversary, street address numbers, last four of SSN</li>
+            <li>After 10 failed attempts, the phone may erase itself if that setting was enabled. Proceed with extreme caution; do not guess randomly.</li>
+            <li>Third-party forensic data recovery companies exist but are expensive ($1,000 to $10,000+), and success is not guaranteed on modern iPhones with the Secure Enclave chip</li>
+        </ul>
+                <p><strong>Android Phone (locked, passcode unknown)</strong></p>
+                <ul>
+            <li>If the phone is linked to a Google account and you have the Google account password, you may be able to unlock via "Forgot PIN" after several failed attempts (varies by manufacturer and Android version)</li>
+            <li>Samsung devices with a Samsung account may allow remote unlock through findmymobile.samsung.com if you can access the Samsung account</li>
+            <li>Android devices generally have fewer bypass restrictions than iPhones, but modern devices with full-disk encryption are still very difficult to access without the passcode</li>
+            <li>Some older Android devices can be unlocked with ADB (Android Debug Bridge) if USB debugging was enabled, but this is uncommon</li>
+        </ul>
+                <h4>Locked Computers</h4>
+                <p><strong>Mac (locked, FileVault enabled)</strong></p>
+                <ul class="checklist">
+            <li>If FileVault is enabled and you do not have the password, the drive is encrypted and inaccessible without either the user password or the FileVault recovery key</li>
+            <li>The FileVault recovery key may have been escrowed to the Apple ID; if you can access the Apple account (through Legacy Contact or court order), you may be able to retrieve the recovery key</li>
+            <li>If FileVault was NOT enabled, you can reset the Mac's user password by booting into Recovery Mode (Command+R on Intel Macs, hold power button on Apple Silicon) and using the Reset Password utility. This does NOT decrypt a FileVault-protected drive.</li>
+        </ul>
+                <p><strong>Windows PC (locked, BitLocker enabled)</strong></p>
+                <ul class="checklist">
+            <li>If BitLocker is enabled and tied to a Microsoft account, the recovery key may be stored at aka.ms/myrecoverykey; you need Microsoft account access to retrieve it</li>
+            <li>If BitLocker is enabled through a work or school account, contact their employer's IT department</li>
+            <li>If BitLocker is not enabled, you may be able to reset the Windows password using a Windows installation USB or a password reset tool</li>
+            <li>Check for a printed BitLocker recovery key in their physical files</li>
+        </ul>
+                <p><strong>Encrypted External Drives</strong></p>
+                <ul class="checklist">
+            <li>Drives encrypted with BitLocker, FileVault, VeraCrypt, or similar tools require the encryption password or recovery key</li>
+            <li>Without the password or key, the data is effectively unrecoverable with current technology</li>
+            <li>A professional data recovery service cannot bypass encryption; they can only recover data from physically damaged but unencrypted drives</li>
+        </ul>
+                <h3 id="path-b-crypto">11.11 -- Cryptocurrency (The Hard Truth)</h3>
+                <p>Cryptocurrency is fundamentally different from every other type of digital asset covered in this guide. There is no company behind Bitcoin, Ethereum, or most other cryptocurrencies. There is no customer service number. There is no court order process. There is no reset password button. The design of cryptocurrency means that whoever holds the private keys controls the funds, and if nobody holds the private keys, the funds are gone permanently.</p>
+                <h4>Two Very Different Scenarios</h4>
+                <p><strong>Scenario A: Cryptocurrency on an Exchange (Coinbase, Kraken, Gemini, etc.)</strong></p>
+                <p>If the deceased held cryptocurrency on a centralized exchange, this is similar to a financial institution. The exchange is a custodian and has a formal process.</p>
+                <ul class="checklist">
+            <li>Determine which exchange(s) were used by checking email for account confirmations, checking bank statements for transfers to exchanges, and looking for exchange apps on their phone</li>
+            <li>Contact the exchange's estate or bereavement department</li>
+            <li>Required documentation typically includes: death certificate, probate court documentation naming the executor or administrator, government-issued ID, and proof that the deceased held an account</li>
+            <li>Coinbase, Kraken, and Gemini each have estate claim processes; none currently offer in-platform beneficiary designations</li>
+            <li>After the claim is processed, assets are typically transferred to the beneficiary's own account on the same exchange</li>
+            <li>Timeline: 4 to 12 weeks depending on the exchange and complexity</li>
+        </ul>
+                <p><strong>Scenario B: Cryptocurrency in a Self-Custody Wallet (No Exchange)</strong></p>
+                <p>If the deceased held cryptocurrency in a hardware wallet (Ledger, Trezor), software wallet (MetaMask, Electrum), or paper wallet, and you do not have the seed phrase (also called recovery phrase, typically 12 or 24 words), the situation is extremely difficult.</p>
+                <ul class="checklist">
+            <li>Search thoroughly for the seed phrase. Check: physical safes, safety deposit boxes, filing cabinets, notebooks, envelopes with attorneys, anywhere they kept important documents. Some people engrave seed phrases on metal plates.</li>
+            <li>Search for the hardware wallet device itself (Ledger and Trezor are small USB-like devices). If you find the device AND know the PIN, you can access the funds.</li>
+            <li>If you find the device but do not know the PIN, some hardware wallets allow a limited number of PIN attempts before wiping. Proceed with extreme caution.</li>
+            <li>Search digital files for seed phrases (despite security advice against it, some people do store them in text files, notes apps, or photos of handwritten phrases)</li>
+            <li>Check password managers and browser-saved passwords for exchange accounts or wallet passwords</li>
+        </ul>
+                <p><strong>Professional Recovery Services</strong></p>
+                <ul>
+            <li>Specialized firms like Wallet Recovery Services, Brute Brothers, or KeychainX may be able to recover wallets if you have partial information (partial seed phrase, possible password variants, known wallet file)</li>
+            <li>These firms typically charge 15% to 30% of recovered funds</li>
+            <li>Success rates vary enormously depending on what information you have</li>
+            <li>Be extremely cautious of scams; the crypto recovery space is full of fraudsters targeting desperate people. Never share seed phrases or private keys with anyone who contacts you unsolicited.</li>
+        </ul>
+                <h4>What is Honestly Unrecoverable</h4>
+                <p>If the deceased held cryptocurrency in a self-custody wallet and:</p>
+                <ul>
+            <li>There is no seed phrase written down anywhere</li>
+            <li>There is no hardware wallet device, or the device PIN is unknown and it has wiped after failed attempts</li>
+            <li>There is no backup file on any device</li>
+            <li>No one else was given any access information</li>
+        </ul>
+                <p>Then the cryptocurrency is, in practical terms, gone. No technology exists to reverse-engineer a seed phrase from a wallet address. No court order can compel a blockchain to release funds. An estimated 20% of all Bitcoin in existence is considered permanently lost due to exactly this scenario. This is a difficult reality, and it underscores why proactive crypto estate planning is so important.</p>
+                <h3 id="path-b-quick-reference">11.12 -- Platform-by-Platform Quick Reference for Path B</h3>
+                <p>This table summarizes the process when NO legacy or pre-planning tools were set up.</p>
+                <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform / Scenario</th>
+                    <th>What You Need</th>
+                    <th>What You Get</th>
+                    <th>What You Do NOT Get</th>
+                    <th>Typical Timeline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Google (Gmail, Drive, Photos)</td>
+                    <td>Death certificate, your ID, proof of legal authority, U.S. court order for data</td>
+                    <td>Data export of requested services</td>
+                    <td>Password, login access, instant access</td>
+                    <td>1 to 4 months</td>
+                </tr>
+                <tr>
+                    <td>Apple iCloud (no Legacy Contact)</td>
+                    <td>Death certificate, court order, your ID</td>
+                    <td>Photos, messages, notes, files, backups</td>
+                    <td>Keychain passwords, purchased media, login access</td>
+                    <td>1 to 3 months</td>
+                </tr>
+                <tr>
+                    <td>Apple Device (locked, no passcode)</td>
+                    <td>Proof of ownership, death certificate for Activation Lock removal</td>
+                    <td>Device reset (erases data) or iCloud backup data</td>
+                    <td>On-device data without passcode, passcode bypass</td>
+                    <td>1 to 2 weeks for Activation Lock</td>
+                </tr>
+                <tr>
+                    <td>Facebook (no Legacy Contact)</td>
+                    <td>Proof of death (obituary, death certificate)</td>
+                    <td>Memorialization or deletion; data download may require court order</td>
+                    <td>Login access, private messages, content removal</td>
+                    <td>1 to 4 weeks for memorialization</td>
+                </tr>
+                <tr>
+                    <td>Microsoft Outlook/OneDrive</td>
+                    <td>Death certificate, proof of relationship</td>
+                    <td>Email contents and contacts on DVD</td>
+                    <td>Password, login access, OneDrive may need court order</td>
+                    <td>4 to 10 weeks</td>
+                </tr>
+                <tr>
+                    <td>Bank (sole account)</td>
+                    <td>Death certificate, letters testamentary, your ID, estate EIN</td>
+                    <td>Account statements, fund distribution per will/probate</td>
+                    <td>Instant access, online banking login</td>
+                    <td>2 to 12 months (probate dependent)</td>
+                </tr>
+                <tr>
+                    <td>Bank (joint account)</td>
+                    <td>Death certificate</td>
+                    <td>Continued full access as surviving owner</td>
+                    <td>Nothing lost; account remains yours</td>
+                    <td>Immediate</td>
+                </tr>
+                <tr>
+                    <td>Phone carrier</td>
+                    <td>Death certificate, executor documentation or proof of relationship</td>
+                    <td>Transfer of phone number to your account</td>
+                    <td>Carrier account data history varies by carrier</td>
+                    <td>3 to 10 business days</td>
+                </tr>
+                <tr>
+                    <td>Password manager (no emergency access)</td>
+                    <td>Nothing available</td>
+                    <td>Nothing</td>
+                    <td>Vault contents are permanently inaccessible without master password</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Locked iPhone (no passcode)</td>
+                    <td>Very limited options without iCloud access</td>
+                    <td>Possibly iCloud backup data via separate process</td>
+                    <td>On-device data, passcode bypass</td>
+                    <td>Varies</td>
+                </tr>
+                <tr>
+                    <td>Encrypted drive (no password/key)</td>
+                    <td>Recovery key if escrowed to cloud account</td>
+                    <td>Drive contents if key is found</td>
+                    <td>Anything, if no key exists</td>
+                    <td>N/A</td>
+                </tr>
+                <tr>
+                    <td>Crypto on exchange</td>
+                    <td>Death certificate, probate docs, your ID</td>
+                    <td>Fund transfer to your account</td>
+                    <td>Instant access</td>
+                    <td>4 to 12 weeks</td>
+                </tr>
+                <tr>
+                    <td>Crypto in self-custody (no seed phrase)</td>
+                    <td>Seed phrase if found through physical search</td>
+                    <td>Everything (if seed phrase found)</td>
+                    <td>Recovery without seed phrase (funds are gone)</td>
+                    <td>N/A</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+                <h3 id="path-b-order-of-operations">11.13 -- Recommended Order of Operations for Path B</h3>
+                <p>When you are starting from zero with no plan, no passwords, and no list of accounts, work through these steps in roughly this order. Some can be done in parallel; the numbering reflects priority, not strict sequence.</p>
+                <p><strong>Phase 1: Secure and Preserve (Day 1 to 3)</strong></p>
+                <ul class="checklist">
+            <li>Charge and secure all devices. Do not reset, wipe, or update anything.</li>
+            <li>If any device is unlocked, disable auto-lock immediately and check for saved passwords in browsers and the device keychain.</li>
+            <li>If the phone is locked, move the SIM to a phone you control or keep the phone charged and accessible for incoming 2FA codes.</li>
+            <li>Photograph or write down everything you find: saved passwords, authenticator app entries, auto-complete suggestions, app icons on the phone.</li>
+        </ul>
+                <p><strong>Phase 2: Get Into Email (Day 1 to 7)</strong></p>
+                <ul class="checklist">
+            <li>Check if email is already accessible through an open browser session on any device.</li>
+            <li>If the computer is unlocked, check browser saved passwords for their email provider.</li>
+            <li>If you cannot access email through a device, begin the formal request process with the email provider (Google, Apple, Microsoft; see Sections 11.3 through 11.5).</li>
+            <li>If they had multiple email addresses, getting into any one of them may lead you to the others through account recovery emails.</li>
+        </ul>
+                <p><strong>Phase 3: Stabilize Finances and Phone (Week 1 to 2)</strong></p>
+                <ul class="checklist">
+            <li>Determine account ownership types (joint vs. sole) for all financial accounts BEFORE notifying banks.</li>
+            <li>Contact the phone carrier to transfer the phone number to your account.</li>
+            <li>Cancel non-essential subscriptions that are draining funds.</li>
+            <li>Identify which autopay items are critical to maintain (mortgage, utilities, insurance).</li>
+        </ul>
+                <p><strong>Phase 4: Discover Accounts (Week 2 to 4)</strong></p>
+                <ul class="checklist">
+            <li>Search email for account registration messages, receipts, and password reset emails.</li>
+            <li>Review 3 to 6 months of bank and credit card statements for all recurring charges.</li>
+            <li>Request a deceased person's credit report from all three bureaus.</li>
+            <li>Build a master spreadsheet of every discovered account with: service name, email used, status (accessible/locked/unknown), and action needed.</li>
+        </ul>
+                <p><strong>Phase 5: Systematic Account Recovery (Month 1 to 6)</strong></p>
+                <ul class="checklist">
+            <li>For each discovered account, attempt password reset via email first (this is why email access is priority one).</li>
+            <li>For accounts requiring formal processes, begin those requests in parallel; they take weeks to months.</li>
+            <li>Download and preserve data from any account you can access before closing or memorializing it.</li>
+            <li>Keep a log of every call made, ticket number received, document submitted, and date. You will need this for estate settlement and in case requests are lost or denied.</li>
+        </ul>
+                <p><strong>Phase 6: Protect and Close (Ongoing)</strong></p>
+                <ul class="checklist">
+            <li>File identity theft protections with credit bureaus, SSA, IRS, and DMV (see Section 8.1).</li>
+            <li>Close or memorialize social media accounts after preserving desired content.</li>
+            <li>Close unnecessary accounts to reduce ongoing identity theft risk.</li>
+            <li>Continue monitoring credit reports for at least 2 years.</li>
+        </ul>
+                <h3 id="path-b-emotional">11.14 -- What to Expect Emotionally</h3>
+                <p>This section would not be complete without acknowledging the emotional toll of this work. Searching through a loved one's digital life is intimate, exhausting, and often triggering. You may encounter:</p>
+                <ul>
+            <li>Private conversations, photos, or content that surprises you</li>
+            <li>Automated emails addressed to the deceased that arrive for months after death</li>
+            <li>AI-generated "memories" or "on this day" notifications from platforms that do not know the person has died</li>
+            <li>Frustrating, bureaucratic processes that feel dehumanizing when you are grieving</li>
+            <li>The urge to rush through everything, or the opposite, the inability to face any of it</li>
+        </ul>
+                <p>There is no wrong way to handle this. Some people work through it methodically and find it grounding. Others need to step away for weeks at a time. Consider asking a trusted, tech-savvy friend or family member to help with the mechanical parts (calling carriers, filling out forms, searching email) while you focus on the decisions that only you can make.</p>
+                <p>If you need support, the resources in the main Resources section of this guide include grief support organizations. Use them. This work can wait. You cannot pour from an empty cup.</p>
+            </div>
+        </details>
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        <!-- Quick Reference -->
+        <details class="guide-section" data-path="both">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="quick-reference">Quick-Reference: Platform Death/Legacy Policies</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="section-content">
+                <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Legacy Tool</th>
+                    <th>What It's Called</th>
+                    <th>Key Limitation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Google</td>
+                    <td>Yes</td>
+                    <td>Inactive Account Manager</td>
+                    <td>Must be set up while alive; court order needed otherwise</td>
+                </tr>
+                <tr>
+                    <td>Apple</td>
+                    <td>Yes</td>
+                    <td>Legacy Contact</td>
+                    <td>Access key required; account deleted after 3 years</td>
+                </tr>
+                <tr>
+                    <td>Facebook</td>
+                    <td>Yes</td>
+                    <td>Legacy Contact</td>
+                    <td>Cannot read messages or log in as the person</td>
+                </tr>
+                <tr>
+                    <td>Instagram</td>
+                    <td>No</td>
+                    <td>N/A</td>
+                    <td>Can only memorialize or delete; no management</td>
+                </tr>
+                <tr>
+                    <td>X (Twitter)</td>
+                    <td>No</td>
+                    <td>N/A</td>
+                    <td>Can request deactivation with documentation</td>
+                </tr>
+                <tr>
+                    <td>LinkedIn</td>
+                    <td>No</td>
+                    <td>N/A</td>
+                    <td>Can request memorial or closure</td>
+                </tr>
+                <tr>
+                    <td>Microsoft</td>
+                    <td>Limited</td>
+                    <td>Next of Kin process</td>
+                    <td>Requires court order; accounts close after 2 years of inactivity</td>
+                </tr>
+                <tr>
+                    <td>TikTok</td>
+                    <td>No</td>
+                    <td>N/A</td>
+                    <td>No formal memorialization as of 2025</td>
+                </tr>
+                <tr>
+                    <td>Snapchat</td>
+                    <td>No</td>
+                    <td>N/A</td>
+                    <td>No account transfer or management</td>
+                </tr>
+                <tr>
+                    <td>Pinterest</td>
+                    <td>No</td>
+                    <td>N/A</td>
+                    <td>Can request deactivation</td>
+                </tr>
+                <tr>
+                    <td>YouTube</td>
+                    <td>Via Google</td>
+                    <td>Inactive Account Manager</td>
+                    <td>Covered under Google; monetized channels need attention</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+            </div>
+        </details>
+
+        
+
+        
+
+        <!-- Resources -->
+        <details class="guide-section" data-path="both">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="resources">Resources</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="section-content">
+                <h3>The Foundation</h3>
+                <ul>
+            <li><strong>GYST (Get Your Shit Together):</strong> <a href="https://getyourshittogether.org" target="_blank" rel="noopener noreferrer">getyourshittogether.org</a> -- Chanel Reynolds' original checklist and expanded guides for legal, financial, and personal planning. Start here if you haven't yet.</li>
+        </ul>
+                <h3>Legal &amp; Estate Planning</h3>
+                <ul>
+            <li><strong>RUFADAA Information:</strong> The Revised Uniform Fiduciary Access to Digital Assets Act has been adopted in 48 states and provides the legal framework for digital asset access after death. Ask your estate planning attorney about your state's version.</li>
+            <li><strong>Nolo:</strong> <a href="https://www.nolo.com" target="_blank" rel="noopener noreferrer">nolo.com</a> -- Accessible legal guides including digital estate planning</li>
+            <li><strong>FreeWill:</strong> <a href="https://www.freewill.com" target="_blank" rel="noopener noreferrer">freewill.com</a> -- Free online will creation tool</li>
+        </ul>
+                <h3>Identity Protection</h3>
+                <ul>
+            <li><strong>Identity Theft Resource Center (ITRC):</strong> <a href="https://www.idtheftcenter.org" target="_blank" rel="noopener noreferrer">idtheftcenter.org</a> -- Resources for preventing and responding to identity theft of deceased persons</li>
+            <li><strong>Annual Credit Report:</strong> <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener noreferrer">annualcreditreport.com</a> -- Free credit reports from all three bureaus</li>
+            <li><strong>FTC Identity Theft:</strong> <a href="https://www.identitytheft.gov" target="_blank" rel="noopener noreferrer">identitytheft.gov</a> -- Federal Trade Commission identity theft reporting and recovery</li>
+        </ul>
+                <h3>Digital Estate Tools</h3>
+                <ul>
+            <li><strong>Password Managers with Emergency Access:</strong> 1Password, Bitwarden, Dashlane, LastPass, Keeper</li>
+            <li><strong>Google Inactive Account Manager:</strong> <a href="https://myaccount.google.com/inactive" target="_blank" rel="noopener noreferrer">myaccount.google.com/inactive</a></li>
+            <li><strong>Apple Legacy Contact:</strong> Settings &gt; [Your Name] &gt; Sign-In &amp; Security &gt; Legacy Contact</li>
+        </ul>
+                <h3>Grief &amp; Emotional Support</h3>
+                <ul>
+            <li><strong>The Dougy Center:</strong> <a href="https://www.dougy.org" target="_blank" rel="noopener noreferrer">dougy.org</a> -- Grief support for children and families</li>
+            <li><strong>GriefShare:</strong> <a href="https://www.griefshare.org" target="_blank" rel="noopener noreferrer">griefshare.org</a> -- Support groups</li>
+            <li><strong>National Alliance for Grieving Children:</strong> <a href="https://www.childrengrieve.org" target="_blank" rel="noopener noreferrer">childrengrieve.org</a></li>
+        </ul>
+            </div>
+        </details>
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+        
+
+        
+
+        <!-- A Final Note -->
+        <details class="guide-section" data-path="both">
+            <summary class="section-toggle">
+                <span class="section-heading" role="heading" aria-level="2" id="a-final-note">A Final Note</span>
+                <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="section-content">
+                <p>The GYST checklist reminds us that "hoping for the best is not a plan." In the digital age, that's more true than ever. Our online lives are deeply intertwined with our financial, social, and emotional lives. When someone dies without a digital plan, the people left behind face an overwhelming tangle of locked accounts, draining subscriptions, vulnerable identities, and potentially lost memories.</p>
+                <p>Getting this stuff done -- even a little bit at a time -- is one of the most caring things you can do for the people who love you. And if you're in the "after" and reading this while grieving, know that you don't have to do it all at once, and you don't have to do it alone.</p>
+                <p>This guide is shared freely in Daniel Records-Galbraith's honor. If it helps even one person, that's enough.</p>
+                <p><em>This guide is provided for informational purposes and does not constitute legal, financial, or professional advice. Consult with qualified professionals for your specific situation. Laws regarding digital assets vary by state and country and are evolving rapidly.</em></p>
+                <p><em>Version 1.1 -- May 2026</em><br>
+        <em>A <a href="https://circle6systems.com" target="_blank" rel="noopener noreferrer">Circle 6 Systems</a> Resource</em></p>
+            </div>
+        </details>
+
+        </div><!-- /.guide-main -->
+        </div><!-- /.guide-layout -->
+
+    </article>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+    </button>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>© 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com">contact@circle6systems.com</a></p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        var navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // Mobile menu toggle
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            var isOpen = navLinks.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Back to top button
+        var backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            backToTop.classList.toggle('visible', window.scrollY > 600);
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        // Path filter
+        var filterBtns = document.querySelectorAll('.path-filter-btn');
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                var filter = btn.getAttribute('data-path-filter');
+                document.querySelectorAll('details.guide-section').forEach(function(section) {
+                    var path = section.getAttribute('data-path');
+                    if (filter === 'all' || path === filter || path === 'both') {
+                        section.style.display = '';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

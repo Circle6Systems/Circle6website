@@ -1,0 +1,63 @@
+# Circle 6 Systems — robots.txt
+# https://circle6systems.com
+
+# Allow all well-behaved crawlers
+User-agent: *
+Allow: /
+Disallow: /.well-known/
+Disallow: /docs/
+Disallow: /tests/
+Disallow: /node_modules/
+Disallow: /training/dude-diligence/dude-secret-posts/
+Disallow: /trust-safety/wizard/
+
+# Block AI training scrapers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+Sitemap: https://circle6systems.com/sitemap.xml

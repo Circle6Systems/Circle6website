@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Counter-Narrative &amp; Disinfo Report — WHCD Shooting | Circle 6 Systems Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .disinfo-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .disinfo-card .claim-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .disinfo-card .claim-num {
+      background: var(--c6s-red);
+      color: white;
+      font-weight: 700;
+      font-size: 0.75rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .disinfo-card .claim-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--c6s-text-bright);
+    }
+    .disinfo-card .field {
+      margin-bottom: 0.6rem;
+    }
+    .disinfo-card .field-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--c6s-text-dim);
+      margin-bottom: 0.15rem;
+    }
+    .velocity-meter {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .velocity-meter .dots {
+      display: flex;
+      gap: 3px;
+    }
+    .velocity-meter .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--c6s-border);
+    }
+    .velocity-meter .dot.active { background: var(--c6s-red); }
+    .velocity-meter .dot.medium { background: var(--c6s-amber); }
+    .velocity-meter .dot.low { background: var(--c6s-green); }
+  </style>
+</head>
+<body>
+  <!-- Site Navigation -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Demo</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">WHCD Shooting</a> &rsaquo; Counter-Narrative &amp; Disinfo Report
+    </nav>
+
+    <div class="title-block">
+      <h1>Counter-Narrative &amp; Disinformation Report</h1>
+      <div class="subtitle">Conspiracy Theory Catalog &amp; Counter-Messaging Strategy</div>
+      <div class="meta-grid">
+        <div><span class="label">Report Type</span><br>Information Operations</div>
+        <div><span class="label">Audience</span><br>Communications, Public Affairs, Analysts</div>
+        <div><span class="label">Classification</span><br>UNCLASSIFIED // DEMO</div>
+        <div><span class="label">Current As Of</span><br>2026-05-07 (V3 integrated)</div>
+      </div>
+    </div>
+
+    <section>
+      <h2>1. Information Environment Assessment</h2>
+      <div class="panel warning">
+        <div class="panel-title">Status: Shifted from Generation to Debunking (V3 Update)</div>
+        <p>
+          The disinfo landscape has shifted from <strong>generation to debunking</strong>. Most V1-tracked theories have been addressed by fact-checkers. The "staged" narrative has migrated from mainstream social media to dedicated conspiracy ecosystems. New vectors include a Vietnam-based AI spam operation, the Usha Vance video misidentification, and Joe Rogan amplifying the time travel theory to 56 million views.
+        </p>
+        <p style="margin-bottom: 0;">
+          Snopes published a collection of 13 claims investigated. Multiple debunking organizations (Lead Stories, Newsweek, CBS, PBS, Storyful) have been active. The information environment remains polluted but the velocity of new false narratives has declined.
+        </p>
+      </div>
+
+      <table>
+        <tr><th>Metric</th><th>V1 Observation</th><th>V3 Update</th></tr>
+        <tr><td>Time to first false narrative</td><td>&lt; 15 minutes</td><td>Generation phase complete</td></tr>
+        <tr><td>Primary platform</td><td>X (Twitter)</td><td>X + Joe Rogan podcast (56M views)</td></tr>
+        <tr><td>Secondary platforms</td><td>Telegram, TikTok, fringe</td><td>+ Facebook (Vietnam AI spam operation)</td></tr>
+        <tr><td>Dominant narrative</td><td>"Staged" / false flag</td><td>Declining mainstream, hardening fringe</td></tr>
+        <tr><td>Fact-checker response</td><td>12-hour lag</td><td>Comprehensive: Snopes, Lead Stories, PBS, Newsweek</td></tr>
+        <tr><td>Foreign operations</td><td>Not yet detected</td><td>Russia (partial retreat), Iran (300+ bots), Vietnam (AI spam)</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>2. Conspiracy Theory Catalog</h2>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">1</div>
+          <div class="claim-title">"The Shooting Was Staged" / False Flag</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">The entire shooting was faked or orchestrated as a "false flag" operation for political gain &mdash; either to boost Trump's approval or to justify crackdowns on political opposition.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Propagation</div>
+          <p style="margin-bottom: 0;">Widespread on X within the first hour. Some posts cited a clipped Fox News interview as "proof."</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <ul style="margin-bottom: 0;">
+            <li>Metropolitan Police confirmed live rounds fired</li>
+            <li>Secret Service agent physically struck (vest impact documented)</li>
+            <li>Multiple independent media witnesses corroborated (CNN's Wolf Blitzer was "feet away")</li>
+            <li>Suspect in federal custody with documented manifesto</li>
+            <li>Fox News reporter Aishah Hasnie clarified her call dropped from poor cell service, not a "signal"</li>
+          </ul>
+        </div>
+        <div class="field">
+          <div class="field-label">Circulation Velocity</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot medium"></div><div class="dot medium"></div><div class="dot medium"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-amber); font-weight: 600;">Declining Mainstream / Hardening Fringe</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">V3 Status</div>
+          <p style="margin-bottom: 0;">DOJ footage, charges, and manifesto comprehensively counter. Corbett Report published "was fake and staged" as settled fact for conspiracy audience. Narrative has migrated from mainstream to dedicated conspiracy ecosystems.</p>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">2</div>
+          <div class="claim-title">Karoline Leavitt "Foreknowledge"</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">White House Press Secretary Karoline Leavitt's pre-event comment about "shots fired tonight" on Fox News indicated advance knowledge of the shooting.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Propagation</div>
+          <p style="margin-bottom: 0;">Clipped video stripped of context circulated on X.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <p style="margin-bottom: 0;">Full interview context: Leavitt was discussing Trump's planned comedic speech. She said the speech "will be funny" and there would be "some shots fired tonight in the room" &mdash; a common colloquial expression for pointed jokes at these events. The metaphorical usage is unambiguous in context.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">V3 Status</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot low"></div><div class="dot low"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-green); font-weight: 600;">Debunked</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">Resolution</div>
+          <p style="margin-bottom: 0;">Snopes confirmed "shots fired" was a figure of speech about Trump's planned comedic jabs at the dinner. Full unedited interview is definitive counter-evidence.</p>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">3</div>
+          <div class="claim-title">Oz Pearlman "Signaling"</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">Video of a man holding up a card near Trump moments before shots was a "signal" to the shooter.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Propagation</div>
+          <p style="margin-bottom: 0;">Freeze-frame screenshots on X with conspiratorial framing.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <p style="margin-bottom: 0;">The man was <strong>Oz Pearlman</strong>, the scheduled mentalist/entertainer. He was performing a magic trick revealing information about Leavitt's unborn baby. His act was on the published event program. The "surprised" expressions were audience reactions to the trick's reveal.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">V3 Status</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot low"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-green); font-weight: 600;">Debunked &mdash; PBS confirmed scheduled magic performance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">4</div>
+          <div class="claim-title">Fox News Call "Cut" Cover-Up</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">A Fox News reporter's call being cut during the incident was evidence of a coordinated media cover-up.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <p style="margin-bottom: 0;">Reporter Aishah Hasnie publicly explained the call dropped due to poor cell service in the chaotic environment. The other party was expressing concern for her safety.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Circulation Velocity</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot medium"></div><div class="dot medium"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 600;">Low-Moderate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">5</div>
+          <div class="claim-title">"Suspect Was Shot" / Inconsistent Injuries</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">Photos showed the suspect without visible blood, "proving" the shooting was faked.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <p style="margin-bottom: 0;">Metropolitan Police Chief Carroll explicitly stated: "The suspect in this case, he was not struck by gunfire." Allen was tackled and sustained a knee injury. The <em>absence</em> of gunshot wounds is consistent with the facts, not contradictory.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Circulation Velocity</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot medium"></div><div class="dot medium"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 600;">Low-Moderate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">6</div>
+          <div class="claim-title">Israeli Pre-Search / IDF Apparel</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">Allen's name was searched in Israel before the incident occurred, and he was wearing Israel Defense Forces apparel during the attack &mdash; implying foreign involvement.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <p style="margin-bottom: 0;">IDF apparel image confirmed as AI forgery &mdash; logo text garbled, facial features altered. Verified by Storyful, New York Post, and Snopes.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">V3 Status</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot low"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-green); font-weight: 600;">Debunked &mdash; AI forgery confirmed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">7</div>
+          <div class="claim-title">Fabricated "Indian Wife" Identity</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">Allen has an Indian wife named "Priyanka Rao," injecting a foreign-connection narrative.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking Evidence</div>
+          <p style="margin-bottom: 0;">No credible source has confirmed this claim. Appears fabricated to support xenophobic conspiracy narratives. Not corroborated by any law enforcement statement or media investigation.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Circulation Velocity</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot low"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 600;">Low &mdash; Fringe only</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. New Theories (V2/V3)</h2>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">8</div>
+          <div class="claim-title">Time Travel Theory &mdash; Joe Rogan Amplification</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">A 2023 X post by "Henry Martinez" that simply said "Cole Allen" proves foreknowledge or time travel. Rogan connected it to a NASA JPL intern named Cole Allen (2014) and a NASA aerospace engineer named Henry Martinez.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Propagation</div>
+          <p style="margin-bottom: 0;">Joe Rogan devoted podcast time on May 1. Post reached <strong>56 million views</strong> (up from 1.2M on April 29 &mdash; a 47x increase in 5 days). The most popular podcast in the world now amplifying this theory.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Circulation Velocity</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-red); font-weight: 600;">Viral &mdash; 56M views, Rogan-amplified</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">9</div>
+          <div class="claim-title">Usha Vance Video Connection</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">A 2017 ABC7 Los Angeles video shows Allen alongside Usha Vance, proving foreknowledge.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Debunking</div>
+          <p style="margin-bottom: 0;">Multiple fact-checkers (Newsweek, CBC, Snopes, Lead Stories) identified the woman as <strong>Arati Desai Wagabaza</strong>, founder/CEO of SmallCircles, whose company banner is visible. Vance was clerking at the Supreme Court in DC and was heavily pregnant.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">V3 Status</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot low"></div><div class="dot low"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-green); font-weight: 600;">Thoroughly Debunked</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="disinfo-card">
+        <div class="claim-header">
+          <div class="claim-num">10</div>
+          <div class="claim-title">Vietnam-Based AI Spam Operation</div>
+        </div>
+        <div class="field">
+          <div class="field-label">The Claim</div>
+          <p style="margin-bottom: 0;">Multiple fake claims: Allen worked security for LA Dodgers, Detroit Tigers, Denver Broncos; was a production crew member on films/tours; was a celebrity driver.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Investigation</div>
+          <p style="margin-bottom: 0;">Lead Stories traced a coordinated AI spam operation to Vietnam. Multiple fake Facebook pages used <strong>Cyrillic lookalike characters</strong> to evade content moderation. "Arch City Blitzers" page showed 3 Vietnamese admin accounts. Financial spam exploiting the news cycle, not a state-sponsored operation.</p>
+        </div>
+        <div class="field">
+          <div class="field-label">Circulation Velocity</div>
+          <div class="velocity-meter">
+            <div class="dots">
+              <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--c6s-red); font-weight: 600;">High &amp; Systematic</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>Foreign Information Operations</h3>
+      <table>
+        <tr><th>Actor</th><th>Activity</th><th>Status</th></tr>
+        <tr>
+          <td>Russia</td>
+          <td>RT amplified "staged" claims on X. Two large accounts identified as "likely fronts for foreign governments."</td>
+          <td>Some Russian state media <strong>took down</strong> "staged" reports &mdash; a notable partial retreat</td>
+        </tr>
+        <tr>
+          <td>Iran</td>
+          <td>300+ X accounts amplified Iranian propaganda (Rutgers NCRI tracking). Bot networks used.</td>
+          <td><span class="badge badge-amber" style="font-size: 0.65rem;">Active</span></td>
+        </tr>
+        <tr>
+          <td>Vietnam</td>
+          <td>AI spam operation (financial, not state-sponsored)</td>
+          <td><span class="badge badge-red" style="font-size: 0.65rem;">Active</span></td>
+        </tr>
+      </table>
+
+      <h2>4. Pattern Analysis</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Recycled Framework Detection</div>
+        <p>The conspiracy theory ecosystem around this event is <strong>not novel</strong>. It recycles templates from prior incidents:</p>
+        <table style="margin-bottom: 0;">
+          <tr><th>Template</th><th>Prior Use</th><th>WHCD Application</th></tr>
+          <tr>
+            <td>"Staged / False Flag"</td>
+            <td>Sandy Hook (2012), Butler (2024), Jan 6 (2021)</td>
+            <td>Applied within minutes; highest velocity</td>
+          </tr>
+          <tr>
+            <td>"Foreknowledge from official remarks"</td>
+            <td>9/11 (Bush reading book), Jan 6 (Pelosi)</td>
+            <td>Leavitt "shots fired" clip</td>
+          </tr>
+          <tr>
+            <td>"Foreign state involvement"</td>
+            <td>Butler (Iran angle), JFK (Cuba/USSR)</td>
+            <td>Israeli pre-search / IDF apparel</td>
+          </tr>
+          <tr>
+            <td>"Crisis actor / inconsistent injuries"</td>
+            <td>Sandy Hook, Boston Marathon, Butler</td>
+            <td>"No blood" photo analysis</td>
+          </tr>
+          <tr>
+            <td>"Signal from insider"</td>
+            <td>Various (hand signals, cards, ear touches)</td>
+            <td>Oz Pearlman card trick</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Counter-Messaging Recommendations</h2>
+
+      <h3>4.1 Priority Targets</h3>
+      <table>
+        <tr><th>Priority</th><th>Narrative</th><th>Why</th></tr>
+        <tr>
+          <td><span class="badge badge-red">P1</span></td>
+          <td>"Staged" / False Flag</td>
+          <td>Highest velocity, broadest reach, delegitimizes the entire incident</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">P1</span></td>
+          <td>Leavitt "Foreknowledge"</td>
+          <td>Visually compelling out of context; highest political weaponization potential</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-amber">P2</span></td>
+          <td>Oz Pearlman "Signal"</td>
+          <td>Easily debunked but visually sticky; event program is definitive counter-evidence</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">P3</span></td>
+          <td>Israeli / Foreign narratives</td>
+          <td>Lower velocity but high toxicity in specific communities</td>
+        </tr>
+      </table>
+
+      <h3>4.2 Recommended Tactics</h3>
+      <div class="panel success">
+        <ul style="margin-bottom: 0;">
+          <li><strong>Pre-bunk where possible:</strong> For events going forward, proactively publish security protocols and event programs to reduce "mystery" that conspiracy theorists exploit</li>
+          <li><strong>Context restoration:</strong> For the Leavitt clip, the full unedited interview is the most powerful counter-evidence. Distribute the full clip, not just the rebuttal</li>
+          <li><strong>Official source speed:</strong> The 12-hour gap between false narrative circulation and fact-checker response is too slow. Aim for official debunking within 2 hours of detection</li>
+          <li><strong>Avoid amplification:</strong> Do not repeat the conspiracy claim in the headline of the debunk. Lead with the truth, not the lie</li>
+          <li><strong>Platform-specific:</strong> On X, replies to viral conspiracy posts are algorithmically suppressed. Counter-narratives need their own original posts with engagement momentum, not reply-thread corrections</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Monitoring Recommendations</h2>
+      <p>The following narratives have <strong>not yet emerged</strong> but are predicted based on template analysis:</p>
+      <div class="panel warning">
+        <ul style="margin-bottom: 0;">
+          <li><strong>"MKUltra / mind control" framing:</strong> If Allen's mental health history surfaces, expect programmed-assassin narratives</li>
+          <li><strong>Wide Awakes as "domestic terror org":</strong> If political actors seek to designate the group, expect resistance narratives and First Amendment debates</li>
+          <li><strong>"Second shooter" claims:</strong> If audio analysis is released showing multiple shot sources (USSS return fire), expect misinterpretation as evidence of a second gunman</li>
+          <li><strong>Manifesto forgery claims:</strong> As manifesto details are released incrementally, expect claims that portions were fabricated by law enforcement</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;"><a href="index.html">&#8592; Back to Briefing Package</a> &middot; <a href="/osint-reports/">Back to Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

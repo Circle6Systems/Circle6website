@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>FIFA World Cup 2026 Pre-Event Threat Intelligence Briefing | Circle 6 Systems</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'none'; frame-src 'none'; object-src 'none'">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .threat-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .threat-card { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; }
+    .threat-card.critical { border-left: 3px solid var(--c6s-red); }
+    .threat-card.high { border-left: 3px solid var(--c6s-amber); }
+    .threat-card.elevated { border-left: 3px solid #60a5fa; }
+    .threat-card.moderate { border-left: 3px solid var(--c6s-accent); }
+    .threat-card .threat-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+    .threat-card .threat-name { font-weight: 700; font-size: 0.9rem; color: var(--c6s-text-bright); }
+    .threat-card .threat-rating { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.15rem 0.5rem; border-radius: 3px; }
+    .rating-critical { background: rgba(239, 68, 68, 0.15); color: var(--c6s-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .rating-high { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .rating-elevated { background: rgba(96, 165, 250, 0.15); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); }
+    .rating-moderate { background: rgba(168, 193, 150, 0.15); color: var(--c6s-accent); border: 1px solid rgba(168, 193, 150, 0.3); }
+    .threat-card .threat-desc { font-size: 0.85rem; color: var(--c6s-text-dim); }
+    .venue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .venue-card { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1rem; }
+    .venue-card .city { font-weight: 700; color: var(--c6s-text-bright); font-size: 0.9rem; }
+    .venue-card .stadium { color: var(--c6s-accent); font-size: 0.8rem; margin-bottom: 0.5rem; }
+    .venue-card .matches { font-size: 0.8rem; color: var(--c6s-text-dim); }
+    .cyber-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .cyber-stat { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; text-align: center; }
+    .cyber-stat .stat-value { font-size: 1.75rem; font-weight: 700; color: var(--c6s-red); }
+    .cyber-stat .stat-label { font-size: 0.75rem; color: var(--c6s-text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    .prediction-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .prediction-item { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; }
+    .prediction-item .pred-id { font-size: 0.7rem; font-weight: 700; color: var(--c6s-accent); text-transform: uppercase; letter-spacing: 0.1em; }
+    .prediction-item .pred-text { font-weight: 600; color: var(--c6s-text-bright); margin: 0.5rem 0; }
+    .admiralty-table td:first-child { font-weight: 600; color: var(--c6s-text-bright); }
+    .source-list { list-style: none; padding-left: 0; }
+    .source-list li { padding: 0.4rem 0; border-bottom: 1px solid rgba(80, 74, 82, 0.5); font-size: 0.8rem; }
+    .source-list li:last-child { border-bottom: none; }
+    .source-list .src-num { color: var(--c6s-accent); font-weight: 700; margin-right: 0.5rem; }
+    .toc { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; margin-bottom: 2rem; }
+    .toc-title { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-accent); margin-bottom: 0.75rem; }
+    .toc-links { list-style: none; padding-left: 0; column-count: 2; column-gap: 2rem; }
+    .toc-links li { margin-bottom: 0.35rem; }
+    .toc-links a { color: var(--c6s-text); text-decoration: none; font-size: 0.85rem; }
+    .toc-links a:hover { color: var(--c6s-accent); }
+    .gap-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; }
+    .gap-num { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: var(--c6s-accent); flex-shrink: 0; }
+    .gap-text { font-size: 0.9rem; }
+    @media (max-width: 700px) {
+      .toc-links { column-count: 1; }
+      .threat-matrix { grid-template-columns: 1fr; }
+      .cyber-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <div class="logo">Circle 6 Systems &mdash; OSINT/CTI Practice</div>
+      <div class="classification">TLP:GREEN</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> / <a href="/osint-reports/">Intelligence Reports</a> / <a href="/osint-reports/fifa-wc26/">FIFA World Cup 2026</a> / Threat Briefing
+    </nav>
+
+    <div class="title-block">
+      <h1>FIFA World Cup 2026: Pre-Event Threat &amp; Security Intelligence Briefing</h1>
+      <div class="subtitle">Full Threat Landscape Assessment &mdash; 23 Days to Kickoff</div>
+      <div class="meta-grid">
+        <div><span class="label">Report ID</span><br>C6S-FIFA-WC26-001</div>
+        <div><span class="label">Classification</span><br>TLP:GREEN</div>
+        <div><span class="label">Date</span><br>19 May 2026</div>
+        <div><span class="label">Assessment Period</span><br>11 Jun &ndash; 19 Jul 2026</div>
+        <div><span class="label">Analyst Team</span><br>C6S CTI Practice (Full Agent Deployment)</div>
+        <div><span class="label">Confidence Basis</span><br>OSINT Only &mdash; Admiralty Rated</div>
+        <div><span class="label">Sources</span><br>45+ (Government, Commercial TI, Academic, Media)</div>
+        <div><span class="label">Predictions</span><br>10 Calibrated Assessments</div>
+      </div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ol class="toc-links">
+        <li><a href="#executive-summary">Executive Summary</a></li>
+        <li><a href="#event-overview">Event Overview &amp; Scope</a></li>
+        <li><a href="#threat-landscape">Threat Landscape Overview</a></li>
+        <li><a href="#threat-actors">Threat Actor Profiles</a></li>
+        <li><a href="#threat-vectors">Threat Vectors</a></li>
+        <li><a href="#cyber-threat">Cyber Threat Environment</a></li>
+        <li><a href="#venue-assessment">US Venue Risk Assessment</a></li>
+        <li><a href="#seattle-pnw">Seattle / Pacific Northwest Focus</a></li>
+        <li><a href="#security-posture">Security Posture &amp; Gaps</a></li>
+        <li><a href="#predictions">Predictive Assessments</a></li>
+        <li><a href="#intelligence-gaps">Intelligence Gaps</a></li>
+        <li><a href="#sources">Sources &amp; Methodology</a></li>
+      </ol>
+    </div>
+
+    <!-- ============ EXECUTIVE SUMMARY ============ -->
+    <section id="executive-summary">
+      <h2>Executive Summary</h2>
+      <div class="panel critical">
+        <div class="panel-title">Bottom Line Up Front</div>
+        <p>The 2026 FIFA World Cup faces the most complex threat environment of any sporting event in modern history. The convergence of active US-Iran military conflict (Operation Epic Fury, 28 February 2026), ISIS propaganda campaigns explicitly calling for mass casualty attacks at the tournament, unprecedented cyber-criminal infrastructure already deployed at scale, domestic political polarization manifesting as boycott and protest movements, and the logistical challenge of securing venues across three sovereign nations creates a threat surface without precedent.</p>
+        <p><strong>No specific, credible plot has been publicly identified</strong> as of this assessment date. However, the aggregate threat level is <strong>ELEVATED</strong> across all vectors, with cyber operations and consumer fraud assessed as <strong>ALREADY ACTIVE</strong>.</p>
+      </div>
+
+      <div class="threat-matrix">
+        <div class="threat-card critical">
+          <div class="threat-header">
+            <span class="threat-name">Iranian State &amp; Proxies</span>
+            <span class="threat-rating rating-critical">HIGH</span>
+          </div>
+          <div class="threat-desc">Active military conflict creates unprecedented retaliatory motive. IRGC proxy networks with documented US presence. FBI on high alert for sleeper cell activation.</div>
+        </div>
+        <div class="threat-card critical">
+          <div class="threat-header">
+            <span class="threat-name">ISIS / IS-Inspired</span>
+            <span class="threat-rating rating-critical">HIGH</span>
+          </div>
+          <div class="threat-desc">Explicit propaganda calling for mass casualty attacks at WC26. Decentralized inspiration model. Historical pattern of targeting major sporting events.</div>
+        </div>
+        <div class="threat-card critical">
+          <div class="threat-header">
+            <span class="threat-name">Lone-Actor Attack</span>
+            <span class="threat-rating rating-critical">HIGH</span>
+          </div>
+          <div class="threat-desc">JCAT identifies as most probable attack modality. Fan zones and transit hubs represent extensive soft-target surface. WHCD shooting demonstrates persistent risk.</div>
+        </div>
+        <div class="threat-card critical">
+          <div class="threat-header">
+            <span class="threat-name">Cyber Operations</span>
+            <span class="threat-rating rating-critical">HIGH &mdash; ACTIVE</span>
+          </div>
+          <div class="threat-desc">9,741 domain registrations in April alone (5x Qatar 2022). 130,000 infostealer logs with FIFA credentials. Infrastructure already deployed and operational.</div>
+        </div>
+        <div class="threat-card high">
+          <div class="threat-header">
+            <span class="threat-name">Organized Crime (Mexico)</span>
+            <span class="threat-rating rating-high">HIGH</span>
+          </div>
+          <div class="threat-desc">CJNG retaliatory violence wave. Puebla mass shooting (18 May). Express kidnapping trend "unmistakably upward." Mexico deploying 100,000 security personnel.</div>
+        </div>
+        <div class="threat-card high">
+          <div class="threat-header">
+            <span class="threat-name">Consumer Fraud</span>
+            <span class="threat-rating rating-high">HIGH &mdash; ACTIVE</span>
+          </div>
+          <div class="threat-desc">75+ lookalike ticket fraud domains operational. 500M+ ticket requests vs. 7M tickets. ICE seized 276,000+ counterfeit items ($33M MSRP).</div>
+        </div>
+        <div class="threat-card elevated">
+          <div class="threat-header">
+            <span class="threat-name">Civil Unrest / Protest</span>
+            <span class="threat-rating rating-elevated">ELEVATED</span>
+          </div>
+          <div class="threat-desc">120+ civil society groups issued US travel advisory. Active boycott movements (25,800+ members). ICE dual-role as enforcement and event security creates flashpoint.</div>
+        </div>
+        <div class="threat-card elevated">
+          <div class="threat-header">
+            <span class="threat-name">UAS / Drone Threats</span>
+            <span class="threat-rating rating-elevated">ELEVATED</span>
+          </div>
+          <div class="threat-desc">FIFA flagged drones as "among most consequential" threats. Counter-UAS deployed across ~70% of US states. $625M in funding still not distributed.</div>
+        </div>
+        <div class="threat-card elevated">
+          <div class="threat-header">
+            <span class="threat-name">Domestic Extremists</span>
+            <span class="threat-rating rating-elevated">ELEVATED</span>
+          </div>
+          <div class="threat-desc">Right-wing accelerationist, left-wing anarchist, and single-issue extremist movements. Online radicalization pipelines feeding rapid attack planning.</div>
+        </div>
+        <div class="threat-card moderate">
+          <div class="threat-header">
+            <span class="threat-name">Football Hooliganism</span>
+            <span class="threat-rating rating-moderate">MODERATE</span>
+          </div>
+          <div class="threat-desc">European ultra groups and Latin American barras bravas. US/Canada lower baseline risk. Mexico host cities carry elevated risk from Liga MX history.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EVENT OVERVIEW ============ -->
+    <section id="event-overview">
+      <h2>Event Overview &amp; Scope</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Tournament Parameters</div>
+        <p><strong>48 national teams</strong> competing across <strong>16 host cities</strong> in three nations. <strong>104 matches</strong> over 39 days. An estimated <strong>5.5+ million in-person attendees</strong> and <strong>5+ billion global television viewers</strong>. The largest FIFA World Cup in history by every metric.</p>
+      </div>
+
+      <h3>Host Nations &amp; Cities</h3>
+      <table>
+        <thead>
+          <tr><th>Country</th><th>Cities</th><th>Venues</th><th>Matches</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>United States (11)</td><td>Seattle, San Francisco, Los Angeles, Kansas City, Dallas, Houston, Atlanta, Miami, Philadelphia, New York/NJ, Boston</td><td>11 NFL/MLS stadiums</td><td>78 (incl. Final)</td></tr>
+          <tr><td>Mexico (3)</td><td>Mexico City, Guadalajara, Monterrey</td><td>3 stadiums</td><td>13 (incl. Opener)</td></tr>
+          <tr><td>Canada (2)</td><td>Toronto, Vancouver</td><td>2 stadiums</td><td>13</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Key Dates</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">11 June 2026</div>
+          <div class="event"><strong>Opening Match</strong> &mdash; Mexico City, Estadio Azteca (87,523 capacity)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">15 June 2026</div>
+          <div class="event"><strong>Seattle Match 1</strong> &mdash; Belgium v Egypt, Lumen Field (68,740 capacity)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">19 June 2026</div>
+          <div class="event"><strong>Seattle Match 2</strong> &mdash; Group stage TBD, Lumen Field</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">24-26 June 2026</div>
+          <div class="event"><strong>Seattle Matches 3-5</strong> &mdash; Group stage and early knockout rounds</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">4 July 2026</div>
+          <div class="event"><strong>Quarterfinals</strong> &mdash; Multiple US venues (coincides with Independence Day)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">8-9 July 2026</div>
+          <div class="event"><strong>Semifinals</strong></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">19 July 2026</div>
+          <div class="event"><strong>Final</strong> &mdash; MetLife Stadium, New York/NJ (82,500 capacity)</div>
+        </div>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Scale Comparison</div>
+        <p>The 2026 tournament is <strong>50% larger</strong> than any previous World Cup (48 teams vs. 32). The geographic footprint spans 3 sovereign nations and 4 time zones. Security coordination complexity is without precedent&mdash;no prior mega-event has required simultaneous multi-national perimeter defense at this scale.</p>
+      </div>
+    </section>
+
+    <!-- ============ THREAT ACTORS ============ -->
+    <section id="threat-actors">
+      <h2>Threat Actor Profiles</h2>
+
+      <h3>1. Iranian State &amp; Proxy Networks</h3>
+      <div class="panel critical">
+        <div class="panel-title">Admiralty Rating: B2 (Usually Reliable / Probably True) &mdash; Threat Level: HIGH</div>
+        <p><strong>Context:</strong> On 28 February 2026, the US and Israel launched Operation Epic Fury&mdash;nearly 900 strikes in the first 12 hours targeting Iran's nuclear facilities, military infrastructure, and leadership. Supreme Leader Ali Khamenei was killed in an Israeli air strike. Iran launched retaliatory missile and drone strikes targeting US embassies, military installations, and oil infrastructure. FBI Director placed the bureau on high alert, mobilizing counterterrorism resources.</p>
+        <p><strong>Domestic Presence:</strong> GWU Program on Extremism documented 142 prosecuted individuals tied to Hezbollah networks in the US since 2000. Activity clusters: Michigan (55 cases, Dearborn/Detroit), California (19), New York (15), North Carolina (16, Charlotte smuggling rings).</p>
+        <p><strong>Assessed TTPs:</strong> Activation of pre-positioned operatives (sleeper cells); cyberattacks on transportation and critical infrastructure (DDoS, ransomware, wipers); surveillance and targeting of officials and Israeli interests; influence operations amplifying boycott narratives; proxy activation through Hezbollah networks in the Americas.</p>
+        <p><strong>Key Indicator:</strong> Former FBI special agent assessed with "fairly confident" judgment that Iranian operatives or surrogates are already positioned within the United States. Previous Hezbollah operative Kourani conducted surveillance of New York and Toronto airports and FBI/Secret Service/military facilities.</p>
+      </div>
+
+      <h3>2. ISIS / Islamic State &amp; Affiliated Networks</h3>
+      <div class="panel critical">
+        <div class="panel-title">Admiralty Rating: B2 (Usually Reliable / Probably True) &mdash; Threat Level: HIGH</div>
+        <p><strong>Direct Threat Messaging:</strong> ISIS monthly propaganda magazine has named the 2026 FIFA World Cup as a priority target, explicitly calling for "mass casualty" attacks. This follows a historical pattern of targeting major sporting events (2018 Russia World Cup, Euro 2024 Germany).</p>
+        <p><strong>Attack Modality:</strong> Decentralized inspiration model. Vehicle-ramming against fan zones and crowd queuing areas; edged weapon attacks in transit hubs; suicide vest/IED deployment (Stade de France 2015 model&mdash;thwarted by security screening); firearms attacks at soft targets outside secured perimeters.</p>
+        <p><strong>Assessment:</strong> While ISIS's operational capability in North America in 2026 is uncertain, the inspiration model requires only a single motivated individual to produce a mass casualty event. The gap between aspirational propaganda and operational capability is the critical unknown.</p>
+      </div>
+
+      <h3>3. Domestic Violent Extremists</h3>
+      <div class="panel warning">
+        <div class="panel-title">Admiralty Rating: C3 (Fairly Reliable / Possibly True) &mdash; Threat Level: ELEVATED</div>
+        <p><strong>Actor Categories:</strong> Right-wing accelerationist movements; anti-government militia groups; left-wing anarchist/anti-capitalist groups; single-issue extremists (anti-immigration, anti-globalization); online-radicalized lone actors.</p>
+        <p><strong>Context:</strong> The WHCD shooting (25 April 2026) by Cole Tomas Allen&mdash;who breached a security checkpoint at the Washington Hilton with a long gun and shot a Secret Service officer&mdash;demonstrates the persistent lone-actor threat in the current domestic environment.</p>
+        <p><strong>Key Indicator:</strong> Intelligence report (September 2025) described an online post encouraging attacks on railroad infrastructure during the World Cup. No specific plots identified, but online chatter persists across multiple extremist ideologies.</p>
+      </div>
+
+      <h3>4. Organized Protest &amp; Civil Disruption Movements</h3>
+      <div class="panel warning">
+        <div class="panel-title">Admiralty Rating: A2 (Completely Reliable / Probably True) &mdash; Threat Level: ELEVATED</div>
+        <p><strong>Active Campaigns:</strong></p>
+        <ul>
+          <li><strong>Boycott USA 2026:</strong> Dedicated website, 25,800+ Facebook group members</li>
+          <li><strong>CODEPINK:</strong> Petition to FIFA President demanding relocation of US matches, citing ICE enforcement</li>
+          <li><strong>50501 Movement:</strong> Planning demonstrations during tournament period</li>
+          <li><strong>120+ Civil Society Groups</strong> (ACLU, Amnesty International-led coalition): Formal US travel advisory issued 23 April 2026 warning of rights violations</li>
+          <li><strong>International Solidarity:</strong> 174,000+ Dutch signatures urging national team withdrawal</li>
+        </ul>
+        <p><strong>Catalysts:</strong> ICE shooting of Nicole Good in Minneapolis (February 2026); ICE announced agents would play "key part" in World Cup security; Visa Bond Pilot requiring up to $15,000 bonds from nationals of 50 countries; broader immigration enforcement environment.</p>
+      </div>
+
+      <h3>5. Organized Crime &amp; Cartel Networks (Mexico)</h3>
+      <div class="panel critical">
+        <div class="panel-title">Admiralty Rating: B2 (Usually Reliable / Probably True) &mdash; Threat Level: HIGH (Mexico venues)</div>
+        <p><strong>CJNG Retaliatory Violence:</strong> Following the killing of cartel leader "El Mencho" by security forces in February 2026, the Jalisco New Generation Cartel launched a wave of retaliatory violence in the Guadalajara corridor&mdash;one of three Mexican host cities.</p>
+        <p><strong>Assessed TTPs:</strong> Express kidnappings targeting foreign visitors (trend "unmistakably upward" per Ackerman Group); virtual kidnapping and extortion schemes; armed robbery and carjacking (risks increase after dark); retaliatory violence in Guadalajara.</p>
+        <p><strong>Key Indicator:</strong> Puebla mass shooting (10 killed, 18 May 2026) just 200km from the Mexico City opener venue. Mexico deploying 100,000 security personnel (National Guard, police, private security). President Sheinbaum ordered immediate security reinforcement at archaeological sites and tourist destinations.</p>
+      </div>
+
+      <h3>6. Football Hooligans &amp; Ultra Groups</h3>
+      <div class="panel highlight">
+        <div class="panel-title">Admiralty Rating: B3 (Usually Reliable / Possibly True) &mdash; Threat Level: MODERATE</div>
+        <p><strong>Actor Categories:</strong> European ultra groups (organized firms from England, Germany, Poland, Serbia, Argentina); Latin American barras bravas (Mexican Liga MX-affiliated groups); emerging MLS/NWSL fan violence trends.</p>
+        <p><strong>Assessed TTPs:</strong> Encrypted messaging coordination (Telegram, Signal) for pre-planned confrontations; reconnaissance of rival groups and off-site meetup locations; targeting of "soft zones"&mdash;bars, transit systems, fan festivals; pyrotechnic deployment; property destruction during post-match periods.</p>
+        <p><strong>Assessment:</strong> US/Canada carry lower baseline risk for organized hooliganism, but Philadelphia, Miami, and LA are flagged for potential incidents. Mexico host cities carry elevated risk based on Liga MX history (Queretaro-Atlas: 26 injured).</p>
+      </div>
+    </section>
+
+    <!-- ============ THREAT VECTORS ============ -->
+    <section id="threat-vectors">
+      <h2>Threat Vectors</h2>
+
+      <table>
+        <thead>
+          <tr><th>Vector</th><th>Risk</th><th>Probability</th><th>Impact</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lone-Actor Kinetic Attack (Soft Targets)</td>
+            <td><span class="badge badge-red">HIGH</span></td>
+            <td>Likely</td>
+            <td>Catastrophic</td>
+            <td>Persistent threat</td>
+          </tr>
+          <tr>
+            <td>Iran-Directed or Inspired Attack</td>
+            <td><span class="badge badge-red">HIGH</span></td>
+            <td>Realistic Possibility</td>
+            <td>Catastrophic</td>
+            <td>Active posturing</td>
+          </tr>
+          <tr>
+            <td>Cyber Operations (Disruption &amp; Exploitation)</td>
+            <td><span class="badge badge-red">HIGH</span></td>
+            <td>Almost Certain</td>
+            <td>Moderate-High</td>
+            <td><span class="badge badge-red">ACTIVE</span></td>
+          </tr>
+          <tr>
+            <td>Consumer / Ticket Fraud</td>
+            <td><span class="badge badge-red">HIGH</span></td>
+            <td>Confirmed Active</td>
+            <td>Moderate</td>
+            <td><span class="badge badge-red">ACTIVE</span></td>
+          </tr>
+          <tr>
+            <td>Organized Crime (Mexico Venues)</td>
+            <td><span class="badge badge-red">HIGH</span></td>
+            <td>Almost Certain</td>
+            <td>Moderate-High</td>
+            <td>Active violence</td>
+          </tr>
+          <tr>
+            <td>UAS / Drone Threats</td>
+            <td><span class="badge badge-amber">ELEVATED</span></td>
+            <td>Realistic Possibility</td>
+            <td>High</td>
+            <td>Countermeasures deploying</td>
+          </tr>
+          <tr>
+            <td>Civil Unrest / Mass Protest</td>
+            <td><span class="badge badge-amber">ELEVATED</span></td>
+            <td>Almost Certain</td>
+            <td>Moderate</td>
+            <td>Active mobilization</td>
+          </tr>
+          <tr>
+            <td>Hooliganism / Fan Violence</td>
+            <td><span class="badge badge-green">MODERATE</span></td>
+            <td>Likely</td>
+            <td>Low-Moderate</td>
+            <td>Monitoring</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="panel warning">
+        <div class="panel-title">Critical Vulnerability: Soft Target Surface</div>
+        <p>Fan zones, watch parties, transit queuing areas, and hotel districts represent the primary soft-target attack surface. Attackers have unrestricted access to gatherings beyond secured perimeters. Fan zones can host 30,000&ndash;50,000 attendees with limited security screening. Historical precedents: 1996 Atlanta Olympics pipe bomb (2 killed, 111 wounded), 2015 Stade de France suicide bomber, 2017 Manchester Arena bombing (22 killed), Boston Marathon bombing (3 killed, 264 wounded).</p>
+      </div>
+    </section>
+
+    <!-- ============ CYBER THREAT ENVIRONMENT ============ -->
+    <section id="cyber-threat">
+      <h2>Cyber Threat Environment</h2>
+
+      <div class="panel critical">
+        <div class="panel-title">Assessment: Cyber operations against the World Cup are not theoretical&mdash;they are already underway</div>
+        <p>The infrastructure is built, the credentials are harvested, and the domains are registered. This is the most active pre-event cyber threat landscape ever observed for a sporting event.</p>
+      </div>
+
+      <div class="cyber-stats">
+        <div class="cyber-stat">
+          <div class="stat-value">9,741</div>
+          <div class="stat-label">Domain registrations<br>April 2026 alone</div>
+        </div>
+        <div class="cyber-stat">
+          <div class="stat-value">5x</div>
+          <div class="stat-label">Peak volume vs.<br>Qatar 2022</div>
+        </div>
+        <div class="cyber-stat">
+          <div class="stat-value">130K</div>
+          <div class="stat-label">Infostealer logs<br>with FIFA credentials</div>
+        </div>
+        <div class="cyber-stat">
+          <div class="stat-value">2,500+</div>
+          <div class="stat-label">Exposed email/<br>password pairs</div>
+        </div>
+        <div class="cyber-stat">
+          <div class="stat-value">79</div>
+          <div class="stat-label">Typosquatting domains<br>on 14 coordinated IPs</div>
+        </div>
+        <div class="cyber-stat">
+          <div class="stat-value">276K+</div>
+          <div class="stat-label">Counterfeit items<br>seized by ICE</div>
+        </div>
+      </div>
+
+      <h3>State-Sponsored Cyber Actors</h3>
+      <table>
+        <thead>
+          <tr><th>Actor</th><th>Motivation</th><th>Capability</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Iran (APT33, APT34, APT35)</td><td>Retaliation for Operation Epic Fury</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>Russia (APT28, APT29, Sandworm)</td><td>Geopolitical disruption, Ukraine-related</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>China (APT41, Volt Typhoon)</td><td>Intelligence collection, IP theft</td><td><span class="badge badge-amber">MODERATE</span></td></tr>
+          <tr><td>North Korea (Lazarus, APT38)</td><td>Financial gain</td><td><span class="badge badge-amber">MODERATE</span></td></tr>
+        </tbody>
+      </table>
+
+      <h3>Hacktivist Activity</h3>
+      <p>149 hacktivist DDoS attacks hit 110 organizations in 16 countries following Middle East conflict escalation (March 2026). Pro-Palestinian, pro-Iranian, and anti-US hacktivist collectives are assessed as likely to target World Cup digital infrastructure. Malware families in active deployment: RedLine Stealer, LummaC2, Vidar.</p>
+
+      <h3>Attack Surface</h3>
+      <table>
+        <thead>
+          <tr><th>Sub-Vector</th><th>Current Scale</th><th>Trend</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Phishing / Typosquatting</td><td>9,741 new domains in April 2026</td><td>Accelerating</td></tr>
+          <tr><td>Infostealer Campaigns</td><td>130,000 logs with FIFA credentials</td><td>Growing</td></tr>
+          <tr><td>Coordinated Fraud Infrastructure</td><td>79 domains on 14 IPs, full-ecosystem replicas</td><td>Operational</td></tr>
+          <tr><td>DDoS Global Trend</td><td>Network-layer attacks up 168% YoY, peaks at 30 Tbps</td><td>Escalating</td></tr>
+          <tr><td>Ransomware</td><td>Targeting transit, hospitality, stadium ops</td><td>Active</td></tr>
+          <tr><td>Counterfeit Commerce</td><td>ICE seized 276,000+ items ($33M MSRP)</td><td>Growing rapidly</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ US VENUE RISK ASSESSMENT ============ -->
+    <section id="venue-assessment">
+      <h2>US Venue Risk Assessment</h2>
+
+      <div class="venue-grid">
+        <div class="venue-card">
+          <div class="city">New York / New Jersey</div>
+          <div class="stadium">MetLife Stadium (82,500) &mdash; FINAL VENUE</div>
+          <div class="matches">Hosts Final (Jul 19), Semifinal, and group matches. Highest-profile US venue. Primary target for state-sponsored and lone-actor threats.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Seattle, WA</div>
+          <div class="stadium">Lumen Field (68,740)</div>
+          <div class="matches">6 matches including Belgium v Egypt (Jun 15), USA v Australia, Round of 32 &amp; 16. I-5 corridor impacts. <a href="thurston-county-briefing.html">See Thurston County callout</a>.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Los Angeles, CA</div>
+          <div class="stadium">SoFi Stadium (70,240)</div>
+          <div class="matches">Multiple group stage and knockout matches. Large diaspora communities. High protest potential.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Miami, FL</div>
+          <div class="stadium">Hard Rock Stadium (64,767)</div>
+          <div class="matches">Group stage and knockout matches. Central/South American fan concentration. Hooligan risk flagged.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Dallas, TX</div>
+          <div class="stadium">AT&amp;T Stadium (80,000)</div>
+          <div class="matches">Multiple matches. Extreme heat risk (June temps 95&deg;F+). Large crowd management challenge.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Houston, TX</div>
+          <div class="stadium">NRG Stadium (72,220)</div>
+          <div class="matches">Group and knockout matches. Retractable roof mitigates heat. Proximity to Gulf coast weather risks.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Atlanta, GA</div>
+          <div class="stadium">Mercedes-Benz Stadium (71,000)</div>
+          <div class="matches">Group and knockout matches. Major transit hub. 1996 Olympics bombing precedent location.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Philadelphia, PA</div>
+          <div class="stadium">Lincoln Financial Field (69,176)</div>
+          <div class="matches">Group stage matches. DHS funding delays directly impacting preparations. Hooligan risk flagged.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">San Francisco, CA</div>
+          <div class="stadium">Levi's Stadium (68,500)</div>
+          <div class="matches">Group and knockout matches. Active protest culture. Tech sector espionage concerns.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Kansas City, MO</div>
+          <div class="stadium">Arrowhead Stadium (76,416)</div>
+          <div class="matches">Group stage matches. Interior US venue with lower international threat profile.</div>
+        </div>
+        <div class="venue-card">
+          <div class="city">Boston, MA</div>
+          <div class="stadium">Gillette Stadium (65,878)</div>
+          <div class="matches">Group stage matches. Boston Marathon bombing precedent. Strong federal law enforcement presence.</div>
+        </div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">SEAR Rating</div>
+        <p>All US venues carry a <strong>SEAR 2 (Special Event Assessment Rating)</strong> designation, triggering significant federal security support including Secret Service coordination, DHS asset deployment, and multi-agency intelligence fusion.</p>
+      </div>
+    </section>
+
+    <!-- ============ SEATTLE / PNW FOCUS ============ -->
+    <section id="seattle-pnw">
+      <h2>Seattle / Pacific Northwest Focus</h2>
+
+      <div class="panel highlight">
+        <div class="panel-title">Lumen Field &mdash; 6 Matches Scheduled</div>
+        <p>Chief Security Officer: Former Seattle Police Chief John Diaz. Multi-agency coordination: SPD, King County Sheriff, WA State Patrol, federal agencies. Temporary gates and security barriers planned. Seattle City Councilmember Bob Kettle pushing for activation of World Cup security camera network.</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Threat</th><th>Risk Level</th><th>Assessment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vehicle theft / theft from vehicles</td><td><span class="badge badge-red">HIGH</span></td><td>Dominant threat vector; peaks during summer months coinciding with tournament</td></tr>
+          <tr><td>Violent crime (evening/night)</td><td><span class="badge badge-red">HIGH</span></td><td>55% of all violent crime occurs 18:00&ndash;05:59; matches align with peak risk hours</td></tr>
+          <tr><td>Transit hub drug activity</td><td><span class="badge badge-red">HIGH</span></td><td>International District-Chinatown hub: 10.1x higher drug activity concentration</td></tr>
+          <tr><td>Transit hub assault</td><td><span class="badge badge-amber">ELEVATED</span></td><td>Same hub: 3.5x higher aggravated assault rate per square mile</td></tr>
+          <tr><td>Protest activity</td><td><span class="badge badge-amber">ELEVATED</span></td><td>Seattle active protest culture; immigration and Middle East issues likely catalysts</td></tr>
+          <tr><td>Lone-actor attack</td><td><span class="badge badge-amber">MODERATE</span></td><td>PNW history of lone-actor extremism (both left and right wing)</td></tr>
+          <tr><td>Cyber / infrastructure disruption</td><td><span class="badge badge-amber">MODERATE</span></td><td>Port of Seattle ransomware history; transit system interdependencies</td></tr>
+        </tbody>
+      </table>
+
+      <div class="panel warning">
+        <div class="panel-title">I-5 Corridor Impact</div>
+        <p>The I-5 corridor from Olympia to Seattle (60 miles) will experience significant traffic surges on match days. Thurston County residents and commuters face 2&ndash;4 hour transit time increases. Sound Transit and Amtrak Cascades services will see peak demand. See the dedicated <a href="thurston-county-briefing.html" style="color: var(--c6s-accent);">Thurston County Local Impact Briefing</a> for detailed analysis of the Olympia-Lacey Fan Zone at Port Plaza and I-5 corridor security considerations.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECURITY POSTURE ============ -->
+    <section id="security-posture">
+      <h2>Security Posture &amp; Critical Gaps</h2>
+
+      <h3>Federal Coordination</h3>
+      <div class="panel success">
+        <div class="panel-title">Deployed Security Architecture</div>
+        <ul>
+          <li><strong>White House Task Force</strong> on 2026 FIFA World Cup established March 2025</li>
+          <li><strong>ODNI Analytic Symposium</strong> held for host city law enforcement</li>
+          <li><strong>JCAT</strong> published 4 unclassified intelligence products: global threat landscape, CT response, narco-trafficking, cyber threats &amp; malign influence</li>
+          <li><strong>NCTC</strong> providing 24/7 intelligence support via National Counterterrorism Operations Center</li>
+          <li><strong>CISA</strong> running preparedness exercises with FBI and sector partners</li>
+          <li><strong>~50,000</strong> police and security personnel (US)</li>
+          <li><strong>65,000+</strong> FIFA volunteers</li>
+          <li><strong>100,000</strong> Mexican security forces (National Guard, police, private)</li>
+          <li><strong>Counter-UAS systems</strong> across ~70% of US host states</li>
+          <li><strong>FAA No Drone Zones</strong> at all venues (Temporary Flight Restrictions)</li>
+          <li><strong>FEMA</strong> $846M in grants allocated</li>
+        </ul>
+      </div>
+
+      <h3>Critical Gaps</h3>
+      <div class="panel critical">
+        <div class="panel-title">Unfunded &amp; Unresolved</div>
+        <ol>
+          <li><strong>$625M in Congressional security funding has NOT been distributed</strong> to host cities with fewer than 30 days to kickoff. This is the single most critical security preparation gap.</li>
+          <li><strong>DHS funding lapses</strong> (114+ days of shutdowns over the past year) have disrupted training, coordination, and staff retention across federal security agencies.</li>
+          <li><strong>Three-nation coordination complexity</strong>&mdash;no precedent exists for this scale of simultaneous multi-national perimeter defense.</li>
+          <li><strong>Counter-UAS personnel shortage</strong>&mdash;only ~60 officers being trained for drone mitigation across 11 US states for a 39-day event.</li>
+          <li><strong>ICE dual-role tension</strong>&mdash;immigration enforcement agency simultaneously tasked with event security creates trust deficit with diaspora communities, international visitors, and the 120+ civil society organizations that issued the travel advisory.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PREDICTIVE ASSESSMENTS ============ -->
+    <section id="predictions">
+      <h2>Predictive Assessments</h2>
+
+      <div class="panel highlight">
+        <div class="panel-title">Methodology</div>
+        <p>Calibrated probabilistic forecasts based on available OSINT as of 19 May 2026. Each prediction carries a confidence level, timeframe, and key indicators to monitor.</p>
+        <p style="margin-top:0.75rem;"><strong>Now scored.</strong> The tournament concluded 19 July 2026 and these ten predictions have been graded against outcomes: <strong>5 hit, 2 missed, 3 partial</strong> (revised across several verification passes as deeper media review corrected our first pass). See the <a href="index.html#scorecard" style="color:var(--c6s-accent);">post-event scorecard</a> for per-prediction verdicts, evidence, and an honest calibration note. Headlines: on cyber (P1) the threat model was validated when a researcher gained kill-the-stream control of the global broadcast through a FIFA flaw; the tournament had no terrorist attack (P8) but was not incident-free, fatal crowd crushes killed fans in Mexico City and Amman; and we carried one factual error on the $625M grant.</p>
+      </div>
+
+      <div class="prediction-grid">
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P1</div>
+          <div class="pred-text">Significant cyber disruption (DDoS, ransomware, or infrastructure attack) will impact at least one tournament-related system during the event window.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:90%; background: var(--c6s-red);"></div></div>
+            <span class="pct" style="color:var(--c6s-red);">90%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: Active infrastructure already deployed. 9,741 domain registrations in April alone. 130K credential logs. DDoS attacks up 168% YoY globally. Near-certainty of attempted disruption; high probability of at least partial success.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P2</div>
+          <div class="pred-text">Organized protests will occur at or near 6+ US host venues during the tournament, with at least one incident of police-protester confrontation.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:88%; background: var(--c6s-red);"></div></div>
+            <span class="pct" style="color:var(--c6s-red);">88%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: 120+ organizations already mobilized. Boycott movements active with 25,800+ members. ACLU/Amnesty travel advisory issued. ICE dual-role as lightning rod. Multiple catalyst events already in play.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P3</div>
+          <div class="pred-text">Consumer fraud losses (fake tickets, counterfeit merchandise, accommodation scams) will exceed $100M globally during the tournament cycle.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:85%; background: var(--c6s-amber);"></div></div>
+            <span class="pct" style="color:var(--c6s-amber);">85%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: 75+ lookalike domains already operational. 500M+ ticket requests vs. 7M available. ICE already seized $33M in counterfeit goods pre-tournament. Demand/supply imbalance creates unprecedented fraud surface.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P4</div>
+          <div class="pred-text">At least one criminal violence incident targeting foreign visitors will occur in a Mexican host city (kidnapping, armed robbery, or carjacking) that gains international media coverage.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:82%; background: var(--c6s-amber);"></div></div>
+            <span class="pct" style="color:var(--c6s-amber);">82%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: Express kidnapping trend "unmistakably upward." CJNG retaliatory violence active in Guadalajara. Puebla mass shooting 200km from Mexico City opener. 2M+ visitors in Mexico creates target-rich environment.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P5</div>
+          <div class="pred-text">The $625M in Congressional security funding will be partially distributed before June 11, but at least 3 host cities will report they received funds too late for optimal deployment.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:78%; background: var(--c6s-amber);"></div></div>
+            <span class="pct" style="color:var(--c6s-amber);">78%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: Funding authorized but not distributed with 23 days to kickoff. Federal procurement timelines make full deployment before June 11 extremely difficult. Political pressure creates incentive for partial release.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P6</div>
+          <div class="pred-text">At least one UAS/drone incident (unauthorized flyover, not necessarily weaponized) will disrupt or delay a match at a US venue.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:65%; background: var(--c6s-accent);"></div></div>
+            <span class="pct" style="color:var(--c6s-accent);">65%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: FIFA flagged drones as "most consequential" threat. Only ~60 officers trained on counter-UAS. Recreational and protest-motivated drone flights are difficult to prevent entirely across 39 days and 11 venues.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P7</div>
+          <div class="pred-text">Fan violence (hooliganism) will result in arrests at 3+ US/Mexico venues, primarily in off-site locations (bars, transit, fan festivals) rather than inside stadiums.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:72%; background: var(--c6s-accent);"></div></div>
+            <span class="pct" style="color:var(--c6s-accent);">72%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: European ultra groups and Latin American barras bravas will attend. Soft zones are primary confrontation venues. Alcohol consumption amplifies risk. Stadium security effective at preventing inside-venue incidents.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P8</div>
+          <div class="pred-text">No mass casualty terrorist attack (10+ fatalities) will occur at a World Cup venue or official fan zone during the tournament.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:70%; background: var(--c6s-accent);"></div></div>
+            <span class="pct" style="color:var(--c6s-accent);">70%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: Federal security posture is extensive despite gaps. Historical precedent: no successful mass-casualty attack at a FIFA World Cup venue. However, the unprecedented threat convergence (Iran, ISIS, DVE) and soft-target surface reduce confidence below 80%.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P9</div>
+          <div class="pred-text">Iran-linked cyber operations (DDoS, defacement, or infrastructure disruption) will be publicly attributed during the tournament window.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:68%; background: var(--c6s-accent);"></div></div>
+            <span class="pct" style="color:var(--c6s-accent);">68%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: APT33/34/35 assessed as HIGH capability. Operation Epic Fury provides unprecedented motive. 149 hacktivist DDoS attacks already recorded post-escalation. Tournament digital surface presents high-visibility target aligned with retaliatory intent.</p>
+        </div>
+
+        <div class="prediction-item">
+          <div class="pred-id">WC26-P10</div>
+          <div class="pred-text">The Olympia-Lacey Fan Zone at Port Plaza will operate without a major security incident across all 4 scheduled match days.</div>
+          <div class="confidence-bar">
+            <span style="font-size:0.8rem; color:var(--c6s-text-dim);">Confidence:</span>
+            <div class="bar"><div class="fill" style="width:80%; background: var(--c6s-amber);"></div></div>
+            <span class="pct" style="color:var(--c6s-amber);">80%</span>
+          </div>
+          <p style="font-size:0.8rem; color:var(--c6s-text-dim); margin:0;">Basis: Smaller venue with lower international profile. Local law enforcement coordination in place. Limited alcohol service reduces incident probability. Waterfront location provides natural crowd flow management. See <a href="thurston-county-briefing.html" style="color:var(--c6s-accent);">Thurston County callout</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INTELLIGENCE GAPS ============ -->
+    <section id="intelligence-gaps">
+      <h2>Intelligence Gaps</h2>
+
+      <div class="gap-item">
+        <div class="gap-num">1</div>
+        <div class="gap-text"><strong>Classified threat picture.</strong> JCAT products are unclassified; the classified assessment almost certainly contains more specific threat information, particularly regarding Iranian operational intent and any identified plots.</div>
+      </div>
+      <div class="gap-item">
+        <div class="gap-num">2</div>
+        <div class="gap-text"><strong>Iran operational timeline.</strong> Whether IRGC has issued specific activation orders to proxy networks timed to the World Cup remains unknown in open source.</div>
+      </div>
+      <div class="gap-item">
+        <div class="gap-num">3</div>
+        <div class="gap-text"><strong>ISIS operational capability vs. propaganda.</strong> The degree to which ISIS propaganda translates to actual operational cells in North America in 2026 is unclear from open sources alone.</div>
+      </div>
+      <div class="gap-item">
+        <div class="gap-num">4</div>
+        <div class="gap-text"><strong>Cartel strategic intent.</strong> Whether cartels will deliberately avoid disrupting the World Cup to protect tourism revenue or exploit the distraction of security forces is ambiguous.</div>
+      </div>
+      <div class="gap-item">
+        <div class="gap-num">5</div>
+        <div class="gap-text"><strong>Counter-UAS readiness.</strong> Actual effectiveness of counter-drone capabilities given funding delays, compressed training timelines, and only ~60 trained officers across 11 states is uncertain.</div>
+      </div>
+      <div class="gap-item">
+        <div class="gap-num">6</div>
+        <div class="gap-text"><strong>Host city funding deployment.</strong> Whether the $625M reaches cities before June 11 and whether it is sufficient for the stated security requirements is unknown.</div>
+      </div>
+    </section>
+
+    <!-- ============ ADMIRALTY CONFIDENCE SUMMARY ============ -->
+    <section>
+      <h2>Admiralty Scale Confidence Summary</h2>
+      <table class="admiralty-table">
+        <thead>
+          <tr><th>Threat Actor / Vector</th><th>Reliability</th><th>Credibility</th><th>Rating</th><th>Threat Level</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Iranian State / Proxy Networks</td><td>B &mdash; Usually Reliable</td><td>2 &mdash; Probably True</td><td>B2</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>ISIS / IS-Inspired Actors</td><td>B &mdash; Usually Reliable</td><td>2 &mdash; Probably True</td><td>B2</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>Domestic Violent Extremists</td><td>C &mdash; Fairly Reliable</td><td>3 &mdash; Possibly True</td><td>C3</td><td><span class="badge badge-amber">ELEVATED</span></td></tr>
+          <tr><td>Organized Protest Movements</td><td>A &mdash; Completely Reliable</td><td>2 &mdash; Probably True</td><td>A2</td><td><span class="badge badge-amber">ELEVATED</span></td></tr>
+          <tr><td>Mexican Organized Crime</td><td>B &mdash; Usually Reliable</td><td>2 &mdash; Probably True</td><td>B2</td><td><span class="badge badge-red">HIGH</span></td></tr>
+          <tr><td>Football Hooligans</td><td>B &mdash; Usually Reliable</td><td>3 &mdash; Possibly True</td><td>B3</td><td><span class="badge badge-green">MODERATE</span></td></tr>
+          <tr><td>Cyber Threat Actors (All)</td><td>A &mdash; Completely Reliable</td><td>1 &mdash; Confirmed</td><td>A1</td><td><span class="badge badge-red">HIGH (Active)</span></td></tr>
+          <tr><td>UAS / Drone Threat</td><td>B &mdash; Usually Reliable</td><td>3 &mdash; Possibly True</td><td>B3</td><td><span class="badge badge-amber">ELEVATED</span></td></tr>
+          <tr><td>Ticket / Consumer Fraud</td><td>A &mdash; Completely Reliable</td><td>1 &mdash; Confirmed</td><td>A1</td><td><span class="badge badge-red">HIGH (Active)</span></td></tr>
+          <tr><td>Lone-Actor Attack</td><td>B &mdash; Usually Reliable</td><td>2 &mdash; Probably True</td><td>B2</td><td><span class="badge badge-red">HIGH</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ SOURCES ============ -->
+    <section id="sources">
+      <h2>Sources &amp; Methodology</h2>
+
+      <div class="panel highlight">
+        <div class="panel-title">Analytic Confidence Statement</div>
+        <p>This assessment is based entirely on open-source intelligence (OSINT) collected 19 May 2026, drawing from government releases (ODNI, JCAT, DHS, CISA, FAA, FBI, ICE), commercial threat intelligence (Flashpoint, Check Point Research, Flare, Radware, Crisis24, Ackerman Group, Paladin Security, Base Operations), academic research (NCBRT/LSU, GWU Program on Extremism, HSGAC testimony), and credible media reporting. Classified intelligence would likely adjust several assessments, particularly regarding Iranian operational intent and specific plot information. The absence of a publicly identified specific, credible threat does NOT equate to the absence of a threat.</p>
+      </div>
+
+      <ol class="source-list">
+        <li><span class="src-num">[1]</span> ODNI, "ODNI Hosts Symposium with Law Enforcement to Ensure Security of 2026 FIFA World Cup," May 2026</li>
+        <li><span class="src-num">[2]</span> JCAT/NCTC, "Large Public Gatherings Attractive Targets for Violent Extremists," Intelligence Product Series (4 publications)</li>
+        <li><span class="src-num">[3]</span> Flashpoint, "Navigating the Threat Landscape of the 2026 FIFA World Cup," May 2026</li>
+        <li><span class="src-num">[4]</span> Check Point Research, "Before the First Whistle: How Cyber Criminals Are Targeting World Cup 2026," May 2026</li>
+        <li><span class="src-num">[5]</span> Flare, "From Pirated Software to Full Access to FIFA: Tracing the 2026 World Cup Infostealer Pipeline," May 2026</li>
+        <li><span class="src-num">[6]</span> Flare, "Massive World Cup Consumer Fraud Infrastructure Targets Fans Before Kickoff," May 2026</li>
+        <li><span class="src-num">[7]</span> Fox News, "Iranian sleeper cells pose World Cup threat, former FBI agent warns," May 2026</li>
+        <li><span class="src-num">[8]</span> Iran International, "Iran sleeper cells pose threat to World Cup," May 2026</li>
+        <li><span class="src-num">[9]</span> Washington Institute, "Inside Hezbollah's American Sleeper Cells," Policy Analysis</li>
+        <li><span class="src-num">[10]</span> Fox News, "FBI steps up monitoring of potential sleeper cells after Iran strikes," March 2026</li>
+        <li><span class="src-num">[11]</span> ASIS International, "Securing the World Cup Amid Geopolitical Conflict," May 2026</li>
+        <li><span class="src-num">[12]</span> ASIS International, "Q&amp;A: What Makes Securing This Year's World Cup Different?" May 2026</li>
+        <li><span class="src-num">[13]</span> LBC, "ISIS encouraging 'mass casualty' terror attacks at FIFA World Cup 2026," 2026</li>
+        <li><span class="src-num">[14]</span> Dronelife, "How DHS Is Helping World Cup Host Cities Get Counter-UAS Ready," May 2026</li>
+        <li><span class="src-num">[15]</span> FAA, "FAA's Safety Plan for FIFA World Cup 2026," 2026</li>
+        <li><span class="src-num">[16]</span> DHS S&amp;T, "S&amp;T Lab Working with State and Local Agencies to Counter Drones at the World Cup," May 2026</li>
+        <li><span class="src-num">[17]</span> Dronelife, "Sentrycs Wins Counter-UAS Contracts for 2026 World Cup Security," April 2026</li>
+        <li><span class="src-num">[18]</span> Dronelife, "Training for the Threat: FBI Expands Counter-Drone Force," February 2026</li>
+        <li><span class="src-num">[19]</span> Base Operations, "Lumen Field Seattle FIFA World Cup 26 Threat Assessment," 2026</li>
+        <li><span class="src-num">[20]</span> KING5, "Temporary gates, added security proposed at Lumen Field," 2026</li>
+        <li><span class="src-num">[21]</span> KING5, "Multiple agencies planning security for FIFA World Cup 2026 Seattle matches," 2026</li>
+        <li><span class="src-num">[22]</span> Ackerman Group, "Special Security Assessment: FIFA World Cup 2026," 2026</li>
+        <li><span class="src-num">[23]</span> Paladin Security, "Security Risks for the 2026 FIFA World Cup in North America," 2026</li>
+        <li><span class="src-num">[24]</span> ACLU, "Over 120 Civil Society Groups Issue Travel Advisory for U.S. Ahead of FIFA World Cup," April 2026</li>
+        <li><span class="src-num">[25]</span> Amnesty International USA, "2026 World Cup Travel Advisory," April 2026</li>
+        <li><span class="src-num">[26]</span> CODEPINK, "FIFA: Move the Games!" Campaign</li>
+        <li><span class="src-num">[27]</span> Boycott USA 2026, Campaign Website</li>
+        <li><span class="src-num">[28]</span> Al Jazeera, "World Cup 2026: Will violence and protests test Mexico's cohost status?" May 2026</li>
+        <li><span class="src-num">[29]</span> PBS, "Mexico to boost security at tourist sites ahead of World Cup after shooting," May 2026</li>
+        <li><span class="src-num">[30]</span> Malwarebytes, "The 2026 World Cup scam economy," May 2026</li>
+        <li><span class="src-num">[31]</span> ICE, "ICE warns fans of counterfeit merchandise ahead of FIFA World Cup," 2026</li>
+        <li><span class="src-num">[32]</span> NCBRT/LSU, "Past World Cup Threats," Academy of Counter-Terrorist Education</li>
+        <li><span class="src-num">[33]</span> Liferaft, "What Past Attacks Reveal About 2026 World Cup Security," 2026</li>
+        <li><span class="src-num">[34]</span> HSGAC, Testimony on Terrorist Threats to International Sporting Events (Ligon)</li>
+        <li><span class="src-num">[35]</span> Radware, "Defending the Pitch: Strategic Cybersecurity Advisory for FIFA World Cup 2026"</li>
+        <li><span class="src-num">[36]</span> Crisis24, "World Cup 2026 Cyber Risks Extend Beyond Stadium Systems"</li>
+        <li><span class="src-num">[37]</span> Spotlight PA, "DHS shutdown hampers World Cup security prep," April 2026</li>
+        <li><span class="src-num">[38]</span> ESPN, "Why haven't World Cup host cities received $625 million of critical funding?" 2026</li>
+        <li><span class="src-num">[39]</span> Police1, "Policing the unpredictable: Securing the FIFA World Cup 2026," 2026</li>
+        <li><span class="src-num">[40]</span> GWU Program on Extremism, Hezbollah prosecution database</li>
+        <li><span class="src-num">[41]</span> DOJ, WHCD Shooting Press Release (Cole Tomas Allen), April 2026</li>
+        <li><span class="src-num">[42]</span> Crisis24, "2026 FIFA World Cup Risks and Recommendations for Businesses"</li>
+        <li><span class="src-num">[43]</span> Wikipedia, "2026 Iran War" and "2026 FIFA World Cup Controversies"</li>
+        <li><span class="src-num">[44]</span> Cisometric, FIFA-related domain threat analysis, 2026</li>
+        <li><span class="src-num">[45]</span> FIFA World Cup 2026 Official Match Schedule</li>
+      </ol>
+    </section>
+
+    <div class="footer">
+      <p>Circle 6 Systems &mdash; OSINT/CTI Practice | Report C6S-FIFA-WC26-001 | TLP:GREEN<br>
+      Compiled 19 May 2026 | Full agent team deployment: CTI-ORCH, OSINT-RECON, SOCMINT, THREAT-ACTOR, STRAT-INTEL, CTI-REPORT<br>
+      <a href="/osint-reports/fifa-wc26/">Return to FIFA WC26 Package</a> | <a href="/osint-reports/">Intelligence Reports</a> | <a href="/">circle6systems.com</a></p>
+    </div>
+  </div>
+</body>
+</html>

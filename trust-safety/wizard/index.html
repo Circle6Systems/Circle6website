@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Estate Planning Wizard | Circle 6 Systems</title>
+  <meta name="description" content="Secure, private digital estate planning wizard. All data is encrypted locally on your device. No accounts, no cloud storage, no tracking.">
+  <!-- Unreleased ("Coming Soon"): keep out of search indexes until launch. Remove when the feature is linked/launched (#90). -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-eval'; style-src 'self'; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/wizard.css">
+</head>
+<body>
+  <a href="#main" class="skip-to-content">Skip to content</a>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo-group" aria-label="Circle 6 Systems home">
+        <div class="logo-img"><img src="assets/circle6_notext_logo.png" alt=""></div>
+        <span class="logo-text">Circle <span>6</span> Systems</span>
+      </a>
+      <span class="app-title">Digital Estate Planning</span>
+    </div>
+  </header>
+
+  <main id="main" x-data="wizardApp" x-cloak>
+
+    <!-- Loading -->
+    <template x-if="view === 'loading'">
+      <div class="loading-screen" role="status" aria-label="Loading application">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+      </div>
+    </template>
+
+    <!-- Unsupported browser -->
+    <template x-if="view === 'unsupported'">
+      <div class="auth-container">
+        <div class="card">
+          <h1>Browser Not Supported</h1>
+          <p class="auth-description">This wizard requires a modern browser with Web Crypto API and IndexedDB support. Please use a current version of Chrome, Firefox, Safari, or Edge.</p>
+          <div x-show="error" class="error-message" x-text="error" role="alert"></div>
+        </div>
+      </div>
+    </template>
+
+    <!-- First-time setup -->
+    <template x-if="view === 'setup'">
+      <div class="auth-container">
+        <div class="card">
+          <h1>Create Your Passphrase</h1>
+          <p class="auth-description">Your passphrase encrypts all data locally on this device. There are no accounts, no cloud storage, and no way to recover a forgotten passphrase.</p>
+
+          <div class="privacy-badges">
+            <span class="badge">Zero-Knowledge</span>
+            <span class="badge">Device-Only Storage</span>
+            <span class="badge">AES-256 Encrypted</span>
+          </div>
+
+          <div class="storage-disclaimer">
+            <h2>How Your Data Is Stored</h2>
+            <p>This is not a cloud service. There are no accounts and no servers storing your information. All of your data is encrypted and saved inside this browser on this device using a technology called IndexedDB.</p>
+            <p><strong>What this means:</strong></p>
+            <ul>
+              <li>Your data exists only in this browser. It is not backed up anywhere.</li>
+              <li>Clearing your browser data, resetting your browser, or switching to a different browser or device will permanently erase your progress.</li>
+              <li>Private or incognito windows do not save data between sessions.</li>
+            </ul>
+            <p>Use the <strong>Export Bundle</strong> feature regularly to save a durable, portable copy of your plan. The exported file is self-contained and works forever, independent of this website.</p>
+          </div>
+
+          <form @submit.prevent="createPassphrase">
+            <div class="form-group">
+              <label class="form-label" for="setup-pass">Passphrase</label>
+              <input type="password" id="setup-pass" class="form-input" x-model="passphrase" @input="updatePassphraseStrength()" placeholder="At least 12 characters" autocomplete="new-password" aria-describedby="setup-hint setup-strength-hint">
+              <div id="setup-hint" class="passphrase-hint" x-show="passphrase.length > 0 && passphrase.length < 12" aria-live="polite">
+                <span x-text="12 - passphrase.length"></span> more characters needed
+              </div>
+              <div id="setup-strength-hint" class="strength-meter" x-show="passphrase.length >= 12" aria-live="polite">
+                <div class="strength-bar">
+                  <div class="strength-fill" :class="passphraseStrength.cls" :style="'width:' + Math.round((passphraseStrength.score / 7) * 100) + '%'"></div>
+                </div>
+                <span class="strength-label" :class="passphraseStrength.cls" x-text="passphraseStrength.label"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="setup-confirm">Confirm Passphrase</label>
+              <input type="password" id="setup-confirm" class="form-input" x-model="passphraseConfirm" placeholder="Re-enter your passphrase" autocomplete="new-password">
+            </div>
+
+            <p class="auth-warning">There is no password reset. If you forget your passphrase, your data cannot be recovered.</p>
+
+            <div x-show="error" class="error-message" x-text="error" role="alert"></div>
+
+            <button type="submit" class="btn btn-primary" :disabled="isProcessing || passphrase.length < 12" aria-label="Create passphrase and begin">
+              <span x-show="!isProcessing">Begin</span>
+              <span x-show="isProcessing">Encrypting...</span>
+            </button>
+          </form>
+          <p class="import-link-text">Have a previous export? <button type="button" class="link-btn" @click="startImport()" aria-label="Restore from a previously exported bundle">Restore from a previous export</button></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Returning user unlock -->
+    <template x-if="view === 'auth'">
+      <div class="auth-container">
+        <div class="card">
+          <h1>Welcome Back</h1>
+          <p class="auth-description">Enter your passphrase to unlock your encrypted data.</p>
+
+          <div class="storage-reminder">
+            Your data is stored only in this browser. If you have not exported a bundle recently, do so after unlocking. Clearing browser data will permanently erase your progress.
+          </div>
+
+          <form @submit.prevent="unlock">
+            <div class="form-group">
+              <label class="form-label" for="auth-pass">Passphrase</label>
+              <input type="password" id="auth-pass" class="form-input" x-model="passphrase" placeholder="Enter your passphrase" autocomplete="current-password" autofocus>
+            </div>
+
+            <div x-show="error" class="error-message" x-text="error" role="alert"></div>
+
+            <button type="submit" class="btn btn-primary" :disabled="isProcessing" aria-label="Unlock encrypted data">
+              <span x-show="!isProcessing">Unlock</span>
+              <span x-show="isProcessing">Decrypting...</span>
+            </button>
+          </form>
+          <p class="import-link-text">Need to restore from a bundle? <button type="button" class="link-btn" @click="startImport()" aria-label="Restore from a previously exported bundle">Restore from a previous export</button></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Bundle Import -->
+    <template x-if="view === 'import'">
+      <div class="auth-container">
+        <div class="card">
+          <h1>Restore from Export</h1>
+
+          <!-- Step: Select File -->
+          <template x-if="importStep === 'select'">
+            <div>
+              <p class="auth-description">Select a previously exported bundle file to restore your digital estate plan. This is the HTML file named <strong>digital-estate-bundle-[date].html</strong> that was generated by the Export Bundle feature.</p>
+              <div class="form-group">
+                <label class="form-label" for="import-file">Select Bundle File</label>
+                <input type="file" id="import-file" class="form-input" accept=".html" @change="onImportFileSelected($event)" aria-label="Select an exported bundle HTML file">
+              </div>
+              <div x-show="importError" class="error-message" x-text="importError" role="alert"></div>
+              <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel import">Cancel</button>
+            </div>
+          </template>
+
+          <!-- Step: Enter Bundle Passphrase -->
+          <template x-if="importStep === 'decrypt'">
+            <div>
+              <p class="auth-description">Enter the passphrase that was used when this bundle was created. This is the bundle passphrase, not your wizard passphrase.</p>
+              <form @submit.prevent="decryptBundle()">
+                <div class="form-group">
+                  <label class="form-label" for="import-bundle-pass">Bundle Passphrase</label>
+                  <input type="password" id="import-bundle-pass" class="form-input" x-model="importBundlePassphrase" placeholder="Enter the bundle passphrase" autocomplete="off" autofocus>
+                </div>
+                <div x-show="importError" class="error-message" x-text="importError" role="alert"></div>
+                <div class="import-actions">
+                  <button type="submit" class="btn btn-primary" :disabled="isProcessing || !importBundlePassphrase" aria-label="Decrypt the bundle">
+                    <span x-show="!isProcessing">Decrypt</span>
+                    <span x-show="isProcessing">Decrypting...</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel import">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </template>
+
+          <!-- Step: Legacy Bundle -->
+          <template x-if="importStep === 'legacy'">
+            <div>
+              <div class="import-legacy-message">
+                <p>This bundle was created before the import feature was available. It can be viewed by opening the file directly in a browser, but its data cannot be imported into the wizard.</p>
+                <p>To create an importable bundle, open the wizard where your data is still available and export a new bundle.</p>
+              </div>
+              <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Go back">Back</button>
+            </div>
+          </template>
+
+          <!-- Step: Set New Wizard Passphrase -->
+          <template x-if="importStep === 'passphrase'">
+            <div>
+              <p class="auth-description">Your bundle has been decrypted. Now choose a passphrase to protect your data on this device. This can be the same as your previous wizard passphrase or something new.</p>
+              <form @submit.prevent="setImportPassphrase()">
+                <div class="form-group">
+                  <label class="form-label" for="import-new-pass">New Passphrase</label>
+                  <input type="password" id="import-new-pass" class="form-input" x-model="importNewPassphrase" placeholder="At least 12 characters" autocomplete="new-password" autofocus>
+                  <div class="passphrase-hint" x-show="importNewPassphrase.length > 0 && importNewPassphrase.length < 12" aria-live="polite">
+                    <span x-text="12 - importNewPassphrase.length"></span> more characters needed
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="import-confirm-pass">Confirm Passphrase</label>
+                  <input type="password" id="import-confirm-pass" class="form-input" x-model="importNewPassphraseConfirm" placeholder="Re-enter your passphrase" autocomplete="new-password">
+                </div>
+                <p class="auth-warning">There is no password reset. If you forget your passphrase, your data cannot be recovered. Keep your exported bundle as a backup.</p>
+                <div x-show="importError" class="error-message" x-text="importError" role="alert"></div>
+                <div class="import-actions">
+                  <button type="submit" class="btn btn-primary" :disabled="isProcessing || importNewPassphrase.length < 12" aria-label="Set passphrase and restore data">
+                    <span x-show="!isProcessing">Restore Data</span>
+                    <span x-show="isProcessing">Setting up...</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel import">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </template>
+
+          <!-- Step: Confirm Overwrite -->
+          <template x-if="importStep === 'confirm'">
+            <div>
+              <div class="import-overwrite-warning">
+                <p><strong>This device already has an estate plan saved.</strong></p>
+                <p>Restoring from a bundle will permanently replace all existing data. This cannot be undone. If you want to keep your current data, cancel now and export a bundle first.</p>
+              </div>
+              <div class="import-actions">
+                <button type="button" class="btn btn-primary" @click="confirmRestore()" :disabled="isProcessing" aria-label="Replace existing data with bundle contents">
+                  <span x-show="!isProcessing">Replace Existing Data</span>
+                  <span x-show="isProcessing">Restoring...</span>
+                </button>
+                <button type="button" class="btn btn-secondary" @click="cancelImport()" aria-label="Cancel and keep existing data">Cancel</button>
+              </div>
+            </div>
+          </template>
+
+          <!-- Step: Restoring -->
+          <template x-if="importStep === 'restoring'">
+            <div class="import-restoring" role="status" aria-live="polite">
+              <div class="spinner"></div>
+              <p x-text="importProgress || 'Preparing restoration...'"></p>
+            </div>
+          </template>
+
+          <!-- Step: Done -->
+          <template x-if="importStep === 'done'">
+            <div>
+              <div class="import-success">
+                <h2>Restoration Complete</h2>
+                <p>Your digital estate plan has been restored.</p>
+                <ul x-show="importResult">
+                  <li><span x-text="importResult ? importResult.items : 0"></span> items recovered</li>
+                  <li><span x-text="importResult ? importResult.notes : 0"></span> sections with notes recovered</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-primary" @click="completeImport()" aria-label="Continue to dashboard">Continue to Dashboard</button>
+            </div>
+          </template>
+
+        </div>
+      </div>
+    </template>
+
+    <!-- Dashboard -->
+    <template x-if="view === 'dashboard'">
+      <div class="dashboard-container">
+        <div class="dashboard-header">
+          <h1>Your Digital Estate Plan</h1>
+          <div class="dashboard-actions">
+            <button class="btn btn-primary btn-small" @click="initExportView()" aria-label="Export secure bundle">Export Bundle</button>
+            <button class="btn btn-secondary btn-small" @click="startDataImport()" aria-label="Import accounts from browser data">Import Accounts</button>
+            <button class="btn btn-secondary btn-small" @click="view = 'guidance'" aria-label="Guidance and readiness">Guidance</button>
+            <button class="btn btn-secondary btn-small" @click="view = 'settings'" aria-label="Settings">Settings</button>
+            <button class="btn btn-secondary btn-small" @click="lock()" aria-label="Lock the wizard">Lock</button>
+          </div>
+        </div>
+
+        <div class="dashboard-storage-notice">
+          <strong>Browser-only storage:</strong> Your data lives in this browser and is not backed up. Use <button class="link-btn" @click="initExportView()">Export Bundle</button> to create a portable, encrypted copy you can store safely and re-import later.
+        </div>
+
+        <div class="overall-progress">
+          <div class="progress-label">
+            <span>Overall Progress</span>
+            <span x-text="getOverallProgress().percent + '%'"></span>
+          </div>
+          <div class="progress-bar" role="progressbar" :aria-valuenow="getOverallProgress().percent" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-fill" :style="'width:' + getOverallProgress().percent + '%'"></div>
+          </div>
+        </div>
+
+        <div class="path-filter" role="tablist" aria-label="Filter by path">
+          <button role="tab" :aria-selected="pathFilter === 'all'" :class="{'active': pathFilter === 'all'}" @click="setPathFilter('all')">All Sections</button>
+          <button role="tab" :aria-selected="pathFilter === 'a'" :class="{'active': pathFilter === 'a'}" @click="setPathFilter('a')">Path A: Planning Ahead</button>
+          <button role="tab" :aria-selected="pathFilter === 'b'" :class="{'active': pathFilter === 'b'}" @click="setPathFilter('b')">Path B: Navigating Loss</button>
+        </div>
+
+        <div class="section-grid">
+          <template x-for="section in filteredSections" :key="section.id">
+            <button class="section-card" @click="navigateToSection(section.id)" :aria-label="'Section ' + section.number + ': ' + section.title + ', ' + section.progress.percent + '% complete'">
+              <div class="section-card-header">
+                <span class="section-number" x-text="section.number"></span>
+                <span class="section-path-badge" :class="'path-' + section.path" x-text="section.path === 'a' ? 'Planning' : 'Loss'"></span>
+                <span class="section-complete-badge" x-show="section.progress.percent === 100">Complete</span>
+              </div>
+              <h2 class="section-card-title" x-text="section.title"></h2>
+              <p class="section-card-guideline" x-show="section.guideline" x-text="section.guideline"></p>
+              <div class="section-card-progress">
+                <div class="progress-bar progress-bar-sm" role="progressbar" :aria-valuenow="section.progress.percent" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-fill" :style="'width:' + section.progress.percent + '%'"></div>
+                </div>
+                <span class="progress-text" x-text="section.progress.completed + '/' + section.progress.total"></span>
+              </div>
+            </button>
+          </template>
+        </div>
+
+        <!-- Platform Quick Access -->
+        <h2 class="dashboard-section-heading">Platform Legacy Access</h2>
+        <p class="dashboard-section-desc">Step-by-step guides for setting up legacy access on major platforms.</p>
+        <div class="platform-grid">
+          <template x-for="(platform, key) in getPlatforms()" :key="key">
+            <button class="platform-card" @click="navigateToPlatform(key)" :aria-label="platform.name + ' legacy access setup'">
+              <span class="platform-card-name" x-text="platform.name"></span>
+              <span class="platform-card-time" x-show="platform.timeEstimate" x-text="platform.timeEstimate"></span>
+            </button>
+          </template>
+        </div>
+
+        <!-- Vault Quick Access -->
+        <h2 class="dashboard-section-heading">Password Vault Emergency Access</h2>
+        <p class="dashboard-section-desc">Configure emergency access in your password manager so your trusted person can retrieve credentials.</p>
+        <div class="platform-grid">
+          <template x-for="(vault, key) in getVaults()" :key="key">
+            <button class="platform-card vault-card" @click="navigateToVault(key)" :aria-label="vault.name + ' emergency access setup'">
+              <span class="platform-card-name" x-text="vault.name"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+    </template>
+
+    <!-- Section Walkthrough -->
+    <template x-if="view === 'section'">
+      <div class="section-container">
+        <div class="section-header">
+          <button class="btn-back" @click="backToDashboard()" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <div class="section-title-group">
+            <span class="section-number-lg" x-text="'Section ' + currentSection.number"></span>
+            <h1 x-text="currentSection.title"></h1>
+          </div>
+          <div class="section-header-progress">
+            <span x-text="sectionProgress.completed + ' of ' + sectionProgress.total + ' items (' + sectionProgress.percent + '%)'"></span>
+            <div class="progress-bar progress-bar-sm">
+              <div class="progress-fill" :style="'width:' + sectionProgress.percent + '%'"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="section-guideline" x-show="currentSection.guideline" x-text="currentSection.guideline"></p>
+
+        <div class="save-status-bar">
+          <span class="save-indicator" x-show="saveStatus" x-text="saveStatus" x-transition.opacity role="status" aria-live="polite"></span>
+          <span class="auto-save-hint" x-show="!saveStatus">Your progress is saved automatically as you work</span>
+        </div>
+
+        <p class="section-description" x-text="currentSection.description"></p>
+
+        <template x-for="subsection in currentSection.subsections" :key="subsection.id">
+          <div class="subsection">
+            <h2 class="subsection-title" x-text="subsection.title"></h2>
+            <p class="subsection-description" x-show="subsection.description" x-text="subsection.description"></p>
+
+            <template x-for="category in (subsection.categories || [{items: subsection.items, title: null}])" :key="category.id || category.title || 'default'">
+              <div class="category-group" :class="{'category-collapsible': category.title, 'category-expanded': category.title && isCategoryExpanded(category.id || category.title || 'default')}">
+
+                <template x-if="category.title">
+                  <button
+                    class="category-header"
+                    @click="toggleCategory(category.id || category.title || 'default')"
+                    :aria-expanded="String(isCategoryExpanded(category.id || category.title || 'default'))"
+                    :aria-controls="'cat-body-' + (category.id || category.title || 'default')"
+                    type="button"
+                  >
+                    <span class="category-chevron" :class="{'open': isCategoryExpanded(category.id || category.title || 'default')}"></span>
+                    <h3 class="category-title" x-text="category.title"></h3>
+                    <span class="category-progress-badge" x-show="!isCategoryExpanded(category.id || category.title || 'default')">
+                      <span x-text="getCategoryProgress(category).completed + '/' + getCategoryProgress(category).total"></span>
+                      <span class="category-progress-bar-wrap">
+                        <span class="progress-bar progress-bar-sm category-progress-bar">
+                          <span class="progress-fill" :style="'width:' + (getCategoryProgress(category).total > 0 ? Math.round((getCategoryProgress(category).completed / getCategoryProgress(category).total) * 100) : 0) + '%'"></span>
+                        </span>
+                      </span>
+                    </span>
+                  </button>
+                </template>
+
+                <div
+                  :id="'cat-body-' + (category.id || category.title || 'default')"
+                  class="category-body"
+                  x-show="!category.title || isCategoryExpanded(category.id || category.title || 'default')"
+                  x-transition:enter="category-transition"
+                  x-transition:enter-start="category-collapsed"
+                  x-transition:enter-end="category-open"
+                  x-transition:leave="category-transition"
+                  x-transition:leave-start="category-open"
+                  x-transition:leave-end="category-collapsed"
+                  role="region"
+                  :aria-label="category.title || 'Checklist items'"
+                >
+                  <ul class="checklist" role="list">
+                    <template x-for="item in category.items" :key="item.id">
+                      <li class="checklist-item" :class="{'is-checked': getItemState(item.id).checked, 'is-na': getItemState(item.id).na}">
+                        <div class="checklist-item-top">
+                          <label class="checklist-label">
+                            <input type="checkbox" :checked="getItemState(item.id).checked" @change="toggleItem(item.id, 'checked')" :disabled="getItemState(item.id).na" :aria-label="item.text">
+                            <span class="checklist-text" x-text="item.text"></span>
+                          </label>
+                          <button class="na-toggle" :class="{'active': getItemState(item.id).na}" @click="toggleItem(item.id, 'na')" :aria-label="'Mark ' + item.text + ' as not applicable'" :aria-pressed="String(getItemState(item.id).na)">N/A</button>
+                        </div>
+                        <input type="text" class="item-value-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" :value="getItemState(item.id).value" @input="onItemValueInput(item.id, $event.target.value)" :disabled="getItemState(item.id).na" :placeholder="'Details for: ' + item.text" :aria-label="'Enter details for ' + item.text">
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+
+              </div>
+            </template>
+          </div>
+        </template>
+
+        <div class="section-notes">
+          <label for="section-notes-input" class="section-notes-label">Notes for this section</label>
+          <textarea id="section-notes-input" class="section-notes-input" x-model="sectionNotes" @input="onNotesInput()" placeholder="Add private notes about this section..." rows="4" aria-describedby="notes-hint"></textarea>
+          <div id="notes-hint" class="notes-hint">
+            <span x-show="isSaving">Saving...</span>
+            <span x-show="!isSaving">Notes are encrypted on your device</span>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Platform Guided Setup -->
+    <template x-if="view === 'platform'">
+      <div class="platform-container">
+        <div class="section-header">
+          <button class="btn-back" @click="backFromPlatform()" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <div class="section-title-group">
+            <h1 x-text="currentPlatform.name + ' Legacy Access Setup'"></h1>
+          </div>
+        </div>
+
+        <div class="platform-info" x-show="currentPlatform.timeEstimate">
+          <span class="info-label">Estimated time:</span>
+          <span x-text="currentPlatform.timeEstimate"></span>
+        </div>
+
+        <div class="platform-tabs" role="tablist">
+          <button role="tab" :aria-selected="platformTab === 'planning'" :class="{'active': platformTab === 'planning'}" @click="platformTab = 'planning'">Planning Steps</button>
+          <button role="tab" :aria-selected="platformTab === 'recovery'" :class="{'active': platformTab === 'recovery'}" @click="platformTab = 'recovery'">Recovery Steps</button>
+          <button role="tab" :aria-selected="platformTab === 'info'" :class="{'active': platformTab === 'info'}" @click="platformTab = 'info'">What to Know</button>
+        </div>
+
+        <!-- Planning Steps Tab -->
+        <div x-show="platformTab === 'planning'" role="tabpanel">
+          <div class="guided-steps">
+            <template x-for="(step, index) in currentPlatform.planningSteps" :key="index">
+              <div class="guided-step" :class="{'is-active': platformStep === index}">
+                <div class="step-header" @click="platformStep = (platformStep === index ? -1 : index)">
+                  <span class="step-number" x-text="index + 1"></span>
+                  <span class="step-title" x-text="step.title || step.text || step"></span>
+                  <span class="step-chevron" :class="{'open': platformStep === index}"></span>
+                </div>
+                <div class="step-body" x-show="platformStep === index">
+                  <p x-show="step.description" x-text="step.description"></p>
+                  <a x-show="step.link" :href="step.link" target="_blank" rel="noopener" class="step-link">Open Settings</a>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Recovery Steps Tab -->
+        <div x-show="platformTab === 'recovery'" role="tabpanel">
+          <div class="guided-steps">
+            <template x-for="(step, index) in currentPlatform.recoverySteps" :key="index">
+              <div class="guided-step" :class="{'is-active': platformStep === index}">
+                <div class="step-header" @click="platformStep = (platformStep === index ? -1 : index)">
+                  <span class="step-number" x-text="index + 1"></span>
+                  <span class="step-title" x-text="step.title || step.text || step"></span>
+                  <span class="step-chevron" :class="{'open': platformStep === index}"></span>
+                </div>
+                <div class="step-body" x-show="platformStep === index">
+                  <p x-show="step.description" x-text="step.description"></p>
+                  <a x-show="step.link" :href="step.link" target="_blank" rel="noopener" class="step-link">Open Link</a>
+                  <div class="documents-list" x-show="step.documents">
+                    <strong>Documents needed:</strong>
+                    <ul>
+                      <template x-for="doc in (step.documents || [])" :key="doc">
+                        <li x-text="doc"></li>
+                      </template>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Info Tab -->
+        <div x-show="platformTab === 'info'" role="tabpanel">
+          <div class="info-grid">
+            <div class="info-card" x-show="currentPlatform.whatYouGet && currentPlatform.whatYouGet.length">
+              <h3>What You Get</h3>
+              <ul>
+                <template x-for="item in currentPlatform.whatYouGet" :key="item">
+                  <li x-text="item"></li>
+                </template>
+              </ul>
+            </div>
+            <div class="info-card" x-show="currentPlatform.whatYouDontGet && currentPlatform.whatYouDontGet.length">
+              <h3>What You Do Not Get</h3>
+              <ul>
+                <template x-for="item in currentPlatform.whatYouDontGet" :key="item">
+                  <li x-text="item"></li>
+                </template>
+              </ul>
+            </div>
+            <div class="info-card warning-card" x-show="currentPlatform.warnings && currentPlatform.warnings.length">
+              <h3>Important Warnings</h3>
+              <ul>
+                <template x-for="warn in currentPlatform.warnings" :key="warn">
+                  <li x-text="warn"></li>
+                </template>
+              </ul>
+            </div>
+            <div class="info-card" x-show="currentPlatform.tips && currentPlatform.tips.length">
+              <h3>Tips</h3>
+              <ul>
+                <template x-for="tip in currentPlatform.tips" :key="tip">
+                  <li x-text="tip"></li>
+                </template>
+              </ul>
+            </div>
+            <div class="info-card" x-show="currentPlatform.documentsNeeded && currentPlatform.documentsNeeded.length">
+              <h3>Documents Typically Needed</h3>
+              <ul>
+                <template x-for="doc in currentPlatform.documentsNeeded" :key="doc">
+                  <li x-text="doc"></li>
+                </template>
+              </ul>
+            </div>
+            <div class="info-card" x-show="currentPlatform.timeline && currentPlatform.timeline.length">
+              <h3>Timeline</h3>
+              <ul class="timeline-list">
+                <template x-for="entry in currentPlatform.timeline" :key="entry.action">
+                  <li>
+                    <span class="timeline-action" x-text="entry.action"></span>
+                    <span class="timeline-duration" x-text="entry.duration"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Password Vault Setup -->
+    <template x-if="view === 'vault'">
+      <div class="vault-container">
+        <div class="section-header">
+          <button class="btn-back" @click="backFromVault()" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <div class="section-title-group">
+            <h1 x-text="currentVault.name + ' Emergency Access Setup'"></h1>
+          </div>
+        </div>
+
+        <div class="platform-tabs" role="tablist">
+          <button role="tab" :aria-selected="vaultTab === 'planning'" :class="{'active': vaultTab === 'planning'}" @click="vaultTab = 'planning'">Setup Steps</button>
+          <button role="tab" :aria-selected="vaultTab === 'recovery'" :class="{'active': vaultTab === 'recovery'}" @click="vaultTab = 'recovery'">Recovery Steps</button>
+          <button role="tab" :aria-selected="vaultTab === 'info'" :class="{'active': vaultTab === 'info'}" @click="vaultTab = 'info'">Tips and Warnings</button>
+        </div>
+
+        <!-- Planning (setup) steps -->
+        <div x-show="vaultTab === 'planning'" role="tabpanel">
+          <div class="guided-steps">
+            <template x-for="(step, index) in currentVault.planningSteps" :key="index">
+              <div class="guided-step" :class="{'is-active': vaultStep === index}">
+                <div class="step-header" @click="vaultStep = (vaultStep === index ? -1 : index)">
+                  <span class="step-number" x-text="index + 1"></span>
+                  <span class="step-title" x-text="step.title || step.text || step"></span>
+                  <span class="step-chevron" :class="{'open': vaultStep === index}"></span>
+                </div>
+                <div class="step-body" x-show="vaultStep === index">
+                  <p x-show="step.description" x-text="step.description"></p>
+                  <a x-show="step.link" :href="step.link" target="_blank" rel="noopener" class="step-link">Open Settings</a>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Recovery steps -->
+        <div x-show="vaultTab === 'recovery'" role="tabpanel">
+          <div class="guided-steps">
+            <template x-for="(step, index) in currentVault.recoverySteps" :key="index">
+              <div class="guided-step" :class="{'is-active': vaultStep === index}">
+                <div class="step-header" @click="vaultStep = (vaultStep === index ? -1 : index)">
+                  <span class="step-number" x-text="index + 1"></span>
+                  <span class="step-title" x-text="step.title || step.text || step"></span>
+                  <span class="step-chevron" :class="{'open': vaultStep === index}"></span>
+                </div>
+                <div class="step-body" x-show="vaultStep === index">
+                  <p x-show="step.description" x-text="step.description"></p>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Tips/Warnings tab -->
+        <div x-show="vaultTab === 'info'" role="tabpanel">
+          <div class="info-grid">
+            <div class="info-card warning-card" x-show="currentVault.warnings && currentVault.warnings.length">
+              <h3>Important Warnings</h3>
+              <ul>
+                <template x-for="warn in currentVault.warnings" :key="warn">
+                  <li x-text="warn"></li>
+                </template>
+              </ul>
+            </div>
+            <div class="info-card" x-show="currentVault.tips && currentVault.tips.length">
+              <h3>Tips</h3>
+              <ul>
+                <template x-for="tip in currentVault.tips" :key="tip">
+                  <li x-text="tip"></li>
+                </template>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Secure Bundle Export -->
+    <template x-if="view === 'export'">
+      <div class="export-container">
+        <div class="section-header">
+          <button class="btn-back" @click="view = 'dashboard'" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <h1>Export Secure Bundle</h1>
+        </div>
+
+        <div class="export-intro">
+          <p>This creates three files to help your executor and loved ones access your plan:</p>
+          <div class="export-file-list">
+            <div class="export-file-card">
+              <h3>1. Encrypted Bundle</h3>
+              <p>A self-contained HTML file with all your plan data encrypted inside. Anyone can open it in a browser, but the data is only readable with the correct passphrase. Store this on a USB drive, in cloud storage, or with your attorney.</p>
+            </div>
+            <div class="export-file-card">
+              <h3>2. Executor Instructions</h3>
+              <p>A formal reference document for the designated Digital Executor. It explains what the bundle is, where to find it, and how to open it. It does <strong>not</strong> contain the passphrase.</p>
+            </div>
+            <div class="export-file-card">
+              <h3>3. Access Kit</h3>
+              <p>A single-page, compassionate guide designed for a family member or trusted person who may be navigating loss. It explains where to find the bundle and how to open it, in clear and gentle language. You can choose whether to include the passphrase on this document.</p>
+            </div>
+          </div>
+
+          <div class="export-split-knowledge">
+            <h3>How the Pieces Fit Together</h3>
+            <p>For security, the encrypted bundle and the passphrase should be stored separately. Your executor and loved ones will need both the bundle file and the passphrase to access your plan:</p>
+            <ul>
+              <li><strong>The encrypted bundle</strong> -- stored digitally (USB drive, cloud storage, attorney file)</li>
+              <li><strong>The passphrase</strong> -- stored physically and separately (sealed envelope with attorney, safe deposit box, or in your will)</li>
+              <li><strong>The executor instructions</strong> -- stored with your will or estate documents, a formal reference for the Digital Executor</li>
+              <li><strong>The access kit</strong> -- given to a trusted family member or kept with the passphrase, a gentle guide for someone who needs help accessing the plan</li>
+            </ul>
+          </div>
+        </div>
+
+        <form @submit.prevent="generateSecureBundle()" class="export-form">
+          <h2>Select Data to Include</h2>
+          <p class="export-form-desc">Choose which sections of your plan to include in the encrypted bundle. Only sections with data you have entered will appear in the export.</p>
+
+          <fieldset class="bundle-section-select">
+            <legend class="sr-only">Sections to include in bundle</legend>
+            <template x-for="section in sections" :key="section.id">
+              <label class="bundle-section-option">
+                <input type="checkbox" x-model="bundleIncludeSections[section.id]">
+                <span class="bundle-section-label">
+                  <span x-text="'Section ' + section.number + ': ' + section.title"></span>
+                  <span class="bundle-section-path" x-text="section.path === 'a' ? 'Path A' : 'Path B'"></span>
+                </span>
+              </label>
+            </template>
+            <div class="bundle-section-count" aria-live="polite">
+              <span x-text="getBundleSelectedCount()"></span> of <span x-text="sections.length"></span> sections selected
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label class="form-label" for="bundle-message">Personal Message for Your Executor <span class="form-optional">(optional)</span></label>
+            <textarea id="bundle-message" class="form-input form-textarea" x-model="bundleCustomMessage" rows="4" placeholder="A personal note, context, or instructions for the person managing your digital estate." autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+          </div>
+
+          <h2>Set Bundle Passphrase</h2>
+          <p class="export-form-desc">Choose a passphrase specifically for this bundle. It should be different from your wizard passphrase. Your executor will need this passphrase to open the bundle.</p>
+
+          <div class="form-group">
+            <label class="form-label" for="bundle-pass">Bundle Passphrase</label>
+            <input type="password" id="bundle-pass" class="form-input" x-model="bundlePassphrase" @input="updateBundleStrength()" placeholder="At least 12 characters" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-describedby="bundle-strength-hint">
+            <div id="bundle-strength-hint" class="strength-meter" x-show="bundlePassphrase.length > 0" aria-live="polite">
+              <div class="strength-bar">
+                <div class="strength-fill" :class="bundleStrength.cls" :style="'width:' + Math.round((bundleStrength.score / 7) * 100) + '%'"></div>
+              </div>
+              <span class="strength-label" :class="bundleStrength.cls" x-text="bundlePassphrase.length < 12 ? (12 - bundlePassphrase.length) + ' more characters needed' : bundleStrength.label"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="bundle-confirm">Confirm Bundle Passphrase</label>
+            <input type="password" id="bundle-confirm" class="form-input" x-model="bundlePassphraseConfirm" placeholder="Re-enter the bundle passphrase" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="bundle-location">Where will you store the encrypted bundle?</label>
+            <input type="text" id="bundle-location" class="form-input" x-model="bundleLocation" placeholder="e.g., USB drive in home safe, Google Drive, attorney's office" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="passphrase-location">Where will you store the passphrase?</label>
+            <input type="text" id="passphrase-location" class="form-input" x-model="passphraseLocation" placeholder="e.g., sealed envelope with attorney, safe deposit box" autocomplete="off">
+          </div>
+
+          <p class="auth-warning">Write down or securely store the bundle passphrase. If it is lost, the encrypted bundle cannot be opened. There is no recovery mechanism.</p>
+
+          <h2>Access Kit Options</h2>
+          <p class="export-form-desc">The access kit is a compassionate, single-page guide you can share with a family member or other trusted person. It walks them through finding and opening your plan in clear, gentle language.</p>
+
+          <div class="form-group">
+            <label class="bundle-section-option">
+              <input type="checkbox" x-model="includePassphraseOnKit">
+              <span class="bundle-section-label">Include the passphrase on the access kit</span>
+            </label>
+            <p class="export-form-desc" style="margin-top:0.5rem;margin-bottom:0">If checked, the passphrase will be printed on the access kit so the recipient has everything they need in one document. If unchecked, the access kit will include a blank line where you can write the passphrase by hand, or share it separately.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="access-kit-location">Where will you store the access kit? <span class="form-optional">(optional)</span></label>
+            <input type="text" id="access-kit-location" class="form-input" x-model="accessKitLocation" placeholder="e.g., with a trusted family member, in estate folder at home" autocomplete="off">
+          </div>
+
+          <div x-show="error" class="error-message" x-text="error" role="alert"></div>
+
+          <div class="export-actions">
+            <button type="submit" class="btn btn-primary" :disabled="isProcessing || bundlePassphrase.length < 12 || getBundleSelectedCount() === 0" aria-label="Generate encrypted bundle, executor instructions, and access kit">
+              <span x-show="!isProcessing">Generate Secure Bundle</span>
+              <span x-show="isProcessing">Encrypting...</span>
+            </button>
+          </div>
+        </form>
+
+        <div x-show="bundleGenerated" class="export-success">
+          <h2>Bundle Generated</h2>
+          <p>Three files have been downloaded:</p>
+          <ul>
+            <li><strong>digital-estate-bundle-[date].html</strong> -- the encrypted bundle (store digitally)</li>
+            <li><strong>executor-instructions-[date].html</strong> -- formal executor reference (store with estate papers)</li>
+            <li><strong>access-kit-[date].html</strong> -- compassionate guide for a loved one (print and share)</li>
+          </ul>
+          <p>Store the encrypted bundle separately from the passphrase. Print the executor instructions for your estate documents and the access kit for anyone you want to be able to open your plan.</p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Browser Data Import -->
+    <template x-if="view === 'data-import'">
+      <div class="data-import-container">
+        <div class="section-header">
+          <button class="btn-back" @click="cancelDataImport()" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <h1>Import Accounts</h1>
+        </div>
+
+        <div class="data-import-intro">
+          <p>Speed up your account inventory by importing data you already have. Export a file from your password manager or browser, then upload it here. We will automatically match discovered accounts to your checklist categories.</p>
+          <p><strong>Your passwords are never read or stored.</strong> Only account names, URLs, and usernames are extracted.</p>
+
+          <div class="data-import-formats">
+            <div class="data-import-format-group">
+              <h3>Password Manager Exports (CSV)</h3>
+              <details class="data-import-export-help">
+                <summary>1Password</summary>
+                <ol>
+                  <li>Open 1Password on your desktop</li>
+                  <li>Go to <strong>File &rarr; Export &rarr; All Items</strong></li>
+                  <li>Choose <strong>CSV</strong> format</li>
+                  <li>Authenticate and save the file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Bitwarden</summary>
+                <ol>
+                  <li>Log in to your Bitwarden vault (web or desktop)</li>
+                  <li>Go to <strong>Tools &rarr; Export Vault</strong></li>
+                  <li>Select <strong>.csv</strong> as the file format</li>
+                  <li>Confirm your master password and save</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>LastPass</summary>
+                <ol>
+                  <li>Log in to <strong>lastpass.com</strong> in your browser</li>
+                  <li>Go to <strong>Advanced Options &rarr; Export</strong></li>
+                  <li>Authenticate when prompted</li>
+                  <li>Save the resulting CSV file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>KeePass</summary>
+                <ol>
+                  <li>Open your KeePass database</li>
+                  <li>Go to <strong>File &rarr; Export</strong></li>
+                  <li>Select <strong>CSV</strong> as the format</li>
+                  <li>Save the file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Dashlane</summary>
+                <ol>
+                  <li>Open Dashlane on your desktop</li>
+                  <li>Go to <strong>File &rarr; Export &rarr; Unsecured archive (CSV)</strong></li>
+                  <li>Authenticate and save the file</li>
+                </ol>
+              </details>
+            </div>
+
+            <div class="data-import-format-group">
+              <h3>Browser Bookmarks (HTML)</h3>
+              <details class="data-import-export-help">
+                <summary>Google Chrome</summary>
+                <ol>
+                  <li>Open Chrome and go to <strong>Bookmarks &rarr; Bookmark Manager</strong> (or press Ctrl+Shift+O / Cmd+Shift+O)</li>
+                  <li>Click the three-dot menu in the top right of the bookmark manager</li>
+                  <li>Select <strong>Export bookmarks</strong></li>
+                  <li>Save the HTML file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Mozilla Firefox</summary>
+                <ol>
+                  <li>Open Firefox and press Ctrl+Shift+O (Cmd+Shift+O on Mac) to open the Library</li>
+                  <li>Click <strong>Import and Backup</strong> in the toolbar</li>
+                  <li>Select <strong>Export Bookmarks to HTML</strong></li>
+                  <li>Save the file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Microsoft Edge</summary>
+                <ol>
+                  <li>Open Edge and go to <strong>Favorites</strong> (Ctrl+Shift+O / Cmd+Shift+O)</li>
+                  <li>Click the three-dot menu at the top</li>
+                  <li>Select <strong>Export favorites</strong></li>
+                  <li>Save the HTML file</li>
+                </ol>
+              </details>
+              <details class="data-import-export-help">
+                <summary>Safari</summary>
+                <ol>
+                  <li>Open Safari</li>
+                  <li>Go to <strong>File &rarr; Export Bookmarks</strong></li>
+                  <li>Save the HTML file</li>
+                </ol>
+              </details>
+            </div>
+          </div>
+
+          <div class="data-import-security-note">
+            <strong>Security reminder:</strong> Delete the exported file from your computer after importing. Password manager exports may contain your passwords in plain text -- this tool ignores them, but the file on your disk still has them.
+          </div>
+        </div>
+
+        <!-- Step: Select File -->
+        <template x-if="dataImportStep === 'select'">
+          <div class="data-import-select">
+            <div class="form-group">
+              <label class="form-label" for="data-import-file">Select File</label>
+              <input type="file" id="data-import-file" class="form-input" accept=".csv,.html,.htm" @change="onDataImportFileSelected($event)" aria-label="Select a password manager CSV or browser bookmarks HTML file">
+            </div>
+            <p class="data-import-hint">Accepted formats: CSV (password managers) or HTML (browser bookmarks)</p>
+            <div x-show="dataImportError" class="error-message" x-text="dataImportError" role="alert"></div>
+          </div>
+        </template>
+
+        <!-- Step: Parsing -->
+        <template x-if="dataImportStep === 'parsing'">
+          <div class="data-import-parsing" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <p>Analyzing file...</p>
+          </div>
+        </template>
+
+        <!-- Step: Review & Select -->
+        <template x-if="dataImportStep === 'review'">
+          <div class="data-import-review">
+            <div class="data-import-summary">
+              <h2>Review Discovered Accounts</h2>
+              <dl class="data-import-stats">
+                <dt>Source</dt>
+                <dd x-text="getImportSourceLabel()"></dd>
+                <dt>Accounts Found</dt>
+                <dd x-text="dataImportResult.stats.parsedRecords"></dd>
+                <dt>Matched to Checklist</dt>
+                <dd x-text="getImportAcceptCount() + ' selected'"></dd>
+              </dl>
+              <p class="data-import-review-desc">Check the accounts you want to add to your Section 1 inventory. Matched accounts are pre-selected. Unmatched accounts can be skipped or added manually later.</p>
+            </div>
+
+            <div class="data-import-records-scroll">
+              <table class="data-import-table" role="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="data-import-check-col">Add</th>
+                    <th scope="col">Account</th>
+                    <th scope="col" x-show="!isBookmarkImport()">Username</th>
+                    <th scope="col">Matched Category</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template x-for="(record, idx) in dataImportResult.records" :key="idx">
+                    <tr :class="{'data-import-row-accepted': record.userAction === 'accept', 'data-import-row-skipped': record.userAction !== 'accept'}">
+                      <td class="data-import-check-col">
+                        <input type="checkbox" :checked="record.userAction === 'accept'" @change="toggleImportRecord(idx)" :disabled="!record.suggestedItemId" :aria-label="'Include ' + (record.name || 'unnamed account')">
+                      </td>
+                      <td>
+                        <div class="data-import-account-name" x-text="record.name || '(unnamed)'"></div>
+                        <div class="data-import-account-url" x-text="record.url ? record.url.replace(/^https?:\/\//, '') : ''"></div>
+                      </td>
+                      <td x-show="!isBookmarkImport()" x-text="record.username"></td>
+                      <td>
+                        <!-- Auto-matched: show match text with Change button -->
+                        <div x-show="record.suggestedItemId && !record._editing" class="data-import-match-display">
+                          <div class="data-import-match-category" x-text="getImportMatchInfo(record) ? getImportMatchInfo(record).categoryTitle : ''"></div>
+                          <div class="data-import-match-item" x-text="getImportMatchInfo(record) ? getImportMatchInfo(record).itemText : ''"></div>
+                          <button type="button" class="data-import-change-btn" @click="record._editing = true" aria-label="Change mapping">Change</button>
+                        </div>
+                        <!-- Unmatched or editing: show dropdown -->
+                        <div x-show="!record.suggestedItemId || record._editing">
+                          <select class="data-import-assign-select" :value="record.suggestedItemId || ''" @change="onImportItemAssign(idx, $event.target.value); record._editing = false" :aria-label="'Assign checklist item for ' + (record.name || 'unnamed account')">
+                            <option value="">-- Select category --</option>
+                            <template x-for="cat in getSection1Categories()" :key="cat.categoryId">
+                              <optgroup :label="cat.title">
+                                <template x-for="item in cat.items" :key="item.id">
+                                  <option :value="item.id" x-text="item.text" :selected="record.suggestedItemId === item.id"></option>
+                                </template>
+                              </optgroup>
+                            </template>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="data-import-warnings" x-show="dataImportResult.warnings.length > 0">
+              <h3>Warnings</h3>
+              <ul>
+                <template x-for="(warning, idx) in dataImportResult.warnings.slice(0, 10)" :key="idx">
+                  <li x-text="warning"></li>
+                </template>
+                <li x-show="dataImportResult.warnings.length > 10" x-text="'...and ' + (dataImportResult.warnings.length - 10) + ' more warnings.'"></li>
+              </ul>
+            </div>
+
+            <div x-show="dataImportError" class="error-message" x-text="dataImportError" role="alert"></div>
+
+            <div class="data-import-actions">
+              <button class="btn btn-primary" @click="applyImportToChecklist()" :disabled="isProcessing || getImportAcceptCount() === 0" :aria-label="'Add ' + getImportAcceptCount() + ' accounts to checklist'">
+                <span x-show="!isProcessing" x-text="'Add ' + getImportAcceptCount() + ' Accounts to Checklist'"></span>
+                <span x-show="isProcessing">Applying...</span>
+              </button>
+              <button class="btn btn-secondary" @click="cancelDataImport()" :disabled="isProcessing" aria-label="Cancel import">Cancel</button>
+            </div>
+          </div>
+        </template>
+
+        <!-- Step: Applying -->
+        <template x-if="dataImportStep === 'applying'">
+          <div class="data-import-parsing" role="status" aria-live="polite">
+            <div class="spinner"></div>
+            <p>Adding accounts to your checklist...</p>
+          </div>
+        </template>
+
+        <!-- Step: Done -->
+        <template x-if="dataImportStep === 'done'">
+          <div class="data-import-done">
+            <div class="data-import-success">
+              <h2>Import Complete</h2>
+              <p x-text="(dataImportResult.applied || 0) + ' accounts added to your Section 1 inventory.'"></p>
+              <p x-show="dataImportResult.skippedOnApply > 0" x-text="(dataImportResult.skippedOnApply || 0) + ' accounts skipped (unmatched, already present, or deselected).'"></p>
+              <p>The matching checklist items have been checked and populated with your account details. Open Section 1 to review.</p>
+            </div>
+            <div class="data-import-actions">
+              <button class="btn btn-secondary" @click="restartDataImport()" aria-label="Import another file">Import Another File</button>
+              <button class="btn btn-primary" @click="completeDataImport()" aria-label="Return to dashboard">Back to Dashboard</button>
+            </div>
+          </div>
+        </template>
+
+      </div>
+    </template>
+
+    <!-- Guidance & Readiness -->
+    <template x-if="view === 'guidance'">
+      <div class="guidance-container">
+        <div class="section-header">
+          <button class="btn-back" @click="view = 'dashboard'" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <h1>Guidance and Readiness</h1>
+        </div>
+
+        <div class="guidance-section">
+          <h2>Split-Knowledge Storage</h2>
+          <p class="guidance-principle" x-text="getStorageGuidance().principle"></p>
+
+          <h3>Recommended Storage Locations</h3>
+          <div class="storage-locations">
+            <template x-for="loc in getStorageGuidance().locations" :key="loc.name">
+              <div class="storage-location-card">
+                <h4 x-text="loc.name"></h4>
+                <p x-text="loc.description"></p>
+              </div>
+            </template>
+          </div>
+
+          <h3>Tips</h3>
+          <ul class="guidance-tips">
+            <template x-for="tip in getStorageGuidance().tips" :key="tip">
+              <li x-text="tip"></li>
+            </template>
+          </ul>
+        </div>
+
+        <div class="guidance-section">
+          <h2>Bundle Export Readiness</h2>
+          <p>When the secure bundle export feature is available, you will be able to create an encrypted, self-contained file of your progress. Here is your current readiness:</p>
+
+          <div class="readiness-overall">
+            <div class="progress-label">
+              <span>Overall Completion</span>
+              <span x-text="getOverallProgress().percent + '%'"></span>
+            </div>
+            <div class="progress-bar" role="progressbar" :aria-valuenow="getOverallProgress().percent" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-fill" :style="'width:' + getOverallProgress().percent + '%'"></div>
+            </div>
+          </div>
+
+          <ul class="readiness-list">
+            <template x-for="section in sections" :key="section.id">
+              <li class="readiness-item" :class="{'is-complete': section.progress.percent === 100}">
+                <span class="readiness-status" x-text="section.progress.percent === 100 ? 'Complete' : section.progress.percent + '%'"></span>
+                <span x-text="'Section ' + section.number + ': ' + section.title"></span>
+              </li>
+            </template>
+          </ul>
+
+          <p class="coming-soon-note">Secure bundle export is under development. Your progress is saved locally and encrypted on this device.</p>
+        </div>
+
+        <div class="guidance-section">
+          <h2>Additional Resources</h2>
+          <template x-for="category in getResourceCategories()" :key="category.key">
+            <div class="resource-category">
+              <h3 x-text="category.label"></h3>
+              <ul>
+                <template x-for="resource in category.items" :key="resource.url || resource.name">
+                  <li>
+                    <a x-show="resource.url" :href="resource.url" target="_blank" rel="noopener" x-text="resource.name"></a>
+                    <span x-show="!resource.url" x-text="resource.name"></span>
+                    <span x-show="resource.description" class="resource-desc" x-text="' -- ' + resource.description"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </template>
+        </div>
+
+        <div class="guidance-section">
+          <h2>What to Expect Emotionally</h2>
+          <p class="guidance-principle" x-text="getEmotionalContext().content"></p>
+          <h3>Common Experiences</h3>
+          <ul class="guidance-tips">
+            <template x-for="exp in getEmotionalContext().experiences" :key="exp">
+              <li x-text="exp"></li>
+            </template>
+          </ul>
+          <p class="emotional-guidance" x-text="getEmotionalContext().guidance"></p>
+          <p class="emotional-closing" x-text="getEmotionalContext().closingNote"></p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Settings -->
+    <template x-if="view === 'settings'">
+      <div class="settings-container">
+        <div class="section-header">
+          <button class="btn-back" @click="view = 'dashboard'" aria-label="Back to dashboard">&larr; Dashboard</button>
+          <h1>Settings</h1>
+        </div>
+
+        <div class="settings-section">
+          <h2>Application Info</h2>
+          <dl class="settings-info">
+            <dt>Guide Version</dt>
+            <dd x-text="getGuideVersion()"></dd>
+            <dt>Guide Date</dt>
+            <dd x-text="getGuideDate()"></dd>
+            <dt>Items Tracked</dt>
+            <dd x-text="getOverallProgress().completed + ' of ' + getOverallProgress().total + ' completed'"></dd>
+          </dl>
+        </div>
+
+        <div class="settings-section settings-danger">
+          <h2>Data Management</h2>
+          <p>All data is stored encrypted on this device only. Clearing data is permanent and cannot be undone.</p>
+          <button class="btn btn-danger" @click="confirmClearData()" aria-label="Clear all encrypted data">Clear All Data</button>
+          <div x-show="showClearConfirm" class="clear-confirm">
+            <p>This will permanently delete all your progress, notes, and settings. This action cannot be undone.</p>
+            <div class="clear-confirm-actions">
+              <button class="btn btn-danger" @click="clearAllData()">Yes, Delete Everything</button>
+              <button class="btn btn-secondary" @click="showClearConfirm = false">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Mobile bottom nav -->
+    <div class="mobile-nav" x-show="isAuthed" aria-label="Mobile navigation">
+      <button @click="view = 'dashboard'" :class="{'active': view === 'dashboard'}" aria-label="Dashboard">Dashboard</button>
+      <button @click="view = 'guidance'" :class="{'active': view === 'guidance'}" aria-label="Guidance">Guidance</button>
+      <button @click="lock()" aria-label="Lock">Lock</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="trust-badges">
+        <span class="trust-badge">Zero-Knowledge Architecture</span>
+        <span class="trust-badge">AES-256-GCM Encryption</span>
+        <span class="trust-badge">Device-Only Storage</span>
+      </div>
+      <p>Your data is encrypted on this device. No information is transmitted or stored externally. No accounts, no tracking, no analytics.</p>
+      <p>&copy; 2026 Circle 6 Systems</p>
+    </div>
+  </footer>
+
+  <!-- Scripts: crypto, storage, utils, content, checklist load synchronously before Alpine.
+       Each app script carries a Subresource Integrity (SRI) sha384 digest (SEC-006).
+       Regenerate a digest after editing a script:
+         openssl dgst -sha384 -binary js/FILE.js | openssl base64 -A
+       alpine.min.js SRI is deferred to the Alpine CSP-build swap (issue #87). -->
+  <script src="js/crypto.js" integrity="sha384-nSxWJDu5OTKxOfcx3K9FWkW3Nx952BlSRqmBEzdp6CqcgD12o5pb2J0eLihZlib1" crossorigin="anonymous"></script>
+  <script src="js/storage.js" integrity="sha384-x2CcryuITPIpoDrjsyHWvjSmR6PSt8um2AZuPYzzr9eCrSMt/nDym1XWP0KTITRC" crossorigin="anonymous"></script>
+  <script src="js/utils.js" integrity="sha384-3ZCl5LwRXw6PLZtas0ASCGJ2lVQgysEvejFkkxFfqXVjO4zmD7z8rY5BSIxv6SH4" crossorigin="anonymous"></script>
+  <script src="js/content.js" integrity="sha384-HJBTJqNtNKzlPVrR4e8pOqsiFef2On95Ybe2zd12kpzBEPtyhTFVWWMrwYRof32m" crossorigin="anonymous"></script>
+  <script src="js/checklist.js" integrity="sha384-avUohQoKVBiidPnHfAqZTGLLK1/ql8lxBggh3kSXYleuhd5A4yovs59I9vPhwmKI" crossorigin="anonymous"></script>
+  <script src="js/import-core.js" integrity="sha384-rNXTpenlyM3YznPQAKMK8D7iy2MjQwH/p1iNJLGmxwAO1tvieK8Z4NP9Xy2zEbG6" crossorigin="anonymous"></script>
+  <script src="js/import-passwords.js" integrity="sha384-MR1zZX5C931H9wKXq5kbMNoLuIxmQ3B1mHj0JuFaK7BPjlDKUNcSGPg/ldHf/5q7" crossorigin="anonymous"></script>
+  <script src="js/import-bookmarks.js" integrity="sha384-QLOmaNAm7uPKAw/VDdSp8+NUrDr0NqoIUuQrH+Jt2Y9UKrnepcwgi+FJghnBIFos" crossorigin="anonymous"></script>
+  <script src="js/import-matcher.js" integrity="sha384-Rd0+xAeTyIMUBbBnsmCGR2z4LTZO7SVT1mYKe2nJ7ifJaM5KXbnYnRXz9GCShp5T" crossorigin="anonymous"></script>
+  <script src="js/wizard-app.js" integrity="sha384-tqf6WDKl6FxizUImxZlM0FNJuaK70+GLpPS8Uzs0QxtIVbpjTJfyJuuJr6O3yaXe" crossorigin="anonymous"></script>
+  <script src="js/vendor/alpine.min.js" defer></script>
+</body>
+</html>

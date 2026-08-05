@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Collection Gaps &amp; Phased Roadmap | SANDPOINT Investigation</title>
+  <style>
+    :root {
+      --c6s-dark: #2d2a2e;
+      --c6s-panel: #3a3640;
+      --c6s-border: #504a52;
+      --c6s-accent: #a8c196;
+      --c6s-accent-dim: #8faa7b;
+      --c6s-red: #ef4444;
+      --c6s-amber: #f59e0b;
+      --c6s-green: #22c55e;
+      --c6s-blue: #3b82f6;
+      --c6s-text: #d4cab9;
+      --c6s-text-dim: #beb3a7;
+      --c6s-text-bright: #f5f0e8;
+      --c6s-highlight: rgba(168, 193, 150, 0.1);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c6s-dark);
+      color: var(--c6s-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 42, 46, 0.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+      height: 72px;
+    }
+
+    .site-nav .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .site-nav .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-nav .logo-text span { color: var(--c6s-accent); }
+
+    .site-nav .back-link {
+      font-size: 0.85rem;
+      color: var(--c6s-accent);
+      text-decoration: none;
+    }
+    .site-nav .back-link:hover { text-decoration: underline; }
+
+    .header-bar {
+      background: linear-gradient(135deg, #2d2a2e 0%, #3a3640 100%);
+      border-bottom: 2px solid var(--c6s-accent);
+      padding: 1rem 2rem;
+      margin-top: 72px;
+    }
+
+    .header-bar .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .header-bar .logo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c6s-accent);
+    }
+
+    .header-bar .classification {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c6s-text-bright);
+      background: rgba(245, 240, 232, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 240, 232, 0.3);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .title-block {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--c6s-border);
+    }
+
+    .title-block h1 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .title-block .subtitle {
+      font-size: 1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .title-block p {
+      font-size: 0.9rem;
+      color: var(--c6s-text-dim);
+    }
+
+    .caveat-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-left: 4px solid var(--c6s-amber);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .caveat-box .caveat-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--c6s-amber);
+      margin-bottom: 0.5rem;
+    }
+
+    .caveat-box p {
+      font-size: 0.85rem;
+      color: var(--c6s-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .caveat-box p:last-child { margin-bottom: 0; }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--c6s-accent);
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    h2:first-of-type { margin-top: 0; }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p { margin-bottom: 0.75rem; font-size: 0.9rem; }
+
+    .phase-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .phase-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .phase-complete .phase-number { background: rgba(34, 197, 94, 0.2); color: var(--c6s-green); border: 2px solid var(--c6s-green); }
+    .phase-active .phase-number { background: rgba(59, 130, 246, 0.2); color: var(--c6s-blue); border: 2px solid var(--c6s-blue); }
+    .phase-next .phase-number { background: rgba(245, 158, 11, 0.2); color: var(--c6s-amber); border: 2px solid var(--c6s-amber); }
+    .phase-future .phase-number { background: rgba(190, 179, 167, 0.15); color: var(--c6s-text-dim); border: 2px solid var(--c6s-border); }
+
+    .phase-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--c6s-text-bright);
+    }
+
+    .phase-status {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-left: auto;
+    }
+
+    .status-complete { background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .status-active { background: rgba(59, 130, 246, 0.15); color: var(--c6s-blue); border: 1px solid rgba(59, 130, 246, 0.3); }
+    .status-next { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .status-future { background: rgba(190, 179, 167, 0.1); color: var(--c6s-text-dim); border: 1px solid var(--c6s-border); }
+
+    .phase-desc {
+      font-size: 0.85rem;
+      color: var(--c6s-text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .gap-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .gap-table th {
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--c6s-accent);
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--c6s-border);
+      background: rgba(168, 193, 150, 0.05);
+    }
+
+    .gap-table td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid rgba(80, 74, 82, 0.5);
+      color: var(--c6s-text);
+      vertical-align: top;
+    }
+
+    .gap-table tr:last-child td { border-bottom: none; }
+
+    .priority-badge {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .priority-critical { background: rgba(239, 68, 68, 0.15); color: var(--c6s-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .priority-high { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .priority-medium { background: rgba(59, 130, 246, 0.15); color: var(--c6s-blue); border: 1px solid rgba(59, 130, 246, 0.3); }
+    .priority-low { background: rgba(190, 179, 167, 0.15); color: var(--c6s-text-dim); border: 1px solid var(--c6s-border); }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .summary-stat {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .summary-stat .stat-number {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+    }
+
+    .summary-stat .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--c6s-text-dim);
+      margin-top: 0.25rem;
+    }
+
+    .entity-section {
+      background: var(--c6s-highlight);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .entity-section h4 {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .entity-section ul {
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+
+    .entity-section li {
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+      color: var(--c6s-text);
+    }
+
+    .check-done { color: var(--c6s-green); }
+    .check-open { color: var(--c6s-text-dim); }
+
+    .panel {
+      background: var(--c6s-highlight);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      border-left: 3px solid var(--c6s-accent);
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .panel-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--c6s-accent);
+    }
+
+    .panel p, .panel li {
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .panel ul { padding-left: 1.25rem; }
+
+    strong { color: var(--c6s-text-bright); }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--c6s-border);
+      font-size: 0.75rem;
+      color: var(--c6s-text-dim);
+      text-align: center;
+    }
+
+    .footer a { color: var(--c6s-accent); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .container { padding: 1.25rem; }
+      .title-block h1 { font-size: 1.35rem; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .gap-table { font-size: 0.75rem; }
+      .gap-table th, .gap-table td { padding: 0.4rem 0.5rem; }
+    }
+
+    @media print {
+      .site-nav { display: none; }
+      .header-bar { margin-top: 0; }
+      body { background: white; color: #1a1a1a; }
+      .phase-card, .entity-section, .panel, .summary-stat { border-color: #ccc; background: #f9f9f9; }
+      h2 { border-bottom-color: #333; color: #1a1a1a; }
+      strong { color: #000; }
+      .caveat-box { background: #fff8e1; border-color: #e0a800; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="logo-text" href="https://circle6systems.com">Circle <span>6</span> Systems</a>
+      <a class="back-link" href="index.html">Back to Package Index</a>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <div class="logo">OSINT Practice / Collection Gaps &amp; Roadmap</div>
+      <div class="classification">TLP:CLEAR</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="title-block">
+      <h1>Collection Gaps and Phased Investigation Roadmap</h1>
+      <div class="subtitle">Sandpoint / Bonner County Developer Influence Investigation</div>
+      <p>This document consolidates all known collection gaps from the investigation's working files, organizes them into actionable phases, and identifies what has been completed, what is in progress, and what remains. The goal is to maintain investigation momentum and prevent the engagement from losing focus.</p>
+    </div>
+
+    <div class="caveat-box">
+      <div class="caveat-title">Analytical Caveats and Disclaimers</div>
+      <p><strong>All inferences in this investigation are analytical opinions based on patterns observed in public records.</strong> They are clearly denoted as inferences (not facts) wherever they appear. Inferred connections on the Investigation Board are shown as dashed lines and labeled "INFERRED" with the analytical reasoning documented.</p>
+      <p>Verified findings are supported by cited public records (Secretary of State filings, court documents, campaign finance disclosures, government meeting minutes, county assessor/recorder data, and news reporting). Each verified connection cites its source.</p>
+      <p>This investigation uses only publicly available information. No private databases, subscription services, or unauthorized access methods were used. All findings can be independently verified by any citizen or journalist using the same public sources. Nothing in this report should be construed as an allegation of criminal activity or legal wrongdoing; patterns are documented for public awareness and further inquiry.</p>
+    </div>
+
+    <h2>Investigation Status Summary</h2>
+
+    <div class="summary-grid">
+      <div class="summary-stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Phases Complete</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Phase In Progress</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Phases Remaining</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-number">58</div>
+        <div class="stat-label">Open Collection Gaps</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Entity Profiles Needed</div>
+      </div>
+      <div class="summary-stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Time-Sensitive Items</div>
+      </div>
+    </div>
+
+    <h2>Phase 1: Initial Collection (Complete)</h2>
+
+    <div class="phase-card phase-complete">
+      <div class="phase-header">
+        <div class="phase-number">1</div>
+        <div class="phase-title">Source Inventory and Meeting Minutes Sweep</div>
+        <span class="phase-status status-complete">Complete</span>
+      </div>
+      <div class="phase-desc">Identified 16+ developer entities, 7 government officials with potential conflicts, and major projects across Sandpoint and Bonner County. Collected city council, P&amp;Z, and BOCC meeting minutes (2020-2026). Produced initial source inventory and entity catalog.</div>
+      <table class="gap-table">
+        <tr><th>Deliverable</th><th>Status</th></tr>
+        <tr><td>Source inventory with 16 developer entities</td><td class="check-done">Done</td></tr>
+        <tr><td>Meeting minutes keyword sweep (PUD, rezone, annex, variance)</td><td class="check-done">Done</td></tr>
+        <tr><td>Initial entity identification</td><td class="check-done">Done</td></tr>
+        <tr><td>Vote tally extraction and pattern analysis</td><td class="check-done">Done</td></tr>
+        <tr><td>News article collection (Spokesman-Review, Daily Bee, Reader)</td><td class="check-done">Done</td></tr>
+      </table>
+    </div>
+
+    <h2>Phase 2: Entity Research and Financial Intelligence (Complete)</h2>
+
+    <div class="phase-card phase-complete">
+      <div class="phase-header">
+        <div class="phase-number">2</div>
+        <div class="phase-title">Entity Profiles, Court Records, Campaign Finance, Legal/Environmental</div>
+        <span class="phase-status status-complete">Complete</span>
+      </div>
+      <div class="phase-desc">Completed Track A (news deep dive), Track B (entity profiles), Track C (financial intelligence), Track D (legal/environmental analysis), out-of-state entity research, court records analysis, and initial campaign finance collection from Idaho Sunshine portal.</div>
+      <table class="gap-table">
+        <tr><th>Deliverable</th><th>Status</th></tr>
+        <tr><td>Entity profiles for all 16+ entities</td><td class="check-done">Done (draft)</td></tr>
+        <tr><td>Out-of-state entity chains (MT, AZ, FL, IN, CA)</td><td class="check-done">Done (partial)</td></tr>
+        <tr><td>Court records analysis (7 cases)</td><td class="check-done">Done</td></tr>
+        <tr><td>Campaign finance initial extraction (Sunshine)</td><td class="check-done">Done (partial)</td></tr>
+        <tr><td>Legal/environmental analysis (7 issues)</td><td class="check-done">Done</td></tr>
+        <tr><td>Averill Hospitality deep-dive appendix</td><td class="check-done">Done</td></tr>
+        <tr><td>Investigation Board (interactive knowledge graph)</td><td class="check-done">Done</td></tr>
+        <tr><td>Executive Briefing</td><td class="check-done">Done</td></tr>
+      </table>
+    </div>
+
+    <h2>Phase 3: Records Automation and Entity Verification (Next)</h2>
+
+    <div class="phase-card phase-next">
+      <div class="phase-header">
+        <div class="phase-number">3</div>
+        <div class="phase-title">Direct Portal Searches via Browser Automation</div>
+        <span class="phase-status status-next">Up Next</span>
+      </div>
+      <div class="phase-desc">The Idaho SOS portal (sosbiz.idaho.gov) is a single-page application that requires browser automation (Playwright) for direct queries. Out-of-state SOS portals also need direct access. This phase closes the entity verification gaps that indirect sources cannot fill.</div>
+      <table class="gap-table">
+        <tr><th>Gap</th><th>Source</th><th>Priority</th></tr>
+        <tr>
+          <td>Idaho SOS direct searches for all 16 target entities</td>
+          <td>sosbiz.idaho.gov</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Registered agent reverse searches for 12 principals</td>
+          <td>sosbiz.idaho.gov</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Bridge Street LLC principal identification</td>
+          <td>sosbiz.idaho.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Lochlyn Estates LLC principal identification</td>
+          <td>sosbiz.idaho.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Tricore Investments LLC principal identification</td>
+          <td>sosbiz.idaho.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Montana SOS: all Averill entities, Edgewater Partners</td>
+          <td>biz.sosmt.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Arizona Corp Commission: M3 Companies, Valiant Idaho (R22325246)</td>
+          <td>ecorp.azcc.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Florida Sunbiz: Haberman officer search, DGH Thistle, Valiant entities</td>
+          <td>search.sunbiz.org</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Indiana SOS: Ambrose Property Group (Project Bulldog)</td>
+          <td>bsd.sos.in.gov</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>California SOS: Williams Homes Inc. (RCE-51476), subsidiaries</td>
+          <td>bizfileonline.sos.ca.gov</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Valiant Idaho II LLC: confirm existence and relationship to Valiant Idaho</td>
+          <td>Multiple portals</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>"DGH" in DGH Thistle: identify initials, partner names, holding entity</td>
+          <td>FL/NC SOS</td>
+          <td><span class="priority-badge priority-low">Low</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Phase 4: Property and Financial Records (Planned)</h2>
+
+    <div class="phase-card phase-future">
+      <div class="phase-header">
+        <div class="phase-number">4</div>
+        <div class="phase-title">County Records, Campaign Finance Deep Extraction, SURA Analysis</div>
+        <span class="phase-status status-future">Planned</span>
+      </div>
+      <div class="phase-desc">Cross-reference all entity and principal names against Bonner County property records. Complete campaign finance extraction from Sunshine portal. Analyze Sandpoint Urban Renewal Agency (SURA) financials to determine which developers benefited from TIF-funded infrastructure.</div>
+      <table class="gap-table">
+        <tr><th>Gap</th><th>Source</th><th>Priority</th></tr>
+        <tr>
+          <td>Bonner County Assessor bulk data download for all entities</td>
+          <td>bonnercountyid.gov/AssessorDataFiles</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Bonner County Recorder deed searches (2019-2026)</td>
+          <td>erecorderpublic.bonnercountyid.gov</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Property Search portal: owner name searches for 16 entities</td>
+          <td>cloudgisapps.bonnercountyid.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Sunshine portal: itemized contribution records for all Sandpoint/Bonner candidates (2020-2025)</td>
+          <td>sunshine.sos.idaho.gov</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>Sunshine portal: contributor searches for all 12 developer principals</td>
+          <td>sunshine.sos.idaho.gov</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td>PAC research: any PACs with "Bonner," "Sandpoint," "growth," or "development"</td>
+          <td>sunshine.sos.idaho.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>SURA Annual Reports (2022-2024) and Financial Statements</td>
+          <td>sandpointidaho.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>City of Sandpoint Financial Statements FY2024</td>
+          <td>sandpointidaho.gov (media/12466)</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>FEC/OpenSecrets federal contributions by developer principals</td>
+          <td>fec.gov / opensecrets.org</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>"Take Back Idaho" PAC and 501(c)(4) dark money group activity in Bonner County</td>
+          <td>sunshine.sos.idaho.gov</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Phase 5: Legal and Court Records (Planned)</h2>
+
+    <div class="phase-card phase-future">
+      <div class="phase-header">
+        <div class="phase-number">5</div>
+        <div class="phase-title">PACER, State Court, and Regulatory Records</div>
+        <span class="phase-status status-future">Planned</span>
+      </div>
+      <div class="phase-desc">Access federal and state court records for active litigation. Monitor time-sensitive matters including the Mountain Homestead state court refiling window and North Branch seasonal conditions.</div>
+      <table class="gap-table">
+        <tr><th>Gap</th><th>Source</th><th>Priority</th></tr>
+        <tr>
+          <td>Idaho Club federal lawsuit: exact PACER docket number, full PI denial order</td>
+          <td>PACER</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Idaho Club: merits briefing schedule and trial date</td>
+          <td>PACER</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Idaho Club: ESA Section 7 re-consultation status</td>
+          <td>USFWS</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Mountain Homestead: monitor state court refiling (30-day window from April 16 = May 16, 2026)</td>
+          <td>Idaho state courts</td>
+          <td><span class="priority-badge priority-critical">Time-Sensitive</span></td>
+        </tr>
+        <tr>
+          <td>Mountain Homestead: federal dismissal order text</td>
+          <td>PACER</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Mountain Homestead: any Idaho DEQ or EPA enforcement actions</td>
+          <td>DEQ / EPA ECHO</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>WWTP: EPA administrative settlement agreement text</td>
+          <td>EPA</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>WWTP: DEQ audit report (July 2024), current NPDES permit status</td>
+          <td>DEQ</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Selle Valley rezone: exact state court case number, appeal status</td>
+          <td>Idaho state courts</td>
+          <td><span class="priority-badge priority-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>Camp Bay/M3: public access pathway completion by Feb 2025 deadline</td>
+          <td>Bonner County records</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>AG investigation: full text of investigation report and Open Meeting Law violation</td>
+          <td>Idaho AG</td>
+          <td><span class="priority-badge priority-low">Low</span></td>
+        </tr>
+        <tr>
+          <td>Whether North Branch reaches dry conditions by August 2026</td>
+          <td>Field observation / USGS</td>
+          <td><span class="priority-badge priority-critical">Time-Sensitive</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Phase 6: Entity Deep-Dive Appendices (Planned)</h2>
+
+    <div class="phase-card phase-future">
+      <div class="phase-header">
+        <div class="phase-number">6</div>
+        <div class="phase-title">Additional Entity Profile Deliverables</div>
+        <span class="phase-status status-future">Planned</span>
+      </div>
+      <div class="phase-desc">Produce entity profile appendices (same format as Averill Hospitality) for the remaining high-priority developer networks. Each profile includes corporate entity tree, property portfolio, influence timeline, key players, and collection gaps.</div>
+      <table class="gap-table">
+        <tr><th>Entity</th><th>Significance</th><th>Priority</th></tr>
+        <tr>
+          <td><strong>Idaho Club / Valiant Idaho (Haberman)</strong></td>
+          <td>900-acre development, $70M bankruptcy history, active federal litigation, ESA issues</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td><strong>Mountain Homestead / J&amp;J Development (Marble, Pilch)</strong></td>
+          <td>County officials as developers, contaminated water, RICO suit, felony charges</td>
+          <td><span class="priority-badge priority-critical">Critical</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dover Bay / Sletager Network</strong></td>
+          <td>Waterfront monopoly formation, 5+ entities, marina control, campaign contributions</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dual-Role Officials (Grimm, Howarth)</strong></td>
+          <td>Mayor as developer consultant, council member as subdivision developer</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td><strong>M3 Companies / Camp Bay</strong></td>
+          <td>407-acre gated subdivision, road vacation, public access fight</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Phase 7: HUMINT and Multimedia (Ongoing)</h2>
+
+    <div class="phase-card phase-active">
+      <div class="phase-header">
+        <div class="phase-number">7</div>
+        <div class="phase-title">Human Intelligence, Audio Processing, and Whitefish Collection</div>
+        <span class="phase-status status-active">In Progress</span>
+      </div>
+      <div class="phase-desc">Integrate intelligence from local sources (including HUMINT contacts in Sandpoint). Process YouTube audio from city council and BOCC meeting recordings. Expand geographic scope to Whitefish, MT where Averill Hospitality has a documented controversial track record.</div>
+      <table class="gap-table">
+        <tr><th>Gap</th><th>Source</th><th>Priority</th></tr>
+        <tr>
+          <td>YouTube meeting audio downloads (in progress, cookie auth configured)</td>
+          <td>YouTube / yt-dlp</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Whisper transcription of downloaded meeting audio</td>
+          <td>OpenAI Whisper API</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Whitefish, MT city council minutes re: Averill</td>
+          <td>cityofwhitefish.org</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>Flathead County planning records re: Averill</td>
+          <td>flathead.mt.gov</td>
+          <td><span class="priority-badge priority-high">High</span></td>
+        </tr>
+        <tr>
+          <td>HUMINT source follow-up (background: political science/IR)</td>
+          <td>Direct</td>
+          <td><span class="priority-badge priority-medium">Medium</span></td>
+        </tr>
+        <tr>
+          <td>Additional local news articles requiring paywall bypass or direct access</td>
+          <td>Daily Inter Lake, Bonner County Daily Bee</td>
+          <td><span class="priority-badge priority-low">Low</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h2>Time-Sensitive Items</h2>
+
+    <div class="caveat-box" style="border-left-color: var(--c6s-red); background: rgba(239, 68, 68, 0.06);">
+      <div class="caveat-title" style="color: var(--c6s-red);">Deadlines and Time-Dependent Collection</div>
+      <p><strong>May 16, 2026:</strong> Mountain Homestead state court refiling deadline. The federal RICO case was dismissed April 16, 2026, but seven state-level allegations remain. The 30-day window for state court refiling expires May 16. Monitor Idaho state court filings for Wittwer et al. names.</p>
+      <p><strong>August 2026 (estimated):</strong> Idaho Club North Branch seasonal dry conditions. The Army Corps halt-work order was tied to bull trout habitat in North Branch. If the branch dries out by August, it weakens the environmental protection argument. USGS stream gauge data would be dispositive.</p>
+      <p><strong>Ongoing:</strong> Averill Hospitality condotel plat. Building permits were filed December 29, 2025 to lock in lower impact fees before the January 1, 2026 deadline. Whether a separate condo plat is filed (required for the 27 condos) will determine the next fight. Monitor Sandpoint planning portal for plat applications.</p>
+    </div>
+
+    <h2>Entity-Specific Open Questions</h2>
+
+    <div class="entity-section">
+      <h4>Idaho Club / Valiant Idaho (Haberman)</h4>
+      <ul>
+        <li>Has Valiant Idaho intervened as a party in the federal lawsuit?</li>
+        <li>Did Idaho Club file any counterclaims?</li>
+        <li>Status of ESA Section 7 re-consultation with USFWS</li>
+        <li>Whether construction has continued since January 2026 verification</li>
+        <li>Full filing history for Valiant Idaho II LLC (possible successor entity)</li>
+        <li>Philip G. Ruggieri's role in Haberman's entity network</li>
+      </ul>
+    </div>
+
+    <div class="entity-section">
+      <h4>Mountain Homestead / J&amp;J Development</h4>
+      <ul>
+        <li>State court refiling by homeowners (watch for by May 16, 2026)</li>
+        <li>Idaho DEQ or EPA enforcement re: contaminated groundwater</li>
+        <li>Panhandle Health District formal enforcement actions</li>
+        <li>Bonner County code at time of 2017-era MLD approval</li>
+        <li>Historical volume of MLDs approved before moratorium</li>
+        <li>Other developments with problems similar to Mountain Homestead</li>
+      </ul>
+    </div>
+
+    <div class="entity-section">
+      <h4>Averill Hospitality</h4>
+      <ul>
+        <li>Whitefish, MT controversy details (council minutes, planning records)</li>
+        <li>Edgewater Partners JV: Montana entity registration, formation documents</li>
+        <li>Farran Group role in Missoula operations</li>
+        <li>Condo plat filing status for 27 luxury condos at 56 Bridge St</li>
+        <li>City tax revenue re-modeling for reduced room count (99 vs. 181)</li>
+        <li>Dieter Huckestein's other advisory relationships in region</li>
+      </ul>
+    </div>
+
+    <div class="entity-section">
+      <h4>Sletager Network / Dover Bay</h4>
+      <ul>
+        <li>Complete Sunshine portal extraction for Sletager family contributions</li>
+        <li>Marina acquisition history and waterfront access consolidation</li>
+        <li>Waterfront Property Management business model and scope</li>
+        <li>Commissioner campaign contribution timing vs. pending land use decisions</li>
+      </ul>
+    </div>
+
+    <div class="entity-section">
+      <h4>Campaign Finance (Cross-Cutting)</h4>
+      <ul>
+        <li>Complete Sunshine portal extraction for all candidates and developer contributors</li>
+        <li>Jacob Weimer / JD Lumber: confirmed $4,650+ but itemized records needed</li>
+        <li>PAC research: development-related PACs in Bonner County</li>
+        <li>Dark money / 501(c)(4) groups active in local elections</li>
+        <li>Commissioner contribution timing vs. pending land use matters (Idaho Code 18-1356)</li>
+      </ul>
+    </div>
+
+    <h2>Investigation Momentum Recommendations</h2>
+
+    <div class="panel">
+      <div class="panel-title">Preventing Engagement Stall</div>
+      <ul>
+        <li><strong>Set a 2-week cadence.</strong> Every two weeks, produce one deliverable: an entity appendix, a campaign finance update, or a property records analysis. Cadence prevents drift.</li>
+        <li><strong>Prioritize Phase 3 (SOS portal automation).</strong> Most of the open gaps are entity verification questions that direct SOS searches would close. This is the single highest-value next step.</li>
+        <li><strong>Time-box HUMINT integration.</strong> Process intelligence from the Sandpoint contact within 48 hours of receipt. Context decays. Notes from meetings and conversations should be documented the same day.</li>
+        <li><strong>Set calendar alerts</strong> for May 16 (Mountain Homestead refiling window) and monitor the Sandpoint planning portal monthly for Averill condo plat filings.</li>
+        <li><strong>Maintain the Investigation Board.</strong> As new findings are verified, add nodes and edges to the knowledge graph. The board is both a deliverable and a working analytical tool.</li>
+        <li><strong>Track a "verified" vs. "gap" ratio.</strong> Currently, approximately 65% of connections on the Investigation Board are verified with cited sources. Target 85%+ by end of Phase 4.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Source Reliability Assessment</div>
+      <ul>
+        <li><strong>A (Completely Reliable):</strong> Idaho SOS filings, Bonner County Assessor/Recorder, PACER court documents, Idaho Sunshine portal</li>
+        <li><strong>B (Usually Reliable):</strong> City council meeting minutes, BOCC meeting minutes, P&amp;Z hearing records</li>
+        <li><strong>C (Fairly Reliable):</strong> Spokesman-Review, Bonner County Daily Bee, Sandpoint Reader news reporting</li>
+        <li><strong>D (Not Usually Reliable):</strong> Indirect sources (OpenCorporates, CorporationWiki, bizprofile.net; used as pointers to primary sources only)</li>
+        <li><strong>E (Unreliable):</strong> Social media claims, anonymous tips (none used in this investigation)</li>
+        <li><strong>F (Reliability Cannot Be Judged):</strong> HUMINT from contacts without independent verification (documented as context, not cited as evidence)</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      <p>Circle 6 Systems OSINT Practice | <a href="https://circle6systems.com">circle6systems.com</a></p>
+      <p style="margin-top: 0.5rem;">TLP:CLEAR -- unrestricted. All information derived from public government records.</p>
+      <p style="margin-top: 0.5rem;">Collection gaps consolidated May 1, 2026</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>SANDPOINT Investigation Package | Circle 6 Systems</title>
+  <style>
+    :root {
+      --c6s-dark: #2d2a2e;
+      --c6s-panel: #3a3640;
+      --c6s-border: #504a52;
+      --c6s-accent: #a8c196;
+      --c6s-accent-dim: #8faa7b;
+      --c6s-red: #ef4444;
+      --c6s-amber: #f59e0b;
+      --c6s-green: #22c55e;
+      --c6s-text: #d4cab9;
+      --c6s-text-dim: #beb3a7;
+      --c6s-text-bright: #f5f0e8;
+      --c6s-highlight: rgba(168, 193, 150, 0.1);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c6s-dark);
+      color: var(--c6s-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 42, 46, 0.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+      height: 72px;
+    }
+
+    .site-nav .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .site-nav .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-nav .logo-text span { color: var(--c6s-accent); }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      margin-top: 72px;
+    }
+
+    .header-bar {
+      background: linear-gradient(135deg, #2d2a2e 0%, #3a3640 100%);
+      border-bottom: 2px solid var(--c6s-accent);
+      padding: 1rem 2rem;
+      margin-top: 72px;
+    }
+
+    .header-bar .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header-bar .logo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c6s-accent);
+    }
+
+    .header-bar .classification {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c6s-text-bright);
+      background: rgba(245, 240, 232, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 240, 232, 0.3);
+    }
+
+    .title-block {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--c6s-border);
+    }
+
+    .title-block h1 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .title-block .subtitle {
+      font-size: 1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .title-block p {
+      font-size: 0.9rem;
+      color: var(--c6s-text-dim);
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--c6s-accent);
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .doc-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: var(--c6s-text);
+      transition: border-color 0.2s, transform 0.15s;
+      display: block;
+    }
+
+    .doc-card:hover {
+      border-color: var(--c6s-accent);
+      transform: translateY(-2px);
+    }
+
+    .doc-card .doc-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .doc-card .doc-desc {
+      font-size: 0.85rem;
+      color: var(--c6s-text-dim);
+      line-height: 1.5;
+    }
+
+    .doc-card .doc-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .badge-primary { background: rgba(168, 193, 150, 0.15); color: var(--c6s-accent); border: 1px solid rgba(168, 193, 150, 0.3); }
+    .badge-interactive { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-appendix { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    .panel {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      border-left: 3px solid var(--c6s-accent);
+      background: var(--c6s-highlight);
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .panel-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      color: var(--c6s-accent);
+    }
+
+    .panel p, .panel li {
+      font-size: 0.85rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .panel ul { padding-left: 1.25rem; }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--c6s-border);
+      font-size: 0.75rem;
+      color: var(--c6s-text-dim);
+      text-align: center;
+    }
+
+    .footer a { color: var(--c6s-accent); text-decoration: none; }
+
+    strong { color: var(--c6s-text-bright); }
+
+    @media (max-width: 768px) {
+      .container { padding: 1.25rem; }
+      .title-block h1 { font-size: 1.35rem; }
+      .site-nav .nav-inner { padding: 0 1rem; }
+    }
+
+    @media print {
+      .site-nav { display: none; }
+      .header-bar { margin-top: 0; }
+      body { background: white; color: #1a1a1a; }
+      .doc-card { border-color: #ccc; background: #f9f9f9; }
+      h2 { border-bottom-color: #333; color: #1a1a1a; }
+      strong { color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="logo-text" href="https://circle6systems.com">Circle <span>6</span> Systems</a>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <div class="logo">OSINT Practice / Investigation Package</div>
+      <div class="classification">TLP:CLEAR</div>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top: 0;">
+
+    <div class="title-block">
+      <h1>Land Developer Influence in Sandpoint, Idaho and Bonner County</h1>
+      <div class="subtitle">Open-Source Intelligence Investigation</div>
+      <p>Prepared by Circle 6 Systems OSINT Practice. All findings are derived from publicly available sources. This package contains the complete deliverable set from the investigation.</p>
+      <p style="margin-top: 0.75rem; padding: 0.75rem; background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 4px;"><strong style="color: #f59e0b;">Note:</strong> All inferences in these documents are analytical opinions based on patterns in public records, clearly denoted as inferences (not facts). Verified findings cite their source. Nothing should be construed as an allegation of criminal activity or legal wrongdoing.</p>
+    </div>
+
+    <h2>Start Here</h2>
+    <div class="card-grid">
+      <a class="doc-card" href="SANDPOINT-Briefing.html">
+        <div class="doc-title">
+          Investigation Briefing
+          <span class="doc-badge badge-primary">Start Here</span>
+        </div>
+        <div class="doc-desc">Executive summary of findings: five developer networks, $80M+ in property, coordinated political contributions, conflicts of interest, and active litigation. Includes collection statistics, key findings, and the developer exposure summary table.</div>
+      </a>
+      <a class="doc-card" href="SANDPOINT-Investigation-Board.html">
+        <div class="doc-title">
+          Interactive Investigation Board
+          <span class="doc-badge badge-interactive">Interactive</span>
+        </div>
+        <div class="doc-desc">Knowledge graph visualization of all identified developers, government officials, and corporate entities. Drag, zoom, and click nodes for details. Connections are marked as verified (solid, with source citations) or inferred (dashed). Every link traces to a public record.</div>
+      </a>
+    </div>
+
+    <h2>Entity Profiles</h2>
+    <div class="card-grid">
+      <a class="doc-card" href="SANDPOINT-Appendix-Averill.html">
+        <div class="doc-title">
+          Appendix A: Averill Hospitality
+          <span class="doc-badge badge-appendix">Entity Profile</span>
+        </div>
+        <div class="doc-desc">Deep-dive on Averill Hospitality (Whitefish, MT): three-generation family dynasty, 5+ corporate entities, $70-100M Sandpoint Lakeside Resort, condotel bait-and-switch, two 6-0 council rejections, impact fee manipulation, and the RV park fight. Full timeline from 1945 to present.</div>
+      </a>
+    </div>
+
+    <h2>Investigation Management</h2>
+    <div class="card-grid">
+      <a class="doc-card" href="SANDPOINT-Collection-Gaps.html">
+        <div class="doc-title">
+          Collection Gaps and Phased Roadmap
+          <span class="doc-badge badge-interactive">Roadmap</span>
+        </div>
+        <div class="doc-desc">Consolidated index of 58 open collection gaps across all working files, organized into 7 investigation phases. Includes time-sensitive items (Mountain Homestead refiling deadline May 16), entity-specific open questions, source reliability ratings, and recommendations to maintain investigation momentum.</div>
+      </a>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">How to Use This Package</div>
+      <ul>
+        <li><strong>Briefing</strong> is the overview -- start there for the big picture and key findings</li>
+        <li><strong>Investigation Board</strong> shows who is connected to whom and how -- click any node to see the evidence basis for each connection</li>
+        <li><strong>Entity profiles</strong> (appendices) provide the deep-dive on specific actors</li>
+        <li>All pages are self-contained HTML -- no internet connection required, no tracking, no external dependencies</li>
+        <li>Connections marked <strong>verified</strong> (solid lines) have a cited public record source; <strong>inferred</strong> (dashed lines) are analytical judgments with the reasoning documented</li>
+      </ul>
+    </div>
+
+    <h2>About This Investigation</h2>
+    <div class="panel">
+      <div class="panel-title">Methodology</div>
+      <p>This investigation was conducted by AI agent teams coordinated through structured intelligence workflows, with human analyst review at every phase gate. All collection was limited to publicly available sources: government meeting minutes, Secretary of State business filings, county assessor and recorder data, campaign finance disclosures (Idaho Sunshine Fund), federal and state court records, and local news reporting.</p>
+      <p style="margin-top: 0.75rem;">No private databases, subscriptions, or unauthorized access was used. Every finding can be independently verified by any citizen or journalist using the same public sources.</p>
+    </div>
+
+    <div class="footer">
+      <p>Circle 6 Systems OSINT Practice | <a href="https://circle6systems.com">circle6systems.com</a></p>
+      <p style="margin-top: 0.5rem;">TLP:CLEAR -- unrestricted. All information derived from public government records.</p>
+      <p style="margin-top: 0.5rem;">Package generated April 30, 2026</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

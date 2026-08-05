@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>SANDPOINT Investigation Briefing | Circle 6 Systems</title>
+  <style>
+    :root {
+      --c6s-dark: #2d2a2e;
+      --c6s-panel: #3a3640;
+      --c6s-border: #504a52;
+      --c6s-accent: #a8c196;
+      --c6s-accent-dim: #8faa7b;
+      --c6s-red: #ef4444;
+      --c6s-amber: #f59e0b;
+      --c6s-green: #22c55e;
+      --c6s-text: #d4cab9;
+      --c6s-text-dim: #beb3a7;
+      --c6s-text-bright: #f5f0e8;
+      --c6s-highlight: rgba(168, 193, 150, 0.1);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c6s-dark);
+      color: var(--c6s-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 42, 46, 0.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+      height: 72px;
+    }
+
+    .site-nav .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .site-nav .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-nav .logo-text span {
+      color: var(--c6s-accent);
+    }
+
+    .site-nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .site-nav .nav-links a {
+      color: var(--c6s-text);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .site-nav .nav-links a:hover {
+      color: var(--c6s-accent);
+    }
+
+    .site-nav .nav-links a.active {
+      color: var(--c6s-accent);
+    }
+
+    .header-bar {
+      background: linear-gradient(135deg, #2d2a2e 0%, #3a3640 100%);
+      border-bottom: 2px solid var(--c6s-accent);
+      padding: 1rem 2rem;
+      margin-top: 72px;
+    }
+
+    .header-bar .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-bar .logo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c6s-accent);
+    }
+
+    .header-bar .classification {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c6s-text-bright);
+      background: rgba(245, 240, 232, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 240, 232, 0.3);
+    }
+
+    .title-block {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--c6s-border);
+    }
+
+    .title-block h1 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .title-block .subtitle {
+      font-size: 1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.5rem 2rem;
+      font-size: 0.8rem;
+      color: var(--c6s-text-dim);
+    }
+
+    .meta-grid .label {
+      font-weight: 600;
+      color: var(--c6s-text);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    section { margin-bottom: 2.5rem; }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--c6s-accent);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--c6s-accent);
+      margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    p { margin-bottom: 1rem; }
+
+    .panel {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .panel.highlight {
+      border-left: 3px solid var(--c6s-accent);
+      background: var(--c6s-highlight);
+    }
+
+    .panel.warning {
+      border-left: 3px solid var(--c6s-amber);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    .panel.critical {
+      border-left: 3px solid var(--c6s-red);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    .panel-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel.highlight .panel-title { color: var(--c6s-accent); }
+    .panel.warning .panel-title { color: var(--c6s-amber); }
+    .panel.critical .panel-title { color: var(--c6s-red); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    th {
+      background: var(--c6s-panel);
+      color: var(--c6s-accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--c6s-accent-dim);
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--c6s-border);
+      vertical-align: top;
+    }
+
+    tr:hover td {
+      background: rgba(168, 193, 150, 0.03);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--c6s-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-green { background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-blue { background: rgba(168, 193, 150, 0.15); color: var(--c6s-accent); border: 1px solid rgba(168, 193, 150, 0.3); }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-card .stat-value {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-accent);
+      line-height: 1.2;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--c6s-text-dim);
+      margin-top: 0.35rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    li { margin-bottom: 0.4rem; }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--c6s-border);
+      font-size: 0.75rem;
+      color: var(--c6s-text-dim);
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--c6s-accent);
+      text-decoration: none;
+    }
+
+    .footer a:hover { text-decoration: underline; }
+
+    strong { color: var(--c6s-text-bright); }
+
+    @media (max-width: 768px) {
+      .container { padding: 1.25rem; }
+      .title-block h1 { font-size: 1.35rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .meta-grid { grid-template-columns: 1fr; }
+      .site-nav .nav-links { display: none; }
+    }
+
+    @media print {
+      .site-nav { display: none; }
+      .header-bar { margin-top: 0; }
+      body { background: white; color: #1a1a1a; }
+      .header-bar { position: static; background: white; border-bottom-color: #333; }
+      .header-bar .logo { color: #333; }
+      .panel { border-color: #ccc; background: #f9f9f9; }
+      th { background: #eee; color: #333; }
+      td { border-color: #ddd; }
+      h2 { border-bottom-color: #333; color: #1a1a1a; }
+      .stat-card { border-color: #ccc; background: #f9f9f9; }
+      .stat-card .stat-value { color: #333; }
+      strong { color: #000; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="logo-text" href="https://circle6systems.com">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="https://circle6systems.com/#services">Services</a></li>
+        <li><a href="https://circle6systems.com/#approach">Approach</a></li>
+        <li><a class="active" href="#">OSINT Practice</a></li>
+        <li><a href="https://circle6systems.com/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <div class="logo">OSINT Practice / Intelligence Briefing</div>
+      <div class="classification">TLP:CLEAR</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="title-block">
+      <h1>Land Developer Influence in Sandpoint, Idaho and Bonner County</h1>
+      <div class="subtitle">Open-Source Intelligence Investigation</div>
+      <div class="meta-grid">
+        <div><span class="label">Date</span><br>April 30, 2026</div>
+        <div><span class="label">Duration</span><br>48 hours, two collection phases</div>
+        <div><span class="label">Classification</span><br>TLP:CLEAR (public sources only)</div>
+        <div><span class="label">Prepared By</span><br>Circle 6 Systems OSINT Practice</div>
+      </div>
+    </div>
+
+    <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-left: 4px solid var(--c6s-amber); border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
+      <div style="font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c6s-amber); margin-bottom: 0.5rem;">Analytical Caveats</div>
+      <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>All inferences in this report are analytical opinions based on patterns observed in public records.</strong> They are clearly denoted as inferences, not facts. Verified findings cite their public record source. Inferred connections document the analytical reasoning but should not be treated as established fact.</p>
+      <p style="font-size: 0.85rem; margin-bottom: 0;">Nothing in this report should be construed as an allegation of criminal activity or legal wrongdoing. Patterns are documented for public awareness and further inquiry. All findings can be independently verified using the same public sources cited throughout.</p>
+    </div>
+
+    <section>
+      <h2>The Question</h2>
+      <p>Who are the major land developers operating in the Sandpoint/Bonner County area, and are there patterns of political influence, coordinated activity, or conflicts of interest in local land-use decisions?</p>
+    </section>
+
+    <section>
+      <h2>Collection at a Glance</h2>
+      <p>Using AI-coordinated analyst teams, we collected and cross-referenced six categories of public records in under 48 hours. No private databases, no subscriptions, no unauthorized access. Every source is a public record that a reporter or citizen could independently verify.</p>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">1,269</div>
+          <div class="stat-label">Government Meeting PDFs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">607</div>
+          <div class="stat-label">Meeting Videos Indexed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">260K+</div>
+          <div class="stat-label">Property Records</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">241K+</div>
+          <div class="stat-label">Finance Transactions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">24</div>
+          <div class="stat-label">Business Entity Searches</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">6</div>
+          <div class="stat-label">Court Cases Documented</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Findings</h2>
+
+      <div class="panel highlight">
+        <div class="panel-title">Five Developer Networks, $80M+ in Property</div>
+        <p>Five developer networks dominate the Sandpoint/Bonner County landscape, controlling over $80 million in assessed property and contributing more than $30,000 to state and local political figures. The largest operators are the Haberman/Valiant Idaho network (Idaho Club), the Sletager family (Dover Bay), William Brownlee's M3 Companies (Camp Bay), the Mort Construction network (Monogram Homes, Tricore, Big Creek Land), and JD Lumber/Jewel Lake LLC.</p>
+      </div>
+
+      <div class="panel critical">
+        <div class="panel-title">Coordinated Political Contributions</div>
+        <p>On November 4, 2025, three otherwise unrelated developer entities made contributions totaling <strong>$15,000 to Governor Brad Little on the same day</strong>: Valiant Idaho ($5,000), Ralph Sletager ($5,000), and William Brownlee ($5,000). Same-day coordination across competing development firms is a significant pattern that warrants further scrutiny.</p>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Conflicts of Interest in City Government</div>
+        <p>Sandpoint's current mayor, Jeremy Grimm, owns Whiskey Rock Planning LLC, a land-use consulting firm that represents developers before the same planning and zoning bodies the mayor's office oversees. His recusal patterns are inconsistent and merit examination.</p>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Hidden Network Scale</div>
+        <p>What looks like several independent small builders is actually a single interconnected network. Mort Construction, Monogram Homes, Tricore Investments, Big Creek Land, and Seasons at Sandpoint are connected through shared registered agents, shared addresses, and overlapping ownership. Combined, the network holds <strong>121 parcels valued at $22 million</strong>.</p>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Active Litigation Revealing Developer Overreach</div>
+        <p>Three federal cases are currently active: a RICO suit by Mountain Homestead homeowners against their developer, an ESA/NEPA challenge to the Trestle Creek development corridor, and a lease dispute at Schweitzer Mountain. At the county level, a Jewel Lake rezone was vacated by a district court judge and then re-approved by the county commissioners weeks later.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Developer Exposure Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Principal</th>
+            <th>Entity Network</th>
+            <th>Property Value</th>
+            <th>Political $</th>
+            <th>Risk Signals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>William Brownlee</strong></td>
+            <td>M3 Companies / Camp Bay</td>
+            <td>$25.4M</td>
+            <td>$5,000</td>
+            <td><span class="badge badge-red">Coordinated</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cliff Mort</strong></td>
+            <td>Mort / Monogram / Tricore / Big Creek</td>
+            <td>$22.0M</td>
+            <td>$4,500</td>
+            <td><span class="badge badge-amber">Hidden Network</span></td>
+          </tr>
+          <tr>
+            <td><strong>William Haberman</strong></td>
+            <td>Valiant Idaho / Idaho Club</td>
+            <td>$20.5M</td>
+            <td>$12,300</td>
+            <td><span class="badge badge-red">Coordinated</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ralph Sletager</strong></td>
+            <td>Dover Bay Development</td>
+            <td>$19.9M</td>
+            <td>$8,000</td>
+            <td><span class="badge badge-red">Coordinated</span></td>
+          </tr>
+          <tr>
+            <td><strong><a href="SANDPOINT-Appendix-Averill.html" style="color: var(--c6s-accent); text-decoration: none;">Brian Averill</a></strong></td>
+            <td>Averill Hospitality / Edgewater (5+ entities)</td>
+            <td>$13.1M</td>
+            <td>$192</td>
+            <td><span class="badge badge-red">Aggressive</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jacob Weimer</strong></td>
+            <td>JD Lumber / Jewel Lake LLC</td>
+            <td>$0.5M</td>
+            <td>$2,000</td>
+            <td><span class="badge badge-amber">Direct to Commissioners</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Interactive Investigation Board</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Entity Connection Map</div>
+        <p>An interactive visualization of all identified developers, government officials, and corporate entities with their relationships, timelines, and influence patterns.</p>
+        <p style="margin-top: 0.5rem;"><a href="SANDPOINT-Investigation-Board.html" style="display: inline-block; padding: 0.6rem 1.5rem; background: var(--c6s-accent-dim); color: var(--c6s-dark); text-decoration: none; border-radius: 4px; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Open Investigation Board</a></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Methodology</h2>
+      <p>This investigation was conducted entirely by AI agent teams coordinated through structured intelligence workflows, with human analyst review at each phase gate. The firm deployed specialist agents across three functions:</p>
+      <ul>
+        <li><strong>Collection agents</strong> performed automated web scraping, bulk data download, document retrieval, and browser automation against JavaScript-rendered government portals</li>
+        <li><strong>Entity resolution agents</strong> connected businesses, people, properties, and money flows across disparate databases, identifying hidden relationships through shared agents, addresses, and filing patterns</li>
+        <li><strong>Analysis agents</strong> detected coordination patterns, built timelines, mapped influence networks, and flagged anomalies for human review</li>
+      </ul>
+      <p>All collection was limited to publicly available sources. The same methodology applies to corporate due diligence, political risk assessment, supply chain intelligence, or any domain where public records contain patterns that manual research would take weeks to assemble.</p>
+    </section>
+
+    <section>
+      <h2>Collection Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Volume</th>
+            <th>Size</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sandpoint Meeting Documents (PDFs)</td>
+            <td>223 files (57 minutes, 86 agendas, 68 packets)</td>
+            <td>1.5 GB</td>
+            <td><span class="badge badge-green">Complete</span></td>
+          </tr>
+          <tr>
+            <td>Bonner County BOCC Documents (PDFs)</td>
+            <td>1,046 files (2021-2025 + planning commission)</td>
+            <td>2.5 GB</td>
+            <td><span class="badge badge-green">Complete</span></td>
+          </tr>
+          <tr>
+            <td>Meeting Video/Audio Recordings</td>
+            <td>607 indexed; 119 downloaded</td>
+            <td>20 GB</td>
+            <td><span class="badge badge-amber">In Progress</span></td>
+          </tr>
+          <tr>
+            <td>Property Assessor Records</td>
+            <td>6 annual snapshots (2017-2020, 2024-2025)</td>
+            <td>64 MB</td>
+            <td><span class="badge badge-green">Complete</span></td>
+          </tr>
+          <tr>
+            <td>Campaign Finance Transactions</td>
+            <td>241,766 statewide; 361 target matches</td>
+            <td>72 MB</td>
+            <td><span class="badge badge-green">Complete</span></td>
+          </tr>
+          <tr>
+            <td>Business Entity Filings (Idaho SOS)</td>
+            <td>24 search terms</td>
+            <td>N/A</td>
+            <td><span class="badge badge-green">Complete</span></td>
+          </tr>
+          <tr>
+            <td>Court Records</td>
+            <td>3 federal, 3 state/county cases</td>
+            <td>N/A</td>
+            <td><span class="badge badge-amber">Partial</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Remaining Collection Opportunities</h2>
+      <ul>
+        <li><strong>Bonner County Recorder portal</strong> for deed recordings, liens, and encumbrances on target entity properties</li>
+        <li><strong>PACER federal court records</strong> for full docket entries, complaints, and motions in the three active cases</li>
+        <li><strong>Whisper transcription pipeline</strong> to convert 600+ meeting audio recordings into searchable text for keyword analysis</li>
+        <li><strong>Mountain Homestead state court watch</strong> with a refiling deadline of approximately May 16, 2026</li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      <p>Circle 6 Systems OSINT Practice | <a href="https://circle6systems.com">circle6systems.com</a></p>
+      <p style="margin-top: 0.5rem;">All sources are public records. Full source index, raw data, and automation scripts preserved for independent verification.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

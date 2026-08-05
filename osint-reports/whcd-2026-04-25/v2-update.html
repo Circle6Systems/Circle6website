@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>V2 Update Briefing -- WHCD Shooting | Circle 6 Systems Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .v2-banner {
+      background: linear-gradient(135deg, rgba(168, 193, 150, 0.12) 0%, rgba(143, 170, 123, 0.06) 100%);
+      border: 1px solid rgba(168, 193, 150, 0.25);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .v2-banner .v2-label {
+      background: var(--c6s-accent);
+      color: var(--c6s-dark);
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .v2-banner p { margin: 0; font-size: 0.85rem; color: var(--c6s-text); }
+    .change-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+    .change-tag.new { background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .change-tag.revised { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .change-tag.corrected { background: rgba(239, 68, 68, 0.15); color: var(--c6s-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .change-tag.confirmed { background: rgba(168, 193, 150, 0.15); color: var(--c6s-accent); border: 1px solid rgba(168, 193, 150, 0.3); }
+    .verdict-row td:first-child { font-weight: 700; }
+    .toc-link { color: var(--c6s-accent); text-decoration: none; }
+    .toc-link:hover { text-decoration: underline; }
+    .source-list { columns: 2; column-gap: 2rem; font-size: 0.8rem; }
+    .source-list li { margin-bottom: 0.3rem; break-inside: avoid; }
+    .source-list a { color: var(--c6s-accent); text-decoration: none; }
+    .source-list a:hover { text-decoration: underline; }
+    @media (max-width: 768px) { .source-list { columns: 1; } }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Demo</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">WHCD Shooting</a> &rsaquo; V2 Update Briefing
+    </nav>
+
+    <div class="title-block">
+      <h1>V2 Update Briefing: 72-Hour Validation</h1>
+      <div class="subtitle">2026 White House Correspondents' Dinner Shooting -- T+4 Day Assessment</div>
+      <div class="meta-grid">
+        <div><span class="label">Prepared By</span><br>Circle 6 Systems OSINT Practice</div>
+        <div><span class="label">Original (V1)</span><br>2026-04-26</div>
+        <div><span class="label">Update (V2)</span><br>2026-04-29</div>
+        <div><span class="label">Status</span><br><span class="badge badge-amber">Developing</span></div>
+      </div>
+    </div>
+
+    <div class="v2-banner">
+      <span class="v2-label">V2 Update</span>
+      <p>72-hour validation of V1 assessments. Charges upgraded to attempted assassination. Friendly fire investigation opened. Weapon discharge disputed. Travel timeline corrected. 5 new conspiracy theories cataloged. 65+ sources cited.</p>
+    </div>
+
+    <!-- TOC -->
+    <section>
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#exec" class="toc-link">Executive Summary Update</a></li>
+        <li><a href="#timeline" class="toc-link">Timeline (Corrected &amp; Expanded)</a></li>
+        <li><a href="#subject" class="toc-link">Subject Profile Updates</a></li>
+        <li><a href="#manifesto" class="toc-link">Manifesto Analysis Updates</a></li>
+        <li><a href="#wideawakes" class="toc-link">Wide Awakes Investigation</a></li>
+        <li><a href="#security" class="toc-link">Security Analysis &amp; Friendly Fire</a></li>
+        <li><a href="#political" class="toc-link">Political Impact (72-Hour Evolution)</a></li>
+        <li><a href="#threads" class="toc-link">Investigative Threads Tracker</a></li>
+        <li><a href="#validation" class="toc-link">Prediction Validation Scorecard</a></li>
+        <li><a href="#watchlist" class="toc-link">72-Hour Watchlist</a></li>
+        <li><a href="#crackpot" class="toc-link">Crackpot Corner Update</a></li>
+        <li><a href="#legal" class="toc-link">Legal Proceedings Tracker</a></li>
+        <li><a href="#sources" class="toc-link">Sources (V2)</a></li>
+      </ol>
+    </section>
+
+    <!-- 1. EXECUTIVE SUMMARY -->
+    <section id="exec">
+      <h2>1. Executive Summary Update</h2>
+      <div class="panel highlight">
+        <p>
+          On April 25, 2026, <strong>Cole Tomas Allen</strong> (31, Torrance, CA) breached the outer security perimeter at the Washington Hilton during the annual White House Correspondents' Dinner. President Trump, VP Vance, FLOTUS, and Cabinet members were evacuated. One Secret Service officer was struck in a ballistic vest and has since been <strong>released from the hospital</strong>. No fatalities.
+        </p>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">V2 Critical Updates</div>
+        <ul>
+          <li><span class="change-tag new">New</span> Charges upgraded to <strong>attempted assassination of the President</strong> (18 U.S.C. 1751)</li>
+          <li><span class="change-tag new">New</span> <strong>Friendly fire investigation</strong> -- FBI cannot confirm who shot the USSS officer; bullet fragment not recovered</li>
+          <li><span class="change-tag new">New</span> <strong>Weapon discharge disputed</strong> -- WashPost video shows no muzzle flash; Snopes unrated; spent shell found in weapon</li>
+          <li><span class="change-tag corrected">Corrected</span> Allen departed LA on <strong>April 21</strong> (not April 25); checked into Hilton <strong>April 24</strong></li>
+          <li><span class="change-tag new">New</span> Full manifesto released by DOJ; Bluesky @coldforce.bsky.social analyzed</li>
+          <li><span class="change-tag new">New</span> Third apparent assassination attempt on Trump (after Butler PA July 2024, West Palm Beach FL Sept 2024)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. TIMELINE -->
+    <section id="timeline">
+      <h2>2. Incident Timeline (Corrected &amp; Expanded)</h2>
+
+      <h3>Pre-Incident (Corrected)</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag corrected">Corrected</span> April 21</div>
+          <div class="event">Allen boards Amtrak Southwest Chief in Los Angeles with shotgun, handgun, and knives -- zero screening</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> April 21-23</div>
+          <div class="event">Travels LA to Chicago (Southwest Chief), then Chicago to DC (Floridian) -- 4-day cross-country journey</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag corrected">Corrected</span> April 24</div>
+          <div class="event">Checks into Washington Hilton as registered guest (originally reported as April 25)</div>
+        </div>
+      </div>
+
+      <h3>Incident Night (Revised)</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">~20:24 EDT</div>
+          <div class="event">Allen emails manifesto to family members and a former employer, signed "Cole 'coldForce' 'Friendly Federal Assassin' Allen"</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">~20:30</div>
+          <div class="event">Trump on stage with mentalist Oz Pearlman performing for ~2,600 attendees</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">20:34</div>
+          <div class="event"><strong>Allen rushes through magnetometer on Terrace Level</strong> carrying 12-gauge shotgun</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag revised">Revised</span> 20:34-20:35</div>
+          <div class="event"><strong>A loud gunshot is heard.</strong> USSS officer struck in ballistic vest. Officer draws service weapon, fires 5 rounds at Allen -- all miss. Allen falls from tackle, sustains knee injury. <em>Whether Allen discharged his shotgun is under investigation.</em></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">~20:44</div>
+          <div class="event">Trump evacuated from stage (~10 seconds after first shots heard in ballroom)</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">~21:00</div>
+          <div class="event">WHCA President Weijia Jiang addresses ballroom</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">~21:20</div>
+          <div class="event">Ballroom cleared; event canceled</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">Evening</div>
+          <div class="event">Metro Police Chief Carroll confirms Allen NOT struck by gunfire; Acting AG Pirro announces charges</div>
+        </div>
+      </div>
+
+      <h3>Post-Incident (New)</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> April 26</div>
+          <div class="event">USSS officer released from hospital</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> April 27</div>
+          <div class="event">Allen arraigned; charged with attempted assassination of the President. DOJ releases full manifesto and new photographs. Director Curran briefs House Oversight Chair Comer.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="time"><span class="change-tag new">New</span> April 28-29</div>
+          <div class="event">Three competing White House ballroom bills introduced (Sheehy, Graham/Britt/Schmitt, Rand Paul). King Charles III state visit proceeds with enhanced security.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SUBJECT PROFILE -->
+    <section id="subject">
+      <h2>3. Subject Profile Updates</h2>
+
+      <h3>Social Media Profile (New)</h3>
+      <table>
+        <tr><th>Platform</th><th>Handle</th><th>Content</th><th>Status</th></tr>
+        <tr>
+          <td>Bluesky</td>
+          <td>@coldforce.bsky.social</td>
+          <td>Active Nov 2024 - April 2026. Anti-Trump posts; compared Trump to Hitler; advocated gun purchases; reposted calls for Trump to be "tried for high crimes"; cited Ukraine, ICE killings, Epstein files</td>
+          <td><span class="badge badge-red">Removed</span></td>
+        </tr>
+        <tr>
+          <td>X / Twitter</td>
+          <td>@CForce3000</td>
+          <td>Anti-Trump content</td>
+          <td><span class="badge badge-red">Removed</span></td>
+        </tr>
+        <tr>
+          <td>YouTube</td>
+          <td>coldforce</td>
+          <td>Super Smash Bros. gameplay</td>
+          <td><span class="badge badge-amber">Unknown</span></td>
+        </tr>
+        <tr>
+          <td>Twitch</td>
+          <td>coldforce</td>
+          <td>Gaming streams</td>
+          <td><span class="badge badge-amber">Unknown</span></td>
+        </tr>
+      </table>
+
+      <h3>Weapons -- Discharge Dispute (New)</h3>
+      <div class="panel critical">
+        <div class="panel-title">Evidentiary Conflict</div>
+        <table>
+          <tr><th>Evidence For Discharge</th><th>Evidence Against Discharge</th></tr>
+          <tr>
+            <td>AG Blanche states Allen fired</td>
+            <td>WashPost surveillance video shows no muzzle flash</td>
+          </tr>
+          <tr>
+            <td>Spent shotgun shell found in weapon (not ejected)</td>
+            <td>Snopes rated claim "Unrated" pending investigation</td>
+          </tr>
+          <tr>
+            <td>Federal charge: "discharge of a firearm during a crime of violence"</td>
+            <td>FBI affidavit does not explicitly state Allen fired</td>
+          </tr>
+          <tr>
+            <td>Wolf Blitzer reported hearing 6+ shots</td>
+            <td>Blitzer was inside ballroom; may have heard only USSS return fire</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Travel Timeline (Corrected)</h3>
+      <div class="panel warning">
+        <div class="panel-title">Timeline Correction</div>
+        <p><span class="change-tag corrected">Corrected</span> V1 reported Allen "checked into the Washington Hilton on Friday, April 25." Corrected timeline:</p>
+        <ul>
+          <li><strong>April 21</strong> -- Boarded Amtrak Southwest Chief in Los Angeles</li>
+          <li><strong>April 21-23</strong> -- Southwest Chief (LA to Chicago), then Floridian (Chicago to DC)</li>
+          <li><strong>April 24</strong> -- Checked into Washington Hilton</li>
+          <li><strong>April 25</strong> -- Attack</li>
+        </ul>
+        <p style="margin-bottom: 0;">Allen carried shotgun, handgun, and knives across the entire 4-day journey with zero screening. His manifesto explicitly mocked the lack of Amtrak security.</p>
+      </div>
+
+      <h3>Family Updates (New)</h3>
+      <ul>
+        <li><span class="change-tag new">New</span> Parents described as "shocked" by arrest; reportedly unaware weapons were stored at their home</li>
+        <li><span class="change-tag new">New</span> Manifesto also sent to a former employer (identity not disclosed)</li>
+        <li><span class="change-tag new">New</span> Sister identified as Avriana Allen in public reporting</li>
+      </ul>
+    </section>
+
+    <!-- 4. MANIFESTO -->
+    <section id="manifesto">
+      <h2>4. Manifesto Analysis Updates</h2>
+      <div class="panel highlight">
+        <div class="panel-title">V2 Status: Full Manifesto Released</div>
+        <p style="margin-bottom: 0;">The DOJ released the full manifesto on April 27. Key additions to V1 analysis:</p>
+      </div>
+
+      <h3>New Grievances Identified</h3>
+      <table>
+        <tr><th>Grievance</th><th>Detail</th><th>V2 Status</th></tr>
+        <tr><td>Russia/Ukraine</td><td>Russia's invasion of Ukraine cited as ongoing injustice</td><td><span class="change-tag new">New</span></td></tr>
+        <tr><td>ICE Violence</td><td>Killing of civilians by Immigration and Customs Enforcement agents</td><td><span class="change-tag new">New</span></td></tr>
+        <tr><td>Epstein Files</td><td>Referenced as evidence of systemic corruption</td><td><span class="change-tag new">New</span></td></tr>
+        <tr><td>Pacific Drug Boats</td><td>Federal strikes on alleged drug trafficking vessels</td><td>Confirmed</td></tr>
+      </table>
+
+      <h3>Emotional Content (New)</h3>
+      <div class="panel highlight">
+        <p><span class="change-tag new">New</span> Allen expressed intense emotional distress at end of manifesto: wrote he felt sick, wanted to cry, and regretted betraying people who trusted him. Apologized to parents, colleagues, students, fellow travelers, hotel workers, and guests.</p>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> The oscillation between operational planning (weapon selection, target prioritization) and emotional anguish reveals significant cognitive dissonance. The radicalization trajectory -- observable over ~18 months on Bluesky -- shows progressive escalation from political frustration to rationalized violence.</p>
+      </div>
+    </section>
+
+    <!-- 5. WIDE AWAKES -->
+    <section id="wideawakes">
+      <h2>5. Wide Awakes Investigation Update</h2>
+      <table>
+        <tr><th>Development</th><th>Detail</th><th>Status</th></tr>
+        <tr>
+          <td>DOJ Investigation</td>
+          <td>Acting AG Blanche confirmed DOJ is probing Allen's ties to the Wide Awakes and other political groups</td>
+          <td><span class="change-tag new">New</span></td>
+        </tr>
+        <tr>
+          <td>Group Denial</td>
+          <td>Formal statement: "We do not know Allen, he doesn't have a connection to us as far as anyone knows"</td>
+          <td><span class="change-tag new">New</span></td>
+        </tr>
+        <tr>
+          <td>Sunrise Movement Link</td>
+          <td>Wide Awakes connected to Sunrise Movement (climate/anti-billionaire activism)</td>
+          <td><span class="change-tag new">New</span></td>
+        </tr>
+        <tr>
+          <td>Nonviolent Frustration</td>
+          <td>Allen "aired frustration with nonviolent protest" before the attack, suggesting ideological divergence from group methods</td>
+          <td><span class="change-tag new">New</span></td>
+        </tr>
+      </table>
+      <div class="panel success">
+        <div class="panel-title">V1 Assessment: Confirmed</div>
+        <p style="margin-bottom: 0;">Self-identified affinity, not organizational membership. Allen's frustration with nonviolence further isolates him from the group's core methodology. No evidence of organizational direction, support, or foreknowledge.</p>
+      </div>
+    </section>
+
+    <!-- 6. SECURITY -->
+    <section id="security">
+      <h2>6. Security Analysis &amp; Friendly Fire Investigation</h2>
+
+      <h3>New Security Gaps Identified</h3>
+      <table>
+        <tr><th>Gap</th><th>Detail</th></tr>
+        <tr><td><span class="change-tag new">New</span> No photo ID requirement</td><td>No verified attendee list used (standard at White House events but not at the Hilton)</td></tr>
+        <tr><td><span class="change-tag new">New</span> Open public spaces</td><td>Hotel lobby and public areas remained open to non-event guests; screening only near ballroom</td></tr>
+        <tr><td><span class="change-tag new">New</span> Pre-event receptions</td><td>Multiple pre-event receptions had limited security, creating additional access points</td></tr>
+        <tr><td><span class="change-tag new">New</span> Inconsistent screening</td><td>Attendees reported inconsistent protocols across different entry points</td></tr>
+      </table>
+
+      <h3>Friendly Fire Investigation</h3>
+      <div class="panel critical">
+        <div class="panel-title">Critical Open Question</div>
+        <table>
+          <tr><th>Element</th><th>Detail</th></tr>
+          <tr><td>Officer struck</td><td>USSS Uniformed Division officer, shot once in chest (protected by ballistic vest)</td></tr>
+          <tr><td>Officer response</td><td>After being struck, drew service weapon and fired 5 rounds at Allen; all 5 missed</td></tr>
+          <tr><td>Allen's weapon</td><td>Spent shotgun shell found (not ejected); WashPost video shows no muzzle flash</td></tr>
+          <tr><td>Bullet fragment</td><td>FBI has NOT recovered the fragment that pierced the officer's vest</td></tr>
+          <tr><td>Source determination</td><td>FBI cannot confirm whether officer was shot by Allen or by a colleague</td></tr>
+          <tr><td>AG Blanche</td><td>"We want to get that right, so we're still looking at that" -- declined to rule out friendly fire</td></tr>
+          <tr><td>Other agents</td><td>Firearms collected from all USSS on scene; no evidence anyone else fired</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">
+          <strong>Assessment:</strong> If the struck officer was the only one to return fire (5 rounds), and no other agents fired, and Allen's discharge is disputed, the source of the shot is genuinely unknown. This has significant implications for both the criminal case and the security narrative.
+        </p>
+      </div>
+
+      <h3>Official Response Updates</h3>
+      <ul>
+        <li><span class="change-tag new">New</span> Director Curran briefed Comer (April 27) and Senate Judiciary; no indication of checkpoint response lapse</li>
+        <li><span class="change-tag new">New</span> Chief of Staff Susie Wiles convening formal security review this week</li>
+        <li><span class="change-tag new">New</span> Bulletproof glass barriers at presidential venues under consideration</li>
+        <li><span class="change-tag new">New</span> Rep. McCaul (R-TX) suggested separating POTUS and VP at high-risk events</li>
+      </ul>
+
+      <h3>DHS Funding Crisis (Updated)</h3>
+      <div class="panel warning">
+        <div class="panel-title">73+ Day Stalemate -- Not Broken</div>
+        <ul>
+          <li>Agents who stopped Allen remain technically unfunded by congressional appropriation</li>
+          <li>Trump issued executive memorandum redirecting previously appropriated DHS funds for back pay</li>
+          <li>DHS Secretary Mullin: no funds remain after April -- <strong>end-of-month cliff</strong></li>
+          <li>Senate passed bill funding all DHS except ICE/CBP; House rejected it</li>
+          <li>Democrats holding firm on ICE/CBP reform demands despite political pressure</li>
+          <li>Axios: "WHCD shooting fails to budge Dems on DHS shutdown"</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. POLITICAL IMPACT -->
+    <section id="political">
+      <h2>7. Political Impact (72-Hour Evolution)</h2>
+
+      <h3>Trump Administration -- Three Leverage Vectors</h3>
+      <div class="panel highlight">
+        <ol>
+          <li><strong>White House Ballroom:</strong> Framed shooting as "definitive proof" venues are inadequate. DOJ moved to bypass legal obstacles to construction.</li>
+          <li><strong>DHS Funding Pressure:</strong> Leavitt called shutdown a "national emergency"; blamed Democratic obstruction for "placing an enormous and totally pointless burden on the Secret Service."</li>
+          <li><strong>Blame Democrats:</strong> White House blamed Democratic rhetoric for inspiring attack; Trump accused Jimmy Kimmel of inciting violence based on pre-shooting joke.</li>
+        </ol>
+        <p style="margin-bottom: 0;">Trump to 60 Minutes: <strong>"LET THE SHOW GO ON"</strong> -- dinner should be rescheduled within 30 days.</p>
+      </div>
+
+      <h3>White House Ballroom Legislation (New)</h3>
+      <table>
+        <tr><th>Sponsor</th><th>Approach</th><th>Funding</th><th>Status</th></tr>
+        <tr>
+          <td>Sen. Tim Sheehy (R-MT)</td>
+          <td>Unanimous consent authorization</td>
+          <td>Private funding pathway</td>
+          <td><span class="badge badge-amber">UC vote target: April 30</span></td>
+        </tr>
+        <tr>
+          <td>Sens. Graham, Britt, Schmitt</td>
+          <td>Authorization + appropriation</td>
+          <td>$400M federal (customs fee offset)</td>
+          <td><span class="badge badge-blue">Introduced April 28</span></td>
+        </tr>
+        <tr>
+          <td>Sen. Rand Paul (R-KY)</td>
+          <td>Authorization only; removes legal hurdles</td>
+          <td>Private funding; no taxpayer cost</td>
+          <td><span class="badge badge-green">Endorsed by Trump</span></td>
+        </tr>
+      </table>
+      <p>Democrats signaling unified opposition to all ballroom legislation.</p>
+
+      <h3>Key Political Reactions (New)</h3>
+      <table>
+        <tr><th>Actor</th><th>Response</th></tr>
+        <tr><td>Acting AG Todd Blanche</td><td>"Massive security success story"; rejected gun control framing: "This isn't about changing the law"</td></tr>
+        <tr><td>Press Sec. Leavitt</td><td>Called DHS shutdown a "national emergency"; conspiracy theories "crazy nonsense"</td></tr>
+        <tr><td>Rep. Jeffries (D)</td><td>Pushed back on blame narrative; called Leavitt "a disgrace" and "a stone-cold liar"</td></tr>
+        <tr><td>Rep. Raskin (D-MD)</td><td>Called for universal background checks as "moment of unity"</td></tr>
+        <tr><td>Rep. AOC (D-NY)</td><td>"Using any one incidence of violence for a political end is pretty sad"</td></tr>
+        <tr><td>Barack Obama</td><td>Condemned the assassination attempt</td></tr>
+      </table>
+
+      <h3>King Charles III State Visit</h3>
+      <div class="panel success">
+        <div class="panel-title">Proceeding Successfully (April 27-30)</div>
+        <p style="margin-bottom: 0;">Visit proceeding with "minor operational adjustments." British Ambassador Sir Christian Turner expressed confidence in security. Charles addressed Congress, attended state dinner, toasted "indispensable" US-UK alliance. Enhanced security manifested as heightened presence around White House, Pennsylvania Ave, and Capitol Hill.</p>
+      </div>
+    </section>
+
+    <!-- 8. INVESTIGATIVE THREADS -->
+    <section id="threads">
+      <h2>8. Investigative Threads Tracker</h2>
+      <table>
+        <tr><th>Thread</th><th>V1 Status</th><th>V2 Update</th><th>Resolution</th></tr>
+        <tr>
+          <td>Full manifesto</td>
+          <td>Materials recovered</td>
+          <td>Full text released by DOJ April 27; Bluesky analyzed</td>
+          <td><span class="badge badge-green">Partial</span></td>
+        </tr>
+        <tr>
+          <td>Digital forensics</td>
+          <td>Under investigation</td>
+          <td>Bluesky + X accounts identified and removed; CNN deep dive April 28</td>
+          <td><span class="badge badge-amber">In Progress</span></td>
+        </tr>
+        <tr>
+          <td>Wide Awakes</td>
+          <td>Under investigation</td>
+          <td>DOJ probing; group denies; self-identified affinity holds</td>
+          <td><span class="badge badge-amber">In Progress</span></td>
+        </tr>
+        <tr>
+          <td>Weapons trail</td>
+          <td>Legal CA purchases</td>
+          <td>Confirmed: Mossberg Aug 2025, Armscor 2023. Parents unaware of storage.</td>
+          <td><span class="badge badge-green">Largely Resolved</span></td>
+        </tr>
+        <tr>
+          <td>Travel pattern</td>
+          <td>Amtrak route</td>
+          <td>CORRECTED: Departed April 21, 4-day journey. Manifesto mocked rail security.</td>
+          <td><span class="badge badge-green">Largely Resolved</span></td>
+        </tr>
+        <tr>
+          <td>Additional charges</td>
+          <td>Expected</td>
+          <td>Upgraded to attempted assassination (18 U.S.C. 1751). More forthcoming.</td>
+          <td><span class="badge badge-amber">In Progress</span></td>
+        </tr>
+        <tr>
+          <td>Security review</td>
+          <td>USSS assessment</td>
+          <td>Curran briefed Comer + Senate; Wiles convening formal review</td>
+          <td><span class="badge badge-amber">In Progress</span></td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">New</span> Weapon discharge</td>
+          <td>N/A</td>
+          <td>Spent shell found, but no muzzle flash on video. Snopes unrated.</td>
+          <td><span class="badge badge-red">Open</span></td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">New</span> Friendly fire</td>
+          <td>N/A</td>
+          <td>FBI cannot confirm source. Fragment not recovered. AG won't rule out.</td>
+          <td><span class="badge badge-red">Open</span></td>
+        </tr>
+        <tr>
+          <td><span class="change-tag new">New</span> Legal proceedings</td>
+          <td>N/A</td>
+          <td>Arraigned April 27. PD Tezira Abe. Detention hearing April 30.</td>
+          <td><span class="badge badge-amber">In Progress</span></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- 9. VALIDATION SCORECARD -->
+    <section id="validation">
+      <h2>9. Prediction Validation Scorecard</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Each V1 Key Assessment scored against 72 hours of new evidence.
+      </p>
+
+      <!-- Assessment 1 -->
+      <div class="panel success">
+        <div class="panel-title">#1: Lone Actor Profile</div>
+        <table>
+          <tr><th style="width: 120px;">V1 Claim</th><td>No evidence of co-conspirators, organizational direction, or external support</td></tr>
+          <tr class="verdict-row"><th>V2 Verdict</th><td><span class="badge badge-green">Confirmed</span> &mdash; High Confidence</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">No co-conspirators identified in 72 hours. Wide Awakes deny knowledge. DOJ probing but no organizational link found. Bluesky account shows 18-month self-radicalization trajectory. Allen's frustration with nonviolent protest further isolates him from organized movements.</p>
+      </div>
+
+      <!-- Assessment 2 -->
+      <div class="panel warning">
+        <div class="panel-title">#2: Attack Execution</div>
+        <table>
+          <tr><th style="width: 120px;">V1 Claim</th><td>Attack partially successful in execution (breached perimeter, discharged weapons) but failed in objectives (no officials reached)</td></tr>
+          <tr class="verdict-row"><th>V2 Verdict</th><td><span class="badge badge-amber">Revised</span> &mdash; Medium Confidence</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem;">Requires significant revision. Two critical questions:</p>
+        <ol>
+          <li><strong>Did Allen fire?</strong> AG says yes. Spent shell found. But WashPost video: no muzzle flash. Snopes: unrated.</li>
+          <li><strong>Who shot the officer?</strong> If the officer was the only one to return fire (5 rounds, all missed), and Allen may not have fired, the shot source is unknown.</li>
+        </ol>
+        <p style="margin-bottom: 0;">If Allen did not fire, the incident shifts from "armed assault with weapons discharge" to "armed breach where only law enforcement discharged weapons." Failed objectives confirmed: Allen never reached ballroom or any official.</p>
+      </div>
+
+      <!-- Assessment 3 -->
+      <div class="panel success">
+        <div class="panel-title">#3: Security Model Inadequate</div>
+        <table>
+          <tr><th style="width: 120px;">V1 Claim</th><td>Security model was structurally inadequate; hotel guest exploited gap between hotel access and event security</td></tr>
+          <tr class="verdict-row"><th>V2 Verdict</th><td><span class="badge badge-green">Confirmed</span> &mdash; High Confidence</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">Every new detail reinforces: open lobby, no photo ID, inconsistent screening, pre-event reception access points, sub-NSSE classification. Multiple congressional demands for review. Formal review convened by Susie Wiles this week.</p>
+      </div>
+
+      <!-- Assessment 4 -->
+      <div class="panel success">
+        <div class="panel-title">#4: Bipartisan Political Exploitation</div>
+        <table>
+          <tr><th style="width: 120px;">V1 Claim</th><td>Political exploitation is immediate and bipartisan</td></tr>
+          <tr class="verdict-row"><th>V2 Verdict</th><td><span class="badge badge-green">Confirmed &amp; Expanded</span> &mdash; High Confidence</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">Far exceeded V1 predictions. Three competing ballroom bills in 72 hours. DHS funding stalemate hardened (not broken). Gun control framing rejected. Kimmel incitement accusation. Both parties weaponizing for midterms. DHS pay crisis creates end-of-week forcing function.</p>
+      </div>
+
+      <!-- Assessment 5 -->
+      <div class="panel success">
+        <div class="panel-title">#5: Amtrak Tradecraft</div>
+        <table>
+          <tr><th style="width: 120px;">V1 Claim</th><td>Amtrak travel route is a notable tradecraft choice avoiding TSA screening</td></tr>
+          <tr class="verdict-row"><th>V2 Verdict</th><td><span class="badge badge-green">Confirmed</span> &mdash; High Confidence</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">Allen's manifesto explicitly mocked rail security gaps. Corrected timeline shows 4-day cross-country journey (not same-day). AP wire story went national April 29. Rail union calling for screening. Most actionable security finding from the entire incident. No legislation introduced yet.</p>
+      </div>
+
+      <!-- Assessment 6 -->
+      <div class="panel warning">
+        <div class="panel-title">#6: Patel Exclusion</div>
+        <table>
+          <tr><th style="width: 120px;">V1 Claim</th><td>The manifesto's Patel exclusion warrants further analysis</td></tr>
+          <tr class="verdict-row"><th>V2 Verdict</th><td><span class="badge badge-amber">Unresolved</span> &mdash; Low Confidence in Resolution</td></tr>
+        </table>
+        <p style="margin-top: 0.75rem; margin-bottom: 0;">Zero additional reporting on why Allen excluded FBI Director Kash Patel despite full manifesto release. Media focused on emotional content and religious framing. The exclusion remains analytically significant but unexplored. May surface during trial.</p>
+      </div>
+
+      <!-- Scorecard Summary -->
+      <h3>Scorecard Summary</h3>
+      <table>
+        <tr><th>Verdict</th><th>Count</th><th>Assessments</th></tr>
+        <tr><td><span class="badge badge-green">Confirmed</span></td><td>4</td><td>#1 Lone Actor, #3 Security, #4 Political, #5 Amtrak</td></tr>
+        <tr><td><span class="badge badge-amber">Revised</span></td><td>1</td><td>#2 Attack Execution (weapon discharge + friendly fire questions)</td></tr>
+        <tr><td><span class="badge badge-amber">Unresolved</span></td><td>1</td><td>#6 Patel Exclusion</td></tr>
+        <tr><td><span class="badge badge-red">Wrong</span></td><td>0</td><td>None</td></tr>
+      </table>
+    </section>
+
+    <!-- 10. WATCHLIST -->
+    <section id="watchlist">
+      <h2>10. 72-Hour Watchlist</h2>
+      <table>
+        <tr><th>Item</th><th>Date</th><th>Significance</th></tr>
+        <tr><td>Allen detention hearing</td><td>April 30</td><td>Defense may contest detention; first substantive proceeding</td></tr>
+        <tr><td>Sheehy UC vote</td><td>April 30 (target)</td><td>Will be blocked; establishes political marker</td></tr>
+        <tr><td>House budget resolution vote</td><td>April 30 (target)</td><td>Critical for ICE/CBP reconciliation; 2-vote GOP margin</td></tr>
+        <tr><td>Wiles security review</td><td>This week</td><td>First formal post-incident protocol review</td></tr>
+        <tr><td>Comer committee briefing</td><td>April 30 (target)</td><td>Sets tone for congressional investigation</td></tr>
+        <tr><td>DHS pay authority expires</td><td>End of week</td><td>240,000+ DHS employees face missed pay</td></tr>
+        <tr><td>King Charles visit ends</td><td>April 30</td><td>Security performance will be scrutinized</td></tr>
+        <tr><td>Allen preliminary hearing</td><td>May 11</td><td>Next major court date; additional charges expected</td></tr>
+      </table>
+    </section>
+
+    <!-- 11. CRACKPOT CORNER -->
+    <section id="crackpot">
+      <h2>11. Crackpot Corner -- Conspiracy Theories (Updated)</h2>
+      <div class="panel warning">
+        <div class="panel-title">Information Environment Assessment</div>
+        <p>"Staged" surpassed <strong>300,000+ posts on X</strong> by Sunday afternoon (TweetBinder data). Cross-partisan conspiracy generation is a new development -- both left and right produced distinct conspiracy ecosystems. AI-generated content played a significant role for the first time in a major political violence incident.</p>
+      </div>
+
+      <h3>A.1 "It Was Staged" / False Flag <span class="badge badge-red">Highest Velocity</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Shooting staged for political gain.</p>
+        <p><span class="change-tag revised">V2 Update</span> Two sub-narratives: <em>Left</em> -- distraction from Iran war / justify ballroom. <em>Right</em> -- classic false flag to increase government power.</p>
+        <p><strong>Debunking:</strong> Live rounds confirmed by Metro Police. Officer physically struck. Multiple media witnesses. Suspect in custody with documented manifesto.</p>
+        <p style="margin-bottom: 0;"><strong>Official response:</strong> Leavitt: "crazy nonsense." Trump: "sick."</p>
+      </div>
+
+      <h3>A.2 Leavitt "Foreknowledge" <span class="badge badge-amber">High Velocity</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Pre-event comment "shots will be fired tonight" = advance knowledge.</p>
+        <p><span class="change-tag revised">V2 Update</span> Theory expanded: husband Nicholas Riccio's comments to Fox's Aishah Hasnie about "being very safe" generated additional speculation.</p>
+        <p style="margin-bottom: 0;"><strong>Debunking:</strong> Full interview: metaphor for Trump's comedic speech. Riccio's comment: generic spousal concern.</p>
+      </div>
+
+      <h3>A.3 Oz Pearlman "Signaling" <span class="badge badge-blue">Declining</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Card held up near Trump was a signal to shooter.</p>
+        <p style="margin-bottom: 0;"><strong>Status:</strong> No new developments. Theory has lost traction. Pearlman was performing a scheduled magic trick.</p>
+      </div>
+
+      <h3>A.6 IDF Apparel <span class="badge badge-amber">Moderate</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Allen wore IDF sweatshirt; name searched in Israel pre-incident.</p>
+        <p><span class="change-tag revised">V2 Update</span> Snopes investigated: AI detection tools returned 2-97% likelihood the image was AI-generated. Spread amplified by U.S., Russian, and Iranian X accounts. PBS identified as "antisemitic trope."</p>
+        <p style="margin-bottom: 0;"><strong>Status:</strong> Image is likely fabricated.</p>
+      </div>
+
+      <h3><span class="change-tag new">New</span> A.8 Iran War Distraction <span class="badge badge-amber">Moderate</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Shooting staged/timed to distract from 2026 Iran conflict.</p>
+        <p><strong>Platform:</strong> Primarily Bluesky and left-leaning X accounts.</p>
+        <p style="margin-bottom: 0;"><strong>Debunking:</strong> Allen's manifesto was written before the attack and reflects personal grievances, not coordination with foreign policy timeline.</p>
+      </div>
+
+      <h3><span class="change-tag new">New</span> A.9 AI-Generated Disinformation <span class="badge badge-red">High &amp; Growing</span></h3>
+      <div class="panel critical">
+        <div class="panel-title">First Major AI-Disinfo Political Violence Event</div>
+        <p>Specific examples:</p>
+        <ul>
+          <li>AI-enhanced security video of Allen's checkpoint sprint (manipulated for various narratives)</li>
+          <li>AI-generated Tucker Carlson video floating "staged" theory</li>
+          <li>Pro-Iran AI propaganda video exploiting the incident</li>
+          <li>AI-generated fake passport image of Allen (supporting "Indian wife" claim)</li>
+          <li>Fake images of Allen in IDF apparel</li>
+        </ul>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> Detection tools returned inconsistent results (2-97% AI likelihood), demonstrating current limitations. Cross-platform spread (X, Telegram, TikTok, Bluesky).</p>
+      </div>
+
+      <h3><span class="change-tag new">New</span> A.10 Time Travel Theory <span class="badge badge-blue">Viral / Zero Credibility</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Time travel involved (specifics vary).</p>
+        <p><strong>Platform:</strong> X. One post accrued <strong>1.2 million views</strong> by Monday morning.</p>
+        <p style="margin-bottom: 0;"><strong>Assessment:</strong> Absurdist end of conspiracy spectrum. Demonstrates engagement-driven amplification regardless of content quality.</p>
+      </div>
+
+      <h3><span class="change-tag new">New</span> A.11 VP Vance Evacuation Order <span class="badge badge-blue">Low-Moderate</span></h3>
+      <div class="panel">
+        <p><strong>Claim:</strong> Vance being escorted out first proves foreknowledge.</p>
+        <p style="margin-bottom: 0;"><strong>Debunking:</strong> Standard Secret Service continuity-of-government protocol. VP is evacuated before/simultaneously with POTUS.</p>
+      </div>
+    </section>
+
+    <!-- 12. LEGAL TRACKER -->
+    <section id="legal">
+      <h2>12. Legal Proceedings Tracker</h2>
+      <table>
+        <tr><th>Date</th><th>Event</th><th>Detail</th></tr>
+        <tr><td>April 25</td><td>Arrest</td><td>Tackled and detained at Washington Hilton</td></tr>
+        <tr><td>April 27</td><td>Arraignment</td><td>U.S. District Court, Washington, D.C. No plea entered.</td></tr>
+        <tr><td>April 27</td><td>Charges</td><td>(1) Attempted assassination (18 U.S.C. 1751); (2) Interstate transport of firearm with intent; (3) Discharge of firearm during crime of violence</td></tr>
+        <tr><td>April 27</td><td>Defense counsel</td><td>Public defender Tezira Abe (court-appointed); may contest detention</td></tr>
+        <tr><td>April 30</td><td>Detention hearing</td><td>DOJ seeking pretrial detention</td></tr>
+        <tr><td>May 11</td><td>Preliminary hearing</td><td>Additional charges expected before this date</td></tr>
+        <tr><td>TBD</td><td>Grand jury</td><td>Additional charges anticipated</td></tr>
+      </table>
+      <div class="panel highlight">
+        <div class="panel-title">Maximum Penalty</div>
+        <p style="margin-bottom: 0;"><strong>Life in prison.</strong> 18 U.S.C. 1751 carries the death penalty only if the president is killed. Since Trump was uninjured, the statutory maximum is life imprisonment.</p>
+      </div>
+    </section>
+
+    <!-- 13. SOURCES -->
+    <section id="sources">
+      <h2>13. V2 Sources (April 27-29)</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.85rem; margin-bottom: 1rem;">65+ open sources cited across V1 and V2. V2 additions listed below.</p>
+      <ul class="source-list">
+        <li><a href="https://www.justice.gov/opa/pr/suspect-white-house-correspondents-dinner-shooting-charged-attempt-assassinate-president">DOJ -- Attempted Assassination Charges</a></li>
+        <li><a href="https://www.cnn.com/2026/04/27/politics/live-news/correspondents-dinner-shooting-suspect-court">CNN -- Suspect Charged</a></li>
+        <li><a href="https://www.cnn.com/2026/04/29/politics/secret-service-scrutiny-correspondents-dinner-attack">CNN -- Secret Service Scrutiny</a></li>
+        <li><a href="https://www.washingtonpost.com/national-security/2026/04/27/pdf-cole-allen-whcd-shooting/">WashPost -- Charges PDF</a></li>
+        <li><a href="https://www.washingtonpost.com/business/2026/04/27/whcd-shooting-conspiracy-theories-trump/">WashPost -- Conspiracy Theories</a></li>
+        <li><a href="https://www.foxnews.com/live-news/white-house-correspondents-dinner-shooting-04-27-26">Fox News -- Charges Unveiled</a></li>
+        <li><a href="https://www.cnbc.com/2026/04/27/cole-allen-whcd-arraigment-trump.html">CNBC -- Arraignment</a></li>
+        <li><a href="https://www.nbcnews.com/tech/misinformation/conspiracy-theories-staged-white-house-correspondents-dinner-rcna342212">NBC -- Conspiracy Theories</a></li>
+        <li><a href="https://www.pbs.org/newshour/nation/how-conspiracy-theories-spread-after-the-white-house-correspondents-dinner-shooting">PBS -- How Conspiracies Spread</a></li>
+        <li><a href="https://www.npr.org/2026/04/27/nx-s1-5801423/correspondents-dinner-shooting-unleashes-conspiracy-theories">NPR -- Conspiracies Unleashed</a></li>
+        <li><a href="https://www.snopes.com/news/2026/04/28/whca-shooting-suspect-weapon/">Snopes -- Did Suspect Fire?</a></li>
+        <li><a href="https://www.snopes.com/articles/473060/cole-allen-idf-sweatshirt/">Snopes -- IDF Sweatshirt</a></li>
+        <li><a href="https://www.thedailybeast.com/secret-service-agent-may-have-shot-colleague-amid-whcd-chaos/">Daily Beast -- Friendly Fire</a></li>
+        <li><a href="https://www.thedailybeast.com/influencers-fuel-explosion-of-conspiracy-posts-after-whcd-shooting/">Daily Beast -- Conspiracy Explosion</a></li>
+        <li><a href="https://www.axios.com/2026/04/28/whcd-shooting-dhs-shutdown-ice-cbp-democrats">Axios -- Fails to Budge Dems</a></li>
+        <li><a href="https://www.axios.com/2026/04/26/trump-white-house-correspondents-dinner-gun-laws">Axios -- Gun Laws</a></li>
+        <li><a href="https://dailycaller.com/2026/04/27/scoop-wide-awakes-deny-connection-cole-allen-whcd-gunman/">Daily Caller -- Wide Awakes Deny</a></li>
+        <li><a href="https://dailycaller.com/2026/04/27/secret-service-cole-allen-donald-trump-assassination-whcd-affidavit-charges/">Daily Caller -- Affidavit</a></li>
+        <li><a href="https://forward.com/culture/821284/white-house-correspondents-dinner-suspect-bible-christianity/">Forward -- Manifesto &amp; Christianity</a></li>
+        <li><a href="https://fortune.com/2026/04/26/white-house-correspondents-dinner-shooting-suspect-train-security-guns-amtrak-screening/">Fortune -- Train Security</a></li>
+        <li><a href="https://fortune.com/2026/04/27/white-house-to-evaluate-event-security-protocols-after-third-shooting-attempt-against-trump/">Fortune -- Security Evaluation</a></li>
+        <li><a href="https://www.baltimoresun.com/2026/04/29/correspondents-dinner-shooting-train-security/">Baltimore Sun -- Train Security</a></li>
+        <li><a href="https://www.ms.now/news/three-days-after-correspondents-dinner-fbi-still-unsure-who-shot-officer-outside-ballroom">MS NOW -- FBI Unsure</a></li>
+        <li><a href="https://www.ibtimes.co.uk/friendly-fire-white-house-correspondents-dinner-shooting-1794325">IBTimes -- Friendly Fire</a></li>
+        <li><a href="https://www.cbsnews.com/news/doj-pretrial-detention-of-shooting-suspect-cole-allen/">CBS -- Pretrial Detention</a></li>
+        <li><a href="https://www.cbsnews.com/live-updates/king-charles-trump-address-congress-white-house/">CBS -- King Charles Visit</a></li>
+        <li><a href="https://dailymontanan.com/2026/04/27/sheehy-says-hell-introduce-legislation-to-approve-trumps-white-house-ballroom/">Daily Montanan -- Sheehy Bill</a></li>
+        <li><a href="https://rollcall.com/2026/04/27/gop-readies-bills-to-fund-or-authorize-white-house-ballroom/">Roll Call -- Ballroom Bills</a></li>
+        <li><a href="https://thehill.com/homenews/campaign/5852801-trump-shooting-polarization-debate/">The Hill -- Midterm Impact</a></li>
+        <li><a href="https://www.notus.org/congress/republicans-white-house-correspondents-dinner-shooting-ballroom-donald-trump-investigation-hearings">NOTUS -- GOP Wants Answers</a></li>
+        <li><a href="https://www.oann.com/newsroom/secret-service-agent-who-was-shot-at-whcd-released-from-hospital/">OAN -- Agent Released</a></li>
+        <li><a href="https://abc7.com/post/is-cole-allen-parents-shocked-arrest-torrance-tutor-shooting-outside-white-house-correspondents-dinner/18982384/">ABC7 -- Parents Shocked</a></li>
+        <li><a href="https://freebeacon.com/issues/suspected-whcd-shooter-boosted-bluesky-posts-saying-trump-should-be-tried-for-high-crimes/">Free Beacon -- Bluesky Posts</a></li>
+        <li><a href="https://www.thefederalist.com/2026/04/27/secret-service-reform-is-a-literal-life-or-death-necessity/">The Federalist -- USSS Reform</a></li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;">V2 Update compiled from 65+ open sources &middot; Current as of 2026-04-29 1800 EDT &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">No classified or privileged sources were used. Prepared by CTI-ORCH, OSINT-RECON, SOCMINT, STRAT-INTEL, CTI-FUSION, CTI-REPORT.</p>
+      <p style="margin-top: 0.5rem;"><a href="index.html">Back to Briefing Package</a> | <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

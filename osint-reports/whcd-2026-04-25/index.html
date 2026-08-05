@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>WHCD Shooting Briefing Package | Circle 6 Systems Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--c6s-border);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.25rem; }
+    .hero .event-date {
+      font-size: 1.1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .hero .event-summary {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--c6s-text-dim);
+      font-size: 0.95rem;
+    }
+    .status-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .status-item {
+      text-align: center;
+    }
+    .status-item .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .status-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+      margin-bottom: 1rem;
+    }
+    .prediction-note {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--c6s-text-dim);
+    }
+  </style>
+</head>
+<body>
+  <!-- Site Navigation -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Demo</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">WHCD Shooting</a>
+    </nav>
+
+    <div class="hero">
+      <h1>2026 White House Correspondents' Dinner Shooting</h1>
+      <div class="event-date">Washington Hilton &middot; April 25, 2026 &middot; 20:34 EDT</div>
+      <p class="event-summary">
+        Comprehensive open-source intelligence briefing package on the attempted assassination at the annual WHCD.
+        Lone actor Cole Tomas Allen (31, Torrance CA) breached the outer security perimeter armed with a shotgun, handgun, and multiple knives.
+        One Secret Service officer struck (vest, released from hospital). Suspect charged with attempted assassination. No fatalities.
+      </p>
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-green);">INDICTED</div>
+          <div class="label">Incident Status</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-green);">0</div>
+          <div class="label">Fatalities</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-amber);">1</div>
+          <div class="label">Injuries (non-fatal)</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-accent);">1</div>
+          <div class="label">Suspect in Custody</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-text-bright);">130+</div>
+          <div class="label">Open Sources Cited</div>
+        </div>
+        <div class="status-item">
+          <div class="value" style="color: var(--c6s-accent);">V4</div>
+          <div class="label">Latest Version</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- V4 UPDATE BANNER -->
+    <div style="background: linear-gradient(135deg, rgba(168, 193, 150, 0.12) 0%, rgba(143, 170, 123, 0.06) 100%); border: 1px solid rgba(168, 193, 150, 0.3); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 1rem;">
+      <span style="background: var(--c6s-accent); color: var(--c6s-dark); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.1em; padding: 0.3rem 0.7rem; border-radius: 4px; text-transform: uppercase; white-space: nowrap; margin-top: 0.1rem;">V4 Update</span>
+      <div>
+        <p style="margin: 0 0 0.5rem; color: var(--c6s-text-bright); font-weight: 600;">T+24 Day Assessment Published &mdash; May 19, 2026</p>
+        <p style="margin: 0; font-size: 0.85rem; color: var(--c6s-text);">Case enters pre-trial phase. Grand jury returned 4-count indictment May 5 (V3 Prediction 4 confirmed). Allen pleads not guilty May 11 before Judge McFadden. Defense files explosive motion to disqualify Pirro and Blanche as victim-prosecutors. Sen. Blackburn demands USSS audit. WHCD rescheduling in doubt. V3 scorecard: 1 confirmed, 1 partially confirmed, 1 strongly supported, 2 developing. 5 new V4 predictions.</p>
+      </div>
+    </div>
+
+    <div class="section-label">V4 Update (May 19, 2026)</div>
+
+    <div class="card-grid">
+      <a href="v4-update.html" class="card" style="border-color: var(--c6s-accent);">
+        <div class="card-icon" style="color: var(--c6s-accent);">&#9733;</div>
+        <h3>V4 Update Briefing</h3>
+        <p>T+24 day assessment. 4-count indictment, not guilty plea, prosecutorial recusal battle, USSS accountability pressure, WHCD future in doubt, V3 prediction scorecard, 5 new predictions, and pre-trial watchlist.</p>
+        <div class="card-badge"><span class="badge badge-green">New &mdash; May 19</span></div>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 2rem;">V3 Update (May 4, 2026)</div>
+
+    <div class="card-grid">
+      <a href="v3-update.html" class="card">
+        <div class="card-icon">&#9733;</div>
+        <h3>V3 Update Briefing</h3>
+        <p>T+9 day assessment. Friendly fire resolved, K9 failure exposed, prediction scorecard, custody controversy, radicalization analysis, "normie extremism" debate, 5 new predictions, and updated watchlist.</p>
+        <div class="card-badge"><span class="badge badge-blue">May 4</span></div>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 2rem;">V2 Update (April 29, 2026)</div>
+
+    <div class="card-grid">
+      <a href="v2-update.html" class="card">
+        <div class="card-icon">&#9733;</div>
+        <h3>V2 Update Briefing</h3>
+        <p>72-hour validation of V1 assessments. Charges upgraded, friendly fire investigation, weapon discharge disputed, 5 new conspiracy theories, prediction scorecard, legal tracker, and 72-hour watchlist.</p>
+        <div class="card-badge"><span class="badge badge-blue">April 29</span></div>
+      </a>
+    </div>
+
+    <div class="section-label" style="margin-top: 2rem;">V1 Original Briefing Package (April 26, 2026)</div>
+
+    <div class="card-grid">
+      <a href="executive-overview.html" class="card">
+        <div class="card-icon">&#9733;</div>
+        <h3>Executive Overview</h3>
+        <p>Leadership brief with V3 findings integrated. Attempted assassination charge, K9 detection failure, friendly fire resolved, DHS shutdown ended, custody controversy, and updated bottom line.</p>
+        <div class="card-badge"><span class="badge badge-green">Updated May 7</span> <span class="badge badge-blue">2 min read</span></div>
+      </a>
+
+      <a href="full-briefing.html" class="card">
+        <div class="card-icon">&#9881;</div>
+        <h3>Full OSINT Briefing</h3>
+        <p>Comprehensive analysis with corrected timeline (April 21 departure, April 24 staging), K9 failure, upgraded charges, V3-validated key assessments, and Amtrak policy reversal.</p>
+        <div class="card-badge"><span class="badge badge-green">Updated May 7</span> <span class="badge badge-amber">15 min read</span></div>
+      </a>
+
+      <a href="threat-actor-profile.html" class="card">
+        <div class="card-icon">&#9760;</div>
+        <h3>Threat Actor Profile</h3>
+        <p>Full career trajectory documented: NASA JPL &rarr; engineering &rarr; indie games &rarr; SAT tutoring. TRAP-18 validated radicalization model, Bluesky analysis, complete weapons inventory, and "normie extremism" debate.</p>
+        <div class="card-badge"><span class="badge badge-green">Updated May 7</span> <span class="badge badge-red">Intel Analyst</span></div>
+      </a>
+
+      <a href="security-analysis.html" class="card">
+        <div class="card-icon">&#9888;</div>
+        <h3>Protective Security Report</h3>
+        <p>New critical finding: K9 alerted twice, handler ignored. Friendly fire resolved. DHS shutdown ended. Amtrak loosening gun policy. USSS Director Curran under pressure. FIFA World Cup security concerns.</p>
+        <div class="card-badge"><span class="badge badge-green">Updated May 7</span> <span class="badge badge-amber">Security Ops</span></div>
+      </a>
+
+      <a href="counter-narrative.html" class="card">
+        <div class="card-icon">&#9783;</div>
+        <h3>Counter-Narrative &amp; Disinfo Report</h3>
+        <p>V1 theories scored: 4 debunked, 1 declining. New: Joe Rogan time travel theory (56M views), Usha Vance misidentification, Vietnam AI spam operation, foreign info ops from Russia/Iran/Vietnam.</p>
+        <div class="card-badge"><span class="badge badge-green">Updated May 7</span> <span class="badge badge-green">Communications</span></div>
+      </a>
+
+      <a href="political-impact.html" class="card">
+        <div class="card-icon">&#9878;</div>
+        <h3>Political &amp; Policy Impact</h3>
+        <p>DHS shutdown resolved. Three ballroom bills stalled. Gun control dead. Amtrak going backwards. Faruqui-Pirro judicial clash. "Normie extremism" as midterm weapon. FIFA World Cup security fears.</p>
+        <div class="card-badge"><span class="badge badge-green">Updated May 7</span> <span class="badge badge-blue">Policy Advisor</span></div>
+      </a>
+    </div>
+
+    <section style="margin-top: 2.5rem;">
+      <h2>Predictive Assessments</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        V1 predictions scored at V3 &amp; V4. V3 predictions scored at V4. <a href="v4-update.html#predictions" style="color: var(--c6s-accent);">Full V3 scorecard in V4 briefing.</a> &middot; <a href="v4-update.html#newpredictions" style="color: var(--c6s-accent);">V4 predictions.</a>
+      </p>
+
+      <div class="prediction-note">
+        Predictions are time-stamped at publication and tracked for calibration. Resolution status is updated as confirming or disconfirming evidence emerges.
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Prediction 1: Prior Reconnaissance</div>
+        <p>Allen conducted at least one prior reconnaissance trip to Washington D.C. and/or the Washington Hilton. His manifesto's specific security critique and venue-hotel booking indicate physical familiarity with the site.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 85%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">85%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: April 26, 2026 &bull; Scored: May 4, 2026 <span class="prediction-status" style="background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border-color: rgba(245, 158, 11, 0.3);">Partially Confirmed</span></div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-top: 0.5rem; margin-bottom: 0;">Same-trip venue casing on April 24 confirmed via surveillance footage. No separate prior trip found. Behavior right, mechanism wrong.</p>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Prediction 2: Individual Official Dossiers</div>
+        <p>Supplementary materials recovered from Allen's Torrance home contain individualized research files on specific administration officials &mdash; the Patel exclusion and hierarchical targeting require differentiated analysis.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 75%; background: var(--c6s-accent);"></div></div>
+          <span class="pct" style="color: var(--c6s-accent);">75%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: April 26, 2026 &bull; Scored: May 4, 2026 <span class="prediction-status" style="background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border-color: rgba(245, 158, 11, 0.3);">Unresolved</span></div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-top: 0.5rem; margin-bottom: 0;">Prioritized target list confirmed. Discrete files neither confirmed nor denied. Digital forensics ongoing. May resolve at grand jury (May 8) or trial.</p>
+      </div>
+
+      <div class="panel success">
+        <div class="panel-title">Prediction 3: Professional Decline as Radicalization Accelerant</div>
+        <p>The trajectory from Caltech engineering degree to chronic underemployment will emerge as a central radicalization factor, likely accompanied by failed applications to defense/aerospace/tech employers.</p>
+        <div class="confidence-bar">
+          <span style="font-size: 0.75rem; color: var(--c6s-text-dim);">Confidence</span>
+          <div class="bar"><div class="fill" style="width: 90%; background: var(--c6s-green);"></div></div>
+          <span class="pct" style="color: var(--c6s-green);">90%</span>
+        </div>
+        <div class="prediction-timestamp">Predicted: April 26, 2026 &bull; Scored: May 4, 2026 <span class="prediction-status" style="background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border-color: rgba(34, 197, 94, 0.3);">Strongly Supported</span></div>
+        <p style="font-size: 0.8rem; color: var(--c6s-text-dim); margin-top: 0.5rem; margin-bottom: 0;">Full career trajectory documented: Caltech &rarr; JPL fellowship &rarr; 1 year engineering &rarr; indie game dev &rarr; part-time SAT tutoring. TRAP-18 analysis validates "thwarting of occupational goals."</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Assessment Validation (V2 &rarr; V4)</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Six V1 Key Assessments tracked across updates. <a href="v4-update.html#legal" style="color: var(--c6s-accent);">Latest legal tracker in V4.</a>
+      </p>
+      <table>
+        <tr><th>#</th><th>V1 Assessment</th><th>V2 Verdict</th><th>V3 Update</th></tr>
+        <tr><td>1</td><td>Lone actor profile</td><td><span class="badge badge-green" style="font-size: 0.65rem;">Confirmed</span></td><td><span class="badge badge-green" style="font-size: 0.65rem;">Holds</span></td></tr>
+        <tr><td>2</td><td>Attack partially successful</td><td><span class="badge badge-amber" style="font-size: 0.65rem;">Revised</span></td><td><span class="badge badge-green" style="font-size: 0.65rem;">Resolved &mdash; Allen fired</span></td></tr>
+        <tr><td>3</td><td>Security model inadequate</td><td><span class="badge badge-green" style="font-size: 0.65rem;">Confirmed</span></td><td><span class="badge badge-green" style="font-size: 0.65rem;">Expanded &mdash; K9 failure</span></td></tr>
+        <tr><td>4</td><td>Bipartisan exploitation</td><td><span class="badge badge-green" style="font-size: 0.65rem;">Confirmed</span></td><td><span class="badge badge-green" style="font-size: 0.65rem;">Holds</span></td></tr>
+        <tr><td>5</td><td>Amtrak tradecraft</td><td><span class="badge badge-green" style="font-size: 0.65rem;">Confirmed</span></td><td><span class="badge badge-red" style="font-size: 0.65rem;">Perverse &mdash; loosening policy</span></td></tr>
+        <tr><td>6</td><td>Patel exclusion</td><td><span class="badge badge-amber" style="font-size: 0.65rem;">Unresolved</span></td><td><span class="badge badge-amber" style="font-size: 0.65rem;">New lead &mdash; anti-Christian</span></td></tr>
+      </table>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;">Compiled from 130+ open sources &middot; V4 update 2026-05-19 &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">No classified or privileged sources were used in the preparation of this briefing package.</p>
+      <p style="margin-top: 0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

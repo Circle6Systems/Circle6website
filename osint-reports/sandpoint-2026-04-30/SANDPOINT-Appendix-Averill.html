@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Appendix: Averill Hospitality Entity Profile | Circle 6 Systems</title>
+  <style>
+    :root {
+      --c6s-dark: #2d2a2e;
+      --c6s-panel: #3a3640;
+      --c6s-border: #504a52;
+      --c6s-accent: #a8c196;
+      --c6s-accent-dim: #8faa7b;
+      --c6s-red: #ef4444;
+      --c6s-amber: #f59e0b;
+      --c6s-green: #22c55e;
+      --c6s-text: #d4cab9;
+      --c6s-text-dim: #beb3a7;
+      --c6s-text-bright: #f5f0e8;
+      --c6s-highlight: rgba(168, 193, 150, 0.1);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c6s-dark);
+      color: var(--c6s-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 42, 46, 0.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+      height: 72px;
+    }
+
+    .site-nav .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .site-nav .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .site-nav .logo-text span { color: var(--c6s-accent); }
+
+    .site-nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .site-nav .nav-links a {
+      color: var(--c6s-text);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .site-nav .nav-links a:hover { color: var(--c6s-accent); }
+    .site-nav .nav-links a.active { color: var(--c6s-accent); }
+
+    .header-bar {
+      background: linear-gradient(135deg, #2d2a2e 0%, #3a3640 100%);
+      border-bottom: 2px solid var(--c6s-accent);
+      padding: 1rem 2rem;
+      margin-top: 72px;
+    }
+
+    .header-bar .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .header-bar .logo {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--c6s-accent);
+    }
+
+    .header-bar .classification {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c6s-text-bright);
+      background: rgba(245, 240, 232, 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 240, 232, 0.3);
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--c6s-text-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: var(--c6s-accent);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .title-block {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--c6s-border);
+    }
+
+    .title-block h1 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .title-block .subtitle {
+      font-size: 1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.5rem 2rem;
+      font-size: 0.8rem;
+      color: var(--c6s-text-dim);
+    }
+
+    .meta-grid .label {
+      font-weight: 600;
+      color: var(--c6s-text);
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+    }
+
+    section { margin-bottom: 2.5rem; }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--c6s-accent);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--c6s-accent);
+      margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    p { margin-bottom: 1rem; }
+
+    .panel {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .panel.highlight {
+      border-left: 3px solid var(--c6s-accent);
+      background: var(--c6s-highlight);
+    }
+
+    .panel.warning {
+      border-left: 3px solid var(--c6s-amber);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    .panel.critical {
+      border-left: 3px solid var(--c6s-red);
+      background: rgba(239, 68, 68, 0.05);
+    }
+
+    .panel-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel.highlight .panel-title { color: var(--c6s-accent); }
+    .panel.warning .panel-title { color: var(--c6s-amber); }
+    .panel.critical .panel-title { color: var(--c6s-red); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    th {
+      background: var(--c6s-panel);
+      color: var(--c6s-accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--c6s-accent-dim);
+    }
+
+    td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--c6s-border);
+      vertical-align: top;
+    }
+
+    tr:hover td { background: rgba(168, 193, 150, 0.03); }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--c6s-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: var(--c6s-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-green { background: rgba(34, 197, 94, 0.15); color: var(--c6s-green); border: 1px solid rgba(34, 197, 94, 0.3); }
+    .badge-blue { background: rgba(168, 193, 150, 0.15); color: var(--c6s-accent); border: 1px solid rgba(168, 193, 150, 0.3); }
+
+    .entity-tree {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      white-space: pre;
+      overflow-x: auto;
+      color: var(--c6s-text);
+      margin-bottom: 1.5rem;
+    }
+
+    .entity-tree .ent-name { color: var(--c6s-accent); font-weight: 700; }
+    .entity-tree .ent-detail { color: var(--c6s-text-dim); }
+    .entity-tree .ent-flag { color: var(--c6s-red); font-weight: 700; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-card {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-card .stat-value {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c6s-accent);
+      line-height: 1.2;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--c6s-text-dim);
+      margin-top: 0.35rem;
+    }
+
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.4rem; }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--c6s-border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--c6s-accent);
+      border: 2px solid var(--c6s-dark);
+    }
+
+    .timeline-item.critical::before { background: var(--c6s-red); }
+    .timeline-item.warning::before { background: var(--c6s-amber); }
+
+    .timeline-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--c6s-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      color: var(--c6s-text-bright);
+      margin-top: 0.15rem;
+    }
+
+    .timeline-detail {
+      font-size: 0.85rem;
+      color: var(--c6s-text-dim);
+      margin-top: 0.25rem;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--c6s-border);
+      font-size: 0.75rem;
+      color: var(--c6s-text-dim);
+      text-align: center;
+    }
+
+    .footer a { color: var(--c6s-accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    strong { color: var(--c6s-text-bright); }
+
+    @media (max-width: 768px) {
+      .container { padding: 1.25rem; }
+      .title-block h1 { font-size: 1.35rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .meta-grid { grid-template-columns: 1fr; }
+      .site-nav .nav-links { display: none; }
+      .entity-tree { font-size: 0.7rem; padding: 1rem; }
+    }
+
+    @media print {
+      .site-nav { display: none; }
+      .header-bar { margin-top: 0; }
+      body { background: white; color: #1a1a1a; }
+      .header-bar { position: static; background: white; border-bottom-color: #333; }
+      .header-bar .logo { color: #333; }
+      .panel { border-color: #ccc; background: #f9f9f9; }
+      th { background: #eee; color: #333; }
+      td { border-color: #ddd; }
+      h2 { border-bottom-color: #333; color: #1a1a1a; }
+      .stat-card { border-color: #ccc; background: #f9f9f9; }
+      .stat-card .stat-value { color: #333; }
+      .entity-tree { background: #f5f5f5; border-color: #ccc; }
+      strong { color: #000; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="logo-text" href="https://circle6systems.com">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="https://circle6systems.com/#services">Services</a></li>
+        <li><a href="https://circle6systems.com/#approach">Approach</a></li>
+        <li><a class="active" href="#">OSINT Practice</a></li>
+        <li><a href="https://circle6systems.com/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <div class="logo">OSINT Practice / Entity Profile</div>
+      <div class="classification">TLP:CLEAR</div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="breadcrumb">
+      <a href="SANDPOINT-Briefing.html">SANDPOINT Investigation</a> / Appendix A: Averill Hospitality
+    </div>
+
+    <div class="title-block">
+      <h1>Averill Hospitality, LLC</h1>
+      <div class="subtitle">Entity Profile and Influence Analysis</div>
+      <div class="meta-grid">
+        <div><span class="label">Entity Type</span><br>Montana LLC (Foreign in Idaho)</div>
+        <div><span class="label">MT SOS Filing</span><br>C121854</div>
+        <div><span class="label">Headquarters</span><br>1380 Wisconsin Ave, Whitefish, MT 59937</div>
+        <div><span class="label">Risk Assessment</span><br><span class="badge badge-red">High - Aggressive</span></div>
+      </div>
+    </div>
+
+    <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-left: 4px solid #f59e0b; border-radius: 6px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;">
+      <div style="font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #f59e0b; margin-bottom: 0.5rem;">Analytical Caveats</div>
+      <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>All inferences in this profile are analytical opinions based on patterns observed in public records.</strong> Where a finding is inferred rather than directly documented, it is explicitly labeled as such. Verified findings cite their public record source.</p>
+      <p style="font-size: 0.85rem; margin-bottom: 0;">This profile does not allege criminal activity or legal wrongdoing. Patterns and connections are documented for public awareness. All findings can be independently verified using the same public sources cited in the Source Index.</p>
+    </div>
+
+    <section>
+      <h2>At a Glance</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-value">6+</div>
+          <div class="stat-label">Hotel Properties</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">5+</div>
+          <div class="stat-label">Corporate Entities</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">$70-100M</div>
+          <div class="stat-label">Sandpoint Investment</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">~$1M</div>
+          <div class="stat-label">Impact Fees Avoided</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Generations</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">6-0</div>
+          <div class="stat-label">Council Rejection</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Findings</h2>
+
+      <div class="panel critical">
+        <div class="panel-title">Condotel Bait-and-Switch</div>
+        <p>Project was pitched to the city and public as a 181-room hotel generating an estimated <strong>$2.5M/year in tourist tax revenue</strong> and $500K-$600K in property taxes. A <strong>Zillow listing on January 25, 2026</strong> revealed the actual plan: 99 hotel rooms plus 27 luxury condominiums priced at <strong>$1.3M to $3.5M each</strong>. The MLS listings were subsequently pulled for violating pre-sale rules because no condominium plat has been filed. The city has not re-modeled tax projections for the reduced room count. Condos generate lower occupancy tax than hotel rooms, meaning public revenue will be significantly less than originally promised.</p>
+      </div>
+
+      <div class="panel critical">
+        <div class="panel-title">Public Land Acquisition Attempts</div>
+        <p><strong>October 2025:</strong> Averill sent a letter demanding the city sell or lease the City Beach RV Park, calling it "incompatible" with a "four-star waterfront resort." Threatened that the project "will not proceed" if the RV park remains. Council rejected 6-0 in November. <strong>February 2026:</strong> Returned with a financial counter-offer: match the $950K state grant plus $50K/year in exchange for a 30-year rent-free lease on 25 boat slips. Community overwhelmingly opposed (908 survey responses ranked RV park #1 in every category). Council again rejected 6-0. A 100+ year BNSF covenant requires the property remain "park purposes" or ownership reverts to the railroad.</p>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Impact Fee Manipulation</div>
+        <p>In August 2025, Averill argued new development impact fees ($7,703/room; total $1.3M vs. $300K under old schedule) would make the project "financially impossible." <strong>Mayor Grimm suggested Averill approach SURA</strong> (the urban renewal agency) to have public TIF money pay some of the fees. Council then delayed fee implementation from October 3 to January 1, 2026 (City Planner Bill Dean floated January 31 to further accommodate Averill). Averill submitted building permits <strong>December 29, 2025 -- two days before the deadline</strong> -- locking in the old fee schedule and saving approximately $1M.</p>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Parking Reduction</div>
+        <p>City code requires 244 off-street parking spaces for a project of this scale. Averill is paying an "in lieu" fee to reduce the requirement to 145 spaces -- a <strong>40% reduction</strong> that pushes overflow parking burden onto the surrounding neighborhood and City Beach public areas.</p>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Potential Conflict of Interest: Councilor Justin Dick</div>
+        <p>Former Mayor Shelby Rognstad called on Councilor Justin Dick to recuse himself from Averill-related votes due to his previous Trinity at City Beach restaurant at the Edgewater property and a potential future deal with Averill. Dick stated he has "no deals, no conflict of interest" and did not recuse.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Corporate Entity Tree</h2>
+      <div class="entity-tree"><span class="ent-name">AVERILL FAMILY</span> <span class="ent-detail">(Three Generations in Montana Hospitality)</span>
+|
++-- Les Averill <span class="ent-detail">(d.) -- Founded Flathead Lake Lodge (1945)</span>
+|   |
+|   +-- Dan Averill <span class="ent-detail">-- Co-founded Averill Hospitality</span>
+|   |   |
+|   |   +-- Sean Averill <span class="ent-detail">-- Real estate &amp; development</span>
+|   |   +-- <span class="ent-name">Brian Averill</span> <span class="ent-detail">-- Owner &amp; President</span>
+|   |
+|   +-- Doug Averill <span class="ent-detail">-- Flathead Lake Lodge (separate branch)</span>
+|       +-- Chase Averill <span class="ent-detail">-- Current GM, Flathead Lake Lodge</span>
+|
++-- <span class="ent-name">AVERILL HOSPITALITY, LLC</span> <span class="ent-detail">(MT SOS: C121854)</span>
+|   <span class="ent-detail">Formed: Feb 28, 2003 | Status: Active</span>
+|   <span class="ent-detail">FKA: The Lodge at Whitefish Lake, LLC</span>
+|   <span class="ent-detail">DBA: Averill's Lodge at Whitefish Lake; Downtowner Motel;</span>
+|   <span class="ent-detail">     Whitefish Lake Boat Club</span>
+|
++-- <span class="ent-name">AVERILL HOSPITALITY PEO, LLC</span> <span class="ent-detail">(MT SOS: C1053859)</span>
+|   <span class="ent-detail">Formed: Aug 23, 2017 | Purpose: Payroll/HR across properties</span>
+|
++-- <span class="ent-name">AVERILL HOSPITALITY EMPLOYMENT SERVICES, LLC</span>
+|   <span class="ent-detail">Formed: Jan 17, 2020 | Purpose: Employment services</span>
+|
++-- <span class="ent-name">EDGEWATER PARTNERS</span> <span class="ent-detail">(Joint Venture)</span>
+|   <span class="ent-detail">Partners: Averill family + Dieter Huckestein + Farran Group</span>
+|   <span class="ent-detail">Purpose: DoubleTree Missoula acquisition (Dec 2016)</span>
+|   <span class="ent-flag">NOTE: Huckestein served on Hilton Hotels Corp. board 10 years</span>
+|
++-- <span class="ent-name">AVERILL HOSPITALITY MANAGEMENT CO.</span>
+    <span class="ent-detail">Formed: ~2016 | Partners: Dan, Sean, Brian Averill + Huckestein</span>
+    <span class="ent-detail">Purpose: Hotel management and operations</span></div>
+
+      <h3>Sandpoint Local Representative</h3>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ben McGrann</strong></td>
+            <td>Sandpoint liaison for Averill Hospitality</td>
+            <td>Appeared alongside Brian Averill at Feb 5, 2026 council meeting; declined comment after 6-0 rejection</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Property Portfolio</h2>
+      <table>
+        <thead>
+          <tr><th>Property</th><th>Location</th><th>Type</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>The Lodge at Whitefish Lake</strong></td>
+            <td>Whitefish, MT</td>
+            <td>Resort hotel &amp; restaurant</td>
+            <td><span class="badge badge-green">Operating</span></td>
+          </tr>
+          <tr>
+            <td><strong>The Firebrand Hotel &amp; Spa</strong></td>
+            <td>Whitefish, MT</td>
+            <td>Boutique hotel</td>
+            <td><span class="badge badge-green">Operating</span></td>
+          </tr>
+          <tr>
+            <td><strong>Whitefish Riverfront Hotel</strong></td>
+            <td>Whitefish, MT</td>
+            <td>Hotel (fka Pine Lodge)</td>
+            <td><span class="badge badge-amber">Acquired Oct 2024; Remodeling</span></td>
+          </tr>
+          <tr>
+            <td><strong>DoubleTree by Hilton Edgewater</strong></td>
+            <td>Missoula, MT</td>
+            <td>Full-service hotel</td>
+            <td><span class="badge badge-green">Operating</span> (via Edgewater Partners JV)</td>
+          </tr>
+          <tr>
+            <td><strong>Holiday Inn Missoula Downtown</strong></td>
+            <td>Missoula, MT</td>
+            <td>Full-service hotel</td>
+            <td><span class="badge badge-amber">Acquired Jan 12, 2026; Renovation</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sandpoint Lakeside Resort</strong></td>
+            <td>56 Bridge St, Sandpoint, ID</td>
+            <td>Resort hotel (99 rooms + 27 condos)</td>
+            <td><span class="badge badge-red">Under Development</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Sandpoint Project Details</h3>
+      <table>
+        <thead>
+          <tr><th>Field</th><th>Data</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Property Address</td><td>56 Bridge Street (former Best Western Edgewater Resort site)</td></tr>
+          <tr><td>Acquisition Date</td><td>May 2022</td></tr>
+          <tr><td>Acquisition Price</td><td>Not publicly disclosed</td></tr>
+          <tr><td>Project Investment</td><td>$70M-$100M estimated</td></tr>
+          <tr><td>Original Scope</td><td>181 hotel rooms</td></tr>
+          <tr><td>Revised Scope</td><td>99 hotel rooms + 27 luxury condos ($1.3M-$3.5M each) + event center + two restaurants</td></tr>
+          <tr><td>Parking</td><td>145 spaces (code requires 244; 40% reduction via in-lieu fee)</td></tr>
+          <tr><td>Opening Target</td><td>Summer 2028 (revised from summer 2027)</td></tr>
+          <tr><td>Assessed Value</td><td>$13.1M (current assessment)</td></tr>
+          <tr><td>Building Permit Filed</td><td>December 29, 2025 (two days before impact fee deadline)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Influence Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">1945</div>
+          <div class="timeline-title">Les Averill founds Flathead Lake Lodge</div>
+          <div class="timeline-detail">Family dynasty in Montana hospitality begins. Three generations later, the hotel branch (Dan, Sean, Brian) expands into Idaho.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Feb 28, 2003</div>
+          <div class="timeline-title">Averill Hospitality, LLC formed in Montana</div>
+          <div class="timeline-detail">Transition from single-property operation (Lodge at Whitefish Lake) to multi-property portfolio vehicle.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Dec 2016</div>
+          <div class="timeline-title">Edgewater Partners JV acquires DoubleTree Missoula</div>
+          <div class="timeline-detail">Joint venture with former Hilton board member Dieter Huckestein and the Farran Group signals move from resort to full-service hotel operations.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">May 2022</div>
+          <div class="timeline-title">Acquires Best Western Edgewater Resort, Sandpoint</div>
+          <div class="timeline-detail">Brian Averill's father "had tried to buy the property more than once." Multi-generational strategic acquisition interest. Price not publicly disclosed.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Jun 13, 2024</div>
+          <div class="timeline-title">Hotel plans announced publicly</div>
+          <div class="timeline-detail">Pitched as 181-room hotel with $70M+ investment, $2.5M/year tourist tax revenue, $500-600K/year property tax. Won initial public and political goodwill.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2024</div>
+          <div class="timeline-title">P&amp;Z opens way for new hotel project</div>
+          <div class="timeline-detail">Planning and Zoning Commission recommendations approved to enable the development at City Beach.</div>
+        </div>
+        <div class="timeline-item warning">
+          <div class="timeline-date">Jul 2025</div>
+          <div class="timeline-title">Council adopts maximum development impact fees</div>
+          <div class="timeline-detail">3-3 tie; Mayor Grimm breaks tie with "yes" vote. Hotel rooms: $7,703/room (105% increase). Averill's new fee total: $1.3M (was $300K).</div>
+        </div>
+        <div class="timeline-item warning">
+          <div class="timeline-date">Aug 22, 2025</div>
+          <div class="timeline-title">Averill declares new fees make project "unviable"</div>
+          <div class="timeline-detail">Pressure campaign begins. Mayor Grimm suggests Averill approach SURA to have public TIF money pay some of the fees.</div>
+        </div>
+        <div class="timeline-item warning">
+          <div class="timeline-date">Sep 5, 2025</div>
+          <div class="timeline-title">Council delays impact fee implementation</div>
+          <div class="timeline-detail">Implementation pushed from Oct 3 to Jan 1, 2026. City Planner Bill Dean floated Jan 31 to further accommodate Averill.</div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">Oct 15, 2025</div>
+          <div class="timeline-title">Averill sends ultimatum letter</div>
+          <div class="timeline-detail">"Sandpoint Lakeside Resort project will not proceed if the city redevelops the existing City Beach RV park into any use other than parking." Called RV park "incompatible" with "four-star waterfront resort."</div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">Nov 5, 2025</div>
+          <div class="timeline-title">Council rejects RV park acquisition 6-0</div>
+          <div class="timeline-detail">"Trust has been lost." Heated, emotional meeting. Residents called proposal "corporate crapola," "corporate greed," "pie crust promises." Former Mayor Logan called it "rude and arrogant."</div>
+        </div>
+        <div class="timeline-item warning">
+          <div class="timeline-date">Dec 29, 2025</div>
+          <div class="timeline-title">Building permits submitted two days before deadline</div>
+          <div class="timeline-detail">Locks in old (lower) impact fee schedule. Saves approximately $1M. Despite threats, project proceeds.</div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">Jan 25, 2026</div>
+          <div class="timeline-title">Zillow listing exposes condotel plan</div>
+          <div class="timeline-detail">Listings reveal 27 luxury condos ($1.3M-$3.5M each) with 99 hotel rooms. Pulled from MLS for violating pre-sale rules (no condo plat filed). City has NOT re-modeled tax projections.</div>
+        </div>
+        <div class="timeline-item critical">
+          <div class="timeline-date">Feb 5, 2026</div>
+          <div class="timeline-title">Second proposal rejected 6-0</div>
+          <div class="timeline-detail">Offered to match $950K state grant + $50K/year (replacing $80K/year RV park revenue) for 30-year rent-free lease on 25 boat slips. 908 survey responses ranked RV park #1. Nearly all public comment opposed. Brian Averill and Ben McGrann declined comment after vote.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Feb 2026 - Present</div>
+          <div class="timeline-title">"Radio silence"</div>
+          <div class="timeline-detail">No public statements or activity since second rejection. $950K state grant acceptance locks site as RV park for 25 years. Open question: does the hotel proceed, and what happens with the undisclosed condo plat?</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The Condotel Question: What Happens Next</h2>
+
+      <div class="panel highlight">
+        <div class="panel-title">Outstanding Issues</div>
+        <ul>
+          <li><strong>No condominium plat filed.</strong> The Zillow listings revealed 27 luxury condos, but Idaho law requires a separate condominium plat process before units can be legally sold. No such filing has been made with the county. The project was permitted as a hotel, not a mixed-use condominium development.</li>
+          <li><strong>Tax projection gap.</strong> The city modeled tax revenue based on 181 hotel rooms ($2.5M/year tourist tax, $500-600K property tax). The actual 99-room + 27-condo configuration will generate significantly less occupancy tax. No revised projections have been published.</li>
+          <li><strong>Parking shortfall.</strong> 145 spaces for a 126-unit mixed-use property with event center and two restaurants, in a waterfront area with existing parking pressure from City Beach visitors.</li>
+          <li><strong>Impact fee basis.</strong> Permits were filed (and fees calculated) based on hotel rooms. If condos are a distinct use category, the fee basis may need recalculation.</li>
+          <li><strong>P&amp;Z permit conditions.</strong> Initial permits were extended in July 2025. Conditions attached to the original hotel-only approval may not cover a mixed residential/hospitality development.</li>
+        </ul>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Pattern: Promise Big, Deliver Different</div>
+        <p>The progression follows a recognizable pattern in resort development: pitch a large hotel to win political support with tax revenue projections, obtain permits and zoning changes, then convert a portion to condominiums that generate less public revenue but higher developer profit margins. The Zillow listing was either a premature disclosure or a test balloon. Either way, it revealed the actual business model before the necessary regulatory steps (condo plat, revised permits, updated impact fee calculations) were in place.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Political Contributions</h2>
+      <table>
+        <thead>
+          <tr><th>Contributor</th><th>Recipient</th><th>Amount</th><th>Date</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dan Averill</td>
+            <td>Idaho Sunshine Fund records</td>
+            <td>$192</td>
+            <td>Various</td>
+            <td>Minimal political spending relative to project scale</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="panel highlight">
+        <div class="panel-title">Analysis Note</div>
+        <p>Unlike the other major Sandpoint developers (Haberman: $12,300; Sletager: $8,000; Brownlee: $5,000), Averill Hospitality shows minimal political contributions. Their influence strategy relies on <strong>economic leverage</strong> (threatening to cancel a $70-100M project) rather than political donations. This is a different pattern but equally aggressive: where others buy access, Averill buys leverage through the sheer scale of promised investment.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Players</h2>
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Role</th><th>Significance</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Brian Averill</strong></td>
+            <td>Co-owner &amp; President, Averill Hospitality</td>
+            <td>Face of the Sandpoint project; spoke at both council meetings; declined comment after Feb rejection</td>
+          </tr>
+          <tr>
+            <td><strong>Dan Averill</strong></td>
+            <td>Co-founder, Averill Hospitality</td>
+            <td>Father of Brian; co-founded the firm; referenced as principal in early filings</td>
+          </tr>
+          <tr>
+            <td><strong>Sean Averill</strong></td>
+            <td>Real estate &amp; development</td>
+            <td>Handles development side; named in Edgewater Partners and Management Co.</td>
+          </tr>
+          <tr>
+            <td><strong>Ben McGrann</strong></td>
+            <td>Local representative, Averill Hospitality</td>
+            <td>Sandpoint-based point person; appeared with Brian Averill at Feb 2026 council meeting</td>
+          </tr>
+          <tr>
+            <td><strong>Dieter Huckestein</strong></td>
+            <td>Joint venture partner</td>
+            <td>Former Hilton Hotels Corp. board member (10 years); partner in Edgewater Partners JV and Management Co.</td>
+          </tr>
+          <tr>
+            <td><strong>Farran Group</strong></td>
+            <td>Joint venture partner</td>
+            <td>Partner in Edgewater Partners for DoubleTree Missoula acquisition; full profile TBD</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Whitefish Reputation</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Source: Local Real Estate Community</div>
+        <p>Per local contacts, Averill Hospitality is also controversial in their home base of Whitefish, Montana: <strong>"there's no love lost for them there either."</strong> This suggests the aggressive posture seen in Sandpoint is not an isolated incident but a pattern that follows the company across jurisdictions. Further OSINT collection on Whitefish city council minutes and Flathead County planning records would clarify whether the same tactics (ultimatums, land swaps, variance demands, scope changes) have been employed in their Montana operations.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Collection Gaps</h2>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>Search</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Idaho Secretary of State</td>
+            <td>"Averill" -- foreign entity registration</td>
+            <td>Confirm Idaho entity status, registered agent, any additional Idaho LLCs</td>
+          </tr>
+          <tr>
+            <td>Montana Secretary of State</td>
+            <td>All "Averill" entities; annual reports</td>
+            <td>Complete entity tree; additional trade names, officers, related entities</td>
+          </tr>
+          <tr>
+            <td>Bonner County Recorder</td>
+            <td>Deed search for "Averill"</td>
+            <td>Acquisition price, encumbrances, liens on 56 Bridge St property</td>
+          </tr>
+          <tr>
+            <td>Bonner County Assessor</td>
+            <td>Parcel detail for 56 Bridge St</td>
+            <td>Current assessed value, tax status, parcel boundaries</td>
+          </tr>
+          <tr>
+            <td>Whitefish, MT City Council Minutes</td>
+            <td>"Averill" mentions</td>
+            <td>Confirm pattern of aggressive development posture in home jurisdiction</td>
+          </tr>
+          <tr>
+            <td>Flathead County Planning Records</td>
+            <td>Averill-related applications</td>
+            <td>Variance requests, zoning changes, public land requests in Montana</td>
+          </tr>
+          <tr>
+            <td>Farran Group</td>
+            <td>Entity profile</td>
+            <td>Identify who the Missoula JV partner is; check for Sandpoint connections</td>
+          </tr>
+          <tr>
+            <td>Sandpoint Building Department</td>
+            <td>Permit status for Dec 29 filing</td>
+            <td>Confirm permit scope, conditions, whether condo plat has been filed</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Source Index</h2>
+      <table>
+        <thead>
+          <tr><th>Source</th><th>Date</th><th>Relevance</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Daily Inter Lake -- "Sandpoint turns down Averill Hospitality proposal for City Beach park" (Jack Freeman)</td>
+            <td>Feb 5, 2026</td>
+            <td>Second 6-0 rejection; financial counter-offer details; $950K grant</td>
+          </tr>
+          <tr>
+            <td>Bonner County Daily Bee -- "'Trust has been lost': Council strikes down Averill Hospitality"</td>
+            <td>Nov 6, 2025</td>
+            <td>First 6-0 rejection; public sentiment; ultimatum response</td>
+          </tr>
+          <tr>
+            <td>Bonner County Daily Bee -- "Averill Hospitality says increased impact fees would sink current hotel plan"</td>
+            <td>Aug 22, 2025</td>
+            <td>Impact fee pressure campaign; SURA subsidy suggestion</td>
+          </tr>
+          <tr>
+            <td>Bonner County Daily Bee -- "Averill Hospitality submits permits for Bridge Street hotel development"</td>
+            <td>Jan 3, 2026</td>
+            <td>Dec 29 permit filing; impact fee deadline avoidance</td>
+          </tr>
+          <tr>
+            <td>Sandpoint Reader -- "Real estate listing indicates City Beach resort hotel will include condos"</td>
+            <td>Feb 2026</td>
+            <td>Zillow listing exposure; condotel revelation</td>
+          </tr>
+          <tr>
+            <td>Sandpoint Reader -- "I feel like we're being played"</td>
+            <td>2025</td>
+            <td>Averill/council dynamics; public frustration</td>
+          </tr>
+          <tr>
+            <td>Bonner County Daily Bee -- "Averill Hospitality moving to summer 2028 target"</td>
+            <td>Jul 26, 2025</td>
+            <td>Timeline slip from 2027 to 2028</td>
+          </tr>
+          <tr>
+            <td>Sandpoint Reader -- "Sandpoint P&amp;Z opens the way for new hotel project at City Beach"</td>
+            <td>2024</td>
+            <td>Initial P&amp;Z approval</td>
+          </tr>
+          <tr>
+            <td>Montana Secretary of State -- Business Entity Search</td>
+            <td>2026</td>
+            <td>Entity registrations, filing numbers, officers</td>
+          </tr>
+          <tr>
+            <td>HUMINT -- Local real estate contact (Sandpoint)</td>
+            <td>Apr 2026</td>
+            <td>Whitefish reputation; "radio silence" since Feb rejection</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer">
+      <p>Circle 6 Systems OSINT Practice | <a href="https://circle6systems.com">circle6systems.com</a></p>
+      <p style="margin-top: 0.5rem;">All sources are public records or publicly reported news. Full source index, raw data, and automation scripts preserved for independent verification.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

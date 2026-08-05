@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Thurston County Local Impact Briefing &mdash; FIFA World Cup 2026 | Circle 6 Systems</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src 'none'; frame-src 'none'; object-src 'none'">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .callout-banner {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(168, 193, 150, 0.1) 100%);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      border-left: 4px solid #60a5fa;
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .callout-banner .callout-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #60a5fa;
+      margin-bottom: 0.5rem;
+    }
+    .callout-banner p { color: var(--c6s-text); margin-bottom: 0; }
+    .venue-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+    .venue-detail-item { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; }
+    .venue-detail-item .detail-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-accent); margin-bottom: 0.5rem; }
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .impact-card { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; }
+    .impact-card .impact-icon { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .impact-card .impact-title { font-weight: 700; font-size: 0.9rem; color: var(--c6s-text-bright); margin-bottom: 0.5rem; }
+    .impact-card .impact-desc { font-size: 0.85rem; color: var(--c6s-text-dim); }
+    .corridor-map { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.5rem; margin: 1.5rem 0; }
+    .corridor-stop { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--c6s-border); }
+    .corridor-stop:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .corridor-stop .stop-name { font-weight: 700; color: var(--c6s-text-bright); font-size: 0.9rem; min-width: 140px; }
+    .corridor-stop .stop-detail { font-size: 0.85rem; color: var(--c6s-text-dim); }
+    .match-day-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .match-day-card { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; text-align: center; }
+    .match-day-card .day-date { font-weight: 700; color: var(--c6s-accent); font-size: 1.1rem; }
+    .match-day-card .day-info { font-size: 0.85rem; color: var(--c6s-text-dim); margin-top: 0.5rem; }
+    .stakeholder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .stakeholder-card { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; }
+    .stakeholder-card .org-name { font-weight: 700; color: var(--c6s-text-bright); font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .stakeholder-card .org-role { font-size: 0.8rem; color: var(--c6s-accent); margin-bottom: 0.5rem; }
+    .stakeholder-card .org-detail { font-size: 0.85rem; color: var(--c6s-text-dim); }
+    .toc { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1.25rem; margin-bottom: 2rem; }
+    .toc-title { font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-accent); margin-bottom: 0.75rem; }
+    .toc-links { list-style: none; padding-left: 0; column-count: 2; column-gap: 2rem; }
+    .toc-links li { margin-bottom: 0.35rem; }
+    .toc-links a { color: var(--c6s-text); text-decoration: none; font-size: 0.85rem; }
+    .toc-links a:hover { color: var(--c6s-accent); }
+    .source-list { list-style: none; padding-left: 0; }
+    .source-list li { padding: 0.4rem 0; border-bottom: 1px solid rgba(80, 74, 82, 0.5); font-size: 0.8rem; }
+    .source-list li:last-child { border-bottom: none; }
+    .source-list .src-num { color: var(--c6s-accent); font-weight: 700; margin-right: 0.5rem; }
+    @media (max-width: 700px) {
+      .venue-detail { grid-template-columns: 1fr; }
+      .toc-links { column-count: 1; }
+      .match-day-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <div class="logo">Circle 6 Systems &mdash; OSINT/CTI Practice</div>
+      <div class="classification">TLP:GREEN</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Home</a> / <a href="/osint-reports/">Intelligence Reports</a> / <a href="/osint-reports/fifa-wc26/">FIFA World Cup 2026</a> / Thurston County Briefing
+    </nav>
+
+    <div class="title-block">
+      <h1>Thurston County Local Impact Briefing</h1>
+      <div class="subtitle">Olympia-Lacey Fan Zone at Port Plaza &amp; I-5 Corridor to Seattle/Lumen Field</div>
+      <div class="meta-grid">
+        <div><span class="label">Report ID</span><br>C6S-FIFA-WC26-002</div>
+        <div><span class="label">Classification</span><br>TLP:GREEN</div>
+        <div><span class="label">Date</span><br>19 May 2026</div>
+        <div><span class="label">Scope</span><br>Thurston County, WA &mdash; Local Callout</div>
+        <div><span class="label">Parent Report</span><br><a href="threat-briefing.html" style="color:var(--c6s-accent);">C6S-FIFA-WC26-001</a></div>
+        <div><span class="label">Analyst</span><br>STRAT-INTEL, C6S CTI Practice</div>
+      </div>
+    </div>
+
+    <div class="callout-banner">
+      <div class="callout-label">Local Intelligence Callout</div>
+      <p>This briefing supplements the <a href="threat-briefing.html" style="color:#60a5fa; font-weight:600;">main FIFA WC26 threat assessment</a> with analysis specific to Thurston County, WA. It covers the Olympia-Lacey Fan Zone at Port Plaza, the I-5 corridor to Seattle/Lumen Field, local infrastructure impacts, emergency management considerations, and the economic and political dynamics unique to the South Sound region.</p>
+    </div>
+
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ol class="toc-links">
+        <li><a href="#executive-summary">Executive Summary</a></li>
+        <li><a href="#fan-zone">Olympia-Lacey Fan Zone Profile</a></li>
+        <li><a href="#match-days">Match Day Schedule</a></li>
+        <li><a href="#i5-corridor">I-5 Corridor Analysis</a></li>
+        <li><a href="#transit">Transit &amp; Transportation</a></li>
+        <li><a href="#security">Security &amp; Emergency Management</a></li>
+        <li><a href="#threat-assessment">Local Threat Assessment</a></li>
+        <li><a href="#stakeholders">Key Stakeholders</a></li>
+        <li><a href="#economic-impact">Economic &amp; Political Context</a></li>
+        <li><a href="#recommendations">Recommendations</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ol>
+    </div>
+
+    <!-- ============ EXECUTIVE SUMMARY ============ -->
+    <section id="executive-summary">
+      <h2>Executive Summary</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Bottom Line</div>
+        <p>Thurston County will experience moderate but manageable impacts from the 2026 FIFA World Cup, primarily through the <strong>Olympia-Lacey Fan Zone at Port Plaza</strong> (4 match days, $10 GA) and <strong>I-5 corridor congestion</strong> on Seattle match days. The county sits 60 miles south of Lumen Field via I-5, making it both a feeder community for Seattle matches and a fan zone destination in its own right.</p>
+        <p>The local threat profile is <strong>LOW-MODERATE</strong>&mdash;significantly below the venue cities themselves. Primary concerns center on transportation disruption, crowd management at the waterfront venue, and the strain on local emergency services during peak periods. No specific threats to Thurston County have been identified.</p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-title">Fan Zone</div>
+          <div class="impact-desc">Port Plaza waterfront, Olympia-Lacey. 4 match days (Jun 19, 24, 25, 26). $10 general admission. Big-screen viewing, food/beverage, family activities.</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-title">I-5 Corridor</div>
+          <div class="impact-desc">60 miles to Lumen Field. Match day transit time increases of 2&ndash;4 hours anticipated. 6 Seattle matches create 6 major traffic surge events.</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-title">Transit Connections</div>
+          <div class="impact-desc">Amtrak Cascades, Sound Transit, Intercity Transit. All services expected to see peak demand. Advance booking recommended.</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-title">Emergency Services</div>
+          <div class="impact-desc">Thurston County EMS, Olympia PD, Lacey PD, TCSO. Mutual aid agreements with Pierce/King counties. Coordination with WA State Patrol.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAN ZONE PROFILE ============ -->
+    <section id="fan-zone">
+      <h2>Olympia-Lacey Fan Zone at Port Plaza</h2>
+
+      <div class="venue-detail">
+        <div class="venue-detail-item">
+          <div class="detail-label">Location</div>
+          <p style="margin:0;">Port Plaza, Olympia-Lacey waterfront. Adjacent to the Port of Olympia. Waterfront location on Budd Inlet provides natural crowd flow boundaries on two sides. Walking distance from downtown Olympia.</p>
+        </div>
+        <div class="venue-detail-item">
+          <div class="detail-label">Format</div>
+          <p style="margin:0;">Big-screen match viewing events with food and beverage service, family-friendly activities, cultural programming, and local vendor participation. $10 general admission. Event capacity to be determined by fire marshal assessment.</p>
+        </div>
+        <div class="venue-detail-item">
+          <div class="detail-label">Organizers</div>
+          <p style="margin:0;">City of Olympia, City of Lacey, and Thurston County in coordination with the WA State Host Committee and FIFA Fan Zone program. Local business association participation.</p>
+        </div>
+        <div class="venue-detail-item">
+          <div class="detail-label">Security Footprint</div>
+          <p style="margin:0;">Olympia PD and Lacey PD joint staffing. Private security augmentation. TCSO reserve deputies on standby. No federal security presence planned (not a SEAR-rated venue).</p>
+        </div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Venue Advantages</div>
+        <ul>
+          <li><strong>Natural boundaries:</strong> Waterfront on two sides provides inherent crowd control and perimeter definition</li>
+          <li><strong>Moderate scale:</strong> Not a mega-venue; crowd sizes manageable with standard municipal resources</li>
+          <li><strong>Walkable access:</strong> Downtown Olympia location reduces vehicle traffic concentration</li>
+          <li><strong>Limited alcohol:</strong> $10 admission and controlled service environment reduce alcohol-related incidents</li>
+          <li><strong>Low international profile:</strong> Not a primary target for state-sponsored or organized threat actors</li>
+        </ul>
+      </div>
+
+      <div class="panel warning">
+        <div class="panel-title">Venue Concerns</div>
+        <ul>
+          <li><strong>Open waterfront access:</strong> Maritime approach vector not easily controlled; coordination with Coast Guard/Harbor Patrol needed</li>
+          <li><strong>Parking constraints:</strong> Limited dedicated parking at Port Plaza; downtown overflow likely</li>
+          <li><strong>Medical response:</strong> Nearest Level II trauma center (Providence St. Peter Hospital) is 2.5 miles; crowd surge could overwhelm on-site medical</li>
+          <li><strong>Weather contingency:</strong> June in the Pacific Northwest can be unpredictable; no covered backup venue identified</li>
+          <li><strong>Capacity uncertainty:</strong> Fire marshal capacity assessment not yet publicly available; risk of overcrowding if demand exceeds expectations</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ MATCH DAY SCHEDULE ============ -->
+    <section id="match-days">
+      <h2>Match Day Schedule</h2>
+      <p>The Olympia-Lacey Fan Zone is scheduled for 4 match days, all aligned with Seattle/Lumen Field matches:</p>
+
+      <div class="match-day-grid">
+        <div class="match-day-card">
+          <div class="day-date">Jun 19</div>
+          <div class="day-info">Seattle Match 2<br>Group Stage<br><span class="badge badge-green">LOW RISK</span></div>
+        </div>
+        <div class="match-day-card">
+          <div class="day-date">Jun 24</div>
+          <div class="day-info">Seattle Match 3<br>Group Stage<br><span class="badge badge-green">LOW RISK</span></div>
+        </div>
+        <div class="match-day-card">
+          <div class="day-date">Jun 25</div>
+          <div class="day-info">Seattle Match 4<br>Group Stage<br><span class="badge badge-amber">MODERATE</span></div>
+        </div>
+        <div class="match-day-card">
+          <div class="day-date">Jun 26</div>
+          <div class="day-info">Seattle Match 5<br>Early Knockout<br><span class="badge badge-amber">MODERATE</span></div>
+        </div>
+      </div>
+
+      <div class="panel highlight">
+        <div class="panel-title">Risk Gradient</div>
+        <p>Risk increases with consecutive match days (Jun 24&ndash;26) as fatigue, crowd familiarity with security gaps, and cumulative alcohol consumption create compounding factors. The back-to-back-to-back schedule (Jun 24, 25, 26) is the highest-stress period for local emergency services.</p>
+      </div>
+    </section>
+
+    <!-- ============ I-5 CORRIDOR ============ -->
+    <section id="i5-corridor">
+      <h2>I-5 Corridor Analysis</h2>
+
+      <div class="panel warning">
+        <div class="panel-title">Critical Transportation Artery</div>
+        <p>I-5 is the sole major north-south highway connecting Thurston County to Seattle. The 60-mile stretch from Olympia to downtown Seattle passes through Joint Base Lewis-McChord (JBLM), Tacoma, Federal Way, and the I-5/I-405 interchange&mdash;each a potential congestion point. On Seattle match days, this corridor will experience traffic volumes significantly exceeding normal capacity.</p>
+      </div>
+
+      <div class="corridor-map">
+        <h3 style="margin-top:0; margin-bottom:1rem;">Olympia-to-Seattle Corridor Profile</h3>
+        <div class="corridor-stop">
+          <div class="stop-name">Olympia / Lacey</div>
+          <div class="stop-detail">Mile 0. Fan Zone at Port Plaza. Intercity Transit hub. Amtrak Cascades station (Centennial Station). I-5 on-ramps at US-101 interchange.</div>
+        </div>
+        <div class="corridor-stop">
+          <div class="stop-name">JBLM / DuPont</div>
+          <div class="stop-detail">Mile 15&ndash;25. Joint Base Lewis-McChord creates a 10-mile stretch with limited access/egress. Military traffic patterns. Historically congested corridor. Construction zones active.</div>
+        </div>
+        <div class="corridor-stop">
+          <div class="stop-name">Tacoma</div>
+          <div class="stop-detail">Mile 30. I-5/SR-16 interchange. Tacoma Dome Station (Sound Transit, Amtrak). The "Tacoma S-Curves" are a persistent bottleneck. Pierce Transit connections.</div>
+        </div>
+        <div class="corridor-stop">
+          <div class="stop-name">Federal Way</div>
+          <div class="stop-detail">Mile 40. Sound Transit Link Light Rail terminus (Federal Way station). Park-and-ride lots. Potential staging point for transit-to-venue commuters.</div>
+        </div>
+        <div class="corridor-stop">
+          <div class="stop-name">I-5 / I-405 Split</div>
+          <div class="stop-detail">Mile 48. Major interchange. Eastside traffic diverts. This is the highest-volume merge point and the single greatest bottleneck risk.</div>
+        </div>
+        <div class="corridor-stop">
+          <div class="stop-name">Seattle / Lumen Field</div>
+          <div class="stop-detail">Mile 60. Stadium District. SODO neighborhood. King Street Station (Amtrak). International District-Chinatown (Sound Transit hub). Match day road closures and parking restrictions in effect.</div>
+        </div>
+      </div>
+
+      <h3>Transit Time Estimates (Match Days)</h3>
+      <table>
+        <thead>
+          <tr><th>Departure Point</th><th>Normal</th><th>Match Day (Est.)</th><th>Delta</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Olympia to Lumen Field (I-5)</td><td>1h 15min</td><td>3h 00min &ndash; 4h 30min</td><td>+2 to 3h</td></tr>
+          <tr><td>Olympia to Tacoma Dome (I-5)</td><td>35min</td><td>1h 00min &ndash; 1h 45min</td><td>+30 to 70min</td></tr>
+          <tr><td>Olympia to Federal Way (I-5)</td><td>50min</td><td>1h 30min &ndash; 2h 30min</td><td>+40 to 100min</td></tr>
+          <tr><td>Amtrak Cascades (Olympia &rarr; Seattle)</td><td>2h 10min</td><td>2h 10min (scheduled)</td><td>Capacity limited</td></tr>
+        </tbody>
+      </table>
+
+      <div class="panel critical">
+        <div class="panel-title">Post-Match Return Risk</div>
+        <p>The greatest congestion risk is <strong>post-match egress</strong> (typically 10:00 PM &ndash; 1:00 AM for evening matches). Tens of thousands of fans departing Lumen Field simultaneously create a surge that propagates south through Tacoma, JBLM, and into Thurston County over 2&ndash;3 hours. Fatigue-related accidents on I-5 are a significant concern during late-night return drives.</p>
+      </div>
+    </section>
+
+    <!-- ============ TRANSIT ============ -->
+    <section id="transit">
+      <h2>Transit &amp; Transportation</h2>
+
+      <h3>Public Transit Options</h3>
+      <table>
+        <thead>
+          <tr><th>Service</th><th>Route</th><th>Match Day Status</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Amtrak Cascades</td>
+            <td>Olympia &rarr; Tacoma &rarr; Seattle</td>
+            <td><span class="badge badge-amber">CAPACITY LIMITED</span></td>
+            <td>2h 10min scheduled. Advance booking essential. Additional cars unlikely given nationwide Amtrak capacity constraints.</td>
+          </tr>
+          <tr>
+            <td>Sound Transit Link</td>
+            <td>Federal Way &rarr; Stadium District</td>
+            <td><span class="badge badge-green">AUGMENTED</span></td>
+            <td>Light rail direct to Stadium station. Extended hours on match days. Park-and-ride at Federal Way.</td>
+          </tr>
+          <tr>
+            <td>Sound Transit Sounder</td>
+            <td>Tacoma Dome &rarr; King Street</td>
+            <td><span class="badge badge-green">AUGMENTED</span></td>
+            <td>Commuter rail. Special match-day service expected. Direct to stadium area.</td>
+          </tr>
+          <tr>
+            <td>Intercity Transit</td>
+            <td>Olympia &rarr; Lacey &rarr; Lakewood</td>
+            <td><span class="badge badge-blue">STANDARD</span></td>
+            <td>Local bus service. Connects to Sound Transit at Lakewood. May add express service.</td>
+          </tr>
+          <tr>
+            <td>Pierce Transit</td>
+            <td>Lakewood &rarr; Tacoma</td>
+            <td><span class="badge badge-blue">STANDARD</span></td>
+            <td>Connects Intercity Transit to Sound Transit network via Tacoma Dome.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="panel highlight">
+        <div class="panel-title">Recommended Transit Strategy for Thurston County Residents</div>
+        <p><strong>Drive to Federal Way or Tacoma Dome, then take Link Light Rail or Sounder to Stadium station.</strong> This avoids the worst I-5 congestion through Seattle, leverages the dedicated transit infrastructure, and reduces parking challenges near Lumen Field. Amtrak Cascades from Olympia is ideal but will sell out quickly&mdash;book immediately when tickets are released.</p>
+      </div>
+    </section>
+
+    <!-- ============ SECURITY & EMERGENCY MANAGEMENT ============ -->
+    <section id="security">
+      <h2>Security &amp; Emergency Management</h2>
+
+      <h3>Local Security Architecture</h3>
+      <div class="stakeholder-grid">
+        <div class="stakeholder-card">
+          <div class="org-name">Olympia Police Department</div>
+          <div class="org-role">Primary Fan Zone Law Enforcement</div>
+          <div class="org-detail">Lead agency for Port Plaza fan zone security. Staffing augmentation required for 4 match days. Coordination with private security contractors.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Lacey Police Department</div>
+          <div class="org-role">Joint Fan Zone Support</div>
+          <div class="org-detail">Supporting role given fan zone is in Olympia-Lacey jurisdiction overlap area. Mutual aid agreement in effect.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Thurston County Sheriff</div>
+          <div class="org-role">County-Wide Coordination</div>
+          <div class="org-detail">Reserve deputy activation for peak days. I-5 corridor support. Emergency operations center staffing if warranted.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">WA State Patrol</div>
+          <div class="org-role">I-5 Corridor &amp; Statewide</div>
+          <div class="org-detail">Primary agency for I-5 traffic management. DUI emphasis patrols on match day evenings. Coordination with JBLM for military corridor transit.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Thurston County EMS</div>
+          <div class="org-role">Medical Response</div>
+          <div class="org-detail">On-site medical team at fan zone. Ambulance staging at Port Plaza. Coordination with Providence St. Peter Hospital (nearest Level II trauma center, 2.5 mi).</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">US Coast Guard / Harbor Patrol</div>
+          <div class="org-role">Maritime Security</div>
+          <div class="org-detail">Waterfront approach vector monitoring. Budd Inlet vessel traffic control during fan zone events. Coordination with Port of Olympia.</div>
+        </div>
+      </div>
+
+      <h3>Emergency Management Considerations</h3>
+      <div class="panel warning">
+        <div class="panel-title">Capacity Strain Scenarios</div>
+        <ul>
+          <li><strong>Simultaneous demand:</strong> If a medical emergency or security incident occurs at the fan zone during a Seattle match-day traffic surge, local EMS/fire may face response time degradation due to I-5 congestion blocking north-south mutual aid.</li>
+          <li><strong>Consecutive days (Jun 24-26):</strong> Three match days in three days creates cumulative fatigue for law enforcement and EMS. Overtime budgets and staff rotation must be planned in advance.</li>
+          <li><strong>Severe weather:</strong> June Pacific Northwest weather is variable. A thunderstorm during an outdoor fan zone event with no covered backup venue requires rapid crowd dispersal planning.</li>
+          <li><strong>Cascading I-5 closure:</strong> A major accident on I-5 near JBLM during post-match egress could strand thousands of Thurston County residents overnight. Hotels along the corridor would reach capacity.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ LOCAL THREAT ASSESSMENT ============ -->
+    <section id="threat-assessment">
+      <h2>Local Threat Assessment</h2>
+
+      <table>
+        <thead>
+          <tr><th>Threat</th><th>Risk</th><th>Probability</th><th>Assessment</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Transportation disruption (I-5 congestion)</td>
+            <td><span class="badge badge-amber">ELEVATED</span></td>
+            <td>Almost Certain</td>
+            <td>6 Seattle match days will each produce significant congestion. Post-match egress is highest risk. Commercial traffic and commuter patterns disrupted.</td>
+          </tr>
+          <tr>
+            <td>Fan zone overcrowding</td>
+            <td><span class="badge badge-amber">MODERATE</span></td>
+            <td>Possible</td>
+            <td>If demand exceeds capacity (fire marshal limit TBD), crowd management challenges at Port Plaza. Waterfront location limits expansion options.</td>
+          </tr>
+          <tr>
+            <td>Alcohol-related incidents</td>
+            <td><span class="badge badge-amber">MODERATE</span></td>
+            <td>Likely</td>
+            <td>Standard match-day alcohol consumption. Controlled environment at fan zone mitigates, but downtown bar/restaurant overflow is uncontrolled.</td>
+          </tr>
+          <tr>
+            <td>Traffic accidents (fatigue/DUI)</td>
+            <td><span class="badge badge-amber">MODERATE</span></td>
+            <td>Likely</td>
+            <td>Late-night I-5 return from Seattle matches. Fatigue + alcohol. WSP DUI emphasis patrols planned.</td>
+          </tr>
+          <tr>
+            <td>Protest activity</td>
+            <td><span class="badge badge-green">LOW</span></td>
+            <td>Possible</td>
+            <td>Olympia is the state capital with an active protest culture. Small-scale demonstrations possible but not disruptive to fan zone operations.</td>
+          </tr>
+          <tr>
+            <td>Targeted security threat</td>
+            <td><span class="badge badge-green">LOW</span></td>
+            <td>Remote</td>
+            <td>No specific threat indicators. Fan zone is not a high-profile target. Low international visibility compared to venue cities.</td>
+          </tr>
+          <tr>
+            <td>Cyber disruption (local systems)</td>
+            <td><span class="badge badge-green">LOW</span></td>
+            <td>Remote</td>
+            <td>Local government systems not specifically targeted. Standard cyber hygiene applies.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ KEY STAKEHOLDERS ============ -->
+    <section id="stakeholders">
+      <h2>Key Stakeholders</h2>
+
+      <div class="stakeholder-grid">
+        <div class="stakeholder-card">
+          <div class="org-name">City of Olympia</div>
+          <div class="org-role">Fan Zone Co-Host / Municipal Services</div>
+          <div class="org-detail">Permitting, police, fire, public works. Primary local authority for Port Plaza events. Budget impact from overtime and infrastructure.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">City of Lacey</div>
+          <div class="org-role">Fan Zone Co-Host / Support Services</div>
+          <div class="org-detail">Joint jurisdiction partner. Police mutual aid. Community outreach for Lacey residents near venue.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Thurston County</div>
+          <div class="org-role">County Services / Emergency Mgmt</div>
+          <div class="org-detail">Emergency management coordination. Sheriff's office support. Public health oversight. County-wide transportation planning.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Port of Olympia</div>
+          <div class="org-role">Venue Owner / Maritime Operations</div>
+          <div class="org-detail">Port Plaza is port property. Maritime access control. Coordination with USCG. Parking and infrastructure management.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">WA State Host Committee</div>
+          <div class="org-role">Statewide Coordination</div>
+          <div class="org-detail">Coordination between Seattle (Lumen Field), Tacoma, Olympia fan zones. Funding and marketing. Liaison with FIFA.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Intercity Transit</div>
+          <div class="org-role">Local Public Transit</div>
+          <div class="org-detail">Bus service to/from fan zone. Park-and-ride operations. Potential express service to Lakewood for Sound Transit connections.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Olympia School District</div>
+          <div class="org-role">Community Impact</div>
+          <div class="org-detail">Fan zone dates fall during summer break. Facilities may be requested for parking overflow. Youth programming opportunities.</div>
+        </div>
+        <div class="stakeholder-card">
+          <div class="org-name">Providence St. Peter Hospital</div>
+          <div class="org-role">Regional Medical Center</div>
+          <div class="org-detail">Nearest Level II trauma center (2.5 miles from Port Plaza). Surge capacity planning for match days. Coordination with on-site EMS.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ECONOMIC & POLITICAL ============ -->
+    <section id="economic-impact">
+      <h2>Economic &amp; Political Context</h2>
+
+      <div class="panel highlight">
+        <div class="panel-title">Economic Opportunity</div>
+        <p>The FIFA World Cup represents a significant economic opportunity for Thurston County. The fan zone will drive foot traffic to downtown Olympia businesses, hotels, and restaurants. Visitors attending Seattle matches may use Olympia as a more affordable base (hotel rates significantly lower than Seattle metro). The 4-day fan zone creates a concentrated burst of tourism revenue during what is already peak summer season.</p>
+      </div>
+
+      <h3>Economic Factors</h3>
+      <ul>
+        <li><strong>Hotel demand:</strong> Thurston County hotels will benefit from overflow demand as Seattle-area accommodations reach capacity and prices spike. Budget-conscious fans may prefer the ~60-mile commute for 50&ndash;70% lower hotel rates.</li>
+        <li><strong>Restaurant/retail:</strong> Downtown Olympia businesses near Port Plaza will see significant match-day foot traffic. Extended hours and special promotions expected.</li>
+        <li><strong>Fan zone revenue:</strong> $10 admission x estimated attendance. Food and beverage vendor licensing fees. Sponsorship and partnership opportunities.</li>
+        <li><strong>Cost to taxpayers:</strong> Police overtime, EMS staffing, public works cleanup, traffic management. These costs should be offset by fan zone revenue and tax receipts, but the balance is not yet publicly quantified.</li>
+      </ul>
+
+      <h3>Political Dynamics</h3>
+      <div class="panel warning">
+        <div class="panel-title">State Capital Considerations</div>
+        <p>Olympia is the Washington State capital, which creates unique dynamics:</p>
+        <ul>
+          <li>The Governor's office and state legislature are in proximity to the fan zone. Any protest activity could target both the fan zone and state government buildings simultaneously.</li>
+          <li>State agencies (WA DOT, State Patrol, Emergency Management Division) are headquartered in Thurston County, creating both coordination advantages and resource competition.</li>
+          <li>The WA State Host Committee's funding and support decisions directly impact whether Thurston County's fan zone is adequately resourced.</li>
+          <li>Local political dynamics: city council decisions on permitting, police overtime budgets, and street closures may become contested if residents perceive costs exceeding benefits.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ RECOMMENDATIONS ============ -->
+    <section id="recommendations">
+      <h2>Recommendations</h2>
+
+      <div class="panel success">
+        <div class="panel-title">For Thurston County Residents</div>
+        <ol>
+          <li><strong>Attending Seattle matches:</strong> Book Amtrak Cascades immediately when tickets release. Alternatively, drive to Federal Way or Tacoma Dome and take Link Light Rail or Sounder to Stadium station. Avoid driving to Seattle on match days.</li>
+          <li><strong>Match day commuting:</strong> Expect I-5 delays of 2&ndash;4 hours on all 6 Seattle match days. Adjust work schedules or telework if possible. Consider alternate routes (SR-507, US-101 to SR-3).</li>
+          <li><strong>Fan zone attendance:</strong> Arrive early (Port Plaza parking is limited). Use Intercity Transit if possible. Stay hydrated. Download emergency notification apps.</li>
+          <li><strong>Post-match safety:</strong> If driving back from Seattle late at night, rest stops are available on I-5. Designate a sober driver. Watch for WSP DUI checkpoints.</li>
+        </ol>
+      </div>
+
+      <div class="panel success">
+        <div class="panel-title">For Local Government &amp; Emergency Services</div>
+        <ol>
+          <li><strong>Finalize fire marshal capacity assessment</strong> for Port Plaza fan zone and publish before June 1. Implement real-time crowd counting.</li>
+          <li><strong>Establish maritime security coordination</strong> with USCG Sector Puget Sound for fan zone dates. Brief Harbor Patrol on threat environment.</li>
+          <li><strong>Pre-position EMS resources</strong> at Port Plaza for all 4 match days. Coordinate with Providence St. Peter for surge capacity. Ensure ambulance staging does not depend on I-5 access.</li>
+          <li><strong>Staff I-5 corridor</strong> with WSP emphasis patrols from 8:00 PM to 2:00 AM on match evenings. Position tow trucks at JBLM corridor.</li>
+          <li><strong>Plan for consecutive-day operations</strong> (Jun 24&ndash;26). Rotate staff. Pre-authorize overtime. Brief medical staff on crowd-crush and heat-related illness protocols.</li>
+          <li><strong>Develop weather contingency plan</strong> for fan zone. Identify covered alternative or rapid dispersal protocol.</li>
+          <li><strong>Coordinate with WA State Host Committee</strong> on funding, resource sharing, and intelligence briefings. Ensure Thurston County is included in statewide security coordination.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ SOURCES ============ -->
+    <section id="sources">
+      <h2>Sources</h2>
+      <ol class="source-list">
+        <li><span class="src-num">[1]</span> FIFA World Cup 2026 Official Match Schedule &mdash; Seattle/Lumen Field fixtures</li>
+        <li><span class="src-num">[2]</span> WA State Host Committee, Fan Zone Program Announcement</li>
+        <li><span class="src-num">[3]</span> City of Olympia, Port Plaza Venue Information</li>
+        <li><span class="src-num">[4]</span> WSDOT, I-5 Corridor Traffic Data and Construction Schedule</li>
+        <li><span class="src-num">[5]</span> Intercity Transit, Service Area and Route Maps</li>
+        <li><span class="src-num">[6]</span> Sound Transit, Link Light Rail and Sounder Match Day Service Plans</li>
+        <li><span class="src-num">[7]</span> Amtrak Cascades, Olympia-Seattle Schedule</li>
+        <li><span class="src-num">[8]</span> Base Operations, "Lumen Field Seattle FIFA World Cup 26 Threat Assessment"</li>
+        <li><span class="src-num">[9]</span> KING5, "Temporary gates, added security proposed at Lumen Field"</li>
+        <li><span class="src-num">[10]</span> KING5, "Multiple agencies planning security for FIFA World Cup 2026 Seattle matches"</li>
+        <li><span class="src-num">[11]</span> Thurston County Emergency Management, Mutual Aid Agreements</li>
+        <li><span class="src-num">[12]</span> Providence St. Peter Hospital, Level II Trauma Center Profile</li>
+        <li><span class="src-num">[13]</span> WA State Patrol, DUI Emphasis Patrol Program</li>
+        <li><span class="src-num">[14]</span> Port of Olympia, Facility and Access Information</li>
+        <li><span class="src-num">[15]</span> USCG Sector Puget Sound, Maritime Security Operations</li>
+        <li><span class="src-num">[16]</span> C6S-FIFA-WC26-001, Parent Threat Assessment (19 May 2026)</li>
+        <li><span class="src-num">[17]</span> STRAT-INTEL Agent Assessment, Thurston County Deep-Dive Collection (19 May 2026)</li>
+      </ol>
+    </section>
+
+    <div class="footer">
+      <p>Circle 6 Systems &mdash; OSINT/CTI Practice | Report C6S-FIFA-WC26-002 | TLP:GREEN<br>
+      Compiled 19 May 2026 | STRAT-INTEL Agent &mdash; Thurston County Callout<br>
+      <a href="/osint-reports/fifa-wc26/">Return to FIFA WC26 Package</a> | <a href="threat-briefing.html">Main Threat Briefing</a> | <a href="/osint-reports/">Intelligence Reports</a> | <a href="/">circle6systems.com</a></p>
+    </div>
+  </div>
+</body>
+</html>

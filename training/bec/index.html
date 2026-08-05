@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Business Email Compromise Training | Circle 6 Systems</title>
+  <meta name="description" content="Business Email Compromise (BEC) security awareness training for government and enterprise staff. Produced by Circle 6 Systems.">
+  <meta property="og:title" content="Business Email Compromise Training | Circle 6 Systems">
+  <meta property="og:description" content="Learn to identify and stop BEC attacks targeting payroll, wire transfers, and vendor payments.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://circle6systems.com/training/bec/">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --navy: #2d2a2e; --navy-light: #3a3640; --navy-mid: #504a52;
+      --slate: #beb3a7; --slate-light: #d4cab9; --white: #f5f0e8;
+      --accent: #a8c196; --accent-bg: #8faa7b; --accent-hover: #b8d1a8;
+      --accent-dim: rgba(143, 170, 123, 0.09);
+      --red: #c0392b; --red-soft: #e6b0aa; --red-bg: rgba(192, 57, 43, 0.08);
+      --green-bg: rgba(143, 170, 123, 0.1);
+      --amber: #b7950b; --amber-bg: rgba(183, 149, 11, 0.08);
+      --border: rgba(143, 170, 123, 0.1);
+      --card-bg: var(--navy-light);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--navy); color: var(--slate-light); line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(143,170,123,0.03), transparent), radial-gradient(ellipse 60% 40% at 80% 100%, rgba(143,170,123,0.02), transparent); pointer-events: none; z-index: 0; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    :focus:not(:focus-visible) { outline: none; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(45,42,46,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(143,170,123,0.08); z-index: 1000; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-brand { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+    .logo { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--white); letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .nav-divider { width: 1px; height: 24px; background: rgba(143,170,123,0.2); }
+    .nav-title { font-size: 0.8rem; font-weight: 500; color: var(--slate); letter-spacing: 0.02em; }
+    .nav-progress { display: flex; align-items: center; gap: 0.4rem; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(143,170,123,0.15); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+    .nav-dot.active { background: var(--accent); box-shadow: 0 0 6px rgba(143,170,123,0.3); }
+    .nav-dot.completed { background: var(--accent-bg); }
+    .nav-dot:hover { transform: scale(1.4); }
+    .progress-text { font-size: 0.75rem; color: var(--slate); margin-left: 0.5rem; font-variant-numeric: tabular-nums; }
+
+    main { position: relative; z-index: 1; padding-top: 64px; }
+    .section { display: none; animation: fadeIn 0.4s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .section { animation: none; } }
+    .section-inner { max-width: 880px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+    h1 .accent { color: var(--red); }
+    h2 { font-family: var(--font-heading); font-size: 1.65rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.01em; }
+    h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    .lead { font-size: 1.1rem; color: var(--slate-light); max-width: 640px; line-height: 1.8; }
+    .divider { width: 48px; height: 2px; background: var(--accent-bg); opacity: 0.4; margin: 1.5rem 0; }
+
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1rem; transition: border-color 0.3s; }
+    .card:hover { border-color: rgba(143,170,123,0.2); }
+    .card-icon { width: 40px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 0.75rem; background: var(--accent-dim); }
+    .card-icon.red { background: var(--red-bg); }
+    .card-icon.amber { background: var(--amber-bg); }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat { background: var(--navy-light); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; text-align: center; }
+    .stat-number { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--red); }
+    .stat-label { font-size: 0.8rem; color: var(--slate); margin-top: 0.25rem; }
+
+    .callout { border-radius: 6px; padding: 1.15rem 1.25rem; margin: 1.25rem 0; display: flex; gap: 0.85rem; align-items: flex-start; }
+    .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .callout.danger { background: var(--red-bg); border-left: 3px solid var(--red); }
+    .callout.warning { background: var(--amber-bg); border-left: 3px solid var(--amber); }
+    .callout.success { background: var(--green-bg); border-left: 3px solid var(--accent-bg); }
+    .callout.info { background: var(--accent-dim); border-left: 3px solid var(--accent-bg); }
+    .callout h4 { font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; font-family: var(--font-heading); }
+    .callout p { font-size: 0.88rem; color: var(--slate-light); margin-bottom: 0; }
+
+    .red-flags { list-style: none; margin: 1rem 0; }
+    .red-flags li { padding: 0.65rem 0.85rem; margin-bottom: 0.35rem; background: var(--red-bg); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; font-size: 0.92rem; }
+    .green-flags { list-style: none; margin: 1rem 0; }
+    .green-flags li { padding: 0.65rem 0.85rem; margin-bottom: 0.35rem; background: var(--green-bg); border-left: 3px solid var(--accent-bg); border-radius: 0 4px 4px 0; font-size: 0.92rem; }
+
+    .attack-flow { margin: 2rem 0; }
+    .flow-step { display: flex; gap: 1.25rem; position: relative; }
+    .flow-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .flow-number { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; background: var(--navy-mid); color: var(--white); border: 2px solid var(--accent-bg); }
+    .flow-line { width: 2px; flex: 1; min-height: 16px; background: rgba(143,170,123,0.2); }
+    .flow-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; flex: 1; margin-bottom: 0.75rem; }
+    .flow-content h3 { margin-bottom: 0.25rem; }
+    .flow-content p { margin-bottom: 0; font-size: 0.92rem; color: var(--slate); }
+
+    /* Email mockups */
+    .mockup-email { background: #ffffff; border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem; color: #1a1a1a; font-size: 0.85rem; border: 1px solid #d0ccc4; }
+    .mockup-email-toolbar { background: #f4f1eb; padding: 0.5rem 0.85rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid #d0ccc4; font-size: 0.72rem; color: #666; }
+    .mockup-email-toolbar .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-email-toolbar .dot.r { background: #c0392b; }
+    .mockup-email-toolbar .dot.y { background: #b7950b; }
+    .mockup-email-toolbar .dot.g { background: #8faa7b; }
+    .mockup-email-header { padding: 0.85rem 1rem; border-bottom: 1px solid #eae6de; }
+    .mockup-email-row { display: flex; gap: 0.5rem; margin-bottom: 0.3rem; font-size: 0.78rem; line-height: 1.4; }
+    .mockup-email-row .label { color: #888; min-width: 48px; text-align: right; flex-shrink: 0; }
+    .mockup-email-row .value { color: #333; }
+    .mockup-email-row .value.suspicious { color: #c0392b; }
+    .mockup-email-subject { font-weight: 700; font-size: 0.92rem; color: #1a1a1a; margin-top: 0.25rem; }
+    .mockup-email-body { padding: 1rem; line-height: 1.65; color: #333; }
+    .mockup-email-body .fake-link { color: #2563eb; text-decoration: underline; cursor: default; }
+
+    /* Chat mockup */
+    .mockup-chat { background: #fff; border-radius: 6px; overflow: hidden; border: 1px solid #d0ccc4; margin-bottom: 1.25rem; }
+    .mockup-chat-header { background: #1a5276; color: #fff; padding: 0.5rem 0.85rem; font-size: 0.78rem; font-weight: 600; }
+    .mockup-chat-body { padding: 0.85rem; }
+    .chat-bubble { max-width: 85%; padding: 0.6rem 0.85rem; border-radius: 12px; font-size: 0.8rem; line-height: 1.5; margin-bottom: 0.5rem; }
+    .chat-bubble.them { background: #e8e5dd; color: #333; border-bottom-left-radius: 3px; }
+    .chat-bubble.you { background: #1a5276; color: #fff; margin-left: auto; border-bottom-right-radius: 3px; }
+    .chat-sender { font-size: 0.65rem; color: #888; margin-bottom: 0.2rem; }
+
+    /* Invoice mockup */
+    .mockup-invoice { background: #fff; border-radius: 6px; overflow: hidden; border: 1px solid #d0ccc4; margin-bottom: 1.25rem; color: #1a1a1a; padding: 1.25rem; }
+    .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 2px solid #1a5276; }
+    .invoice-company { font-weight: 700; font-size: 0.95rem; color: #1a5276; }
+    .invoice-label { font-size: 0.72rem; color: #888; }
+    .invoice-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin: 0.75rem 0; }
+    .invoice-table th { background: #f4f1eb; padding: 0.4rem 0.6rem; text-align: left; font-weight: 600; color: #555; border-bottom: 1px solid #ddd; }
+    .invoice-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid #eee; color: #333; }
+    .invoice-total { text-align: right; font-weight: 700; font-size: 0.92rem; color: #1a1a1a; margin-top: 0.5rem; }
+    .invoice-alert { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 0.5rem 0.75rem; font-size: 0.75rem; color: #856404; margin-top: 0.75rem; }
+
+    /* Scenario voting */
+    .scenario { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem; }
+    .scenario-header { padding: 1rem 1.25rem; background: rgba(143,170,123,0.04); border-bottom: 1px solid var(--border); font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem; }
+    .scenario-body { padding: 1.25rem; }
+    .scenario-body p { font-size: 0.92rem; }
+    .scenario-vote { display: flex; gap: 0.65rem; margin-top: 1rem; }
+    .vote-btn { flex: 1; padding: 0.7rem 1rem; border-radius: 4px; font-family: var(--font); font-weight: 600; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); background: rgba(143,170,123,0.04); color: var(--slate-light); text-align: center; }
+    .vote-btn:hover { border-color: var(--accent-bg); background: var(--accent-dim); }
+    .vote-btn.vote-attack { border-left: 3px solid var(--red); }
+    .vote-btn.vote-safe { border-left: 3px solid var(--accent-bg); }
+    .vote-btn.chosen-correct { background: var(--green-bg); border-color: var(--accent-bg); color: var(--accent); pointer-events: none; }
+    .vote-btn.chosen-wrong { background: var(--red-bg); border-color: var(--red); color: var(--red-soft); pointer-events: none; }
+    .vote-btn.faded { opacity: 0.35; pointer-events: none; }
+    .scenario-answer { display: none; margin-top: 0.85rem; animation: fadeIn 0.4s ease; }
+    .scenario-answer.revealed { display: block; }
+    .scenario-score-badge { display: inline-block; background: var(--accent-dim); border: 1px solid var(--border); border-radius: 4px; padding: 0.5rem 1rem; margin-top: 1.25rem; font-size: 0.88rem; color: var(--slate-light); }
+    .scenario-score-badge strong { color: var(--accent); }
+
+    /* Quiz */
+    .quiz-question { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-bottom: 1.25rem; }
+    .quiz-question h3 { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.85rem; }
+    .q-num { background: var(--accent-bg); color: var(--navy); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; font-family: var(--font); }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
+    .quiz-option { background: rgba(143,170,123,0.03); border: 1px solid var(--border); border-radius: 4px; padding: 0.7rem 1rem; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+    .quiz-option:hover { border-color: var(--accent-bg); background: var(--accent-dim); }
+    .quiz-option.correct { border-color: var(--accent-bg); background: var(--green-bg); }
+    .quiz-option.incorrect { border-color: var(--red); background: var(--red-bg); }
+    .quiz-option.disabled { pointer-events: none; opacity: 0.55; }
+    .option-letter { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(143,170,123,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; transition: all 0.2s; font-family: var(--font); }
+    .quiz-option.correct .option-letter { background: var(--accent-bg); border-color: var(--accent-bg); color: var(--navy); }
+    .quiz-option.incorrect .option-letter { background: var(--red); border-color: var(--red); color: white; }
+    .quiz-feedback { margin-top: 0.6rem; padding: 0.65rem 0.85rem; border-radius: 4px; font-size: 0.85rem; display: none; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: var(--green-bg); border-left: 3px solid var(--accent-bg); color: var(--accent-hover); }
+    .quiz-feedback.incorrect-fb { background: var(--red-bg); border-left: 3px solid var(--red); color: var(--red-soft); }
+
+    .score-display { text-align: center; padding: 2rem; }
+    .score-circle { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .score-circle.pass { border-color: var(--accent-bg); }
+    .score-circle.fail { border-color: var(--red); }
+    .score-value { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--white); }
+    .score-label { font-size: 0.8rem; color: var(--slate); }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.25s; font-family: var(--font); letter-spacing: 0.01em; text-decoration: none; }
+    .btn-primary { background: var(--accent-bg); color: var(--navy); }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent-bg); }
+    .btn-secondary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+    .btn-group { display: flex; gap: 0.75rem; margin-top: 2rem; flex-wrap: wrap; }
+
+    .certificate { background: var(--navy-light); border: 2px solid var(--accent-bg); border-radius: 6px; padding: 3rem 2rem; text-align: center; max-width: 560px; margin: 2rem auto; position: relative; }
+    .certificate::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(143,170,123,0.12); border-radius: 4px; pointer-events: none; }
+    .cert-brand { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .cert-brand span { color: var(--accent); }
+    .cert-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+    .cert-subtitle { color: var(--slate); font-size: 0.85rem; margin-bottom: 1.75rem; }
+    .cert-name { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 1.25rem; display: inline-block; min-width: 220px; }
+    .cert-date { font-size: 0.82rem; color: var(--slate); }
+
+    .quick-ref { background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; margin-top: 2rem; }
+    .quick-ref h3 { font-size: 0.95rem; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.4rem; }
+    .ref-item { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.65rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .section-inner { padding: 2rem 1.25rem 3rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
+      .btn-group { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .nav-title, .nav-divider { display: none; }
+    }
+    @media print {
+      .nav, .btn-group { display: none !important; }
+      .section { display: block !important; page-break-inside: avoid; }
+      body { background: white; color: #2B2B2B; }
+      .card, .flow-content, .scenario, .quiz-question, .quick-ref { border-color: #ccc; background: #f9f7f2; }
+      h1, h2, h3, .cert-title, .cert-brand { color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" role="navigation" aria-label="Training navigation">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <div class="logo">Circle <span>6</span> Systems</div>
+      <div class="nav-divider"></div>
+      <div class="nav-title">Security Awareness Training</div>
+    </div>
+    <div class="nav-progress">
+      <button class="nav-dot active" onclick="goToSection(0)" title="Welcome"></button>
+      <button class="nav-dot" onclick="goToSection(1)" title="What is BEC?"></button>
+      <button class="nav-dot" onclick="goToSection(2)" title="Attack Types"></button>
+      <button class="nav-dot" onclick="goToSection(3)" title="How It Works"></button>
+      <button class="nav-dot" onclick="goToSection(4)" title="Spot the Scam"></button>
+      <button class="nav-dot" onclick="goToSection(5)" title="What To Do"></button>
+      <button class="nav-dot" onclick="goToSection(6)" title="Knowledge Check"></button>
+      <button class="nav-dot" onclick="goToSection(7)" title="Certificate"></button>
+      <span class="progress-text" id="progressText">1 / 8</span>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- SECTION 0: Welcome -->
+  <div class="section active" id="section-0">
+    <div class="section-inner">
+      <div class="section-label">Security Awareness Training</div>
+      <h1>Business Email <span class="accent">Compromise</span></h1>
+      <div class="divider"></div>
+      <p class="lead">BEC is the most financially devastating cyber attack facing organizations today. Attackers impersonate executives, vendors, and colleagues to steal money and data&mdash;and they are getting better every day.</p>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-number">$2.7B</div>
+          <div class="stat-label">Lost to BEC attacks in 2024 (FBI IC3)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">70%</div>
+          <div class="stat-label">Weekly probability of BEC attack for organizations under 1,000 employees</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">15%</div>
+          <div class="stat-label">Increase in BEC attacks in 2025</div>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <div class="callout-icon">&#x25CF;</div>
+        <div>
+          <h4>Government and small business are high-value targets</h4>
+          <p>BEC attacks accounted for 73% of all reported cyber incidents in 2024 across government and regulated sectors. Attackers target payroll departments, accounts payable clerks, and anyone who handles financial transactions&mdash;roles common in every municipal office and small business.</p>
+        </div>
+      </div>
+
+      <p><strong>Training time:</strong> Approximately 15&ndash;20 minutes<br>
+      <strong>Includes:</strong> Real-world email examples, interactive scenarios, and a scored assessment</p>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="nextSection()">Begin Training &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: What is BEC? -->
+  <div class="section" id="section-1">
+    <div class="section-inner">
+      <div class="section-label">Module 1</div>
+      <h2>What Is Business Email Compromise?</h2>
+      <div class="divider"></div>
+      <p>Business Email Compromise is a type of attack where criminals impersonate a trusted person&mdash;your boss, a colleague, a vendor, or a government agency&mdash;through email to trick you into sending money, sharing sensitive data, or changing payment information.</p>
+
+      <div class="callout warning">
+        <div class="callout-icon">&#x25CF;</div>
+        <div>
+          <h4>Why BEC is different from spam</h4>
+          <p>BEC emails are not mass-blasted to millions. They are <em>targeted and researched</em>. Attackers study your organization, learn names and titles, and craft messages that look like normal business communication. With AI tools, these emails are now nearly indistinguishable from genuine correspondence.</p>
+        </div>
+      </div>
+
+      <h3>How attackers prepare</h3>
+      <p>Before sending a single email, attackers may:</p>
+      <ul class="red-flags">
+        <li>Research your organization's staff directory, org chart, and LinkedIn profiles</li>
+        <li>Compromise a real employee's or vendor's email account to send messages from a legitimate address</li>
+        <li>Register look-alike domains (e.g., <code>c1ty-of-portland.gov</code> instead of <code>cityofportland.gov</code>)</li>
+        <li>Study your organization's payment cycles, vendor relationships, and communication patterns</li>
+        <li>Use AI to replicate writing styles, including grammar quirks and signature blocks</li>
+        <li>Create deepfake voice or video calls to confirm fraudulent requests</li>
+      </ul>
+
+      <div class="callout info">
+        <div class="callout-icon">&#x25CF;</div>
+        <div>
+          <h4>The $25.6 million deepfake video call</h4>
+          <p>In May 2024, an employee at Arup Engineering joined a video conference call with the company's CFO and several senior executives&mdash;all of whom were AI-generated deepfakes. Convinced by the live video, the employee transferred $25.6 million to five different accounts controlled by attackers.</p>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" onclick="nextSection()">Attack Types &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: BEC Attack Types -->
+  <div class="section" id="section-2">
+    <div class="section-inner">
+      <div class="section-label">Module 2</div>
+      <h2>The Five Types of BEC Attacks</h2>
+      <div class="divider"></div>
+
+      <div class="card" style="margin-bottom:1.25rem;">
+        <div class="card-icon red">1</div>
+        <h3>CEO / Executive Impersonation</h3>
+        <p>An attacker poses as the mayor, city manager, department director, or company owner and emails a staff member requesting an urgent wire transfer, gift card purchase, or sensitive information. These emails emphasize urgency and secrecy: <em>"I need this handled before end of day. Don't discuss this with anyone else."</em></p>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;">
+        <div class="card-icon red">2</div>
+        <h3>Payroll Diversion</h3>
+        <p>An attacker impersonates an employee and emails HR or payroll requesting a change to their direct deposit bank account. The new account belongs to the attacker. This is especially common around pay periods and during onboarding/offboarding.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;">
+        <div class="card-icon red">3</div>
+        <h3>Vendor / Invoice Fraud</h3>
+        <p>An attacker impersonates a known vendor or supplier and sends a fake invoice or requests updated payment routing. They may compromise the vendor's actual email account or register a look-alike domain. This is the most common type, representing 63% of BEC attacks.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:1.25rem;">
+        <div class="card-icon red">4</div>
+        <h3>Attorney / Legal Impersonation</h3>
+        <p>An attacker poses as a law firm, auditor, or regulatory body and pressures the target into acting quickly on a "confidential legal matter" involving wire transfers or sensitive records.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon red">5</div>
+        <h3>Data Theft</h3>
+        <p>Rather than requesting money, the attacker targets HR or admin staff to steal W-2 forms, employee records, constituent data, or other sensitive information that can be sold or used for identity theft.</p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" onclick="nextSection()">How It Works &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: How BEC Works -->
+  <div class="section" id="section-3">
+    <div class="section-inner">
+      <div class="section-label">Module 3</div>
+      <h2>The BEC Attack Chain</h2>
+      <div class="divider"></div>
+
+      <div class="attack-flow">
+        <div class="flow-step">
+          <div class="flow-marker"><div class="flow-number">1</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <h3>Reconnaissance</h3>
+            <p>Attackers study your organization using public records, social media, LinkedIn, and news articles. They identify who handles money, who reports to whom, and what vendors you use.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-marker"><div class="flow-number">2</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <h3>Setup</h3>
+            <p>They either compromise a real email account (through phishing or credential theft) or register a look-alike domain. They may monitor email traffic for days or weeks to learn communication patterns.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-marker"><div class="flow-number">3</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <h3>The Ask</h3>
+            <p>The attacker sends a carefully crafted email requesting a financial action: a wire transfer, a payment routing change, a gift card purchase, or a payroll update. The request looks routine and comes from a trusted source.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-marker"><div class="flow-number">4</div><div class="flow-line"></div></div>
+          <div class="flow-content">
+            <h3>Pressure</h3>
+            <p>The email creates urgency: "This needs to happen today." It may also demand secrecy: "Keep this between us for now." If the target hesitates, the attacker may follow up with a phone call, text, or Teams message using a spoofed number.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-marker"><div class="flow-number">5</div></div>
+          <div class="flow-content">
+            <h3>The Transfer</h3>
+            <p>The victim processes the payment or shares the data. Funds are typically moved through multiple accounts and withdrawn within hours, making recovery extremely difficult. The average BEC wire transfer request is $24,586.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <div class="callout-icon">&#x25CF;</div>
+        <div>
+          <h4>Dual-channel attacks are the new trend in 2026</h4>
+          <p>Attackers now follow up initial BEC emails with phone calls, text messages, or Microsoft Teams messages to add legitimacy. If someone "confirms" a request through a second channel that was also spoofed, it does not mean the request is real. Always verify through a channel <em>you</em> initiate.</p>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" onclick="nextSection()">Spot the Scam &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Spot the Scam - Scenarios -->
+  <div class="section" id="section-4">
+    <div class="section-inner">
+      <div class="section-label">Module 4</div>
+      <h2>Spot the Scam</h2>
+      <div class="divider"></div>
+      <p>Review each scenario and decide: is this a BEC attack or legitimate business?</p>
+
+      <!-- Scenario 1: CEO Gift Card -->
+      <div class="scenario" id="sc1">
+        <div class="scenario-header"><span>&#x25CB;</span> Scenario 1: The Urgent Request</div>
+        <div class="scenario-body">
+          <p style="margin-bottom:0.85rem;">You are an administrative assistant at a county public works department. This email arrives at 4:42 PM on Friday:</p>
+          <div class="mockup-email">
+            <div class="mockup-email-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;">Inbox</span></div>
+            <div class="mockup-email-header">
+              <div class="mockup-email-row"><span class="label">From:</span><span class="value">David Mercer &lt;<span class="suspicious">d.mercer@countyworks-admin.com</span>&gt;</span></div>
+              <div class="mockup-email-row"><span class="label">To:</span><span class="value">You</span></div>
+              <div class="mockup-email-subject">Quick favor - confidential</div>
+            </div>
+            <div class="mockup-email-body">
+              <p style="margin-bottom:0.5rem;">Hi,</p>
+              <p style="margin-bottom:0.5rem;">I'm in a meeting and can't step out. I need you to pick up 5 Apple gift cards ($200 each) for a staff recognition event on Monday. Please purchase them today and send me photos of the card numbers and PINs.</p>
+              <p style="margin-bottom:0.5rem;">I'll reimburse you on Monday. Don't mention this to anyone - it's a surprise.</p>
+              <p style="margin-bottom:0;">Thanks,<br>David Mercer<br>Director, Public Works</p>
+            </div>
+          </div>
+          <div class="scenario-vote" id="vote1">
+            <button class="vote-btn vote-attack" onclick="voteScenario(1, true, true)">This is a scam</button>
+            <button class="vote-btn vote-safe" onclick="voteScenario(1, false, true)">This is legitimate</button>
+          </div>
+          <div class="scenario-answer" id="answer1">
+            <div class="callout danger" style="margin-bottom:0;">
+              <div class="callout-icon">&#x25CF;</div>
+              <div>
+                <h4>This is a BEC gift card scam.</h4>
+                <p>Red flags: The sender domain (<code style="color:var(--red);">countyworks-admin.com</code>) is not the county's real email domain. The request demands urgency ("today"), secrecy ("don't mention this"), and an unusual payment method (gift cards). No legitimate organization purchases gift cards this way. Gift card requests via email are <strong>always</strong> a scam. <strong>Do not purchase anything. Verify directly with Director Mercer by phone or in person.</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario 2: Payroll Diversion -->
+      <div class="scenario" id="sc2">
+        <div class="scenario-header"><span>&#x25CB;</span> Scenario 2: The Direct Deposit Change</div>
+        <div class="scenario-body">
+          <p style="margin-bottom:0.85rem;">You work in the payroll department of a small city. This email arrives from a Parks Department employee:</p>
+          <div class="mockup-email">
+            <div class="mockup-email-toolbar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:auto;">Inbox</span></div>
+            <div class="mockup-email-header">
+              <div class="mockup-email-row"><span class="label">From:</span><span class="value">Maria Santos &lt;<span class="suspicious">maria.santos@cityparks-dept.org</span>&gt;</span></div>
+              <div class="mockup-email-row"><span class="label">To:</span><span class="value">Payroll Department</span></div>
+              <div class="mockup-email-subject">Direct deposit update - new bank</div>
+            </div>
+            <div class="mockup-email-body">
+              <p style="margin-bottom:0.5rem;">Hi Payroll,</p>
+              <p style="margin-bottom:0.5rem;">I recently switched banks and need to update my direct deposit information before the next pay cycle. My old account has been closed.</p>
+              <p style="margin-bottom:0.5rem;">New routing number: 021000021<br>New account number: 4851-7293-0064</p>
+              <p style="margin-bottom:0.5rem;">Can you please update this before Friday? I don't want to miss my paycheck.</p>
+              <p style="margin-bottom:0;">Thanks,<br>Maria Santos<br>Parks Maintenance</p>
+            </div>
+          </div>
+          <div class="scenario-vote" id="vote2">
+            <button class="vote-btn vote-attack" onclick="voteScenario(2, true, true)">This is a scam</button>
+            <button class="vote-btn vote-safe" onclick="voteScenario(2, false, true)">This is legitimate</button>
+          </div>
+          <div class="scenario-answer" id="answer2">
+            <div class="callout danger" style="margin-bottom:0;">
+              <div class="callout-icon">&#x25CF;</div>
+              <div>
+                <h4>This is a payroll diversion attack.</h4>
+                <p>The sender domain (<code style="color:var(--red);">cityparks-dept.org</code>) is not the city's official domain. Direct deposit changes should <strong>never</strong> be processed based on email alone. <strong>Require the employee to submit the change through your official HR system or in person with valid ID. Call Maria at her known phone number to verify.</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario 3: Vendor Invoice -->
+      <div class="scenario" id="sc3">
+        <div class="scenario-header"><span>&#x25CB;</span> Scenario 3: The Updated Invoice</div>
+        <div class="scenario-body">
+          <p style="margin-bottom:0.85rem;">You handle accounts payable for a small engineering firm. You receive this invoice from a regular supplier:</p>
+          <div class="mockup-invoice">
+            <div class="invoice-header">
+              <div>
+                <div class="invoice-company">PACIFIC NORTHWEST SUPPLY CO.</div>
+                <div class="invoice-label">1200 Industrial Way, Suite 400<br>Portland, OR 97201</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-weight:700; font-size:1.1rem; color:#1a1a1a;">INVOICE</div>
+                <div class="invoice-label">INV-2026-0847<br>Date: Feb 28, 2026</div>
+              </div>
+            </div>
+            <table class="invoice-table">
+              <thead><tr><th>Description</th><th>Qty</th><th>Amount</th></tr></thead>
+              <tbody>
+                <tr><td>Grade 5 structural bolts (250 ct)</td><td>4</td><td>$2,180.00</td></tr>
+                <tr><td>Steel I-beam W8x31 (20ft)</td><td>12</td><td>$14,400.00</td></tr>
+                <tr><td>Freight and delivery</td><td>1</td><td>$850.00</td></tr>
+              </tbody>
+            </table>
+            <div class="invoice-total">Total Due: $17,430.00</div>
+            <div class="invoice-alert">IMPORTANT: Our banking partner has changed. Please update your payment records with the new wire instructions below. Previous account is no longer active.<br><strong>New Bank: First Atlantic Trust | Routing: 026009593 | Acct: 7841-2039-5517</strong></div>
+          </div>
+          <div class="scenario-vote" id="vote3">
+            <button class="vote-btn vote-attack" onclick="voteScenario(3, true, true)">This is a scam</button>
+            <button class="vote-btn vote-safe" onclick="voteScenario(3, false, true)">This is legitimate</button>
+          </div>
+          <div class="scenario-answer" id="answer3">
+            <div class="callout danger" style="margin-bottom:0;">
+              <div class="callout-icon">&#x25CF;</div>
+              <div>
+                <h4>This is a vendor invoice scam.</h4>
+                <p>The invoice looks professional and references real-seeming products, but the "banking partner has changed" notice is a classic BEC red flag. Attackers either compromised the vendor's email or created a look-alike. <strong>Never update payment information based on an invoice or email alone. Call the vendor at a phone number from your existing records (not the invoice) to verify any banking changes.</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scenario 4: Legitimate -->
+      <div class="scenario" id="sc4">
+        <div class="scenario-header"><span>&#x25CB;</span> Scenario 4: The Conference Registration</div>
+        <div class="scenario-body">
+          <p style="margin-bottom:0.85rem;">Your supervisor walks over to your desk and hands you a printed conference brochure. She says: "Can you register me for this cybersecurity conference next month? Use the department P-card. Here's the registration link from their website." You visit the conference website, verify it matches the brochure, and complete the registration through the site's standard payment form.</p>
+          <div class="scenario-vote" id="vote4">
+            <button class="vote-btn vote-attack" onclick="voteScenario(4, true, false)">This is a scam</button>
+            <button class="vote-btn vote-safe" onclick="voteScenario(4, false, false)">This is legitimate</button>
+          </div>
+          <div class="scenario-answer" id="answer4">
+            <div class="callout success" style="margin-bottom:0;">
+              <div class="callout-icon">&#x25CF;</div>
+              <div>
+                <h4>This is a legitimate request.</h4>
+                <p>Your supervisor made the request in person (not via email), you verified the website independently, and the payment is processed through a standard registration form&mdash;not a wire transfer, gift card, or routing change sent via email. In-person verification and standard payment channels are signs of legitimate business.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scenario-score-badge" id="scenarioScore" style="display:none;">
+        Scenario score: <strong id="scenarioScoreVal">0</strong> / 4 correct
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" onclick="nextSection()">What To Do &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: What To Do -->
+  <div class="section" id="section-5">
+    <div class="section-inner">
+      <div class="section-label">Module 5</div>
+      <h2>Your Defense Playbook</h2>
+      <div class="divider"></div>
+
+      <h3>The Golden Rule</h3>
+      <div class="callout success">
+        <div class="callout-icon">&#x25CF;</div>
+        <div>
+          <h4>Verify any financial request through a channel you initiate.</h4>
+          <p>Before processing any wire transfer, payment routing change, gift card purchase, or payroll update requested via email, call the requester at a phone number you already have on file. Do not use contact information from the email itself.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.75rem;">Red flags in every BEC email</h3>
+      <ul class="red-flags">
+        <li><strong>Urgency:</strong> "This needs to happen today" or "before end of business"</li>
+        <li><strong>Secrecy:</strong> "Keep this between us" or "Don't discuss this with anyone"</li>
+        <li><strong>Unusual requests:</strong> Gift cards, wire transfers, or routing changes via email</li>
+        <li><strong>Sender mismatch:</strong> Display name looks right but the email domain is wrong or slightly off</li>
+        <li><strong>Pressure from authority:</strong> The "sender" is your boss, a director, or an executive</li>
+        <li><strong>New payment instructions:</strong> "Our bank has changed" or "Use this new account"</li>
+        <li><strong>Moving off-channel:</strong> "Text me at this number" or "Let's handle this on my personal email"</li>
+      </ul>
+
+      <h3 style="margin-top:1.75rem;">Verification procedures that stop BEC</h3>
+      <ul class="green-flags">
+        <li><strong>Call back on a known number</strong>&mdash;Use your contact list, not the number in the email</li>
+        <li><strong>Verify in person</strong> when possible&mdash;Walk down the hall before wiring $20,000</li>
+        <li><strong>Check the email domain carefully</strong>&mdash;One changed letter is all it takes</li>
+        <li><strong>Require dual authorization</strong> for any payment over a set threshold</li>
+        <li><strong>Never change payment routing via email alone</strong>&mdash;Require a signed form or in-person verification</li>
+        <li><strong>Slow down</strong>&mdash;Urgency is the attacker's weapon. A 10-minute verification call can save millions</li>
+      </ul>
+
+      <h3 style="margin-top:1.75rem;">If you already sent money or data</h3>
+      <div class="callout danger">
+        <div class="callout-icon">&#x25CF;</div>
+        <div>
+          <h4>Act immediately&mdash;recovery is time-sensitive</h4>
+          <ol style="margin: 0.4rem 0 0 1.15rem; font-size: 0.9rem;">
+            <li><strong>Contact your bank immediately</strong> and request a wire recall or payment hold</li>
+            <li><strong>Notify your IT department</strong> and management&mdash;the sender's account may be compromised</li>
+            <li><strong>File a complaint with FBI IC3</strong> at ic3.gov&mdash;this enables federal recovery efforts</li>
+            <li><strong>Preserve all emails</strong> related to the fraudulent request as evidence</li>
+            <li><strong>If employee data was shared,</strong> notify affected individuals and begin identity monitoring</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" onclick="nextSection()">Take the Quiz &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Quiz -->
+  <div class="section" id="section-6">
+    <div class="section-inner">
+      <div class="section-label">Knowledge Assessment</div>
+      <h2>Test Your Knowledge</h2>
+      <div class="divider"></div>
+      <p>Answer all 8 questions. You need at least 6 correct (75%) to pass.</p>
+
+      <div class="quiz-question" id="q1">
+        <h3><span class="q-num">1</span> What makes BEC different from regular phishing?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(1,this,false)"><span class="option-letter">A</span><span>BEC emails always contain malware attachments</span></div>
+          <div class="quiz-option" onclick="answerQuiz(1,this,true)"><span class="option-letter">B</span><span>BEC is targeted, researched, and impersonates specific trusted people in your organization</span></div>
+          <div class="quiz-option" onclick="answerQuiz(1,this,false)"><span class="option-letter">C</span><span>BEC only targets large corporations</span></div>
+          <div class="quiz-option" onclick="answerQuiz(1,this,false)"><span class="option-letter">D</span><span>BEC emails are always sent from foreign email addresses</span></div>
+        </div><div class="quiz-feedback" id="fb1"></div>
+      </div>
+
+      <div class="quiz-question" id="q2">
+        <h3><span class="q-num">2</span> Your department director emails you asking to buy $500 in gift cards and send photos of the codes. What should you do?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(2,this,false)"><span class="option-letter">A</span><span>Buy them quickly since the director asked</span></div>
+          <div class="quiz-option" onclick="answerQuiz(2,this,false)"><span class="option-letter">B</span><span>Reply to the email asking for more details</span></div>
+          <div class="quiz-option" onclick="answerQuiz(2,this,true)"><span class="option-letter">C</span><span>Call the director at their known phone number to verify before doing anything</span></div>
+          <div class="quiz-option" onclick="answerQuiz(2,this,false)"><span class="option-letter">D</span><span>Forward the email to a colleague to ask what they think</span></div>
+        </div><div class="quiz-feedback" id="fb2"></div>
+      </div>
+
+      <div class="quiz-question" id="q3">
+        <h3><span class="q-num">3</span> A vendor emails you saying their bank has changed and provides new wire instructions. How should you handle this?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(3,this,false)"><span class="option-letter">A</span><span>Update the payment information since the email came from the vendor</span></div>
+          <div class="quiz-option" onclick="answerQuiz(3,this,true)"><span class="option-letter">B</span><span>Call the vendor at a number from your existing records to verify the change</span></div>
+          <div class="quiz-option" onclick="answerQuiz(3,this,false)"><span class="option-letter">C</span><span>Reply to the email asking them to confirm</span></div>
+          <div class="quiz-option" onclick="answerQuiz(3,this,false)"><span class="option-letter">D</span><span>Wait a week and see if they send another email</span></div>
+        </div><div class="quiz-feedback" id="fb3"></div>
+      </div>
+
+      <div class="quiz-question" id="q4">
+        <h3><span class="q-num">4</span> Which of these is a common red flag in a BEC email?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(4,this,false)"><span class="option-letter">A</span><span>The email includes a standard company signature block</span></div>
+          <div class="quiz-option" onclick="answerQuiz(4,this,false)"><span class="option-letter">B</span><span>The email was sent during normal business hours</span></div>
+          <div class="quiz-option" onclick="answerQuiz(4,this,true)"><span class="option-letter">C</span><span>The email demands urgency and secrecy around a financial request</span></div>
+          <div class="quiz-option" onclick="answerQuiz(4,this,false)"><span class="option-letter">D</span><span>The email has correct spelling and grammar</span></div>
+        </div><div class="quiz-feedback" id="fb4"></div>
+      </div>
+
+      <div class="quiz-question" id="q5">
+        <h3><span class="q-num">5</span> An employee emails payroll asking to change their direct deposit. What is the safest procedure?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(5,this,false)"><span class="option-letter">A</span><span>Process the change since the email came from their work address</span></div>
+          <div class="quiz-option" onclick="answerQuiz(5,this,true)"><span class="option-letter">B</span><span>Require an in-person visit with ID or use the official HR portal</span></div>
+          <div class="quiz-option" onclick="answerQuiz(5,this,false)"><span class="option-letter">C</span><span>Ask them to resend the request from a personal email to confirm</span></div>
+          <div class="quiz-option" onclick="answerQuiz(5,this,false)"><span class="option-letter">D</span><span>Process it and verify at the next pay period</span></div>
+        </div><div class="quiz-feedback" id="fb5"></div>
+      </div>
+
+      <div class="quiz-question" id="q6">
+        <h3><span class="q-num">6</span> You realize you just wired $18,000 to a fraudulent account. What should you do first?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(6,this,true)"><span class="option-letter">A</span><span>Contact your bank immediately to request a wire recall</span></div>
+          <div class="quiz-option" onclick="answerQuiz(6,this,false)"><span class="option-letter">B</span><span>Email the scammer and demand the money back</span></div>
+          <div class="quiz-option" onclick="answerQuiz(6,this,false)"><span class="option-letter">C</span><span>Wait until Monday to notify management</span></div>
+          <div class="quiz-option" onclick="answerQuiz(6,this,false)"><span class="option-letter">D</span><span>Delete the email thread to prevent further damage</span></div>
+        </div><div class="quiz-feedback" id="fb6"></div>
+      </div>
+
+      <div class="quiz-question" id="q7">
+        <h3><span class="q-num">7</span> Why do BEC attackers often request gift cards instead of wire transfers?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(7,this,false)"><span class="option-letter">A</span><span>Gift cards are easier for the victim to purchase</span></div>
+          <div class="quiz-option" onclick="answerQuiz(7,this,true)"><span class="option-letter">B</span><span>Gift cards are nearly untraceable and cannot be reversed once redeemed</span></div>
+          <div class="quiz-option" onclick="answerQuiz(7,this,false)"><span class="option-letter">C</span><span>Gift cards bypass antivirus software</span></div>
+          <div class="quiz-option" onclick="answerQuiz(7,this,false)"><span class="option-letter">D</span><span>Gift cards have higher value limits than wire transfers</span></div>
+        </div><div class="quiz-feedback" id="fb7"></div>
+      </div>
+
+      <div class="quiz-question" id="q8">
+        <h3><span class="q-num">8</span> What is the single best defense against BEC attacks?</h3>
+        <div class="quiz-options">
+          <div class="quiz-option" onclick="answerQuiz(8,this,false)"><span class="option-letter">A</span><span>Advanced email filtering software</span></div>
+          <div class="quiz-option" onclick="answerQuiz(8,this,false)"><span class="option-letter">B</span><span>Encrypting all outgoing emails</span></div>
+          <div class="quiz-option" onclick="answerQuiz(8,this,true)"><span class="option-letter">C</span><span>Verifying financial requests through a separate, trusted channel before acting</span></div>
+          <div class="quiz-option" onclick="answerQuiz(8,this,false)"><span class="option-letter">D</span><span>Requiring all emails to include a digital signature</span></div>
+        </div><div class="quiz-feedback" id="fb8"></div>
+      </div>
+
+      <div id="quizResults" style="display:none;">
+        <div class="score-display">
+          <div class="score-circle" id="scoreCircle"><div class="score-value" id="scoreValue">0/8</div><div class="score-label">Correct</div></div>
+          <h2 id="scoreTitle"></h2>
+          <p id="scoreMessage" style="max-width:480px; margin: 0.5rem auto;"></p>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" id="quizSubmit" onclick="submitQuiz()" style="display:none;">View Results</button>
+        <button class="btn btn-primary" id="quizNext" onclick="nextSection()" style="display:none;">View Certificate &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: Certificate -->
+  <div class="section" id="section-7">
+    <div class="section-inner">
+      <div class="section-label">Training Complete</div>
+      <h2>Certificate of Completion</h2>
+      <div class="divider"></div>
+      <div class="certificate">
+        <div class="cert-brand">Circle <span>6</span> Systems</div>
+        <div style="width:48px; height:2px; background:var(--accent-bg); opacity:0.3; margin: 0.75rem auto 1rem;"></div>
+        <div class="cert-title">Business Email Compromise Awareness</div>
+        <div class="cert-subtitle">Certificate of Completion</div>
+        <p style="color: var(--slate); font-size: 0.85rem; margin-bottom: 0.85rem;">This certifies that</p>
+        <div class="cert-name" id="certName" contenteditable="true" title="Click to enter your name">Your Name</div>
+        <p style="color: var(--slate-light); font-size: 0.85rem;">has successfully completed the Business Email Compromise<br>Awareness Training with a score of <strong id="certScore">--</strong>.</p>
+        <div class="cert-date" id="certDate"></div>
+      </div>
+      <div class="btn-group" style="justify-content: center;"><button class="btn btn-secondary" onclick="window.print()">Print Certificate</button></div>
+
+      <div class="quick-ref" style="margin-top: 2.5rem;">
+        <h3>Quick Reference Card</h3>
+        <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>THE RULE:</strong> Verify any financial request through a channel you initiate. Call at a known number. Never rely on email alone for payments, routing changes, or sensitive data.</div></div>
+        <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>RED FLAGS:</strong> Urgency + secrecy + financial request = BEC. Gift card requests are always a scam. "Our bank has changed" in an invoice is almost always fraud.</div></div>
+        <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>CHECK THE DOMAIN:</strong> One letter can be the difference. <code>county.gov</code> vs <code>countyy.gov</code>. Always inspect the actual email address, not just the display name.</div></div>
+        <div class="ref-item"><div class="ref-icon">&#x25CF;</div><div><strong>IF COMPROMISED:</strong> Contact your bank immediately for a wire recall. Notify IT and management. File a report at ic3.gov. Preserve all related emails.</div></div>
+      </div>
+
+      <div style="margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--slate); text-align: center;">
+        <p>Developed using threat intelligence from the FBI IC3, Proofpoint, Abnormal Security, Trustwave, and Fortra.</p>
+        <p style="margin-top: 0.65rem;">&copy; 2026 Circle 6 Systems. All rights reserved. &nbsp;|&nbsp; <a href="mailto:contact@circle6systems.com" style="color: var(--accent);">contact@circle6systems.com</a></p>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="prevSection()">&larr; Back</button>
+        <button class="btn btn-primary" onclick="goToSection(0)">Restart Training</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  var currentSection = 0, totalSections = 8, quizAnswers = {}, quizScore = 0;
+  var scenarioAnswers = {}, scenarioCorrect = 0;
+
+  function goToSection(n) {
+    document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+    document.getElementById('section-'+n).classList.add('active');
+    document.querySelectorAll('.nav-dot').forEach(function(d,i){d.classList.remove('active');if(i<n)d.classList.add('completed');});
+    document.querySelectorAll('.nav-dot')[n].classList.add('active');
+    currentSection=n;
+    document.getElementById('progressText').textContent=(n+1)+' / '+totalSections;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function nextSection(){if(currentSection<totalSections-1)goToSection(currentSection+1);}
+  function prevSection(){if(currentSection>0)goToSection(currentSection-1);}
+
+  function voteScenario(num,userSaid,isAttack){
+    if(scenarioAnswers[num]!==undefined)return;
+    var correct=(userSaid===isAttack);scenarioAnswers[num]=correct;if(correct)scenarioCorrect++;
+    var btns=document.getElementById('vote'+num).querySelectorAll('.vote-btn');
+    btns.forEach(function(b){if(b===event.target)b.classList.add(correct?'chosen-correct':'chosen-wrong');else b.classList.add('faded');});
+    var a=document.getElementById('answer'+num);a.classList.add('revealed');a.scrollIntoView({behavior:'smooth',block:'nearest'});
+    if(Object.keys(scenarioAnswers).length===4){document.getElementById('scenarioScore').style.display='inline-block';document.getElementById('scenarioScoreVal').textContent=scenarioCorrect;}
+  }
+
+  var expl={
+    1:{correct:"Correct. BEC attacks are targeted and impersonate specific people, unlike mass phishing campaigns.",incorrect:"Not quite. BEC is specifically targeted at individuals in your organization, using researched impersonation of trusted people."},
+    2:{correct:"Correct. Always verify unusual requests by calling the person at a known number. Gift card requests via email are always a scam.",incorrect:"Not quite. Never act on gift card requests via email. Call the person directly at their known phone number to verify."},
+    3:{correct:"Correct. Always call the vendor at a number from your existing records. Never use contact info from the suspicious email itself.",incorrect:"Not quite. Replying to the email could go back to the attacker. Call the vendor at a phone number you already have on file."},
+    4:{correct:"Correct. Urgency and secrecy around financial requests are the hallmarks of BEC. Good grammar and signature blocks do not mean an email is legitimate.",incorrect:"Not quite. The combination of urgency, secrecy, and a financial request is the classic BEC pattern. Attackers now use AI to write perfect emails."},
+    5:{correct:"Correct. Direct deposit changes should require in-person verification with ID or use of the official HR system, never email alone.",incorrect:"Not quite. Email accounts can be compromised. Require in-person verification with ID or use your official HR portal for payroll changes."},
+    6:{correct:"Correct. Contact your bank immediately for a wire recall. Speed is critical\u2014funds are often moved within hours.",incorrect:"Not quite. Your first action must be contacting your bank to attempt a wire recall. Every minute counts for recovery."},
+    7:{correct:"Correct. Gift cards are essentially untraceable cash. Once the codes are redeemed, the money is gone with no way to reverse it.",incorrect:"Not quite. Gift cards are preferred because they are nearly untraceable and irreversible once redeemed, unlike wire transfers which can sometimes be recalled."},
+    8:{correct:"Correct. Technology helps, but the single best defense is human verification through a trusted, separate channel before acting on any financial request.",incorrect:"Not quite. While technology helps, the most effective defense is verifying financial requests through a separate trusted channel before acting."}
+  };
+
+  function answerQuiz(q,el,c){
+    if(quizAnswers[q]!==undefined)return;quizAnswers[q]=c;
+    el.parentElement.querySelectorAll('.quiz-option').forEach(function(o){o.classList.add('disabled');if(o.getAttribute('onclick').indexOf('true')!==-1)o.classList.add('correct');});
+    if(!c)el.classList.add('incorrect');
+    var fb=document.getElementById('fb'+q);fb.classList.add('show');
+    fb.classList.add(c?'correct-fb':'incorrect-fb');fb.textContent=expl[q][c?'correct':'incorrect'];
+    if(Object.keys(quizAnswers).length===8)document.getElementById('quizSubmit').style.display='inline-flex';
+  }
+
+  function submitQuiz(){
+    quizScore=Object.values(quizAnswers).filter(function(v){return v;}).length;
+    var p=quizScore>=6;
+    document.getElementById('quizResults').style.display='block';
+    document.getElementById('scoreValue').textContent=quizScore+'/8';
+    document.getElementById('scoreCircle').classList.add(p?'pass':'fail');
+    document.getElementById('scoreTitle').textContent=p?'Training Passed':'Please Review and Retry';
+    document.getElementById('scoreMessage').textContent=p?'You have demonstrated a strong understanding of BEC threats. Stay vigilant and verify before you trust.':'You scored below 75%. Please review the training material and retake the assessment.';
+    document.getElementById('quizSubmit').style.display='none';
+    if(p)document.getElementById('quizNext').style.display='inline-flex';
+    document.getElementById('certScore').textContent=quizScore+'/8 ('+Math.round(quizScore/8*100)+'%)';
+    document.getElementById('quizResults').scrollIntoView({behavior:'smooth'});
+  }
+
+  document.getElementById('certDate').textContent=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>

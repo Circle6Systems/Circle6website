@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Investigation Board: 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
+  <meta name="description" content="Node-edge investigation board for the 2026 US cyclosporiasis outbreak: five evidence clusters (product, firm, state, regulatory, litigation) with verified links, inferred links, and the known gaps between them.">
+  <meta name="robots" content="index, follow">
+  <script src="js/vis-network.min.js"></script>
+  <style>
+    :root {
+      --c6s-dark: #2d2a2e;
+      --c6s-panel: #3a3640;
+      --c6s-border: #504a52;
+      --c6s-accent: #a8c196;
+      --c6s-accent-dim: #8faa7b;
+      --c6s-red: #ef4444;
+      --c6s-amber: #f59e0b;
+      --c6s-teal: #14b8a6;
+      --c6s-blue: #3b82f6;
+      --c6s-purple: #a855f7;
+      --c6s-text: #d4cab9;
+      --c6s-text-dim: #beb3a7;
+      --c6s-text-bright: #f5f0e8;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: Georgia, 'Times New Roman', serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font);
+      background: var(--c6s-dark);
+      color: var(--c6s-text);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(45, 42, 46, 0.95);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(143, 170, 123, 0.08);
+      z-index: 1000;
+      height: 56px;
+    }
+
+    .site-nav .nav-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+      gap: 1rem;
+    }
+
+    .site-nav .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--c6s-text-bright);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav .logo-text span { color: var(--c6s-accent); }
+
+    .nav-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--c6s-accent);
+      white-space: nowrap;
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-btn {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      color: var(--c6s-text);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-family: var(--font);
+    }
+
+    .nav-btn:hover, .nav-btn:focus-visible { border-color: var(--c6s-accent); color: var(--c6s-accent); outline: 2px solid var(--c6s-accent); outline-offset: 2px; }
+    .nav-btn.active { background: var(--c6s-accent-dim); color: var(--c6s-dark); border-color: var(--c6s-accent); }
+    .nav-btn.gap-btn { border-color: var(--c6s-red); color: #fca5a5; }
+    .nav-btn.gap-btn:hover, .nav-btn.gap-btn:focus-visible { background: var(--c6s-red); color: #fff; outline-color: var(--c6s-red); }
+
+    #graph {
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .side-panel {
+      position: fixed;
+      right: -460px;
+      top: 56px;
+      bottom: 0;
+      width: 440px;
+      max-width: 100%;
+      background: rgba(58, 54, 64, 0.98);
+      border-left: 2px solid var(--c6s-accent);
+      z-index: 500;
+      overflow-y: auto;
+      transition: right 0.3s ease;
+      padding: 1.5rem;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+
+    .side-panel.open { right: 0; }
+    .side-panel.gap-theme { border-left-color: var(--c6s-red); }
+
+    .side-panel .close-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--c6s-text-dim);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .side-panel .close-btn:hover, .side-panel .close-btn:focus-visible { color: var(--c6s-text-bright); outline: 2px solid var(--c6s-accent); }
+
+    .side-panel h2 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      color: var(--c6s-text-bright);
+      margin-bottom: 0.25rem;
+      padding-right: 1.5rem;
+    }
+
+    .side-panel .detail-role {
+      font-size: 0.8rem;
+      color: var(--c6s-accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .side-panel .detail-section { margin-bottom: 1.25rem; }
+
+    .side-panel .detail-section h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-accent);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .side-panel.gap-theme .detail-section h3 { color: #fca5a5; }
+
+    .side-panel .detail-section p,
+    .side-panel .detail-section li {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 0.35rem;
+    }
+
+    .side-panel ul { padding-left: 1.25rem; }
+
+    .gap-item {
+      border-left: 2px solid var(--c6s-red);
+      padding: 0.5rem 0 0.5rem 0.75rem;
+      margin-bottom: 1rem;
+      list-style: none;
+    }
+    .gap-item strong { color: #fca5a5; display: block; margin-bottom: 0.25rem; }
+    .gap-item .gap-src { font-size: 0.72rem; color: var(--c6s-accent-dim); display: block; margin-top: 0.35rem; }
+    .side-panel .detail-section ul.gap-list { padding-left: 0; }
+
+    .legend {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      background: rgba(58, 54, 64, 0.92);
+      border: 1px solid var(--c6s-border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      z-index: 200;
+      font-size: 0.7rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    .legend-group { display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap; }
+    .legend-group + .legend-group { border-left: 1px solid var(--c6s-border); padding-left: 0.85rem; }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--c6s-text-dim);
+    }
+
+    .legend-dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+    .legend-dot.diamond { border-radius: 2px; transform: rotate(45deg); }
+
+    .legend-note { font-size: 0.62rem; color: var(--c6s-text-dim); max-width: 320px; line-height: 1.4; }
+
+    strong { color: var(--c6s-text-bright); }
+    a.detail-link { color: var(--c6s-accent); }
+
+    @media (max-width: 820px) {
+      .side-panel { width: 100%; right: -100%; }
+      .nav-title { display: none; }
+      .legend { font-size: 0.62rem; gap: 0.5rem; max-height: 40vh; overflow-y: auto; }
+      .nav-btn { padding: 0.25rem 0.5rem; font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="logo-text" href="https://circle6systems.com">Circle <span>6</span> Systems</a>
+      <div class="nav-title">Cyclosporiasis 2026 - Investigation Board</div>
+      <div class="nav-controls">
+        <button class="nav-btn" type="button" onclick="network.fit({animation:true})">Fit All</button>
+        <button class="nav-btn active" type="button" onclick="filterCluster('all', this)" id="btn-all">All</button>
+        <button class="nav-btn" type="button" onclick="filterCluster('product', this)">Products</button>
+        <button class="nav-btn" type="button" onclick="filterCluster('firm', this)">Firms</button>
+        <button class="nav-btn" type="button" onclick="filterCluster('state', this)">States</button>
+        <button class="nav-btn" type="button" onclick="filterCluster('regulatory', this)">Regulatory</button>
+        <button class="nav-btn" type="button" onclick="filterCluster('litigation', this)">Litigation</button>
+        <button class="nav-btn gap-btn" type="button" onclick="openGaps()">Open Questions</button>
+        <a class="nav-btn" href="index.html">Briefing</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="graph" role="application" aria-label="Interactive investigation board graph linking products, firms, states, regulatory actions, and litigation for the 2026 cyclosporiasis outbreak. Use the Open Questions button for a text summary of unresolved links."></div>
+
+  <!-- Text-equivalent summary for assistive technology and no-JS readers -->
+  <div class="sr-only" id="a11ySummary">
+    <h1>2026 Cyclosporiasis Outbreak Investigation Board</h1>
+    <p>This graph links five evidence clusters: implicated products and lots, firms in the supply chain,
+    state case counts, regulatory and agency actions, and MDL No. 3196 litigation. Edges are marked
+    Verified (documented in a primary source), Inferred (analytical judgment), or Gap (an unresolved,
+    disputed, or not-yet-established link). The known gaps are enumerated under the Open Questions button
+    and include: the outbreak-wide attribution remaining open, the unlinked North Carolina second vehicle,
+    Mexico's government-level dispute of the attribution backed by a negative environmental test, the
+    absence of any confirmed positive product sample after the import-surveillance retraction, two FDA
+    outbreaks with products not yet identified, and the JPML not having ruled on transfer.</p>
+  </div>
+
+  <div class="side-panel" id="sidePanel" role="dialog" aria-label="Node and gap detail">
+    <button class="close-btn" type="button" aria-label="Close panel" onclick="closePanel()">&times;</button>
+    <div id="panelContent"></div>
+  </div>
+
+  <div class="legend" aria-hidden="false">
+    <div class="legend-group">
+      <span class="legend-item"><span class="legend-dot diamond" style="background:#f59e0b"></span> Product / lot</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#ef4444"></span> Firm</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#3b82f6"></span> State cluster</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#14b8a6"></span> Regulatory</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#a855f7"></span> Litigation</span>
+    </div>
+    <div class="legend-group">
+      <span class="legend-item"><svg width="26" height="12" aria-hidden="true"><line x1="0" y1="6" x2="26" y2="6" stroke="#a8c196" stroke-width="2.5"/></svg> Verified</span>
+      <span class="legend-item"><svg width="26" height="12" aria-hidden="true"><line x1="0" y1="6" x2="26" y2="6" stroke="#beb3a7" stroke-width="2.5" stroke-dasharray="5,4"/></svg> Inferred</span>
+      <span class="legend-item"><svg width="26" height="12" aria-hidden="true"><line x1="0" y1="6" x2="26" y2="6" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="3,4"/></svg> Gap (unresolved link)</span>
+    </div>
+    <span class="legend-note">Verified = documented in a primary source. Inferred = analytical judgment, not established fact. Gap = a link the record does not yet close. Click any node or edge for its basis and source.</span>
+  </div>
+
+<script>
+// =====================================================================
+// Cyclosporiasis 2026 Investigation Board  (issue #83)
+// Data sourced from the v22 primary-verified briefing (index.html and
+// siblings). Every node/edge carries the briefing's own source line.
+// =====================================================================
+
+// ---- Node detail popouts -------------------------------------------
+const nodeDetail = {
+  // PRODUCTS
+  p_iceberg: { role: 'Product - cluster commodity', sections: [
+    {title: 'Key Facts', items: [
+      'Taylor Farms de Mexico shredded iceberg lettuce (5-lb shredded bags)',
+      'Named cluster supplier/commodity for the 9-state Taco Bell cluster on epidemiologic + traceback grounds',
+      'Grown in Mexico; implicated farm stated to be "less than 1% of US iceberg supply"']},
+    {title: 'Source', items: ['FDA consumer advisory + CDC outbreak page ("Do not eat recalled iceberg lettuce from Taylor Farms de Mexico")']}
+  ]},
+  p_marketside: { role: 'Product - retail recall', sections: [
+    {title: 'Key Facts', items: [
+      'Walmart Marketside Bagged Iceberg Salad and Shredded Iceberg Salad',
+      'Part of the 27-state recall; broader than the restaurant cluster']},
+    {title: 'Source', items: ['Taylor Farms recall notice; Consumer Reports; Marler Blog']}
+  ]},
+  p_detained_lot: { role: 'Product - detained lot (retracted)', sections: [
+    {title: 'Key Facts', items: [
+      'Single border-sampled lot of Taylor Farms de Mexico shredded iceberg tested positive Jul 18, detained',
+      'NOT part of the posted 27-state recall',
+      'FDA re-reviewed Jul 19 and declared it a FALSE POSITIVE ("does not represent true amplification")',
+      'Lot number, ship dates, and destination states never disclosed']},
+    {title: 'Source', items: ['FDA import surveillance disclosure; NBC/CBS; Marler Blog (criticized non-disclosure)']}
+  ]},
+  p_nc_parsley: { role: 'Product - NC (unidentified)', sections: [
+    {title: 'Key Facts', items: [
+      'North Carolina cluster suspected foods: parsley and cilantro',
+      'State notes many cases report neither, so a single-food explanation may not hold',
+      'Product NOT identified']},
+    {title: 'Source', items: ['NC DHHS; WRAL']}
+  ]},
+  p_fda1385: { role: 'Product - FDA ref #1385 (unidentified)', sections: [
+    {title: 'Key Facts', items: [
+      'FDA CORE outbreak ref #1385, 10 cases (up from 8)',
+      'Product "not yet identified," traceback initiated, outbreak ongoing',
+      'Not linked to the lettuce cluster']},
+    {title: 'Source', items: ['FDA CORE active-investigation table (read directly)']}
+  ]},
+  p_fda1392: { role: 'Product - FDA ref #1392 (unidentified)', sections: [
+    {title: 'Key Facts', items: [
+      'FDA CORE outbreak ref #1392, grew 72 to 93 cases',
+      'Product "not yet identified," ongoing - larger of the two live unidentified-product outbreaks',
+      'Not linked to the lettuce cluster']},
+    {title: 'Source', items: ['FDA CORE table + FDA "What\'s New"']}
+  ]},
+
+  // FIRMS
+  f_tfdemexico: { role: 'Firm - grower/supplier', sections: [
+    {title: 'Key Facts', items: [
+      'Taylor Farms de Mexico - named supplier of the cluster lettuce, grown in Mexico',
+      'Implicated farm stated to be "less than 1% of the US iceberg lettuce supply"']},
+    {title: 'Source', items: ['FDA/CDC; Taylor Farms statement']}
+  ]},
+  f_taylorfresh: { role: 'Firm - recalling firm / defendant', sections: [
+    {title: 'Key Facts', items: [
+      'Taylor Fresh Foods, Inc. - recalling firm on the FDA recall notice',
+      'Named defendant in Granados, Null, Ott, O\'Hara and other suits']},
+    {title: 'Source', items: ['FDA recall notice; RECAP dockets']}
+  ]},
+  f_taylorca: { role: 'Firm - defendant', sections: [
+    {title: 'Key Facts', items: ['Taylor Farms California, Inc. - named defendant (O\'Hara, Null)']},
+    {title: 'Source', items: ['RECAP dockets']}
+  ]},
+  f_facility: { role: 'Firm - processing facility (closed)', sections: [
+    {title: 'Key Facts', items: [
+      'Central-Mexico (Guanajuato) facility producing the 5-lb shredded-iceberg bags',
+      'Sold to Taco Bell, Sysco, and other distributors',
+      'Voluntarily and temporarily CLOSED (reported Jul 23) though no product sample from it ever tested positive']},
+    {title: 'Source', items: ['Detroit News; FDA/traceback']}
+  ]},
+  f_tacobell: { role: 'Firm - downstream distribution', sections: [
+    {title: 'Key Facts', items: [
+      'Taco Bell (incl. franchisees) - downstream node, 9 states',
+      'Identified affected supply, substituted within 24 hours in priority states',
+      'Pulled ingredient nationwide before agency direction']},
+    {title: 'Source', items: ['FDA advisory; briefing supply-chain analysis']}
+  ]},
+  f_franchisees: { role: 'Firm - franchisees / defendants', sections: [
+    {title: 'Key Facts', items: ['Border Foods LLC, Pacific Bells LLC, Charter Foods Inc. - named as defendants']},
+    {title: 'Source', items: ['RECAP dockets / press']}
+  ]},
+  f_distributors: { role: 'Firm - distributors', sections: [
+    {title: 'Key Facts', items: ['Sysco and "other distributors" named as buyers of the shredded-iceberg bags']},
+    {title: 'Source', items: ['Briefing (facility-action row)']}
+  ]},
+  f_walmart: { role: 'Firm - retail seller', sections: [
+    {title: 'Key Facts', items: ['Walmart - retail seller of the recalled Marketside bagged product']},
+    {title: 'Source', items: ['Recall notice']}
+  ]},
+
+  // STATES
+  s_cdc: { role: 'CDC national surveillance', sections: [
+    {title: 'Key Facts', items: [
+      '10,468 CDC-confirmed domestic cases across 47 states (Aug 4)',
+      '517 hospitalizations; >12,255 under analysis (combined >22,700)',
+      '1,018 travel-associated (separate); CDC national page now reads 2 deaths and 517 hospitalizations (data through Aug 3)']},
+    {title: 'Source', items: ['CDC surveillance page (primary)']}
+  ]},
+  s_cluster9: { role: 'Taco Bell 9-state cluster', sections: [
+    {title: 'Key Facts', items: [
+      '1,947 cases / 98+ hospitalized / 0 deaths (Jul 24)',
+      'States: IL, IN, KS, KY, MI, OH, OK, PA, WV',
+      'Expanded from 5 states Jul 24 (added IL, KS, OK, PA)']},
+    {title: 'Source', items: ['FDA/CDC published cluster count']}
+  ]},
+  s_mi: { role: 'State - Michigan (epicenter)', sections: [
+    {title: 'Key Facts', items: [
+      '11,234 total / 193 hosp / 2 deaths (Aug 3) - highest state burden',
+      'Epicenter, 70 of 82 counties',
+      'First 2 outbreak deaths reported Aug 3 (both with significant underlying conditions; ill before the Jul 17 recall)']},
+    {title: 'Source', items: ['MDHHS outbreak page (fetched directly, HTTP 200)']}
+  ]},
+  s_oh: { role: 'State - Ohio', sections: [
+    {title: 'Key Facts', items: ['4,024 statewide (rolling year to Jul 28)', 'Cuyahoga 459, Fulton 153, Franklin 113, Erie 92, Defiance 82', 'CDC Epi-Aid deployed here at ODH request']},
+    {title: 'Source', items: ['ODH DataOhio dashboard (primary)']}
+  ]},
+  s_in: { role: 'State - Indiana', sections: [
+    {title: 'Key Facts', items: ['1,524 (Aug 4); 864 F / 660 M, age 0-98', 'Cluster member']},
+    {title: 'Source', items: ['IDOH dashboard (primary)']}
+  ]},
+  s_ny: { role: 'State - New York (not lettuce-linked)', sections: [
+    {title: 'Key Facts', items: [
+      '753 all-NY cases since May 1 (787 for all of 2026); NOT the lettuce cluster',
+      'NYC 511 since May 1 is a SUBSET of the 753, not additive (~242 rest-of-state)']},
+    {title: 'Source', items: ['NY State DOH + NYC DOHMH pages (primary)']}
+  ]},
+  s_nc: { role: 'State - North Carolina (second vehicle)', sections: [
+    {title: 'Key Facts', items: [
+      '867 cases / 33 hosp (Aug 4); Wake County largest (494)',
+      'NC DHHS says cases are NOT linked to the Taco Bell cluster',
+      'Yet NC is on the 27-state recall distribution list - an unresolved overlap']},
+    {title: 'Source', items: ['NCDHHS dashboard (primary)']}
+  ]},
+  s_wv: { role: 'State - West Virginia', sections: [
+    {title: 'Key Facts', items: ['268 / 19 hosp (Jul 31); lettuce-cluster member']},
+    {title: 'Source', items: ['WV OEPS tracker (primary)']}
+  ]},
+  s_il: { role: 'State - Illinois', sections: [
+    {title: 'Key Facts', items: ['408 confirmed/probable (Jul 21); cluster member (added Jul 24)']},
+    {title: 'Source', items: ['IDPH via press']}
+  ]},
+  s_ks: { role: 'State - Kansas', sections: [
+    {title: 'Key Facts', items: ['289 total 2026 (Jul 22); cluster member (added Jul 24)']},
+    {title: 'Source', items: ['KDHE Jul 22 release']}
+  ]},
+
+  // REGULATORY
+  r_recall27: { role: 'Regulatory - 27-state recall', sections: [
+    {title: 'Key Facts', items: [
+      'Taylor Fresh Foods recall; product distributed Jun 29-Jul 16 to 27 states',
+      'Reason "Possible Cyclospora Contamination"; company Jul 17, FDA publish Jul 18',
+      'Internal inconsistency: FDA narrative 27 states, its Case Counts block 28 (adds WV); CDC "at least 27"']},
+    {title: 'Source', items: ['FDA recall notice (primary)']}
+  ]},
+  r_core: { role: 'Regulatory - FDA CORE table', sections: [
+    {title: 'Key Facts', items: [
+      'FDA CORE table carries TWO status columns: Investigation Status vs Outbreak/Event Status',
+      'Legend: "an FDA investigation may be active after an outbreak has ended"',
+      'Corrected the count to two ongoing unidentified-product outbreaks (#1385, #1392)']},
+    {title: 'Source', items: ['FDA CORE table + What\'s New']}
+  ]},
+  r_retraction: { role: 'Regulatory - import surveillance retraction', sections: [
+    {title: 'Key Facts', items: [
+      'FDA import-surveillance positive (Jul 18) retracted as false positive (Jul 19)',
+      '"No confirmed positive sample results for product testing" as of Jul 19',
+      'FDA reportedly apologized to Taylor Farms and removed the sample info from its Jul 18 update']},
+    {title: 'Source', items: ['FDA investigation page (primary); NBC/CNBC/Newsweek/Forbes/CBS']}
+  ]},
+  r_closure: { role: 'Regulatory - facility closure', sections: [
+    {title: 'Key Facts', items: ['Taylor Farms voluntary, temporary closure of the implicated central-Mexico facility (Jul 23); no positive sample from it']},
+    {title: 'Source', items: ['Detroit News']}
+  ]},
+  r_mexico: { role: 'Regulatory - Mexico government dispute', sections: [
+    {title: 'Key Facts', items: [
+      'Mexican Health Secretary David Kershenobich: no evidence the outbreak originated at the implicated facility (Jul 21)',
+      'Jul 24: Mexican federal authorities report lettuce and water samples tested NEGATIVE for Cyclospora and fecal coliforms',
+      'FDA/CDC have NOT withdrawn their conclusion; a negative plant test does not resolve where in the chain contamination occurred']},
+    {title: 'Source', items: ['Mexican health ministry; NBC News; CNN en Espanol']}
+  ]},
+  r_epiaid: { role: 'Regulatory - CDC Epi-Aid', sections: [
+    {title: 'Key Facts', items: ['CDC deployed Epi-Aid / EIS to Ohio for three weeks at ODH request - first federal surge-staffing escalation']},
+    {title: 'Source', items: ['CDC/ODH']}
+  ]},
+  r_biosurv: { role: 'Regulatory - biosurveillance capacity', sections: [
+    {title: 'Key Facts', items: [
+      'July 2025: CDC FoodNet active surveillance cut from 8 pathogens to 2 (Cyclospora dropped after ~three decades)',
+      '~3,000 CDC positions eliminated (~25% of workforce); Division of Parasitic Diseases and Malaria dissolved',
+      'Capacity strain High confidence; causation Medium confidence']},
+    {title: 'Source', items: ['Briefing strategic analysis (CDC/FoodNet)']}
+  ]},
+
+  // LITIGATION
+  l_mdl: { role: 'Litigation - MDL No. 3196 (pending)', sections: [
+    {title: 'Key Facts', items: [
+      'IN RE: 2026 Multistate Cyclosporiasis Outbreak Litigation, MDL No. 3196, before the JPML',
+      'Motion to Transfer filed Jul 17; MDL number assigned Jul 29; Order to Show Cause Jul 29 (responses due Jul 30)',
+      'Signed by Clerk of the Panel Jessica D. Birnbaum',
+      'STATUS: Pending - Panel has NOT ruled on transfer; cases not yet consolidated',
+      'Motion covers three actions: Granados, Ayyad, Parrish. Petitioners: Granados and Gelbspan']},
+    {title: 'Source', items: ['JPML docket via RECAP (CourtListener 73691833 / PACER jpml 1760583)']}
+  ]},
+  l_granados: { role: 'Litigation - Granados (class action)', sections: [
+    {title: 'Key Facts', items: [
+      'Granados v. Taylor Fresh Foods, Inc. - N.D. Cal. 5:26-cv-07346 (Judge Nathanael M. Cousins)',
+      'Proposed nationwide class action, 6 counts, economic-loss for consumers who bought the lettuce',
+      'Plaintiffs Kait Gelbspan and Victor Granados - neither claims illness']},
+    {title: 'Source', items: ['RECAP docket']}
+  ]},
+  l_ayyad: { role: 'Litigation - Ayyad', sections: [
+    {title: 'Key Facts', items: [
+      'Ayyad v. Pacific Bells, LLC - N.D. Ohio 1:26-cv-01648 (Jul 16)',
+      'Names only a Taco Bell franchisee + John Doe growers/suppliers; NOT Taylor Farms directly']},
+    {title: 'Source', items: ['RECAP docket']}
+  ]},
+  l_parrish: { role: 'Litigation - Parrish', sections: [
+    {title: 'Key Facts', items: ['Parrish v. Taco Bell Corp. - E.D. Mich. 2:26-cv-12448 (Jul 17); Durand couple, $75,000 sought']},
+    {title: 'Source', items: ['RECAP docket']}
+  ]},
+  l_ohara: { role: 'Litigation - O\'Hara', sections: [
+    {title: 'Key Facts', items: [
+      'O\'Hara v. Border Foods, LLC - W.D. Mich. 1:26-cv-02183 (Jul 28, Judge Robert James Jonker)',
+      'Product liability; defendants Border Foods LLC, Taylor Farms California, Inc., Taylor Fresh Foods, Inc.',
+      'First matter in a fifth federal district']},
+    {title: 'Source', items: ['RECAP docket']}
+  ]}
+};
+
+// ---- The GAPS (text-equivalent, also the Open Questions panel) ------
+const gaps = [
+  {title: 'Outbreak-wide attribution remains open', body: 'The 45-state national footprint is not plausibly explained by the nine-state cluster alone. "Attribution for the outbreak as a whole remains open."', source: 'Briefing analytic line'},
+  {title: 'North Carolina second vehicle is unlinked', body: 'NC\'s 867 cases are "not linked" to the Taco Bell cluster per NC DHHS, yet NC is on the 27-state recall list - "an unresolved overlap." Suspected parsley/cilantro, but many cases report neither.', source: 'NC DHHS'},
+  {title: 'Mexico disputes the attribution at government level', body: 'Mexico\'s Health Secretary publicly disputes the US traceback, backed by a negative Cyclospora / fecal-coliform environmental test at the Guanajuato facility. FDA/CDC have not withdrawn. A negative plant test does not by itself resolve where in the chain contamination occurred.', source: 'Mexican health ministry; NBC; CNN en Espanol'},
+  {title: 'No confirmed positive product sample exists', body: 'After the import-surveillance retraction, no confirmed positive product sample exists anywhere in this outbreak. The facility was closed despite no positive sample from it.', source: 'FDA investigation page'},
+  {title: 'Detained lot distribution undisclosed', body: 'The detained positive lot\'s number, ship dates, and destination states are undisclosed - open question whether the 27-state recall fully captures the contaminated product. ("Now tell us where the rest of that lot went.")', source: 'FDA; Marler Blog'},
+  {title: 'Two FDA outbreaks, products not identified', body: 'FDA refs #1385 (10 cases) and #1392 (93 cases) remain ongoing with products "not yet identified," not linked to the lettuce cluster.', source: 'FDA CORE table'},
+  {title: 'JPML has not ruled; cases not consolidated', body: 'The Panel has not ruled on transfer. The RECAP mirror last refreshed Jul 29, so the Jul 30 OSC responses and any order since would not appear - a PACER-authoritative pull would be needed to close the Jul 30-to-Aug 3 gap.', source: 'JPML docket via RECAP'},
+  {title: 'Some MDL parties not tied to a product/lot', body: 'Ayyad names only a franchisee + John Doe growers/suppliers, not Taylor Farms. Granados/Gelbspan plaintiffs make no illness claim (economic-loss only).', source: 'RECAP dockets'},
+  {title: 'CDC national count diverges from state figures', body: 'CDC national (10,468, 2 deaths as of Aug 4) still lags state totals (Michigan 11,234) but its deaths tally has caught up to the states - "a reporting lag, not a contradiction." Three distinct case universes must not be conflated.', source: 'CDC vs state dashboards'},
+  {title: 'Biosurveillance capacity strain', body: 'FoodNet active surveillance cut from 8 pathogens to 2 (Cyclospora dropped); ~3,000 CDC positions eliminated (~25%); Division of Parasitic Diseases and Malaria dissolved. Capacity strain High confidence, causation Medium.', source: 'Briefing strategic thesis'}
+];
+
+// ---- vis.js group styling ------------------------------------------
+const GROUP_COLORS = {
+  product:    {bg:'#3a2f10', border:'#f59e0b', highlight:{bg:'#4d3d15', border:'#fbbf24'}},
+  firm:       {bg:'#4a2020', border:'#ef4444', highlight:{bg:'#6b2020', border:'#ff6666'}},
+  state:      {bg:'#1a2a3b', border:'#3b82f6', highlight:{bg:'#203a5b', border:'#60a5fa'}},
+  regulatory: {bg:'#0f312c', border:'#14b8a6', highlight:{bg:'#14453d', border:'#2dd4bf'}},
+  litigation: {bg:'#2a1a3b', border:'#a855f7', highlight:{bg:'#3a2050', border:'#c084fc'}}
+};
+
+const nodes = new vis.DataSet([
+  // PRODUCTS (diamond)
+  {id:'p_iceberg',     label:'Taylor Farms de Mexico\nShredded Iceberg\n(cluster commodity)', group:'product', shape:'diamond', detail:'p_iceberg', mass:3},
+  {id:'p_marketside',  label:'Walmart Marketside\nBagged / Shredded Iceberg', group:'product', shape:'diamond', detail:'p_marketside'},
+  {id:'p_detained_lot',label:'Detained border lot\n(false positive, retracted)', group:'product', shape:'diamond', detail:'p_detained_lot'},
+  {id:'p_nc_parsley',  label:'NC suspected\nparsley / cilantro\n(not identified)', group:'product', shape:'diamond', detail:'p_nc_parsley'},
+  {id:'p_fda1385',     label:'FDA #1385\nproduct unidentified\n(10 cases)', group:'product', shape:'diamond', detail:'p_fda1385'},
+  {id:'p_fda1392',     label:'FDA #1392\nproduct unidentified\n(93 cases)', group:'product', shape:'diamond', detail:'p_fda1392'},
+
+  // FIRMS
+  {id:'f_tfdemexico',  label:'Taylor Farms\nde Mexico\n(grower)', group:'firm', shape:'box', detail:'f_tfdemexico', mass:3},
+  {id:'f_taylorfresh', label:'Taylor Fresh Foods\nInc. (recalling firm)', group:'firm', shape:'box', detail:'f_taylorfresh', mass:2},
+  {id:'f_taylorca',    label:'Taylor Farms\nCalifornia Inc.', group:'firm', shape:'box', detail:'f_taylorca'},
+  {id:'f_facility',    label:'Guanajuato\nprocessing facility\n(closed Jul 23)', group:'firm', shape:'box', detail:'f_facility', mass:2},
+  {id:'f_tacobell',    label:'Taco Bell\n(9 states)', group:'firm', shape:'box', detail:'f_tacobell', mass:3},
+  {id:'f_franchisees', label:'Franchisees:\nBorder Foods / Pacific Bells /\nCharter Foods', group:'firm', shape:'box', detail:'f_franchisees'},
+  {id:'f_distributors',label:'Sysco +\nother distributors', group:'firm', shape:'box', detail:'f_distributors'},
+  {id:'f_walmart',     label:'Walmart\n(retail)', group:'firm', shape:'box', detail:'f_walmart'},
+
+  // STATES
+  {id:'s_cdc',       label:'CDC national\n10,468 / 47 states\n2 deaths (thru Aug 3)', group:'state', shape:'box', detail:'s_cdc', mass:4},
+  {id:'s_cluster9',  label:'Taco Bell cluster\n9 states / 1,947\n0 deaths', group:'state', shape:'box', detail:'s_cluster9', mass:3},
+  {id:'s_mi',        label:'Michigan\n11,234 / 2 deaths', group:'state', shape:'box', detail:'s_mi', mass:2},
+  {id:'s_oh',        label:'Ohio\n4,024', group:'state', shape:'box', detail:'s_oh'},
+  {id:'s_in',        label:'Indiana\n1,524', group:'state', shape:'box', detail:'s_in'},
+  {id:'s_ny',        label:'New York\n753 (not lettuce)', group:'state', shape:'box', detail:'s_ny'},
+  {id:'s_nc',        label:'North Carolina\n867 (2nd vehicle)', group:'state', shape:'box', detail:'s_nc', mass:2},
+  {id:'s_wv',        label:'West Virginia\n268', group:'state', shape:'box', detail:'s_wv'},
+  {id:'s_il',        label:'Illinois\n408', group:'state', shape:'box', detail:'s_il'},
+  {id:'s_ks',        label:'Kansas\n289', group:'state', shape:'box', detail:'s_ks'},
+
+  // REGULATORY
+  {id:'r_recall27',  label:'27-state recall\n(Jun 29-Jul 16)', group:'regulatory', shape:'box', detail:'r_recall27', mass:2},
+  {id:'r_core',      label:'FDA CORE table\n(two status columns)', group:'regulatory', shape:'box', detail:'r_core'},
+  {id:'r_retraction',label:'Import-surveillance\nfalse-positive retraction', group:'regulatory', shape:'box', detail:'r_retraction'},
+  {id:'r_closure',   label:'Facility voluntary\nclosure', group:'regulatory', shape:'box', detail:'r_closure'},
+  {id:'r_mexico',    label:'Mexico ministry\ndispute + negative test', group:'regulatory', shape:'box', detail:'r_mexico', mass:2},
+  {id:'r_epiaid',    label:'CDC Epi-Aid\nto Ohio', group:'regulatory', shape:'box', detail:'r_epiaid'},
+  {id:'r_biosurv',   label:'Biosurveillance cut\nFoodNet 8 to 2 pathogens', group:'regulatory', shape:'box', detail:'r_biosurv', mass:2},
+
+  // LITIGATION
+  {id:'l_mdl',       label:'MDL No. 3196\n(JPML - pending,\nnot yet consolidated)', group:'litigation', shape:'box', detail:'l_mdl', mass:3},
+  {id:'l_granados',  label:'Granados\n(N.D. Cal. class action,\neconomic loss)', group:'litigation', shape:'box', detail:'l_granados'},
+  {id:'l_ayyad',     label:'Ayyad\n(N.D. Ohio)', group:'litigation', shape:'box', detail:'l_ayyad'},
+  {id:'l_parrish',   label:'Parrish\n(E.D. Mich.)', group:'litigation', shape:'box', detail:'l_parrish'},
+  {id:'l_ohara',     label:'O\'Hara\n(W.D. Mich.)', group:'litigation', shape:'box', detail:'l_ohara'}
+]);
+
+// ---- Edge styling ---------------------------------------------------
+// basis: 'verified' (solid green), 'inferred' (grey dashed), 'gap' (red dashed)
+const V = {color:'#a8c196', highlight:'#c8dcb6'};   // verified
+const I = {color:'#beb3a7', highlight:'#d4cab9'};    // inferred
+const G = {color:'#ef4444', highlight:'#ff6666'};    // gap
+const LBL    = {size:9,  color:'#beb3a7', strokeWidth:3, strokeColor:'#2d2a2e'};
+const LBLGAP = {size:9,  color:'#fca5a5', strokeWidth:3, strokeColor:'#2d2a2e'};
+
+const edges = new vis.DataSet([
+  // --- Verified supply chain ---
+  {from:'f_tfdemexico', to:'p_iceberg',    color:V, label:'grows', font:LBL, basis:'verified', source:'FDA/CDC; Taylor Farms statement'},
+  {from:'p_iceberg',    to:'f_facility',   color:V, label:'processed at', font:LBL, basis:'verified', source:'Detroit News; FDA traceback'},
+  {from:'f_facility',   to:'f_tacobell',   color:V, label:'5-lb bags to', font:LBL, basis:'verified', source:'FDA traceback; briefing supply-chain analysis'},
+  {from:'f_facility',   to:'f_distributors',color:V, label:'sold to', font:LBL, basis:'verified', source:'Briefing (facility-action row)'},
+  {from:'f_tacobell',   to:'f_franchisees',color:V, label:'operates via', font:LBL, basis:'verified', source:'FDA advisory'},
+  {from:'p_marketside', to:'f_walmart',    color:V, label:'sold at', font:LBL, basis:'verified', source:'Recall notice'},
+  {from:'f_tfdemexico', to:'f_taylorfresh',color:V, label:'corporate /\nrecalling firm', font:LBL, basis:'verified', source:'FDA recall notice'},
+
+  // --- Verified product -> outbreak / regulatory ---
+  {from:'p_iceberg',    to:'s_cluster9',   color:V, label:'implicated in', font:LBL, basis:'verified', source:'FDA/CDC cluster attribution'},
+  {from:'f_tacobell',   to:'s_cluster9',   color:V, label:'cluster', font:LBL, basis:'verified', source:'FDA/CDC published cluster count'},
+  {from:'p_marketside', to:'r_recall27',   color:V, label:'in recall', font:LBL, basis:'verified', source:'Taylor Farms recall notice'},
+  {from:'f_taylorfresh',to:'r_recall27',   color:V, label:'recalling firm', font:LBL, basis:'verified', source:'FDA recall notice'},
+  {from:'p_detained_lot',to:'r_retraction',color:V, label:'declared\nfalse positive', font:LBL, basis:'verified', source:'FDA re-review Jul 19'},
+  {from:'f_facility',   to:'r_closure',    color:V, label:'closed', font:LBL, basis:'verified', source:'Detroit News'},
+  {from:'r_core',       to:'p_fda1385',    color:V, label:'tracks', font:LBL, basis:'verified', source:'FDA CORE table'},
+  {from:'r_core',       to:'p_fda1392',    color:V, label:'tracks', font:LBL, basis:'verified', source:'FDA CORE table'},
+
+  // --- Verified state cluster membership ---
+  {from:'s_cluster9', to:'s_mi', color:V, label:'member', font:LBL, basis:'verified', source:'FDA/CDC + MDHHS'},
+  {from:'s_cluster9', to:'s_oh', color:V, label:'member', font:LBL, basis:'verified', source:'FDA/CDC + ODH'},
+  {from:'s_cluster9', to:'s_in', color:V, label:'member', font:LBL, basis:'verified', source:'FDA/CDC + IDOH'},
+  {from:'s_cluster9', to:'s_wv', color:V, label:'member', font:LBL, basis:'verified', source:'FDA/CDC + WV OEPS'},
+  {from:'s_cluster9', to:'s_il', color:V, label:'member', font:LBL, basis:'verified', source:'IDPH'},
+  {from:'s_cluster9', to:'s_ks', color:V, label:'member', font:LBL, basis:'verified', source:'KDHE'},
+  {from:'s_cdc',      to:'s_cluster9', color:V, label:'subset of', font:LBL, basis:'verified', source:'CDC surveillance page'},
+  {from:'r_recall27', to:'s_nc', color:V, label:'NC on\ndistribution list', font:LBL, basis:'verified', source:'FDA recall distribution list'},
+  {from:'r_epiaid',   to:'s_oh', color:V, label:'deployed to', font:LBL, basis:'verified', source:'CDC/ODH'},
+
+  // --- Verified litigation ---
+  {from:'l_mdl', to:'l_granados', color:V, label:'motion\ncovers', font:LBL, basis:'verified', source:'JPML docket via RECAP'},
+  {from:'l_mdl', to:'l_ayyad',    color:V, label:'motion\ncovers', font:LBL, basis:'verified', source:'JPML docket via RECAP'},
+  {from:'l_mdl', to:'l_parrish',  color:V, label:'motion\ncovers', font:LBL, basis:'verified', source:'JPML docket via RECAP'},
+  {from:'l_granados', to:'f_taylorfresh', color:V, label:'names', font:LBL, basis:'verified', source:'RECAP docket 5:26-cv-07346'},
+  {from:'l_parrish',  to:'f_tacobell',    color:V, label:'names', font:LBL, basis:'verified', source:'RECAP docket 2:26-cv-12448'},
+  {from:'l_ohara',    to:'f_taylorca',    color:V, label:'names', font:LBL, basis:'verified', source:'RECAP docket 1:26-cv-02183'},
+  {from:'l_ohara',    to:'f_franchisees', color:V, label:'names', font:LBL, basis:'verified', source:'RECAP docket 1:26-cv-02183'},
+
+  // --- Inferred ---
+  {from:'r_biosurv', to:'s_cdc', color:I, label:'capacity strain\n(causation Medium)', font:LBL, basis:'inferred', source:'Briefing thesis: strain High conf., causation Medium'},
+  {from:'r_recall27', to:'r_retraction', color:I, label:'lot NOT\nin recall', font:LBL, basis:'inferred', source:'FDA import surveillance vs recall scope'},
+
+  // --- GAPS (the point of the board) ---
+  {from:'p_iceberg', to:'s_cdc', color:G, label:'? does not explain\n45-state footprint', font:LBLGAP, basis:'gap', source:'"Attribution for the outbreak as a whole remains open"'},
+  {from:'s_nc', to:'s_cluster9', color:G, label:'? not linked,\nyet on recall list', font:LBLGAP, basis:'gap', source:'NC DHHS - unresolved overlap'},
+  {from:'s_nc', to:'p_nc_parsley', color:G, label:'? product not\nidentified', font:LBLGAP, basis:'gap', source:'NC DHHS; many cases report neither food'},
+  {from:'r_mexico', to:'f_tfdemexico', color:G, label:'? disputes attribution\n(negative test)', font:LBLGAP, basis:'gap', source:'Mexican health ministry; FDA/CDC not withdrawn'},
+  {from:'r_retraction', to:'p_iceberg', color:G, label:'? no positive\nproduct sample', font:LBLGAP, basis:'gap', source:'FDA - "no confirmed positive sample results"'},
+  {from:'p_detained_lot', to:'r_recall27', color:G, label:'? destination\nundisclosed', font:LBLGAP, basis:'gap', source:'Lot number/ship dates never disclosed'},
+  {from:'p_fda1385', to:'s_cdc', color:G, label:'? unlinked', font:LBLGAP, basis:'gap', source:'FDA CORE - product not yet identified'},
+  {from:'p_fda1392', to:'s_cdc', color:G, label:'? unlinked', font:LBLGAP, basis:'gap', source:'FDA CORE - product not yet identified'},
+  {from:'l_ayyad', to:'f_taylorfresh', color:G, label:'? not tied to\nTaylor Farms', font:LBLGAP, basis:'gap', source:'Ayyad names only franchisee + John Doe growers'},
+  {from:'l_mdl', to:'r_recall27', color:G, label:'? Panel has\nnot ruled', font:LBLGAP, basis:'gap', source:'JPML pending; Jul 30-Aug 3 docket gap'},
+  {from:'s_ny', to:'s_cdc', color:G, label:'? not lettuce-linked', font:LBLGAP, basis:'gap', source:'NY DOH - separate from the cluster'}
+]);
+
+// ---- vis.js config --------------------------------------------------
+function groupStyle(key, size) {
+  return {
+    color: GROUP_COLORS[key],
+    font: {color:'#f5f0e8', size:size, face:'-apple-system, sans-serif', multi:true, align:'center'},
+    borderWidth: 2, borderWidthSelected: 3,
+    shadow: {enabled:true, color:'rgba(0,0,0,0.35)', size:10}
+  };
+}
+const options = {
+  groups: {
+    product: groupStyle('product', 11),
+    firm: groupStyle('firm', 12),
+    state: groupStyle('state', 12),
+    regulatory: groupStyle('regulatory', 11),
+    litigation: groupStyle('litigation', 11)
+  },
+  nodes: {
+    shape:'box',
+    margin:{top:10, bottom:10, left:12, right:12},
+    widthConstraint:{minimum:110, maximum:200},
+    font:{align:'center'}
+  },
+  edges: {
+    width:1.6,
+    smooth:{type:'continuous', roundness:0.3},
+    arrows:{to:{enabled:true, scaleFactor:0.5}},
+    font:{size:9, color:'#beb3a7', strokeWidth:3, strokeColor:'#2d2a2e', align:'middle'},
+    chosen:{edge:function(v){v.width=3;}}
+  },
+  physics: {
+    enabled:true, solver:'forceAtlas2Based',
+    forceAtlas2Based:{gravitationalConstant:-140, centralGravity:0.006, springLength:230, springConstant:0.03, damping:0.5, avoidOverlap:0.9},
+    stabilization:{enabled:true, iterations:350, updateInterval:25},
+    maxVelocity:30, minVelocity:0.5
+  },
+  interaction: {hover:true, tooltipDelay:200, keyboard:{enabled:true}, zoomView:true, dragView:true, dragNodes:true},
+  layout: {improvedLayout:true, randomSeed:7}
+};
+
+// Apply dashed style: inferred and gap edges are dashed.
+edges.get().forEach(e => {
+  if (e.basis === 'inferred' && !e.dashes) edges.update({id:e.id, dashes:[6,4]});
+  if (e.basis === 'gap' && !e.dashes) edges.update({id:e.id, dashes:[3,4], width:2});
+});
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, {nodes, edges}, options);
+network.once('stabilizationIterationsDone', () => network.setOptions({physics:{enabled:false}}));
+
+// ---- Interaction ----------------------------------------------------
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    openNode(params.nodes[0]);
+    highlightConnected(params.nodes[0]);
+  } else if (params.edges.length > 0) {
+    openEdge(params.edges[0]);
+  } else {
+    closePanel(); resetHighlight();
+  }
+});
+network.on('doubleClick', params => {
+  if (params.nodes.length > 0) network.focus(params.nodes[0], {scale:1.2, animation:{duration:500, easingFunction:'easeInOutQuad'}});
+});
+
+function esc(s){ return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function nlToSpace(s){ return esc(s).replace(/\n/g,' '); }
+
+function openNode(nodeId) {
+  const node = nodes.get(nodeId);
+  const detail = nodeDetail[node.detail || nodeId];
+  const panel = document.getElementById('sidePanel');
+  const content = document.getElementById('panelContent');
+  panel.classList.remove('gap-theme');
+
+  let html = `<h2>${nlToSpace(node.label)}</h2>`;
+  if (detail) {
+    html += `<div class="detail-role">${esc(detail.role)}</div>`;
+    detail.sections.forEach(sec => {
+      html += `<div class="detail-section"><h3>${esc(sec.title)}</h3><ul>`;
+      sec.items.forEach(it => { html += `<li>${esc(it)}</li>`; });
+      html += `</ul></div>`;
+    });
+  }
+
+  const conn = edges.get().filter(e => e.from === nodeId || e.to === nodeId);
+  const byBasis = b => conn.filter(e => e.basis === b);
+  [['verified','Verified links','#8faa7b'],['inferred','Inferred links','#beb3a7'],['gap','Gaps / unresolved','#fca5a5']].forEach(([b,title,col]) => {
+    const list = byBasis(b);
+    if (!list.length) return;
+    html += `<div class="detail-section"><h3>${title} (${list.length})</h3><ul>`;
+    list.forEach(e => {
+      const otherId = e.from === nodeId ? e.to : e.from;
+      const other = nodes.get(otherId);
+      if (!other) return;
+      const lbl = e.label ? nlToSpace(e.label) : 'link';
+      html += `<li><strong>${nlToSpace(other.label)}</strong> - ${lbl}`;
+      if (e.source) html += `<br><span style="font-size:0.75rem;color:${col};">Source: ${esc(e.source)}</span>`;
+      html += `</li>`;
+    });
+    html += `</ul></div>`;
+  });
+
+  content.innerHTML = html;
+  panel.classList.add('open');
+}
+
+function openEdge(edgeId) {
+  const e = edges.get(edgeId);
+  if (!e) return;
+  const from = nodes.get(e.from), to = nodes.get(e.to);
+  const panel = document.getElementById('sidePanel');
+  panel.classList.toggle('gap-theme', e.basis === 'gap');
+  const basisLabel = {verified:'Verified link', inferred:'Inferred link', gap:'Gap - unresolved link'}[e.basis] || 'Link';
+  let html = `<h2>${nlToSpace(from.label)} &rarr; ${nlToSpace(to.label)}</h2>`;
+  html += `<div class="detail-role">${basisLabel}</div>`;
+  if (e.label) html += `<div class="detail-section"><h3>Relationship</h3><p>${nlToSpace(e.label)}</p></div>`;
+  if (e.source) html += `<div class="detail-section"><h3>Basis / Source</h3><p>${esc(e.source)}</p></div>`;
+  document.getElementById('panelContent').innerHTML = html;
+  panel.classList.add('open');
+}
+
+function openGaps() {
+  const panel = document.getElementById('sidePanel');
+  const content = document.getElementById('panelContent');
+  panel.classList.add('gap-theme');
+  let html = `<h2>Open Traceback Questions</h2>`;
+  html += `<div class="detail-role">${gaps.length} unresolved links the record does not yet close</div>`;
+  html += `<div class="detail-section"><ul class="gap-list">`;
+  gaps.forEach(g => {
+    html += `<li class="gap-item"><strong>${esc(g.title)}</strong>${esc(g.body)}<span class="gap-src">Source: ${esc(g.source)}</span></li>`;
+  });
+  html += `</ul></div>`;
+  content.innerHTML = html;
+  panel.classList.add('open');
+}
+
+function closePanel() {
+  document.getElementById('sidePanel').classList.remove('open');
+}
+
+function highlightConnected(nodeId) {
+  const conn = edges.get().filter(e => e.from === nodeId || e.to === nodeId);
+  const keep = new Set([nodeId]);
+  conn.forEach(e => { keep.add(e.from); keep.add(e.to); });
+  nodes.get().forEach(n => nodes.update({id:n.id, opacity: keep.has(n.id) ? 1 : 0.15}));
+  edges.get().forEach(e => edges.update({id:e.id, hidden: !conn.find(c => c.id === e.id)}));
+}
+
+function resetHighlight() {
+  nodes.get().forEach(n => nodes.update({id:n.id, opacity:1}));
+  edges.get().forEach(e => edges.update({id:e.id, hidden:false}));
+}
+
+function filterCluster(group, btn) {
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  closePanel();
+  if (group === 'all') { resetHighlight(); return; }
+  nodes.get().forEach(n => nodes.update({id:n.id, opacity: n.group === group ? 1 : 0.12}));
+  edges.get().forEach(e => {
+    const f = nodes.get(e.from), t = nodes.get(e.to);
+    const show = (f && f.group === group) || (t && t.group === group);
+    edges.update({id:e.id, hidden: !show});
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closePanel(); resetHighlight(); }
+});
+</script>
+
+</body>
+</html>

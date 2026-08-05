@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Intelligence Briefing - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
+  <meta name="description" content="Full OSINT briefing on the 2026 US cyclosporiasis outbreak: epidemiology, the three case-count universes, CDC's confirmed count at 10,468 cases across 47 states with 517 hospitalizations and 2 deaths (data through Aug 3), the FDA/CDC Taylor Farms de Mexico traceback now expanded to a nine-state cluster and publicly disputed by Mexico's own health ministry with a negative facility test, a separate FDA-disclosed outbreak, a retracted false-positive lettuce sample, the 27-state recall, the North Carolina second-vehicle finding, and the CDC biosurveillance-capacity gap.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .skip-to-content { position: absolute; top: -100%; left: 1rem; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px; font-weight: 700; font-size: 0.9rem; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+    .toc { background: var(--c6s-panel); border:1px solid var(--c6s-border); border-radius:6px; padding:1rem 1.25rem; margin-bottom:2rem; font-size:0.9rem; }
+    .toc ul { margin-bottom:0; }
+    .toc a { color: var(--c6s-accent); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(168,193,150,0.5); }
+    .toc a:hover, .toc a:focus { color: var(--c6s-text-bright); text-decoration-color: currentColor; }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active" aria-current="page">Intelligence</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Public &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html">Cyclosporiasis 2026</a> &rsaquo; Full Briefing
+    </nav>
+
+    <div class="title-block">
+      <h1>Full Intelligence Briefing</h1>
+      <div class="subtitle">2026 US Cyclosporiasis Outbreak</div>
+      <div class="meta-grid">
+        <div><span class="label">Product</span> Finished Intelligence</div>
+        <div><span class="label">TLP</span> CLEAR</div>
+        <div><span class="label">Published</span> July 30, 2026 (v17, data as of Jul 29)</div>
+        <div><span class="label">Sources</span> 50+ open sources</div>
+        <div><span class="label">Reliability</span> A-C (Admiralty)</div>
+        <div><span class="label">Read time</span> ~12 minutes</div>
+      </div>
+    </div>
+
+    <main id="main-content">
+
+    <div class="toc" aria-label="Contents">
+      <strong>Contents</strong>
+      <ul>
+        <li><a href="#situation">1. Situation</a></li>
+        <li><a href="#counts">2. Reconciling three case-count universes</a></li>
+        <li><a href="#pathogen">3. The pathogen and why it is hard to trace</a></li>
+        <li><a href="#capacity">4. The biosurveillance-capacity gap</a></li>
+        <li><a href="#assessment">5. Key assessments</a></li>
+        <li><a href="#sources">6. Sources</a></li>
+      </ul>
+    </div>
+
+    <section id="situation">
+      <h2>1. Situation</h2>
+      <p>Beginning with the CDC's May 1, 2026 reporting cutoff, the United States has experienced a rapidly growing multistate outbreak of
+      cyclosporiasis. The trigger for wide public attention was the "explosive diarrhoea" framing carried by the BBC and other outlets in early July.
+      By that point the outbreak had spread across at least 17 states in early reporting and, within two weeks, to 34 states in CDC-confirmed tallies
+      (the CDC health advisory cites 35; several media maps show 32). As of July 13 (published July 14) the CDC-confirmed count had reached 1,645, and with more than 5,100 additional cases under analysis the
+      combined total approached 7,000, surpassing the roughly 4,700-case US record set in 2019. By July 16 the state-reported aggregate alone had passed
+      <strong>7,500</strong>, and it has continued rising since. On July 22, CDC's confirmed count broke a nine-day freeze at 1,645, jumping to
+      <strong>4,173</strong> across <strong>41 states</strong>, with more than <strong>7,400</strong> additional cases under analysis (combined total
+      above <strong>11,500</strong>); see the July 22 development below. For baseline comparison, the same point in 2025 saw 249 cases nationally.</p>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">Development, July 17: the Taco Bell cluster moves from lead to on-the-record finding, but a second vehicle emerges</div>
+        <p>FDA and CDC each published official outbreak pages on July 17 stating that epidemiologic and traceback data link a five-state cluster
+        (<strong>1,644</strong> cases / <strong>94</strong> hospitalized, illness onset May 13 to July 13) to shredded iceberg lettuce served at
+        <strong>Taco Bell</strong> restaurants in <strong>Indiana, Kentucky, Michigan, Ohio, and West Virginia</strong>. FDA states its traceback "identified
+        convergence on a single supplier, <strong>Taylor Farms de Mexico</strong>"; Taylor Farms itself attributes the contamination to a specific independent
+        farm (see its statement below). FDA's consumer advisory for those five states is now published, matching the scope reported
+        in v3 exactly. This is a materially different sourcing footing than v3 carried: it is now attributed to the agencies' own published pages rather than
+        to press reporting citing "a person familiar with the investigation."</p>
+        <p>Taylor Farms broke its silence with a public statement on July 17: it says the FDA traceback points to a specific independent farm representing
+        less than 1% of the US iceberg lettuce supply, that it has voluntarily withdrawn all central-Mexico iceberg lettuce indefinitely, and that it has told
+        FDA it will initiate a recall. It states no Taylor Farms-branded salads or kits are implicated, and it stops short of admitting fault, framing the
+        response as cooperation with the investigation rather than an acknowledgment of cause.</p>
+        <p><strong>What this is and is not, updated.</strong> For the five-state Taco Bell cluster specifically, this now clears our bar for a finding rather
+        than a lead: two federal agencies have published outbreak pages naming the vehicle and supplier, an advisory is live, and the named company has taken
+        recall action rather than staying silent. We raise the attribution confidence for that cluster to <span class="badge badge-green">High</span>.
+        Primary-source verification (2026-07-17): the FDA outbreak page was retrieved directly and its case counts (1,644 illnesses / 94 hospitalized / 0
+        deaths, last onset July 13) and its "single supplier, Taylor Farms de Mexico" wording confirmed verbatim; the Taylor Farms statement was likewise
+        retrieved and confirmed; the CDC outbreak page corroborates the same figures and naming through the FDA page and independent secondary reporting.</p>
+        <p style="margin-bottom:0;"><strong>What it does not resolve.</strong> North Carolina's Department of Health and Human Services states that its 307
+        cases (May 1 to July 14, concentrated in Wake County) are <strong>not part of</strong> the Taco Bell cluster, direct evidence of a second, separate
+        vehicle. Suspected foods in NC include parsley, cilantro, and lettuce, unconfirmed. A five-state, single-chain cluster still does not explain a
+        34-state outbreak; see the mismatch discussion below, now sharpened by a concrete second-vehicle example rather than a hypothetical one.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-amber);">
+        <div class="panel-title">Development, July 18: the recall publishes, and its footprint is wider than the named cluster</div>
+        <p>Taylor Farms de Mexico posted its own recall notice on July 18. Per convergent secondary reporting (CNBC, CNN, Washington Post, Consumer
+        Reports, Marler Blog), the recalled iceberg lettuce, distributed <strong>June 29 through July 16</strong>, reached <strong>27 states</strong>:
+        Alabama, Arkansas, Connecticut, Florida, Georgia, Iowa, Illinois, Indiana, Kansas, Kentucky, Louisiana, Massachusetts, Maryland, Michigan, Missouri,
+        Mississippi, North Carolina, New Hampshire, New Jersey, Ohio, Oklahoma, Pennsylvania, South Carolina, Tennessee, Texas, Virginia, and Wisconsin. The
+        recall list includes retail product, Walmart's Marketside Bagged Iceberg Salad and Shredded Iceberg Salad among them; Walmart states it has no
+        confirmed illnesses tied to the retail product. This is a materially larger distribution footprint than the five-state Taco Bell advisory, which
+        covers only the restaurant channel in Indiana, Kentucky, Michigan, Ohio, and West Virginia.</p>
+        <p><strong>The North Carolina overlap.</strong> North Carolina is on this 27-state recall distribution list, the same North Carolina whose health
+        department maintains its 307 cases are unlinked to the Taco Bell cluster. We do not read this as disconfirming NC DHHS's statement; a recalled
+        product's presence in a state is not evidence that any specific resident consumed it or that it caused any specific illness, and NC DHHS has not
+        revised its position. But it is a fact worth stating plainly rather than smoothing over: the same supplier's product physically reached the one
+        state where officials have explicitly disclaimed a link to that supplier's product, and no public source we found addresses that overlap directly.
+        It complicates a clean reading of North Carolina as a second, unrelated vehicle, without resolving the question either way.</p>
+        <p>Separately, multiple law firms filed additional civil suits this week that, for the first time, name <strong>Taylor Fresh Foods, Inc. and Taylor
+        Farms California, Inc.</strong> directly as defendants alongside Taco Bell, including <em>Caruso v. Taco Bell Corporation, et al.</em>, filed in the
+        U.S. District Court for the Northern District of Ohio on behalf of a Geneva, Ohio plaintiff whose stool sample tested positive for Cyclospora on
+        July 7.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">Development, July 19: FDA's own import surveillance returns a direct positive test</div>
+        <p>FDA disclosed that its <strong>targeted import surveillance</strong> program, which samples product at the border independent of any illness
+        report, collected a sample of Taylor Farms de Mexico shredded iceberg lettuce that tested <strong>positive for Cyclospora</strong>. This is a
+        materially different kind of evidence than everything preceding it in this briefing: the July 17 attribution rested on epidemiologic and traceback
+        convergence, "a single supplier" identified through investigation of illness patterns, while this is a direct physical detection of the organism on
+        the implicated commodity itself.</p>
+        <p>FDA states the positive lot was <strong>detained</strong> and is <strong>not part of</strong> Taylor Farms' currently posted 27-state recall.
+        The company says it is working to determine whether any product from that lot reached commerce or consumers' homes. No source we found discloses
+        the lot number, ship dates, or the states or customers that lot was destined for. This leaves a live, unanswered question: whether the 27-state
+        recall already covers the contamination this finding points to, or whether the recall's scope needs to expand.</p>
+        <p style="margin-bottom:0;"><strong>What this changes and does not change.</strong> It strengthens the Taylor Farms attribution for the named
+        cluster to the strongest evidentiary footing yet, a positive laboratory result, not just convergence. It does not bear on the outbreak-wide
+        question, North Carolina's cases remain unaddressed by this finding, and it does not resolve whether the current recall is complete. This finding is
+        drawn from secondary reporting (Detroit News, Fox Business, Marler Blog) rather than a primary FDA page.</p>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Correction, July 20: the import-surveillance positive test was retracted as a false positive</div>
+        <p>The July 19 development above, treated at the time as "the strongest evidentiary footing yet," did not hold up. Per convergent secondary
+        reporting (NBC News, CNBC, Newsweek, Forbes, CBS News), FDA re-reviewed the sample on July 19 and concluded it was a <strong>false positive</strong>,
+        stating the finding "does not represent true amplification," and reportedly apologized to Taylor Farms. As of that date, there are <strong>no
+        confirmed positive product-sample test results</strong> anywhere in this outbreak. FDA states its epidemiological and traceback conclusion, the
+        finding that the outbreak is linked to Taylor Farms de Mexico iceberg lettuce, is unchanged.</p>
+        <p style="margin-bottom:0;">We are correcting this in place rather than quietly dropping the earlier claim. Under our own hedge-discipline standard,
+        the attribution for the named cluster remains a finding, not a demoted lead, because it rests on on-the-record agency naming independent of this
+        specific lab result. But the retraction is a real setback for the case's physical evidence, and at least one outlet (Forbes) is already framing the
+        source as "again unknown," a characterization we think overstates FDA's own position but that is itself now part of the information environment
+        around this outbreak. It also means our own July 19 read, that this new evidence resolved the open question about whether the 27-state recall is
+        complete, was premature: that question reverts to unresolved on other grounds, not on the basis of a since-retracted lab result. This finding, like
+        the one it corrects, is drawn from secondary reporting rather than a primary FDA page.</p>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Development, July 21-22: two agency-level leads</div>
+        <p style="margin-bottom:0;">This cycle's new findings rest on search-indexed secondary sources rather than primary CDC or FDA pages, and are flagged accordingly. Two developments stand out. First, search-indexed results now show CDC's outbreak page
+        titled "Cyclospora Outbreak Linked to Iceberg Lettuce in 5 States" and quote it recommending against "shredded iceberg lettuce from Taylor Farms
+        de Mexico," a change from the "Cyclosporiasis Outbreak with Unknown Source" title v8 found as of Jul 14. If accurate, this closes the interagency
+        divergence v8 flagged as its top watch item; we label it a lead pending direct confirmation, not yet a verified finding. Second, at a press
+        conference this week, per multiple news outlets, acting FDA Commissioner Kyle Diamantas said federal officials have investigated <strong>five
+        distinct cyclosporiasis clusters</strong> since the start of parasite season in May, of which <strong>three are now considered over</strong>;
+        the Taco Bell cluster, the largest, remains active. No source we found states whether North Carolina's cluster is among the three closed ones or
+        the two still open.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">Development, July 22: the national confirmed count breaks its nine-day freeze</div>
+        <p>CDC's national confirmed tally, static at 1,645 since July 13, jumped to <strong>4,173</strong> confirmed domestic cases across
+        <strong>41 states</strong>, with more than <strong>7,400</strong> additional cases under analysis (combined total above
+        <strong>11,500</strong>) and a national hospitalization figure of <strong>308</strong>, up from 141. Per the Washington Post's reporting on
+        the update, CDC attributes the earlier freeze to its own adjudication method: the agency counts only cases states have formally reported as
+        lab-confirmed and assumes roughly a six-week reporting lag, while states such as Michigan count confirmed and probable cases close to real
+        time, so state totals run higher and climb faster. This is a direct, on-the-record resolution of the question this briefing has tracked as
+        the single most overdue item since v3; see the reconciliation in section 2 and Prediction 3's re-scoring on the briefing index.</p>
+        <p style="margin-bottom:0;"><strong>Sourcing note.</strong> The figures above are sourced to press coverage (Washington Post, ABC News, UPI)
+        of CDC's own release. State-level updates also continued: Michigan rose to <strong>7,171</strong> (Jul 22, up 9% from 6,571 the day before), and
+        North Carolina rose to <strong>561</strong> (Jul 21, up from 307 on Jul 14), with hospitalizations there rising to 16.</p>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Development, July 21 to 24: Mexico disputes the attribution on the record, and FDA discloses a second, separate outbreak</div>
+        <p>Two developments this cycle cut against this briefing's published assessments and are stated here first, per our own house rule that evidence
+        against us gets led with rather than buried. At a news conference reported Jul 21, Mexican Health Secretary David Kershenobich said Mexico's own
+        investigation had <strong>not found evidence that the outbreak originated</strong> at the Taylor Farms de Mexico facility FDA has traced the Taco
+        Bell cluster to. This is a named foreign government publicly disputing the named US agencies' own traceback conclusion, a materially different
+        kind of challenge than the retracted lab test (an internal FDA correction) or the North Carolina overlap (an unresolved distribution question).
+        FDA and CDC have not withdrawn or revised their attribution as of this cycle, so under our hedge-discipline standard the finding for the named
+        cluster stands, but a government-level dispute is new information we are not going to understate. Separately, and on the same day, HHS Secretary
+        Robert F. Kennedy Jr. said the outbreak is "under control," a claim in tension with Michigan's continued rapid case growth (see below) and CDC's
+        own stated expectation that cases rise through August; we note the tension rather than treat either statement as authoritative over the
+        underlying case-count data.</p>
+        <p>Separately, FDA disclosed it is investigating a <strong>second, wholly distinct cyclosporiasis outbreak</strong> of at least <strong>72
+        cases</strong>, with a product, brand, or supplier described as "not yet identified" and explicitly not linked to the Taylor Farms lettuce cluster.
+        Coverage of exactly how many concurrent cyclospora investigations FDA has open varies by outlet and by date, from "at least four active" in one
+        wire report to the five clusters (three closed) disclosed in v9, so we do not assert a specific running total; what is confirmed across multiple
+        outlets is that this 72-case cluster is new and distinct from the lettuce cluster. This is materially stronger, more direct evidence for
+        Prediction 5 (attribution will not close the whole case) than the state-count inference we relied on in v10.</p>
+        <p>Taylor Farms, meanwhile, <strong>voluntarily and temporarily shut its central-Mexico processing facility</strong>, the one that produces the
+        5-lb shredded-iceberg bags sold to Taco Bell, Sysco, and other large distributors, as reported Jul 23, even though no product sample from that
+        facility has ever tested positive; the case's only positive lab result remains the July 18 to 19 false positive corrected above. We read this as
+        a precautionary supplier action taken alongside, not because of, any new physical evidence.</p>
+        <p style="margin-bottom:0;"><strong>One lead closes.</strong> The CDC outbreak-page retitling this briefing has carried as an unconfirmed lead
+        since v9 is now search-confirmed: search-indexed content directly quotes a CDC page titled "Cyclospora Outbreak Linked to Iceberg Lettuce in 5
+        States," at a URL matching CDC's outbreak-page path, with a companion "Investigation Update" page naming Taylor Farms de Mexico and reproducing
+        the 1,644/94/0 cluster figures verbatim. This closes our single most overdue watch item since v8, though we retain the "search-indexed" label
+        rather than "primary-verified" this cycle.</p>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Development, July 24-25: the named cluster itself expands to nine states, and Mexico's dispute produces a negative test</div>
+        <p>The same CDC outbreak page whose retitling closed as a lead last cycle has been retitled again: <strong>"Cyclospora Outbreak Linked to Iceberg
+        Lettuce in 9 States,"</strong> up from 5. CDC added <strong>Illinois, Kansas, Oklahoma, and Pennsylvania</strong> to the cluster already
+        comprising Indiana, Kentucky, Michigan, Ohio, and West Virginia. The cluster-specific case count rose from <strong>1,644 to 1,947</strong>, and
+        hospitalizations from <strong>94 to at least 98</strong>. This is convergent across CDC's own page title and multiple independent outlets dated
+        Jul 24 (NBC News, The Washington Post, The Hill, Healio, NewsNation, and legal-press coverage citing the same figures and state list), a stronger
+        evidentiary footing than the search-indexed-only confirmation of the 5-state title in v11. Kansas had been tracked in this briefing's State
+        Involvement Map as tied to the recalled product but explicitly not a Taco Bell cluster state; that distinction no longer holds under CDC's own
+        retitling, and the map has been updated accordingly.</p>
+        <p>Separately, Mexico's dispute moved from a spoken assertion to a specific negative test. Following Health Secretary Kershenobich's Jul 21
+        remarks, Mexican federal authorities report that lettuce and water samples collected at the implicated Guanajuato facility tested
+        <strong>negative</strong> for both Cyclospora cayetanensis and fecal coliforms. Mexican officials are explicit that a negative environmental test
+        at the plant is a data point, not proof the contamination did not occur elsewhere in the same supply chain, and FDA has not withdrawn its own
+        traceback conclusion. We treat this as a firmer form of the dispute already carried since v11, not a standalone new finding, but it is materially
+        stronger evidence than a statement alone.</p>
+        <p style="margin-bottom:0;"><strong>State figures and other watch items.</strong> Michigan rose to <strong>8,176</strong> cases as of Jul 24
+        (MDHHS), up 6.6% from 7,664 the day before; hospitalizations held flat at 160. Illinois, newly relevant given its addition to the named cluster,
+        now carries a materially fresher statewide figure than this briefing previously used: IDPH reported <strong>408</strong> confirmed and probable
+        cases as of Jul 21 (215 domestic, 145 travel-associated, 48 unknown, 31 hospitalized), replacing the stale, secondary-sourced 87 figure from Jul
+        11. No fresher figures were found this cycle for Ohio's statewide total (still 1,316, Jul 17), North Carolina (still 561, Jul 20), or CDC's
+        national confirmed count, which has now held at 4,173/41 states across two consecutive cycles (Jul 22 to Jul 24) since the Jul 22 catch-up. The
+        separate, 72-case FDA-disclosed outbreak is unchanged this cycle: no product or supplier identified.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-amber);">
+        <div class="panel-title">Correction, July 27 (v13): the "no new litigation" call in v12 was wrong</div>
+        <p style="margin-bottom:0;">v12 stated that Jul 24 legal-press coverage of a Michigan couple's suit against Taylor Farms and Taco Bell described
+        the same Jul 17 E.D. Michigan filing already carried since v9 (<em>Parrish v. Taylor Farms, et al.</em>, Preston and Marie Parrish of Durand,
+        Shiawassee County, exposure Jun 30, $75,000 sought). That was incorrect. The coverage we reviewed also includes a second, distinct suit,
+        <em>Hercula v. Taco Bell of America, LLC, et al.</em> (Karl and Gina Hercula of Clinton Township, Macomb County, exposure Jun 21, filed Jul 20,
+        also E.D. Michigan Southern Division, via Marler Clark), confirmed by cross-referencing plaintiff names, home counties, restaurant locations,
+        exposure dates, filing dates, and damages sought against the Parrish suit, all of which differ. We could not obtain direct docket (PACER)
+        confirmation, so we rate this convergent secondary sourcing rather than primary-verified, but the level of corroborating detail clears our bar
+        for a correction. This is now a fifth tracked suit, not a restatement of Parrish; see the Litigation row in the briefing index's Situation
+        Snapshot and Prediction 6.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-amber);">
+        <div class="panel-title">Update, July 28 (v15): litigation was undercounted, not the outbreak</div>
+        <p style="margin-bottom:0;">No case-count, attribution, or recall development changes this cycle beyond routine state-figure movement (below);
+        CDC's national count remains frozen at 4,173 across 41 states, now a fifth consecutive quiet cycle since the Jul 22 catch-up. The material finding
+        this cycle came from checking this briefing's own accumulated source list against fresh reporting, which surfaced two suits not previously
+        reflected in the Situation Snapshot's litigation row or Prediction 6: <em>Gelbspan v. Taylor Farms</em> (Kait Gelbspan and Victor Granados, filed
+        Jul 16, N.D. California), the outbreak's first class action, seeking damages on behalf of consumers who bought Taylor Farms lettuce, not on behalf
+        of anyone claiming to have gotten sick; and <em>Ott v. Taco Bell Corp., et al.</em> (David Ott, filed Jul 17, Mahoning County, Ohio Court of Common
+        Pleas, a hospitalized Army veteran naming Taylor Fresh Foods and franchisee Charter Foods Inc. directly), which this briefing has cited in its own
+        sources list since v9 (see below) but never carried into its litigation tracking until now. A docket-level review then showed the count itself was
+        low. <strong>At least eight distinct matters</strong> are now confirmed, across four federal districts (E.D. Michigan, N.D. Ohio, N.D. California,
+        C.D. California) and one Ohio state court, including two this briefing had never tracked in any form: <em>Null v. Taylor Fresh Foods, Inc.</em>
+        (Lawrence Null, filed Jul 21, C.D. California, No. 8:26-cv-01943, with a related filing adding Danielle Long in N.D. California on Jul 23,
+        No. 5:26-cv-07629) and <em>Burnham v. Taylor Fresh Foods, Inc.</em> (Lucas Burnham and five co-plaintiffs, filed Jul 23, E.D. Michigan,
+        No. 2:26-cv-12528). <em>Hercula</em>'s filing date is corrected from Jul 20 to Jul 22 per its docket. None of this retracts a published fact; all
+        of it is undercounting in our own tracking that a docket pull closed. That pull also lifts a limitation this briefing has carried since v3: the
+        federal filings are now verified against the dockets themselves through CourtListener's RECAP archive, including the complaints as filed for the
+        <em>Granados/Gelbspan</em> class action and <em>Ayyad</em>, rather than resting on law-firm press releases and legal trade press. <em>Ott</em>
+        remains press-sourced, as Mahoning County Common Pleas is a state court outside RECAP. Michigan's state total continued
+        climbing regardless, to <strong>9,253</strong> cases as of Jul 27, read directly from MDHHS's own outbreak page this cycle rather than press coverage. The primary read corrects two things: the 160-hospitalization figure is as of Jul 23, not Jul 27, since MDHHS refreshes hospitalization status only weekly on Thursdays, and about 475 of the Jul 27 total are previously unreported cases delayed in laboratory reporting, which MDHHS says "do not reflect a sudden increase in illnesses." Still 0 deaths.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-amber);">
+        <div class="panel-title">Update, July 29 (v16): North Carolina's separate outbreak accelerated; nothing else moved</div>
+        <p style="margin-bottom:0;">No attribution, recall, or litigation development was found this cycle; CDC's national confirmed count remains
+        frozen at 4,173 across 41 states, now a sixth consecutive quiet cycle since the Jul 22 catch-up, and no new suit, ruling, or consolidation
+        surfaced among the eight tracked matters. The only material movement is North Carolina's own, separate outbreak: NCDHHS's Jul 28 update reports
+        <strong>718</strong> cases and <strong>24</strong> hospitalizations, up from 561/16 (Jul 20), a 28% rise in cases and 50% rise in
+        hospitalizations in a single week, the sharpest week-over-week movement this briefing has recorded for North Carolina. NCDHHS's own no-link
+        statement is unchanged: these cases remain confirmed separate from the Taco Bell/Taylor Farms cluster. Parsley and cilantro remain the most
+        commonly reported exposures, but the state says many cases report neither, leaving open the possibility of more than one source within North
+        Carolina's own case load. Michigan continued climbing to <strong>9,680</strong> cases (Jul 28, MDHHS via press), up from 9,253; the State
+        Involvement Map, whose Michigan entry had lagged two cycles behind this briefing's own published figure, is brought current with this edit.
+        Ohio (still 2,574, Jul 24), Indiana (still 710, Jul 24), and West Virginia (still 226/19, Jul 24) had no fresher figures this cycle. Still 0
+        deaths.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">Update, July 30 (v17): CDC's national count broke its plateau a second time; Michigan, West Virginia, and Indiana all moved</div>
+        <p>The sixth-consecutive-quiet-cycle read carried in the v16 panel above did not hold: CDC's confirmed count moved on Jul 29, jumping from
+        <strong>4,173</strong> to <strong>6,707</strong> across <strong>45 states</strong> (up from 41; Oregon, South Dakota, Vermont, and Delaware
+        newly added), with hospitalizations rising from 308 to <strong>423</strong> and the under-analysis pool growing from &gt;7,400 to
+        <strong>&gt;11,500</strong> (combined total now above <strong>18,200</strong>). Still 0 deaths. This is the second such catch-up jump since
+        the outbreak began; the first broke a nine-day freeze on Jul 22, this one a shorter, roughly week-long plateau. As with the Jul 22 jump, we
+        could not primary-verify this figure directly against cdc.gov this cycle (see the sourcing note below); it is corroborated across multiple
+        independent outlets (ABC News, AHA News) citing the same CDC-attributed release.</p>
+        <p>State figures also moved. <strong>Michigan</strong> rose to <strong>10,077</strong> cases (Jul 29, MDHHS's own Wednesday update, +397 from
+        9,680), hospitalizations still reported at 160 (MDHHS refreshes that figure only weekly); the outbreak footprint is now reported across 70 of
+        Michigan's 82 counties. <strong>West Virginia</strong> rose to <strong>245</strong> cases (Jul 28, up from 226), hospitalizations unchanged at
+        19. <strong>Indiana</strong>'s statewide figure is reported at <strong>nearly 750</strong> (Jul 25 to 27 press coverage attributing the figure
+        to IDOH); we could not reach IDOH's own dashboard directly this cycle, so this update carries a Medium rather than High confidence badge until
+        it is primary-verified. <strong>Ohio</strong> has no fresher statewide figure (still 2,574, Jul 24). <strong>North Carolina</strong> is
+        unchanged in count (718/24) but NCDHHS launched a new Cyclosporiasis Cases and Outbreaks Dashboard this cycle, updated Tuesdays, a sourcing
+        upgrade for future cycles.</p>
+        <p style="margin-bottom:0;"><strong>A named former official, not an agency finding.</strong> Reuters reported (Jul 28) that some large
+        retailers and restaurants have stopped sourcing produce from central Mexico broadly, attributed to <strong>Dr. Scott Gottlieb, former FDA
+        Commissioner</strong>, who cited weather conditions raising contamination risk in the region; the report says officials are searching for
+        other potentially implicated products. We treat this as a lead: Gottlieb is a named, on-the-record source but not a current agency official,
+        and no specific new product is named. It does not change this briefing's attribution finding and is logged as a watch item for next cycle.
+        Press coverage describing "six open Cyclospora investigations" at FDA conflicts with other coverage the same week describing four; we could
+        not reconcile this against FDA's own table directly this cycle, so the "four concurrent, all not yet identified" figure carried since v14 is
+        unchanged and the discrepancy is logged as a watch item rather than published as a change. No new litigation, ruling, or consolidation was
+        found among the eight tracked matters; no Epi-Aid interim finding or extension; no further Mexico/FDA/CDC on-the-record exchange beyond what
+        is already carried.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-red);">
+        <div class="panel-title">Update, August 4 (v22): CDC's weekly update lands big, the national count hits 10,468 / 47 states, and CDC confirms the 2 deaths</div>
+        <p>Every figure here was fetched directly from the primary source this cycle (all hosts returned HTTP 200 locally); the overnight scout (issue #100)
+        was network-blocked and ran on WebSearch snippets only. <strong>CDC's surveillance page updated on August 4</strong> (data through Aug 3):
+        <strong>10,468</strong> lab-confirmed domestic cases (up from 6,707), <strong>517</strong> hospitalizations (up from 423), <strong>47</strong> states
+        (up from 45), and <strong>2 deaths</strong> (up from 0). CDC separately counts <strong>more than 12,255</strong> additional cases not yet
+        lab-confirmed, many from Michigan, for a confirmed-plus-under-analysis total above <strong>22,700</strong>. Median age 45, 56% female, median onset
+        Jul 4.</p>
+        <p><strong>The CDC deaths lag closed exactly as v21 predicted it would.</strong> Last cycle CDC read 0 deaths while Michigan reported 2; v21 called
+        that an expected reporting lag and said it would flag when the national tally caught up. It now has. <strong>Correction to the scout:</strong> issue
+        #100 flagged the figure "10,468" as a probable AI-search fabrication and warned this pass not to absorb it. On a direct fetch it is real: it is CDC's
+        own August 4 headline number. The scout was right to distrust an unverified figure; the local fetch resolved it, in this case by confirming rather
+        than debunking.</p>
+        <p><strong>Two state dashboards moved, both verified against the state's own page.</strong> <strong>North Carolina</strong> rose to
+        <strong>867 / 33</strong> (NCDHHS dashboard, data as of 8 a.m. Aug 4, up from 718 / 24; 149 new cases and 9 new hospitalizations since Jul 28; Wake
+        County 494). <strong>Indiana</strong> rose to <strong>1,524</strong> (IDOH dashboard, up from 1,285; 864 female / 660 male); press this cycle reported
+        ~1,349, but the dashboard had already climbed past it, the third time this briefing has caught Indiana's live dashboard leading the press figure.</p>
+        <p style="margin-bottom:0;"><strong>Litigation: RECAP sweep run locally.</strong> The Detroit News's "13th suit," <em>Harris v. Taco Bell of
+        America</em> (E.D. Michigan, filed Jul 31, NOS 365 product liability, CourtListener docket 73704704), is real and now docket-verified. But the RECAP
+        cyclosporiasis sweep returns <strong>nine</strong> dockets, not thirteen: eight individual product-liability suits (<em>Harris, O'Hara, Burnham,
+        Hercula, Null, Parrish, Granados, Ayyad</em>) plus the JPML's MDL No. 3196 docket. Per house rule the tracked count is not raised on press alone, so
+        it holds at <strong>at least nine docket-verified matters</strong>, now including <em>Harris</em>; press reports as many as 13 filed, the remainder
+        not yet visible on RECAP. The <em>AboutLawsuits</em> "Jul 31 motion" framing is stale: no such JPML filing appears on RECAP, whose docket for this
+        matter is dated Jul 17, and MDL No. 3196's status is unchanged from v20 (assigned Jul 29, Order to Show Cause issued).</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-red);">
+        <div class="panel-title">Update, August 3 (v21): the outbreak's first deaths. Michigan MDHHS reports 2, and the "zero deaths / clinically mild" framing is corrected</div>
+        <p>Michigan's Department of Health and Human Services updated its own outbreak page on <strong>August 3</strong> to report the outbreak's
+        <strong>first two deaths</strong>. Both figures here were verified this cycle by fetching MDHHS's own page directly (HTTP 200), not from press:
+        the page reads "Deaths: 2" and "Total Cases: 11,234," last updated August 3, 2026. The overnight scout cycle (issue #80) was network-blocked and
+        rested on convergent press attribution to MDHHS; this local pass replaces that with the primary source.</p>
+        <p><strong>MDHHS's own nuance is carried, not stripped.</strong> The state says both decedents "had significant underlying health conditions that
+        may have been impacted by cyclosporiasis and dehydration," and both became ill <em>before</em> Taylor Farms' July 17 recall. MDHHS still states that
+        "cyclosporiasis is generally not a life-threatening illness" and that death from it "is uncommon in the United States." Accordingly the hero badge,
+        the Bottom Line, and the severity-assessment table below no longer read "zero deaths / clinically mild" unqualified: the outbreak remains mild for
+        most, but it is no longer accurate to describe it as fatality-free.</p>
+        <p><strong>Michigan's statewide total rose to 11,234</strong> (from 10,773 on Jul 31), also read directly from MDHHS. Hospitalizations remain
+        <strong>193</strong> (MDHHS refreshes that weekly on Thursdays, next Aug 6). <strong>CDC's national page still reads 0 deaths</strong> (6,707
+        confirmed / 45 states / 423 hospitalized, data through Jul 27, re-fetched and unchanged this cycle); the national tally lagging the state agency's own
+        count by days is the expected surveillance behavior, noted explicitly rather than smoothed over. On litigation, this local pass ran the RECAP docket
+        sweep the blocked scout could not: the JPML docket for MDL No. 3196 (CourtListener docket 73691833, PACER jpml 1760583) carries four entries and
+        nothing past v20's read (Motion to Transfer Jul 17, Notice of Major Deficiency Jul 23, MDL Assigned Jul 29, Order to Show Cause with response due
+        Jul 30). MLD status is still <strong>Pending</strong>; the Panel has <strong>not ruled on transfer</strong> and no new constituent action was added.
+        RECAP's mirror was last refreshed Jul 29, so the Jul 30 OSC response and any order since are not yet reflected and would need a PACER-authoritative
+        pull. FDA's two ongoing unidentified-product outbreaks (refs #1385, #1392) are unchanged from v20's direct Jul 30 read.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-border);">
+        <div class="panel-title">Update, August 2 (v20): three state totals moved on primary-verified dashboards, and the MDL cleared its first procedural gate</div>
+        <p>Every figure below was fetched directly this cycle (all primary hosts returned HTTP 200). The two overnight scout cycles (issues #72,
+        #73) were network-blocked and rested on press snippets, so this pass verifies or replaces each of their leads.</p>
+        <p><strong>The multidistrict litigation advanced.</strong> A fresh CourtListener docket sweep shows the JPML formally assigned
+        <strong>MDL No. 3196</strong> on <strong>July 29</strong> ("MOTION FOR TRANSFER ACCEPTED FOR FILING") and issued an
+        <strong>Order to Show Cause</strong> the same day, responses due July 30, following a July 23 Notice of Major Deficiency that was cured.
+        The Panel has still not ruled on transfer, so the actions are not yet consolidated, but the petition is now a live, numbered MDL with a
+        briefing deadline. The docket also resolves v19's open <em>Granados</em> case-number question: the clerk's "MODIFIED CASE NUMBER" entry
+        settles on <strong>5:26-cv-07346</strong> (the number v19 led with) and names the petitioners as plaintiffs Granados and <em>Gelbspan</em>.
+        No new suit surfaced beyond the nine already tracked.</p>
+        <p><strong>Michigan, West Virginia and Indiana all moved, each verified against the state's own page.</strong> Michigan MDHHS now reads
+        <strong>10,773</strong> total (193 hospitalized, updated Jul 31), up from 10,386. West Virginia OEPS reads <strong>268 / 19</strong>
+        (updated Jul 31), up from 245/19. Indiana IDOH reads <strong>1,285</strong> (updated Jul 31), higher than the 1,176 both scout cycles
+        carried from press, because the dashboard climbed again after their snapshot.</p>
+        <p><strong>The Oversight inquiry now has on-the-record responses on both sides.</strong> House Oversight Ranking Member Robert Garcia's
+        July 27 letter to Taylor Farms CEO Bruce Taylor (verified against the committee's own press release) alleges the company "donated millions
+        to President Trump, met privately with the White House the night the FDA identified their lettuce as the source," and demands documents.
+        The roughly \$2M-in-donations / \$1M-to-a-Trump-super-PAC breakdown reported elsewhere is press characterization (CBS News), carried at
+        Medium. Per single-outlet reporting (CBS), the White House called any notion it "would ever compromise on the health and safety of the
+        American people ... absolutely false," and Taylor Farms offered a soft non-denial. Ohio is corrected against ourselves: ODH's own DataOhio
+        dashboard, filtered to Cyclosporiasis, reads <strong>4,024</strong> statewide (rolling year to Jul 28), far above the 2,574 press figure this
+        briefing carried since v14. ODH is silent on news releases (nothing since Jul 8, its own last release figure was 177 as of Jul 2) but
+        maintains this live dashboard, which prior cycles missed while claiming no statewide primary existed. Toledo-Lucas County Health separately
+        reports 3,016 northwest-Ohio and 1,207 Lucas County cases as of Jul 31.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-border);">
+        <div class="panel-title">Update, July 30 (v19): two of the four concurrent FDA outbreaks we counted are over, and a motion to consolidate the litigation has been pending for two weeks unnoticed</div>
+        <p>This version is a primary-source pass over three cycles of research (v16, v17 and v18) that were prepared but never published. Every
+        figure below was read off the issuing agency's or the court's own record rather than press coverage of it. Two of this briefing's
+        published claims do not survive that pass.</p>
+        <p><strong>The four-outbreak count is wrong, and it was wrong in our favour.</strong> Since v14 this briefing has reported that FDA
+        carries four concurrent <em>Cyclospora</em> investigations with an unidentified product alongside the lettuce cluster, and has cited that
+        number as evidence for its own Predictions 3 and 5. FDA's table in fact carries two <em>separate</em> status columns,
+        <em>Investigation Status</em> and <em>Outbreak/Event Status</em>, and its legend states that "at times an FDA investigation may be active
+        after an outbreak has ended." Ref <strong>#1375</strong> (8 cases) and ref <strong>#1384</strong> (18 cases) both show the outbreak
+        <strong>Ended</strong> with only the investigation open; FDA's What's New entry states the same in words for ref #1384. The correct count
+        of ongoing unidentified-product outbreaks is <strong>two</strong>: ref <strong>#1385</strong> (10 cases) and ref <strong>#1392</strong>,
+        which has grown from 72 to <strong>93 cases</strong>. v15 read #1375's "Ended" as its traceback having ended, which was the wrong column,
+        and v18 treated a Forbes count of four as independent confirmation when Forbes was counting open investigations, not ongoing outbreaks.
+        This briefing flagged the four-count as "the kind to scrutinize hardest" precisely because it favoured us. It did not survive scrutiny.</p>
+        <p><strong>A JPML consolidation petition has been pending since July 17.</strong> <em>IN RE: 2026 Multistate Cyclosporiasis Outbreak
+        Litigation</em>, <strong>MDL No. 3196</strong>, carries an initial Motion to Transfer covering three actions: <em>Granados</em>
+        (N.D. California, No. 5:26-cv-07346), <em>Ayyad</em> (N.D. Ohio, No. 1:26-cv-01648) and <em>Parrish</em> (E.D. Michigan,
+        No. 2:26-cv-12448). Whether these suits consolidate has been an explicit open question here since v15, and cycles v16, v17 and v18 each
+        affirmatively reported that no consolidation had been found, while the petition sat on a free, public docket. v15 diagnosed exactly this
+        failure mode, searching press coverage instead of records, and declared litigation tracking docket-based from that version forward. It was
+        not. As of v20 the Panel formally assigned MDL No. 3196 and issued an Order to Show Cause on July 29; it has still not ruled on transfer.</p>
+        <p><strong>Indiana is 1,176, not 954.</strong> IDOH's dashboard, fetched directly, reads 1,176 total cases as of July 30. The unpublished
+        draft carried approximately 954 (Jul 28) on the strength of three independent outlets attributing that number to IDOH. The press figure
+        was stale rather than wrong, and this briefing accepted it as a High-confidence substitute for a request that succeeded on the first
+        attempt. Indiana is now the third-largest state burden in the outbreak.</p>
+        <p><strong>The ninth suit is docket-verified and opens a fifth federal district.</strong> The Muskegon matter carried last cycle without a
+        docket number is <em>O'Hara v. Border Foods, LLC</em>, <strong>W.D. Michigan, No. 1:26-cv-02183</strong>, filed July 28 before Judge Robert
+        James Jonker and pleaded as product liability, naming Border Foods LLC, <strong>Taylor Farms California, Inc.</strong> and Taylor Fresh
+        Foods, Inc. plus unknown parties. A separate docket hit, <em>Rueda Patino v. Taco Bell of America, LLC</em> (S.D. Florida, filed Jul 29),
+        is <strong>not</strong> an outbreak case but an employment discrimination suit against the same corporate defendant; it is recorded here so
+        that a later cycle does not mistake it for a tenth matter.</p>
+        <p><strong>Confirmed unchanged on primary sources.</strong> CDC holds at 6,707 confirmed cases across 45 states, 423 hospitalizations and
+        0 deaths (page dated Jul 28, data through Jul 27), with more than 11,500 cases not yet lab-confirmed and a separate 1,018 travel-associated
+        cases with 42 hospitalizations. FDA's 9-state advisory holds at 1,947 cases and 98 hospitalizations. Michigan (10,386 / 193 hosp, Jul 30),
+        West Virginia (245 / 19, Jul 28) and North Carolina (718 / 24, Jul 28) are all confirmed on the states' own pages. Ohio has published no
+        statewide update since July 8, so its 2,574 figure (Jul 24, press-attributed) stands and stays flagged; contrary to a note this briefing has
+        carried since v14, ODH's website loads normally.</p>
+        <p><strong>On retrieval.</strong> Thirteen of thirteen primary pages returned HTTP 200 on the first attempt this cycle. The v16, v17 and
+        v18 research each recorded categorical retrieval failure and rested every finding on search snippets. This is the third consecutive cycle
+        whose blocking claim did not survive a direct re-run, after v15 had already retired the standing assumption that primary pages were
+        unreachable.</p>
+      </div>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">Update, July 30 (v18): Michigan and Indiana both moved on primary-attributed figures; Gottlieb specifically names North Carolina; a ninth litigation matter surfaces</div>
+        <p>CDC's national confirmed count did not move again this cycle: no source found shows it moving from <strong>6,707</strong> across
+        <strong>45 states</strong>. The plateau-then-batch-jump pattern, now observed twice, has not repeated a third time yet.</p>
+        <p><strong>Michigan</strong> rose to <strong>10,386</strong> cases (Jul 30, MDHHS's own update, +309 from 10,077), with hospitalizations
+        finally refreshed to <strong>193</strong> (from the stale 160/Jul 23 figure carried since v17). MDHHS attributes about 475 of the recent
+        increase to a reporting backlog at one health system rather than new illness, and says emergency-department visits for diarrhea are
+        slowing; we log the state's own "worst has passed" read as a claim pending independent verification, not yet a confirmed trend.
+        <strong>Indiana</strong>'s "nearly 750" figure, carried since v17 at Medium confidence because IDOH's own dashboard could not be reached
+        directly, is superseded this cycle: IDOH is now reporting approximately <strong>954</strong> cases (Jul 28), directly and consistently
+        attributed to IDOH by three independent outlets (Indiana Public Radio, WANE, Fox59), which restores this briefing's High-confidence badge
+        even without a direct fetch of IDOH's page. This resolves the primary-verification item open since v17. Ohio and West Virginia have no
+        fresher statewide figures this cycle.</p>
+        <p><strong>Gottlieb's lead gets more specific.</strong> In a CNBC interview, Gottlieb named clusters in the Great Lakes region, New York,
+        and <strong>North Carolina</strong> specifically as potentially linked to parsley and cilantro from central Mexico, and separately
+        estimated the true case count could be 10 to 20 times the reported figure. This converges with NCDHHS's own previously reported suspected
+        foods (parsley, cilantro) for its unlinked cluster, materially more specific than the general framing carried since v17. We are not
+        upgrading North Carolina's status from unlinked to linked: Gottlieb remains a named former official, not a current agency statement naming
+        a specific product or shipment.</p>
+        <p style="margin-bottom:0;"><strong>Litigation and a Congressional oversight thread.</strong> A Muskegon, Michigan woman sued Taylor
+        Farms, Taylor Fresh Foods, and, for the first time in this briefing's tracking, Taco Bell franchisee <strong>Border Foods</strong> (plus
+        five unnamed corporations), filed Jul 28 in the US District Court for the Western District of Michigan; press-sourced only this cycle, no
+        docket number obtained, a ninth tracked matter. Separately, multiple outlets (Insurance Journal, CBS News, Civil Eats) reported Taylor
+        Farms met privately with White House and FDA officials during the investigation, and that House Democrats opened an inquiry citing more
+        than $2 million in the company's political donations; we log this as a supply-chain and regulatory-oversight development (see the Supply
+        Chain Analysis page), not as a change to the attribution finding, which FDA has not withdrawn. Forbes' Jul 28 count of FDA's active
+        outbreaks independently confirms four concurrent Cyclospora investigations, resolving the "four vs. six" discrepancy flagged as a watch
+        item in v17 in favor of the figure this briefing already carried. No Epi-Aid interim finding or extension; no further Mexico/FDA/CDC
+        on-the-record exchange; cluster-specific sub-counts for IL/KS/OK/PA remain unpublished.</p>
+      </div>
+      <p>Cyclosporiasis is caused by <em>Cyclospora cayetanensis</em>, a coccidian protozoan parasite for which humans are the only known host.
+      Infection follows ingestion of the parasite's environmentally matured oocysts on contaminated fresh produce or in water. Crucially, all
+      confirmed 2026 domestic cases involved <strong>no international travel</strong> in the preceding two weeks, pointing to a domestic food or
+      water source rather than travel-acquired infection.</p>
+      <div class="panel">
+        <div class="panel-title" style="color:var(--c6s-accent);">Clinical picture</div>
+        <p style="margin-bottom:0;">Watery, sometimes explosive diarrhea, loss of appetite, weight loss, cramping, bloating, nausea, fatigue, and low-grade fever,
+        in a relapsing-remitting course. Incubation averages about one week (range roughly 2 days to 2+ weeks). Untreated illness in healthy adults can
+        persist for weeks; it is more severe and prolonged in immunocompromised people. First-line treatment is trimethoprim-sulfamethoxazole (Bactrim).</p>
+      </div>
+    </section>
+
+    <section id="counts">
+      <h2>2. Reconciling Three Case-Count Universes</h2>
+      <p>The single most common analytic error in coverage of this outbreak is treating three different measurements as one number, or worse, as evidence
+      of a cover-up. There are three distinct universes, and any responsible figure must be labelled with which one it belongs to.</p>
+      <table>
+        <thead><tr><th scope="col">Universe</th><th scope="col">Figure</th><th scope="col">What it counts</th><th scope="col">Reliability</th></tr></thead>
+        <tbody>
+          <tr><td>CDC-confirmed domestic (national)</td><td><strong>6,707</strong> / 45 states</td><td>Lab-confirmed, non-travel cases adjudicated by CDC (as of Jul 29). The national count broke a nine-day freeze at 1,645 on Jul 22, reaching 4,173/41 states, then broke a second, shorter plateau on Jul 29, reaching 6,707/45 states; per ABC News/AHA News reporting of CDC's updated tally, this figure is sourced to press coverage of CDC's release</td><td><span class="badge badge-amber">B - Medium</span></td></tr>
+          <tr><td>Taco Bell cluster (subset)</td><td><strong>1,947</strong> / 98+ hosp</td><td>FDA/CDC-published, now IL/IN/KS/KY/MI/OH/OK/PA/WV, as of Jul 24 (up from 1,644/94, IN/KY/MI/OH/WV, Jul 17; CDC retitled its outbreak page from 5 to 9 states this cycle). No fresher cluster-specific figure found through v18</td><td><span class="badge badge-green">A - High</span></td></tr>
+          <tr><td>Under analysis</td><td>&gt;11,500</td><td>Reported cases not yet confirmed as domestic-acquired; up from &gt;7,400. CDC's own combined total (confirmed + under analysis) is &gt;18,200 as of Jul 29</td><td><span class="badge badge-amber">B - Medium</span></td></tr>
+          <tr><td>State-reported aggregate</td><td><strong>&gt;7,500</strong> (stale)</td><td>Sum of individual state-department tallies as of Jul 16; a distinct measure from CDC's own under-analysis pool above. We did not find a fresh comprehensive state-by-state sum this cycle; this figure is clearly stale, since Michigan alone now reports 10,773. Treat CDC's own &gt;18,200 combined figure as the more current topline</td><td><span class="badge badge-red">C - Stale</span></td></tr>
+          <tr><td>Travel-associated (separate)</td><td><strong>1,018</strong> / 42 states; 42 hospitalized</td><td>Acquired abroad in the prior 14 days; excluded from the domestic count. <strong>v19 correction:</strong> this row read 440 across 35 states, stale by several weeks yet badged High. CDC's surveillance page (data through Jul 27) reports 1,018 laboratory-confirmed travel-associated cases, 42 hospitalizations, 0 deaths, median onset Jun 17</td><td><span class="badge badge-green">A - High</span></td></tr>
+        </tbody>
+      </table>
+      <div class="panel warning">
+        <div class="panel-title">Analytic guidance</div>
+        <p>The CDC's 1,645 and the media's "7,500+" (or "nearly 7,000") are not contradictory; they measure different things. CDC counts lab-confirmed
+        federal reports; states count locally; and the combined figure adds the under-analysis pool. Reporting the aggregate <em>as confirmed</em> is wrong, but so is
+        dismissing it. Presenting all figures with this caveat pre-empts the "CDC is undercounting / hiding it" narrative rather than feeding it.</p>
+        <p style="margin-bottom:0;"><strong>v3 correction.</strong> Our v2 analysis said the confirmed count had roughly doubled (843 to 1,645) "exactly the convergence
+        predicted." That was premature, and the subsequent data cuts against it. CDC's figure has not moved since July 13 while state tallies climbed past 7,500, so the
+        ratio between the two <strong>widened from roughly 2.4x to 4.6x</strong> rather than narrowing. The honest read is that CDC adjudication appears to run in
+        multi-day batches rather than continuously, so the federal number is a lagging indicator that periodically jumps rather than a converging one. This matters
+        beyond bookkeeping: a federal count visibly frozen for three days during a surge is precisely the condition under which a "they are hiding the real numbers"
+        narrative takes root. We assess the cause as latency and adjudication backlog, not concealment, but the distinction is invisible to a general audience and the
+        agency has not explained the pause.</p>
+        <p style="margin-bottom:0;"><strong>v4 update.</strong> The freeze has now lasted five days (Jul 13 to at least Jul 17), and our own latency explanation
+        looks weaker than it did in v3. On July 17, FDA and CDC published a fresh, current, cluster-specific count (1,644 cases / 94 hospitalized for the Taco
+        Bell cluster) in the same reporting cycle the national topline stayed at 1,645 / 141. That shows the agencies can and did produce a current number this
+        period, just not the aggregate one. We are not revising our assessment to concealment, we still see no evidence of that, but we are lowering our
+        confidence in the pure batch-latency explanation and flagging this as the item most worth harder scrutiny next cycle.</p>
+        <p style="margin-bottom:0;"><strong>v5 update.</strong> Every secondary source we found this cycle still cites 1,645, consistent with the freeze
+        continuing into a sixth day, but this cycle's figure is secondary-sourced, not primary-verified, so we cannot distinguish "confirmed unchanged" from "not yet re-reported." We are treating the freeze as still likely in
+        effect but formally unverified this cycle, and repeating our recommendation that it be checked directly against CDC's page rather than through
+        search-indexed summaries alone.</p>
+        <p style="margin-bottom:0;"><strong>v7 update.</strong> Same verification gap, now a third consecutive cycle. Every source we found still cites
+        1,645, but the figure remains secondary-sourced, not primary-verified. We are not lowering our estimate of the freeze's likelihood further on unverified secondary citations
+        alone, but this is now the single most overdue item for a direct primary-source check across the whole briefing.</p>
+        <p style="margin-bottom:0;"><strong>v8 update.</strong> The gap closed: CDC's surveillance page was retrieved and verified directly, still
+        reporting the Jul 13 figures as of a Jul 15 page update. The freeze is confirmed, not an artifact of stale secondary citation.</p>
+        <p style="margin-bottom:0;"><strong>v9 update.</strong> The freeze continues into a ninth day per every secondary source found (still 1,645 as of
+        Jul 21), while Michigan's own state total has climbed to 6,571. This cycle's continuation of the freeze is secondary-sourced, not primary-verified.</p>
+        <p style="margin-bottom:0;"><strong>v10 update: the freeze broke.</strong> CDC's confirmed count jumped from 1,645 to 4,173 on Jul 22, across 41
+        states, with hospitalizations rising from 141 to 308. Per the Washington Post, CDC's own explanation for the prior gap is exactly the batch-latency
+        mechanism we hypothesized as early as v3: the agency counts only formally reported lab-confirmed cases and assumes roughly a six-week reporting
+        lag, while states count confirmed and probable cases close to real time. Using CDC's own combined figure (confirmed + under analysis, &gt;11,500)
+        as the best current proxy for total burden, the confirmed-to-total ratio narrowed from roughly 4.6x at its widest to roughly 2.8x, a genuine
+        convergence, though not a closing, of the gap this section has tracked since v3. This update rests on press coverage of CDC's own release.</p>
+        <p style="margin-bottom:0;"><strong>v11 update: no further movement, and Mexico disputes the underlying attribution.</strong> No source found this
+        cycle shows CDC's national confirmed count moving from 4,173/41 states; one quiet cycle after nine quiet days is not yet enough to call a second
+        freeze. Separately, and on a different axis than this section's count-reconciliation focus, Mexico's Health Secretary disputed on the record
+        whether the outbreak originated at the Taylor Farms de Mexico facility; that dispute concerns supplier attribution, not the case-count figures
+        this section tracks, so it does not change our confirmed-versus-total reconciliation, but readers should not assume the count reconciliation and
+        the supplier attribution stand or fall together. See the July 21 to 24 development panel above.</p>
+        <p style="margin-bottom:0;"><strong>v12 update: a second consecutive freeze, while the named-cluster subset moved instead.</strong> No source
+        found this cycle shows the national confirmed count moving from 4,173/41 states, a second straight quiet cycle since the Jul 22 catch-up. Unlike
+        the national topline, the Taco Bell cluster subset (a different row in the table above) did move this cycle, from 1,644 to 1,947 across an
+        expanded nine-state footprint, as CDC retitled its outbreak page. That is a cluster-specific development, not a change to the national-versus-state
+        reconciliation this section tracks, but it means readers should not read "no national movement" as "no movement anywhere in the official figures."</p>
+      </div>
+      <p>Geographic concentration is real and intensifying: Michigan reported <strong>11,234</strong> cases and the outbreak's first <strong>2 deaths</strong> as of August 3 (MDHHS's own update, v21)
+      against a typical annual baseline near 50, up from 10,773 on July 31, 10,386 on July 30, 10,077 on July 29, 9,680 on July 28, 9,253 on July 27, 8,176 on July 24, 7,644 to 7,664 on
+      July 23 (secondary-sourced), 7,171/102 hosp. on July 22, 6,571 on July 21, and 6,148 on July 20; hospitalizations were refreshed this cycle to
+      <strong>193</strong> (from a stale 160/Jul 23), and MDHHS attributes about 475 of the recent increase to a reporting backlog at one health
+      system rather than new illness. Michigan's cases are now reported
+      across 70 of the state's 82 counties, up from concentration in Monroe, Lenawee, Washtenaw, Wayne, Shiawassee, Jackson, Oakland, and Livingston
+      counties. Ohio's statewide figure is corrected in v20 to <strong>4,024</strong>, read directly from ODH's own DataOhio dashboard (rolling year
+      to Jul 28), superseding the <strong>2,574</strong> press figure (Jul 24) this briefing carried since v14; Toledo-Lucas County Health separately
+      reports 3,016 northwest-Ohio and 1,207 Lucas County cases as of Jul 31, retiring the earlier 2,785/2,926 regional press figures. West Virginia rose to <strong>268</strong> cases / 19 hospitalized (Jul 31, OEPS's own tracker, up from 245/19 on Jul 28 and
+      226/19 on Jul 24). Indiana stands at <strong>1,285</strong> cases (Jul 31, read directly from IDOH's dashboard, up from 1,176 on Jul 30 and
+      approximately 954 press-attributed before that). New York reports 753 cases since May 1 (787 for all of 2026) on its own DOH page as of Jul 29, corrected in v20.1 from the CDC-feed 642 we had carried.
+      CDC-total hospitalizations tracked upward from 20 of 145 in mid-June to <strong>141</strong> as of July 13, to <strong>308</strong>
+      when the national confirmed count first updated to 4,173 on July 22, and to <strong>423</strong> when it updated again to 6,707 on July 29.
+      The Taco Bell cluster (now Illinois, Indiana, Kansas, Kentucky, Michigan, Ohio, Oklahoma, Pennsylvania, and West Virginia) is FDA/CDC-confirmed at
+      1,947 cases / at least 98 hospitalized as of July 24, up from 1,644/94 across the original five states as of July 17; CDC retitled its outbreak page
+      from a 5-state to a 9-state outbreak this cycle; no fresher cluster-specific figure was found through v18. Per CDC, the 1,645 nationally confirmed patients ranged in age from 2 to 95 years (median 44), 56% were female, and the median illness-onset date was
+      June 22, 2026 (range May 1 to July 9); no updated demographic breakdown accompanying either the Jul 22 or Jul 29 confirmed-count jumps was found this cycle. CDC expects illnesses to continue rising through the end of August, when the typical Cyclospora season closes.</p>
+      <div class="panel warning" style="border-left-color:var(--c6s-green);">
+        <div class="panel-title">The five-state / 34-state mismatch, now confirmed rather than hypothetical, and now a nine-state cluster</div>
+        <p>The confirmed Taco Bell cluster originally covered Indiana, Kentucky, Michigan, Ohio, and West Virginia, and accounted for only a
+        fraction of a 34-state, 1,645-confirmed-case outbreak. In v3 we offered three non-exclusive readings for the gap: (1) the same supplier's lettuce
+        reached far more customers than Taco Bell; (2) more than one vehicle is in play concurrently; or (3) the remaining states reflect ordinary seasonal
+        incidence amplified by heightened testing. North Carolina supplied a concrete instance of reading (2) in v4: its Department of Health and Human
+        Services states its 307 cases (May 1 to July 14, concentrated in Wake County) are <strong>not linked</strong> to the Taco Bell cluster, with parsley,
+        cilantro, and lettuce named as suspected, unconfirmed foods.</p>
+        <p><strong>v5 update: reading (1) and reading (2) are no longer cleanly separable.</strong> Taylor Farms' July 18 recall
+        shows reading (1) is also true, the same supplier's lettuce reached 27 states through retail channels, not just Taco Bell, and North Carolina is one
+        of them. That does not overturn NC DHHS's statement that its cases are unlinked to the Taco Bell cluster specifically, but it means North Carolina
+        cannot be cited as clean evidence of a wholly separate, second vehicle without addressing why the recalled product was also present there. The
+        practical implication still stands: <strong>the Taylor Farms attribution has not closed this outbreak</strong>, and readers should not expect the
+        five-state finding, or the 27-state recall, to fully explain the other states without further, separate investigation.</p>
+        <p style="margin-bottom:0;"><strong>v12 update: the named cluster itself grew, which is evidence for reading (1) directly.</strong> CDC's Jul 24
+        retitling adding Illinois, Kansas, Oklahoma, and Pennsylvania to the named cluster is a direct instance of reading (1): the same supplier's
+        product explains more of the confirmed case load than it did last cycle, not less. This narrows, rather than widens, the unexplained share of
+        the 41-state national footprint, a point developed further in Prediction 5 on the briefing index. It does not resolve North Carolina's status or
+        the separate 72-case outbreak, both of which remain open.</p>
+      </div>
+
+      <h3 id="states">States Reporting Cases</h3>
+      <p>CDC reported confirmed cases in <strong>34 states</strong> (several media maps counted 32) as of July 13, described elsewhere as "more than half of US states";
+      as of the Jul 22 confirmed-count update (see section 1), CDC's national figure spans <strong>41 states</strong>, though we have not found a fresh, itemized
+      per-state breakdown for the newly included states this cycle. Public reporting individually names the following states, with per-state counts where officials released them. The remaining states are reflected only in the
+      CDC's aggregate count and outbreak map, not enumerated individually in accessible public reporting.</p>
+      <table>
+        <thead><tr><th scope="col">State</th><th scope="col">Reported cases</th><th scope="col">Note</th></tr></thead>
+        <tbody>
+          <tr><td>Michigan</td><td><strong>11,234</strong> (state total), as of Aug 3 (v21); 193 hospitalized (weekly refresh, Thursdays); <strong>2 deaths</strong></td><td>Hardest hit; well over 100x the ~50/yr baseline; <strong>UPDATE (v21): MDHHS's own page now reports the outbreak's first 2 deaths as of Aug 3, both in decedents with significant underlying conditions and both ill before the Jul 17 recall.</strong> Up from 10,773 (Jul 31), 10,386 (Jul 30), 10,077 (Jul 29), 9,680 (Jul 28), 9,253 (Jul 27), 8,176 (Jul 24), 7,644 to 7,664 (Jul 23), 7,171/102 (Jul 22), 6,571 (Jul 21), and 6,148 (Jul 20). UPDATE (v18): hospitalization figure refreshed from a stale 160/Jul 23 to 193/Jul 30; MDHHS attributes about 475 of the recent case increase to a reporting backlog at one health system, not new illness, and says ED visits for diarrhea are slowing (state's own claim, not independently verified). Now reported across 70 of Michigan's 82 counties, up from concentration in Monroe, Lenawee, Washtenaw, Wayne, Shiawassee, Jackson, Oakland, Livingston. In the confirmed nine-state Taco Bell cluster</td></tr>
+          <tr><td>Ohio</td><td><strong>4,024</strong> (state total), ODH DataOhio dashboard, rolling year to Jul 28 (v20)</td><td><strong>v20 correction:</strong> read directly from ODH's own DataOhio dashboard (Summary of Infectious Diseases in Ohio, Cyclosporiasis), superseding the 2,574 (Jul 24) press figure carried since v14 and the standing claim that ODH published no statewide primary. County leaders: Cuyahoga 459, Fulton 153, Franklin 113, Erie 92, Defiance 82. Second highest; part of the confirmed Taco Bell cluster. Toledo-Lucas County Health separately reports northwest Ohio 3,016 and Lucas County 1,207 as of Jul 31. Caveat: the dashboard's window is a rolling year we could not narrow to May 1 via the public view; given the May-Aug season it is essentially the 2026 total</td></tr>
+          <tr><td>New York</td><td><strong>753</strong> (since May 1; 787 for all of 2026), as of Jul 27 (v20.1)</td><td>Read directly from NY State DOH's own cyclosporiasis page (last updated Jul 29), replacing the CDC-feed value of 642 we had carried. <em>Not</em> in the Taco Bell cluster. NYC's health department page (fetched directly, v20.2) reports 511 cases since May 1 (as of Jul 27); this is a subset of the state's 753, not additive (CDC's note states the NY State count includes NYC, and 753 minus 511 leaves about 242 rest-of-state), so 753 stands as the all-NY figure</td></tr>
+          <tr><td>West Virginia</td><td><strong>268</strong> cases / 19 hospitalized, as of Jul 31 (v20)</td><td>OEPS's own tracker, fetched directly; up from 245/19 (Jul 28) and 226/19 (Jul 24). In the confirmed nine-state Taco Bell cluster (originally five; expanded Jul 24)</td></tr>
+          <tr><td>Kentucky</td><td>Not individually specified beyond the CDC weekly feed (169, lab-confirmed, lags)</td><td>In the confirmed nine-state Taco Bell cluster (originally five; expanded Jul 24)</td></tr>
+          <tr><td>Indiana</td><td><strong>1,285</strong> (state total), as of Jul 31 (v20), read directly from IDOH's dashboard; up from 1,176 (Jul 30), approximately 954 (Jul 28, press-attributed), nearly 750 (Jul 25 to 27) and 710 (Jul 24). Allen County leads, followed by Marion and DeKalb</td><td>UPDATE (v20): dashboard re-fetched at 1,285 (723 female, 562 male); both overnight scout cycles still carried 1,176 from press. In the confirmed nine-state Taco Bell cluster; not previously named in the 400+ cluster reported in v2</td></tr>
+          <tr><td>North Carolina</td><td><strong>718</strong> (May 1 to Jul 28, NCDHHS's own release date), unchanged as of v17; 24 hospitalized</td><td>UPDATE (v16): 28% rise in cases, 50% rise in hospitalizations in one week. Per NC DHHS. <strong>Confirmed not linked</strong> to the Taco Bell cluster, a separate vehicle; suspected foods parsley, cilantro, but the state says many cases report neither (lettuce unconfirmed). Also appears on Taylor Farms' 27-state recall distribution list (Jul 18), an overlap not yet explained by any source we found. FDA separately disclosed that five distinct clusters have been investigated since May, three now closed (v9); whether North Carolina's is among them is unknown. NCDHHS launched a Cyclosporiasis Cases and Outbreaks Dashboard this cycle (v17), updated Tuesdays</td></tr>
+          <tr><td>Illinois</td><td><strong>408</strong> confirmed/probable, as of Jul 21 (215 domestic, 145 travel, 48 unknown); 31 hospitalized</td><td>UPDATE (v12): IDPH-attributed via press; replaces the stale, secondary-sourced 87 figure (Jul 11). Added to the confirmed Taco Bell cluster Jul 24; the statewide total here is not the cluster-specific subset</td></tr>
+          <tr><td>Kansas</td><td><strong>289</strong> total 2026 (114 domestic, 24 travel, 6 unclassified, 145 pending), as of Jul 22</td><td>Per KDHE release. Added to the confirmed Taco Bell cluster Jul 24; previously tracked as recall-linked but not a cluster state, per CDC's own retitling that distinction no longer holds</td></tr>
+          <tr><td>Oklahoma</td><td>116 (CDC weekly feed, lab-confirmed, lags)</td><td>Added to the confirmed Taco Bell cluster Jul 24</td></tr>
+          <tr><td>Pennsylvania</td><td>28 (state-attributed via press, no posted release)</td><td>Added to the confirmed Taco Bell cluster Jul 24; the statewide total here is not the cluster-specific subset</td></tr>
+          <tr><td>Texas</td><td>Among the highest</td><td>Cited among the more-affected states</td></tr>
+          <tr><td>Florida</td><td>&gt;100</td><td>Among the higher-burden states</td></tr>
+          <tr><td>California</td><td>Not specified</td><td>Named in national reporting</td></tr>
+          <tr><td>New Jersey</td><td>Not specified</td><td>Named in early 17-state reporting</td></tr>
+        </tbody>
+      </table>
+      <div class="panel" style="border-left:3px solid var(--c6s-green);">
+        <div class="panel-title" style="color:var(--c6s-green);">Regional relevance: Pacific Northwest is not part of this outbreak (as of Jul 17)</div>
+        <p style="margin-bottom:0;">The burden is concentrated in the Midwest and East (Michigan, Ohio, West Virginia, Kentucky, New York, North Carolina). The nearest activity to
+        Washington State is Oregon, which has reported just <strong>14 cases, none linked to the national outbreak</strong> and consistent with its normal baseline
+        (about 7 per month in May and June). In Washington, <strong>King County reports 15 cases, only one locally acquired</strong>; officials describe the numbers as
+        typical, with roughly 90% of summer cases historically travel-associated. For a Washington-based audience, current local risk reads as baseline, not outbreak-driven.</p>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">Collection gap</div>
+        <p style="margin-bottom:0;">A complete, verified 34-state roster is not publicly available in machine-readable form. The CDC's per-state surveillance page
+        publishes the national totals and an interactive map but does not enumerate a full per-state list, and news outlets publish the named states above rather than a complete list. A handful of
+        states are individually named with confidence; the balance of the count is carried in the CDC aggregate. Treat the current national count (45 states as of Jul 29, secondary-sourced this cycle; 41 as of Jul 22, 34 with media maps showing 32 as of Jul 13) as High confidence and any implied full state list as incomplete.
+        The authoritative per-state breakdown is the <a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/index.html">CDC Cyclosporiasis Surveillance</a> page.</p>
+      </div>
+    </section>
+
+    <section id="pathogen">
+      <h2>3. The Pathogen and Why It Is Hard to Trace</h2>
+      <p>Cyclospora's biology is almost purpose-built to frustrate outbreak investigators. Oocysts are passed in stool in an
+      <strong>unsporulated, non-infective state</strong> and require days to weeks in the environment (roughly 22-32 &deg;C) to mature before they can
+      infect anyone. This single fact drives two consequences: there is <strong>no person-to-person transmission</strong>, and every case traces back to an
+      environmental or produce exposure rather than a human contact chain.</p>
+      <p>Three structural factors make source attribution slow and often inconclusive:</p>
+      <ul>
+        <li><strong>Long, fuzzy incubation.</strong> A one-week-plus lag with a wide range means patients must recall what they ate up to two weeks earlier, degrading exposure histories.</li>
+        <li><strong>Non-routine laboratory detection.</strong> Cyclospora is missed by standard stool panels and needs specific testing (modified acid-fast stain, UV fluorescence microscopy, or a molecular GI-PCR panel that includes it). Many labs do not run it, causing under-ascertainment.</li>
+        <li><strong>Perishable, commingled evidence.</strong> Implicated produce is usually eaten or discarded before it can be tested, and bagged-salad processing blends many source lots, turning a point-source contamination into a diffuse multistate signature.</li>
+      </ul>
+      <p>The full mechanics of the supply-chain vector, and a historical base rate of which foods have been implicated, are in the
+      <a href="supply-chain-analysis.html">Supply-Chain Threat Analysis</a>.</p>
+    </section>
+
+    <section id="capacity">
+      <h2>4. The Biosurveillance-Capacity Gap</h2>
+      <p>The strategically significant dimension of this outbreak is not clinical. It is what the response reveals about US readiness for diffuse,
+      multi-source foodborne events. Several developments in 2025-2026 form the backdrop:</p>
+      <div class="timeline">
+        <div class="timeline-item"><span class="time">July 2025</span><div class="event">CDC's FoodNet active-surveillance program reportedly cut from tracking eight pathogens to two, with Cyclospora among those dropped to optional monitoring after roughly three decades.</div></div>
+        <div class="timeline-item"><span class="time">2025-2026</span><div class="event">Reporting cites elimination of approximately 3,000 CDC positions (around 25% of the workforce) and dissolution of the Division of Parasitic Diseases and Malaria.</div></div>
+        <div class="timeline-item"><span class="time">2026</span><div class="event">Prolonged CDC directorship vacancy and disrupted pass-through funding to state and local health departments reported during the outbreak window.</div></div>
+        <div class="timeline-item"><span class="time">May-July 2026</span><div class="event">Largest domestic Cyclospora outbreak on record unfolds, surpassing the ~4,700-case 2019 high; a suspected vehicle (lettuce/salad greens) emerges only in mid-July, months in; CDC-confirmed counts visibly lag state reports.</div></div>
+        <div class="timeline-item"><span class="time">Jul 13-14, 2026</span><div class="event">Michigan cites lettuce or salad greens as the probable vehicle; FDA investigates produce; Washington Post reports federal and state agencies are examining Taco Bell, which voluntarily and temporarily pulled limited ingredients at select restaurants. No source officially confirmed.</div></div>
+        <div class="timeline-item"><span class="time">Jul 16, 2026</span><div class="event">CBS and NBC, citing a person familiar with the investigation, report an FDA traceback to a single supplier: Taylor Farms iceberg lettuce grown in Mexico, served at Taco Bell in five states. Taco Bell pulls the lettuce indefinitely nationwide. Taylor Farms does not comment. Bloomberg reports an FDA consumer advisory is pending. No agency confirms on the record; no recall issued. The supplier's name reaches the public via journalism, not a federal advisory.</div></div>
+        <div class="timeline-item"><span class="time">Jul 13-17, 2026</span><div class="event">CDC's national confirmed count remains frozen at 1,645 for five days while Michigan alone adds 690 cases in a single day and the state aggregate passes 7,500. The federal-to-state ratio widens from roughly 2.4x to well past 4.6x. CDC does not publicly explain the pause.</div></div>
+        <div class="timeline-item"><span class="time">Jul 17, 2026</span><div class="event">FDA and CDC publish official outbreak pages linking a five-state Taco Bell cluster (1,644 cases / 94 hospitalized) to Taylor Farms de Mexico iceberg lettuce; FDA's consumer advisory for IN, KY, MI, OH, and WV goes live. Taylor Farms issues its first public statement, voluntarily withdraws central-Mexico iceberg lettuce, and tells FDA it will initiate a recall, without admitting fault. North Carolina's health department states its 307 cases are not linked to the Taco Bell cluster, direct evidence of a second vehicle. The national confirmed topline does not move.</div></div>
+        <div class="timeline-item"><span class="time">Jul 18, 2026</span><div class="event">Taylor Farms posts its own recall notice; per secondary reporting its scope is 27 states, well beyond the five-state Taco Bell advisory, and includes retail bagged product (Walmart Marketside brand). North Carolina, whose cases NC DHHS maintains are unlinked to the Taco Bell cluster, is on that 27-state list. Multiple law firms file additional suits naming Taylor Farms' operating entities directly as defendants for the first time. CDC's national topline is still reported at 1,645.</div></div>
+        <div class="timeline-item"><span class="time">Jul 19, 2026</span><div class="event">FDA discloses that its targeted import surveillance sampled Taylor Farms de Mexico shredded iceberg lettuce at the border and returned a positive test for Cyclospora, a direct laboratory finding rather than an epidemiologic inference. The positive lot is detained and reported separate from the 27-state recall; its distribution details are not disclosed. CDC's national topline remains reported at 1,645.</div></div>
+        <div class="timeline-item"><span class="time">Jul 19-20, 2026</span><div class="event">FDA re-reviews the July 19 positive sample and concludes it was a false positive, reportedly apologizing to Taylor Farms; the agency's epidemiological and traceback conclusion is stated as unchanged. As of Jul 19, no confirmed positive product-sample result exists in this outbreak. Additional secondary reporting continues to cite the national topline at 1,645.</div></div>
+        <div class="timeline-item"><span class="time">Jul 21, 2026</span><div class="event">MDHHS reports Michigan's case total at 6,571, up from 6,148 the day before. NC DHHS-adjacent reporting cites North Carolina's total surpassing 500. Additional civil suits are reported, including a 27-year Army veteran's suit and a Michigan couple's federal suit (E.D. Michigan, filed Jul 17), both naming Taylor Farms entities directly. At a press conference, per multiple outlets, acting FDA Commissioner Kyle Diamantas states federal officials have investigated five distinct cyclosporiasis clusters since May, three now considered over.</div></div>
+        <div class="timeline-item"><span class="time">Jul 21-22, 2026</span><div class="event">Search-indexed results show CDC's outbreak page apparently retitled to name Taylor Farms de Mexico iceberg lettuce, in contrast to the "Unknown Source" title found as of Jul 14, a lead pending direct confirmation.</div></div>
+        <div class="timeline-item"><span class="time">Jul 22, 2026</span><div class="event">CDC's national confirmed count breaks its nine-day freeze, rising from 1,645 to 4,173 across 41 states, with hospitalizations rising from 141 to 308 and more than 7,400 additional cases under analysis. Michigan rises to 7,171 (up 9% from 6,571) and North Carolina to 561 (up from 307 on Jul 14). The updated figures are sourced to press coverage of CDC's own release.</div></div>
+        <div class="timeline-item"><span class="time">Jul 21, 2026</span><div class="event">At a news conference, Mexican Health Secretary David Kershenobich says Mexico's own investigation found no evidence the outbreak originated at the Taylor Farms de Mexico facility FDA has traced the Taco Bell cluster to. The same day, HHS Secretary Robert F. Kennedy Jr. says the outbreak is "under control." FDA and CDC do not withdraw their traceback conclusion.</div></div>
+        <div class="timeline-item"><span class="time">Jul 22-23, 2026</span><div class="event">FDA discloses a second, distinct cyclosporiasis outbreak of at least 72 cases with a product "not yet identified," explicitly not linked to the Taylor Farms lettuce cluster. Taylor Farms voluntarily and temporarily shuts its central-Mexico processing facility as US case counts continue rising, though no product sample from that facility has tested positive. Michigan rises further to approximately 7,644 to 7,664 (MDHHS via press), with hospitalizations up sharply to 160.</div></div>
+        <div class="timeline-item"><span class="time">Jul 23-24, 2026</span><div class="event">The CDC outbreak-page retitling flagged as an unconfirmed lead since Jul 21-22 (v9) is search-confirmed: a CDC page titled "Cyclospora Outbreak Linked to Iceberg Lettuce in 5 States" and a companion investigation-update page naming Taylor Farms de Mexico are located via search, though not yet primary-verified. CDC's national confirmed count has not moved from 4,173/41 states in any source found. No new litigation identified.</div></div>
+        <div class="timeline-item"><span class="time">Jul 24, 2026</span><div class="event">CDC retitles its outbreak page again, to "Cyclospora Outbreak Linked to Iceberg Lettuce in 9 States," adding Illinois, Kansas, Oklahoma, and Pennsylvania to the named cluster. The cluster-specific count rises from 1,644 to 1,947 cases and hospitalizations from 94 to at least 98, confirmed convergently across CDC's own page title and multiple independent outlets. Mexican federal authorities report lettuce and water samples from the implicated Guanajuato facility tested negative for Cyclospora and fecal coliforms. Michigan rises to 8,176 cases (up 6.6% from 7,664), hospitalizations flat at 160.</div></div>
+        <div class="timeline-item"><span class="time">Jul 24, 2026</span><div class="event"><strong>Added in v14.</strong> Ohio's statewide count is reported at 2,574, up from 1,316 a week earlier, with more than 90% of cases reported after Jun 20. The Ohio Department of Health requests federal assistance and CDC deploys Epidemic Intelligence Service officers to the state through its Epi-Aid program, expected to remain about three weeks, to assist with case interviews, data management, cluster identification, and coordination with federal multistate traceback. This is the first federal surge-staffing escalation disclosed in this outbreak. On the same date, Indiana's daily state dashboard reads 710 (from 684) and West Virginia's outbreak tracker reads 226 cases with 19 hospitalizations (from 195 and 15).</div></div>
+        <div class="timeline-item"><span class="time">Jul 22-26, 2026</span><div class="event"><strong>Added in v14, read from FDA's active investigation table directly.</strong> FDA's outbreak table lists four concurrent Cyclospora investigations: the iceberg lettuce cluster (ref #1390); ref #1392, 72 cases, product not yet identified, posted Jul 22; ref #1384, 18 cases, and ref #1385, 10 cases (up from 8), both posted Jul 8 and both with product not yet identified and traceback initiated. A fifth, ref #1381, is listed as over with FDA's investigation still open. Through v13 we reported only one additional distinct outbreak beyond the lettuce cluster and explicitly declined to assert a running total because outlet coverage varied; the agency's own table supplies a higher one. <strong>Corrected in v19:</strong> the table's <em>Investigation Status</em> and <em>Outbreak/Event Status</em> are separate columns. Refs #1375 and #1384 show the outbreak <strong>Ended</strong> with only the investigation open, leaving <strong>two</strong> ongoing unidentified-product outbreaks (ref #1385 at 10 cases and ref #1392, now 93), not four.</div></div>
+        <div class="timeline-item"><span class="time">Jul 27, 2026</span><div class="event">Michigan's state total rises to 9,253 cases (MDHHS via press), hospitalizations flat at 160, still 0 deaths. Mexican press continues to report the negative Cofepris/Guanajuato test as standing, with no further on-the-record FDA or CDC response found.</div></div>
+        <div class="timeline-item"><span class="time">Jul 28, 2026</span><div class="event"><strong>Added in v15.</strong> Reviewing this briefing's own source list against fresh reporting surfaces two previously untracked suits: <em>Gelbspan v. Taylor Farms</em> (Kait Gelbspan and Victor Granados, filed Jul 16, N.D. California), a proposed nationwide class action seeking damages for consumers who bought Taylor Farms lettuce without either plaintiff claiming to have gotten sick; and <em>Ott v. Taco Bell Corp., et al.</em> (David Ott, filed Jul 17, Mahoning County, Ohio Court of Common Pleas, a hospitalized Army veteran naming Taylor Fresh Foods and franchisee Charter Foods Inc. directly), cited in this briefing's sources since v9 but not previously carried into its litigation tracking. A docket pull through CourtListener's RECAP archive then surfaced two further untracked suits, <em>Null v. Taylor Fresh Foods, Inc.</em> (Jul 21, C.D. California, No. 8:26-cv-01943, with a related N.D. California filing Jul 23) and <em>Burnham v. Taylor Fresh Foods, Inc.</em> (Jul 23, E.D. Michigan, No. 2:26-cv-12528, six plaintiffs), and corrected <em>Hercula</em>'s filing date from Jul 20 to Jul 22. At least eight distinct matters are now confirmed across four federal districts and one Ohio state court, all federal ones docket-verified. CDC's national confirmed count, re-read directly from CDC's surveillance page, remains 4,173/41 states with 308 hospitalizations and 0 deaths, a fifth consecutive quiet cycle.</div></div>
+        <div class="timeline-item"><span class="time">Jul 28, 2026</span><div class="event"><strong>Added in v16.</strong> NCDHHS's weekly update reports North Carolina's separate outbreak at 718 cases and 24 hospitalizations, up 28% and 50% respectively from 561/16 (Jul 20), the sharpest single-week movement recorded for this state; NCDHHS's no-link statement to the Taco Bell cluster is unchanged. Michigan's state total rises to 9,680 (MDHHS via press), up from 9,253. CDC's national confirmed count remains 4,173/41 states, a sixth consecutive quiet cycle. No new litigation identified.</div></div>
+        <div class="timeline-item"><span class="time">Jul 29, 2026</span><div class="event"><strong>Added in v17.</strong> CDC's national confirmed count breaks its plateau a second time, rising from 4,173 to 6,707 across 45 states (up from 41; Oregon, South Dakota, Vermont, and Delaware newly added), with hospitalizations rising from 308 to 423 and the under-analysis pool growing to more than 11,500 (combined total above 18,200). Michigan's state total rises to 10,077 (MDHHS's own Wednesday update, up from 9,680), now reported across 70 of the state's 82 counties. West Virginia rises to 245 cases/19 hospitalized (up from 226/19). Indiana is reported at nearly 750 (press-sourced, not primary-verified this cycle). NCDHHS launches a Cyclosporiasis Cases and Outbreaks Dashboard. Reuters reports, quoting former FDA Commissioner Scott Gottlieb, that some large retailers have pulled back from central-Mexico produce broadly; logged as a lead, not a finding. No new litigation identified.</div></div>
+        <div class="timeline-item"><span class="time">Jul 30, 2026</span><div class="event"><strong>Added in v18.</strong> Michigan's state total rises to 10,386 (MDHHS's own update, up from 10,077), hospitalizations refreshed to 193 (from a stale 160); MDHHS attributes about 475 recent cases to a reporting backlog, not new illness. Indiana's IDOH dashboard is reported at approximately 954 (Jul 28), directly attributed to IDOH by multiple outlets, restoring High confidence. Gottlieb, in a CNBC interview, names Great Lakes, New York, and North Carolina clusters as potentially linked to central-Mexico parsley and cilantro. A Muskegon, Michigan woman's suit against Taylor Farms, Taylor Fresh Foods, and Taco Bell franchisee Border Foods is filed in the Western District of Michigan (ninth tracked matter, press-sourced). Multiple outlets report Taylor Farms met privately with White House and FDA officials and that House Democrats opened an inquiry into the company's political donations. CDC's national count does not move again this cycle.</div></div>
+        <div class="timeline-item"><span class="time">Jul 17, 2026</span><div class="event"><strong>Added in v19, thirteen days late.</strong> <em>IN RE: 2026 Multistate Cyclosporiasis Outbreak Litigation</em>, MDL No. 3196, is docketed before the Judicial Panel on Multidistrict Litigation, with an initial Motion to Transfer covering <em>Granados</em> (N.D. Cal.), <em>Ayyad</em> (N.D. Ohio) and <em>Parrish</em> (E.D. Mich.). Cycles v16, v17 and v18 each reported that no consolidation had been found. The Panel has not yet ruled.</div></div>
+        <div class="timeline-item"><span class="time">Jul 28, 2026</span><div class="event"><strong>Added in v19.</strong> <em>O'Hara v. Border Foods, LLC</em> is filed in the Western District of Michigan (No. 1:26-cv-02183) before Judge Robert James Jonker, pleaded as product liability and naming Border Foods LLC, Taylor Farms California, Inc. and Taylor Fresh Foods, Inc. This is the ninth tracked matter, the first in a fifth federal district, and it replaces the press-sourced account carried in v18.</div></div>
+        <div class="timeline-item"><span class="time">Jul 30, 2026</span><div class="event"><strong>Added in v19, on a primary-source pass.</strong> IDOH's dashboard reads 1,176 Indiana cases, superseding the approximately 954 press figure. FDA's own table shows refs #1375 and #1384 with their outbreaks ended, reducing the count of ongoing unidentified-product Cyclospora outbreaks from four to two, while ref #1392 grows from 72 to 93 cases. CDC's surveillance page confirms 6,707 cases across 45 states, 423 hospitalizations, more than 11,500 cases under analysis and 1,018 travel-associated cases.</div></div>
+        <div class="timeline-item"><span class="time">Jul 29, 2026</span><div class="event"><strong>Added in v20, on a docket sweep.</strong> The JPML formally assigns MDL No. 3196 ("MOTION FOR TRANSFER ACCEPTED FOR FILING") and issues an Order to Show Cause with responses due Jul 30, following a Jul 23 Notice of Major Deficiency that was cured. The Panel has not yet ruled on transfer. The docket also settles the <em>Granados</em> case number at 5:26-cv-07346 and names a second petitioner, Gelbspan.</div></div>
+        <div class="timeline-item"><span class="time">Jul 31, 2026</span><div class="event"><strong>Added in v20, primary-verified.</strong> Michigan MDHHS reads 10,773 (up from 10,386), Indiana IDOH 1,285 (up from 1,176), and West Virginia OEPS 268/19 (up from 245/19), each fetched directly from the state's own page. House Oversight Ranking Member Garcia's Jul 27 letter to Taylor Farms is confirmed against the committee's own press release; the White House and Taylor Farms are reported (CBS, single outlet) to have responded on the record.</div></div>
+        <div class="timeline-item"><span class="time">Aug 3, 2026</span><div class="event"><strong>Added in v21, primary-verified.</strong> Michigan MDHHS's own outbreak page reports the outbreak's <strong>first 2 deaths</strong> and a statewide total of <strong>11,234</strong> (up from 10,773), read directly this cycle. MDHHS says both decedents had significant underlying health conditions and both became ill before the Jul 17 recall, and maintains cyclosporiasis is generally not life-threatening. CDC's national surveillance page still reads 0 deaths (data through Jul 27), a reporting lag behind the state figure.</div></div>
+        <div class="timeline-item"><span class="time">Aug 4, 2026</span><div class="event"><strong>Added in v22, primary-verified.</strong> CDC's weekly surveillance update (data through Aug 3) reads <strong>10,468</strong> confirmed cases across <strong>47</strong> states, <strong>517</strong> hospitalizations, and <strong>2 deaths</strong> (up from 6,707 / 45 / 423 / 0), plus &gt;12,255 under analysis. The national deaths tally has caught up to Michigan's, closing the lag v21 flagged. North Carolina rose to <strong>867 / 33</strong> and Indiana to <strong>1,524</strong>, both read directly from the state dashboards. RECAP docket sweep confirms <em>Harris v. Taco Bell</em> (E.D. Mich., filed Jul 31), the press-reported "13th" suit, though RECAP shows nine cyclosporiasis dockets, not thirteen.</div></div>
+      </div>
+
+      <div class="panel" style="border-left:3px solid var(--c6s-amber);">
+        <div class="panel-title">Update, July 26 (v14): three findings from reading the agency pages directly</div>
+        <p>Prior cycles had been relying on search-indexed summaries of the CDC and FDA pages rather than the pages themselves. Reading them directly this
+        cycle confirmed every standing headline figure and surfaced three developments those summaries had not carried.</p>
+        <p><strong>1. Ohio nearly doubled and the stale-Ohio caveat retires.</strong> We had carried Ohio at 1,316 (Jul 17) since v9, flagged stale because
+        no fresher statewide figure could be located. The Ohio Department of Health's figure as of Jul 24 is <strong>2,574</strong>, reported consistently by
+        two independent outlets, with more than 90% of cases reported after Jun 20. We attribute this to ODH through those outlets rather than linking a
+        state page: ODH's own website returned errors site-wide when we checked it, and we do not link a primary source we could not load.</p>
+        <p><strong>2. CDC has escalated to federal surge staffing in Ohio.</strong> At ODH's request, CDC is deploying Epidemic Intelligence Service officers
+        under its Epi-Aid program for roughly three weeks. This is a capacity development, not an attribution one, and it is the clearest public signal so
+        far that state-level interview and data-management capacity is not keeping pace. It bears directly on this briefing's central thesis: the constraint
+        in this outbreak has been speed of trace-back and interview throughput, not case detection.</p>
+        <p><strong>3. There are more concurrent outbreaks than we reported.</strong> From v11 through v13 we described a single additional distinct
+        Cyclospora outbreak (72 cases) and declined to assert a total because coverage varied by outlet. FDA's own active table lists the lettuce cluster
+        plus <strong>three</strong> other active Cyclospora investigations, all with product not yet identified, and a fourth now over. Our prior framing was
+        not wrong on the facts we asserted, but it understated the picture, and the correction is in our favor on the underlying thesis rather than against
+        it, which is exactly the direction we should be most skeptical of. We state it plainly and have raised the confidence badge on that row accordingly.</p>
+      </div>
+      <div class="panel critical">
+        <div class="panel-title">Assessment: correlation strong, causation contested</div>
+        <p>We rate the <em>capacity strain and correlation</em> as High confidence: the surveillance reductions are well-documented and public-health experts
+        have voiced concern that they slow patient interviews, trace-back, and trend analysis. We rate <em>direct causal attribution</em> ("the cuts caused this
+        outbreak or its unsolved source") as Medium confidence and contested. Cyclosporiasis remains nationally notifiable through NNDSS, so case
+        <em>detection</em> persists; the documented erosion is in <strong>speed, trace-back, and analysis</strong>, not in whether cases are seen at all.</p>
+        <p style="margin-bottom:0;">The honest framing: the system can still count cases but is slower to act on them, and the food-safety trace-back apparatus is visibly stressed.
+        This outbreak functions as a natural stress test signaling reduced readiness, whether or not the cuts are the proximate cause of any single unsolved lead.</p>
+      </div>
+    </section>
+
+    <section id="assessment">
+      <h2>5. Key Assessments</h2>
+      <table>
+        <thead><tr><th scope="col">#</th><th scope="col">Assessment</th><th scope="col">Confidence</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Clinical severity is low <em>for most</em>: a self-limiting, treatable, non-contagious illness. <strong>v21: no longer zero deaths.</strong> Michigan MDHHS reported the outbreak's first 2 deaths on Aug 3 (both decedents had significant underlying conditions; both ill before the Jul 17 recall); MDHHS maintains cyclosporiasis is generally not life-threatening. CDC's national page still reads 0 deaths (data through Jul 27), a reporting lag.</td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><td>2</td><td>True case burden materially exceeds the confirmed figure. CDC's own confirmed count broke a nine-day freeze on Jul 22 (1,645 to 4,173/41 states), then broke a second, roughly week-long plateau on Jul 29, rising to 6,707 across 45 states; using CDC's own combined confirmed-plus-under-analysis total (&gt;18,200) as the best current burden proxy, the confirmed-to-total ratio has held roughly steady across both jumps (about 4.6x at its widest, narrowing to about 2.8x after the first catch-up and about 2.7x after the second). Michigan's own state total (10,077, Jul 29) still runs well ahead of any single state-specific CDC breakout.</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>3</td><td>Source attribution for the named Taco Bell cluster, expanded from five to nine states on Jul 24 (1,947 cases / 98+ hospitalized, up from 1,644/94), is on the record by FDA and CDC, reaching a named supplier, commodity, and country of origin within roughly eleven weeks, on epidemiologic and traceback grounds, though Mexico's own Health Secretary has now publicly disputed on the record whether the outbreak originated at the implicated facility, backed as of Jul 24 by a negative Cyclospora/fecal-coliform test on samples from the Guanajuato facility, and FDA and CDC have not withdrawn their conclusion in response. A same-cycle import-surveillance lab test was briefly reported as a direct positive, which would have corroborated the attribution physically, but FDA retracted it a day later as a false positive; no confirmed positive product-sample result exists in this outbreak. The supplier's own recall shows the product's actual distribution (27 states) is still wider than the named cluster, and Taylor Farms has since voluntarily, temporarily closed the implicated facility. Attribution for the outbreak as a whole remains open; North Carolina's cases are confirmed unlinked to the Taco Bell cluster even though North Carolina is on the recall's distribution list, an unresolved overlap, and FDA has separately disclosed a wholly distinct 72-case outbreak with an unidentified product. The national confirmed footprint (45 states, up from 41 as of the Jul 29 update) is not plausibly explained by the nine-state cluster alone, though the cluster's expansion narrows that gap somewhat.</td><td><span class="badge badge-amber">High, disputed by Mexico with a negative facility test (cluster attribution) / Medium (outbreak-wide) / Medium (physical evidence, post-retraction)</span></td></tr>
+          <tr><td>4</td><td>Reduced federal food-safety surveillance has strained response speed and trace-back; this is the durable strategic signal. A coherent large-batch catch-up on Jul 22 was a capability-positive data point cutting against the pure erosion narrative, but this cycle adds a foreign government publicly disputing the lead US attribution with an actual negative test result, a named cluster quietly growing from five to nine states discovered via page retitling rather than proactive announcement, a Cabinet-level "under control" statement in tension with continued case growth, and a second, unexplained outbreak surfacing concurrently, a genuinely mixed picture rather than a reversal of the underlying FoodNet-cuts and workforce-reduction story.</td><td><span class="badge badge-amber">Medium (causation) / High (strain)</span></td></tr>
+          <tr><td>5</td><td>The vehicle is a leafy-green product, matching every resolved US outbreak since 2013. The confirmed iceberg-lettuce cluster sits squarely inside that base rate, as do North Carolina's suspected (unconfirmed) foods.</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>6</td><td>The Taylor Farms attribution has not accounted for the full 34-state case load. North Carolina's cases remain officially unlinked to the Taco Bell cluster, but North Carolina's presence on Taylor Farms' 27-state recall distribution list complicates a clean "second, unrelated vehicle" reading; expect further states to be identified as either separately sourced or as reached by the same supplier's broader distribution as investigations continue.</td><td><span class="badge badge-amber">Medium-High</span></td></tr>
+          <tr><td>7</td><td>The same supplier, commodity, and country of origin produced the 2013 US Cyclospora outbreak (631 cases / 25 states). A 13-year recurrence points to an unresolved structural condition in the Mexican leafy-green supply chain rather than a one-off lapse.</td><td><span class="badge badge-amber">Medium-High</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sources">
+      <h2>6. Sources</h2>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);"><strong>Primary sources retrieved directly for v8 (2026-07-21):</strong> <a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/">CDC, Surveillance of Cyclosporiasis</a>, page updated 2026-07-15, figures as of 2026-07-13 [A1]. <a href="https://www.cdc.gov/cyclosporiasis/outbreaks/index.html">CDC, Cyclosporiasis Outbreak with Unknown Source</a>, 2026-07-14 [A1]. <a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-5-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA, Investigation of 5-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a>, current update 2026-07-19 [A1]. <a href="https://www.fda.gov/safety/recalls-market-withdrawals-safety-alerts/taylor-fresh-foods-recalls-iceberg-lettuce-central-mexico-because-possible-health-risk">FDA, Taylor Fresh Foods Recalls Iceberg Lettuce from Central Mexico</a>, company announcement 2026-07-17, FDA publish date 2026-07-18 [A1].</p>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Selected open sources. For the v3 update, the CDC surveillance, HAN, and outbreak pages were retrieved directly and the confirmed figures (1,645 cases / 34 states / 141 hospitalizations / 0 deaths, as of July 13, 2026) verified against them. For the v4 update, the FDA outbreak page and the Taylor Farms statement were retrieved directly and their figures and wording verified verbatim (2026-07-17); CDC's outbreak page content was corroborated through the directly retrieved FDA primary page and cross-checked secondary reporting. In v8 the 27-state distribution list and recall dates were verified against FDA's recall notice, the July 19 false-positive retraction verbatim against FDA's outbreak investigation page, and CDC's frozen national figures against CDC's surveillance page. The litigation details remain secondary-sourced. Every new claim in v9 (the Michigan and North Carolina case updates, the apparent CDC page retitling, and the FDA five-cluster disclosure) is secondary-sourced this cycle and flagged accordingly, pending direct confirmation next cycle. Every new v10 claim, the CDC confirmed-count jump to 4,173/41 states, the Michigan and North Carolina case updates, and the national hospitalization figure, is sourced to press coverage (Washington Post, ABC News, UPI) of CDC's own release. Every new v11 claim, the Mexico attribution dispute, the RFK Jr. "under control" statement, the second FDA-disclosed outbreak, the Taylor Farms facility closure, and the updated Michigan figures, is search-indexed secondary reporting rather than a direct primary-page fetch this cycle. The CDC outbreak-page retitling, an unconfirmed lead since v9, is now search-confirmed by name and URL this cycle but still not independently fetched. Every new v12 claim, the CDC outbreak-page retitling from 5 to 9 states, the updated cluster case/hospitalization counts, the Guanajuato negative test, and the updated Michigan and Illinois figures, is convergently confirmed across CDC's own page title and multiple independent outlets via search rather than a direct primary-page fetch this cycle. v13's only new claim, that the Jul 24 litigation coverage v12 read as duplicative in fact covers a distinct fifth suit (<em>Hercula v. Taco Bell of America, LLC, et al.</em>), rests on a law firm's own press release plus independent press corroborating differing plaintiff, county, and filing-date detail against the Parrish suit, not a docket (PACER) pull. v15 resolves the docket limitation this note has carried since v3. Every federal suit tracked in this briefing is now verified against its own docket through CourtListener's RECAP archive, with the complaints as filed read directly for the <em>Granados/Gelbspan</em> class action (N.D. Cal. No. 5:26-cv-07346, also docketed as 7:26-cv-07346) and <em>Ayyad</em> (N.D. Ohio No. 1:26-cv-01648); case numbers, courts, filing dates, and party lists are docket-derived rather than press-derived, which is what surfaced the two previously untracked suits (<em>Null</em>, <em>Burnham</em>) and corrected <em>Hercula</em>'s filing date. <em>Ott v. Taco Bell Corp., et al.</em> remains press-sourced (PR Newswire's Ron Simon &amp; Associates release and independent coverage) because Mahoning County Common Pleas is a state court outside RECAP; its own source citation had been carried in this list since v9 without being integrated into the litigation tracking elsewhere in the briefing until this cycle. v15 also retires this briefing's standing assumption that primary .gov pages were unreachable. Every prior cycle from v9 onward recorded retrieval failures against CDC, FDA, MDHHS, and ODH and fell back to press coverage. Re-run locally with a real browser context, <strong>all eight of those hosts returned HTTP 200 on the first attempt</strong>; the earlier failures were wrong URLs and an intermediate network path, not agency blocking. Accordingly, this cycle re-reads directly: CDC's surveillance page (dated Jul 24, retrieved 2026-07-28, figures confirmed unchanged), FDA's 9-state outbreak advisory (1,947 cases / 98 hospitalizations / 0 deaths, updated Jul 24, confirmed), FDA's CORE active-investigation table (which surfaced the previously missed ref #1375), and MDHHS's own outbreak page, which is now the source for Michigan's 9,253 rather than press coverage of it, and which supplied the hospitalization-date and delayed-reporting corrections above. v16's two new claims, North Carolina's 718/24 update and Michigan's 9,680, are secondary-sourced this cycle: NCDHHS's and MDHHS's own pages were not independently fetched this cycle, and the figures rest on multiple independent outlets converging on the same NCDHHS- and MDHHS-attributed numbers rather than a direct primary-page read. v17's claims (CDC's national jump to 6,707/45 states, Michigan's 10,077, West Virginia's 245, Indiana's "nearly 750," and the Gottlieb/Reuters lead) are likewise secondary-sourced: this cycle's environment could not establish outbound connections to cdc.gov, fda.gov, or state health-department domains directly (confirmed via repeated attempts, not a single failed try), so every figure above rests on convergence across two or more independent outlets citing the same agency-attributed numbers, consistent with how this briefing has sourced prior CDC topline updates. Indiana specifically carries a Medium rather than High confidence badge this cycle because it could not be checked against IDOH's own dashboard the way it was in the cycle that first verified 710. v18's claims (Michigan's 10,386/193 and Indiana's approximately 954) are again secondary-sourced: this cycle's environment could not establish outbound connections to state health-department or CDC/FDA domains directly, a broader pattern than the cdc.gov/fda.gov-specific difficulty recorded in v16 and v17. Michigan's figure rests on two independent outlets (CBS Detroit, Jefferson City News-Tribune/AP) both attributing the number to MDHHS's own update; Indiana's rests on three independent outlets (Indiana Public Radio, WANE, Fox59) all directly naming IDOH's own dashboard as the source, which is why Indiana is restored to High rather than Medium confidence this cycle even without a direct fetch, consistent with this briefing's standing rule that a state figure attributed by name to the state agency across convergent independent outlets qualifies as state-sourced. The Gottlieb/CNBC claim and the Taylor Farms/White House oversight reporting are both logged at Medium ([C]) reliability: Gottlieb is on the record but speaking generally rather than for a current agency, and the White House-meeting characterization in Insurance Journal's reporting rests on an unnamed source, though the House Democrats' inquiry itself is on the record via CBS News. <strong>v19 supersedes the retrieval account above.</strong> Every primary page named in this section was retrieved directly this cycle, thirteen of thirteen succeeding on the first attempt: CDC's surveillance page, FDA's CORE investigation table and 9-state advisory, and the Michigan, Indiana, West Virginia and North Carolina state pages. The difficulty recorded in v16, v17 and v18 did not reproduce, which is the third consecutive cycle in which it has not. Indiana's figure in particular was superseded by that fetch: IDOH's dashboard read 1,176 where the convergent-outlet rule had produced approximately 954. The standing rule that convergent independent outlets naming a state agency qualify as state-sourced is retained, but it is now explicitly subordinate to a direct fetch, which must be attempted first rather than after. Michigan, West Virginia and North Carolina are upgraded from press-attributed to primary-verified on the same pass. Admiralty reliability in brackets.</p>
+      <ol style="font-size:0.9rem;">
+        <li><a href="https://www.washingtonpost.com/health/2026/07/24/cdc-expands-largest-known-us-cyclospora-outbreak-9-states/">Washington Post - CDC expands largest known US cyclospora outbreak to 9 states</a> (2026-07-24; cluster expanded from 5 to 9 states, 1,947 cases / 98 hospitalized) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/cyclosporiasis-outbreak-expands-9-states-rcna589013">NBC News - Cyclospora outbreak expands to 9 states as CDC says lettuce is likely culprit</a> (2026-07-24) [B]</li>
+        <li><a href="https://cnnespanol.cnn.com/2026/07/24/mexico/cyclospora-planta-guanajuato-esto-sabemos-orix">CNN en Espanol - No encuentran Cyclospora en Guanajuato: esto sabemos de la investigacion en Mexico</a> (2026-07-24; Mexican authorities report negative Cyclospora and fecal-coliform tests on lettuce/water samples from the implicated Guanajuato facility) [B]</li>
+        <li><a href="https://www.cbsnews.com/chicago/news/illinois-reports-408-confirmed-probable-cyclosporiasis-cases/">CBS Chicago - Illinois reports 408 confirmed/probable cyclosporiasis cases</a> (2026-07-21; IDPH-attributed, 215 domestic / 145 travel / 48 unknown, 31 hospitalized) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/news/local/michigan/2026/07/24/reported-cyclosporiasis-cases-michigan-pass-8000/91034704007/">Detroit News - Reported cyclosporiasis cases in Michigan pass 8,000</a> (2026-07-24; MDHHS, 8,176 cases, 160 hospitalized) [B]</li>
+        <li><a href="https://www.washingtonpost.com/health/2026/07/22/cdc-catches-up-state-tallies-cyclosporiasis-case-count-surges/">Washington Post - CDC catches up to state tallies as cyclosporiasis case count surges</a> (2026-07-22; CDC's confirmed count rises from 1,645 to 4,173, explains the reporting-lag mechanism behind the freeze) [B]</li>
+        <li><a href="https://abcnews.com/Health/11500-cyclosporiasis-cases-reported-41-states-cdc/story?id=134979908">ABC News - More than 11,500 cyclosporiasis cases reported in 41 states: CDC</a> (2026-07-22) [B]</li>
+        <li><a href="https://www.upi.com/Top_News/US/2026/07/22/CDC-updates-cyclosporiasis-numbers/9521784748996/">UPI - CDC updates cyclosporiasis tally to 4K+ confirmed cases</a> (2026-07-22) [B]</li>
+        <li><a href="https://www.contagionlive.com/view/cyclosporiasis-case-count-tops-7000-as-lettuce-probe-continues">Contagion Live - Cyclosporiasis Case Count Tops 7,000 as Lettuce Probe Continues</a> (2026-07-22) [B]</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/22/cyclosporiasis-outbreak-cases-in-michigan-exceed-7000/">ClickOnDetroit - Cyclosporiasis outbreak: Cases in Michigan exceed 7,000</a> (2026-07-22; MDHHS figures, 7,171 as of Jul 22, up from 6,571 on Jul 21) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/rfk-jr-says-cyclosporiasis-outbreak-control-mexico-casts-doubt-link-ta-rcna588604">NBC News - RFK Jr. says cyclosporiasis outbreak is "under control" as Mexico casts doubt on link to Taylor Farms facility</a> (2026-07-21/22; Mexican Health Secretary David Kershenobich disputes the Taylor Farms de Mexico attribution on the record) [B]</li>
+        <li><a href="https://thehill.com/policy/healthcare/5985697-another-cyclospora-outbreak-not-linked-to-lettuce-under-investigation-fda/">The Hill - Another cyclospora outbreak not linked to lettuce under investigation: FDA</a> (2026-07-23; 72-case cluster, product not yet identified) [B]</li>
+        <li><a href="https://www.cidrap.umn.edu/cyclospora/fda-identifies-new-cyclospora-outbreak-unknown-source">CIDRAP - FDA identifies new Cyclospora outbreak with unknown source</a> (2026-07-23) [B]</li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-07-22/fda-says-it-s-investigating-another-cyclospora-parasite-outbreak">Bloomberg - FDA Is Investigating Another Cyclospora Parasite Outbreak</a> (2026-07-22; cites CDC's 4,173/41-state/308-hospitalization figures unchanged) [B]</li>
+        <li><a href="https://www.usnews.com/news/us/articles/2026-07-23/michigan-reports-7-644-cyclosporiasis-cases-in-ongoing-outbreak">US News - Michigan reports 7,644 cyclosporiasis cases in ongoing outbreak; Taylor Farms shuts Mexico processing facility</a> (2026-07-23) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/business/2026/07/23/cyclosporiasis-taylor-farms-mexico-processing-facility/91027112007/">Detroit News - Taylor Farms temporarily shuts Mexico processing facility as U.S. cyclosporiasis cases rise</a> (2026-07-23; no product sample from the facility has tested positive) [B]</li>
+        <li><a href="https://www.wxyz.com/news/michigan-cyclosporiasis-cases-surpass-7-600-with-160-hospitalizations-per-mdhhs">WXYZ - Michigan cyclosporiasis cases surpass 7,600 with 160 hospitalizations, per MDHHS</a> (2026-07-23) [B]</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/23/cyclosporiasis-cases-in-michigan-rise-to-more-than-7600-heres-a-breakdown-by-county/">ClickOnDetroit - Cyclosporiasis cases in Michigan rise to more than 7,600, here's a breakdown by county</a> (2026-07-23) [B]</li>
+        <li><a href="https://www.toledoblade.com/news/medical/2026/07/22/cyclosporiasis-cases-top-2-200-across-northwest-ohio/stories/20260722102">Toledo Blade - Cyclosporiasis cases top 2,200 across northwest Ohio</a> (2026-07-22; regional multi-county figure, not a statewide ODH total) [B]</li>
+        <li><a href="https://www.ncdhhs.gov/news/press-releases/2026/07/17/ncdhhs-provides-update-cyclosporiasis-north-carolina">NCDHHS - NCDHHS Provides Update on Cyclosporiasis in North Carolina</a> (2026-07-20 release; 561 cases, updates weekly on Tuesdays) [A]</li>
+        <li><a href="https://www.wral.com/news/state/cyclospora-in-nc-state-reports-561-cyclosporiasis-july-2026/">WRAL - Wake County cyclosporiasis cases rise to 366 as North Carolina outbreak continues</a> (2026-07-21/22; NC statewide total 561, up from 307 on Jul 14, 16 hospitalized) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-says-taylor-farms-lettuce-sample-tested-cyclospora-produced-false-rcna588303">NBC News - Taylor Farms lettuce sample produced false positive for cyclospora, FDA says</a> (2026-07-19; retraction of the July 18 positive test) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/20/fda-taylor-farms-cyclospora-false-positive.html">CNBC - FDA says Taylor Farms cyclospora finding was a false positive</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.newsweek.com/taylor-farms-says-fda-has-apologized-over-false-positive-cyclospora-test-12216498">Newsweek - Taylor Farms says FDA has apologized over false positive cyclospora test</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.forbes.com/sites/maryroeloffs/2026/07/20/heres-where-the-cyclosporiasis-outbreak-stands-after-taylor-farms-false-positive/">Forbes - Cyclospora source again unknown after FDA acknowledges false positive: what we know</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.cbsnews.com/news/taylor-farms-lettuce-false-positive-cyclospora/">CBS News - Taylor Farms lettuce is still focus of cyclospora investigation despite false positive test, FDA says</a> (2026-07-20) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/life/food/2026/07/18/fda-says-taylor-farms-iceberg-lettuce-tested-positive-for-parasite-outbreak/90969816007/">Detroit News - FDA: Taylor Farms lettuce that's not part of recall tests positive for cyclospora</a> (2026-07-18/19; import-surveillance positive test, lot separate from the 27-state recall; later retracted, see above; secondary-sourced this cycle) [B]</li>
+        <li><a href="https://www.foxbusiness.com/lifestyle/taylor-farms-lettuce-sample-tests-positive-cyclospora-recall-expands">Fox Business - Taylor Farms lettuce sample tests positive for Cyclospora as recall expands</a> (2026-07-18/19) [B]</li>
+        <li><a href="https://www.marlerblog.com/case-news/fda-found-cyclospora-on-taylor-farms-lettuce-at-the-border-credit-where-its-due-now-tell-us-where-the-rest-of-that-lot-went/">Marler Blog - FDA Found Cyclospora on Taylor Farms Lettuce at the Border. Credit Where It's Due. Now Tell Us Where the Rest of That Lot Went</a> (2026-07-19; flags the absence of lot number/destination disclosure) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/18/taylor-farms-recalls-iceberg-lettuce-in-27-states-due-to-cyclosporiasis-outbreak.html">CNBC - Taylor Farms recalls iceberg lettuce in 27 states due to cyclosporiasis outbreak</a> (2026-07-18; secondary-sourced this cycle) [B]</li>
+        <li><a href="https://www.washingtonpost.com/health/2026/07/17/taylor-farms-pulls-all-iceberg-lettuce-sourced-central-mexico-us-market/">Washington Post - Taylor Farms launches recall in 27 states after iceberg lettuce is tied to outbreak</a> (2026-07-17/18) [B]</li>
+        <li><a href="https://www.marlerblog.com/case-news/taylor-farms-posted-its-own-recall-it-went-to-27-states-not-5-and-the-list-includes-bags-sold-in-grocery-stores/">Marler Blog - Taylor Farms Posted Its Own Recall. It Went to 27 States, Not 5, and the List Includes Bags Sold in Grocery Stores</a> (2026-07-18; describes the recall as the company's own posted notice, with the 27-state list) [B]</li>
+        <li><a href="https://www.consumerreports.org/health/food-recalls/taylor-farms-pulls-mexican-lettuce-linked-to-cyclospora-para-a7871344748/">Consumer Reports - Parasite-Linked Lettuce Was Sent to Walmart Stores and Food Distributors in 27 States</a> (2026-07-18) [B]</li>
+        <li><a href="https://www.yahoo.com/news/us/articles/walmart-recalls-lettuce-linked-cyclospora-155346451.html">Yahoo News (AP) - Walmart recalls lettuce linked to cyclospora outbreak</a> (2026-07-18; Marketside Bagged Iceberg Salad and Shredded Iceberg Salad; Walmart states no confirmed illnesses tied to the retail product) [B]</li>
+        <li><a href="https://www.prnewswire.com/news-releases/marler-clark-and-darr-law-sue-taco-bell-and-taylor-farms-over-cyclospora-outbreak-linked-to-shredded-iceberg-lettuce-302828785.html">PR Newswire - Marler Clark and Darr Law Sue Taco Bell and Taylor Farms Over Cyclospora Outbreak</a> (2026-07-17; <em>Caruso v. Taco Bell Corporation, et al.</em>, N.D. Ohio, first suit by this firm to name Taylor Farms directly) [B]</li>
+        <li><a href="https://www.forbes.com/sites/conormurray/2026/07/17/taco-bell-hit-with-federal-lawsuits-over-cyclosporiasis-infections/">Forbes - Taco Bell Hit With Federal Lawsuits Over Cyclosporiasis Infections</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/index.html">CDC - Cyclospora Outbreak Linked to Iceberg Lettuce in 5 States</a> (primary; search-confirmed this cycle by title and URL, along with a companion <a href="https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/investigation.html">CDC Investigation Update</a> page naming Taylor Farms de Mexico and reproducing the 1,644/94/0 cluster figures verbatim. This closes the v9 lead that the page had been retitled from "Cyclosporiasis Outbreak with Unknown Source." Still not independently fetched this cycle; not yet primary-verified) [A]</li>
+        <li><a href="https://abcnews.com/Health/federal-health-officials-investigated-5-clusters-cyclosporiasis-cases/story?id=134913883">ABC News - Federal health officials have investigated 5 different clusters of cyclosporiasis cases, FDA says</a> (2026-07-21; acting FDA Commissioner Kyle Diamantas press conference, 3 of 5 clusters considered over) [B]</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/21/cyclosporiasis-outbreak-cases-in-michigan-rise-to-more-than-6500/">ClickOnDetroit - Cyclosporiasis outbreak: Cases in Michigan rise to more than 6,500</a> (2026-07-21; MDHHS figures, 6,571 as of Jul 21 up from 6,148 on Jul 20) [B]</li>
+        <li><a href="https://www.wfae.org/2026-07-21/nc-health-officials-investigate-cyclosporiasis">WFAE - NC health officials report over 500 cyclosporiasis cases</a> (2026-07-21) [B]</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/21/michigan-couple-sues-taco-bell-taylor-farms-over-cyclospora-outbreak-linked-to-contaminated-lettuce/">ClickOnDetroit - Michigan couple sues Taco Bell, Taylor Farms over Cyclospora outbreak linked to contaminated lettuce</a> (2026-07-21; federal suit filed Jul 17, E.D. Michigan) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/news/local/michigan/2026/07/24/michigan-couple-parrish-sues-taylor-farms-taco-bell-cyclosporiasis/91026909007/">Detroit News - Michigan couple Parrish sues Taylor Farms, Taco Bell after getting cyclosporiasis</a> (2026-07-24; <em>Parrish v. Taylor Farms, et al.</em>, Preston and Marie Parrish of Durand, Shiawassee County, filed Jul 17, $75,000 sought; used in v13 to distinguish this suit from Hercula, below) [B]</li>
+        <li><a href="https://www.prnewswire.com/news-releases/clinton-township-couple-with-the-help-of-marler-clark-sues-taco-bell-and-taylor-farms-over-cyclospora-illnesses-302832465.html">PR Newswire - Clinton Township Couple with the Help of Marler Clark Sues Taco Bell and Taylor Farms Over Cyclospora Illnesses</a> (2026-07-22; <em>Hercula v. Taco Bell of America, LLC, et al.</em>, Karl and Gina Hercula of Clinton Township, Macomb County, filed Jul 20, E.D. Michigan Southern Division; new in v13, a suit distinct from Parrish, correcting v12's "not a new suit" characterization) [B]</li>
+        <li><a href="https://www.thedailybeast.com/army-vet-sues-taylor-farms-over-possible-cyclospora-contamination/">The Daily Beast - Army Vet Sues Taylor Farms Over Possible Cyclospora Contamination</a> (2026-07; David Ott, 27-year Army veteran) [C]</li>
+        <li><a href="https://www.prnewswire.com/news-releases/ron-simon--associates-files-first-cyclospora-lawsuit-against-taco-bell-and-taylor-farms-in-one-of-the-largest-food-poisoning-outbreaks-in-us-history-302828606.html">PR Newswire - Ron Simon &amp; Associates Files First Cyclospora Lawsuit Against Taco Bell and Taylor Farms</a> (2026-07-17; new in v15; <em>Ott v. Taco Bell Corp., et al.</em>, Mahoning County, Ohio Court of Common Pleas, David Ott, hospitalized Army veteran, also names franchisee Charter Foods Inc.; this briefing had cited only the Daily Beast source above for Ott since v9 without carrying the suit into its litigation tracking) [B]</li>
+        <li><a href="https://abc6onyourside.com/news/local/man-files-lawsuit-alleging-contracted-cyclospora-ohio-taco-bell-parasitic-illness-david-ott-shredded-iceberg-lettuce-symptoms">ABC6 (WSYX) - Man files lawsuit alleging he contracted Cyclospora from lettuce at Ohio Taco Bell</a> (2026-07; new in v15; independent corroboration of the Ott suit's venue, defendants, and exposure detail) [B]</li>
+        <li><a href="https://www.courthousenews.com/taylor-farms-hit-with-first-class-action-over-parasite-outbreak/">Courthouse News Service - Taylor Farms hit with first class action over parasite outbreak</a> (2026-07-16; new in v15; <em>Gelbspan v. Taylor Farms</em>, Kait Gelbspan and Victor Granados, N.D. California, proposed nationwide class action, no plaintiff claims illness) [B]</li>
+        <li><a href="https://www.law360.com/articles/2502881/taylor-farms-taco-bell-sued-over-cyclospora-outbreak">Law360 - Taylor Farms, Taco Bell Sued Over Cyclospora Outbreak</a> (2026-07; new in v15; independent legal-trade corroboration of the Gelbspan class action) [B]</li>
+        <li><a href="https://www.courtlistener.com/docket/73632284/granados-v-taylor-fresh-foods-inc/">CourtListener RECAP - <em>Granados v. Taylor Fresh Foods, Inc.</em>, N.D. Cal. No. 5:26-cv-07346 (district docket displays 7:26-cv-07346)</a> (primary docket; complaint as filed read directly 2026-07-28; new in v15; filed 2026-07-16, plaintiffs Kait Gelbspan and Victor Granados, class action, six counts, economic-loss theory, neither plaintiff pleads illness) [A]</li>
+        <li><a href="https://www.courtlistener.com/docket/73631038/ayyad-v-pacific-bells-llc/">CourtListener RECAP - <em>Ayyad v. Pacific Bells, LLC</em>, N.D. Ohio No. 1:26-cv-01648</a> (primary docket; complaint as filed read directly 2026-07-28; new in v15; filed 2026-07-16, franchisee and John Doe suppliers only, exposure pleaded to a Jun 14 meal) [A]</li>
+        <li><a href="https://www.courtlistener.com/?q=%22Taylor+Fresh+Foods%22&amp;type=r&amp;filed_after=2026-06-01">CourtListener RECAP - federal docket sweep, Taylor Fresh Foods and Taco Bell, filed on or after 2026-06-01</a> (primary dockets; run 2026-07-28; new in v15; the sweep that surfaced <em>Null</em> (C.D. Cal. No. 8:26-cv-01943, Jul 21; N.D. Cal. No. 5:26-cv-07629, Jul 23) and <em>Burnham</em> (E.D. Mich. No. 2:26-cv-12528, Jul 23) and corrected the <em>Hercula</em> filing date to Jul 22) [A]</li>
+        <li><a href="https://www.michigan.gov/mdhhs/keep-mi-healthy/infectious-diseases/infectious-disease-outbreaks">MDHHS - Infectious Disease Outbreaks (Michigan cyclosporiasis case counts)</a> (primary; re-retrieved and read directly 2026-08-03; first read directly in v15 replacing press sourcing; <strong>v21: now reads 11,234 total cases and 2 deaths, last updated Aug 3, 2026</strong>, 193 hospitalizations (hospitalization status refreshed weekly on Thursdays), roughly 475 of the total previously unreported due to delayed laboratory reporting and explicitly not a sudden increase in illnesses, totals updated daily Monday to Friday by 11:00 a.m. Eastern. MDHHS states both decedents had significant underlying health conditions and both became ill before the Jul 17 recall, and that cyclosporiasis is generally not life-threatening) [A]</li>
+        <li><a href="https://www.detroitnews.com/story/news/local/michigan/2026/07/27/cyclosporiasis-outbreak-reaches-9200-cases-michigan/91062130007/">Detroit News - Cyclosporiasis outbreak reaches 9,200+ cases in Michigan</a> (2026-07-27; new in v15; MDHHS, 9,253 cases, 160 hospitalized, 0 deaths) [B]</li>
+        <li><a href="https://www.wbtv.com/2026/07/28/north-carolina-reaches-over-700-cases-cyclosporiasis-what-know/">WBTV - North Carolina reaches over 700 cases of cyclosporiasis: what to know</a> (2026-07-28; new in v16; NCDHHS's Jul 28 update, 718 cases and 24 hospitalized, up from 561/16 on Jul 20) [B]</li>
+        <li><a href="https://www.witn.com/2026/07/28/state-reports-28-jump-cyclosporiasis-cases-50-rise-hospitalizations-since-last-week/">WITN - State reports 28% jump in cyclosporiasis cases, 50% rise in hospitalizations since last week</a> (2026-07-28; new in v16; independent corroboration of NCDHHS's 718/24 figures and the week-over-week percentage changes) [B]</li>
+        <li><a href="https://www.usnews.com/news/us/articles/2026-07-28/michigan-reports-9-680-cyclosporiasis-cases-in-ongoing-outbreak">US News (AP) - Michigan cyclosporiasis cases increase to 9,680 in ongoing outbreak</a> (2026-07-28; new in v16; MDHHS via press, 9,680 cases, up from 9,253) [B]</li>
+        <li><a href="https://abcnews.com/Health/18000-cyclosporiasis-cases-reported-45-states-cdc/story?id=135194065">ABC News - More than 18,000 cyclosporiasis cases reported across 45 states: CDC</a> (2026-07-29; new in v17; CDC's Jul 29 surveillance update, 6,707 confirmed / 45 states / 423 hospitalized, up from 4,173 / 41 states / 308) [B]</li>
+        <li><a href="https://www.aha.org/news/headline/2026-07-29-cdc-reports-more-18000-confirmed-or-suspected-cyclosporiasis-cases">AHA News - CDC reports more than 18,000 confirmed or suspected cyclosporiasis cases</a> (2026-07-29; new in v17; independent corroboration of the 6,707 confirmed / &gt;11,500 under-analysis / &gt;18,000 combined figures) [B]</li>
+        <li><a href="https://www.newsweek.com/cyclospora-map-update-parasite-cases-cdc-explosive-diarrhea-12259832">Newsweek - Cyclospora map update: 4 more states hit as CDC reports 2,500 new cases</a> (2026-07-29; new in v17; identifies Oregon, South Dakota, Vermont, and Delaware as the four states newly added to CDC's confirmed-case list, 41 to 45) [B]</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/29/cyclosporiasis-cases-in-michigan-reach-10000/">ClickOnDetroit - Cyclosporiasis cases in Michigan reach 10,000</a> (2026-07-29; new in v17; MDHHS's own Wednesday update, 10,077 cases, up from 9,680, 397 new cases, spread across 70 of 82 counties) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/news/local/michigan/2026/07/29/number-of-cyclosporiasis-cases-in-michigan-rises-over-10000/91090060007/">Detroit News - Number of cyclosporiasis cases in Michigan rises over 10,000</a> (2026-07-29; new in v17; independent corroboration of the 10,077 figure and 160 hospitalizations) [B]</li>
+        <li><a href="https://wvpublic.org/story/health-science/w-va-cyclosporiasis-numbers-rise-again/">West Virginia Public Broadcasting - W.Va. Cyclosporiasis Numbers Rise Again</a> (2026-07-28; new in v17; 245 cases / 19 hospitalizations, up from 226/19) [B]</li>
+        <li><a href="https://www.21alivenews.com/2026/07/25/cyclosporiasis-outbreak-continues-impact-indiana-with-over-100-cases-reported-allen-co-nearly-750-infected-statewide/">21ALIVE - Cyclosporiasis outbreak continues to impact Indiana, with over 100 cases reported in Allen Co., nearly 750 infected statewide</a> (2026-07-25; new in v17; IDOH-attributed statewide figure, not primary-verified this cycle) [C]</li>
+        <li><a href="https://www.ncdhhs.gov/news/press-releases/2026/07/28/additional-cyclosporiasis-cases-identified-north-carolina-ncdhhs-launches-new-case-dashboard">NCDHHS - Additional Cyclosporiasis Cases Identified in North Carolina, NCDHHS Launches New Case Dashboard</a> (2026-07-28; new in v17; announces the new Tuesdays-updated Cyclosporiasis Cases and Outbreaks Dashboard; Wake County at 432) [B]</li>
+        <li><a href="https://www.cnn.com/2026/07/28/health/cyclospora-central-mexico-produce">CNN - Retailers shun central Mexico produce as US cyclospora outbreak spreads, former FDA chief says</a> (2026-07-28; new in v17; on-the-record quote from former FDA Commissioner Scott Gottlieb; logged as a lead, not a finding, per hedge discipline) [B]</li>
+        <li><a href="https://www.cbsnews.com/detroit/news/michigan-cyclosporiasis-cases-193-hospital-cases-july-30/">CBS Detroit - Michigan cyclosporiasis outbreak tops 10,000 cases; 33 additional hospitalizations in past week</a> (2026-07-30; new in v18; MDHHS's own update, 10,386 cases, hospitalizations refreshed to 193, reporting-backlog explanation for about 475 recent cases) [B]</li>
+        <li><a href="https://www.newstribune.com/news/2026/jul/30/number-of-cyclosporiasis-cases-in-michigan/">Jefferson City News-Tribune (AP) - Number of cyclosporiasis cases in Michigan surpasses 10,000</a> (2026-07-30; new in v18; independent corroboration of the 10,386 figure) [B]</li>
+        <li><a href="https://indianapublicradio.org/news/2026/07/indiana-reports-nearly-1000-cyclosporiasis-cases/">Indiana Public Radio - Indiana reports nearly 1,000 cyclosporiasis cases</a> (2026-07-28; new in v18; directly attributes approximately 954 cases to IDOH's own dashboard) [B]</li>
+        <li><a href="https://www.wane.com/news/indiana/nearly-1000-cases-of-explosive-diarrhea-illness-cyclosporiasis-reported-in-indiana/">WANE - Nearly 1,000 cases of explosive diarrhea illness cyclosporiasis reported in Indiana</a> (2026-07-28; new in v18; independent corroboration of the ~954 IDOH-attributed figure) [B]</li>
+        <li><a href="https://fox59.com/indiana-news/nearly-1000-cases-of-explosive-diarrhea-illness-cyclosporiasis-reported-in-indiana/">Fox59 - Nearly 1,000 cases of explosive diarrhea illness cyclosporiasis reported in Indiana</a> (2026-07-28; new in v18; further independent corroboration, Allen, Marion, and DeKalb counties leading) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/24/cyclospora-cdc-says-outbreak-is-in-nine-states.html">CNBC - Gottlieb interview coverage; central-Mexico parsley/cilantro linkage claim for Great Lakes, New York, and North Carolina clusters</a> (2026-07-27/28; new in v18; former FDA Commissioner Scott Gottlieb names North Carolina specifically; logged as a lead, not a finding, per hedge discipline) [C]</li>
+        <li><a href="https://www.courtlistener.com/docket/73691833/in-re-2026-multistate-cylcosporiasis-outbreak-litigation/">CourtListener RECAP - <em>IN RE: 2026 Multistate Cyclosporiasis Outbreak Litigation</em>, J.P.M.L. MDL No. 3196, initial Motion to Transfer</a> (docketed 2026-07-17; primary court record, added in v19)</li>
+        <li><a href="https://www.courtlistener.com/docket/73682668/ohara-v-border-foods-llc/">CourtListener RECAP - <em>O'Hara v. Border Foods, LLC</em>, W.D. Mich. No. 1:26-cv-02183</a> (filed 2026-07-28; primary court record, added in v19)</li>
+        <li><a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/">CDC - Surveillance of Cyclosporiasis (national case counts)</a> (page dated 2026-07-28, data through 2026-07-27; primary source, retrieved directly in v19)</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigations-foodborne-illness-outbreaks">FDA - Investigations of Foodborne Illness Outbreaks (CORE active investigation table)</a> (retrieved directly in v19; basis for the correction from four concurrent outbreaks to two)</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-9-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA - Investigation of 9-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a> (retrieved directly in v19; 1,947 cases / 98 hospitalizations)</li>
+        <li><a href="https://www.in.gov/health/idepd/diseases-and-conditions-resource-page/cyclosporiasis/">IDOH - Cyclosporiasis (Indiana statewide case count dashboard)</a> (1,176 as of 2026-07-30; primary source, retrieved directly in v19)</li>
+        <li><a href="https://www.dph.ncdhhs.gov/programs/epidemiology/communicable-disease/foodborne-illnesses/cyclosporiasis/cases">NCDHHS - Cyclosporiasis Cases in North Carolina (case dashboard)</a> (718 / 24 as of the 2026-07-28 update; primary source, retrieved directly in v19)</li>
+        <li><a href="https://oeps.wv.gov/cyclosporiasis-outbreak">WV DH Office of Epidemiology - Cyclosporiasis Outbreak (state case counts)</a> (245 / 19, page dated 2026-07-28; primary source, retrieved directly in v19)</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/30/michigan-woman-sues-taylor-farms-border-foods-over-cyclospora-outbreak-linked-to-lettuce/">ClickOnDetroit - Michigan woman sues Taylor Farms, Border Foods over Cyclospora outbreak linked to lettuce</a> (2026-07-30; new in v18; ninth tracked litigation matter, filed Jul 28, W.D. Michigan; first suit in this briefing's tracking to name Taco Bell franchisee Border Foods; press-sourced, no docket number obtained this cycle) [C]</li>
+        <li><a href="https://www.insurancejournal.com/news/national/2026/07/29/879441.htm">Insurance Journal - Company at Center of Cyclospora Outbreak Complained to White House, Source Says</a> (2026-07-29; new in v18; reports a private meeting between Taylor Farms and White House/FDA officials during the investigation; unnamed source for the meeting's characterization) [C]</li>
+        <li><a href="https://www.cbsnews.com/news/taylor-farms-cyclospora-outbreak-white-house-investigation/">CBS News - Taylor Farms CEO pressed by lawmaker over cyclospora outbreak and White House ties</a> (2026-07-29; new in v18; on-the-record House Democrats' inquiry citing Taylor Farms' political donations) [B]</li>
+        <li><a href="https://www.forbes.com/sites/brucelee/2026/07/28/fda-lists-12-ongoing-foodborne-outbreaks-4-cyclospora-3-salmonella/">Forbes - FDA Lists 12 Ongoing Foodborne Outbreaks, 4 Cyclospora, 3 Salmonella</a> (2026-07-28; new in v18; independently confirms four concurrent FDA Cyclospora investigations, resolving the "four vs. six" discrepancy flagged as a watch item in v17) [B]</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigations-foodborne-illness-outbreaks">FDA - Investigations of Foodborne Illness Outbreaks (CORE active investigation table)</a> (primary; retrieved and read directly 2026-07-26; new in v14; source for the four concurrent Cyclospora investigations, refs #1390, #1392 at 72 cases, #1384 at 18 cases, #1385 at 10 cases up from 8, and #1381 listed as over) [A]</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-9-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA - Investigation of 9-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a> (primary; retrieved and read directly 2026-07-26, page current as of its Jul 24 update; new in v14 as a primary read rather than a page-title inference; explicitly names IL, IN, KS, KY, MI, OH, OK, PA, WV, and carries the 1,947 / 98 / 0 figures and the Jul 19 false-positive retraction verbatim) [A]</li>
+        <li><a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/">CDC - Surveillance of Cyclosporiasis</a> (primary; retrieved and read directly 2026-07-26, page dated Jul 24; new in v14 as a primary read; 4,173 confirmed / 41 states / 308 hospitalizations / 0 deaths May 1 to Jul 20, more than 7,400 further cases not yet confirmed, median age 44, range 2 to 95, 56% female) [A]</li>
+        <li><a href="https://www.cdc.gov/cyclosporiasis/outbreaks/07-26/investigation.html">CDC - Investigation Update: Cyclospora Outbreak, July 2026</a> (primary; retrieved and read directly 2026-07-26, page dated Jul 24; new in v14 as a primary read; confirms the four added states and onset range Jun 22 to Jul 20) [A]</li>
+        <li><a href="https://www.in.gov/health/idepd/diseases-and-conditions-resource-page/cyclosporiasis/">Indiana Department of Health - Cyclosporiasis case counts</a> (primary; state dashboard read directly 2026-07-26; 710 cases as of Jul 24, updated weekdays by 1pm EDT) [A]</li>
+        <li><a href="https://oeps.wv.gov/cyclosporiasis-outbreak">West Virginia Office of Epidemiology and Prevention Services - Cyclosporiasis Outbreak</a> (primary; state tracker read directly 2026-07-26; 226 cases and 19 hospitalizations as of Jul 24, updated Tuesdays and Fridays) [A]</li>
+        <li><a href="https://data.ohio.gov/wps/portal/gov/data/view/summary-of-infectious-diseases-in-ohio">ODH DataOhio - Summary of Infectious Diseases in Ohio (Tableau dashboard)</a> (added in v20; ODH's own statewide surveillance dashboard; filtered to Cyclosporiasis it reads 4,024 cases for the rolling year to Jul 28, 2026; primary state source, supersedes the v14 press figure of 2,574) [A]</li>
+        <li><a href="https://lucascountyhealth.com/cyclo/">Toledo-Lucas County Health Department - Cyclosporiasis 2026</a> (added in v20; county health department's own page; Lucas County 1,207 and northwest Ohio 3,016 cases, last updated Jul 31, 2026) [A]</li>
+        <li><a href="https://www.health.ny.gov/diseases/communicable/cyclosporiasis/">New York State Department of Health - Cyclosporiasis</a> (added in v20.1; state DOH's own page; 753 cases since May 1, 2026 and 787 for all of 2026, last updated Jul 29; replaces the CDC-feed value of 642 previously carried for New York) [A]</li>
+        <li><a href="https://www.nyc.gov/site/doh/health/health-topics/cyclosporiasis.page">NYC Department of Health and Mental Hygiene - Cyclosporiasis</a> (added in v20.2; NYC's own page; 511 cases since May 1, 2026, data as of Jul 27; treated as a subset of the NY State total, not additive) [A]</li>
+        <li><a href="https://www.wcpo.com/news/state/state-ohio/cdc-sending-disease-detectives-to-ohio-to-help-with-cyclosporiasis-investigation">WCPO - CDC sending "disease detectives" to Ohio to help with cyclosporiasis investigation</a> (2026-07-24; new in v14; quotes CDC statement on the Epi-Aid deployment and its expected three-week duration, and reports Ohio at 2,574 cases attributed to ODH) [B]</li>
+        <li><a href="https://www.daytondailynews.com/local/ohio/cdc-sending-disease-detectives-to-ohio-to-help-with-cyclosporiasis-investigation/article_cbb07718-539b-59d9-8fa8-cc569b5d9c54.html">Dayton Daily News - CDC sending "disease detectives" to Ohio to help with cyclosporiasis investigation</a> (2026-07-24; new in v14; independent corroboration of the 2,574 Ohio figure and the Epi-Aid deployment) [B]</li>
+        <li><a href="https://spectrumnews1.com/oh/columbus/news/2026/07/24/ohio-cyclosporiasis-outbreak-cdc">Spectrum News 1 Ohio - CDC disease detectives coming to Ohio to investigate cyclosporiasis outbreak</a> (2026-07-24; new in v14; reports the Ohio count as "more than 2,600" and "double the number reported the week before," a figure we did not adopt in favor of the more precise 2,574 carried by two other outlets) [B]</li>
+        <li><a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigation-5-state-outbreak-cyclospora-illnesses-iceberg-lettuce-july-2026">FDA - Investigation of 5-State Outbreak of Cyclospora Illnesses: Iceberg Lettuce (July 2026)</a> (primary; retrieved and verified verbatim 2026-07-17; consumer advisory for IN/KY/MI/OH/WV; "single supplier, Taylor Farms de Mexico") [A]</li>
+        <li><a href="https://www.taylorfarms.com/newsroom/taylor-fresh-foods-statement-regarding-cyclospora-outbreak/">Taylor Farms - Taylor Fresh Foods Statement Regarding Cyclospora Outbreak</a> (primary; retrieved and verified verbatim 2026-07-17; first company statement, voluntary withdrawal, recall notice to FDA) (2026-07-17) [A]</li>
+        <li><a href="https://www.abc12.com/news/health/fda-and-cdc-say-taylor-farms-linked-as-potential-source-of-cyclosporiasis-outbreak/article_e9c9db79-9c4f-41be-8d2b-0e24c15162e6.html">ABC12 - FDA and CDC say Taylor Farms linked as potential source of cyclosporiasis outbreak</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-07-17/lettuce-grower-taylor-farms-to-recall-products-tied-to-parasite">Bloomberg - Taylor Farms to Recall Lettuce Ingredients Linked to Cyclospora Outbreak</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-names-source-cyclosporiasis-outbreak-rcna587899">NBC News - Taylor Farms recalls iceberg lettuce amid cyclosporiasis outbreak</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.wusf.org/2026-07-17/cyclospora-outbreak-fda-says-do-not-eat-shredded-lettuce-from-taco-bell-in-5-states">WUSF - Cyclospora outbreak: FDA says do not eat shredded lettuce from Taco Bell in 5 states</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.wral.com/lifestyles/health/nc-cyclospora-source-unknown-july-2026/">WRAL - Tracing Cyclospora: NC cases not connected to Taco Bell lettuce, source of bug still TBD</a> (2026-07-17) [B]</li>
+        <li><a href="https://abc11.com/post/nc-cyclosporiasis-parasite-exploding-diarrhea-cases-surge-not-connected-taco-bell-taylor-farm-lettuce-outbreak-nationwide/19528103/">ABC11 - Cyclosporiasis cases surge in NC are not linked to Taco Bell lettuce outbreak, DHHS says</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.detroitnews.com/story/news/local/michigan/2026/07/17/michigans-cyclosporiasis-case-total-surpasses-5000/90957125007/">Detroit News - Michigan's cyclosporiasis case total tops 5,000</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.food-safety.com/articles/11627-cdc-reports-up-to-7-000-cyclosporiasis-cases-across-us-identifies-large-midwestern-outbreak-cluster">Food Safety Magazine - CDC Reports Up to 7,000 Cyclosporiasis Cases Across U.S., Identifies Large Midwestern Outbreak Cluster</a> (2026-07-17) [B]</li>
+        <li><a href="https://www.cbsnews.com/news/cyclosporiasis-outbreak-taco-bell-lettuce-mexico/">CBS News - Outbreak possibly traced to lettuce from Mexico used by Taco Bell (Taylor Farms named; source familiar with investigation)</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/fda-names-source-cyclosporiasis-outbreak-rcna587899">NBC News - Iceberg lettuce supplier investigated as possible source (Taylor Farms; 5 states; not officially confirmed)</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.bloomberg.com/news/articles/2026-07-16/fda-to-warn-against-taco-bell-lettuce-in-5-states-over-parasite">Bloomberg - FDA to warn of Taco Bell lettuce in 5 states over parasite</a> (2026-07-16) [B]</li>
+        <li><a href="https://thehill.com/policy/healthcare/5973299-taco-bell-removes-lettuce-cyclosporiasis/">The Hill - Taco Bell removes lettuce from some locations amid FDA investigation</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.clickondetroit.com/news/local/2026/07/16/michigan-cyclosporiasis-cases-rise-to-more-than-4300/">ClickOnDetroit - Michigan cases rise to more than 4,300 (4,312 / 102 hospitalized)</a> (2026-07-16) [B]</li>
+        <li><a href="https://www.michigan.gov/mdhhs/keep-mi-healthy/infectious-diseases/cyclosporiasis-outbreak">MDHHS - Cyclosporiasis Outbreak 2026 (official state figures and county distribution)</a> (2026-07-16) [A]</li>
+        <li><a href="https://www.marlerblog.com/case-news/the-cyclospora-outbreak-now-has-two-names-on-it-taylor-farms-and-taco-bell-both-have-been-here-before-and-so-have-i/">Marler Blog - The outbreak now has two names on it: Taylor Farms and Taco Bell (prior-incident history; first suit, Ayyad v. Pacific Bells)</a> (2026-07) [B/C]</li>
+        <li><a href="https://www.foodsafetynews.com/2013/08/cyclospora-outbreak-linked-to-taylor-farms-salad-some-served-at-olive-garden-and-red-lobster/">Food Safety News - 2013 Cyclospora outbreak linked to Taylor Farms salad (Olive Garden, Red Lobster)</a> (2013-08) [B]</li>
+        <li><a href="https://www.infectioncontroltoday.com/view/cyclosporiasis-outbreak-linked-produce-taylor-farms-de-mexico">Infection Control Today - 2013 outbreak linked to produce from Taylor Farms de Mexico (FDA traceback and environmental assessment)</a> (2013) [B]</li>
+        <li><a href="https://www.bbc.com/news/articles/c621m66qm76o">BBC - What to know about the 'explosive diarrhoea' parasite outbreak in US</a> (2026-07-09) [B]</li>
+        <li><a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/index.html">CDC - Surveillance of Cyclosporiasis</a> (primary; retrieved and verified directly: 1,645 cases / 34 states / 141 hospitalizations / 0 deaths, as of 2026-07-13) [A]</li>
+        <li><a href="https://www.cdc.gov/han/php/notices/han00531.html">CDC HAN 00531 - Domestically Acquired Cyclosporiasis Cases in Multiple U.S. States, 2026</a> (2026-07-14) [A]</li>
+        <li><a href="https://www.npr.org/2026/07/12/nx-s1-5890935/cyclosporiasis-outbreak-diarrhea-nausea-where-states-us">NPR - What to know about the cyclosporiasis outbreak</a> (2026-07-12) [A/B]</li>
+        <li><a href="https://www.forbes.com/sites/victoriaforster/2026/07/13/unresolved-cyclospora-outbreak-raises-questions-over-cdc-cuts/">Forbes - Unresolved Cyclospora Outbreak Raises Questions Over CDC Cuts</a> (2026-07-13) [B]</li>
+        <li><a href="https://globalbiodefense.com/2026/07/04/cdc-investigates-surge-of-parasitic-illness-across-18-states-as-workforce-cuts-raise-response-concerns/">GlobalBiodefense - CDC Investigates Surge as Workforce Cuts Raise Concerns</a> (2026-07-04) [B]</li>
+        <li><a href="https://www.newsweek.com/donald-trump-cdc-food-net-monitoring-parasite-cyclospora-12180951">Newsweek - CDC Stopped Monitoring Parasite Before Outbreak (FoodNet 8 to 2)</a> (2026-07) [B/C]</li>
+        <li><a href="https://www.infectioncontroltoday.com/view/cyclosporiasis-outbreak-2026-145-cases-17-states-cdc-alert-health-care-workers">Infection Control Today - 145 Cases, 17 States, CDC HCW Alert</a> (2026-06) [B]</li>
+        <li><a href="https://www.usnews.com/news/us/articles/2026-07-13/michigan-cases-of-intestinal-disease-from-parasite-soar-to-over-2-600">US News - Michigan Cases Soar to Over 2,600</a> (2026-07-13) [B]</li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8779055/">Life Cycle and Transmission of C. cayetanensis (PMC, 2022)</a> [A]</li>
+        <li><a href="https://www.cbsnews.com/news/cyclospora-case-count-climbs-to-353-outbreaks-source-still-unknown/">CBS News - Case Count Climbs, Source Still Unknown</a> (2026-07) [B]</li>
+        <li><a href="https://www.cidrap.umn.edu/cyclospora/what-we-truly-know-about-huge-us-cyclospora-outbreak-and-what-we-don-t">CIDRAP - What we truly know about the huge US Cyclospora outbreak (1,645 confirmed; MI 3,309; OH 1,119; 141 hospitalized)</a> (2026-07-14) [A/B]</li>
+        <li><a href="https://www.washingtonpost.com/health/2026/07/14/authorities-investigate-taco-bell-lettuce-multistate-cyclosporiasis-outbreak/">Washington Post - Authorities investigate Taco Bell and lettuce as outbreak surges</a> (2026-07-14) [B]</li>
+        <li><a href="https://www.cnn.com/2026/07/13/health/cyclospora-parasite-diarrhea-outbreak-increase">CNN - Michigan links outbreak to lettuce/salad greens as cases rise above 3,000</a> (2026-07-13) [B]</li>
+        <li><a href="https://www.cnbc.com/2026/07/14/yums-taco-bell-removes-select-items-says-no-confirmed-link-to-us-cyclosporiasis-outbreak.html">CNBC - Taco Bell removes select items, says no confirmed link</a> (2026-07-14) [B]</li>
+        <li><a href="https://www.nbcnews.com/health/health-news/cyclosporiasis-7000-cases-us-cdc-parasite-explosive-diarrhea-rcna587445">NBC News - Nearly 7,000 cases confirmed or under investigation (1,645 + 5,100)</a> (2026-07-14) [B]</li>
+        <li><a href="https://oregoncapitalchronicle.com/briefs/cases-of-parasitic-outbreak-remain-low-in-oregon-as-other-states-see-surges/">Oregon Capital Chronicle - Cases remain low in Oregon (14 cases, none outbreak-linked)</a> (2026-07-14) [B]</li>
+        <li><a href="https://mynorthwest.com/local/parasite-explosive-diarrhea/4255826">MyNorthwest - King County (WA) cases at normal levels (15 cases, 1 local)</a> (2026-07-14) [B]</li>
+        <li><a href="https://stateline.org/2026/07/14/salad-greens-scrutinized-as-cyclosporiasis-outbreak-spreads/">Stateline - Salad greens scrutinized as outbreak spreads</a> (2026-07-14) [B]</li>
+      </ol>
+    </section>
+
+    </main>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v22 2026-08-04 (data as of 2026-08-03) &middot; Supersedes v21 2026-08-03, v20 2026-08-02, v19 2026-07-30, v18 2026-07-30, v17 2026-07-29, v16 2026-07-28, v15 2026-07-28, v14 2026-07-26, v13 2026-07-26, v12 2026-07-25, v11 2026-07-24, v10 2026-07-23, v9 2026-07-22, v8 2026-07-22, v7 2026-07-21, v6 2026-07-20, v5 2026-07-19, v4 2026-07-18, v3 2026-07-16, and v2 2026-07-15 &middot; Subject to revision. Informational, not medical advice.</p>
+      <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="state-map.html">State Map</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>

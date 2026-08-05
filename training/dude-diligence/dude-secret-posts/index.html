@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Dude Diligence: You Can't Govern What You Haven't Labeled | Circle 6 Systems</title>
+  <meta name="description" content="Data classification meets AI governance — a split-panel blog post featuring Duke Dillingham and his alter ego Dude Diligence. From the Dude Diligence security awareness series by Circle 6 Systems.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    @import url('../fonts/fonts.css');
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #1a1a1a;
+      --paper: #f5e6c8;
+      --paper-dark: #e8d5a8;
+      --paper-light: #faf3e3;
+      --caption: #f5deb3;
+      --accent: #c0392b;
+      --accent-light: rgba(192, 57, 43, 0.15);
+      --blue: #2c5f8a;
+      --blue-light: rgba(44, 95, 138, 0.12);
+      --green: #5a7a3a;
+      --green-light: rgba(90, 122, 58, 0.15);
+      --bubble-bg: #ffffff;
+      --dude-glow: rgba(192, 57, 43, 0.25);
+      --font-comic: 'Bangers', Impact, 'Arial Black', sans-serif;
+      --font-body: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+      --font-caption: Georgia, 'Times New Roman', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--paper-dark);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== Navigation ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 3px solid var(--accent);
+      z-index: 1000;
+      height: 56px;
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .nav-brand {
+      font-family: var(--font-comic);
+      font-size: 1.3rem;
+      color: var(--caption);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-brand span { color: var(--accent); }
+
+    .nav-label {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--caption);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== Main Content ===== */
+    main {
+      position: relative;
+      z-index: 1;
+      padding-top: 56px;
+    }
+
+    .page-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* ===== Cover ===== */
+    .cover {
+      background: linear-gradient(180deg, var(--ink) 0%, #2a1a0a 100%);
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 1px, transparent 1px);
+      background-size: 6px 6px;
+      pointer-events: none;
+    }
+
+    .cover-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+
+    .cover-masthead {
+      font-family: var(--font-comic);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--caption);
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-shadow: 4px 4px 0 var(--accent), 7px 7px 0 rgba(0,0,0,0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    .cover-label {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 0.85rem;
+      padding: 0.25rem 1rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-title {
+      font-family: var(--font-comic);
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+
+    .cover-tagline {
+      font-family: var(--font-caption);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--caption);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ===== Panel Grid ===== */
+    .panel-grid {
+      display: grid;
+      gap: 12px;
+      margin: 1.25rem 0;
+    }
+
+    .panel-grid.two-col { grid-template-columns: 1fr 1fr; }
+    .panel-grid.wide-narrow { grid-template-columns: 2fr 1fr; }
+    .panel-grid.narrow-wide { grid-template-columns: 1fr 2fr; }
+    .panel-grid.single { grid-template-columns: 1fr; }
+
+    .panel {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+
+    .panel.accent-bg { background: var(--accent-light); }
+    .panel.blue-bg { background: var(--blue-light); }
+    .panel.green-bg { background: var(--green-light); }
+    .panel.dark-bg { background: var(--ink); color: var(--paper); }
+
+    .panel-full {
+      background: var(--paper-light);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      margin: 1.25rem 0;
+    }
+
+    /* ===== Stitch Panel — the signature split ===== */
+    .stitch-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+      margin: 1.25rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stitch-panel::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--ink) 0px,
+        var(--ink) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .stitch-duke {
+      background: var(--paper-light);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .stitch-dude {
+      background: linear-gradient(135deg, var(--accent-light) 0%, rgba(192,57,43,0.08) 100%);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .stitch-dude::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 30%, var(--dude-glow) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .stitch-label {
+      font-family: var(--font-comic);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      padding: 0.15rem 0.5rem;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .stitch-label.duke-label {
+      background: var(--blue);
+      color: var(--paper);
+    }
+
+    .stitch-label.dude-label {
+      background: var(--accent);
+      color: var(--paper);
+    }
+
+    /* ===== Speech Bubbles ===== */
+    .speech-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 0.75rem 1rem;
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      max-width: 90%;
+    }
+
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 24px;
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 16px solid var(--ink);
+    }
+
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 26px;
+      width: 0; height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 14px solid var(--bubble-bg);
+      z-index: 1;
+    }
+
+    .speech-bubble.no-tail::after,
+    .speech-bubble.no-tail::before { display: none; }
+
+    .thought-bubble {
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 20px;
+      padding: 0.85rem 1.15rem;
+      position: relative;
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+      max-width: 85%;
+    }
+
+    .thought-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      width: 14px; height: 14px;
+      background: var(--bubble-bg);
+      border: 2.5px solid var(--ink);
+      border-radius: 50%;
+    }
+
+    .thought-bubble::before {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 22px;
+      width: 9px; height: 9px;
+      background: var(--bubble-bg);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .speech-bubble .speaker, .thought-bubble .speaker {
+      font-family: var(--font-comic);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .thought-bubble .speaker { color: #7a6b5a; }
+
+    /* ===== Narrator ===== */
+    .narrator {
+      background: var(--caption);
+      border: 2px solid var(--ink);
+      padding: 0.5rem 0.75rem;
+      font-family: var(--font-caption);
+      font-style: italic;
+      font-weight: 600;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .narrator.wide { display: block; }
+
+    /* ===== SFX ===== */
+    .sfx {
+      font-family: var(--font-comic);
+      font-size: 2.5rem;
+      color: var(--accent);
+      text-shadow: 3px 3px 0 var(--ink), -1px -1px 0 var(--ink), 1px -1px 0 var(--ink), -1px 1px 0 var(--ink);
+      transform: rotate(-5deg);
+      display: inline-block;
+      letter-spacing: 0.05em;
+      -webkit-text-stroke: 1px var(--ink);
+    }
+
+    .sfx.blue { color: var(--blue); }
+    .sfx.small { font-size: 1.5rem; }
+    .sfx.large { font-size: 3.5rem; }
+
+    /* ===== Section Headers ===== */
+    .comic-title {
+      font-family: var(--font-comic);
+      font-size: 1.6rem;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .comic-title .red { color: var(--accent); }
+
+    /* ===== Helpers ===== */
+    .bold { font-weight: 700; }
+    .text-red { color: var(--accent); }
+    .text-blue { color: var(--blue); }
+    .text-green { color: var(--green); }
+    .body-text { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; }
+    .body-text p { margin-bottom: 0.75rem; }
+
+    .tier-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      margin: 0.75rem 0;
+    }
+
+    .tier-table th {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+
+    .tier-table td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1.5px solid var(--ink);
+      vertical-align: top;
+    }
+
+    .tier-table tr:nth-child(even) td { background: rgba(0,0,0,0.03); }
+
+    .flow-arrow {
+      font-family: var(--font-comic);
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-align: center;
+      margin: 0.5rem 0;
+      letter-spacing: 0.1em;
+    }
+
+    .step-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: step;
+    }
+
+    .step-list li {
+      counter-increment: step;
+      padding: 0.5rem 0 0.5rem 2.5rem;
+      position: relative;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .step-list li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      width: 1.8rem; height: 1.8rem;
+      background: var(--accent);
+      color: var(--paper);
+      font-family: var(--font-comic);
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid var(--ink);
+    }
+
+    .cta-box {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin: 2rem 0 1rem;
+      border: 3px solid var(--accent);
+    }
+
+    .cta-box .cta-headline {
+      font-family: var(--font-comic);
+      font-size: 1.5rem;
+      color: var(--caption);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-box .cta-body {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--paper);
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 700px) {
+      .panel-grid.two-col,
+      .panel-grid.wide-narrow,
+      .panel-grid.narrow-wide {
+        grid-template-columns: 1fr;
+      }
+      .stitch-panel {
+        grid-template-columns: 1fr;
+      }
+      .stitch-panel::after {
+        top: auto; bottom: auto;
+        left: 0; right: 0;
+        width: auto; height: 4px;
+        top: 50%;
+        background: repeating-linear-gradient(
+          to right,
+          var(--ink) 0px,
+          var(--ink) 8px,
+          transparent 8px,
+          transparent 16px
+        );
+        transform: translateY(-50%);
+      }
+      .speech-bubble { max-width: 100%; }
+      .thought-bubble { max-width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" role="navigation" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="/training/dude-diligence/" class="nav-brand">DUDE <span>DILIGENCE</span></a>
+    <span class="nav-label">BLOG &bull; DATA CLASSIFICATION &amp; AI GOVERNANCE</span>
+  </div>
+</nav>
+
+<main>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="cover-masthead">DUDE DILIGENCE</div>
+    <div class="cover-label">SPECIAL EDITION &bull; BLOG</div>
+    <div class="cover-title">"YOU CAN'T GOVERN WHAT YOU HAVEN'T LABELED"</div>
+    <div class="cover-tagline">When a client asks about AI but can't find their sensitive data, two very different people have the same answer. Allegedly.</div>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: THE CLIENT CONVERSATION ===== -->
+<div class="page-inner">
+
+  <div class="comic-title">PART 1: <span class="red">THE CONVERSATION</span></div>
+
+  <!-- Duke's normal day -->
+  <div class="panel-full">
+    <div class="narrator wide">Tuesday afternoon. A client's conference room. The whiteboard says "AI ROADMAP" in three colors of dry-erase marker.</div>
+    <div class="speech-bubble" style="margin-top: 1rem;">
+      <span class="speaker">DUKE</span>
+      That's an impressive rollout plan. Copilot, ChatGPT, custom internal tools — you've thought this through. I have one question before we go further, though.
+    </div>
+  </div>
+
+  <!-- The question — stitch panel -->
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        Do you know where your sensitive data lives?
+      </div>
+      <div class="body-text" style="margin-top: 1.5rem;">
+        <span class="sfx small" style="color: var(--blue);">*sip*</span>
+      </div>
+      <div class="narrator" style="margin-top: 1rem;">Duke waits. He is very patient. He takes another sip of black coffee.</div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="thought-bubble">
+        <span class="speaker">DUDE (inner monologue)</span>
+        They don't know. Look at their faces. They absolutely do not know. Forty thousand files with Social Security numbers could be sitting on a SharePoint site with external sharing right now and nobody in this room would know.
+      </div>
+      <div style="text-align: center; margin-top: 1rem;">
+        <span class="sfx">!!</span>
+      </div>
+      <div class="narrator" style="margin-top: 0.5rem;">Somewhere beneath a hoodie, a badge begins to flicker.</div>
+    </div>
+  </div>
+
+  <!-- The long pause -->
+  <div class="panel-full">
+    <div class="narrator wide">A long pause. A subject change. Duke excuses himself to refill his coffee. Black, like always.</div>
+    <div class="speech-bubble" style="margin-top: 1rem;">
+      <span class="speaker">DUKE</span>
+      I think we should start with data classification before we talk about AI. Once you know what you have and where it is, the AI conversation gets a lot simpler.
+    </div>
+    <div class="speech-bubble" style="margin-left: auto; margin-right: 0; text-align: right;">
+      <span class="speaker">CLIENT</span>
+      ...Yeah. Yeah, that's probably the right call.
+    </div>
+  </div>
+
+  <!-- The hallway moment -->
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="narrator">On the way out. An IT staff member stops Duke in the hallway.</div>
+      <div class="speech-bubble no-tail" style="margin-top: 0.75rem;">
+        <span class="speaker">IT STAFF</span>
+        Hey — are you that Dude Diligence guy?
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        I get that a lot. We just look similar. It's probably the hair.
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="thought-bubble">
+        <span class="speaker">DUDE (inner monologue)</span>
+        And the hoodie. And the coffee. And the badge. But that's where the resemblance ends. He's a very calm governance consultant. I am significantly less calm about unlabeled data.
+      </div>
+      <div class="narrator" style="margin-top: 1rem;">Duke adjusts his sunglasses. The badge stops flickering. Definitely just a trick of the light.</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2: THE PROBLEM ===== -->
+
+  <div class="comic-title" style="margin-top: 2.5rem;">PART 2: <span class="red">THE PROBLEM NOBODY ADMITS</span></div>
+
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        Most organizations have data scattered across SharePoint sites, file shares, email, Teams channels, and that one department's shared drive that IT pretends doesn't exist.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        Some of it is public. Some is regulated. Some would make your legal team very uncomfortable if it showed up in a generative AI response. Without classification, there's no way for anyone &mdash; human or machine &mdash; to know which is which.
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        You know what I call a SharePoint site with 40,000 files, no sensitivity labels, and external sharing enabled?
+      </div>
+      <div style="text-align: center; margin: 1rem 0;">
+        <span class="sfx large">UNACCEPTABLE.</span>
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        You end up with two options: lock everything down and kill productivity, or leave everything open and hope for the best. Neither of those is a strategy. They're just different flavors of giving up. And <span class="bold">I do not give up on data.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: THE FRAMEWORK ===== -->
+
+  <div class="comic-title" style="margin-top: 2.5rem;">PART 3: <span class="red">FOUR TIERS. THAT'S IT.</span></div>
+
+  <div class="panel-full">
+    <div class="narrator wide">Duke sits back down with the client. A whiteboard marker appears in his hand. Nobody saw him pick it up.</div>
+    <div class="speech-bubble" style="margin-top: 1rem;">
+      <span class="speaker">DUKE</span>
+      Classification means applying labels to your data that describe how sensitive it is and how it should be handled. Simple concept. Four tiers is usually right. Here's what we recommend:
+    </div>
+  </div>
+
+  <div class="panel-full">
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>TIER</th>
+          <th>WHAT IT COVERS</th>
+          <th>WHAT HAPPENS IF IT LEAKS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="bold text-green">PUBLIC</span></td>
+          <td>Press releases, published reports, public meeting minutes</td>
+          <td>Nothing. That's the point.</td>
+        </tr>
+        <tr>
+          <td><span class="bold text-blue">INTERNAL</span></td>
+          <td>Org charts, internal memos, procedure documents</td>
+          <td>Awkward, but not catastrophic.</td>
+        </tr>
+        <tr>
+          <td><span class="bold" style="color: #d4760a;">CONFIDENTIAL</span></td>
+          <td>Employee records, financial data, legal correspondence, CJIS-adjacent info</td>
+          <td>Real liability. Regulatory exposure. Bad headlines.</td>
+        </tr>
+        <tr>
+          <td><span class="bold text-red">RESTRICTED</span></td>
+          <td>PHI, SSNs, criminal justice data, specific regulatory mandates</td>
+          <td>The data that keeps your compliance officer up at night.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        These tiers aren't revolutionary. What's revolutionary is making them <span class="bold">operational</span> &mdash; attached to every document, enforced by policy, and understood by every person who touches data.
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        <span class="bold">Revolutionary?</span> Duke, labels on documents is literally the bare minimum. We're not curing diseases here. We're putting name tags on files that contain Social Security numbers. The fact that this qualifies as "revolutionary" should concern everyone.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4: THE TECH ===== -->
+
+  <div class="comic-title" style="margin-top: 2.5rem;">PART 4: <span class="red">VARONIS + PURVIEW = THE ARCHITECTURE</span></div>
+
+  <div class="panel-full">
+    <div class="narrator wide">Duke's whiteboard diagram is getting elaborate. Someone from IT has pulled up a chair.</div>
+  </div>
+
+  <!-- Varonis -->
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        We deploy the <span class="bold">Varonis Data Security Platform</span> as the classification and discovery engine. It scans your entire data estate &mdash; file shares, SharePoint, OneDrive, Exchange, Teams, on-prem storage &mdash; and finds the sensitive content you didn't know was there.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        Built-in rules for PII, PHI, PCI. Custom rules for your specific regulatory landscape. And risk-based prioritization that shows you what's both sensitive <span class="bold">and</span> overexposed.
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        Let me translate: Varonis is the bloodhound. You point it at your data and it comes back with a map of everything you should be terrified about.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        An SSN in a locked-down HR folder? That's a finding. That same SSN on a department-wide SharePoint site with external sharing enabled? <span class="bold text-red">That's a fire.</span> Varonis tells you the difference.
+      </div>
+    </div>
+  </div>
+
+  <!-- Purview -->
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        <span class="bold">Microsoft Purview Sensitivity Labels</span> are the enforcement layer. Labels carry encryption, access control, DLP integration, visual markings, and retention policies. They travel with the document.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        Email it, copy it to a USB drive, upload it to a cloud service &mdash; the label and its protections follow. That's not a feature. That's the whole point.
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        Purview is the bodyguard. Once Varonis identifies the data, Purview wraps it in armor that doesn't come off. You can forward that document to your cousin, upload it to a personal Dropbox, print it and tape it to a bus stop &mdash; okay, the label can't help with that last one. But digitally? <span class="bold">It follows.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- The bridge -->
+  <div class="panel-full accent-bg">
+    <div class="narrator wide">Duke draws an arrow between two boxes on the whiteboard. He does this with more intensity than a whiteboard arrow typically requires.</div>
+    <div style="text-align: center; margin: 1rem 0;">
+      <span class="sfx blue" style="font-size: 2rem;">VARONIS</span>
+      <div class="flow-arrow">&darr; classifies &darr; applies MIP label &darr;</div>
+      <span class="sfx" style="font-size: 2rem;">PURVIEW</span>
+      <div class="flow-arrow">&darr; encrypts &darr; restricts &darr; enforces &darr;</div>
+      <span class="sfx blue" style="font-size: 1.5rem;">PROTECTED.</span>
+    </div>
+  </div>
+
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        Varonis applies MIP sensitivity labels directly to files based on its classification results. Classification decisions flow automatically into Microsoft's enforcement infrastructure. No human in the loop forgetting to click the dropdown.
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        Varonis finds the SSNs. Applies the Confidential label. Purview encrypts and restricts sharing. <span class="bold">Automatically.</span> While you're at lunch. While you're in a meeting. While you're blissfully unaware that Karen from accounting just saved a spreadsheet of employee SSNs to a public folder.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        Sorry Karen. Nothing personal.
+      </div>
+    </div>
+  </div>
+
+  <!-- MIP SDK -->
+  <div class="panel-full blue-bg">
+    <div class="speech-bubble no-tail" style="max-width: 100%;">
+      <span class="speaker">DUKE</span>
+      For organizations with needs beyond what Varonis and Purview cover natively, the <span class="bold">Microsoft Information Protection SDK</span> provides the extension point. API-driven label application for line-of-business apps, integration with records management systems, and cross-platform consistency. One labeling taxonomy. One enforcement model. Multiple classification engines feeding into it.
+    </div>
+  </div>
+
+  <!-- ===== SECTION 5: THE AI CONNECTION ===== -->
+
+  <div class="comic-title" style="margin-top: 2.5rem;">PART 5: <span class="red">THE AI CONNECTION</span></div>
+
+  <div class="panel-full">
+    <div class="narrator wide">Back at the office. Duke is on a call explaining the architecture to another stakeholder. His colleague passes by the door and slows down.</div>
+  </div>
+
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE (on the call)</span>
+        If your data isn't classified, you have exactly two options for AI: give it access to everything &mdash; which is dangerous &mdash; or give it access to nothing &mdash; which is useless. Labels give you the third option. The one that actually works.
+      </div>
+      <div class="body-text" style="margin-top: 1rem;">
+        <p>&bull; Copilot for M365 respects sensitivity labels &mdash; Restricted docs don't surface for unauthorized users</p>
+        <p>&bull; DLP policies tied to labels prevent classified data from being pasted into unapproved AI tools</p>
+        <p>&bull; Custom RAG pipelines filter their index by sensitivity tier</p>
+        <p>&bull; Audit trails prove exactly what data touched an AI system and what didn't</p>
+      </div>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="thought-bubble">
+        <span class="speaker">DUDE (inner monologue)</span>
+        He's getting that look again. The voice is going up half an octave. The coffee cup is being used for emphasis. He's doing the thing where he points at the screen even though the other person can't see him.
+      </div>
+      <div class="narrator" style="margin-top: 1.5rem;">Duke's colleague pauses in the doorway. Mouths two words: "Dude. Diligence."</div>
+      <div class="narrator">Duke does not notice. He is busy explaining DLP policies.</div>
+    </div>
+  </div>
+
+  <div class="panel-full accent-bg">
+    <div class="speech-bubble no-tail" style="max-width: 100%;">
+      <span class="speaker">DUKE (on the call, voice rising)</span>
+      You want to plug an AI into your data estate but you haven't labeled anything and your DLP policies are based on <span class="bold">vibes?</span> That's like installing a security camera system but not telling it which doors matter. It'll watch everything and protect nothing. Label first. AI second. This is <span class="bold text-red">not a label-optional situation.</span>
+    </div>
+    <div style="text-align: center; margin-top: 0.75rem;">
+      <span class="sfx small" style="color: var(--blue);">*click*</span>
+    </div>
+    <div class="narrator" style="margin-top: 0.5rem;">A brief silence. Duke looks down. His badge is glowing. He covers it with his coffee mug.</div>
+  </div>
+
+  <!-- ===== SECTION 6: THE PLAYBOOK ===== -->
+
+  <div class="comic-title" style="margin-top: 2.5rem;">PART 6: <span class="red">THE PLAYBOOK</span></div>
+
+  <div class="stitch-panel">
+    <div class="stitch-duke">
+      <div class="stitch-label duke-label">DUKE DILLINGHAM</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUKE</span>
+        If you're reading this and thinking "we should probably do this," here's the practical path:
+      </div>
+      <ol class="step-list" style="margin-top: 1rem;">
+        <li><span class="bold">Define your tiers.</span> Four is usually right. Align to your regulatory obligations, not someone else's template.</li>
+        <li><span class="bold">Start with manual labeling in one department.</span> Learn from their workflow before you scale.</li>
+        <li><span class="bold">Deploy Purview sensitivity labels in M365.</span> Even without automation, behavior changes immediately.</li>
+        <li><span class="bold">Layer in automated classification with Varonis.</span> Find what humans missed.</li>
+        <li><span class="bold">Tie labels to DLP policies.</span> A label without a policy is a suggestion. A label with a policy is a guardrail.</li>
+        <li><span class="bold">Extend to AI governance.</span> Now you have enforceable AI use policies &mdash; not just a document nobody reads.</li>
+      </ol>
+    </div>
+    <div class="stitch-dude">
+      <div class="stitch-label dude-label">DUDE DILIGENCE</div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        Duke's being diplomatic. Let me be direct.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        Step 1 takes a week. Step 3 takes a week. Steps 4 and 5 take a month. You're not rebuilding the space shuttle here. You're putting name tags on files.
+      </div>
+      <div class="speech-bubble no-tail">
+        <span class="speaker">DUDE</span>
+        The security posture improvement is <span class="bold">immediate.</span> The AI governance capability follows right behind it. Stop planning to plan. Start labeling.
+      </div>
+      <div style="text-align: center; margin-top: 1rem;">
+        <span class="sfx" style="font-size: 2rem;">LABEL.</span>
+        <span class="sfx blue" style="font-size: 2rem;">ENFORCE.</span>
+        <span class="sfx" style="font-size: 2rem; color: var(--green);">GOVERN.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CLOSING ===== -->
+
+  <div class="panel-full" style="text-align: center;">
+    <div class="speech-bubble no-tail" style="display: inline-block; max-width: 600px; margin: 0 auto;">
+      <span class="speaker">DUKE</span>
+      <span class="bold">AI governance without data classification is just a policy document that nobody can enforce.</span>
+      <br><br>
+      Start labeling. Everything else gets easier after that.
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <div class="cta-headline">NEED HELP GETTING STARTED?</div>
+    <div class="cta-body">
+      Reach out to Circle 6 Systems. You'll get a calm, measured governance consultant in a hoodie with a perfectly normal, non-glowing badge.
+      <br><br>
+      <em style="font-size: 0.85rem; color: var(--caption);">We are told that other guy is also available. Separately.</em>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; margin-top: 2rem; padding: 1rem; font-family: var(--font-caption); font-size: 0.85rem; color: #7a6b5a;">
+    <p><em>Duke Dillingham is a compliance officer and security awareness consultant at Circle 6 Systems.</em></p>
+    <p><em>The "Dude Diligence" comic book training series is available at <strong>circle6systems.com/training</strong></em></p>
+    <p style="margin-top: 0.5rem;"><em>They are, as Duke would like you to know, separate people.</em></p>
+  </div>
+
+</div>
+
+</main>
+</body>
+</html>
