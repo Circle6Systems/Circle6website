@@ -22,3 +22,6 @@ node_modules/
 
 # Local-only docs (kept out of the public repo)
 docs/
+
+# Local-only backups (full-history bundle; never publish)
+backup/
