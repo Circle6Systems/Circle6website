@@ -26,13 +26,18 @@
     .hero { text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid var(--c6s-border); margin-bottom: 2.5rem; }
     .hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.25rem; color: var(--c6s-text-bright); line-height: 1.25; }
     .hero .event-date { font-size: 1.05rem; color: var(--c6s-accent); font-weight: 500; margin-bottom: 1rem; }
-    .hero .event-summary { max-width: 720px; margin: 0 auto; color: var(--c6s-text-dim); font-size: 0.95rem; }
+    .hero .event-summary { max-width: 72ch; margin: 0 auto; color: var(--c6s-text-dim); font-size: 1rem; line-height: 1.7; text-align: left; }
+    .hero .event-summary p { margin: 0 0 0.9rem; }
+    .hero .event-summary p:last-child { margin-bottom: 0; }
     .status-bar { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
     .status-item { text-align: center; }
     .status-item .value { font-size: 1.5rem; font-weight: 700; }
     .status-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-text-dim); }
     .section-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c6s-text-dim); margin-bottom: 1rem; }
     .prediction-note { background: var(--c6s-panel); border: 1px solid var(--c6s-border); border-radius: 6px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--c6s-text-dim); }
+    /* Readable line length: cap body copy at ~72ch across the briefing (matches the hero); tables, the stat grid, and cards keep their own widths. */
+    #main-content p, #main-content li, .prediction-note { max-width: 72ch; }
+    #main-content table p, #main-content table li, #main-content .card-grid p { max-width: none; }
   </style>
 </head>
 <body>
@@ -69,24 +74,36 @@
 
     <div class="hero">
       <h1>2026 US Cyclosporiasis Outbreak</h1>
-      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v24, August 9, 2026 (data as of Aug 9)</div>
-      <p class="event-summary">
-        Open-source threat-intelligence briefing on the largest domestic <em>Cyclospora cayetanensis</em> event on record.
-        A parasite spread through the fresh-produce supply chain has produced <strong>10,468 CDC-confirmed domestic cases across 47 states</strong> (that national
-        surveillance figure, data through Aug 3, is unchanged this cycle, with CDC's next weekly update expected around Aug 11), far exceeding the ~4,700-case US
-        record set in 2019. On <strong>Aug 5</strong> FDA and CDC <strong>expanded the Taco Bell / Taylor Farms de Mexico iceberg-lettuce cluster from nine states to
-        15</strong>, adding Arkansas, Iowa, Missouri, Nebraska, New Hampshire and North Carolina; the cluster now stands at <strong>6,358 confirmed cases, 278
-        hospitalizations and 2 deaths</strong> (both in Michigan), up from 1,947 / 98 / 0. The jump comes from broadening the case definition to include people who
-        reported exposure to <em>either</em> Taco Bell <em>or</em> recalled Taylor Farms de Mexico iceberg lettuce, plus the six new states. The lettuce attribution is
-        the one Mexico's own health ministry has publicly disputed on the record, saying its investigation found no evidence the outbreak originated there; Mexican
-        authorities separately report that lettuce and water samples from the implicated Guanajuato facility tested negative for Cyclospora and fecal coliforms. Taylor
-        Farms has temporarily, voluntarily shut the implicated Mexico processing facility even though no product sample from that facility has ever tested positive. FDA
-        separately discloses two ongoing additional outbreaks with products still "not yet identified," not linked to the lettuce cluster. Taylor Farms' recall spans
-        <strong>27 states</strong>, including retail bagged lettuce sold at Walmart. <strong>North Carolina is now federally counted inside the cluster</strong>, but the
-        state's own health department has not followed: NCDHHS's page, last updated Aug 4, still says its cases do not appear associated with the Taco Bell outbreak and
-        points instead to parsley and cilantro. We surface that state-versus-federal disagreement rather than resolve it, and assess the outbreak as a real-world stress
-        test of degraded US biosurveillance and food-safety trace-back capacity.
-      </p>
+      <div class="event-date">Multistate &middot; Reporting period from May 1, 2026 &middot; Briefing v25, August 10, 2026 (data as of Aug 10)</div>
+      <div class="event-summary">
+        <p>
+          Open-source threat-intelligence briefing on the largest domestic <em>Cyclospora cayetanensis</em> event on record.
+          A parasite spread through the fresh-produce supply chain has produced <strong>10,468 CDC-confirmed domestic cases across 47 states</strong>
+          (that national surveillance figure, data through Aug 3, is unchanged this cycle, with CDC's next weekly update expected around Aug 11),
+          far exceeding the ~4,700-case US record set in 2019.
+        </p>
+        <p>
+          On <strong>Aug 5</strong> FDA and CDC <strong>expanded the Taco Bell / Taylor Farms de Mexico iceberg-lettuce cluster from nine states to
+          15</strong>, adding Arkansas, Iowa, Missouri, Nebraska, New Hampshire and North Carolina; the cluster now stands at <strong>6,358 confirmed
+          cases, 278 hospitalizations and 2 deaths</strong> (both in Michigan), up from 1,947 / 98 / 0. The jump comes from broadening the case
+          definition to include people who reported exposure to <em>either</em> Taco Bell <em>or</em> recalled Taylor Farms de Mexico iceberg lettuce,
+          plus the six new states.
+        </p>
+        <p>
+          The lettuce attribution is the one Mexico's own health ministry has publicly disputed on the record, saying its investigation found no
+          evidence the outbreak originated there; Mexican authorities separately report that lettuce and water samples from the implicated Guanajuato
+          facility tested negative for Cyclospora and fecal coliforms. Taylor Farms has temporarily, voluntarily shut the implicated Mexico processing
+          facility even though no product sample from that facility has ever tested positive. FDA separately discloses two ongoing additional outbreaks
+          with products still "not yet identified," not linked to the lettuce cluster. Taylor Farms' recall spans <strong>27 states</strong>, including
+          retail bagged lettuce sold at Walmart.
+        </p>
+        <p>
+          <strong>North Carolina is now federally counted inside the cluster</strong>, but the state's own health department has not followed: NCDHHS's
+          page, last updated Aug 4, still says its cases do not appear associated with the Taco Bell outbreak and points instead to parsley and cilantro.
+          We surface that state-versus-federal disagreement rather than resolve it, and assess the outbreak as a real-world stress test of degraded US
+          biosurveillance and food-safety trace-back capacity.
+        </p>
+      </div>
       <div class="status-bar">
         <div class="status-item">
           <div class="value" style="color: var(--c6s-amber);">ACTIVE</div>
@@ -193,6 +210,30 @@
     </div>
 
     <div class="prediction-note" style="border-left:3px solid var(--c6s-amber);">
+      <strong>What changed in v25 (Aug 10): Michigan's guidance rollback is now confirmed from MDHHS's own release, and Missouri keeps climbing.</strong>
+      The lead this cycle is a source upgrade, not a new event. <strong>MDHHS's Aug 6 newsroom release was fetched directly this cycle</strong> (the page that
+      rendered DOM-empty for the scout returns fine from here), so two things v24 could only carry as a press LEAD are now primary-verified against the agency's
+      own words: MDHHS has <strong>formally rescinded its precautionary "avoid bagged salad mixes" recommendation</strong> and returned to routine produce-handling
+      guidance, telling residents they "may resume their usual food handling practices and make choices based on their individual risk tolerance," while continuing
+      to recommend avoiding specifically <em>recalled</em> lettuce. Its stated basis is that new case reports are slowing and diarrhea-related emergency-department
+      visits are trending down. The same release states <strong>12,485 Michigan cases since June 2026</strong>, so that figure is now adopted onto the map as
+      state-primary (superseding the 12,218 v24 held from the dashboard) rather than the press LEAD v24 carried. MDHHS also announced it is <strong>moving all
+      outbreak reporting to a weekly Thursday cadence</strong>, so the daily-count expectation no longer applies. This closes the Michigan gap that issues #4, #5
+      and #7 flagged for three consecutive cycles.
+      <br><br>
+      <strong>Missouri rose again but still has no primary dashboard.</strong> STLPR and KCTV5 (both Aug 10) report DHSS now counts <strong>1,577 cases, a 44%
+      week-over-week jump, the third-highest state total in the country behind Michigan and Ohio</strong>, up from the ~1,095 v24 carried. No DHSS-hosted dashboard
+      is discoverable, so per standing rule the map count is held at its last-verified value and the note records the newer press figure as a Medium-confidence LEAD
+      rather than adopting it.
+      <br><br>
+      <strong>The federal picture is unchanged and was re-verified directly.</strong> CDC's national surveillance page still reads <strong>10,468 / 47 states / 517
+      hospitalized / 2 deaths</strong> (header Aug 4, data through Aug 3); its weekly update, expected around Aug 11, has not yet posted. NCDHHS's Tuesday (Aug 11)
+      refresh is likewise not yet due, so the NC federal-vs-state conflict stands. Indiana could not be re-verified this cycle: IDOH's dashboard URL now 404s after a
+      site reorganization, and a date-ambiguous press "~1,893" figure is <em>not</em> adopted; Indiana is held at its last-verified <strong>1,832</strong> (Aug 7)
+      and flagged for the next cycle. The FDA ref #1385 count is held at its verified 10. The CourtListener/RECAP litigation sweep remains an open coverage gap.
+    </div>
+
+    <div class="prediction-note" style="border-left:3px solid var(--c6s-border);">
       <strong>What changed in v24 (Aug 9): a quiet federal cycle, movement at the state level.</strong> Every source below was re-fetched directly this
       cycle. The federal picture is frozen where v23 left it: CDC's national surveillance page still reads <strong>10,468 / 47 states / 517 hospitalized /
       2 deaths</strong> (header Aug 4, data through Aug 3), and both federal cluster primaries, FDA's 15-State advisory and CDC's outbreak page, still read the
@@ -779,7 +820,7 @@
           <tr><td>Aggregate state-reported total</td><td><strong>&gt;7,500</strong> (stale)</td><td>Sum of individual state health-department tallies as of Jul 16; this is a distinct measure from CDC's own under-analysis pool above and we did not find a fresh comprehensive state-by-state sum this cycle to update it. It is clearly stale: Michigan alone now reports 10,386. Treat CDC's own &gt;18,200 combined figure above as the more current topline; we retain this row rather than delete it so the reconciliation note below remains legible. Michigan alone now reports 10,773 (v20)</td><td><span class="badge badge-red">Stale</span></td></tr>
           <tr><td>Hospitalizations</td><td>517</td><td><strong>v22:</strong> CDC national total, up from 423 (Jul 27 data). Read directly from CDC's Aug 4 surveillance page (data through Aug 3)</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Deaths</td><td><strong>2</strong> (CDC + Michigan)</td><td><strong>v22 update: the lag closed.</strong> CDC's Aug 4 national page now reads <strong>2 deaths</strong>, up from 0, matching the figure Michigan MDHHS first reported Aug 3. v21 had flagged CDC's 0 as an expected reporting lag and said it would note when the national tally caught up; it now has. MDHHS: both decedents "had significant underlying health conditions that may have been impacted by cyclosporiasis and dehydration," and both became ill before the July 17 recall; the state adds that cyclosporiasis "is generally not a life-threatening illness" and death from it "is uncommon in the United States"</td><td><span class="badge badge-green">High</span></td></tr>
-          <tr><td>Highest state burden</td><td><strong>Michigan 12,218</strong> / 193 hosp / <strong>2 deaths</strong> (last page-verified Aug 5; count dropped from page Aug 9)</td><td><strong>v24 update (Aug 9):</strong> on a direct fetch this cycle, MDHHS's outbreak page rendered only its guidance text with <em>no</em> case-count section in the DOM, so the last figure verified from the page itself remains <strong>12,218</strong> (Aug 5). Press dated Aug 6 (CBS Detroit, WLNS) reports <strong>12,485 total / 279 hospitalized</strong> and quotes MDHHS saying statewide numbers are dwindling; we carry that as a secondary-sourced LEAD, not a verified figure, pending the page's return or CDC's next weekly. <strong>v23:</strong> MDHHS's own page read <strong>12,218</strong> (Aug 5), up from 11,234. <strong>v21 update:</strong> MDHHS's own page, fetched directly, read <strong>11,234</strong> total and <strong>2 deaths</strong> as of Aug 3 (case totals updated 11 a.m. ET weekdays), up from 10,773 (Jul 31); hospitalizations still cited at 193 (that figure is refreshed weekly on Thursdays, so it lags the case count). Prior figures: 10,077 (Jul 29), 9,680 (Jul 28), 9,253 (Jul 27), 8,176 (Jul 24), 7,644 to 7,664 (Jul 23, secondary-sourced), 7,171/102 (Jul 22), 6,571 (Jul 21), and 6,148 (Jul 20); hospitalization figure refreshed weekly on Thursdays (next Aug 6); baseline ~50/yr; <strong>2 deaths as of Aug 3 (v21), the outbreak's first</strong>, both in decedents with significant underlying conditions and both ill before the Jul 17 recall. MDHHS attributes about 475 recent cases to a reporting backlog, not new illness, and says the worst may have passed; we log this as the state's own claim, not yet independently verified. Now reported across 70 of Michigan's 82 counties, up from concentration in Monroe, Lenawee, Washtenaw, Wayne, Shiawassee, Jackson, Oakland, Livingston</td><td><span class="badge badge-green">High</span></td></tr>
+          <tr><td>Highest state burden</td><td><strong>Michigan 12,485</strong> / <strong>2 deaths</strong> (state-primary, MDHHS Aug 6 release)</td><td><strong>v25 update (Aug 10):</strong> MDHHS's Aug 6 newsroom release, fetched directly this cycle, states <strong>12,485 cases since June 2026</strong>, now adopted as the state-primary figure (supersedes 12,218). The same release <strong>formally rescinded the precautionary "avoid bagged salad mixes" recommendation</strong> and returned to routine produce-handling guidance, while still recommending avoidance of specifically recalled lettuce; its stated basis is slowing new case reports and a downward trend in diarrhea-related ED visits. MDHHS also moved outbreak reporting to a weekly Thursday cadence. <strong>v24 (Aug 9):</strong> MDHHS's page rendered guidance-only with <em>no</em> count in the DOM, so 12,218 (Aug 5) was held and the 12,485 press figure was carried as a LEAD. <strong>v23:</strong> MDHHS's own page read <strong>12,218</strong> (Aug 5), up from 11,234. <strong>v21 update:</strong> MDHHS's own page, fetched directly, read <strong>11,234</strong> total and <strong>2 deaths</strong> as of Aug 3 (case totals updated 11 a.m. ET weekdays), up from 10,773 (Jul 31); hospitalizations still cited at 193 (that figure is refreshed weekly on Thursdays, so it lags the case count). Prior figures: 10,077 (Jul 29), 9,680 (Jul 28), 9,253 (Jul 27), 8,176 (Jul 24), 7,644 to 7,664 (Jul 23, secondary-sourced), 7,171/102 (Jul 22), 6,571 (Jul 21), and 6,148 (Jul 20); hospitalization figure refreshed weekly on Thursdays (next Aug 6); baseline ~50/yr; <strong>2 deaths as of Aug 3 (v21), the outbreak's first</strong>, both in decedents with significant underlying conditions and both ill before the Jul 17 recall. MDHHS attributes about 475 recent cases to a reporting backlog, not new illness, and says the worst may have passed; we log this as the state's own claim, not yet independently verified. Now reported across 70 of Michigan's 82 counties, up from concentration in Monroe, Lenawee, Washtenaw, Wayne, Shiawassee, Jackson, Oakland, Livingston</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Second-highest state burden</td><td><strong>Ohio 4,024</strong> (ODH DataOhio dashboard)</td><td><strong>v20 correction, on a direct fetch of a primary source prior cycles said did not exist.</strong> ODH's own DataOhio dashboard ("Summary of Infectious Diseases in Ohio," filtered to Cyclosporiasis) reads <strong>4,024</strong> statewide for the rolling year ending Jul 28, 2026; given the May-to-August cyclosporiasis season this is essentially the 2026 outbreak total. County leaders are Cuyahoga 459, Fulton 153, Franklin 113, Erie 92 and Defiance 82. This supersedes the <strong>2,574 (Jul 24)</strong> figure this briefing carried since v14, which was press-attributed to ODH and never appeared on an ODH page, and it corrects our standing claim that ODH published no statewide primary source: ODH has issued no cyclosporiasis <em>news release</em> since Jul 8 (its own last release figure was 177 as of Jul 2), but it maintains this live interactive <em>dashboard</em>, which we and every prior cycle missed. Separately, Toledo-Lucas County Health's own page reports Lucas County 1,207 and northwest Ohio 3,016 as of Jul 31, superseding the press "2,926 northwest Ohio" figure. Confidence raised to High on the statewide number now that it is read from ODH's own product; the one caveat is the dashboard's rolling-year window, which we could not narrow to May 1 via the public view</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Third-highest state burden</td><td><strong>Indiana 1,832</strong> (as of Aug 7)</td><td><strong>v24 update, on a direct re-fetch of IDOH's own dashboard (Aug 9 pass):</strong> it now reads <strong>1,832</strong> total cases (1,031 female / 56.3%, 801 male / 43.7%, age range 0 to 98), last updated Aug 7, up from 1,524 (Aug 4). <strong>v22:</strong> read <strong>1,524</strong> total cases (864 female, 660 male, age range 0 to 98), up from 1,285 (Jul 31). Press this cycle reported ~1,349; the dashboard had already climbed past it, the third time this briefing has caught Indiana's live dashboard leading the press figure. <strong>v20:</strong> read 1,285 as of Jul 31 (723 female, 562 male, age range 0 to 98), up from 1,176 (Jul 30). Both overnight scout cycles carried 1,176 from press; the dashboard had already climbed past it, so fetching rather than trusting the press snapshot mattered again. Indiana publishes a live figure updated each weekday by 1 p.m. EDT, against an investigation window opening May 1. This supersedes the ~954 (Jul 28) figure the unpublished v18 draft carried on three independent outlets' attribution to IDOH, and the ~750 (Jul 25) before that. The press figures were not wrong, they were stale; this briefing repeatedly accepted them in place of a fetch of the dashboard itself</td><td><span class="badge badge-green">High</span></td></tr>
           <tr><td>Multistate cluster</td><td>&gt;400 (MI, OH, WV, KY)</td><td>Federal officials believe one shared source; other clusters differ</td><td><span class="badge badge-amber">Medium</span></td></tr>
