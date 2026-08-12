@@ -414,9 +414,9 @@ const nodeDetail = {
   // STATES
   s_cdc: { role: 'CDC national surveillance', sections: [
     {title: 'Key Facts', items: [
-      '10,468 CDC-confirmed domestic cases across 47 states (Aug 4)',
-      '517 hospitalizations; >12,255 under analysis (combined >22,700)',
-      '1,018 travel-associated (separate); CDC national page now reads 2 deaths and 517 hospitalizations (data through Aug 3)']},
+      '13,895 CDC-confirmed domestic cases across 47 states, DC, and Puerto Rico (Aug 11, data through Aug 10)',
+      '10,455 under investigation (combined >24,350); CDC national page no longer publishes hospitalization or death totals',
+      '1,018 travel-associated (separate); last-published national figures (no longer current): 2 deaths, 517 hospitalizations (Aug 4)']},
     {title: 'Source', items: ['CDC surveillance page (primary)']}
   ]},
   s_cluster9: { role: 'Taco Bell 9-state cluster', sections: [
@@ -449,13 +449,13 @@ const nodeDetail = {
   ]},
   s_nc: { role: 'State - North Carolina (second vehicle)', sections: [
     {title: 'Key Facts', items: [
-      '867 cases / 33 hosp (Aug 4); Wake County largest (494)',
+      '906 cases / 31 hosp (Aug 11, weekly Tuesday refresh); Wake County largest (494 as of Aug 4)',
       'NC DHHS says cases are NOT linked to the Taco Bell cluster',
       'Yet NC is on the 27-state recall distribution list - an unresolved overlap']},
     {title: 'Source', items: ['NCDHHS dashboard (primary)']}
   ]},
   s_wv: { role: 'State - West Virginia', sections: [
-    {title: 'Key Facts', items: ['268 / 19 hosp (Jul 31); lettuce-cluster member']},
+    {title: 'Key Facts', items: ['296 / 21 hosp (Aug 11); lettuce-cluster member']},
     {title: 'Source', items: ['WV OEPS tracker (primary)']}
   ]},
   s_il: { role: 'State - Illinois', sections: [
@@ -551,14 +551,14 @@ const nodeDetail = {
 // ---- The GAPS (text-equivalent, also the Open Questions panel) ------
 const gaps = [
   {title: 'Outbreak-wide attribution remains open', body: 'The 45-state national footprint is not plausibly explained by the nine-state cluster alone. "Attribution for the outbreak as a whole remains open."', source: 'Briefing analytic line'},
-  {title: 'North Carolina second vehicle is unlinked', body: 'NC\'s 867 cases are "not linked" to the Taco Bell cluster per NC DHHS, yet NC is on the 27-state recall list - "an unresolved overlap." Suspected parsley/cilantro, but many cases report neither.', source: 'NC DHHS'},
+  {title: 'North Carolina second vehicle is unlinked', body: 'NC\'s 906 cases (Aug 11) are "not linked" to the Taco Bell cluster per NC DHHS, yet NC is on the 27-state recall list - "an unresolved overlap." Suspected parsley/cilantro, but many cases report neither.', source: 'NC DHHS'},
   {title: 'Mexico disputes the attribution at government level', body: 'Mexico\'s Health Secretary publicly disputes the US traceback, backed by a negative Cyclospora / fecal-coliform environmental test at the Guanajuato facility. FDA/CDC have not withdrawn. A negative plant test does not by itself resolve where in the chain contamination occurred.', source: 'Mexican health ministry; NBC; CNN en Espanol'},
   {title: 'No confirmed positive product sample exists', body: 'After the import-surveillance retraction, no confirmed positive product sample exists anywhere in this outbreak. The facility was closed despite no positive sample from it.', source: 'FDA investigation page'},
   {title: 'Detained lot distribution undisclosed', body: 'The detained positive lot\'s number, ship dates, and destination states are undisclosed - open question whether the 27-state recall fully captures the contaminated product. ("Now tell us where the rest of that lot went.")', source: 'FDA; Marler Blog'},
   {title: 'Two FDA outbreaks, products not identified', body: 'FDA refs #1385 (10 cases) and #1392 (93 cases) remain ongoing with products "not yet identified," not linked to the lettuce cluster.', source: 'FDA CORE table'},
   {title: 'JPML has not ruled; cases not consolidated', body: 'The Panel has not ruled on transfer. The RECAP mirror last refreshed Jul 29, so the Jul 30 OSC responses and any order since would not appear - a PACER-authoritative pull would be needed to close the Jul 30-to-Aug 3 gap.', source: 'JPML docket via RECAP'},
   {title: 'Some MDL parties not tied to a product/lot', body: 'Ayyad names only a franchisee + John Doe growers/suppliers, not Taylor Farms. Granados/Gelbspan plaintiffs make no illness claim (economic-loss only).', source: 'RECAP dockets'},
-  {title: 'CDC national count diverges from state figures', body: 'CDC national (10,468, 2 deaths as of Aug 4) still lags state totals (Michigan 11,234) but its deaths tally has caught up to the states - "a reporting lag, not a contradiction." Three distinct case universes must not be conflated.', source: 'CDC vs state dashboards'},
+  {title: 'CDC national count diverges from state figures', body: 'CDC national (13,895 as of Aug 11) still lags state totals (Michigan 11,234). CDC\'s national page no longer publishes hospitalization or death totals, so its last-published deaths figure (2, Aug 4) can no longer be checked against the states. Three distinct case universes must not be conflated.', source: 'CDC vs state dashboards'},
   {title: 'Biosurveillance capacity strain', body: 'FoodNet active surveillance cut from 8 pathogens to 2 (Cyclospora dropped); ~3,000 CDC positions eliminated (~25%); Division of Parasitic Diseases and Malaria dissolved. Capacity strain High confidence, causation Medium.', source: 'Briefing strategic thesis'}
 ];
 
@@ -591,14 +591,14 @@ const nodes = new vis.DataSet([
   {id:'f_walmart',     label:'Walmart\n(retail)', group:'firm', shape:'box', detail:'f_walmart'},
 
   // STATES
-  {id:'s_cdc',       label:'CDC national\n10,468 / 47 states\n2 deaths (thru Aug 3)', group:'state', shape:'box', detail:'s_cdc', mass:4},
+  {id:'s_cdc',       label:'CDC national\n13,895 / 47 states +DC,PR\n(thru Aug 10)', group:'state', shape:'box', detail:'s_cdc', mass:4},
   {id:'s_cluster9',  label:'Taco Bell cluster\n9 states / 1,947\n0 deaths', group:'state', shape:'box', detail:'s_cluster9', mass:3},
   {id:'s_mi',        label:'Michigan\n11,234 / 2 deaths', group:'state', shape:'box', detail:'s_mi', mass:2},
   {id:'s_oh',        label:'Ohio\n4,024', group:'state', shape:'box', detail:'s_oh'},
   {id:'s_in',        label:'Indiana\n1,524', group:'state', shape:'box', detail:'s_in'},
   {id:'s_ny',        label:'New York\n753 (not lettuce)', group:'state', shape:'box', detail:'s_ny'},
-  {id:'s_nc',        label:'North Carolina\n867 (2nd vehicle)', group:'state', shape:'box', detail:'s_nc', mass:2},
-  {id:'s_wv',        label:'West Virginia\n268', group:'state', shape:'box', detail:'s_wv'},
+  {id:'s_nc',        label:'North Carolina\n906 (2nd vehicle)', group:'state', shape:'box', detail:'s_nc', mass:2},
+  {id:'s_wv',        label:'West Virginia\n296', group:'state', shape:'box', detail:'s_wv'},
   {id:'s_il',        label:'Illinois\n408', group:'state', shape:'box', detail:'s_il'},
   {id:'s_ks',        label:'Kansas\n289', group:'state', shape:'box', detail:'s_ks'},
 
