@@ -428,13 +428,13 @@ const nodeDetail = {
   ]},
   s_mi: { role: 'State - Michigan (epicenter)', sections: [
     {title: 'Key Facts', items: [
-      '11,234 total / 193 hosp / 2 deaths (Aug 3) - highest state burden',
+      '13,909 total / 314 hosp / 2 deaths (Aug 13) - highest state burden',
       'Epicenter, 70 of 82 counties',
       'First 2 outbreak deaths reported Aug 3 (both with significant underlying conditions; ill before the Jul 17 recall)']},
     {title: 'Source', items: ['MDHHS outbreak page (fetched directly, HTTP 200)']}
   ]},
   s_oh: { role: 'State - Ohio', sections: [
-    {title: 'Key Facts', items: ['4,024 statewide (rolling year to Jul 28)', 'Cuyahoga 459, Fulton 153, Franklin 113, Erie 92, Defiance 82', 'CDC Epi-Aid deployed here at ODH request']},
+    {title: 'Key Facts', items: ['5,445 statewide (rolling year to Aug 4, 2026)', 'Cuyahoga 694, Fulton 183, Franklin 160, Defiance 141, Erie 136', 'CDC Epi-Aid deployed here at ODH request']},
     {title: 'Source', items: ['ODH DataOhio dashboard (primary)']}
   ]},
   s_in: { role: 'State - Indiana', sections: [
@@ -558,7 +558,7 @@ const gaps = [
   {title: 'Two FDA outbreaks, products not identified', body: 'FDA refs #1385 (10 cases) and #1392 (93 cases) remain ongoing with products "not yet identified," not linked to the lettuce cluster.', source: 'FDA CORE table'},
   {title: 'JPML has not ruled; cases not consolidated', body: 'The Panel has not ruled on transfer. The RECAP mirror last refreshed Jul 29, so the Jul 30 OSC responses and any order since would not appear - a PACER-authoritative pull would be needed to close the Jul 30-to-Aug 3 gap.', source: 'JPML docket via RECAP'},
   {title: 'Some MDL parties not tied to a product/lot', body: 'Ayyad names only a franchisee + John Doe growers/suppliers, not Taylor Farms. Granados/Gelbspan plaintiffs make no illness claim (economic-loss only).', source: 'RECAP dockets'},
-  {title: 'CDC national count diverges from state figures', body: 'CDC national (13,895 as of Aug 11) still lags state totals (Michigan 11,234). CDC\'s national page no longer publishes hospitalization or death totals, so its last-published deaths figure (2, Aug 4) can no longer be checked against the states. Three distinct case universes must not be conflated.', source: 'CDC vs state dashboards'},
+  {title: 'CDC national count diverges from state figures', body: 'CDC national (13,895 as of Aug 11) still lags state totals (Michigan 13,909). CDC\'s national page no longer publishes hospitalization or death totals, so its last-published deaths figure (2, Aug 4) can no longer be checked against the states. Three distinct case universes must not be conflated.', source: 'CDC vs state dashboards'},
   {title: 'Biosurveillance capacity strain', body: 'FoodNet active surveillance cut from 8 pathogens to 2 (Cyclospora dropped); ~3,000 CDC positions eliminated (~25%); Division of Parasitic Diseases and Malaria dissolved. Capacity strain High confidence, causation Medium.', source: 'Briefing strategic thesis'}
 ];
 
@@ -593,8 +593,8 @@ const nodes = new vis.DataSet([
   // STATES
   {id:'s_cdc',       label:'CDC national\n13,895 / 47 states +DC,PR\n(thru Aug 10)', group:'state', shape:'box', detail:'s_cdc', mass:4},
   {id:'s_cluster9',  label:'Taco Bell cluster\n9 states / 1,947\n0 deaths', group:'state', shape:'box', detail:'s_cluster9', mass:3},
-  {id:'s_mi',        label:'Michigan\n11,234 / 2 deaths', group:'state', shape:'box', detail:'s_mi', mass:2},
-  {id:'s_oh',        label:'Ohio\n4,024', group:'state', shape:'box', detail:'s_oh'},
+  {id:'s_mi',        label:'Michigan\n13,909 / 314 hosp / 2 deaths', group:'state', shape:'box', detail:'s_mi', mass:2},
+  {id:'s_oh',        label:'Ohio\n5,445', group:'state', shape:'box', detail:'s_oh'},
   {id:'s_in',        label:'Indiana\n1,929', group:'state', shape:'box', detail:'s_in'},
   {id:'s_ny',        label:'New York\n753 (not lettuce)', group:'state', shape:'box', detail:'s_ny'},
   {id:'s_nc',        label:'North Carolina\n906 (2nd vehicle)', group:'state', shape:'box', detail:'s_nc', mass:2},
