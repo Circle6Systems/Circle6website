@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>State Involvement Map - 2026 Cyclosporiasis Outbreak | Circle 6 Systems</title>
-  <meta name="description" content="Interactive US state map of the 2026 cyclosporiasis outbreak: per-state case counts color-coded by outbreak involvement, with the 17-state Taco Bell / Taylor Farms lettuce cluster outlined (expanded from 9 states on Aug 5, 2026, and to Maine and Massachusetts by Aug 13, 2026).">
+  <meta name="description" content="Interactive US state map of the 2026 cyclosporiasis outbreak: per-state case counts color-coded by outbreak involvement, with the 20-state Taco Bell / Taylor Farms lettuce cluster outlined (expanded from 9 states on Aug 5, 2026, to Maine and Massachusetts by Aug 13, 2026, and to Georgia, Tennessee, and Texas by Aug 27, 2026).">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
@@ -52,7 +52,7 @@
       <div class="meta-grid">
         <div><span class="label">Product</span> Geospatial Intelligence (GEOINT)</div>
         <div><span class="label">TLP</span> CLEAR</div>
-        <div><span class="label">Published</span> Briefing v29, August 18, 2026 (federal data as of Aug 17)</div>
+        <div><span class="label">Published</span> Briefing v31, August 29, 2026 (federal data as of Aug 27)</div>
         <div><span class="label">Lens</span> Geographic spread</div>
         <div><span class="label">Reliability</span> Mixed (state / CDC-feed, labeled)</div>
         <div><span class="label">Read time</span> ~4 minutes</div>
@@ -60,7 +60,7 @@
     </div>
 
     <main id="main-content">
-      <p style="color:var(--c6s-text);max-width:70ch;">Color shows the magnitude of reported cases; the outlined states are the 17-state Taco Bell / Taylor Farms de Mexico lettuce cluster (Arkansas, Iowa, Illinois, Indiana, Kansas, Kentucky, Maine, Massachusetts, Michigan, Missouri, Nebraska, New Hampshire, North Carolina, Ohio, Oklahoma, Pennsylvania, West Virginia), which FDA and CDC expanded from 9 states on Aug 5, 2026 after broadening the case definition to include Taco Bell <em>or</em> recalled-lettuce exposure, and further expanded to add Maine and Massachusetts by Aug 13, 2026. Several of the states added on Aug 5 (notably Iowa, Nebraska, Missouri and North Carolina) had previously said their cases were not part of the multistate outbreak; those state positions predate the Aug 5 federal inclusion, and North Carolina's own page still disclaimed the link as of Aug 18 (929 cases / 32 hospitalizations). Most green states report only sporadic, seasonal, or travel-related cases. Hover or focus any state for its figure, basis, and source.</p>
+      <p style="color:var(--c6s-text);max-width:70ch;">Color shows the magnitude of reported cases; the outlined states are the 20-state Taco Bell / Taylor Farms de Mexico lettuce cluster (Arkansas, Iowa, Illinois, Indiana, Kansas, Kentucky, Maine, Massachusetts, Michigan, Missouri, Nebraska, New Hampshire, North Carolina, Ohio, Oklahoma, Pennsylvania, West Virginia, Georgia, Tennessee, Texas), which FDA and CDC expanded from 9 states on Aug 5, 2026 after broadening the case definition to include Taco Bell <em>or</em> recalled-lettuce exposure, further expanded to add Maine and Massachusetts by Aug 13, 2026, and further expanded to add Georgia, Tennessee, and Texas by Aug 27, 2026. Several of the states added on Aug 5 (notably Iowa, Nebraska, Missouri and North Carolina) had previously said their cases were not part of the multistate outbreak; those state positions predate the Aug 5 federal inclusion, and North Carolina's own page still disclaimed the link as of Aug 25 (940 cases / 32 hospitalizations). Georgia's own DPH page publishes no current count and does not dispute inclusion, unlike North Carolina. Most green states report only sporadic, seasonal, or travel-related cases. Hover or focus any state for its figure, basis, and source.</p>
 
       <iframe id="mapframe" class="mapframe" src="state-map-embed.html" title="Interactive US state involvement map for the 2026 cyclosporiasis outbreak" loading="eager"></iframe>
 
@@ -68,9 +68,9 @@
         <h2 style="color:var(--c6s-text-bright);font-size:1.05rem;">Reading this map honestly</h2>
         <ul>
           <li><b>Two number systems, kept separate.</b> State health departments publish confirmed + probable totals (highest, most current). CDC's weekly feed counts lab-confirmed cases only and lags, so its per-state figures (marked with the approx sign) are systematically lower. Do not compare a bold state total against a CDC-feed figure as if equal.</li>
-          <li><b>The 17-state lettuce cluster</b> (bold outline): Arkansas, Iowa, Illinois, Indiana, Kansas, Kentucky, Maine, Massachusetts, Michigan, Missouri, Nebraska, New Hampshire, North Carolina, Ohio, Oklahoma, Pennsylvania, West Virginia. FDA and CDC expanded the cluster from 9 to 15 states on Aug 5, 2026 (adding AR, IA, MO, NE, NH, NC), then to 17 states by Aug 13, 2026 (adding ME, MA), after broadening the confirmed-case definition to include Taco Bell or recalled Taylor Farms lettuce exposure; the cluster count rose to 9,481 cases / 398 hospitalizations / 2 deaths. Michigan's and North Carolina's larger state totals are only partly attributable to this cluster. North Carolina is a special case: it is now federally counted in the cluster, but NCDHHS's own page (updated Aug 18, weekly Tuesday refresh, 929 cases / 32 hospitalizations) still says its cases do not appear associated with the Taco Bell outbreak, an open federal-vs-state disagreement this map carries rather than resolves.</li>
+          <li><b>The 20-state lettuce cluster</b> (bold outline): Arkansas, Iowa, Illinois, Indiana, Kansas, Kentucky, Maine, Massachusetts, Michigan, Missouri, Nebraska, New Hampshire, North Carolina, Ohio, Oklahoma, Pennsylvania, West Virginia, Georgia, Tennessee, Texas. FDA and CDC expanded the cluster from 9 to 15 states on Aug 5, 2026 (adding AR, IA, MO, NE, NH, NC), to 17 states by Aug 13, 2026 (adding ME, MA), and to 20 states by Aug 27, 2026 (adding GA, TN, TX), after broadening the confirmed-case definition to include Taco Bell or recalled Taylor Farms lettuce exposure; the cluster count rose to 11,458 cases / 495 hospitalizations / 2 deaths. Michigan's and North Carolina's larger state totals are only partly attributable to this cluster. North Carolina is a special case: it is now federally counted in the cluster, but NCDHHS's own page (updated Aug 25, weekly Tuesday refresh, 940 cases / 32 hospitalizations) still says its cases do not appear associated with the Taco Bell outbreak, an open federal-vs-state disagreement this map carries rather than resolves. Georgia is a different case: its DPH page is static and publishes no current count, and does not dispute inclusion. Tennessee's own information page carries no dated current count (last state figure 30); Texas has no discoverable state-hosted count.</li>
           <li><b>Gray means no published figure.</b> Gray states publish no 2026 cyclosporiasis case count, which is not the same as zero cases. The five currently in this status are Montana, DC, Minnesota, North Dakota, and Vermont.</li>
-          <li><b>Endemic-baseline states</b> (Texas, Florida) carry large cyclosporiasis counts every summer, so moderate 2026 numbers there may be normal, not outbreak-driven.</li>
+          <li><b>Endemic-baseline states</b> (Florida) carry large cyclosporiasis counts every summer, so moderate 2026 numbers there may be normal, not outbreak-driven; Texas moved from endemic-baseline framing to federal cluster inclusion on Aug 27, 2026.</li>
         </ul>
         <p style="color:var(--c6s-text-dim);">Primary sources: CDC surveillance and HAN00531; state health-department releases; CDC weekly feed via the GenomicEpi aggregator for approx figures. Figures are time-sensitive and update as states report.</p>
       </section>
@@ -78,7 +78,7 @@
 
     <div class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v29 2026-08-18 (federal counts as of 2026-08-17; North Carolina state figures as of 2026-08-18) &middot; Supersedes v28 2026-08-13 (Michigan and Ohio state figures as of 2026-08-13; federal counts as of 2026-08-10; other state figures as of 2026-08-07 to 2026-08-11) &middot; Informational, not medical advice.</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; Briefing v31 2026-08-29 (federal counts and cluster data as of 2026-08-27; Michigan as of 2026-08-27, West Virginia as of 2026-08-28, North Carolina as of 2026-08-25) &middot; Supersedes v29 2026-08-18 (federal counts as of 2026-08-17; North Carolina state figures as of 2026-08-18) and v28 2026-08-13 (Michigan and Ohio state figures as of 2026-08-13; federal counts as of 2026-08-10; other state figures as of 2026-08-07 to 2026-08-11) &middot; Informational, not medical advice.</p>
       <p style="margin-top:0.5rem;"><a href="index.html">Back to briefing index</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
     </div>
   </div>
