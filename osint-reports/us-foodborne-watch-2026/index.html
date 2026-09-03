@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Foodborne Illness Watch 2026 | Circle 6 Systems</title>
+  <meta name="description" content="Portfolio view of all 13 currently-ongoing US foodborne-illness outbreaks tracked in FDA's CORE outbreak table, organized around the government-communication gap: 7 of 13 ongoing outbreaks (486 named cases) carry no public FDA consumer advisory because the implicated product has not yet been identified, versus 6 outbreaks with a published advisory and recall. Includes the Taylor Farms de Mexico iceberg-lettuce Cyclospora cluster as the flagship deep-dive.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <link rel="stylesheet" href="../cyclospora-2026/style.css">
+  <style>
+    .skip-to-content { position: absolute; top: -100%; left: 1rem; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.75rem 1.5rem; border-radius: 0 0 4px 4px; font-weight: 700; font-size: 0.9rem; text-decoration: none; z-index: 10000; transition: top 0.2s; }
+    .skip-to-content:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .stat-tile {
+      background: var(--c6s-panel);
+      border: 1px solid var(--c6s-border);
+      border-left: 4px solid var(--c6s-accent);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+    }
+    .stat-tile.no-advisory { border-left-color: var(--c6s-amber); }
+    .stat-tile.advisory { border-left-color: var(--c6s-green); }
+    .stat-tile .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--c6s-text-bright);
+      display: block;
+    }
+    .stat-tile .stat-label {
+      font-size: 0.8rem;
+      color: var(--c6s-text-dim);
+      margin-top: 0.35rem;
+      display: block;
+    }
+
+    .advisory-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .advisory-flag.yes {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--c6s-green);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    .advisory-flag.no {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--c6s-amber);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .advisory-flag .flag-icon { font-size: 0.9rem; }
+
+    tr.major-tier td { background: rgba(168, 193, 150, 0.04); }
+    tr.major-tier th[scope="row"], tr.major-tier td:first-child { font-weight: 600; }
+
+    a.min-target, .site-nav a, .card, .footer a {
+      min-height: 24px;
+      display: inline-block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active" aria-current="page">Intelligence</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // Public &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; US Foodborne Illness Watch 2026
+    </nav>
+
+    <div class="title-block">
+      <h1>US Foodborne Illness Watch 2026</h1>
+      <div class="subtitle">A portfolio view of every currently-ongoing FDA-tracked outbreak, organized around the government-communication gap</div>
+      <div class="meta-grid">
+        <div><span class="label">Product</span> OSINT portfolio</div>
+        <div><span class="label">TLP</span> CLEAR</div>
+        <div><span class="label">Published</span> v1, September 3, 2026 (FDA CORE table as of Sept 2; CDC as of Sept 1)</div>
+        <div><span class="label">Read time</span> ~4 minutes</div>
+        <div><span class="label">Confidence</span> High (figures, primary-sourced) / gap metric derived directly from FDA's own advisory-status column</div>
+      </div>
+    </div>
+
+    <main id="main-content">
+
+    <section>
+      <h2>The gap, up top</h2>
+      <div class="stat-grid" role="group" aria-label="Government communication gap headline figures">
+        <div class="stat-tile">
+          <span class="stat-number">13</span>
+          <span class="stat-label">Ongoing FDA CORE outbreaks</span>
+        </div>
+        <div class="stat-tile no-advisory">
+          <span class="stat-number">7</span>
+          <span class="stat-label">With NO public consumer advisory</span>
+        </div>
+        <div class="stat-tile no-advisory">
+          <span class="stat-number">486</span>
+          <span class="stat-label">Named cases across those 7 no-advisory outbreaks</span>
+        </div>
+        <div class="stat-tile advisory">
+          <span class="stat-number">6</span>
+          <span class="stat-label">With a published FDA consumer advisory</span>
+        </div>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Evidence-led framing</div>
+        <p style="margin-bottom:0;">As of the FDA CORE outbreak table (Last-Modified 2026-09-02 17:59 UTC), FDA lists <strong>13</strong> outbreaks with
+        Outbreak/Event Status "Ongoing." Of those, <strong>6</strong> carry a specific-product public consumer advisory (Outbreak/Event Status "Ongoing See
+        Advisory"), and <strong>7</strong> do not (status "Ongoing See Advice," meaning generic food-safety advice only, no named product), representing
+        <strong>486</strong> named cases with no consumer-facing advisory to act on. FDA's own table states its advisory policy in these words: "A public
+        health advisory will be issued for investigations that have resulted in specific, actionable steps for consumers to take to protect
+        themselves.... FDA will only indicate a product category in the table and will not publicly name a specific product until there is sufficient
+        evidence to implicate that product." That policy, not any claim about intent, is the reason the gap exists: an advisory requires an identified
+        product, and 7 of the 13 ongoing investigations have not yet reached that evidentiary bar. This page makes no claim about motive; it reports what
+        FDA's own status column shows.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Methodology, how we count</h2>
+      <p><strong>Ongoing</strong> means FDA's CORE outbreak table lists the investigation's Outbreak/Event Status as "Ongoing" (as opposed to a status
+      indicating the investigation has ended). <strong>Advisory Yes/No</strong> is read directly from that same status cell: "Ongoing See Advisory" is
+      counted Yes, a specific public consumer advisory has been published for the investigation; "Ongoing See Advice" is counted No, only generic
+      consumer advice is offered because, per FDA's own policy note above, the implicated product has not yet been confirmed to the evidentiary
+      standard FDA requires before naming it. Case counts are FDA's own published counts where a table figure exists; the 6 advisory outbreaks show
+      "see advisory" in FDA's table rather than a running case count, so they are not included in the 486-case sum, and the sum covers only the 7
+      no-advisory outbreaks. Outbreaks whose status is not "Ongoing" (recently ended investigations) are excluded from the denominator and are not
+      part of this page's scope. This page is primary-source only; no figure here is drawn from secondary reporting. CDC operates a parallel,
+      separate outbreak-notice policy for identified clusters, illustrated by the Cyclospora cluster below; CDC states that clusters without an
+      identified source and specific consumer action do not receive a CDC outbreak notice, the same evidentiary-threshold logic FDA describes for its
+      own advisories.</p>
+    </section>
+
+    <section>
+      <h2>Ongoing outbreaks, all 13</h2>
+      <p>Sorted with the advisory / multistate-recall / highest-severity items first. The 3 Cyclospora rows without a yet-identified product
+      link to the flagship deep-dive below, which covers the related, larger Cyclospora lettuce cluster in full. Consumer advisory status is shown
+      with both a text label and a distinct icon so the flag is never conveyed by color alone.</p>
+      <table>
+        <caption class="visually-hidden" style="position:absolute;left:-9999px;">All 13 ongoing FDA CORE foodborne illness outbreaks, sorted major tier first</caption>
+        <thead>
+          <tr>
+            <th scope="col">Pathogen</th>
+            <th scope="col">Product</th>
+            <th scope="col">Cases</th>
+            <th scope="col">Consumer advisory</th>
+            <th scope="col">Ref #</th>
+            <th scope="col">Posted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="major-tier">
+            <th scope="row">Clostridium botulinum</th>
+            <td>Powdered infant formula</td>
+            <td>See advisory</td>
+            <td><span class="advisory-flag yes"><span class="flag-icon" aria-hidden="true">&#10003;</span>Yes, recall + advisory</span></td>
+            <td>1383</td>
+            <td>6/13/2026</td>
+          </tr>
+          <tr class="major-tier">
+            <th scope="row">Cyclospora</th>
+            <td><a href="../cyclospora-2026/index.html">Iceberg lettuce (Taylor Farms de Mexico)</a>, flagship deep-dive</td>
+            <td>See advisory</td>
+            <td><span class="advisory-flag yes"><span class="flag-icon" aria-hidden="true">&#10003;</span>Yes, advisory</span></td>
+            <td>1390</td>
+            <td>7/15/2026</td>
+          </tr>
+          <tr class="major-tier">
+            <th scope="row">E. coli (multiple strains) &amp; Salmonella Agona</th>
+            <td>Alfalfa sprouts (Everything Sprouts, LLC)</td>
+            <td>See advisory</td>
+            <td><span class="advisory-flag yes"><span class="flag-icon" aria-hidden="true">&#10003;</span>Yes, recall + advisory</span></td>
+            <td>1394</td>
+            <td>8/19/2026</td>
+          </tr>
+          <tr class="major-tier">
+            <th scope="row">Salmonella Javiana</th>
+            <td>Jalapeno peppers</td>
+            <td>See advisory</td>
+            <td><span class="advisory-flag yes"><span class="flag-icon" aria-hidden="true">&#10003;</span>Yes, recall + advisory</span></td>
+            <td>1395</td>
+            <td>7/22/2026</td>
+          </tr>
+          <tr class="major-tier">
+            <th scope="row">E. coli O145:H28</th>
+            <td>Frozen blueberries</td>
+            <td>See advisory</td>
+            <td><span class="advisory-flag yes"><span class="flag-icon" aria-hidden="true">&#10003;</span>Yes, advisory</span></td>
+            <td>1389</td>
+            <td>7/6/2026</td>
+          </tr>
+          <tr class="major-tier">
+            <th scope="row">Salmonella Enteritidis</th>
+            <td>Eggs</td>
+            <td>See advisory</td>
+            <td><span class="advisory-flag yes"><span class="flag-icon" aria-hidden="true">&#10003;</span>Yes, advisory</span></td>
+            <td>1378</td>
+            <td>6/10/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Cyclospora</th>
+            <td><a href="../cyclospora-2026/index.html">Not yet identified</a></td>
+            <td>203</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1392</td>
+            <td>7/22/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Salmonella Oranienburg</th>
+            <td>Not yet identified</td>
+            <td>99</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1387</td>
+            <td>7/8/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Salmonella Newport</th>
+            <td>Not yet identified</td>
+            <td>84</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1403</td>
+            <td>8/26/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Salmonella I 4,[5],12:i:-</th>
+            <td>Not yet identified</td>
+            <td>41</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1402</td>
+            <td>8/12/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Cyclospora</th>
+            <td><a href="../cyclospora-2026/index.html">Not yet identified</a></td>
+            <td>28</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1385</td>
+            <td>7/8/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Cyclospora</th>
+            <td><a href="../cyclospora-2026/index.html">Not yet identified</a></td>
+            <td>22</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1398</td>
+            <td>8/5/2026</td>
+          </tr>
+          <tr>
+            <th scope="row">Listeria monocytogenes</th>
+            <td>Not yet identified</td>
+            <td>9</td>
+            <td><span class="advisory-flag no"><span class="flag-icon" aria-hidden="true">&#9888;</span>No, see advice</span></td>
+            <td>1379</td>
+            <td>7/22/2026</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.85rem;color:var(--c6s-text-dim);">Figures as of FDA CORE table, Last-Modified 2026-09-02 17:59 UTC. Ended investigations
+      (Outbreak/Event Status other than Ongoing) are excluded from this table and from the 13-outbreak denominator; they are not part of this
+      slice's scope.</p>
+    </section>
+
+    <section>
+      <h2>Flagship deep-dive: the Cyclospora lettuce cluster</h2>
+      <div class="card-grid">
+        <a href="../cyclospora-2026/index.html" class="card">
+          <div class="card-icon" aria-hidden="true">&#128269;</div>
+          <h3>2026 Cyclosporiasis Outbreak, Full Briefing</h3>
+          <p>The largest of the 13 ongoing events by far: CDC's national cyclosporiasis surveillance count stands at 18,445 lab-confirmed cases,
+          990 hospitalizations and 2 deaths across 49 states plus the District of Columbia (CDC, as of Sept 1, 2026). The Taylor Farms de Mexico
+          iceberg-lettuce cluster (Ref 1390 above) is one of the 6 outbreaks with a published FDA consumer advisory. The 3 Cyclospora rows in the
+          table above with no yet-identified product (Refs 1392, 1385, 1398, together 253 cases) are separate, unattributed investigations covered
+          in the full briefing's outbreak-count discussion.</p>
+        </a>
+      </div>
+    </section>
+
+    </main>
+
+    <div class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top:0.25rem;">TLP:CLEAR &middot; v1, 2026-09-03 (FDA CORE table Last-Modified 2026-09-02 17:59 UTC; CDC cyclosporiasis
+      surveillance as of 2026-09-01) &middot; Sources: <a href="https://www.fda.gov/food/outbreaks-foodborne-illness/investigations-foodborne-illness-outbreaks">FDA CORE Outbreak Investigations Table</a>,
+      <a href="https://www.cdc.gov/cyclosporiasis/php/surveillance/">CDC Cyclosporiasis Surveillance</a> &middot; Informational, not medical
+      advice.</p>
+      <p style="margin-top:0.5rem;"><a href="../cyclospora-2026/index.html">Cyclosporiasis 2026 flagship briefing</a> &middot; <a href="/osint-reports/">All Intelligence Reports</a></p>
+    </div>
+  </div>
+</body>
+</html>
