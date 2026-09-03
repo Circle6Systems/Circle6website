@@ -317,8 +317,12 @@
 <script>
 // =====================================================================
 // Cyclosporiasis 2026 Investigation Board  (issue #83)
-// Data sourced from the v22 primary-verified briefing (index.html and
-// siblings). Every node/edge carries the briefing's own source line.
+// Version label: v32, 2026-09-03 (national data as of Sept 1; cluster and
+// state data as of Aug 27, carried from v31). Node/edge content below dates
+// to the v22 primary-verified briefing (index.html and siblings) and has not
+// been fully resynced past v22, except for the FDA unidentified-product
+// outbreak nodes/edges, refreshed in v32; every node/edge still carries the
+// briefing's own source line.
 // =====================================================================
 
 // ---- Node detail popouts -------------------------------------------
@@ -354,17 +358,25 @@ const nodeDetail = {
   ]},
   p_fda1385: { role: 'Product - FDA ref #1385 (unidentified)', sections: [
     {title: 'Key Facts', items: [
-      'FDA CORE outbreak ref #1385, 10 cases (up from 8)',
+      'FDA CORE outbreak ref #1385, grew to 28 cases (up from 10); v32 update',
+      'Refs #1375 (8), #1381 (2) and #1384 (18) remain separate, outbreaks Ended (v32)',
       'Product "not yet identified," traceback initiated, outbreak ongoing',
       'Not linked to the lettuce cluster']},
     {title: 'Source', items: ['FDA CORE active-investigation table (read directly)']}
   ]},
   p_fda1392: { role: 'Product - FDA ref #1392 (unidentified)', sections: [
     {title: 'Key Facts', items: [
-      'FDA CORE outbreak ref #1392, grew 72 to 93 cases',
-      'Product "not yet identified," ongoing - larger of the two live unidentified-product outbreaks',
+      'FDA CORE outbreak ref #1392, grew to 203 cases (up from 93); v32 update',
+      'Product "not yet identified," ongoing - largest of the three live unidentified-product outbreaks',
       'Not linked to the lettuce cluster']},
     {title: 'Source', items: ['FDA CORE table + FDA "What\'s New"']}
+  ]},
+  p_fda1398: { role: 'Product - FDA ref #1398 (unidentified)', sections: [
+    {title: 'Key Facts', items: [
+      'FDA CORE outbreak ref #1398, 22 cases; newly listed in v32 (posted Aug 5)',
+      'Product "not yet identified," FDA sampling initiated, outbreak ongoing',
+      'Not linked to the lettuce cluster']},
+    {title: 'Source', items: ['FDA CORE active-investigation table (read directly, v32)']}
   ]},
 
   // FIRMS
@@ -479,7 +491,7 @@ const nodeDetail = {
     {title: 'Key Facts', items: [
       'FDA CORE table carries TWO status columns: Investigation Status vs Outbreak/Event Status',
       'Legend: "an FDA investigation may be active after an outbreak has ended"',
-      'Corrected the count to two ongoing unidentified-product outbreaks (#1385, #1392)']},
+      'Corrected the count to two ongoing unidentified-product outbreaks (#1385, #1392) in v19; grew to three in v32 with #1385 up to 28, #1392 up to 203, and new ref #1398 (22 cases)']},
     {title: 'Source', items: ['FDA CORE table + What\'s New']}
   ]},
   r_retraction: { role: 'Regulatory - import surveillance retraction', sections: [
@@ -555,7 +567,7 @@ const gaps = [
   {title: 'Mexico disputes the attribution at government level', body: 'Mexico\'s Health Secretary publicly disputes the US traceback, backed by a negative Cyclospora / fecal-coliform environmental test at the Guanajuato facility. FDA/CDC have not withdrawn. A negative plant test does not by itself resolve where in the chain contamination occurred.', source: 'Mexican health ministry; NBC; CNN en Espanol'},
   {title: 'No confirmed positive product sample exists', body: 'After the import-surveillance retraction, no confirmed positive product sample exists anywhere in this outbreak. The facility was closed despite no positive sample from it.', source: 'FDA investigation page'},
   {title: 'Detained lot distribution undisclosed', body: 'The detained positive lot\'s number, ship dates, and destination states are undisclosed - open question whether the at-least-31-state recall fully captures the contaminated product. ("Now tell us where the rest of that lot went.")', source: 'FDA; Marler Blog'},
-  {title: 'Two FDA outbreaks, products not identified', body: 'FDA refs #1385 (10 cases) and #1392 (93 cases) remain ongoing with products "not yet identified," not linked to the lettuce cluster.', source: 'FDA CORE table'},
+  {title: 'Three FDA outbreaks, products not identified', body: 'FDA refs #1385 (28 cases, up from 10), #1392 (203 cases, up from 93), and newly listed #1398 (22 cases) remain ongoing with products "not yet identified," not linked to the lettuce cluster; refs #1375, #1381 and #1384 remain Ended. (v32)', source: 'FDA CORE table'},
   {title: 'JPML has not ruled; cases not consolidated', body: 'The Panel has not ruled on transfer. The RECAP mirror last refreshed Jul 29, so the Jul 30 OSC responses and any order since would not appear - a PACER-authoritative pull would be needed to close the Jul 30-to-Aug 3 gap.', source: 'JPML docket via RECAP'},
   {title: 'Some MDL parties not tied to a product/lot', body: 'Ayyad names only a franchisee + John Doe growers/suppliers, not Taylor Farms. Granados/Gelbspan plaintiffs make no illness claim (economic-loss only).', source: 'RECAP dockets'},
   {title: 'CDC national count diverges from state figures', body: 'CDC national (15,716 as of Aug 18, data through Aug 17) still lags state totals (Michigan 13,909). CDC resumed national hospitalization/death reporting this cycle (828 hospitalized / 2 deaths), which can now be checked against the states again. Three distinct case universes must not be conflated.', source: 'CDC vs state dashboards'},
@@ -577,8 +589,9 @@ const nodes = new vis.DataSet([
   {id:'p_marketside',  label:'Walmart Marketside\nBagged / Shredded Iceberg', group:'product', shape:'diamond', detail:'p_marketside'},
   {id:'p_detained_lot',label:'Detained border lot\n(false positive, retracted)', group:'product', shape:'diamond', detail:'p_detained_lot'},
   {id:'p_nc_parsley',  label:'NC suspected\nparsley / cilantro\n(not identified)', group:'product', shape:'diamond', detail:'p_nc_parsley'},
-  {id:'p_fda1385',     label:'FDA #1385\nproduct unidentified\n(10 cases)', group:'product', shape:'diamond', detail:'p_fda1385'},
-  {id:'p_fda1392',     label:'FDA #1392\nproduct unidentified\n(93 cases)', group:'product', shape:'diamond', detail:'p_fda1392'},
+  {id:'p_fda1385',     label:'FDA #1385\nproduct unidentified\n(28 cases)', group:'product', shape:'diamond', detail:'p_fda1385'},
+  {id:'p_fda1392',     label:'FDA #1392\nproduct unidentified\n(203 cases)', group:'product', shape:'diamond', detail:'p_fda1392'},
+  {id:'p_fda1398',     label:'FDA #1398\nproduct unidentified\n(22 cases, new)', group:'product', shape:'diamond', detail:'p_fda1398'},
 
   // FIRMS
   {id:'f_tfdemexico',  label:'Taylor Farms\nde Mexico\n(grower)', group:'firm', shape:'box', detail:'f_tfdemexico', mass:3},
@@ -646,6 +659,7 @@ const edges = new vis.DataSet([
   {from:'f_facility',   to:'r_closure',    color:V, label:'closed', font:LBL, basis:'verified', source:'Detroit News'},
   {from:'r_core',       to:'p_fda1385',    color:V, label:'tracks', font:LBL, basis:'verified', source:'FDA CORE table'},
   {from:'r_core',       to:'p_fda1392',    color:V, label:'tracks', font:LBL, basis:'verified', source:'FDA CORE table'},
+  {from:'r_core',       to:'p_fda1398',    color:V, label:'tracks', font:LBL, basis:'verified', source:'FDA CORE table (v32)'},
 
   // --- Verified state cluster membership ---
   {from:'s_cluster9', to:'s_mi', color:V, label:'member', font:LBL, basis:'verified', source:'FDA/CDC + MDHHS'},
@@ -680,6 +694,7 @@ const edges = new vis.DataSet([
   {from:'p_detained_lot', to:'r_recall27', color:G, label:'? destination\nundisclosed', font:LBLGAP, basis:'gap', source:'Lot number/ship dates never disclosed'},
   {from:'p_fda1385', to:'s_cdc', color:G, label:'? unlinked', font:LBLGAP, basis:'gap', source:'FDA CORE - product not yet identified'},
   {from:'p_fda1392', to:'s_cdc', color:G, label:'? unlinked', font:LBLGAP, basis:'gap', source:'FDA CORE - product not yet identified'},
+  {from:'p_fda1398', to:'s_cdc', color:G, label:'? unlinked', font:LBLGAP, basis:'gap', source:'FDA CORE - product not yet identified (v32)'},
   {from:'l_ayyad', to:'f_taylorfresh', color:G, label:'? not tied to\nTaylor Farms', font:LBLGAP, basis:'gap', source:'Ayyad names only franchisee + John Doe growers'},
   {from:'l_mdl', to:'r_recall27', color:G, label:'? Panel has\nnot ruled', font:LBLGAP, basis:'gap', source:'JPML pending; Jul 30-Aug 3 docket gap'},
   {from:'s_ny', to:'s_cdc', color:G, label:'? not lettuce-linked', font:LBLGAP, basis:'gap', source:'NY DOH - separate from the cluster'}
