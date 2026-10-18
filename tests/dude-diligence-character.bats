@@ -60,3 +60,34 @@ PY
   echo "$output"
   [ "$status" -eq 0 ]
 }
+
+# Two personas only (AB#2667): Duke Dillingham delivers the training; Dude
+# Diligence appears only while an incident is live. A bare "Dude" or a
+# "(... mode)" qualifier is a third persona.
+
+@test "DD-005: no bare Dude or '(... mode)' persona in Dude Diligence HTML" {
+  run python3 -I - "$DD" <<'PY'
+import re, sys, pathlib
+bad = []
+for f in pathlib.Path(sys.argv[1]).rglob("*.html"):
+    src = f.read_text(encoding="utf-8")
+    text = re.sub(r"(?s)<!--.*?-->|<style\b.*?</style>", " ", src)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text)
+    for m in re.finditer(r"\bdude\b(?!\.? diligence)|\(\s*\w+ mode\s*\)|\b\w+ mode: activated", text, re.I):
+        bad.append(f"{f.relative_to(sys.argv[1])}: ...{text[max(0, m.start()-40):m.end()+40]}...")
+if bad:
+    print("\n".join(bad)); sys.exit(1)
+PY
+  echo "$output"
+  [ "$status" -eq 0 ]
+}
+
+@test "DD-006: fourth-wall '(to reader)' lines are spoken by Duke" {
+  run grep -rnoiE --include='*.html' 'class="speaker">[^<]*\(to reader\)' "$DD"
+  bad="$(echo "$output" | grep -v 'class="speaker">DUKE (to reader)' || true)"
+  if [ -n "$bad" ]; then
+    echo "$bad"
+    return 1
+  fi
+}
