@@ -3,7 +3,8 @@
 Thumbs.db
 
 # Claude Code
-.claude/
+.claude/*
+!.claude/settings.json
 
 # IDE
 .vscode/
