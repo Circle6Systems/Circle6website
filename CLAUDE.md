@@ -24,7 +24,7 @@ Company website for Circle 6 Systems -- strategic technology consulting for gove
 
 **All work must follow this sequence -- no exceptions.**
 
-1. **Issues first.** Every code change must map to a documented GitHub issue. The issue must include a remediation/implementation plan before any code is written. Do not write code for work that isn't tracked in an issue.
+1. **Work items first.** Every code change must map to a documented ADO work item. Work items live in ADO project `c6s-firm-internal` (User Story or Bug). Never open GitHub issues. The work item must include a remediation/implementation plan before any code is written. Do not write code for work that isn't tracked in a work item.
 2. **Tests before code.** Write tests for the expected behavior before writing implementation code (TDD). If the repo has no test infrastructure, set it up as the first task before any feature work.
 3. **Plan, then implement.** Use plan mode to design the approach, get alignment, then execute. Do not start coding without a plan for non-trivial work.
 
@@ -33,15 +33,15 @@ Company website for Circle 6 Systems -- strategic technology consulting for gove
 ## Branching & Commits
 
 - Create feature branches from `main` (e.g., `feature/new-service-page`, `fix/mobile-nav`)
-- One commit per issue for clean history
+- One commit per work item for clean history, referencing it as `ADO #NNNN`
 - Write concise commit messages that explain the "why", not just the "what"
 - PR back to `main` when work is complete; do not merge without review
 
 ---
 
-## Issue Standards
+## Work Item Standards
 
-Every GitHub issue must include:
+Every ADO work item must include:
 
 - **Problem/Objective**: What needs to change and why
 - **Location**: Files, functions, or components affected
@@ -60,7 +60,7 @@ Every GitHub issue must include:
 - Security headers (CSP, HSTS, X-Frame-Options, Permissions-Policy) are set in HTML. Do not weaken them.
 - Mobile-first responsive design with 3 breakpoints. Test all changes on mobile.
 - Validate inputs at system boundaries
-- Do not add features, refactoring, or "improvements" beyond what the issue specifies
+- Do not add features, refactoring, or "improvements" beyond what the work item specifies
 - Keep solutions simple -- the right amount of complexity is the minimum needed
 
 ---
@@ -76,7 +76,7 @@ Every GitHub issue must include:
 
 ## Documentation
 
-- `docs/styleguide.md` -- Visual style guide (colors, typography, components, layout patterns). Authoritative reference for all C6S-branded pages, reports, and deliverables.
+- `docs/styleguide.md` -- Visual style guide (colors, typography, components, layout patterns). This is a local, untracked file on the maintainer's machine (`docs/` is gitignored except `docs/status/`), so it is not in the repo and may be absent in a fresh clone. Do not treat it as an in-repo authoritative reference; ask the user if you need it.
 - `docs/status/` -- Status reports, session summaries, and lessons learned (date-prefixed)
 - Do not create documentation files unless explicitly requested
 - Keep CLAUDE.md up to date as the project evolves
@@ -86,14 +86,15 @@ Every GitHub issue must include:
 Before closing any work session, complete these steps:
 
 1. **Status file.** Write a date-prefixed summary to `docs/status/` covering: what was done, decisions made, what's left, and lessons learned.
-2. **Commit and push.** All changes (including status docs) must be committed and pushed. No dangling local-only work.
+2. **Commit, then give the user the push command.** Agents do not push, merge, or complete PRs. All changes (including status docs) must be committed so no work is left uncommitted.
 3. **Verify clean state.** Run `git status` to confirm no uncommitted changes.
 
 ---
 
 ## What NOT to Do
 
-- Do not write code for work that isn't tracked in a GitHub issue
+- Do not write code for work that isn't tracked in an ADO work item
+- Do not open GitHub issues
 - Do not write implementation code before tests
 - Do not skip the plan-first workflow for non-trivial changes
 - Do not push to `main` directly -- use feature branches and PRs
