@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Flash Briefing: Microsoft 365 Outage | Circle 6 Systems Intelligence</title>
+  <meta name="description" content="OSINT flash briefing, November 12-13, 2026: an Exchange Online failure disrupted Outlook and about 20 dependent Microsoft 365 services worldwide. Official cause, revised timeline, labeled speculation, and confidence-rated assessments from 74 open sources.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--c6s-border);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.25rem; }
+    .hero .event-date {
+      font-size: 1.1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .hero .event-summary {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--c6s-text-dim);
+      font-size: 0.95rem;
+    }
+    .status-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .status-item { text-align: center; }
+    .status-item .value { font-size: 1.5rem; font-weight: 700; }
+    .status-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+      margin-bottom: 1rem;
+    }
+    .bluf { border-left: 4px solid var(--c6s-accent); }
+  
+    .skip-link { position: absolute; left: -999px; top: 0; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.5rem 1rem; z-index: 100; }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    a:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+    h2.section-label { font-family: inherit; }
+    h3 { font-family: var(--font-heading); margin: 1.5rem 0 0.75rem; color: var(--c6s-text-bright); }
+    .panel ul, .panel ol, section > ul, section > ol { padding-left: 1.25rem; }
+    .panel li, section > ul li, section > ol li { margin-bottom: 0.5rem; }
+    .confidence-bar .fill.high { background: var(--c6s-green); }
+    .confidence-bar .fill.medium { background: var(--c6s-amber); }
+    .confidence-bar .fill.low { background: var(--c6s-red); }
+    .conf-label { font-size: 0.8rem; font-weight: 700; color: var(--c6s-text-bright); min-width: 9rem; text-align: right; }
+    .table-scroll { overflow-x: auto; }
+    .table-scroll table { min-width: 34rem; }
+    .table-scroll.wide table { min-width: 56rem; }
+    main a { color: var(--c6s-accent); }
+    .panel.critical .panel-title, .badge-red { color: #fca5a5; }
+    .badge-amber { color: #fcd34d; }
+    .badge-green { color: #86efac; }
+    .sources-list { font-size: 0.85rem; padding-left: 1.25rem; }
+    .sources-list li { margin-bottom: 0.4rem; }
+    .sources-list a { color: var(--c6s-accent); }
+    .src-meta { color: var(--c6s-text-dim); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <!-- Site Navigation -->
+  <nav class="site-nav" aria-label="Site">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // OSINT &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+  <main class="container" id="main">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html" aria-current="page">Microsoft 365 Outage</a>
+    </nav>
+    <div class="hero">
+      <h1>Flash Briefing: Microsoft 365 Outage</h1>
+      <div class="event-date">Global &middot; Thursday-Friday, November 12-13, 2026 &middot; Flash Briefing v1</div>
+      <p class="event-summary">
+        A failure in Exchange Online, Microsoft's hosted email service, disrupted Outlook and about 20 dependent Microsoft 365 services worldwide for more
+        than a day. Microsoft attributes it to "an issue during an earlier network capacity upgrade that surfaced following a recent network change," and says the outage was "not related to cyber
+        or AI / agents." This was not a general outage of the Office web apps: core Teams calls and chat kept working. No post-incident report has been published.
+      </p>
+      <div class="status-bar" role="list">
+        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">18-30+ h</div><div class="label">Reported duration, by measure</div></div>
+        <div class="status-item" role="listitem"><div class="value">~20</div><div class="label">Dependent services affected</div></div>
+        <div class="status-item" role="listitem"><div class="value">74</div><div class="label">Countries with user reports in the first hour</div></div>
+        <div class="status-item" role="listitem"><div class="value">Very unlikely</div><div class="label">Cyberattack (moderate confidence)</div></div>
+      </div>
+    </div>
+
+    <section aria-labelledby="scope-h">
+      <h2 id="scope-h" class="section-label">Scope and conventions</h2>
+      <div class="panel">
+        <p><strong>Information cutoff:</strong> 11:10 PM ET on November 13, 2026 (04:10 UTC on November 14), plus a later capture of a public mirror of Microsoft's incident records at 04:32 UTC (see "Microsoft revised its records"). The incident was still open. Expect revisions.</p>
+        <p><strong>Time zones:</strong> ET is Eastern Standard Time (UTC-5) on these dates. UTC is Coordinated Universal Time.</p>
+        <p><strong>Abbreviations:</strong> M365, Microsoft 365. AI, artificial intelligence. FAA, US Federal Aviation Administration. KA, key assessment. REST, a web programming interface. NHS, the UK National Health Service. MHRA, the UK Medicines and Healthcare products Regulatory Agency. SIA, the UK Security Industry Authority. S.D.N.Y., the US District Court for the Southern District of New York. PIR, post-incident report (Microsoft's root-cause review). SLA, service level agreement. DLP, data loss prevention. NCSC, the UK National Cyber Security Centre. CISA, the US Cybersecurity and Infrastructure Security Agency. DHS, US Department of Homeland Security. VNet, an Azure virtual network. Incident IDs such as EX1550543 are Microsoft's own tracking numbers, visible to administrators in each organization's Service Health page.</p>
+        <p style="margin-bottom:0;"><strong>Sourcing:</strong> bracketed numbers such as [5] refer to the <a href="#sources">source list</a>. Official statements, credible reporting, and speculation are kept in separate, labeled sections. Confidence follows standard intelligence estimative language (almost certain, very likely, likely, roughly even chance, unlikely, very unlikely) with low, moderate, or high confidence.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="bluf-h">
+      <h2 id="bluf-h">Bottom Line Up Front</h2>
+      <div class="panel bluf">
+        <ul>
+          <li><strong>The event is confirmed, and it was not an "Office online" outage.</strong> The failure centered on Exchange Online (Outlook and email). Features of about 20 other Microsoft 365 services that depend on Exchange were affected, including Copilot, Teams calendar functions, the Defender and Purview portals, Intune, and Microsoft Graph [2, 5].</li>
+          <li><strong>Core Teams calls, meetings, and chat were not affected</strong>, and files stored directly in SharePoint Online stayed accessible, according to Microsoft [2].</li>
+          <li><strong>Official cause, so far:</strong> "This was a technical issue not related to cyber or AI / agents. The incident was introduced by an issue during an earlier network capacity upgrade that surfaced following a recent network change." [39, 49] No post-incident report has been published; Microsoft's root-cause field read "N/A" [5].</li>
+          <li><strong>Cyberattack:</strong> Microsoft has repeatedly said it has no evidence of malicious activity [5, 45]; Australia's Home Affairs Minister said Microsoft does not believe it is dealing with a cyber event [55]. We assess a cyberattack is <strong>very unlikely</strong> (moderate confidence). No independent government finding has been published.</li>
+          <li><strong>Start time revised.</strong> Microsoft's incident records first showed starts of 11:17 AM ET and 1:26 PM ET on November 12. A public mirror of those records, captured at 04:32 UTC on November 14, showed both revised to <strong>5:05 AM ET (10:05 UTC)</strong>, without explanation [74].</li>
+          <li><strong>FAA ground stop:</strong> a Microsoft spokesperson said the company has "no indication" the November 13 <a href="/osint-reports/faa-nas-outage-2026-11-13/">FAA ground stop</a> is related [37, 42]. We assess a link is <strong>very unlikely</strong> (moderate confidence).</li>
+          <li><strong>Watch for outage-themed phishing.</strong> The UK NCSC warned of scams impersonating IT help desks or Microsoft [51]. No security vendor or government source has confirmed a campaign.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="sc-h">
+      <h2 id="sc-h">01 &middot; Scope: What Failed and What Did Not</h2>
+      <p>Microsoft: "While Exchange is the primarily impacted service, we've identified additional Microsoft 365 services that are also experiencing connectivity issues" [5]. Later: "Features of the Microsoft 365 services below that interact with Exchange Online and email services are impacted. Elements of those services that do not depend on interaction with Exchange Online remain functional." [2]</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Service scope table, scrollable">
+      <table>
+        <thead><tr><th scope="col">Area</th><th scope="col">Status per Microsoft (last full update text, about 02:13-02:17 UTC, November 14)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Exchange Online</th><td>Mailbox access may fail through Outlook on the web, Outlook desktop, mobile sync, and REST; email delivery may be delayed [5].</td></tr>
+          <tr><th scope="row">Copilot</th><td>Copilot Chat may not load or reach email, calendar, and files [2].</td></tr>
+          <tr><th scope="row">Teams</th><td><strong>Core calls, meetings, group chats, and channel messages not impacted.</strong> Calendar, scheduling, and invites affected [2].</td></tr>
+          <tr><th scope="row">SharePoint Online</th><td><strong>Files stored directly in SharePoint remain accessible.</strong> Some external sharing affected [2].</td></tr>
+          <tr><th scope="row">Security and compliance</th><td>Defender portal pages may not load; Defender for Office 365 policy evaluation relying on Purview signals may be delayed; Purview DLP, labeling, eDiscovery, and audit search affected [2, 5].</td></tr>
+          <tr><th scope="row">Management</th><td>Admin center pages may not load; Intune enrollment and compliance intermittently affected [2].</td></tr>
+          <tr><th scope="row">Microsoft Graph</th><td>Requests that access Exchange data (mail, calendar, contacts) may time out [2].</td></tr>
+          <tr><th scope="row">Word for the web</th><td>A <strong>separate</strong> advisory (OO1550244) from 5:56 AM ET, with its own cause: a configuration change that "introduced a browser compatibility issue" [5].</td></tr>
+          <tr><th scope="row">Consumer services</th><td>A Microsoft notice listed Outlook.com, OneDrive, OneNote, To Do, Teams, and Microsoft 365 for the web [41]. The consumer feed later showed "Service restored", 10:05 UTC November 12 to 16:10 UTC November 13 [4].</td></tr>
+          <tr><th scope="row">Entra ID sign-in</th><td>Not in Microsoft's list of affected services [2].</td></tr>
+          <tr><th scope="row">Government clouds</th><td><strong>Not addressed by any source found.</strong> A gap, not evidence they were unaffected.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Microsoft later marked the Exchange incident "service restored"; see the next section.</p>
+      <p><strong>Regions:</strong> Microsoft first described the issue as "in the Americas", then said it "may affect Microsoft 365 service connectivity for users in any region" [54].</p>
+    </section>
+
+    <section aria-labelledby="rev-h">
+      <h2 id="rev-h">02 &middot; Microsoft Revised Its Records</h2>
+      <div class="panel warning">
+        <div class="panel-title">Start times moved six to eight hours earlier</div>
+        <p>When collected (about 04:00 UTC, November 14), a public mirror of Microsoft's incident records showed the Exchange incident (EX1550543) starting at 11:17 AM ET (16:17 UTC) and the wider incident (MO1550821) at 1:26 PM ET (18:26 UTC) on November 12; press also reported the 11:17 AM time [5, 39]. A later capture of the same mirror at 04:32 UTC showed <strong>both start times revised to 5:05 AM ET (10:05 UTC)</strong>: about 6 hours earlier for EX1550543 and about 8.5 hours earlier for MO1550821. The Exchange incident was marked <strong>"service restored"</strong> (record updated 04:12 UTC) with no end time; the wider incident remained degraded (record updated 04:07 UTC). Root cause still read "N/A" [74].</p>
+        <p style="margin-bottom:0;">Microsoft has not explained the revision, or said whether 5:05 AM ET marks customer impact or an earlier internal trigger. The revised time matches the start on Microsoft's consumer status feed [4]. A separate Teams messaging incident began at 9:45 AM ET, but Microsoft has not linked it [58]; it does not corroborate a 5:05 AM start.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="tl-h">
+      <h2 id="tl-h">03 &middot; Timeline</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Microsoft's Service Health wording is quoted from a public mirror hosted by the University of Pennsylvania [5], a third-party host of Microsoft's words.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Timeline, scrollable">
+      <table>
+        <thead><tr><th scope="col">ET</th><th scope="col">UTC</th><th scope="col">Event</th><th scope="col">Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Nov 12, 5:05 AM</td><td>10:05</td><td>Start on the consumer status feed [4]; the revised start of both enterprise incidents matches this time [74].</td><td>Official</td></tr>
+          <tr><td>Nov 12, 9:45-10:53 AM</td><td>14:45-15:53</td><td>Separate Teams messaging incident, attributed to "resource contention"; relationship not stated [58].</td><td>Reporting</td></tr>
+          <tr><td>Nov 12, 11:17 AM</td><td>16:17</td><td>Originally published start of EX1550543 [39].</td><td>Official, later revised</td></tr>
+          <tr><td>Nov 12, 12:45 PM</td><td>17:45</td><td>"Connectivity errors occurring on a portion of Exchange Online infrastructure which receives and processes users' access requests." [5]</td><td>Official</td></tr>
+          <tr><td>Nov 12, about 1:15 PM</td><td>About 18:15</td><td>Downdetector peak of about 130,000 Outlook reports (user reports, not measurements) [45].</td><td>Reporting</td></tr>
+          <tr><td>Nov 12, 1:26 PM</td><td>18:26</td><td>Originally published start of MO1550821, about 20 dependent services [58].</td><td>Official, later revised</td></tr>
+          <tr><td>Nov 12, 2:06 PM</td><td>19:06</td><td>"we've paused all deployments and configuration changes while we review recent changes" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 12, 2:18 PM</td><td>19:18</td><td>Load driven "by a large number of servers being unexpectedly unavailable", not by traffic [5].</td><td>Official</td></tr>
+          <tr><td>Nov 12, 2:57 PM</td><td>19:57</td><td>"we haven't identified any recent changes that correlate with the start of impact" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 12, 5:00 PM</td><td>22:00</td><td>"our actions taken thus far have not provided the anticipated relief" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 12, 8:06 PM</td><td>01:06 (Nov 13)</td><td>"we've begun reverting a recent network configuration change that correlates with the start of impact" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 12, 10:34 PM</td><td>03:34 (Nov 13)</td><td>"no indication this is the result of malicious activity" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 13, 2:25 AM</td><td>07:25</td><td>"positive results for server stability" after an "upstream authentication/routing configuration component patch" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 13, 4:55 AM</td><td>09:55</td><td>Email timeout extended to 48 hours "to help protect delayed messages" [5].</td><td>Official</td></tr>
+          <tr><td>Nov 13, 11:10 AM</td><td>16:10</td><td>Consumer feed end: "fully recovered and the backlog of email messages has been processed" [4].</td><td>Official</td></tr>
+          <tr><td>Nov 13, 12:57 PM</td><td>17:57</td><td>Cause statement in Service Health [5]; outlets time the public version between about noon and 1:05 PM ET [39, 45, 60].</td><td>Official</td></tr>
+          <tr><td>Nov 13, 5:00 PM</td><td>22:00</td><td>"sustained service recovery"; backlog must clear "before considering the issue resolved" [2, 5].</td><td>Official</td></tr>
+          <tr><td>Nov 13, 9:13 PM</td><td>02:13 (Nov 14)</td><td>"We've confirmed continued recovery across previously affected environments." [5]</td><td>Official</td></tr>
+          <tr><td>Nov 13, 11:07-11:12 PM</td><td>04:07-04:12 (Nov 14)</td><td>Records updated (MO1550821 at 04:07, EX1550543 at 04:12): start times shown as 10:05 UTC; EX1550543 "service restored", no end time. Captured from a public mirror at 04:32 UTC [74].</td><td>Official, via mirror</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <h3>How long it lasted, by measure</h3>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Duration measures, scrollable">
+      <table>
+        <thead><tr><th scope="col">Measure</th><th scope="col">Figure</th><th scope="col">Source</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Traffic returning to Microsoft services</th><td>About 18 hours of downtime</td><td>Internet-analysis firm Kentik, via TechCrunch [61]</td></tr>
+          <tr><th scope="row">Time to identify the cause</th><td>About 20 hours</td><td>NBC News [40]</td></tr>
+          <tr><th scope="row">Restoration, as reported</th><td>"nearly 24 hours"; "more than 24 hours"</td><td>CNBC [47]; USA Today [46]</td></tr>
+          <tr><th scope="row">Headline duration</th><td>"past 27 hours"</td><td>The Register [57]</td></tr>
+          <tr><th scope="row">Consumer status feed</th><td>About 30 hours (10:05 UTC Nov 12 to 16:10 UTC Nov 13)</td><td>Microsoft [4]</td></tr>
+          <tr><th scope="row">Enterprise incident record</th><td>Open from 10:05 UTC Nov 12 (revised); no end time when captured at 04:32 UTC Nov 14</td><td>Microsoft, via public mirror [74]</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="off-h">
+      <h2 id="off-h">04 &middot; Official Statements</h2>
+      <div class="panel highlight">
+        <div class="panel-title">Microsoft, on cause (Service Health, 12:57 PM ET / 17:57 UTC, November 13)</div>
+        <p>"We are seeing broad recovery and stability across our services. This was a technical issue not related to cyber or AI / agents. The incident was introduced by an issue during an earlier network capacity upgrade that surfaced following a recent network change. We have addressed the underlying issue and continue to restore service to remaining customers and regions." [5, 49]</p>
+        <p style="margin-bottom:0;">Many outlets carry this text. It is <strong>one first-party source</strong>, not independent corroboration.</p>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">How Microsoft's account changed</div>
+        <ul>
+          <li>2:43 PM ET Nov 12: health-check failures "may be related to a recent change to a component involved in processing those checks" [5].</li>
+          <li>2:57 PM ET Nov 12: "we haven't identified any recent changes that correlate with the start of impact" [5].</li>
+          <li>3:56 PM ET Nov 12: review "identified a small number of configuration updates" as "potential contributors" [5].</li>
+          <li>8:06 PM ET Nov 12: reverting "a recent network configuration change that correlates with the start of impact" [5].</li>
+          <li>12:57 PM ET Nov 13: "an issue during an earlier network capacity upgrade that surfaced following a recent network change" [5].</li>
+        </ul>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Microsoft, on malicious activity (in sequence)</div>
+        <ul>
+          <li>10:34 PM ET Nov 12: "there is no indication this is the result of malicious activity" [5].</li>
+          <li>12:43 AM ET Nov 13: "we are not aware of any malicious activity that is causing this incident"; The Register noted the change in wording [5, 57].</li>
+          <li>4:57-10:53 AM ET Nov 13: "we have no evidence of malicious activity associated with this incident" [5].</li>
+          <li>12:57 PM ET Nov 13: "not related to cyber or AI / agents" [5].</li>
+        </ul>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Microsoft leadership and spokespeople</div>
+        <ul>
+          <li>Charles Lamanna, Executive Vice President: "We know our customers rely on our services to get important work done every day, and regret the impact these outages had on those who depend on us." [58] He said a post-mortem would follow "shortly" [43].</li>
+          <li>On the FAA ground stop, a spokesperson: Microsoft has "no indication that the FAA nationwide ground stop is related" (AP, 6:51 PM ET; NBC, 7:10 PM ET, November 13) [37, 42].</li>
+        </ul>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Government</div>
+        <ul>
+          <li>Australia's Home Affairs Minister Tony Burke, after speaking with the national cyber security coordinator and Microsoft: "They do not believe they are dealing with a cyber event" [55]. He also said: "They believe that they are dealing in some ways (with something) similar to what we saw with respect to CrowdStrike where there is an update that has gone awry" [36].</li>
+          <li>US DHS Secretary Markwayne Mullin, on the FAA ground stop: "there is no connection between this and Microsoft" [44].</li>
+          <li>House Homeland Security Committee Chair Andrew Garbarino (R-N.Y.) is "seeking more information" from Microsoft and CISA [51]. Rep. Josh Gottheimer (D-N.J.) asked for a briefing [47].</li>
+          <li>CISA: a spokesperson declined to comment [51]. No Microsoft item was on the CISA news page at 10:42 PM ET (03:42 UTC, November 14) [17]. Point-in-time check only.</li>
+          <li>UK NCSC warned of "a rise in scam calls or approaches impersonating IT help desks or Microsoft" [51].</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="rep-h">
+      <h2 id="rep-h">05 &middot; Credible Reporting Beyond Official Statements</h2>
+      <div class="panel">
+        <ul>
+          <li><strong>Azure network configuration (single source):</strong> The Verge reported that, according to a senior correspondent's sources, the outage "is linked to Azure VNet config changes" [60]. Microsoft has not confirmed this detail; its own statement names a network capacity upgrade and network change, so the two agree only at the category level.</li>
+          <li><strong>Traffic data:</strong> Kentik data showed "a dramatic drop in traffic to Microsoft Exchange Online" [39], with traffic returning "after about 18 hours of downtime" [61].</li>
+          <li><strong>Downdetector (user reports, not measurements):</strong> reports from 74 countries and territories within about an hour; Outlook reports "peaked at more than 2,000 times their normal level" [36]; up to 19,650 reports per minute across five services [39].</li>
+          <li><strong>Expert view:</strong> Ciaran Martin, former head of the UK NCSC, told NBC the disruption "looks like being one of the biggest outages of all time" [39].</li>
+          <li><strong>Workforce speculation, countered:</strong> AP: "Microsoft has not tied this week's outage to recent job reductions at the company." [36]</li>
+        </ul>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">Conflicts we could not resolve</div>
+        <ul>
+          <li>USA Today says Microsoft "first announced" issues at 10:40 a.m. ET on November 12 [46]; the separate Teams incident may explain this, but that is not confirmed.</li>
+          <li>USA Today says the service health page showed all services "operational" at 3 p.m. ET on November 13 [46]; the enterprise status page still showed "Service degradation" at 04:02 UTC November 14 [1]. The USA Today line may refer to the consumer view.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="speculation" aria-labelledby="spec-h">
+      <h2 id="spec-h">06 &middot; Speculation and Counter-Narrative</h2>
+      <div class="panel critical">
+        <div class="panel-title">Unverified claims</div>
+        <p style="margin-bottom:0;">Everything in this table is <strong>unverified speculation</strong>, not established fact. Reddit was sampled twice, 10:33-10:59 PM ET November 13; engagement had plateaued on a story more than a day old. X, Bluesky posts, Telegram, Facebook, TikTok, YouTube, LinkedIn, Mastodon, and Threads were not collected, so the picture is Reddit-weighted. Accounts are described by type; posters are not named.</p>
+      </div>
+      <div class="table-scroll wide" tabindex="0" role="region" aria-label="Speculation catalog, scrollable">
+      <table>
+        <thead><tr><th scope="col">Claim</th><th scope="col">Where it propagates</th><th scope="col">Evidence for and against</th><th scope="col">Velocity</th><th scope="col">Weaponization risk</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">A cyberattack, including attribution to a named foreign state</th><td>Conspiracy forum threads (top thread about 330 votes) [68]</td><td><strong>For:</strong> none found. <strong>Against:</strong> Microsoft's repeated "no evidence of malicious activity" and "not related to cyber"; Australia's Home Affairs Minister [5, 55]. <strong>Open:</strong> no independent government finding. We do not repeat the state named.</td><td><span class="badge badge-amber">Plateau</span></td><td><span class="badge badge-red">High</span> state attribution without evidence</td></tr>
+          <tr><th scope="row">AI agents or AI-written code caused it</th><td>Conspiracy forums, low engagement [68, 70]</td><td><strong>Against:</strong> Microsoft: "not related to cyber or AI / agents" (first-party; unconfirmed until the PIR) [5]. AP: not tied to job reductions [36].</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><th scope="row">A CrowdStrike-style bad update</th><td>Mainstream coverage of the Australian minister's analogy [36]</td><td><strong>Partial basis:</strong> the minister said Microsoft believes it is dealing "in some ways" with something similar to "an update that has gone awry" [36]. Microsoft attributes the incident to its own network change [5]. No official source has named any third-party vendor.</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">Low</span></td></tr>
+          <tr><th scope="row">Linked to the same week's other events, including the FAA ground stop</th><td>Conspiracy forum recap threads (about 78-105 votes) [68]; Bluesky trending list [71]</td><td><strong>Against:</strong> Microsoft spokesperson [37, 42]; DHS Secretary [44]. No official source links them.</td><td><span class="badge badge-amber">Plateau</span></td><td><span class="badge badge-red">High</span></td></tr>
+          <tr><th scope="row">A cover-up: "fixes keep failing" because the cause is hidden</th><td>Forums, including an unverified post presented as an insider account [70]</td><td><strong>Documented basis:</strong> fixes did fail repeatedly, and Microsoft first said it had found no correlating change, then attributed the incident to a network change [5]. <strong>Against:</strong> no evidence of concealment; PIR pending. We do not repeat the insider post's claims.</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><th scope="row">Outage-themed phishing is under way</th><td>IT administrator forums (about 72 votes) [69]</td><td><strong>For:</strong> forum users describe lures citing the real incident number; the UK NCSC warning [51]. <strong>Against:</strong> no security vendor, press, or CISA report of a campaign found in sources checked; samples not seen.</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-red">High</span> credential theft</td></tr>
+          <tr><th scope="row">The outage was "predicted" by a past simulation</th><td>Conspiracy forums [70]</td><td>None.</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">Low</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="ka-h">
+      <h2 id="ka-h">07 &middot; Key Assessments</h2>
+      <div class="panel">
+        <div class="panel-title">KA-1: This was an Exchange Online failure whose effects spread to dependent Microsoft 365 features, not a general failure of the Office web apps. Almost certain; high confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill high" style="width: 95%;"></div></div><span class="conf-label">High confidence</span></div>
+        <p>Microsoft's incident text ("Exchange is the primarily impacted service") and dependency list [5, 2]. The only Word for the web issue was a separate advisory with its own cause [5].</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-2: The proximate trigger was an internal Microsoft network change interacting with an earlier capacity upgrade, causing servers to fail health checks and cascade under load. Very likely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Basis: Microsoft's statements over about 26 hours [5]. Limits: one first-party source; no PIR; Microsoft first said it had found no correlating change. The cascade description (failed servers shift load onto the rest, which then fail) is our analysis of Microsoft's statements, not a Microsoft finding.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-3: A cyberattack caused the outage. Very unlikely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Basis: repeated Microsoft statements [5]; the Australian minister's account after speaking with the national cyber coordinator [55]. Limits: no independent government finding; CISA declined comment [51]; the investigation is not complete.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-4: AI agents or AI-generated changes caused the outage. Unlikely; low confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
+        <p>Basis: Microsoft's explicit denial [5]. Limits: the denial is first-party, and the change mechanism is not yet published.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-5: The outage is linked to the FAA ground stop on November 13. Very unlikely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Basis: Microsoft's spokesperson and the DHS Secretary [37, 42, 44]. See our <a href="/osint-reports/faa-nas-outage-2026-11-13/">FAA ground stop briefing</a>.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-6: Some customer impact began before the originally published 11:17 AM ET start. Roughly even chance; low confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
+        <p>Fact, not assessment: Microsoft's records, as captured from a public mirror, now date both incidents to 5:05 AM ET (10:05 UTC) [74]. Whether that time marks customer impact is the open question. Basis: the revised time matches Microsoft's consumer feed start [4], and USA Today reported a first Microsoft announcement at 10:40 AM ET [46]. Limits: Microsoft has not said what the revised time marks; the consumer event may be separate; the USA Today time is single-outlet.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-7: Microsoft declares both incidents resolved by November 16. Likely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>"Continued recovery" and the "majority" of scenarios addressed at 02:13 UTC November 14 [5]; the Exchange incident was marked "service restored" at 04:12 UTC, but the wider incident remained degraded and neither had an end time [5].</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-8: Microsoft publishes a post-incident report within two weeks. Likely; low confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
+        <p>Microsoft and its executive promised one "shortly" [43, 5]. Limits: Microsoft's published 72-hour and 14-day review timelines are for Azure [11]; we found no equivalent Microsoft 365 commitment.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-9: Outage-themed phishing and help-desk impersonation rise over the next 72 hours. Likely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Basis: the UK NCSC warning [51] and forum reports [69]. Limits: no confirmed campaign.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-10: US congressional scrutiny continues. Likely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Basis: the House Homeland Security Chair's inquiry [51] and Rep. Gottheimer's request [47].</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="imp-h">
+      <h2 id="imp-h">08 &middot; Impact</h2>
+      <ul>
+        <li><strong>User base, not the number affected:</strong> more than 430 million people use Microsoft 365 apps (AP, citing Microsoft) [36]. Microsoft has not said how many were affected.</li>
+        <li><strong>Economic estimates (third-party):</strong> Anderson Economic Group estimated lost productivity could approach $7 billion, with as many as 26 million users on Thursday and 51 million on Friday potentially affected (via CNN) [48]. These are estimates.</li>
+      </ul>
+      <h3>Organizations' own public notices</h3>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Organization notices, scrollable">
+      <table>
+        <thead><tr><th scope="col">Organization</th><th scope="col">What it said</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Maine Judicial Branch</th><td>Email outage about 1:00 PM November 12 to 7:00 AM November 13 ET; protection-order requests emailed after 12:30 PM "may not have been received"; refile by email or paper [18].</td></tr>
+          <tr><th scope="row">US District Court, S.D.N.Y.</th><td>Notice to the Bar: "Microsoft Outage Impacting Email" [19].</td></tr>
+          <tr><th scope="row">UK Planning Inspectorate</th><td>Appeals submissions paused over the weekend [20].</td></tr>
+          <tr><th scope="row">UK Maritime and Coastguard Agency</th><td>Email affected; "search and rescue services are currently unaffected" [23].</td></tr>
+          <tr><th scope="row">UK Insolvency Service, MHRA, Security Industry Authority</th><td>Email problems; MHRA phone lines and SIA licensing continued [21, 22, 24].</td></tr>
+          <tr><th scope="row">NHS England</th><td>"local NHS services are enacting long-standing measures to manage IT outages" [25].</td></tr>
+          <tr><th scope="row">Unity Health Toronto</th><td>Email services restored (statement 1:25 PM local time, November 12) [26].</td></tr>
+          <tr><th scope="row">University of Cambridge</th><td>Delayed messages held for up to 48 hours [27].</td></tr>
+          <tr><th scope="row">Boston University, George Mason, Harvard IT, Kean University</th><td>Email disruption notices. Harvard IT: "Please do not resend messages unless asked to." [28, 29, 30, 31]</td></tr>
+          <tr><th scope="row">City of Baltimore</th><td>"a global Microsoft outage is delaying City email"; City services operating normally [32].</td></tr>
+          <tr><th scope="row">Cities of San Diego and Jacksonville</th><td>Staff email delayed or affected [33, 34].</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p><strong>Press-reported only:</strong> government services in the US, UK, Japan, the Philippines, Singapore, and Greece; US House staff; UK police forces asking the public to phone urgent reports; a halted Manchester criminal trial; UK pharmacy prescription delays; and airline disruption including SpiceJet cancellations [36, 39, 50, 51, 52, 63]. No airline's own notice was captured.</p>
+      <p><strong>Service credits:</strong> Microsoft's Online Services SLA gives Exchange Online credits of 25% below 99.9% monthly uptime, 50% below 99%, and 100% below 95%, and defines downtime as "Any period of time when users are unable to send or receive email with Outlook Web Access" [12]. By the SLA's own worked example, the claim deadline for a November incident is December 31, 2026 (our inference). No Microsoft statement on credits for this incident was found; we do not assess eligibility.</p>
+    </section>
+
+    <section aria-labelledby="prec-h">
+      <h2 id="prec-h">09 &middot; Precedent and Recycled Narratives</h2>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Precedent table, scrollable">
+      <table>
+        <thead><tr><th scope="col">Date</th><th scope="col">Event (from Microsoft's own reviews unless noted)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Jan 25, 2023</th><td>Azure wide-area network outage: a capacity-addition task ran a changed procedure that was "not re-tested" [7].</td></tr>
+          <tr><th scope="row">Jul 18-19, 2024</th><td>Azure Central US: an incomplete Storage allow list caused Storage to reject virtual machine disk requests [8].</td></tr>
+          <tr><th scope="row">Jul 19, 2024</th><td>CrowdStrike content update: Microsoft said "this was not a Microsoft incident"; about 8.5 million Windows devices affected [10].</td></tr>
+          <tr><th scope="row">Oct 29, 2025</th><td>Azure Front Door: incompatible metadata "exposed a latent bug in the data plane" [9].</td></tr>
+          <tr><th scope="row">January 2026</th><td>A Microsoft email outage of "over eight" hours; an initial load-balancing fix worsened it (secondary source) [65].</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p><strong>Recycled templates seen this week:</strong> "everything is connected" recap lists; "not a hack, therefore AI"; "the official denial is the proof"; "an insider leak explains it"; the CrowdStrike analogy drifting into blame on an unnamed vendor; and "it was predicted".</p>
+    </section>
+
+    <section aria-labelledby="watch-h">
+      <h2 id="watch-h">10 &middot; What to Watch, 24 to 72 Hours</h2>
+      <ul>
+        <li>Microsoft closing both incidents with an end time, and explaining the revised start time.</li>
+        <li>The post-incident report: does it confirm the reported Azure virtual-network change, and explain why Microsoft first found no correlating change?</li>
+        <li>Whether the morning Teams incident and the consumer event are part of the same failure.</li>
+        <li>Any statement on government clouds.</li>
+        <li>CISA, NCSC, or other government statements, and any confirmed phishing campaign.</li>
+        <li>Congressional letters or hearings; any Microsoft statement on service credits.</li>
+        <li>Speculation drift (state attribution, AI blame, "linked outages") if the post-incident report is slow.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="act-h">
+      <h2 id="act-h">11 &middot; Actions for Organizations That Depend on Microsoft 365</h2>
+      <ol>
+        <li><strong>Check your own tenant.</strong> In Service Health, look for EX1550543 and MO1550821, and OO1550244 if you use Word for the web. If the admin center will not load, use status.cloud.microsoft [1, 13].</li>
+        <li><strong>Poll status with a fallback.</strong> The Microsoft Graph service communications API exposes Service Health [14], but Graph calls that touch Exchange data may time out during this incident [2]; keep a non-Graph fallback.</li>
+        <li><strong>Review the security gap.</strong> Defender for Office 365 policy evaluation, Purview DLP and labeling, and Defender portal pages were degraded [2]. Once stable, review alerts, DLP actions, and audit searches for November 12-14.</li>
+        <li><strong>Recover time-critical inbound mail.</strong> Microsoft extended the email timeout to 48 hours [5]. Confirm receipt where a lost message causes harm (court filings, protection orders, clinical referrals) [18]. Do not mass-resend [30].</li>
+        <li><strong>Out-of-band communications.</strong> Keep a staff and customer contact path that does not depend on Microsoft 365, and test it. As one cybersecurity professor told AP, "A continuity plan that relies on the same platform that has just failed is not a plan." [36]</li>
+        <li><strong>Phishing (precaution, not an observed campaign).</strong> Warn staff about "restore your messages" and "verify your account" emails and fake help-desk calls citing the real incident numbers. Check recovery status only through the admin center or status page, never a link in an email.</li>
+        <li><strong>Emergency access.</strong> Confirm break-glass administrator accounts work and are not tied to a single service dependency [16]. Hygiene only; no fault was reported here.</li>
+        <li><strong>Service credits.</strong> Cloud Solution Provider customers claim through their partner [15]; direct customers follow the SLA [12].</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="limits-h">
+      <h2 id="limits-h">12 &middot; Collection Limits</h2>
+      <ul>
+        <li>Microsoft's X account could not be read directly (HTTP 403); its first public post time (about 12:54 PM ET) rests on press and aggregators.</li>
+        <li>No post-incident report; the cause rests on one first-party statement and one single-source press report.</li>
+        <li>No source addressed government clouds.</li>
+        <li>Reuters and The Wall Street Journal (HTTP 401), Bloomberg (HTTP 403), and The Washington Post (no response) could not be read.</li>
+        <li>No security-vendor phishing advisory or sample was captured; a certificate-log check for 12 outage-themed name patterns found zero certificates (a weak negative), and two further patterns could not be checked (HTTP 502) [73].</li>
+        <li>Social coverage is Reddit-weighted; most other platforms were not collected.</li>
+      </ul>
+    </section>
+
+    <section id="sources" aria-labelledby="src-h">
+      <h2 id="src-h">Sources</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Tiers: T1 official primary (Microsoft, governments, courts, organizations' own notices); T1-M Microsoft's words on a third-party host; T2 wire service or major national outlet; T3 trade, regional, or specialist press, or a data service; T4 social media and aggregators (used only to describe claims or timing, never to establish facts). Retrieval times are UTC on November 14, 2026. Live social media feeds and raw data endpoints are described, not linked. Entries marked "live page" change over time; what this briefing cites is what they showed at the capture time given.</p>
+      <ol class="sources-list" style="list-style:none;">
+        <li id="src-1"><strong>[1]</strong> <a href="https://status.cloud.microsoft/" rel="noopener noreferrer">Microsoft: &quot;Service degradation&quot; (Business or Enterprise)</a> <span class="src-meta">T1 &middot; captured 03:32:10; 04:02:03 UTC &middot; live page, content changes</span> <span class="src-meta">Also supports: consumer &quot;Operational&quot;; admins may be unable to access the admin center.</span></li>
+        <li id="src-2"><strong>[2]</strong> Microsoft: 22:00:36 UTC post <span class="src-meta">T1 &middot; captured 04:02:08 UTC &middot; live page, content changes &middot; data endpoint, not linked</span> <span class="src-meta">Also supports: dependency list; core Teams not impacted; SharePoint file access functional.</span></li>
+        <li id="src-3"><strong>[3]</strong> Microsoft: RSS item 22:00:36 UTC, ServiceDegradation <span class="src-meta">T1 &middot; captured 03:37:23; 04:02:17 UTC &middot; live page, content changes &middot; data endpoint, not linked</span></li>
+        <li id="src-4"><strong>[4]</strong> Microsoft: Consumer &quot;Service restored&quot; <span class="src-meta">T1 &middot; captured 04:02:12 UTC &middot; live page, content changes &middot; data endpoint, not linked</span> <span class="src-meta">Also supports: start 10:05 UTC 12 Nov, end 16:10 UTC 13 Nov; Outlook.com &quot;Operational&quot;.</span></li>
+        <li id="src-5"><strong>[5]</strong> <a href="https://mailservices.isc.upenn.edu/computing/email/penno365/alerts/ms-incidents.html" rel="noopener noreferrer">University of Pennsylvania ISC: EX1550543 and MO1550821 headers (start times, &quot;Not ended yet&quot;, Root Cause &quot;N/A&quot;)</a> <span class="src-meta">T1-M &middot; captured 04:02:59-04:04:14 UTC &middot; live page, content changes</span> <span class="src-meta">Also supports: every quoted Service Health update; OO1550244.</span></li>
+        <li id="src-6"><strong>[6]</strong> <a href="https://azure.status.microsoft/en-us/status/" rel="noopener noreferrer">Microsoft: &quot;There are currently no active events&quot; (point in time)</a> <span class="src-meta">T1 &middot; captured 03:36:31 UTC &middot; live page, content changes</span></li>
+        <li id="src-7"><strong>[7]</strong> <a href="https://azure.status.microsoft/en-us/status/history/?trackingId=VSG1-B90" rel="noopener noreferrer">Microsoft: Jan 2023 WAN review</a> <span class="src-meta">T1 &middot; captured 03:41:19 UTC</span></li>
+        <li id="src-8"><strong>[8]</strong> <a href="https://azure.status.microsoft/en-us/status/history/?trackingId=1K80-N_8" rel="noopener noreferrer">Microsoft: Jul 2024 Central US review</a> <span class="src-meta">T1 &middot; captured 03:41:11 UTC</span></li>
+        <li id="src-9"><strong>[9]</strong> <a href="https://azure.status.microsoft/en-us/status/history/?trackingId=YKYN-BWZ" rel="noopener noreferrer">Microsoft: Oct 2025 Azure Front Door review</a> <span class="src-meta">T1 &middot; captured 03:41:26 UTC</span> <span class="src-meta">Also supports: MO1181369.</span></li>
+        <li id="src-10"><strong>[10]</strong> <a href="https://blogs.microsoft.com/blog/2024/07/20/helping-our-customers-through-the-crowdstrike-outage/" rel="noopener noreferrer">Microsoft: &quot;not a Microsoft incident&quot;</a> <span class="src-meta">T1 &middot; captured 03:39:38 UTC</span> <span class="src-meta">Also supports: 8.5 million devices.</span></li>
+        <li id="src-11"><strong>[11]</strong> <a href="https://learn.microsoft.com/en-us/training/modules/intro-to-azure-incident-readiness/5-after-an-incident" rel="noopener noreferrer">Microsoft Learn: Azure review timelines (72 hours</a> <span class="src-meta">T1 &middot; captured 03:39:03 UTC</span> <span class="src-meta">Also supports: 14 days).</span></li>
+        <li id="src-12"><strong>[12]</strong> <a href="https://www.microsoft.com/licensing/docs/documents/download/OnlineSvcsConsolidatedSLA(WW)(English)(November_2026)(CR).docx" rel="noopener noreferrer">Microsoft: Exchange Online credit tiers (Word document)</a> <span class="src-meta">T1 &middot; captured 03:42:54 UTC</span> <span class="src-meta">Also supports: Downtime definition; claim deadline and worked example.</span></li>
+        <li id="src-13"><strong>[13]</strong> <a href="https://learn.microsoft.com/en-us/microsoft-365/enterprise/view-service-health?view=o365-worldwide" rel="noopener noreferrer">Microsoft Learn: Service Health guidance</a> <span class="src-meta">T1 &middot; captured 03:32:59; 03:39:11 UTC</span></li>
+        <li id="src-14"><strong>[14]</strong> Microsoft Learn: Graph service communications API <span class="src-meta">T1 &middot; captured 03:33:03 UTC &middot; data endpoint, not linked</span></li>
+        <li id="src-15"><strong>[15]</strong> <a href="https://learn.microsoft.com/en-us/partner-center/billing/request-credit" rel="noopener noreferrer">Microsoft Learn: Partner Center credit requests</a> <span class="src-meta">T1 &middot; captured 03:33:34 UTC</span></li>
+        <li id="src-16"><strong>[16]</strong> <a href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access" rel="noopener noreferrer">Microsoft Learn: Emergency access accounts</a> <span class="src-meta">T1 &middot; captured 03:42:30 UTC</span></li>
+        <li id="src-17"><strong>[17]</strong> <a href="https://www.cisa.gov/news-events/news" rel="noopener noreferrer">CISA: No Microsoft item at retrieval (point-in-time negative)</a> <span class="src-meta">T1 &middot; captured 03:42:40 UTC &middot; live page, content changes</span></li>
+        <li id="src-18"><strong>[18]</strong> <a href="https://www.courts.maine.gov/news/article.html?id=13367403" rel="noopener noreferrer">Maine Judicial Branch: Outage about 1:00 PM to 7:00 AM ET</a> <span class="src-meta">T1 &middot; captured 03:40:58 UTC</span> <span class="src-meta">Also supports: protection orders after 12:30 PM.</span></li>
+        <li id="src-19"><strong>[19]</strong> <a href="https://www.nysd.uscourts.gov/sites/default/files/2026-11/Notice%20to%20the%20Bar%20-%20Microsoft%20Outage%20Impacting%20Email.pdf" rel="noopener noreferrer">US District Court, S.D.N.Y.: Notice to the Bar (PDF)</a> <span class="src-meta">T1 &middot; captured 03:47:10 UTC</span></li>
+        <li id="src-20"><strong>[20]</strong> <a href="https://www.gov.uk/government/news/our-manage-appeals-service-is-currently-paused-due-to-the-worldwide-microsoft-outage" rel="noopener noreferrer">UK Planning Inspectorate: Submissions paused</a> <span class="src-meta">T1 &middot; captured 03:46:48 UTC</span> <span class="src-meta">Also supports: resume Monday 16 Nov.</span></li>
+        <li id="src-21"><strong>[21]</strong> <a href="https://www.gov.uk/government/news/service-issues-due-to-microsoft-outage" rel="noopener noreferrer">UK Insolvency Service: Email issues</a> <span class="src-meta">T1 &middot; captured 03:46:51 UTC</span></li>
+        <li id="src-22"><strong>[22]</strong> <a href="https://www.gov.uk/government/news/mhra-services-during-microsoft-outage" rel="noopener noreferrer">UK MHRA: Email problems</a> <span class="src-meta">T1 &middot; captured 03:46:53 UTC</span> <span class="src-meta">Also supports: phone lines operational.</span></li>
+        <li id="src-23"><strong>[23]</strong> <a href="https://www.gov.uk/government/news/microsoft-outage-affecting-mca-email-services" rel="noopener noreferrer">UK Maritime and Coastguard Agency: Search and rescue unaffected</a> <span class="src-meta">T1 &middot; captured 03:46:56 UTC</span></li>
+        <li id="src-24"><strong>[24]</strong> <a href="https://www.gov.uk/government/news/sia-service-update-licensing-continues-despite-global-microsoft-outage" rel="noopener noreferrer">UK Security Industry Authority: Licensing continues</a> <span class="src-meta">T1 &middot; captured 03:46:59 UTC</span></li>
+        <li id="src-25"><strong>[25]</strong> <a href="https://www.england.nhs.uk/2026/11/nhs-statement-on-microsoft-outage/" rel="noopener noreferrer">NHS England: Local NHS outage measures</a> <span class="src-meta">T1 &middot; captured 03:41:07 UTC</span></li>
+        <li id="src-26"><strong>[26]</strong> <a href="https://unityhealth.to/2026/11/global-microsoft-365-outage-affecting-email-services-at-unity-health-toronto/" rel="noopener noreferrer">Unity Health Toronto: Restored</a> <span class="src-meta">T1 &middot; captured 03:41:03 UTC</span> <span class="src-meta">Also supports: statement 12 Nov 1:25 PM.</span></li>
+        <li id="src-27"><strong>[27]</strong> <a href="https://help.uis.cam.ac.uk/news/worldwide-microsoft-service-issues-update-1000pm-fri-13-nov" rel="noopener noreferrer">University of Cambridge: 48-hour hold on delayed messages</a> <span class="src-meta">T1 &middot; captured 03:41:27 UTC</span></li>
+        <li id="src-28"><strong>[28]</strong> <a href="https://www.bu.edu/tech/" rel="noopener noreferrer">Boston University: Disruption notice</a> <span class="src-meta">T1 &middot; captured 03:43:09 UTC</span></li>
+        <li id="src-29"><strong>[29]</strong> <a href="https://its.gmu.edu/unplanned-outages/issues-with-accessing-or-using-multiple-microsoft-365-services/" rel="noopener noreferrer">George Mason University: Disruption notice</a> <span class="src-meta">T1 &middot; captured 03:47:02 UTC</span> <span class="src-meta">Also supports: email delays.</span></li>
+        <li id="src-30"><strong>[30]</strong> <a href="https://status.huit.harvard.edu/" rel="noopener noreferrer">Harvard University IT: &quot;do not resend messages unless asked to&quot;</a> <span class="src-meta">T1 &middot; captured 03:43:18 UTC</span></li>
+        <li id="src-31"><strong>[31]</strong> <a href="https://www.kean.edu/" rel="noopener noreferrer">Kean University: Exchange Online disruption notice</a> <span class="src-meta">T1 &middot; captured 03:38:53 UTC</span></li>
+        <li id="src-32"><strong>[32]</strong> <a href="https://baltimorecity.gov/" rel="noopener noreferrer">City of Baltimore: City email delayed</a> <span class="src-meta">T1 &middot; captured 03:38:15 UTC</span></li>
+        <li id="src-33"><strong>[33]</strong> <a href="https://www.sandiego.gov/" rel="noopener noreferrer">City of San Diego: Staff email responses delayed</a> <span class="src-meta">T1 &middot; captured 03:44:32 UTC</span></li>
+        <li id="src-34"><strong>[34]</strong> <a href="https://www.coj.net/" rel="noopener noreferrer">City of Jacksonville: Outage notice from 12:30 PM, 12 Nov</a> <span class="src-meta">T1 &middot; captured 03:39:03 UTC</span></li>
+        <li id="src-35"><strong>[35]</strong> <a href="https://status.claude.com/" rel="noopener noreferrer">Anthropic: Microsoft 365 connector errors 16:03 UTC 12 Nov to 16:40 UTC 13 Nov</a> <span class="src-meta">T1 (third-party own notice) &middot; captured 03:38:48; 03:41:32 UTC &middot; live page, content changes</span></li>
+        <li id="src-36"><strong>[36]</strong> <a href="https://apnews.com/live/microsoft-services-global-outage-news-updates-11-13-2026" rel="noopener noreferrer">AP: Burke quotes</a> <span class="src-meta">T2 &middot; captured 03:36:56; 04:02:21 UTC</span> <span class="src-meta">Also supports: &quot;just before 1 p.m.&quot;; 74 countries; &quot;2,000 times&quot;; 430M and 450M user base; Philippines Supreme Court, IndiGo, Air India, Singapore GovTech, Japan; &quot;regret the impact&quot; post; job-reductions line; pharmacy delays; St Andrews professor quote.</span></li>
+        <li id="src-37"><strong>[37]</strong> <a href="https://apnews.com/live/ground-stop-aviation-flights-news-updates-11-13-2026" rel="noopener noreferrer">AP: Microsoft spokesperson on the FAA, 3:51 PM PST entry</a> <span class="src-meta">T2 &middot; captured 03:35:48; 03:37:45 UTC</span></li>
+        <li id="src-38"><strong>[38]</strong> <a href="https://apnews.com/article/microsoft-outage-outlook-email-365-status-down-d92547a821930290db2964388016979a" rel="noopener noreferrer">AP: 130,000 users reported issues</a> <span class="src-meta">T2 &middot; captured 03:34:25 UTC</span> <span class="src-meta">Also supports: CrowdStrike parallels.</span></li>
+        <li id="src-39"><strong>[39]</strong> <a href="https://www.nbcnews.com/tech/tech-news/live-blog/microsoft-outage-outlook-teams-updates-fix-rcna609118" rel="noopener noreferrer">NBC News: 11:17 AM start</a> <span class="src-meta">T2 &middot; captured 03:34:52; 03:41:46 UTC</span> <span class="src-meta">Also supports: 19,650 per minute; 74 countries; cause statement 12:18 PM EST; Kentik traffic drop; Burke; Manchester trial; Colorado sheriff&#x27;s office; bank verification codes; 48-hour timeout.</span></li>
+        <li id="src-40"><strong>[40]</strong> <a href="https://www.nbcnews.com/tech/tech-news/microsoft-took-long-recover-massive-outage-outlook-down-rcna609264" rel="noopener noreferrer">NBC News: Cause identified about 20 hours after start</a> <span class="src-meta">T2 &middot; captured 03:34:49 UTC</span></li>
+        <li id="src-41"><strong>[41]</strong> <a href="https://www.nbcnews.com/tech/tech-news/outlook-widespread-outage-hits-microsoft-apps-rcna609047" rel="noopener noreferrer">NBC News: Consumer notice quote (Outlook.com and others)</a> <span class="src-meta">T2 &middot; captured 03:34:56 UTC</span></li>
+        <li id="src-42"><strong>[42]</strong> <a href="https://www.nbcnews.com/news/us-news/live-blog/live-updates-flights-grounded-faa-communications-outage-rcna609268" rel="noopener noreferrer">NBC News: Microsoft spokesperson on the FAA, 7:10 PM EST</a> <span class="src-meta">T2 &middot; captured 03:35:09 UTC</span></li>
+        <li id="src-43"><strong>[43]</strong> <a href="https://www.cbsnews.com/news/microsoft-battling-major-outage/" rel="noopener noreferrer">CBS News: Lamanna post-mortem promise</a> <span class="src-meta">T2 &middot; captured 03:34:45 UTC</span> <span class="src-meta">Also supports: Burke; &quot;just before 1 p.m.&quot;.</span></li>
+        <li id="src-44"><strong>[44]</strong> <a href="https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/" rel="noopener noreferrer">CBS News: Mullin: &quot;no connection between this and Microsoft&quot;</a> <span class="src-meta">T2 &middot; captured 03:35:44 UTC</span></li>
+        <li id="src-45"><strong>[45]</strong> <a href="https://www.usatoday.com/story/tech/2026/11/13/microsoft-dismisses-cyberattack-speculation-amid-outage/92759759007/" rel="noopener noreferrer">USA Today: 10:39 AM and 1:05 PM posts</a> <span class="src-meta">T2 &middot; captured 03:34:59 UTC</span> <span class="src-meta">Also supports: Downdetector peak about 1:15 PM.</span></li>
+        <li id="src-46"><strong>[46]</strong> <a href="https://www.usatoday.com/story/tech/2026/11/13/microsoft-outage-outlook-updates-friday/92752697007/" rel="noopener noreferrer">USA Today: 11:17 AM</a> <span class="src-meta">T2 &middot; captured 03:35:02 UTC</span> <span class="src-meta">Also supports: 19,650 per minute by 1:25 PM; &quot;more than 24 hours&quot;; &quot;first announced ... 10:40 a.m.&quot;; &quot;operational&quot; at 3 p.m. (conflict).</span></li>
+        <li id="src-47"><strong>[47]</strong> <a href="https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html" rel="noopener noreferrer">CNBC: &quot;nearly 24 hours&quot;</a> <span class="src-meta">T2 &middot; captured 03:32:50 UTC</span> <span class="src-meta">Also supports: Gottheimer briefing request; Burke (citing Reuters).</span></li>
+        <li id="src-48"><strong>[48]</strong> <a href="https://www.cnn.com/2026/11/12/tech/microsoft-outage-cripples-office-workers-nationwide" rel="noopener noreferrer">CNN: Anderson Economic Group $7 billion, 26M/51M users, $800M a day</a> <span class="src-meta">T2 &middot; captured 03:34:38; 03:34:41 UTC</span></li>
+        <li id="src-49"><strong>[49]</strong> <a href="https://abcnews.com/US/outlook-down-microsoft-outage-reported-mail/story?id=138088203" rel="noopener noreferrer">ABC News: Lamanna statements</a> <span class="src-meta">T2 &middot; captured 03:32:46 UTC</span> <span class="src-meta">Also supports: cause statement.</span></li>
+        <li id="src-50"><strong>[50]</strong> <a href="https://abcnews.com/Business/microsoft-outlookoutage-impacts-governments-courts-hospitals-universities/story?id=138107029" rel="noopener noreferrer">ABC News: Austin, NYC Emergency Management, UK Supreme Court, Cambridge, Kean</a> <span class="src-meta">T2 &middot; captured 03:36:43 UTC</span></li>
+        <li id="src-51"><strong>[51]</strong> <a href="https://www.politico.com/news/2026/11/13/microsoft-washington-scrutiny-cybersecurity-01165328" rel="noopener noreferrer">Politico: Garbarino</a> <span class="src-meta">T2 &middot; captured 03:41:16 UTC</span> <span class="src-meta">Also supports: CISA declined comment; UK NCSC scam warning; congressional staff.</span></li>
+        <li id="src-52"><strong>[52]</strong> <a href="https://www.axios.com/2026/11/13/microsoft-outage-hits-courts-congress" rel="noopener noreferrer">Axios: Courts and Congress impact</a> <span class="src-meta">T2 &middot; captured 03:36:38 UTC</span></li>
+        <li id="src-53"><strong>[53]</strong> <a href="https://www.bbc.com/news/articles/cqp9d58eldlro" rel="noopener noreferrer">BBC: International impact</a> <span class="src-meta">T2 &middot; captured 03:40:02 UTC</span> <span class="src-meta">Also supports: Austin.</span></li>
+        <li id="src-54"><strong>[54]</strong> <a href="https://globalnews.ca/news/12148204/microsoft-outage-2026/" rel="noopener noreferrer">Global News: Microsoft X statement citing EX1550543</a> <span class="src-meta">T2 &middot; captured 03:41:36; 04:02:25 UTC</span> <span class="src-meta">Also supports: &quot;Americas&quot;, then &quot;any region&quot;.</span></li>
+        <li id="src-55"><strong>[55]</strong> <a href="https://www.abc.net.au/news/2026-11-13/microsoft-outage-affects-users-worldwide/107381050" rel="noopener noreferrer">ABC: Burke: &quot;They do not believe they are dealing with a cyber event&quot;</a> <span class="src-meta">T2 &middot; captured 03:41:50; 03:42:13 UTC</span></li>
+        <li id="src-56"><strong>[56]</strong> <a href="https://www.theregister.com/saas/2026/11/12/microsoft-struggling-to-fix-massive-cloud-outage-thats-taken-down-email-and-intune/5309531" rel="noopener noreferrer">The Register: &quot;around 18:00 UTC&quot;</a> <span class="src-meta">T3 &middot; captured 03:32:24 UTC</span> <span class="src-meta">Also supports: early &quot;hasn&#x27;t spotted any changes&quot; paraphrase.</span></li>
+        <li id="src-57"><strong>[57]</strong> <a href="https://www.theregister.com/saas/2026/11/13/microsofts-massive-m365-outage-stretches-past-27-hours-as-its-fixes-keep-failing/5309609" rel="noopener noreferrer">The Register: &quot;past 27 hours&quot;</a> <span class="src-meta">T3 &middot; captured 03:32:28 UTC</span> <span class="src-meta">Also supports: malicious-activity wording change (04:11 and 05:46 UTC stamps); &quot;Hasn&#x27;t completely ruled out cyberattack&quot; subhead.</span></li>
+        <li id="src-58"><strong>[58]</strong> <a href="https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/" rel="noopener noreferrer">BleepingComputer: MO1550821 from 1:26 PM ET</a> <span class="src-meta">T3 &middot; captured 03:32:32 UTC</span> <span class="src-meta">Also supports: TM1550488 9:45-10:53 AM ET, &quot;resource contention&quot;; Lamanna quote.</span></li>
+        <li id="src-59"><strong>[59]</strong> <a href="https://arstechnica.com/tech-policy/2026/11/microsoft-blames-failed-server-health-checks-not-hackers-for-global-outage/" rel="noopener noreferrer">Ars Technica: On-page headline &quot;Microsoft&#x27;s global outage may be worse than Amazon&#x27;s or CrowdStrike&#x27;s, expert says&quot;</a> <span class="src-meta">T3 &middot; captured 03:32:35 UTC</span> <span class="src-meta">Also supports: former NCSC head quote; 450 million subscriptions.</span></li>
+        <li id="src-60"><strong>[60]</strong> <a href="https://www.theverge.com/news/1032845/the-outlook-outage-drags-on-but-microsoft-says-fixes-are-looking-positive" rel="noopener noreferrer">The Verge: Single-source Azure VNet report</a> <span class="src-meta">T3 &middot; captured 03:32:39 UTC</span> <span class="src-meta">Also supports: &quot;just before noon&quot;.</span></li>
+        <li id="src-61"><strong>[61]</strong> <a href="https://techcrunch.com/2026/11/13/microsoft-latest-email-outage-turned-into-a-full-blown-global-cloud-crisis/" rel="noopener noreferrer">TechCrunch: Kentik: about 18 hours of downtime</a> <span class="src-meta">T3 &middot; captured 03:34:21 UTC</span></li>
+        <li id="src-62"><strong>[62]</strong> <a href="https://www.wired.com/story/microsoft-365-crawls-back-to-life-after-a-24-hour-outage/" rel="noopener noreferrer">Wired: &quot;24-Hour Outage&quot; (headline)</a> <span class="src-meta">T3 &middot; captured 03:40:10 UTC</span></li>
+        <li id="src-63"><strong>[63]</strong> <a href="https://simpleflying.com/microsoft-outage-airlines-spicejet-cancellations-cathay-pacific/" rel="noopener noreferrer">Simple Flying: SpiceJet 22 cancellations (FlightAware)</a> <span class="src-meta">T3 &middot; captured 03:41:12 UTC</span> <span class="src-meta">Also supports: Akasa; Cathay Pacific.</span></li>
+        <li id="src-64"><strong>[64]</strong> <a href="https://www.tomshardware.com/software/japanese-workers-return-to-fax-machines-during-ongoing-microsoft-365-outage-were-going-full-analog-say-workers-forced-to-ditch-pdfs" rel="noopener noreferrer">Tom&#x27;s Hardware: Japan fax workarounds</a> <span class="src-meta">T3 &middot; captured 03:41:55 UTC</span></li>
+        <li id="src-65"><strong>[65]</strong> <a href="https://www.techrepublic.com/article/news-microsoft-january-2026-outage/" rel="noopener noreferrer">TechRepublic: Jan 2026 outage of &quot;over eight&quot; hours</a> <span class="src-meta">T3 &middot; captured 03:50:41 UTC</span> <span class="src-meta">Also supports: load-balancing fix worsened it.</span></li>
+        <li id="src-66"><strong>[66]</strong> <a href="https://statusstack.com/blog/microsoft-365-exchange-online-outage-november-12-2026" rel="noopener noreferrer">StatusStack: First X post about 12:54 PM ET (aggregator)</a> <span class="src-meta">T4 &middot; captured 04:04:26 UTC</span></li>
+        <li id="src-67"><strong>[67]</strong> <a href="https://ransomnews.com/microsoft-365-outage-cyberattack-november-2026/" rel="noopener noreferrer">Ransomnews: First public post 12:54 PM ET (aggregator</a> <span class="src-meta">T4 &middot; captured 04:04:31 UTC</span> <span class="src-meta">Also supports: may not be independent of 66; cited for timing only).</span></li>
+        <li id="src-68"><strong>[68]</strong> Reddit: Speculation titles and vote velocity <span class="src-meta">T4 &middot; captured 03:35:41; 03:59:30 UTC</span></li>
+        <li id="src-69"><strong>[69]</strong> Reddit: Phishing PSA (70 to 72 votes) <span class="src-meta">T4 &middot; captured 03:35:26-03:35:48; 03:59:15-03:59:38 UTC</span> <span class="src-meta">Also supports: &quot;restore messages&quot; lure post.</span></li>
+        <li id="src-70"><strong>[70]</strong> Reddit: AI, cover-up, predictive-programming and claimed-insider posts <span class="src-meta">T4 &middot; captured 03:34:08-03:35:10; 03:57:18-03:58:59 UTC</span></li>
+        <li id="src-71"><strong>[71]</strong> Bluesky: Trending #6 &quot;Microsoft 365 outage&quot; <span class="src-meta">T4 &middot; captured 03:36:09 UTC</span> <span class="src-meta">Also supports: #4 &quot;FAA ground stop jokes&quot;.</span></li>
+        <li id="src-72"><strong>[72]</strong> Hacker News via Algolia: Checked <span class="src-meta">T4 &middot; captured 03:35:39-03:35:40; 03:57:04-03:57:05 UTC &middot; data endpoint, not linked</span> <span class="src-meta">Also supports: no velocity figure published.</span></li>
+        <li id="src-73"><strong>[73]</strong> crt.sh: Zero certificates for 12 outage-themed patterns (weak negative) <span class="src-meta">T3 (data) &middot; captured 03:34:35-03:40:26 UTC</span></li>
+        <li id="src-74"><strong>[74]</strong> <a href="https://mailservices.isc.upenn.edu/computing/email/penno365/alerts/ms-incidents.html" rel="noopener noreferrer">University of Pennsylvania ISC: Later capture: both incident start times shown as 10:05 UTC 12 Nov</a> <span class="src-meta">T1-M &middot; captured 04:32:49 UTC &middot; live page, content changes</span> <span class="src-meta">Also supports: EX1550543 serviceRestored (updated 04:12:48 UTC); MO1550821 serviceDegradation (updated 04:07:42 UTC); Root Cause N/A. Saved HTML and screenshot retained.</span></li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;">74 open sources consulted, 62 cited in the text &middot; Flash Briefing v1, information cutoff 11:10 PM ET November 13, 2026 (04:10 UTC November 14), with a records check at about 04:15 UTC &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">Caveats: the incident was open at the cutoff; the cause rests on Microsoft's first-party statement; Microsoft revised its start times without explanation; Downdetector figures are user reports, not measurements. Private individuals are not named. This briefing implies no fault by any person or company beyond Microsoft's own account of its systems.</p>
+      <p style="margin-top: 0.25rem;">No classified or privileged sources were used in the preparation of this briefing.</p>
+      <p style="margin-top: 0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
+    </footer>
+  </main>
+</body>
+</html>
