@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+  <title>Flash Briefing: Tanker Strikes Docked River Cruise Vessel in New Orleans | Circle 6 Systems Intelligence</title>
+  <meta name="description" content="OSINT flash briefing, November 13, 2026: the tanker Atlantic Asphalt struck the docked river cruise vessel American Heritage at Mile 96 in New Orleans. Official facts, credible reporting, labeled speculation, and confidence-rated assessments from 38 retrieved open sources.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--c6s-border);
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 0.25rem; }
+    .hero .event-date {
+      font-size: 1.1rem;
+      color: var(--c6s-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .hero .event-summary {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--c6s-text-dim);
+      font-size: 0.95rem;
+    }
+    .status-bar {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .status-item { text-align: center; }
+    .status-item .value { font-size: 1.5rem; font-weight: 700; }
+    .status-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--c6s-text-dim);
+      margin-bottom: 1rem;
+    }
+    .bluf { border-left: 4px solid var(--c6s-accent); }
+  
+    .skip-link { position: absolute; left: -999px; top: 0; background: var(--c6s-accent); color: var(--c6s-dark); padding: 0.5rem 1rem; z-index: 100; }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+    a:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--c6s-accent); outline-offset: 2px; }
+    h2.section-label { font-family: inherit; }
+    h3 { font-family: var(--font-heading); margin: 1.5rem 0 0.75rem; color: var(--c6s-text-bright); }
+    .panel ul, .panel ol, section > ul, section > ol { padding-left: 1.25rem; }
+    .panel li, section > ul li, section > ol li { margin-bottom: 0.5rem; }
+    .confidence-bar .fill.high { background: var(--c6s-green); }
+    .confidence-bar .fill.medium { background: var(--c6s-amber); }
+    .confidence-bar .fill.low { background: var(--c6s-red); }
+    .conf-label { font-size: 0.8rem; font-weight: 700; color: var(--c6s-text-bright); min-width: 9rem; text-align: right; }
+    .table-scroll { overflow-x: auto; }
+    .table-scroll table { min-width: 34rem; }
+    .table-scroll.wide table { min-width: 56rem; }
+    main a { color: var(--c6s-accent); }
+    .panel.critical .panel-title, .badge-red { color: #fca5a5; }
+    .badge-amber { color: #fcd34d; }
+    .badge-green { color: #86efac; }
+    .sources-list { font-size: 0.85rem; padding-left: 1.25rem; }
+    .sources-list li { margin-bottom: 0.4rem; }
+    .sources-list a { color: var(--c6s-accent); }
+    .src-meta { color: var(--c6s-text-dim); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <!-- Site Navigation -->
+  <nav class="site-nav" aria-label="Site">
+    <div class="nav-inner">
+      <a href="/" class="logo-text">Circle <span>6</span> Systems</a>
+      <ul class="nav-links">
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products/">Products</a></li>
+        <li><a href="/training/">Training</a></li>
+        <li><a href="/osint-reports/" class="active">Intelligence</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#approach">Approach</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="header-bar">
+    <div class="brand">
+      <span class="logo">Circle 6 Systems &middot; Intelligence</span>
+      <span class="classification">Unclassified // OSINT &middot; TLP:CLEAR</span>
+    </div>
+  </div>
+  <main class="container" id="main">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/osint-reports/">Intelligence Reports</a> &rsaquo; <a href="index.html" aria-current="page">New Orleans Tanker Collision</a>
+    </nav>
+    <div class="hero">
+      <h1>Flash Briefing: Tanker Strikes Docked River Cruise Vessel in New Orleans</h1>
+      <div class="event-date">Lower Mississippi River Mile 96, New Orleans &middot; Friday, November 13, 2026 &middot; Flash Briefing v1</div>
+      <p class="event-summary">
+        At about 12:30 p.m. CST (Central Standard Time; 18:30 UTC), the upbound asphalt tanker <strong>Atlantic Asphalt</strong> struck the docked
+        paddlewheel river cruise vessel <strong>American Heritage</strong>, which capsized at the dock. The Coast Guard says all passengers
+        are accounted for. The cause is undetermined; a Coast Guard captain said the tanker appeared to have "some type of loss of steering."
+      </p>
+      <div class="status-bar" role="list">
+        <div class="status-item" role="listitem"><div class="value">0</div><div class="label">Deaths reported</div></div>
+        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">32</div><div class="label">Hospitalized, none critical</div></div>
+        <div class="status-item" role="listitem"><div class="value">180</div><div class="label">Aboard (mayor)</div></div>
+        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">MM 93-96</div><div class="label">River closed</div></div>
+      </div>
+    </div>
+
+    <section aria-labelledby="scope-h">
+      <h2 id="scope-h" class="section-label">Scope and conventions</h2>
+      <div class="panel">
+        <p><strong>Collection cutoff:</strong> 8:28 p.m. CST / 9:28 p.m. EST on November 13, 2026 (02:28 UTC on November 14). Nothing published after this time is reflected.</p>
+        <p><strong>Time zones:</strong> CST is Central Standard Time (UTC-6), local time in New Orleans. EST is Eastern Standard Time (UTC-5). UTC is Coordinated Universal Time.</p>
+        <p><strong>Abbreviations:</strong> USCG, U.S. Coast Guard. NTSB, National Transportation Safety Board. AIS, Automatic Identification System (the ship position broadcast that tracking sites record). MM, mile marker. IMO, International Maritime Organization. dwt, deadweight tonnage. FAA, Federal Aviation Administration. RTA, New Orleans Regional Transit Authority.</p>
+        <p style="margin-bottom:0;"><strong>Sourcing:</strong> bracketed IDs such as [S1] refer to the <a href="#sources">source list</a>. Official statements, credible reporting, and speculation are kept in separate, labeled sections. Confidence follows standard intelligence estimative language (low, moderate, high).</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="bluf-h">
+      <h2 id="bluf-h">Bottom Line Up Front</h2>
+      <div class="panel bluf">
+        <ul>
+          <li>At about 12:30 p.m. CST (1:30 p.m. EST, 18:30 UTC) on November 13, the upbound asphalt tanker Atlantic Asphalt struck the docked river cruise vessel American Heritage at Lower Mississippi River Mile 96. The American Heritage capsized. [S6, S5, S2, S3, S11]</li>
+          <li>The USCG said all passengers are accounted for, with no reported casualties. The mayor said 32 people went to hospital, none critical: 30 passengers and 2 first responders. [S15, S1, S5]</li>
+          <li>The cause has not been determined. A USCG captain said the tanker appeared to have "some type of loss of steering." The USCG and NTSB will investigate. [S1, S11, S14]</li>
+          <li>The USCG closed the river between MM 93 and MM 96. At the cutoff, no source we retrieved reported a spill, a sheen, or a reopening time. That is a gap in reporting, not evidence that no release occurred. [S11, S2, S4]</li>
+          <li>Online speculation was low in volume at the cutoff. A few local comments raised navigation hacking, power loss, and a link to the same-day <a href="/osint-reports/faa-nas-outage-2026-11-13/">nationwide FAA ground stop</a>. No evidence we found supports a deliberate cause or any link between the two events. [S36, S35, S8]</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="what-h">
+      <h2 id="what-h">01 &middot; What Happened</h2>
+      <table>
+        <caption class="section-label" style="text-align:left;">The two vessels</caption>
+        <thead><tr><th scope="col">Vessel</th><th scope="col">Description</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Atlantic Asphalt</th><td>Asphalt and bitumen carrier, IMO 9798428, Marshall Islands flag [S5]. About 160 meters long [S2]. 18,000 dwt, built 2017 [S3]. Headed upriver [S3, S27].</td></tr>
+          <tr><th scope="row">American Heritage</th><td>U.S.-flagged paddlewheel river cruise vessel of American Cruise Lines [S2, S32, S6]. Docked at the time [S32, S33].</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Location:</strong> Lower Mississippi River Mile 96 [S5], near 1350 Port of New Orleans Place [S6], below the Crescent City Connection bridge [S2].</p>
+      <p><strong>Terminology:</strong> some headlines called the ship an "oil tanker" [S14]. Trade and local sources describe an asphalt and bitumen carrier [S5, S27]. In maritime usage a moving vessel striking a stationary one is an "allision" [S13]; officials and most press say "collision", and so does this briefing.</p>
+
+      <h3>Timeline</h3>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Timeline, scrollable">
+      <table>
+        <thead><tr><th scope="col">CST (local)</th><th scope="col">EST</th><th scope="col">UTC</th><th scope="col">Event</th><th scope="col">Source</th></tr></thead>
+        <tbody>
+          <tr><td>12:29 p.m.</td><td>1:29 p.m.</td><td>18:29</td><td>MarineTraffic recorded a "proximity event" involving the Atlantic Asphalt (as reported by gCaptain).</td><td>[S2]</td></tr>
+          <tr><td>About 12:30 p.m.</td><td>About 1:30 p.m.</td><td>About 18:30</td><td>Collision time as given by the Port of New Orleans.</td><td>[S6, S2, S27]</td></tr>
+          <tr><td>About 1:15 p.m.</td><td>About 2:15 p.m.</td><td>About 19:15</td><td>Earliest local social media thread found.</td><td>[S34]</td></tr>
+          <tr><td>4:01 p.m.</td><td>5:01 p.m.</td><td>22:01</td><td>USCG Heartland District: all passengers accounted for, no reported casualties.</td><td>[S15]</td></tr>
+          <tr><td>4:50 p.m.</td><td>5:50 p.m.</td><td>22:50</td><td>Live coverage update: NTSB launches a go team (station time stamp, read as local).</td><td>[S13]</td></tr>
+          <tr><td>Evening (time not recorded)</td><td>-</td><td>-</td><td>Mayor: 32 hospitalized, none critical.</td><td>[S1, S5]</td></tr>
+          <tr><td>8:21 p.m.</td><td>9:21 p.m.</td><td>02:21 (Nov 14)</td><td>No entry for this event on the NTSB open investigations list.</td><td>[S16]</td></tr>
+          <tr><td>8:28 p.m.</td><td>9:28 p.m.</td><td>02:28 (Nov 14)</td><td>Collection cutoff.</td><td>-</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">Unresolved time discrepancy</div>
+        <p style="margin-bottom:0;">The Maritime Executive reports the tanker turned sharply to starboard "at 1327 local time" while passing under the bridge [S3]. Read as CST that is 19:27 UTC, about an hour after the Port's time and the AIS event. Read as Eastern time it is 12:27 p.m. CST (18:27 UTC), about two minutes before the AIS proximity event, consistent with a turn before impact. Neither reading is confirmed; this briefing uses the Port of New Orleans time.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="official-h">
+      <h2 id="official-h">02 &middot; Official Statements</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Most official statements reached us through press reports, because the USCG and Port of New Orleans news pages could not be retrieved.</p>
+      <div class="panel highlight">
+        <ul>
+          <li><strong>USCG (primary, Facebook, 4:01 p.m. CST):</strong> "the Coast Guard has confirmed all passengers are accounted for, with no reported casualties" [S15].</li>
+          <li><strong>USCG Capt. Melanie Burnham (via AP):</strong> the tanker seemed to have "some type of loss of steering," but the exact cause was unknown [S1].</li>
+          <li><strong>Capt. Burnham (via NOLA.com):</strong> the cause is under investigation; the USCG will determine how to salvage and remove the American Heritage. "We're going to get the river open as soon as possible so we can keep commerce flowing" [S11].</li>
+          <li><strong>A USCG official at a Friday afternoon (local time) press conference (via NOLA.com):</strong> an unspecified steering issue was involved [S12].</li>
+          <li><strong>USCG closure (via press):</strong> river closed to all vessel traffic between MM 93 and MM 96 [S11, S2, S6].</li>
+          <li><strong>Mayor Helena Moreno (via press):</strong> 180 people were aboard; 32 went to hospital, none critical [S1]; of those, 30 were passengers and 2 were first responders [S5].</li>
+          <li><strong>Port NOLA Harbor Police Chief Melanie Montroll (via NOLA.com):</strong> about 87 passengers got off before the vessel capsized [S11].</li>
+          <li><strong>Port of New Orleans (via WDSU and gCaptain):</strong> collision at about 12:30 p.m. near 1350 Port of New Orleans Place [S6, S2].</li>
+          <li><strong>Rep. Steve Scalise (via NOLA.com):</strong> the NTSB will lead the investigation with the USCG [S11]. NBC News reports both agencies will investigate [S14].</li>
+          <li><strong>NTSB:</strong> press reported a go team launch [S13, S2]. At 02:21 UTC we found no NTSB primary notice; the newsroom's newest item was dated October 27, 2026, and the open investigations list had no entry [S16, S17].</li>
+          <li><strong>RTA (via NOLA.com):</strong> cross-river ferry service temporarily suspended [S11].</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="reporting-h">
+      <h2 id="reporting-h">03 &middot; Credible Reporting</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Attributed press and trade reporting. These are not investigative findings.</p>
+      <div class="panel">
+        <div class="panel-title">Tanker movement</div>
+        <ul>
+          <li>The tanker made a hard turn to starboard after passing the bridge (NOLA.com, Maritime Executive) [S27, S3].</li>
+          <li>The crew dropped the port-side anchor, but it "was not sufficient to halt the vessel's progress" (Maritime Executive) [S3].</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Anonymous and analyst sources</div>
+        <ul>
+          <li>One anonymous river pilot source told The Times-Picayune and The Advocate that a river pilot was aboard the tanker [S12].</li>
+          <li>A second anonymous source said the tanker was empty [S12]. Officials have confirmed neither claim.</li>
+          <li>A company analysis, as reported by NOLA.com, "suggests the vessel may have experienced a steering and/or power failure" [S12].</li>
+          <li>gCaptain: "Authorities have not said whether the tanker experienced a mechanical or propulsion failure before the impact" [S2].</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">People aboard and injuries</div>
+        <ul>
+          <li>No one was injured on the tanker (NOLA.com, without attribution) [S11].</li>
+          <li>WDSU reported LCMC Health was treating "32 injured passengers" [S6], which differs from the mayor's 30 passengers plus 2 responders; this briefing uses the mayor's figures.</li>
+          <li>Figures for the number aboard differ: about 129 (early, attributed to local officials) [S27]; nearly 150 [S30]; 180 (the mayor, via AP) [S1]. Sources do not say whether each includes crew.</li>
+          <li>Crew from the nearby excursion vessel Creole Queen rescued passengers [S27].</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">River traffic and the investigation</div>
+        <ul>
+          <li>River traffic was expected to run one direction at first (Waterways Journal) [S5].</li>
+          <li>The NTSB team was expected to arrive the morning of November 14, local time (gCaptain) [S2].</li>
+          <li>WDSU reported that a member of Congress said the same-day nationwide FAA ground stop was affecting the NTSB team's travel to the scene [S29, S8]. <strong>No source links the ground stop to the cause of the collision.</strong></li>
+        </ul>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">Ownership: public records conflict</div>
+        <ul>
+          <li>AP, citing the IMO, names Nave Shipping SA of Monrovia, Liberia, as owner [S1]. NOLA.com, citing tracking services, also names Nave Shipping SA [S12].</li>
+          <li>A marine insurer's directory and a ship-tracking service list Nave Shipping; the tracking service also names a separate safety management company [S20, S19].</li>
+          <li>Other records conflict on the owner [S21].</li>
+          <li>These records are not reconciled. No official source has linked ownership, flag, or management to the cause.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="speculation" aria-labelledby="spec-h">
+      <h2 id="spec-h">04 &middot; Speculation and Counter-Narrative</h2>
+      <div class="panel critical">
+        <div class="panel-title">Unverified claims</div>
+        <p style="margin-bottom:0;">Everything in this table is <strong>unverified speculation</strong>. "Observed" means we saw the claim in collected material. "Anticipated" means we did not see it, but expect it based on past events. Individual posters are not named.</p>
+      </div>
+      <div class="table-scroll wide" tabindex="0" role="region" aria-label="Speculation catalog, scrollable">
+      <table>
+        <thead><tr><th scope="col">Claim</th><th scope="col">Platform</th><th scope="col">Status</th><th scope="col">Evidence for</th><th scope="col">Evidence against</th><th scope="col">Velocity</th><th scope="col">Weaponization risk</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">The tanker's navigation was hacked (cyber cause)</th><td>Reddit, local forum [S36]</td><td>Observed (one comment, phrased as a question)</td><td>The unusual turn was reported [S3]</td><td>USCG preliminary remark cites possible steering loss, not cyber [S1]. The same claim about the 2024 Key Bridge accident had no evidence behind it [S26].</td><td><span class="badge badge-green">Low</span> one comment in a thread of about 113 comments</td><td><span class="badge badge-amber">Moderate</span> proven template</td></tr>
+          <tr><th scope="row">Linked to the same-day FAA ground stop ("coordinated attack")</th><td>Reddit [S36]</td><td>Question observed; other users replied they saw no direct link. "Coordinated attack" framing anticipated, not observed</td><td>Both events happened the same day</td><td>No source links them. The only reported connection is NTSB travel [S8].</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-red">Moderate to high</span> if both events trend nationally</td></tr>
+          <tr><th scope="row">The tanker "lost power right after switching pilots"</th><td>Reddit [S35]</td><td>Observed (single unsourced comment)</td><td>USCG steering remark [S1]. A company analysis suggests a steering and/or power failure but says nothing about a pilot change [S12].</td><td>No official mention of power loss or a pilot change. The pilot-aboard claim rests on one anonymous source [S12].</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-amber">Moderate</span> could shift blame to a person before any finding</td></tr>
+          <tr><th scope="row">The media is hiding the story</th><td>Reddit [S35]</td><td>Observed; rebutted in the same thread</td><td>None</td><td>Local stations covered live from the afternoon [S29, S13]</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">Low</span></td></tr>
+          <tr><th scope="row">Early inflated counts ("at least 12 unaccounted for"; "200 seniors on board")</th><td>Early press report [S7]; Reddit [S35]</td><td>Observed, now superseded</td><td>Counts were not yet known early in the response</td><td>USCG: all passengers accounted for [S15]. Mayor: 180 aboard, 32 hospitalized [S1].</td><td><span class="badge badge-green">Declining</span></td><td><span class="badge badge-amber">Low to moderate</span> if reshared out of context</td></tr>
+          <tr><th scope="row">A foreign-registered owner or foreign crew caused the collision</th><td>None observed</td><td>Anticipated</td><td>None. A foreign flag alone is not evidence of cause [S5].</td><td>Ownership records conflict and the chain is unverified [S19, S20, S21]. No official links ownership to the cause.</td><td>n/a</td><td><span class="badge badge-red">Moderate to high</span> foreign-state blame followed the Key Bridge accident [S26]</td></tr>
+          <tr><th scope="row">Old or unrelated footage presented as this event</th><td>None observed</td><td>Anticipated</td><td>None</td><td>Plenty of authentic news video exists [S38]. After the Key Bridge accident, 2022 Kerch bridge footage was passed off as that event [S26].</td><td>n/a</td><td><span class="badge badge-amber">Moderate</span></td></tr>
+          <tr><th scope="row">"Helm control" cause explained on a shipping-analysis video channel</th><td>YouTube [S38]</td><td>Observed</td><td>Consistent with the USCG steering remark [S1]</td><td>Not an official finding; sources not disclosed</td><td><span class="badge badge-amber">Moderate</span> about 117,000 views</td><td><span class="badge badge-amber">Low to moderate</span> puts a premature cause in public view</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="cas-h">
+      <h2 id="cas-h">05 &middot; Casualties and Response (official figures only)</h2>
+      <table>
+        <tbody>
+          <tr><th scope="row">Deaths</th><td>None reported. All passengers accounted for [S15, S1].</td></tr>
+          <tr><th scope="row">Hospitalized</th><td>32, none critical: 30 passengers and 2 first responders [S1, S5].</td></tr>
+          <tr><th scope="row">People aboard</th><td>180 according to the mayor [S1]. Other figures appear under Credible Reporting.</td></tr>
+          <tr><th scope="row">Got off before the capsize</th><td>About 87 passengers [S11].</td></tr>
+          <tr><th scope="row">Responders named</th><td>USCG, Port NOLA Harbor Police, LCMC Health, and nearby commercial vessels [S15, S11, S6, S27].</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="env-h">
+      <h2 id="env-h">06 &middot; Environment and Port</h2>
+      <ul>
+        <li><strong>Closure:</strong> river closed to all vessel traffic between MM 93 and MM 96 [S11, S2, S6], a three-mile section (Marine Log) [S4]. Traffic may run one direction at first [S5].</li>
+        <li><strong>Spill or sheen:</strong> no retrieved source mentioned pollution, a sheen, fuel, or a reopening time as of about 02:26 UTC (8:26 p.m. CST). This is an absence of reporting, not evidence that no release occurred.</li>
+        <li><strong>Cargo:</strong> one anonymous source said the tanker was empty [S12]. Not confirmed by officials.</li>
+        <li><strong>Salvage:</strong> the USCG is planning salvage and removal of the American Heritage [S11].</li>
+        <li><strong>Ferry:</strong> RTA cross-river ferry service temporarily suspended [S11].</li>
+        <li><strong>River conditions (WDSU):</strong> water about 66&deg;F, about 30 to 50 feet deep at the site [S9].</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="ka-h">
+      <h2 id="ka-h">07 &middot; Key Assessments</h2>
+      <div class="panel">
+        <div class="panel-title">KA-1: The basic event facts are established. High confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill high" style="width: 95%;"></div></div><span class="conf-label">High confidence</span></div>
+        <p>It is almost certain that the Atlantic Asphalt struck the docked American Heritage at about 12:30 p.m. CST on November 13 at Mile 96, and that the American Heritage capsized. AP, NBC News, three local stations, four maritime trade outlets, and a USCG post agree, and an independent AIS proximity event at 18:29 UTC matches the time [S1, S14, S6, S13, S11, S2, S3, S4, S5, S15].</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-2: The official life-safety picture is very likely to hold. High confidence (all passengers accounted for); moderate confidence (hospital figures).</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill high" style="width: 85%;"></div></div><span class="conf-label">High / moderate confidence</span></div>
+        <p>It is very likely the official count of no deaths and all passengers accounted for will stand: the USCG published it directly and press reports of the mayor agree [S15, S1]. Hospital figures may change, and one outlet's wording differs on whether all 32 were passengers [S6].</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-3: The cause is undetermined. Moderate confidence that steering will be central; low confidence on any specific mechanism.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 60%;"></div></div><span class="conf-label">Moderate / low confidence</span></div>
+        <p>Officials have mentioned an apparent loss of steering, and the investigation is likely to focus on the tanker's steering and control. Officials have not described the mechanism (mechanical, electrical power, propulsion, or human factors). This briefing implies no fault by any person or company [S1, S11, S12, S2].</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-4: No evidence supports a deliberate cause or a link to the FAA ground stop. Low confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
+        <p>We assess that deliberate interference, including a cyber attack, is unlikely, and that a causal link to the same-day <a href="/osint-reports/faa-nas-outage-2026-11-13/">FAA ground stop</a> is unlikely. Confidence is low because the investigation has just begun and officials have not addressed these questions directly. The only reported connection between the two events is the NTSB team's travel [S8].</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-5: River restrictions near the site are likely to last beyond 72 hours. Low confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
+        <p>A capsized vessel lies at a berth inside the closed reach, salvage is only being planned, and one-way traffic is expected at first [S11, S5]. No official reopening timeline was available at the cutoff.</p>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KA-6: Speculation is likely to grow if national attention rises. Low confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
+        <p>Cyber, "coordinated attack", and foreign-blame narratives followed the 2024 Key Bridge accident [S26]. Early forms of the cyber and FAA-link narratives already appear in local discussion [S36]. The absence of deaths may limit spread.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="prec-h">
+      <h2 id="prec-h">08 &middot; Precedent</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Context only. These events imply nothing about the cause of this collision.</p>
+      <ul>
+        <li><strong>Bright Field, December 14, 1996, New Orleans:</strong> a loaded bulk carrier temporarily lost propulsion power while outbound and struck the riverfront. No deaths; 4 serious and 58 minor injuries during evacuations of shore facilities, a gaming vessel, and an excursion vessel. NTSB report MAR-98/01 [S23, S10].</li>
+        <li><strong>Key Bridge, March 26, 2024, Baltimore:</strong> the containership Dali lost electrical power, propulsion, and steering. NTSB investigation DCA24MM031 [S24].</li>
+        <li><strong>Isla de Bioko, April 27, 2025, Mile 110.7 near River Ridge, Louisiana:</strong> an upbound tanker and a tow collided; the NTSB found the probable cause was hydrodynamic forces from another tow passing close by. A weak comparison. NTSB report MIR-26-33 [S25].</li>
+        <li><strong>NTSB timescales:</strong> in both Lower Mississippi cases the final report came out in a later calendar year than the accident [S23, S25]. Expect preliminary information, not a probable cause, in the coming days.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="watch-h">
+      <h2 id="watch-h">09 &middot; What to Watch, 24 to 72 Hours</h2>
+      <ul>
+        <li>An NTSB primary notice or media briefing after the go team arrives, expected the morning of November 14, local time [S2].</li>
+        <li>USCG Heartland District statements on the closure, safety zone, pollution checks, salvage plan, and reopening.</li>
+        <li>Statements from American Cruise Lines, the tanker's operator or manager, and the Port of New Orleans (none found in collected material).</li>
+        <li>Changes to hospital figures.</li>
+        <li>AIS track analysis from credible maritime outlets.</li>
+        <li>Speculation linking this event to the FAA ground stop, cyber claims, foreign-ownership blame, and recycled footage.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="act-h">
+      <h2 id="act-h">10 &middot; Immediate Actions for Organizations with River, Port, Cruise, or Logistics Exposure</h2>
+      <ol>
+        <li>Check USCG marine safety information and vessel traffic service notices for the MM 93-96 reach before planning transits. Plan for delays and one-way traffic.</li>
+        <li>Logistics teams: identify shipments that depend on this reach or the cross-river ferry, and prepare alternatives.</li>
+        <li>Cruise and passenger vessel operators: review procedures for an emergency at the berth, passenger accounting, evacuation, and family communication.</li>
+        <li>Communications teams: do not repeat unconfirmed cause, anonymous-source, or ownership claims. Attribute every statement and link to official sources.</li>
+        <li>Security teams: treat cyber or sabotage claims as unverified until officials address them, and do not amplify them. Check the date and origin of footage before sharing.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="limits-h">
+      <h2 id="limits-h">11 &middot; Collection Limits</h2>
+      <ul>
+        <li>The USCG news release site (HTTP 403) and the Port of New Orleans news page (HTTP 500) could not be retrieved; official statements are cited through press reports and a USCG social media post.</li>
+        <li>At the cutoff, no NTSB primary statement had been published.</li>
+        <li>Coverage of closed platforms (X, TikTok, Facebook, Instagram) was incomplete or blocked, so the speculation picture is inconclusive, not a negative finding.</li>
+        <li>No raw AIS track was retrieved; the 1327 time discrepancy remains open.</li>
+      </ul>
+    </section>
+
+    <section id="sources" aria-labelledby="src-h">
+      <h2 id="src-h">Sources</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Tiers: T1 official primary; T2 credible press or trade; T3 ship tracking or commercial data; T4 social media (used only to describe claims, never to establish facts). Retrieval times are UTC on November 14, 2026.</p>
+      <ol class="sources-list" style="list-style:none;">
+        <li id="s1"><strong>[S1]</strong> <a href="https://apnews.com/article/new-orleans-tanker-river-cruise-rescue-passengers-757bed7a70ceb72f0d7140143fe2a764" rel="noopener noreferrer">AP: tanker strikes docked New Orleans river cruise boat</a> <span class="src-meta">Associated Press &middot; T2 &middot; retrieved 02:13:33 UTC</span></li>
+        <li id="s2"><strong>[S2]</strong> <a href="https://gcaptain.com/tanker-strikes-docked-paddlewheeler-on-mississippi-river-causing-it-to-capsize/" rel="noopener noreferrer">gCaptain: Tanker Strikes Docked Paddlewheeler on Mississippi River</a> <span class="src-meta">gCaptain &middot; T2 &middot; retrieved 02:22:00 UTC</span></li>
+        <li id="s3"><strong>[S3]</strong> <a href="https://maritime-executive.com/article/tanker-hits-riverboat-on-new-orleans-waterfront-injuring-passengers" rel="noopener noreferrer">Maritime Executive: Tanker Hits Riverboat on New Orleans Waterfront</a> <span class="src-meta">The Maritime Executive &middot; T2 &middot; retrieved 02:22:00 UTC</span></li>
+        <li id="s4"><strong>[S4]</strong> <a href="https://www.marinelog.com/news/breaking-tanker-strikes-cruise-vessel-in-new-orleans-causing-it-to-capsize/" rel="noopener noreferrer">Marine Log: Tanker strikes cruise vessel in New Orleans</a> <span class="src-meta">Marine Log &middot; T2 &middot; retrieved 02:22:00 UTC</span></li>
+        <li id="s5"><strong>[S5]</strong> <a href="https://www.waterwaysjournal.net/2026/11/13/tanker-strikes-docked-passenger-vessel-in-new-orleans/" rel="noopener noreferrer">Waterways Journal: Tanker Strikes Docked Passenger Vessel In New Orleans</a> <span class="src-meta">The Waterways Journal &middot; T2 &middot; retrieved 02:13:46 UTC</span></li>
+        <li id="s6"><strong>[S6]</strong> <a href="https://www.wdsu.com/article/mississippi-river-boat-crash-new-orleans/74426309" rel="noopener noreferrer">WDSU: Mississippi River boat crash in New Orleans</a> <span class="src-meta">WDSU &middot; T2 &middot; retrieved 02:13:55 UTC</span></li>
+        <li id="s7"><strong>[S7]</strong> <a href="https://www.wdsu.com/article/new-orleans-cruise-ship-collision-missing-persons-collision/74427445" rel="noopener noreferrer">WDSU: early report on people unaccounted for</a> <span class="src-meta">WDSU &middot; T2 &middot; retrieved 02:14:03 UTC</span></li>
+        <li id="s8"><strong>[S8]</strong> <a href="https://www.wdsu.com/article/faa-groundstop-ntsb-mississippi-boat-crash/74427584" rel="noopener noreferrer">WDSU: FAA ground stop and the NTSB response</a> <span class="src-meta">WDSU &middot; T2 &middot; retrieved 02:14:00 UTC</span></li>
+        <li id="s9"><strong>[S9]</strong> <a href="https://www.wdsu.com/article/mississippi-river-depth-new-orleans-boat-crash/74427237" rel="noopener noreferrer">WDSU: How deep is the Mississippi River at the crash site</a> <span class="src-meta">WDSU &middot; T2 &middot; retrieved 02:14:06 UTC</span></li>
+        <li id="s10"><strong>[S10]</strong> <a href="https://www.wdsu.com/article/new-orleans-riverwalk-crash-1996-crash-ship-hilton/74426758" rel="noopener noreferrer">WDSU: Nearly 30 years after the Bright Field crash</a> <span class="src-meta">WDSU &middot; T2 &middot; retrieved 02:14:08 UTC</span></li>
+        <li id="s11"><strong>[S11]</strong> <a href="https://www.nola.com/news/live-updates-cruise-ship-riverboat-crash/article_00272945-1dbc-42dc-9b6a-e9c6587d9e05.html" rel="noopener noreferrer">NOLA.com: Live updates on the Mississippi River ship collision</a> <span class="src-meta">The Times-Picayune / The Advocate &middot; T2 &middot; retrieved 02:14:20; 02:22:00 UTC</span></li>
+        <li id="s12"><strong>[S12]</strong> <a href="https://www.nola.com/news/new-orleans-mississippi-river-cruise-ship/article_8c79bc7a-867a-47dc-b628-47f51f433cc6.html" rel="noopener noreferrer">NOLA.com: Where the tanker was coming from and going</a> <span class="src-meta">The Times-Picayune / The Advocate &middot; T2 &middot; retrieved 02:15:45; 02:22:00 UTC</span></li>
+        <li id="s13"><strong>[S13]</strong> <a href="https://www.fox8live.com/2026/11/13/live-miracle-mississippi-no-fatalities-after-tanker-crashes-into-river-cruiser-carrying-nearly-150-people-near-port-new-orleans/" rel="noopener noreferrer">FOX 8: Live coverage, &#x27;Miracle on the Mississippi&#x27;</a> <span class="src-meta">WVUE FOX 8 &middot; T2 &middot; retrieved 02:14:29 UTC</span></li>
+        <li id="s14"><strong>[S14]</strong> <a href="https://www.nbcnews.com/news/us-news/rescue-underway-oil-tanker-collides-new-orleans-river-boat-rcna609235" rel="noopener noreferrer">NBC News: Rescue underway after tanker collides with New Orleans river boat</a> <span class="src-meta">NBC News &middot; T2 &middot; retrieved 02:14:32 UTC</span></li>
+        <li id="s15"><strong>[S15]</strong> <a href="https://www.facebook.com/USCGHeartland/" rel="noopener noreferrer">U.S. Coast Guard Heartland District on Facebook</a> <span class="src-meta">U.S. Coast Guard &middot; T1 &middot; retrieved 02:16:50 UTC</span></li>
+        <li id="s16"><strong>[S16]</strong> <a href="https://www.ntsb.gov/investigations/Pages/Investigations.aspx" rel="noopener noreferrer">NTSB open investigations list</a> <span class="src-meta">NTSB &middot; T1 &middot; retrieved 02:21:00 UTC</span></li>
+        <li id="s17"><strong>[S17]</strong> <a href="https://www.ntsb.gov/news/press-releases/Pages/default.aspx" rel="noopener noreferrer">NTSB newsroom</a> <span class="src-meta">NTSB &middot; T1 &middot; retrieved 02:11:17 UTC</span></li>
+        <li id="s18"><strong>[S18]</strong> <a href="https://web.archive.org/web/2026/https://www.news.uscg.mil/Press-Releases/" rel="noopener noreferrer">Archived snapshot of USCG news releases</a> <span class="src-meta">Internet Archive copy of a USCG page &middot; T1 (archived) &middot; retrieved about 02:20 UTC</span></li>
+        <li id="s19"><strong>[S19]</strong> <a href="https://magicport.ai/vessels/tanker/atlantic-asphalt-mmsi-538007471" rel="noopener noreferrer">MagicPort vessel profile</a> <span class="src-meta">MagicPort &middot; T3 &middot; retrieved 02:23:00 UTC</span></li>
+        <li id="s20"><strong>[S20]</strong> <a href="https://gard.no/vessels/71361" rel="noopener noreferrer">Gard vessel directory entry</a> <span class="src-meta">Gard (protection and indemnity insurer) &middot; T3 &middot; retrieved 02:23:00 UTC</span></li>
+        <li id="s21"><strong>[S21]</strong> <a href="https://ports.marinelink.com/vessels/vessel/538007471" rel="noopener noreferrer">MarineLink vessel record</a> <span class="src-meta">MarineLink &middot; T3 &middot; retrieved 02:23:00 UTC</span></li>
+        <li id="s22"><strong>[S22]</strong> <a href="https://www.vesselfinder.com/vessels/details/9798428" rel="noopener noreferrer">VesselFinder vessel details</a> <span class="src-meta">VesselFinder &middot; T3 &middot; retrieved 02:21:00 UTC</span></li>
+        <li id="s23"><strong>[S23]</strong> <a href="https://www.ntsb.gov/investigations/AccidentReports/Reports/MAR9801.pdf" rel="noopener noreferrer">NTSB report MAR-98/01, Bright Field</a> <span class="src-meta">NTSB &middot; T1 &middot; retrieved 02:25:20 UTC</span></li>
+        <li id="s24"><strong>[S24]</strong> <a href="https://www.ntsb.gov/investigations/Pages/DCA24MM031.aspx" rel="noopener noreferrer">NTSB investigation DCA24MM031, Key Bridge</a> <span class="src-meta">NTSB &middot; T1 &middot; retrieved 02:17:15 UTC</span></li>
+        <li id="s25"><strong>[S25]</strong> <a href="https://www.ntsb.gov/investigations/AccidentReports/Reports/MIR2633.pdf" rel="noopener noreferrer">NTSB report MIR-26-33, Isla de Bioko</a> <span class="src-meta">NTSB &middot; T1 &middot; retrieved 02:25:20 UTC</span></li>
+        <li id="s26"><strong>[S26]</strong> <a href="https://www.politifact.com/article/2024/mar/27/baltimore-bridge-collapse-a-cyberattack-a-netflix/" rel="noopener noreferrer">PolitiFact: false claims about the Baltimore bridge collapse</a> <span class="src-meta">PolitiFact &middot; T2 &middot; retrieved 02:28:31 UTC</span></li>
+        <li id="s27"><strong>[S27]</strong> <a href="https://www.nola.com/news/" rel="noopener noreferrer">NOLA.com news section headlines</a> <span class="src-meta">The Times-Picayune / The Advocate &middot; T2 &middot; retrieved 02:11:43 UTC</span></li>
+        <li id="s28"><strong>[S28]</strong> <a href="https://www.wwltv.com/local" rel="noopener noreferrer">WWL-TV local news headlines</a> <span class="src-meta">WWL-TV &middot; T2 &middot; retrieved 02:11:31 UTC</span></li>
+        <li id="s29"><strong>[S29]</strong> <a href="https://www.wdsu.com/local-news" rel="noopener noreferrer">WDSU local news headlines</a> <span class="src-meta">WDSU &middot; T2 &middot; retrieved 02:11:35 UTC</span></li>
+        <li id="s30"><strong>[S30]</strong> <a href="https://www.fox8live.com/news/" rel="noopener noreferrer">FOX 8 news headlines</a> <span class="src-meta">WVUE FOX 8 &middot; T2 &middot; retrieved 02:11:39 UTC</span></li>
+        <li id="s31"><strong>[S31]</strong> <a href="https://apnews.com/hub/louisiana" rel="noopener noreferrer">AP Louisiana news hub</a> <span class="src-meta">Associated Press &middot; T2 &middot; retrieved 02:12:13 UTC</span></li>
+        <li id="s32"><strong>[S32]</strong> <a href="https://gcaptain.com/" rel="noopener noreferrer">gCaptain home page headline</a> <span class="src-meta">gCaptain &middot; T2 &middot; retrieved 02:11:51 UTC</span></li>
+        <li id="s33"><strong>[S33]</strong> <a href="https://www.waterwaysjournal.net/" rel="noopener noreferrer">Waterways Journal home page headline</a> <span class="src-meta">The Waterways Journal &middot; T2 &middot; retrieved 02:12:09 UTC</span></li>
+        <li id="s34"><strong>[S34]</strong> <a href="https://www.reddit.com/r/NewOrleans/comments/1xvgvzi/river_cruise_boat_struck_and_sunk_by_tanker/" rel="noopener noreferrer">Reddit r/NewOrleans: &quot;River cruise boat struck and sunk by tanker&quot;</a> <span class="src-meta">Reddit &middot; T4 &middot; retrieved 02:16:29 UTC</span></li>
+        <li id="s35"><strong>[S35]</strong> <a href="https://www.reddit.com/r/NewOrleans/comments/1xvhikb/what_is_going_on_at_the_river/" rel="noopener noreferrer">Reddit r/NewOrleans: &quot;What is going on at the River?&quot;</a> <span class="src-meta">Reddit &middot; T4 &middot; retrieved 02:16:24 UTC</span></li>
+        <li id="s36"><strong>[S36]</strong> <a href="https://www.reddit.com/r/NewOrleans/comments/1xvhjrf/river_collision_reported_on_nolaready/" rel="noopener noreferrer">Reddit r/NewOrleans: &quot;River collision reported on NOLAREADY&quot;</a> <span class="src-meta">Reddit &middot; T4 &middot; retrieved 02:16:10 UTC</span></li>
+        <li id="s37"><strong>[S37]</strong> <a href="https://www.reddit.com/r/NewOrleans/comments/1xvmhyt/all_passengers_accounted_for_after_tankercruise/" rel="noopener noreferrer">Reddit r/NewOrleans: &quot;All passengers accounted for&quot;</a> <span class="src-meta">Reddit &middot; T4 &middot; retrieved 02:16:15 UTC</span></li>
+        <li id="s38"><strong>[S38]</strong> <a href="https://www.youtube.com/results?q=american+heritage+tanker+new+orleans&amp;sp=CAI%253D" rel="noopener noreferrer">YouTube search results for the event</a> <span class="src-meta">YouTube &middot; T4 &middot; retrieved 02:16:34 UTC</span></li>
+        <li id="s39"><strong>[S39]</strong> <a href="https://www.wwltv.com/article/news/nation-world/tanker-crashes-into-boat-with-approximately-129-passengers-on-mississippi-river-near-ccc/289-dfeee36e-fcae-4f3c-9388-8f30f4f06360" rel="noopener noreferrer">WWL-TV article on the collision</a> <span class="src-meta">WWL-TV &middot; T2 &middot; not retrieved (HTTP 403); not used for any fact</span></li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
+      <p style="margin-top: 0.25rem;">Compiled from 38 retrieved open sources &middot; Flash Briefing v1, collection cutoff 02:28 UTC November 14, 2026 (8:28 p.m. CST November 13) &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">Caveats: cause undetermined; casualty and aboard figures may change; ownership records conflict and are unverified. Victims and private individuals are not named. This briefing implies no fault by any person or company.</p>
+      <p style="margin-top: 0.25rem;">No classified or privileged sources were used in the preparation of this briefing.</p>
+      <p style="margin-top: 0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
+    </footer>
+  </main>
+</body>
+</html>
