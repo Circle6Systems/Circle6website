@@ -97,6 +97,11 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
   grep -q "href=\"/osint-reports/$SLUG/\"" "$INDEX"
 }
 
-@test "NTR-009: does not name victims unless officially released (manual check marker present)" {
-  grep -q 'data-victim-names="official-only"' "$PAGE"
+@test "NTR-009: page states that victims and private individuals are not named" {
+  grep -q 'Victims and private individuals are not named' "$PAGE"
+}
+
+@test "NTR-010: ownership is never offered as evidence for a blame narrative" {
+  ! grep -qi 'China State Shipbuilding' "$PAGE"
+  ! grep -qi 'state-linked ownership' "$PAGE"
 }
