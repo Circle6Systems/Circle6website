@@ -7,8 +7,8 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
-  <title>Flash Briefing: FAA Nationwide Ground Stop | Circle 6 Systems Intelligence</title>
-  <meta name="description" content="OSINT flash briefing, November 13, 2026: the FAA halted departures at all U.S. airports for about four hours after a communications failure. Official cause, credible reporting, labeled speculation, and confidence-rated assessments from 53 open sources.">
+  <title>Flash Briefing v2: FAA Nationwide Ground Stop | Circle 6 Systems Intelligence</title>
+  <meta name="description" content="OSINT flash briefing v2, November 14, 2026: the FAA halted departures at all U.S. airports for about four hours after a ground telecommunications failure. On-record cause account, cancellation advisory, cyber and SMART checks, recovery figures, labeled speculation, and confidence-rated assessments.">
   <link rel="stylesheet" href="style.css">
   <style>
     .hero {
@@ -111,27 +111,56 @@
     </nav>
     <div class="hero">
       <h1>Flash Briefing: FAA Nationwide Ground Stop</h1>
-      <div class="event-date">United States National Airspace System &middot; Friday, November 13, 2026 &middot; Flash Briefing v1</div>
+      <div class="event-date">United States National Airspace System &middot; Friday, November 13, 2026 &middot; Flash Briefing v2, November 14, 2026</div>
       <p class="event-summary">
-        The Federal Aviation Administration (FAA) halted departures at every U.S. airport for about four hours and 22 minutes after a communications failure hit multiple
-        air route traffic control centers. Officials blame aging, overloaded telecom equipment and say they have seen "zero evidence" of a
-        cyberattack, but have not ruled one out. Aircraft already in the air kept flying: the order grounded departures, not "all flights."
+        The Federal Aviation Administration (FAA) halted departures at every U.S. airport for about four hours and 22 to 23 minutes after a failure in its ground
+        telecommunications network hit multiple air route traffic control centers. On Saturday, officials said on the record that a router at a remote FAA site,
+        where a contractor was moving lines from copper to fiber, began flooding other routers. Whether contractor error or faulty equipment was responsible is not
+        yet determined, and a root-cause analysis is pending. Officials say they "don't believe this was cyber at all."
       </p>
       <div class="status-bar" role="list">
-        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">4h 22m</div><div class="label">Departures halted</div></div>
+        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">4h 22-23m</div><div class="label">Departures halted</div></div>
         <div class="status-item" role="listitem"><div class="value">3,500+</div><div class="label">Aircraft airborne at the stop</div></div>
-        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">6,587</div><div class="label">U.S. cancellations by 9:21 PM Eastern</div></div>
-        <div class="status-item" role="listitem"><div class="value">Unlikely</div><div class="label">Cyberattack (moderate confidence; not ruled out)</div></div>
+        <div class="status-item" role="listitem"><div class="value" style="color: var(--c6s-amber);">4,269</div><div class="label">U.S. cancellations Saturday by 12:05 PM Eastern</div></div>
+        <div class="status-item" role="listitem"><div class="value">Unlikely</div><div class="label">Cyberattack (moderate confidence)</div></div>
       </div>
     </div>
+
+    <section id="v2-changes" aria-labelledby="v2-h">
+      <h2 id="v2-h">What changed in v2</h2>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Selected changes. Other updates (carrier statements, congressional reactions, speculation windows) appear in the sections below.</p>
+      <div class="panel warning">
+        <div class="panel-title">v1 cutoff 9:41 PM ET November 13 (02:41 UTC November 14); v2 cutoff 12:10 PM ET November 14 (17:10 UTC)</div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Changes since v1, scrollable">
+        <table>
+          <thead><tr><th scope="col">Item</th><th scope="col">v1</th><th scope="col">v2</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Official cause account</th><td>A communications failure; old, overloaded routers and switches; no finding</td><td>On record Saturday: during copper-to-fiber line work by a contractor at a remote FAA site, a router "started flooding other routers" with "over 1,000 connection attempts every four to five seconds"; isolating the work restored systems. Contractor error or faulty equipment not yet determined; root-cause analysis pending [32]</td></tr>
+            <tr><th scope="row">Contractor</th><td>Named by one outlet; no official had named it</td><td>Officials named the contractor on November 14 [76]. This briefing does not name it, pending the root-cause analysis</td></tr>
+            <tr><th scope="row">CBS account</th><td>Friday: an update caused a reboot and crash (anonymous sources)</td><td>Adds Saturday (anonymous senior government sources): the issue was limited to routers of a specific older model line (2001-2006 manufacture), now identified and isolated [28]</td></tr>
+            <tr><th scope="row">Lift time and duration</th><td>8:15 PM ET (officials); about 4 hours 22 minutes</td><td>Both shown: officials 8:15 PM ET; command center event from 8:16 PM ET, signed 8:19 PM ET. About 4 hours 22 to 23 minutes [15, 54]</td></tr>
+            <tr><th scope="row">Carrier-only ground stops</th><td>Newark and Minneapolis after the lift</td><td>Nine carrier-only stops at eight airports Friday night, several at "AIRLINE REQUEST", the last cancelled at 1:27 AM ET; two more Saturday morning, cancelled by 10:27 AM ET [58, 59]</td></tr>
+            <tr><th scope="row">KA-2 (proximate trigger)</th><td>Very likely; high confidence on the category</td><td>Almost certain; high confidence on the category, after Advisory 117 and the Saturday account [61, 32]</td></tr>
+            <tr><th scope="row">Command center cancellation</th><td>Not captured</td><td>Advisory 005: "THE FAA COMMAND CENTER NATIONWIDE GROUND STOP HAS BEEN CANCELLED", event from 01:16 UTC, signed 8:19 PM ET [54]</td></tr>
+            <tr><th scope="row">Cyberattack</th><td>"Zero evidence"; not ruled out</td><td>Unchanged estimate (unlikely, moderate confidence). Added: "we don't believe this was cyber at all" (Duffy); "zero evidence of anything nefarious" (Bedford) [32]. Bloomberg reported, citing one unnamed person, that the FBI does not believe it was a cyberattack (relays only) [86, 87]</td></tr>
+            <tr><th scope="row">FBI and DOT Inspector General</th><td>Not checked</td><td>Checked: no item on the event on the FBI or DOT Office of Inspector General pages reachable, as of 12:06 PM ET; several FBI pages refused automated access [64-69]</td></tr>
+            <tr><th scope="row">"National emergency"</th><td>Single source (USA Today)</td><td>A DHS release of the two Secretaries' remarks includes "The President has declared this a national emergency" [63]. No presidential document, Federal Register notice, or White House statement found on the pages checked [71-74]</td></tr>
+            <tr><th scope="row">SMART AI tool</th><td>Unlikely cause; low confidence</td><td>Duffy: "not tied into or connected to the systems that went down" [78]; Bedford: "zero evidence of anything AI-related" [32]. Assessment confidence raised to moderate</td></tr>
+            <tr><th scope="row">Recovery</th><td>6,587 U.S. cancellations Friday by 9:21 PM ET</td><td>Saturday: 4,269 U.S. cancellations and 3,752 delays by 12:05 PM ET [41]; the FAA expects 4,000 to 5,000 Saturday cancellations and full recovery by the end of Sunday [75]</td></tr>
+            <tr><th scope="row">Corrections</th><td>WDSU listed in the "grounded all flights nationwide" row; an r/news vote figure</td><td>WDSU appears only in the Rep. Carter row; the vote figure was removed as not reproducible</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </section>
 
     <section aria-labelledby="scope-h">
       <h2 id="scope-h" class="section-label">Scope and conventions</h2>
       <div class="panel">
-        <p><strong>Information cutoff:</strong> 9:41 PM ET on November 13, 2026 (02:41 UTC on November 14). This is an evening-of snapshot; expect revisions.</p>
-        <p><strong>Time zones:</strong> ET is Eastern Standard Time (UTC-5) on this date. UTC is Coordinated Universal Time.</p>
-        <p><strong>Abbreviations:</strong> FAA, Federal Aviation Administration. ATCSCC, the FAA Air Traffic Control System Command Center. ARTCC or en route center, an Air Route Traffic Control Center (the facilities that control high-altitude traffic). NAS, the National Airspace System. NOTAM, Notice to Air Missions. DOT, Department of Transportation. DHS, Department of Homeland Security. CISA, Cybersecurity and Infrastructure Security Agency. NTSB, National Transportation Safety Board. NWS, National Weather Service. TDM, time-division multiplexing, a legacy telecom technology.</p>
-        <p style="margin-bottom:0;"><strong>Sourcing:</strong> bracketed numbers such as [2] refer to the <a href="#sources">source list</a>. Official statements, credible reporting, and speculation are kept in separate, labeled sections. Confidence follows standard intelligence estimative language (almost certain, very likely, likely, unlikely, very unlikely) with low, moderate, or high confidence.</p>
+        <p><strong>Information cutoff:</strong> 12:10 PM ET on November 14, 2026 (17:10 UTC). v2 sources were captured 10:50 AM to 12:10 PM ET (15:50-17:10 UTC), plus the v1 evening snapshot. Expect further revisions.</p>
+        <p><strong>Time zones:</strong> ET is Eastern Standard Time (UTC-5) on these dates. UTC is Coordinated Universal Time.</p>
+        <p><strong>Abbreviations:</strong> FAA, Federal Aviation Administration. ATCSCC, the FAA Air Traffic Control System Command Center. ARTCC or en route center, an Air Route Traffic Control Center (the facilities that control high-altitude traffic). NAS, the National Airspace System. NOTAM, Notice to Air Missions. DOT, Department of Transportation. OIG, Office of Inspector General. DHS, Department of Homeland Security. CISA, Cybersecurity and Infrastructure Security Agency. FBI, Federal Bureau of Investigation. NTSB, National Transportation Safety Board. NWS, National Weather Service. SMART, the FAA's new AI-assisted traffic tool. TDM, time-division multiplexing, a legacy telecom technology. T&amp;I, the House Transportation and Infrastructure Committee.</p>
+        <p style="margin-bottom:0;"><strong>Sourcing:</strong> bracketed numbers such as [2] refer to the <a href="#sources">source list</a>. Official statements, credible reporting, and speculation are kept in separate, labeled sections. Negative findings are scoped to the pages and times stated. Confidence follows standard intelligence estimative language (almost certain, very likely, likely, unlikely, very unlikely) with low, moderate, or high confidence.</p>
       </div>
     </section>
 
@@ -139,12 +168,12 @@
       <h2 id="bluf-h">Bottom Line Up Front</h2>
       <div class="panel bluf">
         <ul>
-          <li><strong>The event is confirmed.</strong> The FAA command center ordered a national ground stop of all departing traffic at all U.S. airports, effective 3:53 PM ET (20:53 UTC) on Friday, November 13 [2]. Federal officials said it was lifted at 8:15 PM ET (01:15 UTC, November 14) [15, 28].</li>
-          <li><strong>"All flights grounded" is overstated.</strong> The order stopped departures. More than 3,500 aircraft already airborne continued and landed; medevac, life-saving cargo, law-enforcement, intra-Alaska, and Hawaii inter-island flights continued; some international departures were released [2, 15, 23, 25].</li>
-          <li><strong>Official cause so far: a communications failure.</strong> The command center advisory reads "REASON: COMMUNICATIONS FAILURE" [3]. The Transportation Secretary blamed old, overloaded telecom routers and switches [26]. No root-cause finding has been published.</li>
-          <li><strong>Cyberattack:</strong> officials say they have seen "zero evidence" but have not ruled it out [17, 27]. We assess a cyberattack is <strong>unlikely</strong> (moderate confidence).</li>
-          <li><strong>Reported cause:</strong> CBS News, citing multiple unnamed sources, reported that an update to a contractor-operated FAA communications network caused a reboot, a crash, and the outage [28]. Single-source; not confirmed by the FAA.</li>
-          <li><strong>Outlook:</strong> disruption will very likely continue through Saturday, November 14, and likely into Sunday, November 15.</li>
+          <li><strong>The event is confirmed and closed.</strong> The FAA command center ordered a national ground stop of all departing traffic, effective 3:53 PM ET (20:53 UTC) on Friday, November 13 [2]. Officials said it was lifted at 8:15 PM ET (01:15 UTC) [15]; the command center's cancellation advisory runs from 01:16 UTC and was signed at 8:19 PM ET [54].</li>
+          <li><strong>"All flights grounded" remains overstated.</strong> The order stopped departures. More than 3,500 airborne aircraft landed, and exempt and some international flights continued [2, 15, 23, 25].</li>
+          <li><strong>Official cause account (on record Saturday; not yet a written finding):</strong> during contractor work at a remote FAA site to move telecommunication lines from copper to fiber, a router "started flooding other routers" with "over 1,000 connection attempts every four to five seconds", disrupting communications with aircraft and radar feeds. Officials have not determined whether contractor error or faulty equipment was responsible; a root-cause analysis is pending [32].</li>
+          <li><strong>Conflicts remain</strong> between that account and earlier reporting of a software update or patch [28, 86]. The type of change that started the failure is unresolved.</li>
+          <li><strong>Cyberattack:</strong> <strong>unlikely</strong> (moderate confidence). Officials now say "we don't believe this was cyber at all" [32]. No CISA or FBI public statement was found on the pages checked [64-68].</li>
+          <li><strong>Recovery:</strong> 4,269 U.S. cancellations on Saturday by 12:05 PM ET [41]. The FAA expects full recovery by the end of Sunday, November 15 [75].</li>
         </ul>
       </div>
     </section>
@@ -157,10 +186,10 @@
       </div>
       <h3>What continued during the stop</h3>
       <ul>
-        <li><strong>Airborne aircraft</strong> continued to their destinations: more than 3,500 airborne at the stop, fewer than 400 by 8:00 PM ET (01:00 UTC) [15].</li>
+        <li><strong>Airborne aircraft</strong> continued: more than 3,500 airborne at the stop, fewer than 400 by 8:00 PM ET (01:00 UTC) [15].</li>
         <li><strong>Exempt flights:</strong> medevac, life-saving cargo, and law-enforcement flights [15].</li>
-        <li><strong>Alaska and Hawaii:</strong> flights within Alaska and Hawaii inter-island flights were not affected; West Coast to Hawaii flights continued [23].</li>
-        <li><strong>International:</strong> some departures to Europe and across the Pacific were released [25, 26, 36].</li>
+        <li><strong>Alaska and Hawaii:</strong> flights within Alaska and Hawaii inter-island flights were not affected [23].</li>
+        <li><strong>International:</strong> some departures to Europe and across the Pacific were released [25, 26, 36]. At 7:37 PM ET (00:37 UTC) the command center said the stop "REMAINS IN EFFECT FOR A LARGE PORTION OF THE COUNTRY", with some coastal facilities releasing some international departures [55].</li>
       </ul>
       <h3>Statements that overstate or misstate the facts</h3>
       <div class="table-scroll" tabindex="0" role="region" aria-label="Overstated or misstated statements, scrollable">
@@ -170,7 +199,7 @@
           <tr><td>"out of an abundance of caution all flights have been halted"</td><td>FAA on X, 5:02 PM ET (22:02 UTC) [13]</td><td>The order covered departures only; airborne flights continued.</td></tr>
           <tr><td>"we have grounded all the flights"</td><td>DHS Secretary, quoted by CBS [28]</td><td>Same.</td></tr>
           <tr><td>"all air traffic has been grounded"</td><td>Rep. Troy Carter (D-La.), quoted by WDSU [43]</td><td>Same.</td></tr>
-          <tr><td>"grounded all flights nationwide"</td><td>AP live blog; WDSU [25, 43]</td><td>AP's own cargo entry correctly says the stop "applies to all departing flights" [25].</td></tr>
+          <tr><td>"grounded all flights nationwide"</td><td>AP live blog [25]</td><td>AP's own cargo entry correctly says the stop "applies to all departing flights" [25].</td></tr>
           <tr><td>"halted every US departure"</td><td>AeroCorner [39]</td><td>Medevac, Alaska, Hawaii, and some international departures continued.</td></tr>
           <tr><td>"An estimated 1.5 million people were stranded"</td><td>CNN [27]</td><td>Cirium's figure (via AP) is about 11,000 flights and 1.5 million passengers <em>scheduled</em> after 4 PM ET, not stranded [25].</td></tr>
           <tr><td>DHS said the disruption "was not caused by a cyberattack"</td><td>A financial-news aggregator [50]</td><td>DHS said "zero evidence" and "not going to rule that out" [17, 27].</td></tr>
@@ -186,69 +215,84 @@
         <thead><tr><th scope="col">ET (Nov 13 unless noted)</th><th scope="col">UTC</th><th scope="col">Event</th><th scope="col">Basis</th></tr></thead>
         <tbody>
           <tr><td>3:10 PM</td><td>20:10</td><td>Chicago O'Hare ground stop begins: "EQUIPMENT / OUTAGE", "COMMS ISSUES" [5].</td><td>Official</td></tr>
-          <tr><td>3:17 PM</td><td>20:17</td><td>Chicago Midway ground stop begins, "EQUIPMENT / OUTAGE" [6].</td><td>Official</td></tr>
-          <tr><td>About 3:30 PM</td><td>About 20:30</td><td>Outages begin at the Chicago en route center; Boston, Washington, New York, and Minneapolis follow "in rapid succession" [36].</td><td>Reporting</td></tr>
-          <tr><td>3:36 PM</td><td>20:36</td><td>Telecommunications issues begin, per the Transportation Secretary's later timeline [15].</td><td>Official</td></tr>
-          <tr><td>3:44 PM</td><td>20:44</td><td>Stop "issued", per The Air Current and The Verge; differs from the advisory time [36, 37].</td><td>Reporting</td></tr>
+          <tr><td>3:17 PM</td><td>20:17</td><td>Chicago Midway ground stop begins [6].</td><td>Official</td></tr>
+          <tr><td>About 3:30 PM</td><td>About 20:30</td><td>Outages begin at the Chicago en route center, then spread in rapid succession [36].</td><td>Reporting</td></tr>
+          <tr><td>3:36 PM</td><td>20:36</td><td>Telecommunications issues begin, per the Transportation Secretary [15].</td><td>Official</td></tr>
           <tr><td>3:53 PM</td><td>20:53</td><td>Advisory 111: National Ground Stop (signed 3:54 PM ET) [2].</td><td>Official</td></tr>
-          <tr><td>4:11-4:13 PM</td><td>21:11-21:13</td><td>Chicago and Los Angeles en route centers report "EQUIPMENT OUTAGE" / "EQUIPMENT ISSUES" [7, 8].</td><td>Official</td></tr>
-          <tr><td>4:16 PM</td><td>21:16</td><td>Transportation Secretary on X: an issue "impacting all Air Route Traffic Control Centers" [12].</td><td>Official</td></tr>
-          <tr><td>About 5:00 PM</td><td>About 22:00</td><td>DHS Secretary: "no indication as of yet this was a nefarious attack" [25, 26, 28].</td><td>Official, via press</td></tr>
-          <tr><td>5:00 PM to midnight</td><td>22:00 to 05:00 (Nov 14)</td><td>Eurocontrol suspends U.S.-bound departures at the FAA's request [25, 27].</td><td>Reporting</td></tr>
+          <tr><td>4:20-4:21 PM</td><td>21:20-21:21</td><td>Advisories 116 and 117: airborne holding "DUE EQUIPTMENT [sic] OUTAGES"; flight-plan drop times extended "DUE TO NATIONWIDE COMMS FAILURE" [61].</td><td>Official</td></tr>
           <tr><td>5:02 PM</td><td>22:02</td><td>FAA on X: "temporary telecommunications outage" [13].</td><td>Official</td></tr>
-          <tr><td>5:46 PM</td><td>22:46</td><td>Advisory 120: "REASON: COMMUNICATIONS FAILURE"; departures may resume "AS ENROUTE FACILITIES RECOVER" [3].</td><td>Official</td></tr>
-          <tr><td>5:50 PM</td><td>22:50</td><td>At least 600 diversions (Cirium, via AP) [25].</td><td>Reporting</td></tr>
-          <tr><td>From 6:00 PM</td><td>From 23:00</td><td>Advisory 119 sets a "TIERED APPROACH" for releasing traffic [4].</td><td>Official</td></tr>
-          <tr><td>About 8:07 PM</td><td>About 01:07 (Nov 14)</td><td>White House briefing by the DHS and Transportation Secretaries [16].</td><td>Official</td></tr>
-          <tr><td>8:15 PM</td><td>01:15 (Nov 14)</td><td>Stop lifted, per the Transportation Secretary [15, 28, 33].</td><td>Official</td></tr>
-          <tr><td>8:20-8:22 PM</td><td>01:20-01:22 (Nov 14)</td><td>Ground delay programs at LaGuardia, Boston, and Las Vegas cancelled [9].</td><td>Official</td></tr>
-          <tr><td>About 8:30 PM</td><td>About 01:30 (Nov 14)</td><td>FAA website notice that the stop "has been canceled" (via USA Today); Alaska Airlines gives a similar time [31, 23].</td><td>Reporting</td></tr>
-          <tr><td>8:53 / 9:07 PM</td><td>01:53 / 02:07 (Nov 14)</td><td>New carrier-specific ground stops at Newark and Minneapolis after the lift [10].</td><td>Official</td></tr>
-          <tr><td>8:59 PM</td><td>01:59 (Nov 14)</td><td>Transportation Secretary on X: "After restoring full functionality ... reopened the airspace" [14].</td><td>Official</td></tr>
-          <tr><td>9:02 PM</td><td>02:02 (Nov 14)</td><td>FAA National Airspace System (NAS) Status page: "No active en route events" [11].</td><td>Official</td></tr>
+          <tr><td>5:46 PM</td><td>22:46</td><td>Advisory 120: "REASON: COMMUNICATIONS FAILURE" [3].</td><td>Official</td></tr>
+          <tr><td>7:37 PM</td><td>00:37 (Nov 14)</td><td>Advisory 001: stop "REMAINS IN EFFECT FOR A LARGE PORTION OF THE COUNTRY", with selective releases [55].</td><td>Official</td></tr>
+          <tr><td>8:15 PM</td><td>01:15 (Nov 14)</td><td>Stop lifted, per the Transportation Secretary [15, 28].</td><td>Official</td></tr>
+          <tr><td>8:16 PM; signed 8:19 PM</td><td>01:16; signed 01:19 (Nov 14)</td><td>Advisory 005: "THE FAA COMMAND CENTER NATIONWIDE GROUND STOP HAS BEEN CANCELLED." [54]</td><td>Official</td></tr>
+          <tr><td>8:23-11:29 PM</td><td>01:23-04:29 (Nov 14)</td><td>Nine carrier-only ground stops at eight airports, several at "AIRLINE REQUEST"; the last cancelled at 1:27 AM ET November 14 [58, 59].</td><td>Official</td></tr>
+          <tr><td>Nov 14, 7:42-10:27 AM</td><td>12:42-15:27</td><td>Two more carrier-only stops (O'Hare, LaGuardia), both at airline request, both cancelled by 10:27 AM ET [58, 59].</td><td>Official</td></tr>
+          <tr><td>Nov 14, about 10:55 AM</td><td>About 15:55</td><td>Saturday briefing: Transportation Secretary Duffy, FAA Administrator Bedford, and the FAA's acting technology chief [77].</td><td>Reporting</td></tr>
+          <tr><td>Nov 14, 12:05 PM</td><td>17:05</td><td>4,269 U.S. cancellations and 3,752 delays for Saturday [41]; FAA NAS Status: "No active en route events" [11].</td><td>Official / data</td></tr>
         </tbody>
       </table>
       </div>
+      <p><strong>Duration:</strong> 4 hours 23 minutes by command center event times (20:53 to 01:16 UTC) [2, 54]; 4 hours 22 minutes by officials' times [15]; about 4 hours 39 minutes from the 3:36 PM ET onset the Secretary gave [15].</p>
     </section>
 
     <section aria-labelledby="official-h">
       <h2 id="official-h">03 &middot; Official Statements</h2>
       <div class="panel highlight">
-        <div class="panel-title">FAA</div>
+        <div class="panel-title">Saturday briefing, November 14 (Transportation Secretary Sean Duffy; FAA Administrator Bryan Bedford)</div>
         <ul>
-          <li>Written statement (dated November 13, no clock time): "The FAA issued a nationwide ground stop for all U.S. airports following communication issues impacting multiple Air Route Traffic Control Centers. FAA technicians are investigating the issue." [1]</li>
-          <li>Advisory 120: "REASON: COMMUNICATIONS FAILURE", the only cause wording from the FAA found so far [3]. Advisory 111: "EXTRAORDINARY CIRCUMSTANCES AND FOR REASONS OF SAFETY" [2].</li>
+          <li>Duffy: "In at least one of our remote FAA locations, a contractor was doing routine maintenance to switch telecommunication lines from old copper wire, and they were bringing it over to fiber." [32]</li>
+          <li>Duffy: "Either through contractor error or a faulty piece of equipment, that router that was being replaced as we switched from ... copper to fiber, it started flooding other routers in our air traffic control system. So specifically, we had over 1,000 connection attempts every four to five seconds" [32].</li>
+          <li>Duffy: "Once we were able to isolate the work that was being done at this remote location, all of our systems came back online, so we don't believe this was cyber at all." [32]</li>
+          <li>Bedford: "We see zero evidence of anything nefarious, and zero evidence of anything AI-related. So we want to be clear that we have a equipment issue" [32]. "When we have that root cause analysis complete, we'll share it with you." [32]</li>
+          <li>Duffy, on SMART: "This is a system that's not tied into or connected to the systems that went down yesterday." [78]</li>
+          <li>An FAA technology official said the FAA disabled the problem function on the roughly 60 routers of the same type in use nationwide (Yahoo News, paraphrase) [75]. Bedford said the legacy network "will continue to break until we replace it" [75].</li>
+          <li>Officials named the network contractor at the briefing [76]. <strong>This briefing does not name it</strong>, pending the root-cause analysis.</li>
+          <li>Duffy will send Congress a new funding request on Monday, November 16 [75].</li>
         </ul>
       </div>
       <div class="panel highlight">
-        <div class="panel-title">Transportation Secretary Sean Duffy</div>
+        <div class="panel-title">FAA command center</div>
         <ul>
-          <li>"We have TDM telecoms, so this is analog telecom. Our switches, our routers, actually got overloaded with data" [26].</li>
-          <li>"We didn't lose all telecom, we didn't lose all radar." [26]</li>
-          <li>On funding: "the president's asked for $30 billion. I want $50 billion." [27]</li>
-          <li><em>Discrepancy:</em> his post and the White House say "all" en route centers were affected [12, 18]; the FAA statement says "multiple" [1].</li>
+          <li>Advisory 120: "REASON: COMMUNICATIONS FAILURE" [3]. Advisory 117: drop times extended "DUE TO NATIONWIDE COMMS FAILURE" [61]. Advisory 005 cancelled the national stop; its reason field is blank [54].</li>
+          <li>No written FAA or DOT root-cause statement was read: faa.gov and transportation.gov returned HTTP 403 to automated access at 10:54-10:55 AM ET and about 12:04 PM ET.</li>
         </ul>
       </div>
       <div class="panel highlight">
-        <div class="panel-title">DHS Secretary Markwayne Mullin</div>
+        <div class="panel-title">Friday statements (from v1)</div>
         <ul>
-          <li>"We have seen zero evidence that this was a cyber attack or an SI attack" (DHS on X; the statement does not define "SI") [17].</li>
-          <li>"It appears that this was mechanically driven. However, we're still looking, so we're not going to rule that out." [32]</li>
-          <li>Earlier, asked about a cyber or AI intrusion: "That's not known." [29]</li>
-          <li>On the FAA's new AI-powered traffic tool, called SMART: "We're looking at that." [29]</li>
-          <li>The ground stop was not linked to this week's Microsoft outage (CNN's paraphrase) [27].</li>
-          <li><em>Single-source:</em> only USA Today reports him saying the President declared the air traffic control failures "a national emergency" [31]. No such document was found on the White House briefings page at 9:22 PM ET (02:22 UTC).</li>
+          <li>FAA: "The FAA issued a nationwide ground stop for all U.S. airports following communication issues impacting multiple Air Route Traffic Control Centers." [1]</li>
+          <li>Duffy: "We have TDM telecoms, so this is analog telecom," and "Our switches, our routers, actually got overloaded with data" [26].</li>
+          <li>DHS Secretary Markwayne Mullin: "It appears that this was mechanically driven. However, we're still looking, so we're not going to rule that out." [32]</li>
         </ul>
       </div>
       <div class="panel highlight">
-        <div class="panel-title">Congress, and third-party statements (via AP)</div>
+        <div class="panel-title">"National emergency": a statement, no formal declaration found</div>
         <ul>
-          <li>House Transportation and Infrastructure Committee leaders: "The Committee will thoroughly review the issues that led to this nationwide ground stop." [20]</li>
-          <li>Senate Commerce Committee majority: the incident "highlights the need to prioritize modernizing ARTCCs" [19].</li>
-          <li>Microsoft: "no indication" the ground stop is related to its service disruption on Thursday, November 12 [25].</li>
-          <li>The developer of the SMART tool: the outage was "not based on or a result of the SMART system" [25].</li>
-          <li>National Weather Service: its radars were "operating normally" [25].</li>
-          <li><em>Checked at 9:13-9:41 PM ET (02:13-02:41 UTC):</em> no FAA-related item on the CISA news page or the NTSB newsroom. FBI, DOT Inspector General, and NTSB social media accounts could not be checked (HTTP 403 or 404). This is a point-in-time absence, not evidence of silence.</li>
+          <li>A DHS release of the two Secretaries' remarks includes: "The President has declared this a national emergency, and now we have to have Congress act and fund it." [63]</li>
+          <li>No matching item on the White House presidential actions or briefings pages (newest item November 12) at 11:00 and 11:49 AM ET, and 0 Federal Register documents for "national emergency" since November 13 at 11:05 and 11:49 AM ET [71-74]. The Federal Register public inspection list is unavailable until Monday, November 16, so a late-week declaration may not yet be visible.</li>
+        </ul>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Congress</div>
+        <ul>
+          <li>House T&amp;I leaders (November 13): "The Committee will thoroughly review the issues that led to this nationwide ground stop." [20] No hearing notice was found on the committee news page at 11:01 and 11:50 AM ET [117].</li>
+          <li>Sen. Tammy Duckworth (D-Ill.): "Whatever led to the nationwide ground stop will warrant a thorough and complete investigation" [89]. Sen. Richard Blumenthal (D-Conn.) called for a "prompt, penetrating investigation" [92].</li>
+          <li>Rep. Troy Carter (D-La.): federal accident investigators could not fly to a same-day vessel collision in New Orleans [43].</li>
+        </ul>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Checked, nothing found (point-in-time; not evidence of silence)</div>
+        <ul>
+          <li><strong>CISA:</strong> news and cybersecurity advisories pages at 10:55, 11:49 AM, and 12:05 PM ET [67, 68].</li>
+          <li><strong>FBI:</strong> /news at the same times; the news blog at 10:56 AM ET; the national press-release feed at 11:08 AM and 12:06 PM ET [64, 65, 66]. Several FBI pages and FBI's X account refused automated access (HTTP 403), so this check is partial.</li>
+          <li><strong>DOT Office of Inspector General:</strong> home, audits, active audits, testimony, correspondence, and investigations pages at 10:55 AM, 11:49 AM, and 12:05 PM ET [69].</li>
+        </ul>
+      </div>
+      <div class="panel highlight">
+        <div class="panel-title">Third parties and carriers</div>
+        <ul>
+          <li>Microsoft: "no indication" the ground stop is related to its Thursday service disruption [25] (see our <a href="/osint-reports/microsoft-365-outage-2026-11-12/">Microsoft 365 outage briefing</a>). The SMART developer: the stop "is not based on or a result of the SMART system" [25]. NWS: radars "operating normally" [25].</li>
+          <li>American, Delta, and Southwest announced change waivers [22, 21, 113]; Delta encourages customers with flexible plans to move to Monday, November 16 or later [112]. United's Saturday statement could not be read.</li>
         </ul>
       </div>
     </section>
@@ -256,27 +300,27 @@
     <section aria-labelledby="rep-h">
       <h2 id="rep-h">04 &middot; Credible Reporting Beyond Official Statements</h2>
       <div class="panel">
-        <div class="panel-title">Update-and-reboot account (CBS News, single source)</div>
+        <div class="panel-title">CBS News, anonymous senior government sources</div>
         <ul>
-          <li>Multiple unnamed sources told CBS that an update to the private communications network connecting the air traffic control system caused it to reboot, crash, and lose communications [28].</li>
-          <li>CBS named the network's contractor. <strong>We do not</strong>: no official source has named it or assigned it responsibility.</li>
-          <li>Outlets repeating the CBS account are not independent corroboration [39, 40]. The FAA has not confirmed it [39].</li>
-          <li>A Bloomberg headline reads "US Says Software Patch Overwhelmed Air Control System"; the article was not accessible to us. Lead only.</li>
+          <li>Friday: an update to the private network connecting the air traffic control system caused it to reboot, crash, and lose communications [28].</li>
+          <li>Saturday: the FAA's preliminary investigation led it to believe the issue was limited to routers of a specific older model line (2001-2006 manufacture); the routers "essentially got overwhelmed and started feeding out-of-sync data packets" into the wider system; the faulty equipment has been identified and isolated [28]. We do not name the router vendor, which rests only on anonymous sources.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Bloomberg, one unnamed person (relays only)</div>
+        <p style="margin-bottom:0;">Relayed by SecurityWeek and Al Jazeera: the FBI does not think a cyberattack or criminal activity was behind the outage, and investigators are examining whether a software update caused it [86, 89]. The Bloomberg article itself could not be read. This is not an FBI statement; none was found on the FBI pages checked.</p>
+      </div>
+      <div class="panel warning">
+        <div class="panel-title">How the accounts compare</div>
+        <ul>
+          <li><strong>Established by two or more independent sources:</strong> a failure in the FAA's ground telecommunications network [61, 3, 32, 28]; restoration by isolating the faulty element [32, 28].</li>
+          <li><strong>On record from one press conference only</strong> (relayed by several outlets): copper-to-fiber work at a remote site, a flooding router, and more than 1,000 connection attempts every four to five seconds [32, 75, 82, 83].</li>
+          <li><strong>Conflicts:</strong> a software update or patch (CBS Friday; Bloomberg relays) versus physical line work with a flooding router (Duffy, Saturday); reboot and crash versus overload by connection flooding [28, 86, 32]. No source establishes a single chain from change to flood to overload.</li>
         </ul>
       </div>
       <div class="panel">
         <div class="panel-title">Cascade (The Air Current, single source)</div>
-        <ul>
-          <li>Outages began at the Chicago en route center, with Boston, Washington, New York, and Minneapolis "verifying they had problems as well in rapid succession" [36].</li>
-          <li>A carrier dispatcher was told the outage was affecting 10 en route centers "and growing" [36].</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <div class="panel-title">Other reporting</div>
-        <ul>
-          <li>NBC: officials from multiple agencies said there was no indication of malicious activity, cautioning it was early [26].</li>
-          <li>AP: the communications problems "don't appear to be linked" to the FAA's new AI-powered system [25].</li>
-        </ul>
+        <p style="margin-bottom:0;">Outages began at the Chicago en route center, with Boston, Washington, New York, and Minneapolis "verifying they had problems as well in rapid succession"; a carrier dispatcher was told 10 en route centers were affected "and growing" [36].</p>
       </div>
     </section>
 
@@ -284,91 +328,90 @@
       <h2 id="spec-h">05 &middot; Speculation and Counter-Narrative</h2>
       <div class="panel critical">
         <div class="panel-title">Unverified claims</div>
-        <p style="margin-bottom:0;">Everything in this table is <strong>unverified speculation</strong>, not established fact. Velocity was measured over a 21-minute window (9:08-9:29 PM ET / 02:08-02:29 UTC). Accounts are described by type; private posters are not named.</p>
+        <p style="margin-bottom:0;">Everything in this table is <strong>unverified speculation</strong>, not established fact. Velocity is measured over two windows: from the v1 snapshot (about 9:20 PM ET November 13) to 11:07 AM ET November 14 (about 13 hours 38 minutes), and a live 41-minute window (11:07-11:48 AM ET). Private posters are not named. X and most platforms other than Reddit were not collected.</p>
       </div>
       <div class="table-scroll wide" tabindex="0" role="region" aria-label="Speculation catalog, scrollable">
       <table>
         <thead><tr><th scope="col">Claim</th><th scope="col">Where it propagates</th><th scope="col">Evidence for and against</th><th scope="col">Velocity</th><th scope="col">Weaponization risk</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Cyberattack or hostile-state attack, including Iran</th><td>Conspiracy forums [52]; prediction-market contracts on an aggregator priced "attributed to Iran" at 2% and "attributed to hack" at 4% [50]</td><td><strong>For:</strong> none found; Politico noted other suspected cyber incidents in Europe [29]. <strong>Against:</strong> DHS "zero evidence", "mechanically driven"; multi-agency officials [17, 32, 26]. <strong>Open:</strong> not ruled out.</td><td><span class="badge badge-amber">Medium</span></td><td><span class="badge badge-red">High</span> state attribution without evidence could inflame tensions</td></tr>
-          <tr><th scope="row">The new SMART AI traffic tool caused it</th><td>Mainstream news forums [51]; conspiracy forums [52]</td><td><strong>For:</strong> live at all 22 centers since November 10; DHS is "looking at that" [36, 29]. <strong>Against:</strong> AP says no apparent link; developer denies it; officials and CBS point to the telecom layer [25, 26, 28].</td><td><span class="badge badge-red">High</span> on mainstream forums</td><td><span class="badge badge-amber">Medium</span> reputational harm to a vendor and to AI policy</td></tr>
-          <tr><th scope="row">Linked to Microsoft's Thursday outage (see our <a href="/osint-reports/microsoft-365-outage-2026-11-12/">Microsoft 365 outage briefing</a>)</th><td>Pseudonymous forum posts [52, 53]</td><td><strong>Against:</strong> Microsoft; DHS Secretary; officials [25, 27, 26]</td><td><span class="badge badge-green">Low-medium</span></td><td><span class="badge badge-green">Low</span></td></tr>
-          <tr><th scope="row">Linked to the same-day New Orleans vessel collision ("coordinated attack")</th><td>Local forum question, documented in our <a href="/osint-reports/nola-tanker-riverboat-2026-11-13/">New Orleans briefing</a> (not collected for this briefing)</td><td><strong>Against:</strong> no official source links the two events; the only reported connection is that the ground stop delayed NTSB investigators' travel [43, 44].</td><td><span class="badge badge-green">Low</span> per the New Orleans briefing</td><td><span class="badge badge-red">Moderate to high</span> per the New Orleans briefing, if both events trend nationally</td></tr>
-          <tr><th scope="row">Staged for funding, a "false flag", or election timing</th><td>Pseudonymous forum posts [52, 53]</td><td>None. Feeds on real funding requests officials made the same night [27].</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-amber">Medium</span> political</td></tr>
-          <tr><th scope="row">A nationwide weather radar outage</th><td>Conspiracy forums [52]; search trends [42]</td><td><strong>False</strong> per NWS ("radars are operating normally") [25]. Partial basis: an NWS public radar data web page was briefly down [26].</td><td><span class="badge badge-amber">Medium</span></td><td><span class="badge badge-green">Low</span></td></tr>
-          <tr><th scope="row">A single router at one Chicago airport caused it; named firms to blame</th><td>Long-form pseudonymous post [53]</td><td>Unsourced; no official confirmation. We do not repeat the names.</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-red">High</span> misattribution, defamation</td></tr>
+          <tr><th scope="row">Cyberattack or hostile-state attack, including Iran</th><td>Conspiracy forums [52, 121]; a former member of Congress publicly disputed the no-cyber finding [106]</td><td><strong>For:</strong> none found. <strong>Against:</strong> Duffy "we don't believe this was cyber at all"; Bedford "zero evidence of anything nefarious"; DHS "zero evidence" [32, 17]. <strong>Open:</strong> no CISA or FBI statement found.</td><td><span class="badge badge-amber">Flat on Reddit</span>; new amplification by a public figure</td><td><span class="badge badge-red">High</span></td></tr>
+          <tr><th scope="row">The SMART AI tool caused it</th><td>Mainstream news forums [51, 121]; a repost of a September congressional criticism of SMART, the fastest riser seen [121]</td><td><strong>For:</strong> rollout timing; pre-event congressional concerns [99-105]. <strong>Against:</strong> Duffy "not tied into or connected" [78]; Bedford "zero evidence of anything AI-related" [32]; developer denial [25].</td><td><span class="badge badge-red">High</span> absolute; main thread slowing</td><td><span class="badge badge-amber">Medium</span></td></tr>
+          <tr><th scope="row">Linked to Microsoft's Thursday outage (see our <a href="/osint-reports/microsoft-365-outage-2026-11-12/">Microsoft 365 outage briefing</a>)</th><td>Pseudonymous forum posts [53]; a public figure's list [106]</td><td><strong>Against:</strong> Microsoft; officials; the Saturday account [25, 27, 32]</td><td><span class="badge badge-green">Low</span></td><td><span class="badge badge-green">Low</span></td></tr>
+          <tr><th scope="row">Staged for funding, "false flag", or "shakedown"</th><td>Conspiracy forums [52, 53]; a former member of Congress called the Friday briefing "literally like a shakedown for more money" [106]</td><td>None. It feeds on real funding requests ($30.1 billion, then $50 billion, a new request due Monday) [94, 95, 75].</td><td><span class="badge badge-green">Flat to low</span> on Reddit; raised profile</td><td><span class="badge badge-red">Medium-high</span> political</td></tr>
+          <tr><th scope="row">Named-company blame</th><td>Press and forums</td><td>Officials have named the contractor, but whether contractor error or faulty equipment was responsible is undetermined [32, 76]. We do not repeat company names.</td><td>Press now carries the name widely</td><td><span class="badge badge-red">High</span> premature blame</td></tr>
+          <tr><th scope="row">A nationwide weather radar outage</th><td>Mainstream news forums [121]</td><td><strong>False</strong> as a radar claim per NWS ("radars are operating normally") [25].</td><td><span class="badge badge-green">Low growth</span></td><td><span class="badge badge-green">Low</span></td></tr>
+          <tr><th scope="row">Linked to the same-day New Orleans vessel collision</th><td>No post or outlet asserting a causal link found in the forums searched at 10:51 and 11:32 AM ET [121]; covered in our <a href="/osint-reports/nola-tanker-riverboat-2026-11-13/">New Orleans briefing</a></td><td>No official link found; no denial was searched for. The only reported connection is NTSB travel delay [43, 44, 119].</td><td>Not measured</td><td><span class="badge badge-amber">Medium</span> if it spreads</td></tr>
+          <tr><th scope="row">New: a bomb threat or Friday-the-13th "coincidences" caused it</th><td>Conspiracy forums [121]</td><td>None.</td><td><span class="badge badge-green">Very low</span></td><td><span class="badge badge-green">Low</span></td></tr>
         </tbody>
       </table>
       </div>
-      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-top: 1rem;">Context: "faa ground stop" showed 10M+ searches (+1,000%) at 9:22 PM ET [42]. Bluesky, X search, and local community forums could not be collected (login walls, HTTP 403), so platform coverage is incomplete.</p>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem; margin-top: 1rem;">No fact-check of the ground stop was found on the AP Fact Check hub, Snopes, or PolitiFact at about 12:00 PM ET [108-110].</p>
     </section>
 
     <section aria-labelledby="ka-h">
       <h2 id="ka-h">06 &middot; Key Assessments</h2>
       <div class="panel">
-        <div class="panel-title">KA-1: Departures were halted nationwide from 3:53 PM ET to about 8:15 PM ET. Almost certain; high confidence.</div>
+        <div class="panel-title">KA-1: Departures were halted nationwide from 3:53 PM ET to 8:15-8:19 PM ET. Almost certain; high confidence.</div>
         <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill high" style="width: 95%;"></div></div><span class="conf-label">High confidence</span></div>
-        <p>Basis: the advisory text, the FAA statement, official posts, and more than ten outlets [2, 1, 15, 25-37]. The lift time rests on officials and press; no command center cancellation advisory was captured.</p>
+        <p>Advisory 111 and its cancellation, Advisory 005 [2, 54]; officials [15]; more than ten outlets.</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-2: A failure in FAA air traffic communications across multiple en route centers was the proximate trigger. Very likely; high confidence on the category.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill high" style="width: 90%;"></div></div><span class="conf-label">High confidence</span></div>
-        <p>Unresolved: whether <em>all</em> centers were affected. Officials say "all" [12, 18], the FAA says "multiple" [1], and The Air Current's source said "10 ... and growing" [36].</p>
+        <div class="panel-title">KA-2: A failure in the FAA's ground telecommunications network affecting multiple en route centers was the proximate trigger. Almost certain; high confidence on the category (raised from very likely).</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill high" style="width: 95%;"></div></div><span class="conf-label">High confidence</span></div>
+        <p>New evidence: Advisory 117 ("NATIONWIDE COMMS FAILURE") [61] and the Saturday on-record account [32]. Still unresolved: whether all centers were affected [12, 1, 36].</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-3: The disruption began in the Chicago area before the 3:36 PM ET onset officials cited. Likely; moderate confidence.</div>
+        <div class="panel-title">KA-3: The disruption began in the Chicago area before the 3:36 PM ET onset officials cited. Likely; moderate confidence (unchanged).</div>
         <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
-        <p>Basis: FAA advisories for O'Hare ("COMMS ISSUES" from 3:10 PM ET), Midway, and the Chicago center [5, 6, 7], plus The Air Current [36]. Alternative: a local Chicago fault preceded a separate multi-center failure.</p>
+        <p>FAA advisories for O'Hare ("COMMS ISSUES" from 3:10 PM ET) and Midway [5, 6], plus The Air Current [36].</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-4: The specific failure mechanism is undetermined. Low confidence on any single mechanism.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 30%;"></div></div><span class="conf-label">Low confidence</span></div>
-        <p>The officials' account (legacy routers overloaded; new technology on an old framework) [26, 25] and the CBS account (a network update triggered a reboot and crash) [28] may be compatible. Neither appears in an FAA written finding.</p>
+        <div class="panel-title">KA-4: A change to the network started the failure. Likely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>The type of change (physical line migration, router replacement, or a software update) is unresolved [32, 28, 86]. Whether contractor error or faulty equipment was responsible is undetermined, as officials say [32]. No written root-cause finding has been read.</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-5: A cyberattack caused the outage. Unlikely; moderate confidence.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 60%;"></div></div><span class="conf-label">Moderate confidence</span></div>
-        <p>Senior officials report no indicators and no claim of responsibility [17, 32, 26]. Limits: officials are "still looking", no CISA statement was found, FBI channels could not be checked, and the investigation is early.</p>
+        <div class="panel-title">KA-5: A cyberattack caused the outage. Unlikely; moderate confidence (unchanged).</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>On-record statements from three senior officials [32, 17]; relayed reporting on the FBI's view [86]. Limits: no CISA or FBI public statement found; FBI checks partial; root-cause analysis pending.</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-6: The SMART AI tool caused the outage. Unlikely; low confidence.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill low" style="width: 35%;"></div></div><span class="conf-label">Low confidence</span></div>
-        <p>Basis: AP and the telecom-layer accounts [25, 26, 28]. Limits: officials are reviewing it, its rollout timing coincides, and the developer's denial comes from an interested party.</p>
+        <div class="panel-title">KA-6: The SMART AI tool caused the outage. Unlikely; moderate confidence (raised from low).</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Officials say SMART is not connected to the systems that failed, and the mechanism account points to the telecom layer [78, 32]. Limits: no FAA written finding; the developer's denial comes from an interested party.</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-7: The outage is linked to the Microsoft outage. Very unlikely; moderate confidence.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 60%;"></div></div><span class="conf-label">Moderate confidence</span></div>
-        <p>Microsoft, the DHS Secretary, and multi-agency officials all say there is no link [25, 27, 26].</p>
+        <div class="panel-title">KA-7: The outage is linked to the Microsoft outage. Very unlikely; moderate confidence (unchanged).</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>Microsoft says it has "no indication" of a link; the DHS Secretary and officials say it was not linked [25, 27, 26]. The Saturday account describes a different mechanism [32].</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-8: Flight disruption continues through Saturday, November 14. Very likely; likely into Sunday. Moderate confidence.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 60%;"></div></div><span class="conf-label">Moderate confidence</span></div>
-        <p>Carriers expect recovery "through the weekend" and disruption "into tomorrow" [23, 25]; new carrier-specific stops appeared after the lift [10].</p>
+        <div class="panel-title">KA-8: Flight disruption continues into Sunday, November 15. Very likely; moderate confidence.</div>
+        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 65%;"></div></div><span class="conf-label">Moderate confidence</span></div>
+        <p>4,269 U.S. cancellations by midday Saturday [41]; the FAA expects full recovery by the end of Sunday [75]; carriers report lingering effects [22].</p>
       </div>
       <div class="panel">
-        <div class="panel-title">KA-9: Congress formally reviews the event: almost certain. Officials will likely press for $30-50 billion in air traffic control funding: moderate confidence.</div>
-        <div class="confidence-bar"><div class="bar" aria-hidden="true"><div class="fill medium" style="width: 60%;"></div></div><span class="conf-label">Moderate confidence (funding)</span></div>
-        <p>The House committee has committed to a review [20]; both Secretaries called for large funding increases the same night [27, 25].</p>
+        <div class="panel-title">KA-9: "National emergency" rests on a statement, not a formal declaration found. No confidence rating assigned.</div>
+        <p>The DHS release carries the line [63]; no presidential document or Federal Register notice was found [71-74]. The Federal Register check is weak until Monday, November 16.</p>
       </div>
     </section>
 
     <section aria-labelledby="imp-h">
       <h2 id="imp-h">07 &middot; Impact</h2>
-      <div class="table-scroll" tabindex="0" role="region" aria-label="Impact table, scrollable">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Impact figures, scrollable">
       <table>
         <thead><tr><th scope="col">Metric</th><th scope="col">Figure</th><th scope="col">Source and time</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Scheduled flights exposed</th><td>About 11,000 flights, 1.5 million passengers scheduled after 4 PM ET</td><td>Cirium via AP [25]</td></tr>
-          <tr><th scope="row">Diversions</th><td>600 or more</td><td>Cirium via AP, 5:50 PM ET [25]</td></tr>
-          <tr><th scope="row">U.S. cancellations</th><td>4,238 (7:30 PM ET); 6,587 (9:21 PM ET)</td><td>FlightAware [26, 41]. Running totals at different times; do not add.</td></tr>
-          <tr><th scope="row">U.S. delays</th><td>8,627 (9:21 PM ET)</td><td>FlightAware [41]</td></tr>
+          <tr><th scope="row">Scheduled flights exposed (Friday)</th><td>About 11,000 flights, 1.5 million passengers scheduled after 4 PM ET</td><td>Cirium via AP [25]</td></tr>
+          <tr><th scope="row">U.S. cancellations, Friday</th><td>6,587 by 9:21 PM ET</td><td>FlightAware [41] (v1)</td></tr>
+          <tr><th scope="row">U.S. cancellations, Saturday</th><td>4,080 (11:00 AM ET); 4,269 (12:05 PM ET)</td><td>FlightAware [41]. Running totals at different times; do not add.</td></tr>
+          <tr><th scope="row">Expected Saturday cancellations</th><td>4,000 to 5,000 of about 41,000 scheduled flights</td><td>FAA Administrator, via Yahoo News [75]</td></tr>
         </tbody>
       </table>
       </div>
       <ul>
-        <li><strong>International:</strong> Eurocontrol suspended U.S.-bound departures from 5 PM ET to midnight ET; Air Canada cancelled U.S. flights for Friday evening; Mexico held U.S.-bound flights; Nav Canada applied traffic measures at four airports [25, 27, 36].</li>
-        <li><strong>Downstream:</strong> NTSB investigators headed to a same-day vessel collision in New Orleans were delayed by the ground stop, according to a member of Congress (via WDSU) and The Waterways Journal [43, 44]. No source links the two events causally. See our <a href="/osint-reports/nola-tanker-riverboat-2026-11-13/">New Orleans flash briefing</a>.</li>
-        <li><strong>Carriers:</strong> Delta, American, and United announced travel waivers [21, 22, 24]. Alaska expects recovery "through the weekend" [23].</li>
+        <li><strong>International (Friday):</strong> Eurocontrol suspended U.S.-bound departures from 5 PM ET to midnight ET; Air Canada, Mexico, and Nav Canada also acted [25, 27, 36].</li>
+        <li><strong>Downstream:</strong> NTSB investigators headed to a same-day vessel collision in New Orleans were delayed, according to a member of Congress (via WDSU) and The Waterways Journal [43, 44]. No outlet links the two events causally. See our <a href="/osint-reports/nola-tanker-riverboat-2026-11-13/">New Orleans flash briefing</a>.</li>
       </ul>
     </section>
 
@@ -379,116 +422,188 @@
         <thead><tr><th scope="col">Date</th><th scope="col">Event</th></tr></thead>
         <tbody>
           <tr><th scope="row">Sep 11, 2001</th><td>National ground stop, then all aircraft ordered to land [39].</td></tr>
-          <tr><th scope="row">Jan 11, 2023</th><td>NOTAM (Notice to Air Missions) system outage; domestic departures paused. FAA preliminary finding: a "damaged database file", no evidence of a cyberattack [45].</td></tr>
-          <tr><th scope="row">Apr-May 2025</th><td>Newark airspace: radar and radio losses of about 90 seconds; lawmakers called for fixing "antiquated" technology [48, 49].</td></tr>
+          <tr><th scope="row">Jan 11, 2023</th><td>NOTAM (Notice to Air Missions) system outage; FAA preliminary finding: a "damaged database file", no evidence of a cyberattack [45].</td></tr>
+          <tr><th scope="row">Apr-May 2025</th><td>Newark airspace: radar and radio losses of about 90 seconds [48, 49].</td></tr>
           <tr><th scope="row">Aug 6, 2026</th><td>Minneapolis center "telecommunication issues" ground stop [47].</td></tr>
           <tr><th scope="row">Sep 21, 2026</th><td>Philadelphia facility: a primary circuit failed and the backup fiber was reported severed during construction; who cut it is disputed [46, 48].</td></tr>
         </tbody>
       </table>
       </div>
-      <p>Press accounts count November 13 as the third nationwide ground stop [38]; no official FAA count was found. The Air Current called it the longest since 9/11 [36].</p>
-      <p><strong>Recycled templates seen tonight:</strong> (1) "cyber until proven otherwise", then an internal-error finding (the 2023 pattern); (2) "antiquated infrastructure, fund it now"; (3) blame on a contractor or a cut cable.</p>
+      <p>Press accounts describe November 13 as the second nationwide ground stop since 9/11, or the third in the FAA's history [92, 38]; the counts are consistent, and no official FAA count was found.</p>
+      <p><strong>Recycled templates:</strong> (1) "cyber until proven otherwise", then an internal-error account, the 2023 pattern repeating; (2) "antiquated infrastructure, fund it now"; (3) blame on a contractor or a cut cable, now with an official naming of the contractor before any root-cause finding.</p>
     </section>
 
     <section aria-labelledby="watch-h">
       <h2 id="watch-h">09 &middot; What to Watch, 24 to 72 Hours</h2>
       <ul>
-        <li>An FAA or DOT written root-cause statement, and whether it confirms the update-and-reboot account.</li>
-        <li>CISA or FBI statements on the cyber question. A change from "zero evidence" would be significant.</li>
-        <li>DOT Inspector General or congressional hearings and letters; the funding request.</li>
-        <li>Any White House document confirming a "national emergency" declaration (currently single-source).</li>
-        <li>Recovery: Saturday cancellation counts, carrier-specific stops, crew duty-time limits.</li>
-        <li>The status of the SMART tool, for example any pause or review.</li>
-        <li>Speculation drift: cyber or Iran narratives if no written cause appears; named-company blame; attempts to link the outage to the New Orleans collision.</li>
+        <li>The FAA root-cause analysis: does it confirm the copper-to-fiber flooding account, the update-and-reboot account, or both?</li>
+        <li>A readable written FAA or DOT statement; any CISA or FBI statement; confirmation of the Bloomberg FBI report.</li>
+        <li>DOT Inspector General or congressional hearing notices; the Monday, November 16 funding request.</li>
+        <li>The Federal Register public inspection list from Monday, November 16 at 8:45 AM ET, and the White House presidential actions page, for any formal emergency declaration.</li>
+        <li>Recovery by the end of Sunday; further carrier-specific stops.</li>
+        <li>SMART: any pause or review.</li>
+        <li>Speculation: "shakedown" and cyber framings voiced by a public figure; premature blame of the named contractor; any attempt to link the outage to the New Orleans collision.</li>
       </ul>
     </section>
 
     <section aria-labelledby="act-h">
       <h2 id="act-h">10 &middot; Actions for Organizations with Travel or Aviation Exposure</h2>
       <ol>
-        <li><strong>Assume knock-on cancellations through November 15.</strong> Rebook critical travel early using the change waivers Delta, American, and United announced [21, 22, 24]. Pre-book ground alternatives for short trips.</li>
+        <li><strong>Expect residual cancellations through Sunday, November 15.</strong> Use the change waivers American, Delta, and Southwest announced [22, 21, 113]; Delta suggests moving flexible travel to Monday, November 16 or later [112]. Confirm United's terms directly.</li>
         <li><strong>Time-critical shipments:</strong> confirm carrier contingency status [25].</li>
-        <li><strong>Thanksgiving travel (November 26):</strong> add buffer days. Officials expect normal operations by then, but the cause is not yet determined.</li>
-        <li><strong>Aviation operators:</strong> re-brief lost-communications and diversion procedures. Monitor FAA command center advisories and the NAS Status page directly, not social media.</li>
-        <li><strong>Security and communications teams:</strong> treat cyber attribution claims as unverified, avoid repeating company names no official source has named, and, as a precaution rather than an observed threat, warn staff about rebooking- and refund-themed phishing.</li>
+        <li><strong>Thanksgiving travel (November 26):</strong> add buffer days. The FAA Administrator said the legacy network "will continue to break until we replace it" [75].</li>
+        <li><strong>Aviation operators:</strong> re-brief lost-communications and diversion procedures; monitor command center advisories and the NAS Status page directly.</li>
+        <li><strong>Security and communications teams:</strong> treat cyber attribution claims as unverified; do not assign blame to a named company before the root-cause analysis; as a precaution, warn staff about rebooking- and refund-themed phishing.</li>
       </ol>
     </section>
 
     <section aria-labelledby="limits-h">
       <h2 id="limits-h">11 &middot; Collection Limits</h2>
       <ul>
-        <li>No FAA or DOT written root cause; no command center cancellation advisory captured.</li>
-        <li>No FAA-related item on the CISA news page or NTSB newsroom at the cutoff; FBI, DOT Inspector General, and NTSB social media accounts could not be checked (HTTP 403 or 404).</li>
-        <li>Bloomberg (HTTP 403), Reuters and The Wall Street Journal (HTTP 401) could not be read.</li>
-        <li>X search, Bluesky, and local community forums could not be collected (HTTP 403 or login walls); TikTok, Telegram, YouTube, and Truth Social were not reviewed.</li>
-        <li>This is an evening-of snapshot. Weekend figures did not exist at the cutoff.</li>
+        <li>No written FAA or DOT statement was read: faa.gov and transportation.gov refused automated access (HTTP 403).</li>
+        <li>No official transcript or video page of the Saturday briefing was found as of 12:05 PM ET (17:05 UTC); third-party streams exist [111]. Quotes rest on press accounts.</li>
+        <li>The Bloomberg FBI report rests on one unnamed person, seen only through relays.</li>
+        <li>FBI coverage is partial (several pages and the X account returned HTTP 403).</li>
+        <li>The Federal Register public inspection list is unavailable until Monday, November 16.</li>
+        <li>X search, Bluesky posts, and comment text were not collected; the speculation picture is Reddit-weighted.</li>
       </ul>
     </section>
 
     <section id="sources" aria-labelledby="src-h">
       <h2 id="src-h">Sources</h2>
-      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Tiers: T1 official primary; T2 wire service or major national outlet; T3 trade, regional, or specialist press, or a data service; T4 social media and aggregators (used only to describe claims, never to establish facts). Retrieval times are UTC on November 14, 2026.</p>
+      <p style="color: var(--c6s-text-dim); font-size: 0.9rem;">Tiers: T1 official primary; T2 wire service or major national outlet; T3 trade, regional, or specialist press, or a data service; T4 social media and aggregators (used only to describe claims, never to establish facts). Sources 1-53 keep their v1 numbers; new sources start at 54. Retrieval times are UTC on November 14, 2026. Live social media feeds are described, not linked.</p>
       <ol class="sources-list" style="list-style:none;">
-        <li id="src-1"><strong>[1]</strong> <a href="https://www.faa.gov/newsroom/faa-statement-nationwide-ground-stop" rel="noopener noreferrer">FAA: FAA statement (&quot;multiple&quot; centers; technicians investigating); dated 13 Nov, no clock time</a> <span class="src-meta">T1 &middot; retrieved 02:12:26 UTC</span></li>
-        <li id="src-2"><strong>[2]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=111&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+111+DCC+11/13/2026+NATIONAL+GROUND+STOP&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: National ground stop text; event 20:53-04:00 UTC; signed 20:54 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:23:55 UTC</span></li>
-        <li id="src-3"><strong>[3]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=120&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+120+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: &quot;REASON: COMMUNICATIONS FAILURE&quot;; release as en route facilities recover; signed 22:46 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:25:04 UTC</span></li>
-        <li id="src-4"><strong>[4]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=119&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+119+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Tiered release plan from 23:00 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:25:04 UTC</span></li>
-        <li id="src-5"><strong>[5]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=107&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+107+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: O&#x27;Hare ground stop from 20:10 UTC, &quot;EQUIPMENT / OUTAGE&quot;, &quot;COMMS ISSUES&quot;; signed 20:28 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:26:55 UTC</span></li>
-        <li id="src-6"><strong>[6]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=109&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+109+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Midway ground stop from 20:17 UTC; signed 20:31 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:27:01 UTC</span></li>
-        <li id="src-7"><strong>[7]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=114&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+114+DCC+11/13/2026+NATIONAL+GROUND+STOP&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Chicago Center &quot;EQUIPMENT OUTAGE&quot;; signed 21:11 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:24:36 UTC</span></li>
-        <li id="src-8"><strong>[8]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=115&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+115+DCC+11/13/2026+NATIONAL+GROUND+STOP&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Los Angeles Center &quot;EQUIPMENT ISSUES&quot;; signed 21:13 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:24:42 UTC</span></li>
-        <li id="src-9"><strong>[9]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=006&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+6+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Ground delay program cancellations at LGA, BOS, LAS, 01:20-01:22 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:27:36-02:27:42 UTC</span></li>
-        <li id="src-10"><strong>[10]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=016&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+16+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Carrier-specific post-lift stops at EWR (from 01:53 UTC) and MSP (from 02:07 UTC), condition &quot;OTHER&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:28:09; 02:24:00 UTC</span></li>
-        <li id="src-11"><strong>[11]</strong> <a href="https://nasstatus.faa.gov/" rel="noopener noreferrer">FAA: &quot;No active en route events&quot; at 02:02 UTC</a> <span class="src-meta">T1 &middot; retrieved 02:02:36 UTC</span></li>
-        <li id="src-12"><strong>[12]</strong> <a href="https://x.com/SecDuffy/status/2121351591106072679" rel="noopener noreferrer">US Transportation Secretary: 4:16 PM ET post, &quot;all Air Route Traffic Control Centers&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:14:51 UTC</span></li>
-        <li id="src-13"><strong>[13]</strong> <a href="https://x.com/FAANews/status/2121363171361575176" rel="noopener noreferrer">FAA: 5:02 PM ET post, &quot;telecommunications outage ... all flights have been halted&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:14:34 UTC</span></li>
-        <li id="src-14"><strong>[14]</strong> <a href="https://x.com/SecDuffy/status/2121422750686310818" rel="noopener noreferrer">US Transportation Secretary: 8:59 PM ET post, &quot;reopened the airspace&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:14:43 UTC</span></li>
-        <li id="src-15"><strong>[15]</strong> <a href="https://x.com/SecDuffy/status/2121425850826457252" rel="noopener noreferrer">US Transportation Secretary: 9:11 PM ET timeline: lift 8:15 PM; onset 3:36 PM; 3,500+ airborne, under 400 by 8 PM; exceptions</a> <span class="src-meta">T1 &middot; retrieved 02:14:10 UTC</span></li>
-        <li id="src-16"><strong>[16]</strong> <a href="https://x.com/FAANews/status/2121409611161055529" rel="noopener noreferrer">FAA (sharing the White House stream): White House briefing, 8:07 PM ET</a> <span class="src-meta">T1 &middot; retrieved 02:14:30 UTC</span></li>
-        <li id="src-17"><strong>[17]</strong> <a href="https://x.com/DHSgov" rel="noopener noreferrer">DHS: &quot;zero evidence that this was a cyber attack or an SI attack&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:15:08 UTC</span></li>
-        <li id="src-18"><strong>[18]</strong> <a href="https://x.com/WhiteHouse" rel="noopener noreferrer">White House: &quot;all&quot; ARTCCs; briefing video</a> <span class="src-meta">T1 &middot; retrieved 02:15:17 UTC</span></li>
-        <li id="src-19"><strong>[19]</strong> <a href="https://x.com/SenateCommerce" rel="noopener noreferrer">Senate Commerce Committee (majority): &quot;prioritize modernizing ARTCCs&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:20:47 UTC</span></li>
-        <li id="src-20"><strong>[20]</strong> <a href="https://transportation.house.gov/news/documentsingle.aspx?DocumentID=410342" rel="noopener noreferrer">House T&amp;I Committee: Graves and Larsen joint statement</a> <span class="src-meta">T1 &middot; retrieved 02:21:13 UTC</span></li>
-        <li id="src-21"><strong>[21]</strong> <a href="https://news.delta.com/faa-mandated-ground-stop-lifted-delta-offers-flexible-rebooking-options" rel="noopener noreferrer">Delta Air Lines: Resumption; &quot;take time to reset&quot;; travel waiver</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21:16 UTC</span></li>
-        <li id="src-22"><strong>[22]</strong> <a href="https://news.aa.com/news/news-details/2026/Update-on-FAAs-nationwide-ground-stop/default.aspx" rel="noopener noreferrer">American Airlines: Paused at 4:10 PM CT; airborne flights continue; waivers</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21:20 UTC</span></li>
-        <li id="src-23"><strong>[23]</strong> <a href="https://news.alaskaair.com/on-the-record/alaska-airlines-statement-on-faa-issued-ground-stop/" rel="noopener noreferrer">Alaska Airlines: Intra-Alaska and Hawaii inter-island not affected; 200+ cancellations; lift about 5:30 PM PT</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21:25 UTC</span></li>
-        <li id="src-24"><strong>[24]</strong> <a href="https://hub.united.com/" rel="noopener noreferrer">United Airlines: Holding most departures; cancellations; travel waiver</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21 UTC</span></li>
-        <li id="src-25"><strong>[25]</strong> <a href="https://apnews.com/live/ground-stop-aviation-flights-news-updates-11-13-2026" rel="noopener noreferrer">AP: Cirium figures; Mullin quotes; &quot;22 centers&quot;; first since Jan 2023; Europe and Mexico suspensions; Air...</a> <span class="src-meta">T2 &middot; retrieved 02:05:19 UTC</span></li>
-        <li id="src-26"><strong>[26]</strong> <a href="https://www.nbcnews.com/news/us-news/live-blog/live-updates-flights-grounded-faa-communications-outage-rcna609268" rel="noopener noreferrer">NBC News: TDM/analog quote; &quot;didn&#x27;t lose all&quot;; FlightAware 7:30 PM figures and baseline; multi-agency officials; NWS...</a> <span class="src-meta">T2 &middot; retrieved 02:07:06 UTC</span></li>
-        <li id="src-27"><strong>[27]</strong> <a href="https://www.cnn.com/2026/11/13/us/live-news/flights-ground-stop-faa" rel="noopener noreferrer">CNN: Mullin &quot;zero evidence&quot;, &quot;mechanically driven&quot;, &quot;no connection ... Microsoft&quot;; $30B/$50B; Thanksgiving;...</a> <span class="src-meta">T2 &middot; retrieved 02:07:10 UTC</span></li>
-        <li id="src-28"><strong>[28]</strong> <a href="https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/" rel="noopener noreferrer">CBS News: Update-and-reboot account (single source); lift 8:15 PM; Mullin &quot;grounded all the flights&quot;; Flightradar24...</a> <span class="src-meta">T2 &middot; retrieved 02:22:28 UTC</span></li>
-        <li id="src-29"><strong>[29]</strong> <a href="https://www.politico.com/news/2026/11/13/faa-orders-nationwide-grounding-of-passenger-planes-01166043" rel="noopener noreferrer">Politico: &quot;That&#x27;s not known&quot;; &quot;We&#x27;re looking at that&quot;; Duckworth; precedents; SMART at all 22 centers</a> <span class="src-meta">T2 &middot; retrieved 02:07:17 UTC</span></li>
-        <li id="src-30"><strong>[30]</strong> <a href="https://www.nytimes.com/2026/11/13/us/markwayne-mullin-faa-ground-stop.html" rel="noopener noreferrer">New York Times: Mullin calls it a telecommunication outage; cause not yet known</a> <span class="src-meta">T2 &middot; retrieved 02:07:26 UTC</span></li>
-        <li id="src-31"><strong>[31]</strong> <a href="https://www.usatoday.com/story/news/nation/2026/11/13/faa-orders-nationwide-groundstop-at-us-airports-citing-safety/92765499007/" rel="noopener noreferrer">USA Today: FAA website &quot;canceled&quot; notice about 8:30 PM ET; &quot;national emergency&quot; (single source)</a> <span class="src-meta">T2 &middot; retrieved 02:17:00 UTC</span></li>
-        <li id="src-32"><strong>[32]</strong> <a href="https://abcnews.com/US/live-updates/faa-ground-stop-live-updates-hundreds-flights-canceled/?id=138125140" rel="noopener noreferrer">ABC News: Mullin &quot;mechanically driven&quot;; no entity claiming responsibility</a> <span class="src-meta">T2 &middot; retrieved 02:16:57 UTC</span></li>
-        <li id="src-33"><strong>[33]</strong> <a href="https://www.cnbc.com/2026/11/13/faa-ground-stop.html" rel="noopener noreferrer">CNBC: Stop cancelled at 8:15 PM ET</a> <span class="src-meta">T2 &middot; retrieved 02:17:07 UTC</span></li>
-        <li id="src-34"><strong>[34]</strong> <a href="https://www.washingtonpost.com/transportation/2026/11/13/faa-grounds-flights-all-us-airports-citing-communications-issue/" rel="noopener noreferrer">Washington Post: Lift reported (headline corroboration only)</a> <span class="src-meta">T2 &middot; retrieved 02:16:50 UTC</span></li>
-        <li id="src-35"><strong>[35]</strong> <a href="https://www.axios.com/2026/11/13/faa-nationwide-ground-stop" rel="noopener noreferrer">Axios: Lift reported (headline corroboration only)</a> <span class="src-meta">T2 &middot; retrieved 02:17:03 UTC</span></li>
-        <li id="src-36"><strong>[36]</strong> <a href="https://theaircurrent.com/feed/dispatches/u-s-halts-flight-departures-nationwide-on-air-traffic-communications-outage/" rel="noopener noreferrer">The Air Current: Chicago-first cascade; 3:44 PM; &quot;10 ... and growing&quot;; longest since 9/11; Nav Canada; SMART at all 22...</a> <span class="src-meta">T3 &middot; retrieved 02:07:22 UTC</span></li>
-        <li id="src-37"><strong>[37]</strong> <a href="https://www.theverge.com/news/1033489/faa-ground-stop" rel="noopener noreferrer">The Verge: 3:44 PM; FlightAware 8:39 PM figures (article misnames the Secretary)</a> <span class="src-meta">T3 &middot; retrieved 02:18:48 UTC</span></li>
+        <li id="src-1"><strong>[1]</strong> <a href="https://www.faa.gov/newsroom/faa-statement-nationwide-ground-stop" rel="noopener noreferrer">FAA: FAA statement</a> <span class="src-meta">T1 &middot; retrieved 02:12:26 UTC</span></li>
+        <li id="src-2"><strong>[2]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=111&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+111+DCC+11/13/2026+NATIONAL+GROUND+STOP&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Advisory 111 text and times</a> <span class="src-meta">T1 &middot; retrieved 02:23:55 UTC</span></li>
+        <li id="src-3"><strong>[3]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=120&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+120+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: &quot;REASON: COMMUNICATIONS FAILURE&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:25:04 UTC</span></li>
+        <li id="src-4"><strong>[4]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=119&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+119+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Tiered release</a> <span class="src-meta">T1 &middot; retrieved 02:25:04 UTC</span></li>
+        <li id="src-5"><strong>[5]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=107&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+107+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: O&#x27;Hare stop, &quot;COMMS ISSUES&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:26:55 UTC</span></li>
+        <li id="src-6"><strong>[6]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=109&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+109+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Midway stop</a> <span class="src-meta">T1 &middot; retrieved 02:27:01 UTC</span></li>
+        <li id="src-7"><strong>[7]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=114&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+114+DCC+11/13/2026+NATIONAL+GROUND+STOP&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Chicago Center &quot;EQUIPMENT OUTAGE&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:24:36 UTC</span></li>
+        <li id="src-8"><strong>[8]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=115&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+115+DCC+11/13/2026+NATIONAL+GROUND+STOP&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: Los Angeles Center &quot;EQUIPMENT ISSUES&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:24:42 UTC</span></li>
+        <li id="src-9"><strong>[9]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=006&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+6+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: ground delay program cancellations (superseded by [57])</a> <span class="src-meta">T1 &middot; retrieved 02:27:36-02:27:42 UTC</span></li>
+        <li id="src-10"><strong>[10]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=016&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+16+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Newark/Minneapolis post-lift stops (superseded by [58])</a> <span class="src-meta">T1 &middot; retrieved 02:28:09 UTC</span></li>
+        <li id="src-11"><strong>[11]</strong> <a href="https://nasstatus.faa.gov/" rel="noopener noreferrer">FAA: &quot;No active en route events&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:02:36; v2 16:00:33, 16:49:57, 17:05:10 UTC</span> <span class="src-meta">Also supports: JFK and Philadelphia &quot;POSSIBLE&quot; at 17:05.</span></li>
+        <li id="src-12"><strong>[12]</strong> <a href="https://x.com/SecDuffy/status/2121351591106072679" rel="noopener noreferrer">US Transportation Secretary: 4:16 PM ET post</a> <span class="src-meta">T1 &middot; retrieved 02:14:51 UTC</span></li>
+        <li id="src-13"><strong>[13]</strong> <a href="https://x.com/FAANews/status/2121363171361575176" rel="noopener noreferrer">FAA: 5:02 PM ET post</a> <span class="src-meta">T1 &middot; retrieved 02:14:34 UTC</span></li>
+        <li id="src-14"><strong>[14]</strong> <a href="https://x.com/SecDuffy/status/2121422750686310818" rel="noopener noreferrer">US Transportation Secretary: 8:59 PM ET post</a> <span class="src-meta">T1 &middot; retrieved 02:14:43 UTC</span></li>
+        <li id="src-15"><strong>[15]</strong> <a href="https://x.com/SecDuffy/status/2121425850826457252" rel="noopener noreferrer">US Transportation Secretary: Lift 8:15 PM</a> <span class="src-meta">T1 &middot; retrieved 02:14:10 UTC</span> <span class="src-meta">Also supports: onset 3:36 PM; airborne counts; exemptions.</span></li>
+        <li id="src-16"><strong>[16]</strong> <a href="https://x.com/FAANews/status/2121409611161055529" rel="noopener noreferrer">FAA: White House briefing</a> <span class="src-meta">T1 &middot; retrieved 02:14:30 UTC</span></li>
+        <li id="src-17"><strong>[17]</strong> <a href="https://x.com/DHSgov" rel="noopener noreferrer">DHS: &quot;zero evidence&quot; (see [63])</a> <span class="src-meta">T1 &middot; retrieved 02:15:08 UTC</span></li>
+        <li id="src-18"><strong>[18]</strong> <a href="https://x.com/WhiteHouse" rel="noopener noreferrer">White House: &quot;all&quot; ARTCCs</a> <span class="src-meta">T1 &middot; retrieved 02:15:17 UTC</span></li>
+        <li id="src-19"><strong>[19]</strong> <a href="https://x.com/SenateCommerce" rel="noopener noreferrer">Senate Commerce (majority): &quot;prioritize modernizing ARTCCs&quot;</a> <span class="src-meta">T1 &middot; retrieved 02:20:47 UTC</span></li>
+        <li id="src-20"><strong>[20]</strong> <a href="https://transportation.house.gov/news/documentsingle.aspx?DocumentID=410342" rel="noopener noreferrer">House T&amp;I: Graves/Larsen statement</a> <span class="src-meta">T1 &middot; retrieved 02:21:13; v2 16:02:12 UTC</span></li>
+        <li id="src-21"><strong>[21]</strong> <a href="https://news.delta.com/faa-mandated-ground-stop-lifted-delta-offers-flexible-rebooking-options" rel="noopener noreferrer">Delta: Friday resumption</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21:16 UTC</span></li>
+        <li id="src-22"><strong>[22]</strong> <a href="https://news.aa.com/news/news-details/2026/Update-on-FAAs-nationwide-ground-stop/default.aspx" rel="noopener noreferrer">American Airlines: Saturday 8:15 AM CT update</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21:20; v2 16:02:05 UTC</span> <span class="src-meta">Also supports: Friday 4:10 PM CT pause; travel alert.</span></li>
+        <li id="src-23"><strong>[23]</strong> <a href="https://news.alaskaair.com/on-the-record/alaska-airlines-statement-on-faa-issued-ground-stop/" rel="noopener noreferrer">Alaska Airlines: Lift about 5:30 PM PT</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21:25; v2 16:02:10 UTC</span> <span class="src-meta">Also supports: 200+ cancellations.</span></li>
+        <li id="src-24"><strong>[24]</strong> <a href="https://hub.united.com/" rel="noopener noreferrer">United: Friday holding</a> <span class="src-meta">T1 (carrier) &middot; retrieved 02:21 UTC</span></li>
+        <li id="src-25"><strong>[25]</strong> <a href="https://apnews.com/live/ground-stop-aviation-flights-news-updates-11-13-2026" rel="noopener noreferrer">AP: Cirium</a> <span class="src-meta">T2 &middot; retrieved 02:05:19 UTC</span> <span class="src-meta">Also supports: cargo &quot;all departing flights&quot;; SMART &quot;don&#x27;t appear to be linked&quot;; developer statement.</span></li>
+        <li id="src-26"><strong>[26]</strong> <a href="https://www.nbcnews.com/news/us-news/live-blog/live-updates-flights-grounded-faa-communications-outage-rcna609268" rel="noopener noreferrer">NBC News: TDM quote</a> <span class="src-meta">T2 &middot; retrieved 02:07:06 UTC</span> <span class="src-meta">Also supports: &quot;didn&#x27;t lose all&quot;.</span></li>
+        <li id="src-27"><strong>[27]</strong> <a href="https://www.cnn.com/2026/11/13/us/live-news/flights-ground-stop-faa" rel="noopener noreferrer">CNN: &quot;not linked to this week&#x27;s disruptive Microsoft outage&quot;</a> <span class="src-meta">T2 &middot; retrieved 02:07:10; v2 16:58:57 UTC</span> <span class="src-meta">Also supports: &quot;1.5 million people were stranded&quot;.</span></li>
+        <li id="src-28"><strong>[28]</strong> <a href="https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/" rel="noopener noreferrer">CBS News: Friday update-reboot account</a> <span class="src-meta">T2 &middot; retrieved 02:22:28; v2 15:59:37 UTC</span> <span class="src-meta">Also supports: Saturday older-model router account (2001-2006), out-of-sync packets; &quot;about five hours&quot;; Mullin &quot;security patches&quot; characterization.</span></li>
+        <li id="src-29"><strong>[29]</strong> <a href="https://www.politico.com/news/2026/11/13/faa-orders-nationwide-grounding-of-passenger-planes-01166043" rel="noopener noreferrer">Politico: Friday quotes</a> <span class="src-meta">T2 &middot; retrieved 02:07:17; v2 15:58:52 UTC</span> <span class="src-meta">Also supports: Duckworth.</span></li>
+        <li id="src-30"><strong>[30]</strong> <a href="https://www.nytimes.com/2026/11/13/us/markwayne-mullin-faa-ground-stop.html" rel="noopener noreferrer">New York Times: v1 only</a> <span class="src-meta">T2 &middot; retrieved 02:07:26 UTC</span></li>
+        <li id="src-31"><strong>[31]</strong> <a href="https://www.usatoday.com/story/news/nation/2026/11/13/faa-orders-nationwide-groundstop-at-us-airports-citing-safety/92765499007/" rel="noopener noreferrer">USA Today: v1 &quot;national emergency&quot; report (now see [63])</a> <span class="src-meta">T2 &middot; retrieved 02:17:00 UTC</span></li>
+        <li id="src-32"><strong>[32]</strong> <a href="https://abcnews.com/US/live-updates/faa-ground-stop-live-updates-hundreds-flights-canceled/?id=138125140" rel="noopener noreferrer">ABC News: &quot;mechanically driven&quot;</a> <span class="src-meta">T2 &middot; retrieved 02:16:57; v2 16:57:54 UTC</span> <span class="src-meta">Also supports: Saturday Duffy verbatim (copper to fiber; router flooding; 1,000+ attempts; &quot;don&#x27;t believe this was cyber at all&quot;); Bedford &quot;zero evidence&quot;; &quot;root cause analysis&quot;.</span></li>
+        <li id="src-33"><strong>[33]</strong> <a href="https://www.cnbc.com/2026/11/13/faa-ground-stop.html" rel="noopener noreferrer">CNBC: Lift 8:15 PM</a> <span class="src-meta">T2 &middot; retrieved 02:17:07 UTC</span></li>
+        <li id="src-34"><strong>[34]</strong> <a href="https://www.washingtonpost.com/transportation/2026/11/13/faa-grounds-flights-all-us-airports-citing-communications-issue/" rel="noopener noreferrer">Washington Post: Headline only</a> <span class="src-meta">T2 &middot; retrieved 02:16:50 UTC</span></li>
+        <li id="src-35"><strong>[35]</strong> <a href="https://www.axios.com/2026/11/13/faa-nationwide-ground-stop" rel="noopener noreferrer">Axios: Headline only</a> <span class="src-meta">T2 &middot; retrieved 02:17:03; v2 15:59:55 UTC</span></li>
+        <li id="src-36"><strong>[36]</strong> <a href="https://theaircurrent.com/feed/dispatches/u-s-halts-flight-departures-nationwide-on-air-traffic-communications-outage/" rel="noopener noreferrer">The Air Current: Cascade</a> <span class="src-meta">T3 &middot; retrieved 02:07:22; v2 16:06:00 UTC</span> <span class="src-meta">Also supports: 3:44 PM; longest since 9/11.</span></li>
+        <li id="src-37"><strong>[37]</strong> <a href="https://www.theverge.com/news/1033489/faa-ground-stop" rel="noopener noreferrer">The Verge: 3:44 PM</a> <span class="src-meta">T3 &middot; retrieved 02:18:48; v2 16:06:08 UTC</span></li>
         <li id="src-38"><strong>[38]</strong> <a href="https://arstechnica.com/tech-policy/2026/11/faa-orders-third-nationwide-ground-stop-in-its-history/" rel="noopener noreferrer">Ars Technica: &quot;third nationwide ground stop&quot;</a> <span class="src-meta">T3 &middot; retrieved 02:18:57 UTC</span></li>
-        <li id="src-39"><strong>[39]</strong> <a href="https://aerocorner.com/blog/faa-nationwide-ground-stop/" rel="noopener noreferrer">AeroCorner: FAA had not confirmed the update account; no official FAA count; 2001 and 2023 times</a> <span class="src-meta">T3 &middot; retrieved 02:23:27 UTC</span></li>
-        <li id="src-40"><strong>[40]</strong> <a href="https://tsi-mag.com/u-s-flights-begin-resuming-following-nationwide-faa-ground-stop-network-update-investigated" rel="noopener noreferrer">TSI Magazine: Repeats CBS (not independent)</a> <span class="src-meta">T3 &middot; retrieved 02:23:30 UTC</span></li>
-        <li id="src-41"><strong>[41]</strong> <a href="https://www.flightaware.com/live/cancelled" rel="noopener noreferrer">FlightAware: 6,587 US / 7,300 total cancellations; 8,627 US delays; carrier breakdown</a> <span class="src-meta">T3 (data) &middot; retrieved 02:21:41 UTC</span></li>
-        <li id="src-42"><strong>[42]</strong> <a href="https://trends.google.com/trending?geo=US" rel="noopener noreferrer">Google Trends: &quot;faa ground stop&quot; 10M+ (+1,000%); &quot;national weather service&quot; 200K+</a> <span class="src-meta">T3 (data) &middot; retrieved 02:22:44 UTC</span></li>
-        <li id="src-43"><strong>[43]</strong> <a href="https://www.wdsu.com/article/faa-groundstop-ntsb-mississippi-boat-crash/74427584" rel="noopener noreferrer">WDSU (New Orleans): Rep. Carter quote on NTSB travel; &quot;all air traffic has been grounded&quot;; updated 4:20 PM CST (5:20 PM ET /...</a> <span class="src-meta">T3 &middot; retrieved 02:41:28 UTC</span></li>
-        <li id="src-44"><strong>[44]</strong> <a href="https://www.waterwaysjournal.net/2026/11/13/tanker-strikes-docked-passenger-vessel-in-new-orleans/" rel="noopener noreferrer">The Waterways Journal: NTSB investigators &quot;delayed by a nationwide Federal Aviation Administration ground stop caused by a...</a> <span class="src-meta">T3 &middot; retrieved 02:41:24 UTC</span></li>
-        <li id="src-45"><strong>[45]</strong> <a href="https://www.npr.org/2023/01/11/1148340708/faa-notam-ground-stop-flight-delay" rel="noopener noreferrer">NPR: 2023 precedent: damaged database file; no evidence of cyberattack</a> <span class="src-meta">T2 &middot; retrieved 02:09:22 UTC</span></li>
-        <li id="src-46"><strong>[46]</strong> <a href="https://avweb.com/aviation-news/telecom-failure-disrupts-ne-air-traffic/" rel="noopener noreferrer">AvWeb: 21 Sep 2026 Philadelphia circuit and severed fiber</a> <span class="src-meta">T3 &middot; retrieved 02:09:27 UTC</span></li>
-        <li id="src-47"><strong>[47]</strong> <a href="https://www.mprnews.org/story/2026/08/06/flights-halted-at-minneapolisst-paul-international-airport" rel="noopener noreferrer">MPR News: 6 Aug 2026 Minneapolis Center telecom stop</a> <span class="src-meta">T3 &middot; retrieved 02:09:32 UTC</span></li>
-        <li id="src-48"><strong>[48]</strong> <a href="https://aerocorner.com/news/philadelphia-tracon-outage-newark-ground-stop/" rel="noopener noreferrer">AeroCorner: 2025 timeline; copper wire; who cut the cable is disputed</a> <span class="src-meta">T3 &middot; retrieved 02:09:36 UTC</span></li>
-        <li id="src-49"><strong>[49]</strong> <a href="https://api-prod.gothamist.com/news/newark-airport-has-2nd-communications-meltdown-in-2-weeks-faa-says" rel="noopener noreferrer">Gothamist: 2025 Newark 90-second outages; &quot;antiquated&quot; (lawmakers)</a> <span class="src-meta">T3 &middot; retrieved 02:09:44 UTC</span></li>
-        <li id="src-50"><strong>[50]</strong> <a href="https://www.zerohedge.com/political/faa-issues-nationwide-ground-stop-due-extraordinary-circumstances" rel="noopener noreferrer">ZeroHedge: Example of an overstated cyber claim; prediction-market widgets (Iran 2%, hack 4%); its &quot;people briefed&quot;...</a> <span class="src-meta">T4 &middot; retrieved 02:23:36 UTC</span></li>
-        <li id="src-51"><strong>[51]</strong> Reddit: Velocity snapshots <span class="src-meta">T4 &middot; retrieved 02:08:50; 02:29:06 UTC</span></li>
-        <li id="src-52"><strong>[52]</strong> Reddit: Speculation themes and velocity <span class="src-meta">T4 &middot; retrieved 02:08:54; 02:19:36; 02:29:09 UTC</span></li>
-        <li id="src-53"><strong>[53]</strong> Reddit: &quot;Test&quot;, &quot;false flag&quot; and single-router speculation <span class="src-meta">T4 &middot; retrieved 02:29:15 UTC</span></li>
+        <li id="src-39"><strong>[39]</strong> <a href="https://aerocorner.com/blog/faa-nationwide-ground-stop/" rel="noopener noreferrer">AeroCorner: 2001/2023 times</a> <span class="src-meta">T3 &middot; retrieved 02:23:27 UTC</span></li>
+        <li id="src-40"><strong>[40]</strong> <a href="https://tsi-mag.com/u-s-flights-begin-resuming-following-nationwide-faa-ground-stop-network-update-investigated" rel="noopener noreferrer">TSI Magazine: Repeats CBS</a> <span class="src-meta">T3 &middot; retrieved 02:23:30 UTC</span></li>
+        <li id="src-41"><strong>[41]</strong> <a href="https://www.flightaware.com/live/cancelled" rel="noopener noreferrer">FlightAware: Saturday totals at 11:00, 11:10, 11:49 AM and 12:05 PM ET</a> <span class="src-meta">T3 (data) &middot; retrieved 02:21:41; v2 16:00:31, 16:10:26, 16:49:24, 17:05:07 UTC</span> <span class="src-meta">Also supports: carrier table at 11:49 AM.</span></li>
+        <li id="src-42"><strong>[42]</strong> <a href="https://trends.google.com/trending?geo=US" rel="noopener noreferrer">Google Trends: v1 search volumes</a> <span class="src-meta">T3 (data) &middot; retrieved 02:22:44 UTC</span></li>
+        <li id="src-43"><strong>[43]</strong> <a href="https://www.wdsu.com/article/faa-groundstop-ntsb-mississippi-boat-crash/74427584" rel="noopener noreferrer">WDSU: Carter quotes</a> <span class="src-meta">T3 &middot; retrieved 02:41:28 UTC</span></li>
+        <li id="src-44"><strong>[44]</strong> <a href="https://www.waterwaysjournal.net/2026/11/13/tanker-strikes-docked-passenger-vessel-in-new-orleans/" rel="noopener noreferrer">The Waterways Journal: NTSB delay</a> <span class="src-meta">T3 &middot; retrieved 02:41:24 UTC</span></li>
+        <li id="src-45"><strong>[45]</strong> <a href="https://www.npr.org/2023/01/11/1148340708/faa-notam-ground-stop-flight-delay" rel="noopener noreferrer">NPR: 2023 precedent</a> <span class="src-meta">T2 &middot; retrieved 02:09:22 UTC</span></li>
+        <li id="src-46"><strong>[46]</strong> <a href="https://avweb.com/aviation-news/telecom-failure-disrupts-ne-air-traffic/" rel="noopener noreferrer">AvWeb: 21 Sep 2026 precedent</a> <span class="src-meta">T3 &middot; retrieved 02:09:27 UTC</span></li>
+        <li id="src-47"><strong>[47]</strong> <a href="https://www.mprnews.org/story/2026/08/06/flights-halted-at-minneapolisst-paul-international-airport" rel="noopener noreferrer">MPR News: 6 Aug 2026 precedent</a> <span class="src-meta">T3 &middot; retrieved 02:09:32 UTC</span></li>
+        <li id="src-48"><strong>[48]</strong> <a href="https://aerocorner.com/news/philadelphia-tracon-outage-newark-ground-stop/" rel="noopener noreferrer">AeroCorner: 2025 precedent</a> <span class="src-meta">T3 &middot; retrieved 02:09:36 UTC</span></li>
+        <li id="src-49"><strong>[49]</strong> <a href="https://api-prod.gothamist.com/news/newark-airport-has-2nd-communications-meltdown-in-2-weeks-faa-says" rel="noopener noreferrer">Gothamist: 2025 precedent</a> <span class="src-meta">T3 &middot; retrieved 02:09:44 UTC</span></li>
+        <li id="src-50"><strong>[50]</strong> <a href="https://www.zerohedge.com/political/faa-issues-nationwide-ground-stop-due-extraordinary-circumstances" rel="noopener noreferrer">ZeroHedge: Overstated cyber claim</a> <span class="src-meta">T4 &middot; retrieved 02:23:36 UTC</span></li>
+        <li id="src-51"><strong>[51]</strong> Reddit: v1 velocity <span class="src-meta">T4 &middot; retrieved 02:08:50; 02:29:06 UTC</span></li>
+        <li id="src-52"><strong>[52]</strong> Reddit: v1 themes <span class="src-meta">T4 &middot; retrieved 02:08:54-02:29:09 UTC</span></li>
+        <li id="src-53"><strong>[53]</strong> Reddit: Reddit r/FAA /new listing (captured; live link withheld because the feed carries withheld names) <span class="src-meta">T4 &middot; retrieved 02:29:15 UTC</span></li>
+        <li id="src-54"><strong>[54]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=005&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+5+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Advisory 005 &quot;cancellation NATIONWIDE GROUND STOP&quot;</a> <span class="src-meta">T1 &middot; retrieved 15:53:45 UTC</span> <span class="src-meta">Also supports: event 14/0116-0130; signed 01:19.</span></li>
+        <li id="src-55"><strong>[55]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=001&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+1+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Advisory 001: stop &quot;REMAINS IN EFFECT FOR A LARGE PORTION OF THE COUNTRY&quot;</a> <span class="src-meta">T1 &middot; retrieved 15:53:36 UTC</span> <span class="src-meta">Also supports: selective releases; signed 00:37.</span></li>
+        <li id="src-56"><strong>[56]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=002&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+2+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Washington Center route program suspension, &quot;ERRONEOUS ROUTE FILINGS&quot;</a> <span class="src-meta">T1 &middot; retrieved 15:53:38 UTC</span> <span class="src-meta">Also supports: signed 00:37.</span></li>
+        <li id="src-57"><strong>[57]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=006&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+6+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: ground delay program cancellations LaGuardia, Boston, Las Vegas, San Diego, San Francisco</a> <span class="src-meta">T1 &middot; retrieved 15:53:47-15:53:54 UTC</span> <span class="src-meta">Also supports: signed 01:20-01:23.</span></li>
+        <li id="src-58"><strong>[58]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=011&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+11+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Carrier-specific stops 01:23-04:29 UTC</a> <span class="src-meta">T1 &middot; retrieved 15:53:56-15:55:00 UTC</span> <span class="src-meta">Also supports: condition OTHER; carrier-only; several &quot;AIRLINE REQUEST&quot;.</span></li>
+        <li id="src-59"><strong>[59]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=057&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+57+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Saturday ORD United and LGA Delta stops (airline request)</a> <span class="src-meta">T1 &middot; retrieved 15:55-15:56:35 UTC</span> <span class="src-meta">Also supports: cancellations 15:13 and 15:27.</span></li>
+        <li id="src-60"><strong>[60]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=054&amp;adv_date=11142026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+54+DCC+11/14/2026&amp;titleDate=11/14/2026" rel="noopener noreferrer">FAA ATCSCC: Cancels Advisory 117</a> <span class="src-meta">T1 &middot; retrieved 15:55:40 UTC</span> <span class="src-meta">Also supports: signed 12:44.</span></li>
+        <li id="src-61"><strong>[61]</strong> <a href="https://www.fly.faa.gov/adv/adv_otherdis?advn=116&amp;adv_date=11132026&amp;facId=DCC&amp;title=ATCSCC+ADVZY+116+DCC+11/13/2026&amp;titleDate=11/13/2026" rel="noopener noreferrer">FAA ATCSCC: 116 airborne holding &quot;DUE EQUIPTMENT OUTAGES&quot; (signed 21:20)</a> <span class="src-meta">T1 &middot; retrieved 16:10:09; 16:10:11 UTC</span> <span class="src-meta">Also supports: 117 &quot;NATIONWIDE COMMS FAILURE&quot; (signed 21:21).</span></li>
+        <li id="src-62"><strong>[62]</strong> <a href="https://www.fly.faa.gov/adv/advADB.jsp?advSel=ATCSCC;" rel="noopener noreferrer">FAA ATCSCC: Latest 088 at 17:05</a> <span class="src-meta">T1 &middot; retrieved 15:52:24-15:53:3x; 17:05:14-17:05:27 UTC</span> <span class="src-meta">Also supports: 089, 090 and 11/13 124-160 &quot;NO Advisory.&quot;.</span></li>
+        <li id="src-63"><strong>[63]</strong> <a href="https://www.dhs.gov/news/2026/11/13/icymi-secretary-mullin-and-secretary-duffy-address-nationwide-faa-ground-stop-all" rel="noopener noreferrer">DHS: Mullin: &quot;zero evidence that this is a cyberattack or an SI attack&quot;</a> <span class="src-meta">T1 &middot; retrieved 15:57:42 UTC</span> <span class="src-meta">Also supports: release also carries &quot;The President has declared this a national emergency&quot;.</span></li>
+        <li id="src-64"><strong>[64]</strong> <a href="https://www.fbi.gov/news" rel="noopener noreferrer">FBI: Newest item 12 Nov</a> <span class="src-meta">T1 &middot; retrieved 15:55:30; 16:49:35; 17:05:45 UTC</span> <span class="src-meta">Also supports: no FAA item.</span></li>
+        <li id="src-65"><strong>[65]</strong> <a href="https://www.fbi.gov/news/news-blog" rel="noopener noreferrer">FBI: Newest item 13 Nov</a> <span class="src-meta">T1 &middot; retrieved 15:56:33 (200); 16:49:38 (403) UTC</span> <span class="src-meta">Also supports: no FAA item.</span></li>
+        <li id="src-66"><strong>[66]</strong> <a href="https://www.fbi.gov/feeds/national-press-releases/rss.xml" rel="noopener noreferrer">FBI: Newest item 3 Nov</a> <span class="src-meta">T1 &middot; retrieved 16:08:14; 16:11:38; 17:06:05 UTC</span></li>
+        <li id="src-67"><strong>[67]</strong> <a href="https://www.cisa.gov/news-events/news" rel="noopener noreferrer">CISA: Newest item 9 Nov</a> <span class="src-meta">T1 &middot; retrieved 15:55 (approx.); 16:49:31; 17:05:38 UTC</span> <span class="src-meta">Also supports: no FAA item.</span></li>
+        <li id="src-68"><strong>[68]</strong> <a href="https://www.cisa.gov/news-events/cybersecurity-advisories" rel="noopener noreferrer">CISA: Newest item 13 Nov</a> <span class="src-meta">T1 &middot; retrieved 15:55 (approx.); 16:49:33; 17:05:41 UTC</span> <span class="src-meta">Also supports: no FAA item.</span></li>
+        <li id="src-69"><strong>[69]</strong> <a href="https://www.oig.dot.gov/" rel="noopener noreferrer">DOT OIG: No item on the event</a> <span class="src-meta">T1 &middot; retrieved 15:55:36-15:56:31; 16:05:16; 16:49:40-16:49:46; 17:05:50-17:05:58 UTC</span> <span class="src-meta">Also supports: active audits newest 3 Nov.</span></li>
+        <li id="src-70"><strong>[70]</strong> <a href="https://www.ntsb.gov/news/Pages/default.aspx" rel="noopener noreferrer">NTSB: Newest item 27 Oct</a> <span class="src-meta">T1 &middot; retrieved 16:05:28; 16:50:10; 17:06:02 UTC</span></li>
+        <li id="src-71"><strong>[71]</strong> <a href="https://www.whitehouse.gov/presidential-actions/" rel="noopener noreferrer">White House: Newest item 12 Nov</a> <span class="src-meta">T1 &middot; retrieved 16:00:58; 16:49:49 UTC</span></li>
+        <li id="src-72"><strong>[72]</strong> <a href="https://www.whitehouse.gov/briefings-statements/" rel="noopener noreferrer">White House: Newest item 12 Nov</a> <span class="src-meta">T1 &middot; retrieved 16:01:00; 16:05:07; 16:05:10; 16:49:51 UTC</span> <span class="src-meta">Also supports: site search no match.</span></li>
+        <li id="src-73"><strong>[73]</strong> <a href="https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22national+emergency%22&amp;conditions[publication_date][gte]=2026-11-13&amp;order=newest" rel="noopener noreferrer">Federal Register: count 0</a> <span class="src-meta">T1 &middot; retrieved 16:05:12; 16:49:53 UTC</span></li>
+        <li id="src-74"><strong>[74]</strong> <a href="https://www.federalregister.gov/api/v1/public-inspection-documents.json?conditions[term]=%22national+emergency%22" rel="noopener noreferrer">Federal Register: count 0</a> <span class="src-meta">T1 &middot; retrieved 16:01:05; 16:05:14; 16:49:55 UTC</span> <span class="src-meta">Also supports: list returns Mon 16 Nov 8:45 AM ET.</span></li>
+        <li id="src-75"><strong>[75]</strong> <a href="https://www.yahoo.com/news/us/live/" rel="noopener noreferrer">Yahoo News: &quot;foreign nation&quot; quote</a> <span class="src-meta">T2 &middot; retrieved 16:57:43 UTC</span> <span class="src-meta">Also supports: about 60 routers (FAA technology official); paper logs; daytime-work reevaluation; 4,000-5,000 of about 41,000; &quot;continue to break&quot;; Monday funding request; officials named the contractor.</span></li>
+        <li id="src-76"><strong>[76]</strong> <a href="https://www.politico.com/news/2026/11/14/duffy-atc-presser-01166601" rel="noopener noreferrer">Politico: Saturday briefing coverage</a> <span class="src-meta">T2 &middot; retrieved 16:57:46 UTC</span> <span class="src-meta">Also supports: officials named the contractor.</span></li>
+        <li id="src-77"><strong>[77]</strong> <a href="https://www.bbc.com/news/live/c6z9dwn12037t" rel="noopener noreferrer">BBC: Briefing &quot;getting under way&quot; (about 15:55 UTC)</a> <span class="src-meta">T2 &middot; retrieved 16:57:50 UTC</span> <span class="src-meta">Also supports: Bedford &quot;very, very confident&quot;.</span></li>
+        <li id="src-78"><strong>[78]</strong> <a href="https://www.cnn.com/2026/11/14/us/live-news/us-ground-stop-flights" rel="noopener noreferrer">CNN: Duffy: SMART &quot;not tied into or connected&quot;</a> <span class="src-meta">T2 &middot; retrieved 16:57:57 UTC</span> <span class="src-meta">Also supports: Bedford &quot;very, very confident&quot;.</span></li>
+        <li id="src-79"><strong>[79]</strong> <a href="https://www.wwno.org/npr-news/2026-11-14/faa-blames-fridays-ground-stop-on-equipment-issue-during-telecoms-network-upgrade" rel="noopener noreferrer">WWNO (NPR): Duffy: routers manufactured in 2001 (paraphrase)</a> <span class="src-meta">T2 &middot; retrieved 16:58:02 UTC</span> <span class="src-meta">Also supports: &quot;close of business on Sunday&quot;.</span></li>
+        <li id="src-80"><strong>[80]</strong> <a href="https://www.nytimes.com/live/2026/11/14/us/faa-nationwide-ground-stop-flights" rel="noopener noreferrer">New York Times: Equipment or installation flaw unknown</a> <span class="src-meta">T2 &middot; retrieved 16:58:06 UTC</span></li>
+        <li id="src-81"><strong>[81]</strong> <a href="https://6abc.com/live-updates/faa-ground-stop-live-updates-what-know-nationwide-flights-are-grounded/20038887/" rel="noopener noreferrer">6abc (ABC): Relays the ABC Duffy and Bedford quotes</a> <span class="src-meta">T2 &middot; retrieved 16:58:10 UTC</span></li>
+        <li id="src-82"><strong>[82]</strong> <a href="https://www.usatoday.com/story/news/nation/2026/11/14/flight-airports-delays-cancellations-faa-ground-stop/92778770007/" rel="noopener noreferrer">USA Today: Installation error or faulty router undetermined</a> <span class="src-meta">T2 &middot; retrieved 16:39:10 UTC</span> <span class="src-meta">Also supports: &quot;back at full operations&quot;; updated 11:34 AM ET.</span></li>
+        <li id="src-83"><strong>[83]</strong> <a href="https://www.scrippsnews.com/life/travel/what-caused-the-faa-ground-stop-officials-point-to-router-failure" rel="noopener noreferrer">Scripps News: 1,000+ attempts</a> <span class="src-meta">T2 &middot; retrieved 16:39:25 UTC</span> <span class="src-meta">Also supports: cause undetermined (human error, installation, equipment).</span></li>
+        <li id="src-84"><strong>[84]</strong> <a href="https://longisland.news12.com/live-updates-airlines-work-to-recover-from-nationwide-ground-stop-as-duffy-points-to-aging-technology" rel="noopener noreferrer">News12 Long Island: Bedford &quot;45 minutes&quot; (only source)</a> <span class="src-meta">T3 &middot; retrieved 16:40:06 UTC</span></li>
+        <li id="src-85"><strong>[85]</strong> <a href="https://apnews.com/article/ground-stop-flights-airlines-cancellations-faa-1fbf4992f0ddaa4c463b0e4990b6e291" rel="noopener noreferrer">AP: &quot;worst is behind us&quot;</a> <span class="src-meta">T2 &middot; retrieved 16:39:05 UTC</span> <span class="src-meta">Also supports: recovery by end of Sunday.</span></li>
+        <li id="src-86"><strong>[86]</strong> <a href="https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/" rel="noopener noreferrer">SecurityWeek: Relays Bloomberg (FBI view)</a> <span class="src-meta">T3 &middot; retrieved 15:57:12 UTC</span> <span class="src-meta">Also supports: &quot;more than four hours&quot;.</span></li>
+        <li id="src-87"><strong>[87]</strong> <a href="https://www.bloomberg.com/news/articles/2026-11-13/fbi-said-to-probe-whether-software-update-caused-mass-faa-outage" rel="noopener noreferrer">Bloomberg: Headline only</a> <span class="src-meta">T2 &middot; retrieved 15:57:16; 17:01:28 UTC</span> <span class="src-meta">Also supports: body behind &quot;Are you a robot?&quot; page.</span></li>
+        <li id="src-88"><strong>[88]</strong> <a href="https://thenextweb.com/news/faa-ground-stop-fbi-software-update" rel="noopener noreferrer">The Next Web: Relay of the Bloomberg FBI report</a> <span class="src-meta">T3 &middot; retrieved 16:11:12 UTC</span></li>
+        <li id="src-89"><strong>[89]</strong> <a href="https://www.aljazeera.com/news/2026/11/13/us-grounds-all-flights-after-communication-issue" rel="noopener noreferrer">Al Jazeera: Bloomberg relay</a> <span class="src-meta">T2 &middot; retrieved 15:58:32 UTC</span> <span class="src-meta">Also supports: Duckworth quote.</span></li>
+        <li id="src-90"><strong>[90]</strong> <a href="https://www.aljazeera.com/news/2026/11/14/faa-ground-stop-lifted-why-were-us-flights-grounded-and-whats-next" rel="noopener noreferrer">Al Jazeera: Second since 9/11</a> <span class="src-meta">T2 &middot; retrieved 15:58:04 UTC</span> <span class="src-meta">Also supports: longest in 25 years.</span></li>
+        <li id="src-91"><strong>[91]</strong> <a href="https://abcnews.com/US/nationwide-ground-stop-ordered-airports-faa/story?id=138121848" rel="noopener noreferrer">ABC News: Duckworth</a> <span class="src-meta">T2 &middot; retrieved 15:58:12 UTC</span> <span class="src-meta">Also supports: &quot;no possible way SMART&quot;; &quot;more than 4 hours&quot; headline; second since 9/11.</span></li>
+        <li id="src-92"><strong>[92]</strong> <a href="https://www.npr.org/2026/11/13/nx-s1-6040403/faa-nationwide-groundstop-airports" rel="noopener noreferrer">NPR: Blumenthal</a> <span class="src-meta">T2 &middot; retrieved 15:58:16 UTC</span> <span class="src-meta">Also supports: second since 9/11.</span></li>
+        <li id="src-93"><strong>[93]</strong> <a href="https://www.latimes.com/politics/story/2026-11-13/democrats-demand-answers-on-faa-outage-question-aging-air-traffic-control" rel="noopener noreferrer">Los Angeles Times: Lieu (single point of failure)</a> <span class="src-meta">T2 &middot; retrieved 16:06:37 UTC</span> <span class="src-meta">Also supports: Duckworth.</span></li>
+        <li id="src-94"><strong>[94]</strong> <a href="https://rollcall.com/2026/11/13/air-travel-halt-prompts-calls-for-faa-communications-upgrades/" rel="noopener noreferrer">Roll Call: $30.1B requested Thursday</a> <span class="src-meta">T2 &middot; retrieved 16:06:41 UTC</span> <span class="src-meta">Also supports: $50B Friday.</span></li>
+        <li id="src-95"><strong>[95]</strong> <a href="https://www.newsweek.com/faa-crisis-sparks-questions-over-billions-allocated-to-ice-12715400" rel="noopener noreferrer">Newsweek: $30.1B &quot;earlier Friday&quot; (date conflict with [94])</a> <span class="src-meta">T2 &middot; retrieved 15:57:27 UTC</span></li>
+        <li id="src-96"><strong>[96]</strong> <a href="https://www.geekwire.com/2026/dhs-chief-sees-no-microsoft-link-to-faa-ground-stop-says-possible-ai-role-being-investigated/" rel="noopener noreferrer">GeekWire: Mullin: possible AI link being looked at</a> <span class="src-meta">T3 &middot; retrieved 15:59:04 UTC</span> <span class="src-meta">Also supports: Mullin said national emergency declared.</span></li>
+        <li id="src-97"><strong>[97]</strong> <a href="https://www.businessinsider.com/smart-system-microsoft-faa-ground-stop-not-their-fault-2026-11" rel="noopener noreferrer">Business Insider: Developer and Microsoft denials (headline)</a> <span class="src-meta">T2 &middot; retrieved 15:57:24 UTC</span></li>
+        <li id="src-98"><strong>[98]</strong> <a href="https://www.hindustantimes.com/world-news/us-news/faa-ground-stop-ex-transportation-dept-inspector-general-questions-newly-deployed-smart-ai-tool-amid-extraordinary-outage-101794606665269.html" rel="noopener noreferrer">Hindustan Times: Schiavo &quot;too much coincidence&quot; (CNN interview)</a> <span class="src-meta">T3 &middot; retrieved 16:04:29 UTC</span></li>
+        <li id="src-99"><strong>[99]</strong> <a href="https://www.commondreams.org/news/beyer-says-end-ai-air-traffic-control" rel="noopener noreferrer">Common Dreams: Beyer &quot;guinea pigs&quot; (22 Sep 2026 article)</a> <span class="src-meta">T3 &middot; retrieved 16:56:30 UTC</span></li>
+        <li id="src-100"><strong>[100]</strong> <a href="https://www.newsweek.com/airlines-panicking-as-trump-admin-launches-ai-air-traffic-system-democrat-12470463" rel="noopener noreferrer">Newsweek: Beyer statement on SMART launch day (Sept 2026)</a> <span class="src-meta">T2 &middot; retrieved 16:56:34 UTC</span></li>
+        <li id="src-101"><strong>[101]</strong> <a href="https://democrats-transportation.house.gov/news/press-releases" rel="noopener noreferrer">House T&amp;I Democrats: Release list item dated 13 Oct 2026 (GAO audit request)</a> <span class="src-meta">T1 &middot; retrieved 16:59:50 UTC</span></li>
+        <li id="src-102"><strong>[102]</strong> <a href="https://www.nextgov.com/artificial-intelligence/2026/10/house-democrats-seek-watchdog-review-ai-powered-air-traffic-control-systems/416594/" rel="noopener noreferrer">Nextgov/FCW: GAO audit request</a> <span class="src-meta">T3 &middot; retrieved 16:59:54 UTC</span></li>
+        <li id="src-103"><strong>[103]</strong> <a href="https://federalnewsnetwork.com/congress/2026/10/faa-ai-use-sparks-new-reviews-into-ai-safety-workforce-shortages/" rel="noopener noreferrer">Federal News Network: GAO audit request</a> <span class="src-meta">T3 &middot; retrieved 16:59:59 UTC</span> <span class="src-meta">Also supports: 9 Oct letter.</span></li>
+        <li id="src-104"><strong>[104]</strong> <a href="https://avweb.com/aviation-news/lawmakers-seek-pause-on-faa-ai-tool/" rel="noopener noreferrer">AvWeb: 9 Oct pause letter (dated 13 Oct)</a> <span class="src-meta">T3 &middot; retrieved 17:00:04 UTC</span></li>
+        <li id="src-105"><strong>[105]</strong> <a href="https://fedscoop.com/lawmaker-pushback-faa-aviation-ai-tool/" rel="noopener noreferrer">FedScoop: Pause request</a> <span class="src-meta">T3 &middot; retrieved 17:00:08 UTC</span> <span class="src-meta">Also supports: GAO letter.</span></li>
+        <li id="src-106"><strong>[106]</strong> <a href="https://www.aol.com/articles/shakedown-more-money-marjorie-taylor-143743000.html" rel="noopener noreferrer">AOL: Former Rep. Greene: &quot;literally like a shakedown for more money&quot;</a> <span class="src-meta">T3 &middot; retrieved 17:01:23 UTC</span> <span class="src-meta">Also supports: disputes the no-cyber finding.</span></li>
+        <li id="src-107"><strong>[107]</strong> <a href="https://news.google.com/rss/search?q=Greene+shakedown+air+traffic&amp;hl=en-US&amp;gl=US&amp;ceid=US:en" rel="noopener noreferrer">Google News (listing The Hill): The Hill headline &quot;Greene calls Duffy, Mullin press briefing &#x27;a shakedown for more money&#x27;&quot;</a> <span class="src-meta">T4 &middot; retrieved 17:00:26 UTC</span></li>
+        <li id="src-108"><strong>[108]</strong> <a href="https://apnews.com/hub/ap-fact-check" rel="noopener noreferrer">AP: No ground-stop fact-check found</a> <span class="src-meta">T2 &middot; retrieved 17:00:33 UTC</span></li>
+        <li id="src-109"><strong>[109]</strong> <a href="https://www.snopes.com/search/?q=FAA+ground+stop" rel="noopener noreferrer">Snopes: No fact-check found</a> <span class="src-meta">T3 &middot; retrieved 17:00:37 UTC</span></li>
+        <li id="src-110"><strong>[110]</strong> <a href="https://www.politifact.com/search/?q=FAA+ground+stop" rel="noopener noreferrer">PolitiFact: No fact-check found</a> <span class="src-meta">T3 &middot; retrieved 17:00:46 UTC</span></li>
+        <li id="src-111"><strong>[111]</strong> <a href="https://www.youtube.com/watch?v=ox-nQQZVSII" rel="noopener noreferrer">YouTube (NBC News stream; third-party stream): Briefing video exists</a> <span class="src-meta">T4 &middot; retrieved 17:04:50; 17:04:55 UTC</span> <span class="src-meta">Also supports: not transcribed.</span></li>
+        <li id="src-112"><strong>[112]</strong> <a href="https://news.delta.com/delta-offers-flexible-rebooking-options-operations-recover-following-faa-mandated-nationwide-ground" rel="noopener noreferrer">Delta: Saturday 9:50 AM ET update</a> <span class="src-meta">T1 (carrier) &middot; retrieved 17:03:24 UTC</span></li>
+        <li id="src-113"><strong>[113]</strong> <a href="https://www.swamedia.com/news-and-stories/update/MCVSRFYNKA4VGBBIHUTFUAYSJ54M" rel="noopener noreferrer">Southwest: 9:31 PM CT Friday update</a> <span class="src-meta">T1 (carrier) &middot; retrieved 16:12:08 UTC</span> <span class="src-meta">Also supports: waiver.</span></li>
+        <li id="src-114"><strong>[114]</strong> <a href="https://news.jetblue.com/" rel="noopener noreferrer">JetBlue: No ground-stop item (newest 12 Nov)</a> <span class="src-meta">T1 (carrier) &middot; retrieved 16:00:53 UTC</span></li>
+        <li id="src-115"><strong>[115]</strong> <a href="https://www.flightaware.com/live/cancelled/yesterday" rel="noopener noreferrer">FlightAware: Friday carrier cancellations (totals not captured)</a> <span class="src-meta">T3 (data) &middot; retrieved 16:10:29; 16:49:28 UTC</span></li>
+        <li id="src-116"><strong>[116]</strong> <a href="https://news.google.com/rss/search?q=site%3Atransportation.gov%20Duffy%20ground%20stop%20air%20traffic&amp;hl=en-US&amp;gl=US&amp;ceid=US:en" rel="noopener noreferrer">Google News (listing DOT): DOT &quot;ICYMI&quot; release listed, pubDate 04:56:37 UTC</a> <span class="src-meta">T4 &middot; retrieved 16:08:12 UTC</span></li>
+        <li id="src-117"><strong>[117]</strong> <a href="https://transportation.house.gov/news" rel="noopener noreferrer">House T&amp;I: Newest item 13 Nov</a> <span class="src-meta">T1 &middot; retrieved 16:01:07; 16:50:00 UTC</span> <span class="src-meta">Also supports: no hearing notice.</span></li>
+        <li id="src-118"><strong>[118]</strong> <a href="https://www.commerce.senate.gov/press" rel="noopener noreferrer">Senate Commerce: No ground-stop hearing notice seen</a> <span class="src-meta">T1 &middot; retrieved 16:01:17; 16:50:02 UTC</span></li>
+        <li id="src-119"><strong>[119]</strong> <a href="https://news.cgtn.com/news/2026-11-14/news-1S3MtMnfDPi/p.html" rel="noopener noreferrer">CGTN: NTSB to send investigators by ground</a> <span class="src-meta">T3 (state media) &middot; retrieved 16:04:03 UTC</span></li>
+        <li id="src-120"><strong>[120]</strong> <a href="https://thesouthfirst.com/beyond-south/mayday-in-november-grounded-flights-it-outages-and-ship-collision-rattle-us/" rel="noopener noreferrer">The South First: Juxtaposition headline (no causal claim)</a> <span class="src-meta">T3 &middot; retrieved 16:03:56 UTC</span></li>
+        <li id="src-121"><strong>[121]</strong> Reddit: v2 velocity <span class="src-meta">T4 &middot; retrieved 15:50:24-16:49:24 (S1a 15:50-15:52; S1b 16:07; S2a 16:31-16:32; S2b 16:48-16:49) UTC</span></li>
+        <li id="src-122"><strong>[122]</strong> Reddit: Reddit r/FAA /new, search and top listings (captured; live link withheld) <span class="src-meta">T4 &middot; retrieved 15:50:40-16:48:45 UTC</span></li>
+        <li id="src-123"><strong>[123]</strong> <a href="https://news.google.com/rss/search?q=%22Software%20Patch%20Overwhelmed%22%20air%20control&amp;hl=en-US&amp;gl=US&amp;ceid=US:en" rel="noopener noreferrer">Google News: 0 items: v1 Bloomberg headline not found again</a> <span class="src-meta">T4 &middot; retrieved 16:09:26 UTC</span></li>
+        <li id="src-124"><strong>[124]</strong> <a href="https://www.forth.news/lists/ussen-cantwell/Ch1oLQw7wQaGCPebYhSdU" rel="noopener noreferrer">Forth.News (Cantwell feed): Headline &quot;Cantwell Statement on Nationwide FAA Ground Stop&quot; only (Vercel checkpoint)</a> <span class="src-meta">T4 &middot; retrieved 16:06:46 UTC</span></li>
       </ol>
     </section>
 
     <footer class="footer">
       <p>&copy; 2026 Circle 6 Systems. All rights reserved. | contact@circle6systems.com</p>
-      <p style="margin-top: 0.25rem;">Compiled from 53 open sources &middot; Flash Briefing v1, information cutoff 9:41 PM ET November 13, 2026 (02:41 UTC November 14) &middot; Subject to revision</p>
-      <p style="margin-top: 0.25rem;">Caveats: root cause undetermined; the contractor account is single-source; "national emergency" is single-source; lift time rests on officials and press. This briefing implies no fault by any person or company.</p>
+      <p style="margin-top: 0.25rem;">Flash Briefing v2, information cutoff 12:10 PM ET November 14, 2026 (17:10 UTC); supersedes v1 (cutoff 9:41 PM ET November 13) &middot; Subject to revision</p>
+      <p style="margin-top: 0.25rem;">Caveats: the cause account is oral and on record, not a written finding; the contractor is not named pending the root-cause analysis; "national emergency" rests on a statement; the Bloomberg FBI report is single-source. This briefing implies no fault by any person or company.</p>
       <p style="margin-top: 0.25rem;">No classified or privileged sources were used in the preparation of this briefing.</p>
       <p style="margin-top: 0.5rem;"><a href="/osint-reports/">View all Intelligence Reports</a></p>
     </footer>

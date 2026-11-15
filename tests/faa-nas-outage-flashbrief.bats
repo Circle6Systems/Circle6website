@@ -105,3 +105,13 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 @test "FNO-010: live social feeds carrying withheld names are not linked" {
   ! grep -q 'href="https://www.reddit.com/r/FAA' "$PAGE"
 }
+
+@test "FNO-V2-1: page carries a 'What changed in v2' panel" {
+  grep -q 'id="v2-changes"' "$PAGE"
+  grep -q 'What changed in v2' "$PAGE"
+}
+
+@test "FNO-V2-2: page and report card are labeled v2" {
+  grep -q 'Flash Briefing v2' "$PAGE"
+  sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'
+}
