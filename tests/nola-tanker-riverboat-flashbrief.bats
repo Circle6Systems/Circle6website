@@ -105,3 +105,13 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
   ! grep -qi 'China State Shipbuilding' "$PAGE"
   ! grep -qi 'state-linked ownership' "$PAGE"
 }
+
+@test "NTR-V2-1: page carries a 'What changed in v2' panel" {
+  grep -q 'id="v2-changes"' "$PAGE"
+  grep -q 'What changed in v2' "$PAGE"
+}
+
+@test "NTR-V2-2: page and report card are labeled v2" {
+  grep -q 'Flash Briefing v2' "$PAGE"
+  sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'
+}
