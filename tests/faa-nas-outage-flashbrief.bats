@@ -98,20 +98,101 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
   [ "$first" = "href=\"/osint-reports/$SLUG/\"" ]
 }
 
-@test "FNO-009: withheld network contractor is not named" {
-  ! grep -qi 'L3Harris' "$PAGE"
+@test "FNO-009: network contractor is named (requester decision, v3)" {
+  grep -q 'L3Harris' "$PAGE"
 }
 
 @test "FNO-010: live social feeds carrying withheld names are not linked" {
   ! grep -q 'href="https://www.reddit.com/r/FAA' "$PAGE"
 }
 
-@test "FNO-V2-1: page carries a 'What changed in v2' panel" {
-  grep -q 'id="v2-changes"' "$PAGE"
-  grep -q 'What changed in v2' "$PAGE"
+@test "FNO-V3-1: page carries a 'What changed in v3' panel" {
+  grep -q 'id="v3-changes"' "$PAGE"
+  grep -q 'What changed in v3' "$PAGE"
+  ! grep -q 'What changed in v2' "$PAGE"
 }
 
-@test "FNO-V2-2: page and report card are labeled v2" {
-  grep -q 'Flash Briefing v2' "$PAGE"
-  sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'
+@test "FNO-V3-2: page title, event date and report card are labeled v3" {
+  grep -q '<title>Flash Briefing v3' "$PAGE"
+  grep -q 'class="event-date">[^<]*Flash Briefing v3' "$PAGE"
+  sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v3'
+}
+
+@test "FNO-V3-3: v3 information cutoff is stated" {
+  grep -q '6:07 PM ET' "$PAGE"
+  grep -q '23:07 UTC' "$PAGE"
+  grep -q '12:10 PM ET' "$PAGE"
+}
+
+@test "FNO-V3-4: contractor and router makers are named; stale non-naming lines are gone" {
+  grep -q 'L3Harris' "$PAGE"
+  grep -q 'Juniper' "$PAGE"
+  grep -q 'Cisco' "$PAGE"
+  grep -q 'Harris Corp' "$PAGE"
+  ! grep -Eqi 'does not name it|do not repeat company names|not name the (network )?contractor' "$PAGE"
+}
+
+@test "FNO-V3-5: withheld parties stay withheld (no live r/FAA link, no SMART developer name)" {
+  ! grep -Eq 'href="https?://(www\.|old\.)?reddit\.com/r/FAA' "$PAGE"
+}
+
+@test "FNO-V3-6: no em dash as character, named entity or numeric entity" {
+  ! grep -q $'\xe2\x80\x94' "$PAGE"
+  ! grep -q $'\xe2\x80\x94' "$INDEX"
+  ! grep -Eqi '&m[d]ash;|&#8212;|&#x2014;' "$PAGE" "$INDEX"
+}
+
+@test "FNO-V3-7: every in-text [N] citation has a matching source id" {
+  nums="$(sed '/id="sources"/,$d' "$PAGE" | grep -oE '\[[0-9][0-9, -]*\]' | tr -d '[] ' | tr ',' '\n' | awk -F- 'NF==2{for(i=$1;i<=$2;i++)print i;next}{print}' | sort -un)"
+  [ -n "$nums" ]
+  for n in $nums; do
+    grep -q "id=\"src-$n\"" "$PAGE" || { echo "missing src-$n"; return 1; }
+  done
+}
+
+@test "FNO-V3-8: New York Times story section present with scoping note" {
+  grep -q 'id="nyt"' "$PAGE"
+  grep -qi 'paywall' "$PAGE"
+}
+
+@test "FNO-V3-9: key assessments KA-5 held at unlikely, KA-6 very unlikely" {
+  grep -Eq 'KA-5:[^<]*Unlikely; moderate confidence' "$PAGE"
+  grep -Eq 'KA-6:[^<]*Very unlikely; moderate confidence' "$PAGE"
+}
+
+@test "FNO-V3-10: every table header cell declares a scope" {
+  ! grep -E '<th>' "$PAGE"
+}
+
+@test "FNO-QA-1: no unsourced contractor-versus-vendor dispute" {
+  ! grep -qi 'contractor-versus-vendor' "$PAGE"
+}
+
+@test "FNO-QA-2: x.com profiles are not described as headers only" {
+  ! grep -qi 'headers only\|header only' "$PAGE"
+}
+
+@test "FNO-QA-3: hero, meta description and card say two potential sites" {
+  sed -n '/class="event-summary"/,/<\/p>/p' "$PAGE" | grep -q 'two potential sites'
+  grep -q 'name="description"[^>]*two potential sites' "$PAGE"
+  sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'two potential sites'
+}
+
+@test "FNO-QA-4: hero and card do not say every U.S. airport" {
+  ! sed -n '/class="event-summary"/,/<\/p>/p' "$PAGE" | grep -q 'every U.S. airport'
+  ! sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'every U.S. airport'
+}
+
+@test "FNO-QA-5: no internal snapshot codes or placeholder times in sources" {
+  ! grep -Eq 'S1a|S1b|S2a|S2b|\(S1 |; S2 |S1 [0-9]|S2 [0-9]|15:53:3x' "$PAGE"
+}
+
+@test "FNO-QA-6: each named maker is paired with a no-fault caveat" {
+  grep -q 'Naming a maker is not a finding of fault' "$PAGE"
+  grep -q 'Naming Cisco is not a finding of fault' "$PAGE"
+  grep -q 'Naming Harris Corp. is not a finding of fault' "$PAGE"
+}
+
+@test "FNO-QA-7: running-total caveat on Sunday cancellations" {
+  grep -q 'running total, not final' "$PAGE"
 }
