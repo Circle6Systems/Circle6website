@@ -106,12 +106,82 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
   ! grep -qi 'state-linked ownership' "$PAGE"
 }
 
-@test "NTR-V2-1: page carries a 'What changed in v2' panel" {
-  grep -q 'id="v2-changes"' "$PAGE"
-  grep -q 'What changed in v2' "$PAGE"
+@test "NTR-V3-1: page carries a 'What changed in v3' panel and no v2 panel" {
+  grep -q 'id="v3-changes"' "$PAGE"
+  grep -q 'What changed in v3' "$PAGE"
+  ! grep -q 'What changed in v2' "$PAGE"
 }
 
-@test "NTR-V2-2: page and report card are labeled v2" {
-  grep -q 'Flash Briefing v2' "$PAGE"
-  sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'
+@test "NTR-V3-2: page title, event date and report card are labeled v3" {
+  grep -q '<title>Flash Briefing v3' "$PAGE"
+  grep -q 'class="event-date">[^<]*Flash Briefing v3, November 15, 2026' "$PAGE"
+  sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v3'
+  ! sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'
+}
+
+@test "NTR-V3-3: v2 and v3 cutoffs are both stated" {
+  grep -q '10:30 a.m. CST' "$PAGE"
+  grep -q '16:30 UTC' "$PAGE"
+  grep -q '11:02 p.m. CST' "$PAGE"
+  grep -q '05:02 UTC' "$PAGE"
+}
+
+@test "NTR-V3-4: no em dash as character, named entity or numeric entity (page and index)" {
+  # pattern built from a hex escape so this file carries no literal em dash
+  emdash=$'\xe2\x80\x94'
+  ! grep -q "$emdash" "$PAGE"
+  ! grep -q "$emdash" "$INDEX"
+  ! grep -Eqi '&m[d]ash;|&#8212;|&#x2014;' "$PAGE" "$INDEX"
+}
+
+@test "NTR-V3-5: every [S..] citation has a matching source id" {
+  ids="$(sed '/id="sources"/,$d' "$PAGE" | grep -oE '\[S[0-9][0-9, S]*\]' | grep -oE 'S[0-9]+' | sort -u)"
+  [ -n "$ids" ]
+  for id in $ids; do
+    lower="$(echo "$id" | tr 'S' 's')"
+    grep -q "id=\"$lower\"" "$PAGE" || { echo "missing $lower"; return 1; }
+  done
+}
+
+@test "NTR-V3-6: sources S70 to S100 are listed" {
+  for n in 70 85 100; do
+    grep -q "id=\"s$n\"" "$PAGE" || { echo "missing s$n"; return 1; }
+  done
+}
+
+@test "NTR-V3-7: no 'second crash' item (unread lead cut)" {
+  ! grep -Eqi 'second (ship )?crash|second-crash|Bulker Hits Bridge' "$PAGE"
+}
+
+@test "NTR-V3-8: no visible snapshot or method codes" {
+  ! grep -Eqi 'jsonl|v[23]-recon|page-texts|snapshot code|site parameter|\bPIR[- ]?[0-9]|socmint|fusion check|\bR1[0-3]\b' "$PAGE"
+}
+
+@test "NTR-V3-9: legal items are labeled as allegations" {
+  grep -Eqi 'allegations' "$PAGE"
+  sed -n '/The lawsuits/,/<\/section>/p' "$PAGE" | grep -qi 'allegations'
+  sed -n '/id="bluf-h"/,/<\/section>/p' "$PAGE" | grep -qi 'allegations'
+}
+
+@test "NTR-V3-10: every table header cell declares a scope" {
+  ! grep -E '<th>' "$PAGE"
+  ! grep -E '<th [^>]*>' "$PAGE" | grep -v 'scope='
+}
+
+@test "NTR-V3-11: ownership rulings hold (no private individual, generic defendants, no ownership-as-cause)" {
+  ! grep -qi 'China State Shipbuilding' "$PAGE"
+  ! grep -Eqi 'defendants? (are|is) (named|Nave)' "$PAGE"
+  ! grep -qi 'Barnum' "$PAGE"
+  sed -n '/The lawsuits/,/<\/div>/p' "$PAGE" | grep -q "registered owner and its ship manager"
+}
+
+@test "NTR-V3-12: editorial defaults applied (flag-state line, hospital 6 vs 5, 1302, pilot caption label)" {
+  grep -q 'a substantially interested state' "$PAGE"
+  grep -q 'six individuals remain hospitalized' "$PAGE"
+  grep -q 'about 1302 local time' "$PAGE"
+  grep -q 'not identified in the auto-generated captions' "$PAGE"
+}
+
+@test "NTR-V3-13: S88 and S95 are listed without addresses" {
+  ! sed -n '/id="s88"/p;/id="s95"/p' "$PAGE" | grep -q '<a '
 }
