@@ -109,14 +109,14 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 @test "NTR-V3-1: page carries a 'What changed in v3' panel and no v2 panel" {
   grep -q 'id="v3-changes"' "$PAGE"
   grep -q 'What changed in v3' "$PAGE"
-  ! grep -q 'What changed in v2' "$PAGE"
+  if grep -q 'What changed in v2' "$PAGE"; then return 1; fi
 }
 
 @test "NTR-V3-2: page title, event date and report card are labeled v3" {
   grep -q '<title>Flash Briefing v3' "$PAGE"
   grep -q 'class="event-date">[^<]*Flash Briefing v3, November 15, 2026' "$PAGE"
   sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v3'
-  ! sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'
+  if sed -n '/aria-labelledby="nola-tanker-title"/,/<\/article>/p' "$INDEX" | grep -q 'Flash Briefing v2'; then return 1; fi
 }
 
 @test "NTR-V3-3: v2 and v3 cutoffs are both stated" {
@@ -129,9 +129,9 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 @test "NTR-V3-4: no em dash as character, named entity or numeric entity (page and index)" {
   # pattern built from a hex escape so this file carries no literal em dash
   emdash=$'\xe2\x80\x94'
-  ! grep -q "$emdash" "$PAGE"
-  ! grep -q "$emdash" "$INDEX"
-  ! grep -Eqi '&m[d]ash;|&#8212;|&#x2014;' "$PAGE" "$INDEX"
+  if grep -q "$emdash" "$PAGE"; then return 1; fi
+  if grep -q "$emdash" "$INDEX"; then return 1; fi
+  if grep -Eqi '&m[d]ash;|&#8212;|&#x2014;' "$PAGE" "$INDEX"; then return 1; fi
 }
 
 @test "NTR-V3-5: every [S..] citation has a matching source id" {
@@ -150,11 +150,11 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 }
 
 @test "NTR-V3-7: no 'second crash' item (unread lead cut)" {
-  ! grep -Eqi 'second (ship )?crash|second-crash|Bulker Hits Bridge' "$PAGE"
+  if grep -Eqi 'second (ship )?crash|second-crash|Bulker Hits Bridge' "$PAGE"; then return 1; fi
 }
 
 @test "NTR-V3-8: no visible snapshot or method codes" {
-  ! grep -Eqi 'jsonl|v[23]-recon|page-texts|snapshot code|site parameter|\bPIR[- ]?[0-9]|socmint|fusion check|\bR1[0-3]\b' "$PAGE"
+  if grep -Eqi 'jsonl|v[23]-recon|page-texts|snapshot code|site parameter|\bPIR[- ]?[0-9]|socmint|fusion check|\bR1[0-3]\b' "$PAGE"; then return 1; fi
 }
 
 @test "NTR-V3-9: legal items are labeled as allegations" {
@@ -164,14 +164,13 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 }
 
 @test "NTR-V3-10: every table header cell declares a scope" {
-  ! grep -E '<th>' "$PAGE"
-  ! grep -E '<th [^>]*>' "$PAGE" | grep -v 'scope='
+  if grep -E '<th>' "$PAGE"; then return 1; fi
+  if grep -E '<th [^>]*>' "$PAGE" | grep -qv 'scope='; then return 1; fi
 }
 
 @test "NTR-V3-11: ownership rulings hold (no private individual, generic defendants, no ownership-as-cause)" {
-  ! grep -qi 'China State Shipbuilding' "$PAGE"
-  ! grep -Eqi 'defendants? (are|is) (named|Nave)' "$PAGE"
-  ! grep -qi 'Barnum' "$PAGE"
+  if grep -qi 'China State Shipbuilding' "$PAGE"; then return 1; fi
+  if grep -Eqi 'defendants? (are|is) (named|Nave)' "$PAGE"; then return 1; fi
   sed -n '/The lawsuits/,/<\/div>/p' "$PAGE" | grep -q "registered owner and its ship manager"
 }
 
@@ -183,5 +182,40 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 }
 
 @test "NTR-V3-13: S88 and S95 are listed without addresses" {
-  ! sed -n '/id="s88"/p;/id="s95"/p' "$PAGE" | grep -q '<a '
+  if sed -n '/id="s88"/p;/id="s95"/p' "$PAGE" | grep -q '<a '; then return 1; fi
+}
+
+@test "NTR-V3-QA-1: investigator in charge attribution restored" {
+  grep -q 'Barnum said' "$PAGE"
+  grep -q 'investigator in charge' "$PAGE"
+}
+
+@test "NTR-V3-QA-2: no v2 RSS feed correction or failures-table reference" {
+  if grep -q 'source file (failures table)' "$PAGE"; then return 1; fi
+  if grep -q 'Correction to v2: v2 said the USCG RSS feed' "$PAGE"; then return 1; fi
+  if grep -q 'Correction: USCG news feed' "$PAGE"; then return 1; fi
+}
+
+@test "NTR-V3-QA-3: CNN update time is not given as a precise minute" {
+  if grep -q 'about 7:34 p.m. CST' "$PAGE"; then return 1; fi
+  grep -q 'updated 3 hr ago' "$PAGE"
+}
+
+@test "NTR-V3-QA-4: KA-2 and KA-3 labels name what each rating covers" {
+  grep -q 'moderate (hospital count)' "$PAGE"
+  grep -q 'low (mechanism)' "$PAGE"
+}
+
+@test "NTR-V3-QA-5: ferry row matches the v2 wording, not Canal Street" {
+  if grep -q 'Canal Street ferry' "$PAGE"; then return 1; fi
+  grep -q 'RTA cross-river ferry service temporarily suspended' "$PAGE"
+}
+
+@test "NTR-V3-QA-6: S40 lists the 04:44 recheck" {
+  grep -E 'id="s40"' "$PAGE" | grep -q '04:44'
+}
+
+@test "NTR-V3-QA-7: witness address stays plain text" {
+  grep -q 'witness@ntsb.gov' "$PAGE"
+  if grep -q 'mailto:' "$PAGE"; then return 1; fi
 }
