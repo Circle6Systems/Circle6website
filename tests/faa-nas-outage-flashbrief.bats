@@ -163,3 +163,36 @@ INDEX="$SITE_ROOT/osint-reports/index.html"
 @test "FNO-V3-10: every table header cell declares a scope" {
   ! grep -E '<th>' "$PAGE"
 }
+
+@test "FNO-QA-1: no unsourced contractor-versus-vendor dispute" {
+  ! grep -qi 'contractor-versus-vendor' "$PAGE"
+}
+
+@test "FNO-QA-2: x.com profiles are not described as headers only" {
+  ! grep -qi 'headers only\|header only' "$PAGE"
+}
+
+@test "FNO-QA-3: hero, meta description and card say two potential sites" {
+  sed -n '/class="event-summary"/,/<\/p>/p' "$PAGE" | grep -q 'two potential sites'
+  grep -q 'name="description"[^>]*two potential sites' "$PAGE"
+  sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'two potential sites'
+}
+
+@test "FNO-QA-4: hero and card do not say every U.S. airport" {
+  ! sed -n '/class="event-summary"/,/<\/p>/p' "$PAGE" | grep -q 'every U.S. airport'
+  ! sed -n '/aria-labelledby="faa-ground-stop-title"/,/<\/article>/p' "$INDEX" | grep -q 'every U.S. airport'
+}
+
+@test "FNO-QA-5: no internal snapshot codes or placeholder times in sources" {
+  ! grep -Eq 'S1a|S1b|S2a|S2b|\(S1 |; S2 |S1 [0-9]|S2 [0-9]|15:53:3x' "$PAGE"
+}
+
+@test "FNO-QA-6: each named maker is paired with a no-fault caveat" {
+  grep -q 'Naming a maker is not a finding of fault' "$PAGE"
+  grep -q 'Naming Cisco is not a finding of fault' "$PAGE"
+  grep -q 'Naming Harris Corp. is not a finding of fault' "$PAGE"
+}
+
+@test "FNO-QA-7: running-total caveat on Sunday cancellations" {
+  grep -q 'running total, not final' "$PAGE"
+}
